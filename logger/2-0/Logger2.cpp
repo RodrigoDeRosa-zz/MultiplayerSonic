@@ -105,7 +105,7 @@ void timestamp(FILE* outstream,string mensaje){
     fprintf (outstream,"%s %s\n", buff, mensaje.c_str());
 }
 
-
+/*
 int main(){
 	printf("PRUEBA INICIALIZACION+SET/GET LOGLV\n");
 	Logger::getInstance();
@@ -134,7 +134,7 @@ int main(){
 	
 
 	return 0;
-}
+}*/
 
 //Acá va la lista de errores (a completar)
 void Logger::initMaps(){
