@@ -1,10 +1,3 @@
-/*
- * LTexture.cpp
- *
- *  Created on: Mar 16, 2017
- *      Author: marc
- */
-
 #include <iostream>
 #include "LTexture.h"
 #include <SDL2/SDL.h>
@@ -94,6 +87,10 @@ int LTexture::getHeight(){
 
 SDL_Texture* LTexture::get_texture(){
 	return mTexture;
+}
+
+void Ltexture::set_background_color(Uint8 r, Uint8 g, Uint8 b){
+	SDL_SetTextureColorMod(mTexture, r, g, b);
 }
 
 bool LTexture::operator==(const LTexture &other) const{

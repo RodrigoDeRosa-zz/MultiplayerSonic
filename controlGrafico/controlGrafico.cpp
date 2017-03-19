@@ -40,7 +40,7 @@ bool init(SDL_Window* window ; SDL_Renderer* renderer){
 			}
 			else
 			{
-				//Initialize renderer color
+				//Initialize renderer color, white by default
 				SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 
 				//Initialize PNG loading
@@ -55,4 +55,18 @@ bool init(SDL_Window* window ; SDL_Renderer* renderer){
 	}
 
 	return success;
+}
+
+void close(SDL_Window* window ; SDL_Renderer* renderer)
+{
+
+	//Destroy window
+	SDL_DestroyRenderer( rederer );
+	SDL_DestroyWindow( window );
+	gWindow = NULL;
+	gRenderer = NULL;
+
+	//Quit SDL subsystems
+	IMG_Quit();
+	SDL_Quit();
 }

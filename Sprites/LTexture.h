@@ -25,6 +25,7 @@ public:
 	bool loadFromFile( string path, SDL_Renderer* gRenderer );
 	void free();
 	void render( int x, int y, SDL_Renderer* gRenderer );
+	void set_background_color(Uint8 r, Uint8 g, Uint8 b)
 	int getWidth();
 	int getHeight();
 	bool operator==(const LTexture &other) const
