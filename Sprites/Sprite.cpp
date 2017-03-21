@@ -1,6 +1,6 @@
-#include "Sprite.h"
+#include "Sprite.hpp"
 #include "SDL2/SDL.h"
-#include "LTexture.h"
+#include "LTexture.hpp"
 #include <iostream>
 
 LTexture* texture;

@@ -3,10 +3,10 @@
 #include <iostream>
 #include <string>
 
-#ifndef CONTROLGRAFICO_H
-#define CONTROLGRAFICO_H
+#ifndef CONTROLGRAFICO_HPP
+#define CONTROLGRAFICO_HPP
 
 bool init(SDL_Window* window , SDL_Renderer* renderer);
 void close(SDL_Window* window , SDL_Renderer* renderer);
 
-#endif
+#endif /*CONTROLGRAFICO_HPP*/

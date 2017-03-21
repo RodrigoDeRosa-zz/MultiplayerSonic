@@ -10,8 +10,8 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 
-#ifndef LTEXTURE_H_
-#define LTEXTURE_H_
+#ifndef LTEXTURE_HPP_
+#define LTEXTURE_HPP_
 
 using namespace std;
 
@@ -31,4 +31,4 @@ public:
 	~LTexture();
 };
 
-#endif /* LTEXTURE_H_ */
+#endif /* LTEXTURE_HPP_ */

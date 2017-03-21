@@ -1,5 +1,5 @@
 #pragma once
-#include "Sprite.h"
+#include "Sprite.hpp"
 #include <vector>
 
 using namespace std;
@@ -18,4 +18,3 @@ public:
 	bool has(Sprite sprite);
 	SpriteGroup copy();
 };
-

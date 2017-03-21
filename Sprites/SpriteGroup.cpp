@@ -1,5 +1,5 @@
-#include "SpriteGroup.h"
-#include "Sprite.h"
+#include "SpriteGroup.hpp"
+#include "Sprite.hpp"
 #include <vector>
 
 using namespace std;
@@ -11,7 +11,7 @@ SpriteGroup::SpriteGroup()
 }
 
 void SpriteGroup::add(Sprite *sprite) {
-	
+
 	sprites.push_back(sprite);
 
 }

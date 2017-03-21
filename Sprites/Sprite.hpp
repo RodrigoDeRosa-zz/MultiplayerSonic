@@ -1,9 +1,9 @@
 #include "SDL2/SDL.h"
 #include <iostream>
-#include "LTexture.h"
+#include "LTexture.hpp"
 
-#ifndef SRC_SPRITE_H_
-#define SRC_SPRITE_H_
+#ifndef SRC_SPRITE_HPP_
+#define SRC_SPRITE_HPP_
 
 class Sprite {
 	LTexture* get_texture();
@@ -20,4 +20,4 @@ public:
 	bool operator==(Sprite &other) const;
 };
 
-#endif
+#endif /*SRC_SPRITE_HPP_*/
