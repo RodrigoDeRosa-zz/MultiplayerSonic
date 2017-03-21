@@ -10,11 +10,9 @@ using namespace std;
 	int mHeight;
 
 LTexture::LTexture() {
-
 	mTexture = NULL;
-	int mWidth = 0;
-	int mHeight = 0;
-
+	mWidth = 0;
+	mHeight = 0;
 }
 
 bool LTexture::loadFromFile( string path, SDL_Renderer* gRenderer )
@@ -70,11 +68,13 @@ void LTexture::free()
 	}
 }
 
-void LTexture::render( int x, int y, SDL_Renderer* gRenderer )
+void LTexture::render( int x, int y, SDL_Rect* clip, SDL_Renderer* gRenderer )
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
-	SDL_RenderCopy( gRenderer, mTexture, NULL, &renderQuad );
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	SDL_RenderCopy( gRenderer, mTexture, clip, &renderQuad );
 }
 
 int LTexture::getWidth(){
@@ -89,11 +89,7 @@ SDL_Texture* LTexture::get_texture(){
 	return mTexture;
 }
 
-void Ltexture::set_background_color(Uint8 r, Uint8 g, Uint8 b){
-	SDL_SetTextureColorMod(mTexture, r, g, b);
-}
-
-bool LTexture::operator==(const LTexture &other) const{
+bool LTexture::operator==(LTexture &other) const{
 	return (mTexture == other.get_texture());
 }
 

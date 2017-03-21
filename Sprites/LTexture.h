@@ -16,7 +16,7 @@
 using namespace std;
 
 class LTexture {
-	SDL_Texture* get_texture()
+	SDL_Texture* get_texture();
 	SDL_Texture* mTexture;
 	int mWidth;
 	int mHeight;
@@ -24,11 +24,10 @@ public:
 	LTexture();
 	bool loadFromFile( string path, SDL_Renderer* gRenderer );
 	void free();
-	void render( int x, int y, SDL_Renderer* gRenderer );
-	void set_background_color(Uint8 r, Uint8 g, Uint8 b)
+	void render( int x, int y, SDL_Rect* clip, SDL_Renderer* gRenderer );
 	int getWidth();
 	int getHeight();
-	bool operator==(const LTexture &other) const
+	bool operator==(LTexture &other) const;
 	~LTexture();
 };
 

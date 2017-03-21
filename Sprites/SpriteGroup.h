@@ -13,7 +13,7 @@ public:
 	void add(Sprite * sprite);
 	void remove(Sprite sprite);
 	void update();
-	void draw(SDL_Surface * sup);
+	void draw(SDL_Renderer * renderer);
 	void empty();
 	bool has(Sprite sprite);
 	SpriteGroup copy();

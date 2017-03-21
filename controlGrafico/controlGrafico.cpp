@@ -4,7 +4,11 @@
 #include <string>
 #include "controlGrafico.h"
 
-bool init(SDL_Window* window ; SDL_Renderer* renderer){
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
+bool init(SDL_Window* window , SDL_Renderer* renderer)
+{
 	//Initialization flag
 	bool success = true;
 
@@ -40,7 +44,7 @@ bool init(SDL_Window* window ; SDL_Renderer* renderer){
 			}
 			else
 			{
-				//Initialize renderer color, white by default
+				//Initialize renderer color
 				SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
 
 				//Initialize PNG loading
@@ -57,14 +61,14 @@ bool init(SDL_Window* window ; SDL_Renderer* renderer){
 	return success;
 }
 
-void close(SDL_Window* window ; SDL_Renderer* renderer)
+void close(SDL_Window* window , SDL_Renderer* renderer)
 {
 
 	//Destroy window
-	SDL_DestroyRenderer( rederer );
+	SDL_DestroyRenderer( renderer );
 	SDL_DestroyWindow( window );
-	gWindow = NULL;
-	gRenderer = NULL;
+	window = NULL;
+	renderer = NULL;
 
 	//Quit SDL subsystems
 	IMG_Quit();

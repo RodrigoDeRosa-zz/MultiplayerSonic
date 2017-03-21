@@ -3,5 +3,10 @@
 #include <iostream>
 #include <string>
 
-bool init(SDL_Window* window ; SDL_Renderer* renderer);
-void close(SDL_Window* window ; SDL_Renderer* renderer);
+#ifndef CONTROLGRAFICO_H
+#define CONTROLGRAFICO_H
+
+bool init(SDL_Window* window , SDL_Renderer* renderer);
+void close(SDL_Window* window , SDL_Renderer* renderer);
+
+#endif

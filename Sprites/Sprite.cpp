@@ -4,17 +4,27 @@
 #include <iostream>
 
 LTexture* texture;
-int origin_x, origin_y, width, height;
+SDL_Rect rectangle;
+int origin_x, origin_y, width, height, r, g, b;
 
-Sprite::Sprite(Uint8 r, Uint8 g, Uint8 b, int x, int y, int w, int h){
+Sprite::Sprite(int x, int y, int w, int h){
 
-	//usar el color
+	texture = NULL;
+
 	origin_x = x;
 	origin_y = y;
 	width = w;
 	height = h;
-	texture.set_background_color(r, g, b);
 
+	rectangle.x = x;
+	rectangle.y = y;
+	rectangle.h = h;
+	rectangle.w = w;
+
+	//inicializo los el color blanco por defecto
+	r = 255;
+	g = 255;
+	b = 255;
 }
 
 void Sprite::update() {
@@ -23,22 +33,29 @@ void Sprite::update() {
 
 void Sprite::set_texture(LTexture* new_texture){
 	texture = new_texture;
-	width = texture.getWidth();
-	height = texture.getHeight();
 }
 
 void Sprite::draw(SDL_Renderer * destination){
-	texture.render(origin_x, origin_y, destination);
+	//si no tiene una textura cargada, entonces pinta el color ya definido
+	if (texture != NULL){
+		texture->render(origin_x, origin_y, &rectangle, destination);
+	}
+	else{
+		SDL_SetRenderDrawColor( destination, r, g, b, 1 );
+		SDL_RenderFillRect(destination, &rectangle);
+	}
 }
 
-void Sprite::set_background_color(Uint8 r, Uint8 g, Uint8 b){
-	texture.set_background_color(r, g, b)
+void Sprite::set_background_color(int new_r, int new_g, int new_b){
+	r = new_r;
+	g = new_g;
+	b = new_b;
 }
 
-LTexture* Sprite::get_texture() const{
+LTexture* Sprite::get_texture(){
 	return texture;
 }
 
-bool Sprite::operator==(const Sprite &other) const{
+bool Sprite::operator==(Sprite &other) const{
 	return (texture == other.get_texture());
 }

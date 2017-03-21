@@ -34,11 +34,11 @@ void SpriteGroup::update() {
 	}
 }
 
-void SpriteGroup::draw(SDL_Surface* sup) {
+void SpriteGroup::draw(SDL_Renderer * renderer) {
 
 	if (!sprites.empty()) {
 		for (int i = 0; i < (int)sprites.size(); i++) {
-			sprites[i]->draw(sup);
+			sprites[i]->draw(renderer);
 		}
 	}
 }

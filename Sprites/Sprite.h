@@ -6,17 +6,18 @@
 #define SRC_SPRITE_H_
 
 class Sprite {
-	LTexture* get_texture() const;
+	LTexture* get_texture();
 protected:
-	LTexture texture;
-	int origin_x, origin_y, width, height;
+	LTexture* texture;
+	SDL_Rect rectangle;
+	int origin_x, origin_y, width, height, r, g, b;
 public:
-	Sprite(Uint8 r, Uint8 g, Uint8 b, int x, int y, int w, int h);
+	Sprite(int x, int y, int w, int h);
 	void update();
 	void draw(SDL_Renderer * destination);
-	void set_texture(LTexture* new_texture)
-	void set_background_color(Uint32 color);
-	bool operator==(const Sprite &other) const;
+	void set_texture(LTexture* new_texture);
+	void set_background_color(int r, int g, int b);
+	bool operator==(Sprite &other) const;
 };
 
 #endif
