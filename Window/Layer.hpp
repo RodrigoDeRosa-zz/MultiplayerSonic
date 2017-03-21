@@ -21,6 +21,8 @@ class Layer{
         void setId(char);
         /*Define el z-index de la capa*/
         void setZIndex(char);
+        /*Define la direccion de la imagen de fondo de la capa*/
+        void setImagePath(string);
         /*Si es una capa con imagen de fondo, carga la imagen en la direccion
         del path del objeto.*/
         void loadBackground(SDL_Renderer*);

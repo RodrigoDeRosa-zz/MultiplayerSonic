@@ -38,20 +38,20 @@ void Layer::setImagePath(string path){
 void Layer::loadBackground(SDL_Renderer* renderer){
     /*Se crea la textura con la imagen de fondo*/
     LTexture* tex = new LTexture();
-    tex.loadFromFile(imagePath, renderer);
+    tex->loadFromFile(imagePath, renderer);
     /*Se crea el sprite con dicha textura*/
-    Sprite* background = new Sprite();
-    background.setTexture(tex);
+    Sprite* background = new Sprite(0, 0, 640, 480);
+    background->set_texture(tex);
     /*Se agrega el sptrite al conjunto de sprites de la capa*/
-    sprites.add(background);
+    sprites->add(background);
 }
 /*Agrega un sprite a la capa*/
 void Layer::addElement(Sprite* sprite){
-    sprites.add(sprite);
+    sprites->add(sprite);
 }
 /*Se dibuja en pantalla*/
 void Layer::draw(SDL_Renderer* renderer){
-    sprites.draw(renderer);
+    sprites->draw(renderer);
 }
 /*Libera los elementos de la capa*/
 void Layer::freeElements(){

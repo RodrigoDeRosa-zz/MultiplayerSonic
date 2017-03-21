@@ -30,7 +30,7 @@ int main(int argc, char** argv){
 
     Layer capa;
     capa.setImagePath("background.png");
-    capa.load(renderer);
+    capa.loadBackground(renderer);
 
     bool running = true;
     SDL_Event e;
