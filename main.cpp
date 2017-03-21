@@ -6,6 +6,7 @@
 #include "Sprites/Sprite.hpp"
 #include "Sprites/SpriteGroup.hpp"
 #include "controlGrafico/controlGrafico.hpp"
+#include "JsonLoader.hpp"
 
 #define fps 60
 #define SCREEN_WIDTH 640
@@ -42,15 +43,8 @@ bool init()
 			printf( "Warning: Linear texture filtering not enabled!" );
 		}
 
-		//Create window
-		window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-		if( window == NULL )
-		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
+		JsonLoader configuracion = JsonLoader("ejemplo.json");
+		window = configuracion.obtener_ventana();
 			//Create renderer for window
 			renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_SOFTWARE );
 			if( renderer == NULL )
@@ -72,7 +66,6 @@ bool init()
 				}
 			}
 		}
-	}
 
 	return success;
 }

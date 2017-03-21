@@ -1,10 +1,10 @@
 #OBJS specifies which files to compile as part of the project 
-OBJS = controlGrafico/controlGrafico.cpp Sprites/Sprite.cpp Sprites/LTexture.cpp Sprites/SpriteGroup.cpp  main.cpp
+OBJS = controlGrafico/controlGrafico.cpp Sprites/Sprite.cpp Sprites/LTexture.cpp Sprites/SpriteGroup.cpp  main.cpp JsonLoader.cpp jsoncpp.cpp
 #CC specifies which compiler we're using 
 CC = g++ 
 #COMPILER_FLAGS specifies the additional compilation options we're using 
 # -w suppresses all warnings 
-COMPILER_FLAGS = -w 
+COMPILER_FLAGS = -w
 #LINKER_FLAGS specifies the libraries we're linking against 
 LINKER_FLAGS = -lSDL2 -lSDL2_image
 #OBJ_NAME specifies the name of our exectuable 
