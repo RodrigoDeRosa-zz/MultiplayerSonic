@@ -2,10 +2,10 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <string>
-#include "Sprites/LTexture.h"
-#include "Sprites/Sprite.h"
-#include "Sprites/SpriteGroup.h"
-#include "controlGrafico/controlGrafico.h"
+#include "Sprites/LTexture.hpp"
+#include "Sprites/Sprite.hpp"
+#include "Sprites/SpriteGroup.hpp"
+#include "controlGrafico/controlGrafico.hpp"
 
 #define fps 60
 #define SCREEN_WIDTH 640
@@ -16,15 +16,14 @@ SDL_Renderer* renderer = NULL;
 LTexture gBackgroundTexture;
 
 void control_framerate(Uint32 starting_tick) {
-	
+
 	if ((1000 / fps) > (SDL_GetTicks() - starting_tick)) {
 		SDL_Delay((1000 / fps) - (SDL_GetTicks() - starting_tick));
 	}
 
 }
 
-bool init()
-{
+bool init(){
 	//Initialization flag
 	bool success = true;
 
@@ -93,7 +92,7 @@ bool loadMedia()
 }
 
 int main(int argc, char** argv){
-	
+
 	if( !init() ){
 		//Levantar el error.
 	}
@@ -120,11 +119,11 @@ int main(int argc, char** argv){
 					running = false;
 					break;
 					}
-				
+
 					//Clear Screen
 					SDL_SetRenderDrawColor( renderer, 255, 255, 255, 1 );
 					SDL_RenderClear( renderer );
-				
+
 
 					/*-----Ejemplo de uso de SPRITES------*/
 
@@ -160,5 +159,5 @@ int main(int argc, char** argv){
 
 	}
 	close(window, renderer);
-	return 0;	
+	return 0;
 }
