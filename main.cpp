@@ -23,7 +23,8 @@ void control_framerate(Uint32 starting_tick) {
 
 }
 
-bool init(){
+bool init()
+{
 	//Initialization flag
 	bool success = true;
 

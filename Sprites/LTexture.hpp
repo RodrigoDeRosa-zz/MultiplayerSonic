@@ -22,9 +22,9 @@ class LTexture {
 	int mHeight;
 public:
 	LTexture();
-	bool loadFromFile( string path, SDL_Renderer* gRenderer );
+	bool loadFromFile( string path, SDL_Renderer* renderer );
 	void free();
-	void render( int x, int y, SDL_Rect* clip, SDL_Renderer* gRenderer );
+	void render( int x, int y, SDL_Rect* clip, SDL_Renderer* renderer );
 	int getWidth();
 	int getHeight();
 	bool operator==(LTexture &other) const;

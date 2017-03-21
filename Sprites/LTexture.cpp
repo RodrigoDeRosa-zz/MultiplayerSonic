@@ -15,8 +15,7 @@ LTexture::LTexture() {
 	mHeight = 0;
 }
 
-bool LTexture::loadFromFile( string path, SDL_Renderer* gRenderer )
-{
+bool LTexture::loadFromFile( string path, SDL_Renderer* renderer ){
 	//Get rid of preexisting texture
 	free();
 
@@ -25,23 +24,17 @@ bool LTexture::loadFromFile( string path, SDL_Renderer* gRenderer )
 
 	//Load image at specified path
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-	if( loadedSurface == NULL )
-	{
+	if( loadedSurface == NULL ){
 		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-	}
-	else
-	{
+	}else{
 		//Color key image
 		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
 		//Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
-		if( newTexture == NULL )
-		{
+        newTexture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
+		if( newTexture == NULL ){
 			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-		}
-		else
-		{
+		}else{
 			//Get image dimensions
 			mWidth = loadedSurface->w;
 			mHeight = loadedSurface->h;
@@ -56,11 +49,9 @@ bool LTexture::loadFromFile( string path, SDL_Renderer* gRenderer )
 	return mTexture != NULL;
 }
 
-void LTexture::free()
-{
+void LTexture::free(){
 	//Free texture if it exists
-	if( mTexture != NULL )
-	{
+	if( mTexture != NULL ){
 		SDL_DestroyTexture( mTexture );
 		mTexture = NULL;
 		mWidth = 0;
@@ -68,13 +59,12 @@ void LTexture::free()
 	}
 }
 
-void LTexture::render( int x, int y, SDL_Rect* clip, SDL_Renderer* gRenderer )
-{
+void LTexture::render( int x, int y, SDL_Rect* clip, SDL_Renderer* renderer ){
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
 		renderQuad.w = clip->w;
 		renderQuad.h = clip->h;
-	SDL_RenderCopy( gRenderer, mTexture, clip, &renderQuad );
+	SDL_RenderCopy( renderer, mTexture, clip, &renderQuad );
 }
 
 int LTexture::getWidth(){
@@ -93,8 +83,7 @@ bool LTexture::operator==(LTexture &other) const{
 	return (mTexture == other.get_texture());
 }
 
-LTexture::~LTexture()
-{
+LTexture::~LTexture(){
 	//Deallocate
 	free();
 }
