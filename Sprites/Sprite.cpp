@@ -26,6 +26,9 @@ Sprite::Sprite(int x, int y, int w, int h){
 	g = 255;
 	b = 255;
 }
+Sprite::~Sprite(){
+	
+}
 
 void Sprite::update() {
 	//can be overridden!

@@ -147,9 +147,6 @@ int main(int argc, char** argv){
 					active_sprites.add(&bloque3);
 					active_sprites.draw(renderer);
 
-
-
-
 					//Update screen
 					SDL_RenderPresent( renderer );
 

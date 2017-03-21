@@ -6,9 +6,8 @@ using namespace std;
 
 vector <Sprite*> sprites; //vector de punteros a Sprite
 
-SpriteGroup::SpriteGroup()
-{
-}
+SpriteGroup::SpriteGroup(){}
+SpriteGroup::~SpriteGroup(){}
 
 void SpriteGroup::add(Sprite *sprite) {
 

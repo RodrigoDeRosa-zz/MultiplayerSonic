@@ -10,6 +10,7 @@ class SpriteGroup
 	int sprites_size;
 public:
 	SpriteGroup();
+	~SpriteGroup();
 	void add(Sprite * sprite);
 	void remove(Sprite sprite);
 	void update();
