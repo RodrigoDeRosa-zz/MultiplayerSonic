@@ -16,8 +16,24 @@ JsonLoader::JsonLoader(char* ruta){
 	if( !this->ventana ){
 		printf( "La ventana no pudo ser creada! SDL Error: %s\n", SDL_GetError() );
 	}
+	//creo los sprites
+	this->sprites = SpriteGroup();
+	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
+		int x = (*it)["coordenada"]["x"].asInt();
+		printf("%d \n",x);
+		int y = (*it)["coordenada"]["y"].asInt();
+		int h = (*it)["dimensiones"]["alto"].asInt();
+		int w = (*it)["dimensiones"]["ancho"].asInt();
+		Sprite sprite = Sprite(x,y,w,h);
+		sprite.set_background_color(255,130,15);
+		(this->sprites).add(&sprite);
+	}
 }
 
 SDL_Window* JsonLoader::obtener_ventana(){
 	return this->ventana;
+}
+
+SpriteGroup JsonLoader::obtener_sprites(){
+	return this->sprites;
 }

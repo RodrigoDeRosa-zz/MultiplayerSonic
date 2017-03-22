@@ -1,5 +1,5 @@
 {
-	"ventana": {"dimensiones": {"ancho": 3600, "alto": 600}},
+	"ventana": {"dimensiones": {"ancho": 600, "alto": 600}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
 		"dimensiones": {"ancho": 3600, "alto": 600},
@@ -29,19 +29,10 @@
 				"tipo": "rectangulo",
 				"color": "verde",
 				"dimensiones": {"ancho": 80, "alto": 35},
-				"coordenada": {"x": 2400, "y": 500},
+				"coordenada": {"x": 500, "y": 500},
 				"ruta_imagen": "/images/entidad2.png",
 				"index_z": 99
-			},
-			{
-				"id": 3,
-				"tipo": "circulo",
-				"color": "amarillo",
-				"dimensiones": {"radio": 15},
-				"coordenada": {"x": 3000, "y": 205},
-				"ruta_imagen": "/images/entidad3.png",
-				"index_z": 99
 			}
-		]
+			]
 }
 }
