@@ -20,6 +20,8 @@ class Stage{
         void setSpriteGroup(SpriteGroup*);
         /*Agrega el sprite al sprite group*/
         void addSprite(Sprite*);
+
+        SpriteGroup* getSprites();
 };
 
 #endif /*STAGE_HPP*/

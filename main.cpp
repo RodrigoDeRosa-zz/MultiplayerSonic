@@ -6,7 +6,10 @@
 #include "Graficos/Texture.hpp"
 #include "Graficos/Sprite.hpp"
 #include "Graficos/SpriteGroup.hpp"
+#include "Graficos/Punto.hpp"
+#include "Graficos/Camara.hpp"
 #include <SDL2/SDL.h>
+
 
 Stage* setStage(){
     Stage* stage = new Stage();
@@ -27,12 +30,15 @@ Stage* setStage(){
     /*Se crea la textura de los sprites*/
     Texture* tex = new Texture();
     tex->loadFromFile("Graficos/texture.png");
+
+    Texture* invisible = new Texture();
+    invisible->loadFromFile("Graficos/dot.bmp");
     /*Se crean tres sprites*/
-    Sprite* bloque1 = new Sprite(0, 0, 100, 100);
-    Sprite* bloque2 = new Sprite(150, 150, 100, 100);
-    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
+    Sprite* bloque1 = new Sprite(0, 0, 50, 50,"bloque1");
+    Sprite* bloque2 = new Sprite(150, 150, 100, 100, "bloque2");
+    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200, "bloque3");
     /*Dos tienen textura*/
-    bloque1->setTexture(tex);
+    bloque1->setTexture(invisible);
     bloque2->setTexture(tex);
     /*El tercero tiene color de fondo*/
     bloque3->setBackgroundColor(255,130,15);
@@ -53,7 +59,7 @@ Stage* setStage(){
 int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
-    Window::getInstance().setDimensions(860, 640);
+    Window::getInstance().setDimensions(400, 400);
     Window::getInstance().init();
 
     Renderer::getInstance().init();
@@ -63,10 +69,21 @@ int main(int argc, char** argv){
 
     bool running = true;
     SDL_Event e;
+    
+    SpriteGroup* sprites = stage->getSprites();
+    
+    //camara camara_pantalla = camara(0,0,20,400,400);
     while(running){
         while(SDL_PollEvent(&e)){
-            if (e.type == SDL_QUIT) running = false;
+            if (e.type == SDL_QUIT){
+                running = false;
+                break;
+            }
+           //bloque1.handleEvent(e);
         }
+        //bloque1.move();
+        //camara_pantalla.moveCamara(bloque1);
+        
         Renderer::getInstance().clear();
         stage->render();
         Renderer::getInstance().draw();

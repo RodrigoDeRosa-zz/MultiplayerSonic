@@ -3,7 +3,11 @@
 #include "Texture.hpp"
 #include "Renderer.hpp"
 
-Sprite::Sprite(int x, int y, int w, int h){
+
+const int ANCHO_ESCENARIO = 1280;
+const int ALTO_ESCENARIO = 960;
+
+Sprite::Sprite(int x, int y, int w, int h, string nombre){
     texture = NULL;
     originX = x;
     originY = y;
@@ -13,6 +17,10 @@ Sprite::Sprite(int x, int y, int w, int h){
     red = 0;
     green = 0;
     blue = 0;
+    velX = 0;
+    velY = 0;
+    velocidad = 20;
+    id = nombre;
 }
 
 Sprite::~Sprite(){
@@ -23,7 +31,10 @@ Sprite::~Sprite(){
     red = 0;
     green = 0;
     blue = 0;
+    velX=0;
+    velY=0;
     texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
+
 }
 
 void Sprite::update(){
@@ -53,4 +64,41 @@ Texture* Sprite::getTexture(){
 
 bool Sprite::operator==(Sprite& other) const{
     return (texture == other.getTexture());
+}
+
+void Sprite::handleEvent( SDL_Event& e ){
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 ){
+        switch( e.key.keysym.sym ){
+            case SDLK_UP: velY -= velocidad; break;
+            case SDLK_DOWN: velY += velocidad; break;
+            case SDLK_LEFT: velX -= velocidad; break;
+            case SDLK_RIGHT: velX += velocidad; break;
+        }
+    }
+    else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
+        switch( e.key.keysym.sym ){
+            case SDLK_UP: velY += velocidad; break;
+            case SDLK_DOWN: velY -= velocidad; break;
+            case SDLK_LEFT: velX += velocidad; break;
+            case SDLK_RIGHT: velX -= velocidad; break;
+        }
+    }
+}
+
+void Sprite::move(){
+    originX += velX;
+
+    if( ( originX < 0 ) || ( originX + width > ANCHO_ESCENARIO ) ){
+        originX -= velX;
+    }
+
+    originY += velY;
+
+    if( ( originY < 0 ) || ( originY + height > ALTO_ESCENARIO ) ){
+        originY -= velY;
+    }
+}
+
+string Sprite::getID(){
+    return id;
 }

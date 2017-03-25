@@ -52,6 +52,16 @@ bool SpriteGroup::has(Sprite sprite) {
 	return false;
 }
 
+Sprite* SpriteGroup::getSprite(string nombre) {
+
+    for (int i = 0; i < (int)sprites.size(); i++) {
+        if ((*sprites[i]).getID() == nombre) {
+            return sprites[i];
+        }
+    }
+    return NULL;
+}
+
 SpriteGroup SpriteGroup::copy() {
 
 	SpriteGroup new_group;
