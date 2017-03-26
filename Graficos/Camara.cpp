@@ -1,7 +1,7 @@
 #include "Camara.hpp"
 
 
-const int AN_CAMARA=640;
+const int AN_CAMARA=64;
 const int AL_CAMARA =480;
 const int AN_ESCENARIO = 1280;
 const int AL_ESCENARIO = 960;
