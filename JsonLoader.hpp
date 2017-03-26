@@ -1,14 +1,23 @@
-#include <SDL2/SDL.h>
-#include "Sprites/SpriteGroup.hpp"
+#include "Graficos/Window.hpp"
+#include "Graficos/Stage.hpp"
+#include "json/json.h"
+#include "json/json-forwards.h"
+#include "Graficos/SpriteGroup.hpp"
 
 
 using namespace std;
 
 class JsonLoader{
-	SDL_Window* ventana;
-	SpriteGroup sprites;
+	Stage* stage;
 	public:
 		JsonLoader(char* ruta);
-		SDL_Window* obtener_ventana();
-		SpriteGroup obtener_sprites();
+		Stage* getStage();
+	private:
+		Stage* setStage(Json::Value json);
+		SpriteGroup* getSprites(Json::Value json);
+		void setWindow(Json::Value json);
+		void setRenderer();
+		int getPositiveInt(Json::Value json);
+		void checkNullValue(Json::Value json);
+		string getString(Json::Value json);
 };

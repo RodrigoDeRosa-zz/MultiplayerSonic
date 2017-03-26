@@ -1,9 +1,12 @@
-//#include <json/json.h>
-#include <SDL2/SDL.h>
 #include "JsonLoader.hpp"
-#include "json/json.h"
-#include "json/json-forwards.h"
 #include <fstream>
+#include "Graficos/SDLHandler.hpp"
+#include "Graficos/Layer.hpp"
+#include "Graficos/Texture.hpp"
+#include "Graficos/Sprite.hpp"
+#include <SDL2/SDL.h>
+#include "Graficos/Renderer.hpp"
+#include "Graficos/Window.hpp"
 
 using namespace std;
 
@@ -11,29 +14,85 @@ JsonLoader::JsonLoader(char* ruta){
 	ifstream in(ruta);
   	Json::Value json;
   	in >> json;
-	//Create window
-	this->ventana = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, json["ventana"]["dimensiones"]["ancho"].asInt(), json["ventana"]["dimensiones"]["alto"].asInt(), SDL_WINDOW_SHOWN );
-	if( !this->ventana ){
-		printf( "La ventana no pudo ser creada! SDL Error: %s\n", SDL_GetError() );
+	this->setWindow(json);
+	this->setRenderer();
+	this->stage = this->setStage(json);
+}
+
+Stage* JsonLoader::setStage(Json::Value json){
+    Stage* stage = new Stage();
+
+	this->checkNullValue(json["escenario"]["capas"]);
+
+	for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
+    	Layer* layer = new Layer();
+
+		layer->setTexPath(this->getString((*it)["ruta_imagen"]));
+		layer->loadImage();
+		layer->setIndexZ(this->getPositiveInt((*it)["index_z"]));
+
+		stage->addLayer(layer);
 	}
-	//creo los sprites
-	this->sprites = SpriteGroup();
+
+    /*Se agregan al grupo de sprites*/
+    SpriteGroup* activeSprites = this->getSprites(json);
+
+    /*Se define el sprite group del escenario como el creado recien*/
+    stage->setSpriteGroup(activeSprites);
+
+    return stage;
+}
+
+SpriteGroup* JsonLoader::getSprites(Json::Value json){
+
+	SpriteGroup* activeSprites = new SpriteGroup();
+
+	this->checkNullValue(json["escenario"]["entidades"]);	
+
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
-		int x = (*it)["coordenada"]["x"].asInt();
-		printf("%d \n",x);
-		int y = (*it)["coordenada"]["y"].asInt();
-		int h = (*it)["dimensiones"]["alto"].asInt();
-		int w = (*it)["dimensiones"]["ancho"].asInt();
-		Sprite sprite = Sprite(x,y,w,h);
-		sprite.set_background_color(255,130,15);
-		(this->sprites).add(&sprite);
+		
+		Sprite* sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]), 
+									this->getPositiveInt((*it)["dimensiones"]["alto"]),  this->getPositiveInt((*it)["dimensiones"]["ancho"]),"bloque1");
+		sprite->setBackgroundColor(255,130,15);
+		activeSprites->add(sprite);
+	}
+	
+	return activeSprites;
+}
+
+void JsonLoader::setWindow(Json::Value json){
+
+	Window::getInstance().setDimensions(this->getPositiveInt(json["ventana"]["dimensiones"]["ancho"]), this->getPositiveInt(json["ventana"]["dimensiones"]["alto"]));
+    Window::getInstance().init();
+}
+
+int JsonLoader::getPositiveInt(Json::Value json){
+	this->checkNullValue(json);
+	if(!json.isInt() || (json.asInt() <= 0)){
+		//handle
+	}
+	return json.asInt();
+}
+
+void JsonLoader::checkNullValue(Json::Value json){
+	if(json == Json::nullValue){
+		//no encontro la clave, levantar excepcion
 	}
 }
 
-SDL_Window* JsonLoader::obtener_ventana(){
-	return this->ventana;
+string JsonLoader::getString(Json::Value json){
+	this->checkNullValue(json);
+	if(!json.isString() || (json.asString() == "")){
+		//handle
+	}
+	return json.asString();
 }
 
-SpriteGroup JsonLoader::obtener_sprites(){
-	return this->sprites;
+void JsonLoader::setRenderer(){
+	Renderer::getInstance().init();
+    Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
+}
+
+Stage* JsonLoader::getStage(){
+	return this->stage;
 }

@@ -6,12 +6,12 @@
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
-				"ruta_imagen":"/images/capa1.png"
+				"ruta_imagen":"Graficos/back.png"
 			},
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"/images/capa2.png"
+				"ruta_imagen":"Graficos/front.png"
 			}
 		],
 		"entidades": [
@@ -19,19 +19,19 @@
 				"id": 1,
 				"tipo": "rectangulo",
 				"color": "rojo",
-				"dimensiones": {"ancho": 40, "alto": 20},
-				"coordenada": {"x": 128, "y": 405},
-				"ruta_imagen": "/images/entidad1.png",
+				"dimensiones": {"ancho": 30, "alto": 30},
+				"coordenada": {"x": 0, "y": 0},
+				"ruta_imagen": "Graficos/texture.png",
 				"index_z": 99
 			},
 			{
 				"id": 2,
 				"tipo": "rectangulo",
 				"color": "verde",
-				"dimensiones": {"ancho": 80, "alto": 35},
-				"coordenada": {"x": 500, "y": 500},
-				"ruta_imagen": "/images/entidad2.png",
-				"index_z": 99
+				"dimensiones": {"ancho": 100, "alto": 100},
+				"coordenada": {"x": 150, "y": 150},
+				"ruta_imagen": "Graficos/texture.png",
+				"index_z": 98
 			}
 			]
 }
