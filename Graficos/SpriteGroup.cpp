@@ -30,7 +30,7 @@ void SpriteGroup::update(){
     }
 }
 
-void SpriteGroup::render(){
+void SpriteGroup::render(camara* camara){
     if (!sprites.empty()) {
         for (int i = 0; i < (int)sprites.size(); i++) {
             sprites[i]->render();

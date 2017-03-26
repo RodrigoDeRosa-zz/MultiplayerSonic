@@ -30,6 +30,11 @@ class Sprite{
         void handleEvent( SDL_Event& e );
         void move();
         string getID();
+        int getX();
+        int getY();
+        int getWidth();
+        int getHeight();
+        
 };
 
 #endif /*SPRITE_HPP*/

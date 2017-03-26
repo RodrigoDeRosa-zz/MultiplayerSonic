@@ -34,7 +34,7 @@ Stage* setStage(){
     Texture* invisible = new Texture();
     invisible->loadFromFile("Graficos/dot.bmp");
     /*Se crean tres sprites*/
-    Sprite* bloque1 = new Sprite(0, 0, 50, 50,"bloque1");
+    Sprite* bloque1 = new Sprite(0, 0, 30, 30,"bloque1");
     Sprite* bloque2 = new Sprite(150, 150, 100, 100, "bloque2");
     Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200, "bloque3");
     /*Dos tienen textura*/
@@ -59,7 +59,7 @@ Stage* setStage(){
 int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
-    Window::getInstance().setDimensions(400, 400);
+    Window::getInstance().setDimensions(600, 600);
     Window::getInstance().init();
 
     Renderer::getInstance().init();
@@ -71,21 +71,25 @@ int main(int argc, char** argv){
     SDL_Event e;
     
     SpriteGroup* sprites = stage->getSprites();
-    
-    //camara camara_pantalla = camara(0,0,20,400,400);
+    Sprite* sprite_movimiento = sprites->getSprite("bloque1");
+    if (sprite_movimiento==NULL){
+        //Levantar error de que no lo encontro
+    }
+
+    camara* camara_pantalla = new camara(0,0,20,600,600);
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                 running = false;
                 break;
             }
-           //bloque1.handleEvent(e);
+           sprite_movimiento->handleEvent(e);
         }
-        //bloque1.move();
-        //camara_pantalla.moveCamara(bloque1);
+        sprite_movimiento->move();
+        camara_pantalla->moveCamara(sprite_movimiento);
         
         Renderer::getInstance().clear();
-        stage->render();
+        stage->render(camara_pantalla);
         Renderer::getInstance().draw();
     }
     delete stage;

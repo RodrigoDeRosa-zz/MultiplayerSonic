@@ -4,6 +4,7 @@
 #include "Renderer.hpp"
 
 
+
 const int ANCHO_ESCENARIO = 1280;
 const int ALTO_ESCENARIO = 960;
 
@@ -19,7 +20,7 @@ Sprite::Sprite(int x, int y, int w, int h, string nombre){
     blue = 0;
     velX = 0;
     velY = 0;
-    velocidad = 20;
+    velocidad = 10;
     id = nombre;
 }
 
@@ -47,6 +48,7 @@ void Sprite::setTexture(Texture* newTex){
 
 void Sprite::render(){
     //Si no tiene textura cargada, pinta con el color de fondo.
+        //SDL_Rect camara = &(cam -> getCamara());
     if(texture) texture->render(originX, originY, &rectangle);
     else{
         Renderer::getInstance().setDrawColor(red, green, blue, 1);
@@ -101,4 +103,20 @@ void Sprite::move(){
 
 string Sprite::getID(){
     return id;
+}
+
+int Sprite::getX(){
+    return originX;
+}
+
+int Sprite::getY(){
+    return originY;
+}
+
+int Sprite::getWidth(){
+    return width;
+}
+
+int Sprite::getHeight(){
+    return height;
 }

@@ -2,6 +2,7 @@
 #define SPRITEGROUP_HPP
 
 #include "Sprite.hpp"
+#include "Camara.hpp"
 #include <vector>
 #include <string> 
 #include <iostream>
@@ -19,7 +20,7 @@ class SpriteGroup{
         void remove(Sprite);
         void update();
         /*Renderiza todos los sprites del grupo*/
-        void render();
+        void render(camara*);
         /*Remueve todos los sprites del grupo*/
         void empty();
         /*Verrifica si el sprite indicado es parte del grupo*/

@@ -2,8 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
-#include "Punto.hpp"
-
+#include "Sprite.hpp"
 
 #ifndef CAMARA_H_
 #define CAMARA_H_
@@ -26,7 +25,7 @@ private:
 
 public:
 	camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c);
-	void moveCamara(Punto punto);
+	void moveCamara(Sprite* sprite);
 	SDL_Rect getCamara();
  
 };
