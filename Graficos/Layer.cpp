@@ -56,7 +56,7 @@ bool Layer::loadImage(){
 
 /*Presenta la imagen en pantalla*/
 void Layer::render(camara* camara){
-    if(image) image->render(camara);
+    if(image) image->render(0,0,camara);
 }
 
 /*void Layer::render(){
