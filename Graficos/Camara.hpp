@@ -24,9 +24,12 @@ private:
 	//Dimensiones de la camara
 	int ancho;
 	int alto;
+	//Dimensiones del escenario
+	int ancho_escenario;
+	int alto_escenario;
 
 public:
-	camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c);
+	camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
 	void moveCamara(Sprite* sprite);
 	SDL_Rect getCamara();
 	int getX();

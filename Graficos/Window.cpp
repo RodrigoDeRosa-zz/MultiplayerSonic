@@ -13,8 +13,14 @@ Window::Window(){
 
 /*Destructor*/
 Window::~Window(){
-    width = 0;
+    //dimensiones ventana
+	width = 0;
     height = 0;
+
+    //dimensiones escenario
+    width_escenario = 0;
+    height_escenario = 0;
+
     title = "";
     if(window){
         SDL_DestroyWindow(window);
@@ -33,12 +39,26 @@ void Window::setDimensions(int w, int h){
     height = h;
 }
 
+void Window::setDimensionesEscenario(int w, int h){
+    width_escenario = w;
+    height_escenario = h;
+}
+
+
 int Window::getWidth(){
     return width;
 }
 
 int Window::getHeight(){
     return height;
+}
+
+int Window::getWidthEscenario(){
+    return width_escenario;
+}
+
+int Window::getHeightEscenario(){
+    return height_escenario;
 }
 
 void Window::setTitle(string s){

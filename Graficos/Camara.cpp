@@ -1,10 +1,6 @@
 #include "Camara.hpp"
 
-
-const int AN_ESCENARIO = 1000;
-const int AL_ESCENARIO = 1000;
-
-camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c){
+camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
 	posX= posX_c;
 	posY= posY_c;
 	vel= vel_c;
@@ -12,6 +8,8 @@ camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c){
 	velY= 0;
 	ancho= ancho_c;
 	alto= alto_c;
+	ancho_escenario= ancho_es;
+	alto_escenario=alto_es;
 	cam= {posX_c,posY_c,ancho_c,alto_c};
 }
 
@@ -26,11 +24,11 @@ void camara::moveCamara(Sprite* sprite){
 	if( cam.y < 0 ){
 		cam.y = 0;
 	}
-	if( cam.x > AN_ESCENARIO - cam.w ){
-		cam.x = AN_ESCENARIO - cam.w;
+	if( cam.x > ancho_escenario - cam.w ){
+		cam.x = ancho_escenario - cam.w;
 	}
-	if( cam.y > AL_ESCENARIO -cam.h ){
-		cam.y = AL_ESCENARIO - cam.h;
+	if( cam.y > alto_escenario -cam.h ){
+		cam.y = alto_escenario - cam.h;
 	}
 }
 
