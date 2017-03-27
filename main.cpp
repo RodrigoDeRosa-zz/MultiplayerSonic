@@ -10,6 +10,7 @@
 #include "Graficos/Camara.hpp"
 #include <SDL2/SDL.h>
 
+const int TAM = 600;
 
 Stage* setStage(){
     Stage* stage = new Stage();
@@ -59,7 +60,7 @@ Stage* setStage(){
 int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
-    Window::getInstance().setDimensions(600, 600);
+    Window::getInstance().setDimensions(TAM, TAM);
     Window::getInstance().init();
 
     Renderer::getInstance().init();
@@ -76,7 +77,8 @@ int main(int argc, char** argv){
         //Levantar error de que no lo encontro
     }
 
-    camara* camara_pantalla = new camara(0,0,20,600,600);
+    //Parametros: iniX, iniY, velocidad, ancho, alto
+    camara* camara_pantalla = new camara(0,0,20,TAM,TAM);
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){

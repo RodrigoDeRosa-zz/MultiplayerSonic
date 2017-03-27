@@ -1,8 +1,6 @@
 #include "Camara.hpp"
 
 
-const int AN_CAMARA=600;
-const int AL_CAMARA =600;
 const int AN_ESCENARIO = 1000;
 const int AL_ESCENARIO = 1000;
 
@@ -19,8 +17,8 @@ camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c){
 
 void camara::moveCamara(Sprite* sprite){
 	
-	cam.x = ( sprite->getX() + sprite->getWidth() / 2 ) - AN_CAMARA / 2;
-	cam.y = ( sprite->getY() + sprite->getHeight() / 2 ) - AL_CAMARA / 2;
+	cam.x = ( sprite->getX() + sprite->getWidth() / 2 ) - ancho / 2;
+	cam.y = ( sprite->getY() + sprite->getHeight() / 2 ) - alto / 2;
 
 	if( cam.x < 0 ){
 		cam.x = 0;
