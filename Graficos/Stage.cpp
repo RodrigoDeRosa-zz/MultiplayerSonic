@@ -44,10 +44,16 @@ void Stage::addLayer(Layer* layer){
 }
 
 void Stage::render(camara* camara){
+    if(front) front->render(camara);
+    if(background) background->render(camara);
+    if(sprites) sprites->render();
+}
+
+/*void Stage::render(){
     if(front) front->render();
     if(background) background->render();
-    if(sprites) sprites->render(camara);
-}
+    if(sprites) sprites->render();
+}*/
 
 void Stage::setSpriteGroup(SpriteGroup* group){
     sprites = group;

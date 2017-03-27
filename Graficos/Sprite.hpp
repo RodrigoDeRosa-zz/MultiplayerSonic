@@ -1,10 +1,13 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+#include "Camara.hpp"
 #include "Texture.hpp"
 #include <SDL2/SDL.h>
 #include <string> 
 #include <iostream>
+
+class camara;
 
 class Sprite{
     Texture* get_texture();
@@ -20,7 +23,9 @@ class Sprite{
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
+        void render(camara*);
         void render();
+        void render(int x, int y, camara* cam);
         /*Define la textura del sprite*/
         void setTexture(Texture*);
         /*Define el color predeterminado del sprite en caso de falta de textura*/

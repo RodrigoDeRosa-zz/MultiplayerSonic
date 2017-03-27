@@ -15,6 +15,8 @@ class Stage{
         ~Stage();
         /*Renderiza todos los elementos del escneario*/
         void render(camara*);
+
+        //void render();
         /*Agrega una capa y la define como front o background segun su z-index*/
         void addLayer(Layer*);
         /*Define el sprite group del escenario como el recibido*/

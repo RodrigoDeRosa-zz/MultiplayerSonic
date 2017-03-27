@@ -55,9 +55,13 @@ bool Layer::loadImage(){
 }
 
 /*Presenta la imagen en pantalla*/
-void Layer::render(){
-    if(image) image->render();
+void Layer::render(camara* camara){
+    if(image) image->render(camara);
 }
+
+/*void Layer::render(){
+    if(image) image->render();
+}*/
 
 bool Layer::operator<=(Layer& other) const{
     return other.isBigger(zIndex);

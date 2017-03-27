@@ -4,6 +4,7 @@
 #include <string>
 #include "Texture.hpp"
 #include "Sprite.hpp"
+#include "Camara.hpp"
 using namespace std;
 
 class Layer{
@@ -20,7 +21,8 @@ class Layer{
         /*Carga la imagen desde la direccion que se almaceno*/
         bool loadImage();
         /*Presenta la imagen en pantalla*/
-        void render();
+        void render(camara*);
+        //void render();
         bool operator<=(Layer&) const;
         /*Utilizado para comparar zIndex*/
         bool isBigger(unsigned char);

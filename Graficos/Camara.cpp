@@ -3,8 +3,8 @@
 
 const int AN_CAMARA=600;
 const int AL_CAMARA =600;
-const int AN_ESCENARIO = 1280;
-const int AL_ESCENARIO = 960;
+const int AN_ESCENARIO = 1000;
+const int AL_ESCENARIO = 1000;
 
 camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c){
 	posX= posX_c;
@@ -40,5 +40,11 @@ SDL_Rect camara::getCamara(){
 	return cam;
 }
 
+int camara::getX(){
+	return posX;
+}
 
+int camara::getY(){
+	return posY;
+}
 

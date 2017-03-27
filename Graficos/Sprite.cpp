@@ -46,13 +46,32 @@ void Sprite::setTexture(Texture* newTex){
     texture = newTex;
 }
 
+void Sprite::render(camara* cam){
+    //Si no tiene textura cargada, pinta con el color de fondo.
+    SDL_Rect camara = cam -> getCamara();
+    if(texture) texture->render(originX - cam->getX(), originY- cam->getY(), &camara);
+    else{
+        Renderer::getInstance().setDrawColor(red, green, blue, 1);
+        Renderer::getInstance().fillRect(&camara);
+    }
+}
+
 void Sprite::render(){
     //Si no tiene textura cargada, pinta con el color de fondo.
-        //SDL_Rect camara = &(cam -> getCamara());
     if(texture) texture->render(originX, originY, &rectangle);
     else{
         Renderer::getInstance().setDrawColor(red, green, blue, 1);
         Renderer::getInstance().fillRect(&rectangle);
+    }
+}
+
+void Sprite::render(int x, int y, camara* cam){
+    //LO USO    
+    SDL_Rect camara = cam -> getCamara();
+    if(texture) texture->render(x, y, &camara);
+    else{
+        Renderer::getInstance().setDrawColor(red, green, blue, 1);
+        Renderer::getInstance().fillRect(&camara);
     }
 }
 
