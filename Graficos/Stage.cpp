@@ -6,6 +6,8 @@ Stage::Stage(){
     sprites = NULL;
     front = NULL;
     background = NULL;
+    width=0;
+    height=0;
 }
 
 Stage::~Stage(){
@@ -21,6 +23,19 @@ Stage::~Stage(){
         delete sprites;
         sprites = NULL;
     }
+}
+
+void Stage::setDimensiones(int w, int h){
+    width = w;
+    height = h;
+}
+
+int Stage::getWidth(){
+    return width;
+}
+
+int Stage::getHeight(){
+    return height;
 }
 
 void Stage::addLayer(Layer* layer){

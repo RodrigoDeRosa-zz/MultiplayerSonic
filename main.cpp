@@ -61,13 +61,13 @@ int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
     Window::getInstance().setDimensions(TAM, TAM);
-    Window::getInstance().setDimensionesEscenario(2*TAM, 2*TAM);
     Window::getInstance().init();
 
     Renderer::getInstance().init();
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
 
     Stage* stage = setStage();
+    stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
     SDL_Event e;
@@ -79,8 +79,8 @@ int main(int argc, char** argv){
     }
 
     //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
-    int an_escenario=Window::getInstance().getWidthEscenario();
-    int al_escenario=Window::getInstance().getHeightEscenario();
+    int an_escenario=stage->getWidth();
+    int al_escenario=stage->getHeight();
     camara* camara_pantalla = new camara(0,0,20,TAM,TAM,an_escenario, al_escenario );
     while(running){
         while(SDL_PollEvent(&e)){

@@ -10,6 +10,7 @@ class Stage{
         SpriteGroup* sprites;
         Layer* front;
         Layer* background;
+        int width, height;
     public:
         Stage();
         ~Stage();
@@ -24,7 +25,12 @@ class Stage{
         /*Agrega el sprite al sprite group*/
         void addSprite(Sprite*);
 
+        int getHeight();
+        int getWidth();
+		void setDimensiones(int w, int h);
+
         SpriteGroup* getSprites();
+
 };
 
 #endif /*STAGE_HPP*/

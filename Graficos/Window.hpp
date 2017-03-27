@@ -11,20 +11,15 @@ class Window{
         ~Window();//Destructor
         int width;
         int height;
-        int width_escenario;
-        int height_escenario;
         string title;
         SDL_Window* window;
     public:
         /*Metodo de obtencion de la instancia del Singleton*/
         static Window& getInstance();
         void setDimensions(int w, int h);
-        void setDimensionesEscenario(int w, int h);
         void setTitle(string);
         int getWidth();
         int getHeight();
-        int getWidthEscenario();
-        int getHeightEscenario();
         /*Inicializacion de la ventana por medio de SDL*/
         bool init();
         /*Inicializacion del renderer por medio de SDL*/
