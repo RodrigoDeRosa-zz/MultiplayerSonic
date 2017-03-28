@@ -150,7 +150,3 @@ int Sprite::getWidth(){
 int Sprite::getHeight(){
     return height;
 }
-
-int Sprite::poseeMovimiento(){
-	return velocidad != 0;
-}

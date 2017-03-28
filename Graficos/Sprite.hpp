@@ -4,7 +4,7 @@
 #include "Camara.hpp"
 #include "Texture.hpp"
 #include <SDL2/SDL.h>
-#include <string> 
+#include <string>
 #include <iostream>
 
 class camara;
@@ -17,7 +17,7 @@ class Sprite{
         int originX, originY, width, height, velX, velY,velocidad;
         Uint8 red, green, blue;
         string id;
-    
+
     public:
         Sprite(int x, int y, int w, int h, int vel_s, string nombre);
         ~Sprite();
@@ -39,8 +39,6 @@ class Sprite{
         int getY();
         int getWidth();
         int getHeight();
-        int poseeMovimiento();
-        
 };
 
 #endif /*SPRITE_HPP*/
