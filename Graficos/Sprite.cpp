@@ -47,19 +47,22 @@ void Sprite::render(camara* cam){
     int auxX = originX - cam->getX();
     int auxY = originY - cam->getY();
 
-    int aux1 = rectangle.x;
-    int aux2 = rectangle.y;
-    rectangle.x -= cam->getX();
-    rectangle.y -= cam->getY();
-
     if(texture) texture->render(auxX, auxY, &rectangle);
         else{
+        	int aux1 = rectangle.x;
+        	int aux2 = rectangle.y;
+
+            rectangle.x -= cam->getX();
+            rectangle.y -= cam->getY();
+
             Renderer::getInstance().setDrawColor(red, green, blue, 1);
             Renderer::getInstance().fillRect(&rectangle);
+
+            rectangle.x = aux1;
+            rectangle.y = aux2;
         }
 
-    rectangle.x = aux1;
-    rectangle.y = aux2;
+
     }
 
 void Sprite::render(){
