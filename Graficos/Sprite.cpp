@@ -61,18 +61,7 @@ void Sprite::render(camara* cam){
             rectangle.x = aux1;
             rectangle.y = aux2;
         }
-
-
     }
-
-void Sprite::render(){
-    //Si no tiene textura cargada, pinta con el color de fondo.
-    if(texture) texture->render(originX, originY, &rectangle);
-    else{
-        Renderer::getInstance().setDrawColor(red, green, blue, 1);
-        Renderer::getInstance().fillRect(&rectangle);
-    }
-}
 
 void Sprite::render(int x, int y, camara* cam){
     //renderiza las texturas de fondo.

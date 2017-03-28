@@ -24,7 +24,7 @@ class Sprite{
         void update();
         /*Dibuja el sprite en pantalla*/
         void render(camara*);
-        void render();
+        /*Dibuja las imagenes de fondo*/
         void render(int x, int y, camara* cam);
         /*Define la textura del sprite*/
         void setTexture(Texture*);
@@ -32,11 +32,15 @@ class Sprite{
         void setBackgroundColor(Uint8 r, Uint8 g, Uint8 b);
         bool operator==(Sprite& other) const;
         Texture* getTexture();
+
         void handleEvent( SDL_Event& e );
         void move(int AnchoEscenario, int AltoEscenario);
+
         string getID();
+
         int getX();
         int getY();
+
         int getWidth();
         int getHeight();
 };
