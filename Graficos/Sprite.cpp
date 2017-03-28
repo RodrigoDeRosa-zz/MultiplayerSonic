@@ -30,7 +30,7 @@ Sprite::~Sprite(){
     blue = 0;
     velX=0;
     velY=0;
-    texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
+    if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
 
 }
 
@@ -62,7 +62,7 @@ void Sprite::render(){
 }
 
 void Sprite::render(int x, int y, camara* cam){
-    //LO USO    
+    //LO USO
     SDL_Rect camara = cam -> getCamara();
     if(texture) texture->render(x, y, &camara);
     else{
