@@ -81,7 +81,7 @@ int main(int argc, char** argv){
     //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
     int an_escenario=stage->getWidth();
     int al_escenario=stage->getHeight();
-    camara* camara_pantalla = new camara(0,0,10,TAM,TAM,an_escenario, al_escenario );
+    camara* camara_pantalla = new camara(0,0,1,TAM,TAM,an_escenario, al_escenario );
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
