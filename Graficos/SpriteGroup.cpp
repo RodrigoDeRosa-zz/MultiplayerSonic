@@ -33,11 +33,7 @@ void SpriteGroup::update(){
 void SpriteGroup::render(camara* camara){
     if (!sprites.empty()) {
         for (int i = 0; i < (int)sprites.size(); i++) {
-            if (sprites[i]->poseeMovimiento()){
-            	sprites[i]->render(camara);}
-            else{
-            	sprites[i]->render();
-            }
+            	sprites[i]->render(camara);
         }
     }
 }

@@ -61,7 +61,7 @@ void Stage::addLayer(Layer* layer){
 void Stage::render(camara* camara){
     if(front) front->render(camara);
     if(background) background->render(camara);
-    if(sprites) sprites->render();
+    if(sprites) sprites->render(camara);
 }
 
 

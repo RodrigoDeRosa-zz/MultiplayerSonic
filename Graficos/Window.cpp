@@ -60,5 +60,5 @@ bool Window::init(){
 
 /*Inicializacion de SDL_Renderer*/
 SDL_Renderer* Window::initRenderer(){
-    return SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    return SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 }
