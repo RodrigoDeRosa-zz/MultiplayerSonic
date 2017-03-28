@@ -30,16 +30,16 @@ void SpriteGroup::update(){
     }
 }
 
-/*void SpriteGroup::render(camara* camara){
+void SpriteGroup::render(camara* camara){
     if (!sprites.empty()) {
         for (int i = 0; i < (int)sprites.size(); i++) {
-            if (sprites[i]->getID() == "bloque1"){
+            if (sprites[i]->poseeMovimiento() ){
                 sprites[i]->render(camara);}
             else{
                 sprites[i]->render();}
         }
     }
-}*/
+}
 
 void SpriteGroup::render(){
     if (!sprites.empty()) {

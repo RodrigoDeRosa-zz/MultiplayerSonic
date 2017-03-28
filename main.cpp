@@ -67,7 +67,7 @@ int main(int argc, char** argv){
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
 
     Stage* stage = setStage();
-    stage->setDimensiones(TAM, TAM);
+    stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
     SDL_Event e;
@@ -90,11 +90,13 @@ int main(int argc, char** argv){
             }
            sprite_movimiento->handleEvent(e);
         }
-        sprite_movimiento->move();
+        sprite_movimiento->move(TAM, TAM);
         camara_pantalla->moveCamara(sprite_movimiento);
         
         Renderer::getInstance().clear();
         stage->render(camara_pantalla);
+
+        //sprite_movimiento->render(camara_pantalla);
         Renderer::getInstance().draw();
     }
     delete stage;

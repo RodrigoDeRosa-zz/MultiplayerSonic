@@ -4,10 +4,6 @@
 #include "Renderer.hpp"
 
 
-
-const int ANCHO_ESCENARIO = 600;
-const int ALTO_ESCENARIO = 600;
-
 Sprite::Sprite(int x, int y, int w, int h,int vel_s, string nombre){
     texture = NULL;
     originX = x;
@@ -46,7 +42,7 @@ void Sprite::setTexture(Texture* newTex){
     texture = newTex;
 }
 
-/*void Sprite::render(camara* cam){
+void Sprite::render(camara* cam){
     //Si no tiene textura cargada, pinta con el color de fondo.
     SDL_Rect camara = cam -> getCamara();
     if(texture) texture->render(originX - cam->getX(), originY- cam->getY(), &camara);
@@ -54,7 +50,7 @@ void Sprite::setTexture(Texture* newTex){
         Renderer::getInstance().setDrawColor(red, green, blue, 1);
         Renderer::getInstance().fillRect(&camara);
     }
-}*/
+}
 
 void Sprite::render(){
     //Si no tiene textura cargada, pinta con el color de fondo.
@@ -106,16 +102,16 @@ void Sprite::handleEvent( SDL_Event& e ){
     }
 }
 
-void Sprite::move(){
+void Sprite::move(int AnchoEscenario, int AltoEscenario){
     originX += velX;
 
-    if( ( originX < 0 ) || ( originX + width > ANCHO_ESCENARIO ) ){
+    if( ( originX < 0 ) || ( originX + width > AnchoEscenario ) ){
         originX -= velX;
     }
 
     originY += velY;
 
-    if( ( originY < 0 ) || ( originY + height > ALTO_ESCENARIO ) ){
+    if( ( originY < 0 ) || ( originY + height > AltoEscenario ) ){
         originY -= velY;
     }
 }

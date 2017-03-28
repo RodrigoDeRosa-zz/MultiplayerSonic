@@ -23,7 +23,7 @@ class Sprite{
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
-       // void render(camara*);
+        void render(camara*);
         void render();
         void render(int x, int y, camara* cam);
         /*Define la textura del sprite*/
@@ -33,7 +33,7 @@ class Sprite{
         bool operator==(Sprite& other) const;
         Texture* getTexture();
         void handleEvent( SDL_Event& e );
-        void move();
+        void move(int AnchoEscenario, int AltoEscenario);
         string getID();
         int getX();
         int getY();
