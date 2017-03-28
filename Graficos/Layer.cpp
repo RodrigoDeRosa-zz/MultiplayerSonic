@@ -58,11 +58,6 @@ bool Layer::loadImage(){
 void Layer::render(camara* camara){
     if(image) image->render(0,0,camara);
 }
-
-void Layer::render(){
-    if(image) image->render();
-}
-
 bool Layer::operator<=(Layer& other) const{
     return other.isBigger(zIndex);
 }

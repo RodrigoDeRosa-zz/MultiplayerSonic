@@ -14,7 +14,7 @@ class Stage{
     public:
         Stage();
         ~Stage();
-        /*Renderiza todos los elementos del escneario*/
+        /*Renderiza todos los elementos del escenario*/
         void render(camara*);
 
         /*Agrega una capa y la define como front o background segun su z-index*/

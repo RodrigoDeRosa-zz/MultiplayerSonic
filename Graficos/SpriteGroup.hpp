@@ -4,7 +4,7 @@
 #include "Sprite.hpp"
 #include "Camara.hpp"
 #include <vector>
-#include <string> 
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -21,7 +21,6 @@ class SpriteGroup{
         void update();
         /*Renderiza todos los sprites del grupo*/
         void render(camara*);
-        void render();
         /*Remueve todos los sprites del grupo*/
         void empty();
         /*Verrifica si el sprite indicado es parte del grupo*/

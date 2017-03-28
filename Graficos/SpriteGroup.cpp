@@ -38,14 +38,6 @@ void SpriteGroup::render(camara* camara){
     }
 }
 
-void SpriteGroup::render(){
-    if (!sprites.empty()) {
-        for (int i = 0; i < (int)sprites.size(); i++) {
-            sprites[i]->render();
-        }
-    }
-}
-
 void SpriteGroup::empty() {
 	sprites.clear();
 }
