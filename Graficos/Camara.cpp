@@ -15,8 +15,8 @@ camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 
 void camara::moveCamara(Sprite* sprite){
 	
-	cam.x = ( sprite->getX() + sprite->getWidth() / 2 ) - ancho / 2;
-	cam.y = ( sprite->getY() + sprite->getHeight() / 2 ) - alto / 2;
+	cam.x = ( sprite->getX() + (sprite->getWidth() / 2) ) - ancho / 2;
+	cam.y = ( sprite->getY() + (sprite->getHeight() / 2) ) - alto / 2;
 
 	if( cam.x < 0 ){
 		cam.x = 0;
