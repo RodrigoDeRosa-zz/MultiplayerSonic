@@ -49,7 +49,7 @@ bool Layer::loadImage(){
     /*Se crea el sprite que sera renderizado*/
     int width = Window::getInstance().getWidth();
     int height = Window::getInstance().getHeight();
-    image = new Sprite(0, 0, width, height, "image");
+    image = new Sprite(0, 0, width, height,0, "image");
     image->setTexture(texture);
     return true;
 }

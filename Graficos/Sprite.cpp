@@ -5,10 +5,10 @@
 
 
 
-const int ANCHO_ESCENARIO = 1280;
-const int ALTO_ESCENARIO = 960;
+const int ANCHO_ESCENARIO = 600;
+const int ALTO_ESCENARIO = 600;
 
-Sprite::Sprite(int x, int y, int w, int h, string nombre){
+Sprite::Sprite(int x, int y, int w, int h,int vel_s, string nombre){
     texture = NULL;
     originX = x;
     originY = y;
@@ -20,7 +20,7 @@ Sprite::Sprite(int x, int y, int w, int h, string nombre){
     blue = 0;
     velX = 0;
     velY = 0;
-    velocidad = 10;
+    velocidad = vel_s;
     id = nombre;
 }
 
@@ -138,4 +138,8 @@ int Sprite::getWidth(){
 
 int Sprite::getHeight(){
     return height;
+}
+
+int Sprite::poseeMovimiento(){
+	return velocidad != 0;
 }

@@ -35,9 +35,9 @@ Stage* setStage(){
     Texture* invisible = new Texture();
     invisible->loadFromFile("Graficos/dot.bmp");
     /*Se crean tres sprites*/
-    Sprite* bloque1 = new Sprite(0, 0, 30, 30,"bloque1");
-    Sprite* bloque2 = new Sprite(150, 150, 100, 100, "bloque2");
-    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200, "bloque3");
+    Sprite* bloque1 = new Sprite(0, 0, 30, 30,10,"bloque1");
+    Sprite* bloque2 = new Sprite(150, 150, 100, 100,0, "bloque2");
+    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200,0, "bloque3");
     /*Dos tienen textura*/
     bloque1->setTexture(invisible);
     bloque2->setTexture(tex);
@@ -67,7 +67,7 @@ int main(int argc, char** argv){
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
 
     Stage* stage = setStage();
-    stage->setDimensiones(2*TAM, 2*TAM);
+    stage->setDimensiones(TAM, TAM);
 
     bool running = true;
     SDL_Event e;
@@ -81,7 +81,7 @@ int main(int argc, char** argv){
     //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
     int an_escenario=stage->getWidth();
     int al_escenario=stage->getHeight();
-    camara* camara_pantalla = new camara(0,0,20,TAM,TAM,an_escenario, al_escenario );
+    camara* camara_pantalla = new camara(0,0,10,TAM,TAM,an_escenario, al_escenario );
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){

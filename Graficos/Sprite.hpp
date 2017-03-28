@@ -19,7 +19,7 @@ class Sprite{
         string id;
     
     public:
-        Sprite(int x, int y, int w, int h, string nombre);
+        Sprite(int x, int y, int w, int h, int vel_s, string nombre);
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
@@ -39,6 +39,7 @@ class Sprite{
         int getY();
         int getWidth();
         int getHeight();
+        int poseeMovimiento();
         
 };
 
