@@ -1,8 +1,6 @@
 #include "Camara.hpp"
 
 camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
-	posX= posX_c;
-	posY= posY_c;
 	vel= vel_c;
 	velX= 0;
 	velY= 0;
@@ -37,10 +35,10 @@ SDL_Rect camara::getCamara(){
 }
 
 int camara::getX(){
-	return posX;
+	return cam.x;
 }
 
 int camara::getY(){
-	return posY;
+	return cam.y;
 }
 

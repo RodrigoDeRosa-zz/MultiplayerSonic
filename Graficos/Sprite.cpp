@@ -62,12 +62,14 @@ void Sprite::render(){
 }
 
 void Sprite::render(int x, int y, camara* cam){
-    //LO USO
+    //renderiza las texturas de fondo.
     SDL_Rect camara = cam -> getCamara();
-    if(texture) texture->render(x, y, &camara);
+    int X= originX - cam->getX();
+    int Y = originX - cam->getY();
+    if(texture) texture->render(X, Y, &rectangle);
     else{
         Renderer::getInstance().setDrawColor(red, green, blue, 1);
-        Renderer::getInstance().fillRect(&camara);
+        Renderer::getInstance().fillRect(&rectangle);
     }
 }
 

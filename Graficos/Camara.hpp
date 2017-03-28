@@ -13,9 +13,6 @@ class camara{
 private:
 	//camara
 	SDL_Rect cam;
-	//posicion del vertice superior izquierdo
-	int posX;
-	int posY;
 	//Velocidad fija en la que se mueve la camara
 	int vel;
 	//Velocidades para manejar el movimiento de la camara

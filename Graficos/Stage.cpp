@@ -64,11 +64,6 @@ void Stage::render(camara* camara){
     if(sprites) sprites->render();
 }
 
-/*void Stage::render(){
-    if(front) front->render();
-    if(background) background->render();
-    if(sprites) sprites->render();
-}*/
 
 void Stage::setSpriteGroup(SpriteGroup* group){
     sprites = group;
