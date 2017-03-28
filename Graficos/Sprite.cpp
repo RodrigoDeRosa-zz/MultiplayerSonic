@@ -3,8 +3,9 @@
 #include "Texture.hpp"
 #include "Renderer.hpp"
 
+int velocidad = 1;
 
-Sprite::Sprite(int x, int y, int w, int h,int vel_s, string nombre){
+Sprite::Sprite(int x, int y, int w, int h){
     texture = NULL;
     originX = x;
     originY = y;
@@ -16,8 +17,6 @@ Sprite::Sprite(int x, int y, int w, int h,int vel_s, string nombre){
     blue = 0;
     velX = 0;
     velY = 0;
-    velocidad = vel_s;
-    id = nombre;
 }
 
 Sprite::~Sprite(){
@@ -118,10 +117,6 @@ void Sprite::move(int AnchoEscenario, int AltoEscenario){
     if( ( originY < 0 ) || ( originY + height > AltoEscenario ) ){
         originY -= velY;
     }
-}
-
-string Sprite::getID(){
-    return id;
 }
 
 int Sprite::getX(){

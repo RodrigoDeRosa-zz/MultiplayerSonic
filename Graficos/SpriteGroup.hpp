@@ -25,7 +25,6 @@ class SpriteGroup{
         void empty();
         /*Verrifica si el sprite indicado es parte del grupo*/
         bool has(Sprite);
-        Sprite* getSprite(string nombre);
         SpriteGroup copy();
 };
 

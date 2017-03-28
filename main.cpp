@@ -11,6 +11,14 @@
 
 const int TAM = 600;
 
+void initSeguido(camara* camara){
+    Sprite* seguido = new Sprite(0, 0, 30, 30);
+    Texture* invisible = new Texture();
+    invisible->loadFromFile("Graficos/dot.bmp");
+    seguido->setTexture(invisible);
+    camara->setApuntado(seguido);
+}
+
 Stage* setStage(){
     Stage* stage = new Stage();
     /*Capa frontal*/
@@ -31,21 +39,19 @@ Stage* setStage(){
     Texture* tex = new Texture();
     tex->loadFromFile("Graficos/texture.png");
 
-    Texture* invisible = new Texture();
-    invisible->loadFromFile("Graficos/dot.bmp");
-    /*Se crean tres sprites*/
-    Sprite* bloque1 = new Sprite(0, 0, 30, 30,1,"bloque1");
-    Sprite* bloque2 = new Sprite(150, 150, 100, 100,0, "bloque2");
-    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200,0, "bloque3");
-    /*Dos tienen textura*/
-    bloque1->setTexture(invisible);
+    /*Se crean 2 sprites*/
+    Sprite* bloque2 = new Sprite(150, 150, 100, 100);
+    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
+
+    /*El primero tiene textura*/
+
     bloque2->setTexture(tex);
     /*El tercero tiene color de fondo*/
     bloque3->setBackgroundColor(255,130,15);
 
     /*Se agregan al grupo de sprites*/
     SpriteGroup* activeSprites = new SpriteGroup();
-    activeSprites->add(bloque1);
+
     activeSprites->add(bloque2);
 
     /*Se define el sprite group del escenario como el creado recien*/
@@ -70,32 +76,28 @@ int main(int argc, char** argv){
 
     bool running = true;
     SDL_Event e;
-    
-    SpriteGroup* sprites = stage->getSprites();
-    Sprite* sprite_movimiento = sprites->getSprite("bloque1");
-    if (sprite_movimiento==NULL){
-        //Levantar error de que no lo encontro
-    }
 
     //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
     int an_escenario=stage->getWidth();
     int al_escenario=stage->getHeight();
     camara* camara_pantalla = new camara(0,0,1,TAM,TAM,an_escenario, al_escenario );
+    initSeguido(camara_pantalla);
+
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                 running = false;
-                break;
-            }
-           sprite_movimiento->handleEvent(e);
+                break;}
+            camara_pantalla->setEventApuntado(e);
         }
-        sprite_movimiento->move(TAM, TAM);
-        camara_pantalla->moveCamara(sprite_movimiento);
-        
+        /*recordatorio: aca tiene que pasarse como parametros 2 veces el tam
+        despues ver bien el tema de los layers y eso*/
+        camara_pantalla->moveApuntado(TAM,TAM);
+        camara_pantalla->moveCamara();
+
         Renderer::getInstance().clear();
         stage->render(camara_pantalla);
-
-        //sprite_movimiento->render(camara_pantalla);
+        camara_pantalla->render();
         Renderer::getInstance().draw();
     }
     delete stage;

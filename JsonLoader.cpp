@@ -47,18 +47,18 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 	SpriteGroup* activeSprites = new SpriteGroup();
 
-	this->checkNullValue(json["escenario"]["entidades"]);	
+	this->checkNullValue(json["escenario"]["entidades"]);
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
-		
+
 		//hay que chequear el tema de la velocidad de los sprites
 
-		Sprite* sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]), 
-									this->getPositiveInt((*it)["dimensiones"]["alto"]),  this->getPositiveInt((*it)["dimensiones"]["ancho"]),0,"bloque1");
+		Sprite* sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
+									this->getPositiveInt((*it)["dimensiones"]["alto"]),  this->getPositiveInt((*it)["dimensiones"]["ancho"]));
 		sprite->setBackgroundColor(255,130,15);
 		activeSprites->add(sprite);
 	}
-	
+
 	return activeSprites;
 }
 

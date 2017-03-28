@@ -10,11 +10,13 @@
 
 class Apuntado : public Sprite{
 public:
-			Apuntado(int x, int y, int w, int h,int vel_s, string nombre);
+			Apuntado(int x, int y, int w, int h,int vel_s);
+			void move(int AnchoEscenario, int AltoEscenario);
+			void handleEvent( SDL_Event& e );
 
 protected:
-	//int velocidad;
-	//int velX, velY;
+	int velocidad;
+	int velX, velY;
 };
 
 

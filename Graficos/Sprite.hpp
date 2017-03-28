@@ -14,12 +14,11 @@ class Sprite{
     protected:
         Texture* texture;
         SDL_Rect rectangle;
-        int originX, originY, width, height, velX, velY,velocidad;
+        int originX, originY, width, height, velX, velY;
         Uint8 red, green, blue;
-        string id;
 
     public:
-        Sprite(int x, int y, int w, int h, int vel_s, string nombre);
+        Sprite(int x, int y, int w, int h);
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
@@ -36,8 +35,7 @@ class Sprite{
         void handleEvent( SDL_Event& e );
         void move(int AnchoEscenario, int AltoEscenario);
 
-        string getID();
-
+        /*getters*/
         int getX();
         int getY();
 
