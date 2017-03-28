@@ -35,7 +35,7 @@ Stage* setStage(){
     Texture* invisible = new Texture();
     invisible->loadFromFile("Graficos/dot.bmp");
     /*Se crean tres sprites*/
-    Sprite* bloque1 = new Sprite(0, 0, 30, 30,10,"bloque1");
+    Sprite* bloque1 = new Sprite(0, 0, 30, 30,1,"bloque1");
     Sprite* bloque2 = new Sprite(150, 150, 100, 100,0, "bloque2");
     Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200,0, "bloque3");
     /*Dos tienen textura*/
