@@ -6,7 +6,6 @@
 #include "Graficos/Texture.hpp"
 #include "Graficos/Sprite.hpp"
 #include "Graficos/SpriteGroup.hpp"
-#include "Graficos/Punto.hpp"
 #include "Graficos/Camara.hpp"
 #include <SDL2/SDL.h>
 
