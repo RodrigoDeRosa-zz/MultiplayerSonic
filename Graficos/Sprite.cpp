@@ -1,4 +1,5 @@
 #include "Sprite.hpp"
+#include "Camara.hpp"
 #include <SDL2/SDL.h>
 #include "Texture.hpp"
 #include "Renderer.hpp"
@@ -15,8 +16,7 @@ Sprite::Sprite(int x, int y, int w, int h){
     red = 0;
     green = 0;
     blue = 0;
-    velX = 0;
-    velY = 0;
+
 }
 
 Sprite::~Sprite(){
@@ -27,8 +27,7 @@ Sprite::~Sprite(){
     red = 0;
     green = 0;
     blue = 0;
-    velX=0;
-    velY=0;
+
     if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
 
 }
@@ -84,39 +83,6 @@ Texture* Sprite::getTexture(){
 
 bool Sprite::operator==(Sprite& other) const{
     return (texture == other.getTexture());
-}
-
-void Sprite::handleEvent( SDL_Event& e ){
-    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 ){
-        switch( e.key.keysym.sym ){
-            case SDLK_UP: velY -= velocidad; break;
-            case SDLK_DOWN: velY += velocidad; break;
-            case SDLK_LEFT: velX -= velocidad; break;
-            case SDLK_RIGHT: velX += velocidad; break;
-        }
-    }
-    else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
-        switch( e.key.keysym.sym ){
-            case SDLK_UP: velY += velocidad; break;
-            case SDLK_DOWN: velY -= velocidad; break;
-            case SDLK_LEFT: velX += velocidad; break;
-            case SDLK_RIGHT: velX -= velocidad; break;
-        }
-    }
-}
-
-void Sprite::move(int AnchoEscenario, int AltoEscenario){
-    originX += velX;
-
-    if( ( originX < 0 ) || ( originX + width > AnchoEscenario ) ){
-        originX -= velX;
-    }
-
-    originY += velY;
-
-    if( ( originY < 0 ) || ( originY + height > AltoEscenario ) ){
-        originY -= velY;
-    }
 }
 
 int Sprite::getX(){

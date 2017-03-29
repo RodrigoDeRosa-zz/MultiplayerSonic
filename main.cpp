@@ -5,14 +5,16 @@
 #include "Graficos/Stage.hpp"
 #include "Graficos/Texture.hpp"
 #include "Graficos/Sprite.hpp"
+#include "Graficos/Apuntado.hpp"
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
+
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
 
 void initSeguido(camara* camara){
-    Sprite* seguido = new Sprite(0, 0, 30, 30);
+    Apuntado* seguido = new Apuntado(0, 0, 30, 30,1);
     Texture* invisible = new Texture();
     invisible->loadFromFile("Graficos/dot.bmp");
     seguido->setTexture(invisible);

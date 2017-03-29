@@ -1,13 +1,13 @@
 #ifndef CAMARA_H_
 #define CAMARA_H_
 
-#include "Sprite.hpp"
+#include "Apuntado.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
 
-class Sprite;
+//class Apuntado;
 
 class camara{
 private:
@@ -25,7 +25,7 @@ private:
 	int ancho_escenario;
 	int alto_escenario;
 	//Sprite al que sigue la camara
-	Sprite* apuntado;
+	Apuntado* apuntado;
 
 public:
 	camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
@@ -35,10 +35,9 @@ public:
 	SDL_Rect getCamara();
 	int getX();
 	int getY();
-	Sprite* getSprite();
 
 	//Operaciones apuntado
-	void setApuntado( Sprite* sprite);
+	void setApuntado( Apuntado* apun);
 	void moveApuntado(int x, int y);
 	void setEventApuntado( SDL_Event& e );
 

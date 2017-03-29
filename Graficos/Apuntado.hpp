@@ -4,13 +4,15 @@
 #include "Sprite.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
 #include <string>
 #include <iostream>
 
+//class Sprite;
+//class camara;
+
 class Apuntado : public Sprite{
 public:
-			Apuntado(int x, int y, int w, int h,int vel_s);
+			Apuntado(int x, int y, int w, int h, int vel_s);
 			void move(int AnchoEscenario, int AltoEscenario);
 			void handleEvent( SDL_Event& e );
 

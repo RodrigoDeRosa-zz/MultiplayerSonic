@@ -1,7 +1,7 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
-#include "Camara.hpp"
+
 #include "Texture.hpp"
 #include <SDL2/SDL.h>
 #include <string>
@@ -14,7 +14,7 @@ class Sprite{
     protected:
         Texture* texture;
         SDL_Rect rectangle;
-        int originX, originY, width, height, velX, velY;
+        int originX, originY, width, height;
         Uint8 red, green, blue;
 
     public:
@@ -31,9 +31,6 @@ class Sprite{
         void setBackgroundColor(Uint8 r, Uint8 g, Uint8 b);
         bool operator==(Sprite& other) const;
         Texture* getTexture();
-
-        void handleEvent( SDL_Event& e );
-        void move(int AnchoEscenario, int AltoEscenario);
 
         /*getters*/
         int getX();

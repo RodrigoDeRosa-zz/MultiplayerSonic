@@ -72,7 +72,3 @@ void Stage::setSpriteGroup(SpriteGroup* group){
 void Stage::addSprite(Sprite* sprite){
     sprites->add(sprite);
 }
-
-SpriteGroup* Stage::getSprites(){
-    return sprites;
-}

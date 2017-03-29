@@ -1,5 +1,6 @@
 #include "Apuntado.hpp"
 
+
 Apuntado::Apuntado(int x, int y, int w, int h, int vel_s) : Sprite(x,y,w,h){
     velX=0;
     velY=0;
@@ -38,3 +39,17 @@ void Apuntado::move(int AnchoEscenario, int AltoEscenario){
         originY -= velY;
     }
 }
+/*void Apuntado::render(int x, int y, camara* cam){
+    //renderiza las texturas de fondo.
+    SDL_Rect camara = cam -> getCamara();
+    int X= originX - cam->getX();
+    int Y = originX - cam->getY();
+    if(texture){
+      SDL_SetColorKey( superficieCargada, SDL_TRUE, SDL_MapRGB( superficieCargada->format, 0, 0xFF, 0xFF ));
+      texture->render(X, Y, &rectangle);
+    }
+    else{
+        Renderer::getInstance().setDrawColor(red, green, blue, 1);
+        Renderer::getInstance().fillRect(&rectangle);
+    }
+}*/

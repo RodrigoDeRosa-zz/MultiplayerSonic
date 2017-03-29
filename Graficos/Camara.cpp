@@ -8,7 +8,7 @@ camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 	alto= alto_c;
 	ancho_escenario= ancho_es;
 	alto_escenario=alto_es;
-	cam= {posX_c,posY_c,ancho_c,alto_c};
+	cam = {posX_c,posY_c,ancho_c,alto_c};
 }
 
 void camara::moveCamara(){
@@ -39,8 +39,8 @@ void camara::moveApuntado(int x, int y){
 void camara::render(){
 	apuntado->render(this);
 }
-void camara::setApuntado(Sprite* sprite){
-		apuntado = sprite;
+void camara::setApuntado(Apuntado* apun){
+		apuntado = apun;
 }
 
 SDL_Rect camara::getCamara(){
@@ -53,8 +53,4 @@ int camara::getX(){
 
 int camara::getY(){
 	return cam.y;
-}
-
-Sprite* camara::getSprite(){
-	return apuntado;
 }
