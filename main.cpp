@@ -16,6 +16,7 @@ const int TAM = 600;
 void initSeguido(camara* camara){
     Apuntado* seguido = new Apuntado(0, 0, 30, 30,1);
     Texture* invisible = new Texture();
+    invisible->setKeyColor(0,0,0xFF);
     invisible->loadFromFile("Graficos/dot.bmp");
     seguido->setTexture(invisible);
     camara->setApuntado(seguido);
