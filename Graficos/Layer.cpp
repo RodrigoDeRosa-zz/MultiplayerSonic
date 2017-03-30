@@ -5,6 +5,7 @@
 #include <string>
 using namespace std;
 
+//tiene que ser singleton
 Layer::Layer(){
     texture = NULL;
     image = NULL;
