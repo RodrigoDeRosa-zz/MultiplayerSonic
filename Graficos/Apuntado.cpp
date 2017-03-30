@@ -1,5 +1,5 @@
 #include "Apuntado.hpp"
-
+//tiene que ser singleton
 
 Apuntado::Apuntado(int x, int y, int w, int h, int vel_s) : Sprite(x,y,w,h){
     velX=0;
