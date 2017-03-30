@@ -47,6 +47,7 @@ bool Layer::loadImage(){
         };
     }
     /*Se crea el sprite que sera renderizado*/
+    //cambiar window por stage
     int width = Window::getInstance().getWidth();
     int height = Window::getInstance().getHeight();
     image = new Sprite(0, 0, width, height);

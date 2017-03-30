@@ -26,6 +26,7 @@ class SpriteGroup{
         /*Verrifica si el sprite indicado es parte del grupo*/
         bool has(Sprite);
         SpriteGroup copy();
+        vector <Sprite*> getSprites();
 };
 
 

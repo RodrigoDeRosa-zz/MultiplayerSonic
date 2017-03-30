@@ -72,3 +72,8 @@ void Stage::setSpriteGroup(SpriteGroup* group){
 void Stage::addSprite(Sprite* sprite){
     sprites->add(sprite);
 }
+
+Stage& Stage::getInstance(){
+    static Stage instance;
+    return instance;
+}

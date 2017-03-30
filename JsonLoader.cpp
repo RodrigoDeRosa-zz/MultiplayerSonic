@@ -59,6 +59,20 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		activeSprites->add(sprite);
 	}
 
+	vector<Sprite*> vectorSprites = activeSprites->getSprites();
+
+	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
+
+		//hay que chequear el tema de la velocidad de los sprites
+
+		Texture* texture = new Texture();
+		texture->loadFromFile((*it)["ruta"].asString());
+
+		for(Json::Value::iterator idIt = (*it)["ids"].begin();idIt != (*it)["ids"].end();idIt++){
+			vectorSprites[(*idIt).asInt()]->setTexture(texture);
+		}
+	}
+
 	return activeSprites;
 }
 

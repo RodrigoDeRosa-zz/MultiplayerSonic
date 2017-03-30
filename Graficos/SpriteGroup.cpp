@@ -62,3 +62,7 @@ SpriteGroup SpriteGroup::copy() {
 
 	return new_group;
 }
+
+vector <Sprite*> SpriteGroup::getSprites(){
+  return sprites;
+}

@@ -8,16 +8,17 @@
 #include "Graficos/Apuntado.hpp"
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
+#include "JsonLoader.hpp"
 
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
 
 void initSeguido(camara* camara){
-    Apuntado* seguido = new Apuntado(0, 0, 30, 30,1);
+    Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
     Texture* invisible = new Texture();
-    invisible->setKeyColor(0,0,0xFF);
-    invisible->loadFromFile("Graficos/dot.bmp");
+    invisible->setKeyColor(0,0,0);
+    seguido->setBackgroundColor(0, 0, 0);
     seguido->setTexture(invisible);
     camara->setApuntado(seguido);
 }
@@ -68,13 +69,9 @@ Stage* setStage(){
 int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
-    Window::getInstance().setDimensions(TAM, TAM);
-    Window::getInstance().init();
+    JsonLoader* json = new JsonLoader("ejemplo.json");
 
-    Renderer::getInstance().init();
-    Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
-
-    Stage* stage = setStage();
+    Stage* stage = json->getStage();
     stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
@@ -95,7 +92,7 @@ int main(int argc, char** argv){
         }
         /*recordatorio: aca tiene que pasarse como parametros 2 veces el tam
         despues ver bien el tema de los layers y eso*/
-        camara_pantalla->moveApuntado(TAM,TAM);
+        camara_pantalla->moveApuntado(2*TAM,2*TAM);
         camara_pantalla->moveCamara();
 
         Renderer::getInstance().clear();
