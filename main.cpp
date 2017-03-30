@@ -13,7 +13,15 @@
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
-
+/*FALTA:
+  -Integrar el Logger.
+  -Crear la camara desde el parser.
+  -Manejar errores sintacticos del parser.
+  -Manejar errores si no se encuentra el json.
+  -Hacer el Layer Singleton.
+  -Hacer la camara Singleton.
+  -Acomodar las dimensiones del Layer.
+*/
 void initSeguido(camara* camara){
     Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
     Texture* invisible = new Texture();
