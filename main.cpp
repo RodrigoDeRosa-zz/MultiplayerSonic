@@ -20,8 +20,6 @@ const int TAM = 600;
   -Crear la camara desde el parser.
   -Manejar errores sintacticos del parser.
   -Manejar errores si no se encuentra el json.
-  -Hacer el Layer Singleton.
-  -Hacer la camara Singleton.
   -Acomodar las dimensiones del Layer.
 */
 void initSeguido(camara* camara){
