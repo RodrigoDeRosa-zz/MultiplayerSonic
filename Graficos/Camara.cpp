@@ -1,7 +1,5 @@
 #include "Camara.hpp"
 
-//tiene que ser singleton
-
 camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
 	vel= vel_c;
 	velX= 0;
