@@ -8,6 +8,8 @@
 #include "Graficos/Apuntado.hpp"
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
+#include "Graficos/Bloque.hpp"
+#include "Graficos/Circulo.hpp"
 #include "JsonLoader.hpp"
 
 #include <SDL2/SDL.h>
@@ -52,14 +54,23 @@ Stage* setStage(){
     tex->loadFromFile("Graficos/texture.png");
 
     /*Se crean 2 sprites*/
-    Sprite* bloque2 = new Sprite(150, 150, 100, 100);
-    Sprite* bloque3 = new Sprite(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
+    Circulo* circulo1 = new Circulo(150, 300, 100);
+    Circulo* circulo2 = new Circulo(300, 150, 100);
+    Bloque* bloque2 = new Bloque(100, 100, 100, 100);
+    Bloque* bloque3 = new Bloque(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
 
     /*El primero tiene textura*/
-
     bloque2->setTexture(tex);
+
     /*El tercero tiene color de fondo*/
     bloque3->setBackgroundColor(255,130,15);
+
+    //el primer circulo tiene color de fondo
+    circulo1->setBackgroundColor(145, 143, 98);
+
+    //el segundo circulo se le carga una imagen
+    SDL_Surface* aux_texture = IMG_Load("Graficos/index.png");
+    circulo2->setTexture(aux_texture);
 
     /*Se agregan al grupo de sprites*/
     SpriteGroup* activeSprites = new SpriteGroup();
@@ -70,6 +81,8 @@ Stage* setStage(){
     stage->setSpriteGroup(activeSprites);
     /*Se agrega otro sprite al escenario*/
     stage->addSprite(bloque3);
+    stage->addSprite(circulo1);
+    stage->addSprite(circulo2);
 
     return stage;
 }
@@ -79,7 +92,12 @@ int main(int argc, char** argv){
 
     JsonLoader* json = new JsonLoader("ejemplo.json");
 
-    Stage* stage = json->getStage();
+
+    //Stage* stage = json->getStage(); DESCOMENTAR!
+    //stage->setDimensiones(2*TAM, 2*TAM);
+
+    //para probar
+    Stage* stage = setStage();
     stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
@@ -102,6 +120,9 @@ int main(int argc, char** argv){
         despues ver bien el tema de los layers y eso*/
         camara_pantalla->moveApuntado(2*TAM,2*TAM);
         camara_pantalla->moveCamara();
+
+        //setea el color de fondo de blanco
+        Renderer::getInstance().setDrawColor(255, 255, 255, 1);
 
         Renderer::getInstance().clear();
         stage->render(camara_pantalla);

@@ -22,7 +22,7 @@ class Sprite{
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
-        void render(camara*);
+        virtual void render(camara*);
         /*Dibuja las imagenes de fondo*/
         void render(int x, int y, camara* cam);
         /*Define la textura del sprite*/

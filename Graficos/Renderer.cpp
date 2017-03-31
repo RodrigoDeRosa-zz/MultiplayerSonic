@@ -1,6 +1,10 @@
 #include "Window.hpp"
 #include "Renderer.hpp"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
+
+#define PI 3.14159265
+#define MAX_ARRAY 360
 
 /*Constructor*/
 Renderer::Renderer(){
@@ -53,9 +57,34 @@ void Renderer::renderTexture(SDL_Texture* tex, SDL_Rect* clip, SDL_Rect* renderQ
     SDL_RenderCopy(renderer, tex, clip, renderQuad);
 }
 
+/*Parametriza un circulo generando sus coordenadas y carga la textura a el*/
+void Renderer::renderCircleTexture(int x, int y, int r, SDL_Surface* texture){
+	Sint16 v_x [MAX_ARRAY];
+	Sint16 v_y [MAX_ARRAY];
+
+	int i = 0; //angulo tita
+	int pos = 0;
+	for(i; i < MAX_ARRAY; i++){
+		v_x[pos] = r * cos(i * PI / 180) + x;
+		v_y[pos] = r * sin(i * PI / 180) + y;
+		pos ++;
+	}
+
+	//printf("%i", pos);
+
+	if(!texturedPolygon(renderer, v_x, v_y, pos, texture, x-r, y-r)){
+		printf("Circle texture unable to load \n");
+	}
+}
+
 /*Pinta el SDL_Rect recibido con el color de dibujado*/
 void Renderer::fillRect(SDL_Rect* rect){
     SDL_RenderFillRect(renderer, rect);
+}
+
+/*Pinta el circulo de las caracteristicas recibidas con el color de dibujado*/
+int Renderer::fillCircle(Sint16 x, Sint16 y, Sint16 radius, Uint8 red, Uint8 green, Uint8 blue){
+	return filledCircleRGBA(renderer, x, y, radius, red, green, blue, 0xFF);
 }
 
 void Renderer::clear(){

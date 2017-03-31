@@ -9,7 +9,7 @@ Texture::Texture(){
     texture = NULL;
     width = 0;
     height = 0;
-    keyR = 0;
+    keyR = 0x0;
     keyG = 0xFF;
     keyB = 0xFF;
 }
