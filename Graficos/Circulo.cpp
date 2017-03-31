@@ -10,12 +10,12 @@
 
 
 Circulo::Circulo(int x, int y, int r)
-: Sprite(x, y, r, r){
+: Sprite(x, y, r*2, r*2){
 	
 	radius = r;
 	//calculo el centro del circulo
-	originX = x + (radius/2);
-	originY = y + (radius/2);
+	originX = x + (radius);
+	originY = y + (radius);
 
 	//esta textura se podria cargar de afuera
 	aux_texture = NULL;
