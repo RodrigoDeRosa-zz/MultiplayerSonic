@@ -20,7 +20,7 @@ const int TAM = 600;
   -Crear la camara desde el parser.
   -Manejar errores sintacticos del parser.
   -Manejar errores si no se encuentra el json.
-  -Acomodar las dimensiones del Layer.
+  -Acomodar las dimensiones del Layer
 */
 void initSeguido(camara* camara){
     Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
