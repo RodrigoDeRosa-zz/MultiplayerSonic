@@ -1,16 +1,16 @@
 #include "Layer.hpp"
 #include "Texture.hpp"
 #include "Sprite.hpp"
-#include "Window.hpp"
 #include <string>
 using namespace std;
 
-//tiene que ser singleton
 Layer::Layer(){
     texture = NULL;
     image = NULL;
     zIndex = 0;
     texPath = "";
+    width=0;
+    height=0;
 }
 
 Layer::~Layer(){
@@ -34,6 +34,11 @@ void Layer::setTexPath(string path){
     texPath = path;
 }
 
+void Layer::setDimensions(int w, int h){
+    width = w;
+    height = h;
+}
+
 /*Carga la imagen desde la direccion que se almaceno*/
 bool Layer::loadImage(){
     if(texPath == ""){
@@ -48,9 +53,6 @@ bool Layer::loadImage(){
         };
     }
     /*Se crea el sprite que sera renderizado*/
-    //cambiar window por stage
-    int width = Window::getInstance().getWidth();
-    int height = Window::getInstance().getHeight();
     image = new Sprite(0, 0, width, height);
     image->setTexture(texture);
     return true;

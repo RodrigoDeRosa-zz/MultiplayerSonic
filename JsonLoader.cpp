@@ -31,6 +31,7 @@ Stage* JsonLoader::setStage(Json::Value json){
     	Layer* layer = new Layer();
 
 		layer->setTexPath(this->getString((*it)["ruta_imagen"]));
+		layer->setDimensions( stage->getWidth(), stage->getHeight());
 		layer->loadImage();
 		layer->setIndexZ(this->getPositiveInt((*it)["index_z"]));
 
@@ -53,9 +54,9 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	this->checkNullValue(json["escenario"]["entidades"]);
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
-	
+
 		Sprite* sprite;
-		
+
 		/*
 		if((*it)["circulo"].asBool()){
 			sprite = new Circulo(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
