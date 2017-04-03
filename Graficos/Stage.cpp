@@ -1,6 +1,7 @@
 #include "Stage.hpp"
 #include "Layer.hpp"
 #include "SpriteGroup.hpp"
+#include "Logger2.hpp"
 
 Stage::Stage(){
     sprites = NULL;
@@ -41,7 +42,8 @@ int Stage::getHeight(){
 void Stage::addLayer(Layer* layer){
     /*Si ya se tienen ambas capas no se pueden agregar mas*/
     if (front && background){
-        printf("ERROR: Stage already has two layers!\n");
+        //printf("ERROR: Stage already has two layers!\n");
+	Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!");
         return;
     }
     /*Si no habia ninguna capa se define la de adelante*/

@@ -11,7 +11,7 @@
 #include "Graficos/Bloque.hpp"
 #include "Graficos/Circulo.hpp"
 #include "JsonLoader.hpp"
-
+#include "Logger2.hpp"
 #include <SDL2/SDL.h>
 
 const int TAM = 600;

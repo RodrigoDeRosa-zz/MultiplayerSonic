@@ -2,7 +2,7 @@
 #include "Renderer.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
-
+#include "Logger2.hpp"
 #define PI 3.14159265
 #define MAX_ARRAY 360
 
@@ -28,11 +28,13 @@ Renderer& Renderer::getInstance(){
 /*Incializa el SDL_Renderer*/
 bool Renderer::init(){
     if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")){
-        printf("WARNING: Linear texture filtering not enabled!\n");
+        //printf("WARNING: Linear texture filtering not enabled!\n");
+	Logger::getInstance().log("In Renderer::init(): Linear texture filtering not enabled!");
     }
     renderer = Window::getInstance().initRenderer();
     if(!renderer){
-        printf("ERROR: Renderer could not be initialized!\n");
+        //printf("ERROR: Renderer could not be initialized!\n");
+	Logger::getInstance().log("In Renderer::init(): Renderer could not be initialized!");
         return false;
     }
     setDrawColor(0x00, 0xFF, 0xFF, 0xFF);
@@ -41,7 +43,8 @@ bool Renderer::init(){
 /*Define el color de dibujado del renderer*/
 void Renderer::setDrawColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha){
     if(!renderer){
-        printf("ERROR: No renderer to set color to!\n");
+        //printf("ERROR: No renderer to set color to!\n");
+	Logger::getInstance().log("In Renderer::SetDrawColor(): No renderer to set color to!");
         return;
     }
     SDL_SetRenderDrawColor(renderer, red, green, blue, alpha);
@@ -73,7 +76,8 @@ void Renderer::renderCircleTexture(int x, int y, int r, SDL_Surface* texture){
 	//printf("%i", pos);
 
 	if(!texturedPolygon(renderer, v_x, v_y, pos, texture, x-r, y-r)){
-		printf("Circle texture unable to load \n");
+		//printf("Circle texture unable to load \n");
+		Logger::getInstance().log("In Renderer::renderCircleTexture(): Circle texture unable to load");
 	}
 }
 

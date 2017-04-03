@@ -5,7 +5,7 @@
 #include "Renderer.hpp"
 #include "Circulo.hpp"
 #include <SDL2/SDL2_gfxPrimitives.h>
-
+#include "Logger2.hpp"
 
 
 
@@ -35,7 +35,7 @@ void Circulo::render(camara* cam){
     if(aux_texture) Renderer::getInstance().renderCircleTexture(auxX, auyY, radius, aux_texture);
         else{
             if(!Renderer::getInstance().fillCircle((Sint16)auxX,(Sint16) auyY,(Sint16) radius, red, green, blue)){
-            	//printf("Fail to fill circle color /n");
+            	Logger::getInstance().log("In Circulo::render: Failed to fill circle color");
             }
         }
     }

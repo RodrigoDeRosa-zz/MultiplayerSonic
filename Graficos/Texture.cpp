@@ -3,7 +3,11 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "Logger2.hpp"
 using namespace std;
+
+#define TEXTURE_LOADFILE_MSG "In Texture::loadFromFile(): Unable to load image "
+#define TEXTURE_CREATETEXTURE_MSG "In Texture::loadFromFile(): Unable to create texture from "
 
 Texture::Texture(){
     texture = NULL;
@@ -41,8 +45,9 @@ bool Texture::loadFromFile(string path){
     //Carga la imagen de la direccion indicada
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(!loadedSurface){
-        printf("ERROR: Unable to load image %s! SDL_Image Error: %s\n", path.c_str(), IMG_GetError() );
-        return false;
+        //printf("ERROR: Unable to load image %s! SDL_Image Error: %s\n", path.c_str(), IMG_GetError() );
+       	Logger::getInstance().log(string(TEXTURE_LOADFILE_MSG) + path + string(". SDL_Image Error: ") + string(IMG_GetError()));
+	return false;
     }else{
         //Se le pasa el color utilizado como key a la superficie
         SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, keyR, keyB, keyG));
@@ -50,7 +55,8 @@ bool Texture::loadFromFile(string path){
         //Se crea la textura a partir de los pixeles de la superficie
         newTex = Renderer::getInstance().getTextureFromSurface(loadedSurface);
         if(!newTex){
-            printf("ERROR: Unable to create texture from %s! SDL Error: %s", path.c_str(), SDL_GetError());
+            //printf("ERROR: Unable to create texture from %s! SDL Error: %s", path.c_str(), SDL_GetError());
+	    Logger::getInstance().log(string(TEXTURE_CREATETEXTURE_MSG) + path + string(". SDL_Image Error: ") + string(SDL_GetError()));	
             /*Libera la superficie cargada de la imagen.*/
             SDL_FreeSurface(loadedSurface);
             return false;
