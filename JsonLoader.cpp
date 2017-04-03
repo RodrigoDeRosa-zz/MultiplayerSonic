@@ -9,6 +9,7 @@
 #include "Graficos/Window.hpp"
 #include "Graficos/Camara.hpp"
 #include "Graficos/Bloque.hpp"
+#include "Graficos/Circulo.hpp"
 
 using namespace std;
 
@@ -57,19 +58,19 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
 
-		Sprite* sprite;
+		Bloque* bloque;
+		Circulo* circulo;
 
-		/*
 		if((*it)["circulo"].asBool()){
-			sprite = new Circulo(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
-									this->getPositiveInt((*it)["dimensiones"]["radio"]));
+			circulo = new Circulo(((*it)["coordenada"]["x"]).asInt(), ((*it)["coordenada"]["y"]).asInt(),
+			(*it)["radio"]["r"].asInt());
+			activeSprites->add(circulo);
 		}
-		*/
+		else{
+			bloque = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
+			bloque->setBackgroundColor(255,130,15);
+			activeSprites->add(bloque);}
 
-		sprite = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
-		sprite->setBackgroundColor(255,130,15);
-		sprite->setIndexZ((*it)["index_z"].asInt());
-		activeSprites->add(sprite);
 	}
 
 	vector<Sprite*> vectorSprites = activeSprites->getSprites();
