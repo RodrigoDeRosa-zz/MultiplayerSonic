@@ -9,14 +9,13 @@
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
 #include "Graficos/Bloque.hpp"
-#include "Graficos/Circulo.hpp"
+//#include "Graficos/Circulo.hpp"
 #include "JsonLoader.hpp"
 #include "Logger2.hpp"
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
 /*FALTA:
-  -Integrar el Logger.
   -Crear la camara desde el parser.
   -Manejar errores sintacticos del parser.
   -Manejar errores si no se encuentra el json.
@@ -52,8 +51,8 @@ Stage* setStage(){
     tex->loadFromFile("Graficos/texture.png");
 
     /*Se crean 2 sprites*/
-    Circulo* circulo1 = new Circulo(150, 300, 100);
-    Circulo* circulo2 = new Circulo(300, 150, 100);
+//    Circulo* circulo1 = new Circulo(150, 300, 100);
+//    Circulo* circulo2 = new Circulo(300, 150, 100);
     Bloque* bloque2 = new Bloque(100, 100, 100, 100);
     Bloque* bloque3 = new Bloque(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
 
@@ -64,11 +63,11 @@ Stage* setStage(){
     bloque3->setBackgroundColor(255,130,15);
 
     //el primer circulo tiene color de fondo
-    circulo1->setBackgroundColor(145, 143, 98);
+//    circulo1->setBackgroundColor(145, 143, 98);
 
     //el segundo circulo se le carga una imagen
-    SDL_Surface* aux_texture = IMG_Load("Graficos/index.png");
-    circulo2->setTexture(aux_texture);
+//    SDL_Surface* aux_texture = IMG_Load("Graficos/index.png");
+//    circulo2->setTexture(aux_texture);
 
     /*Se agregan al grupo de sprites*/
     SpriteGroup* activeSprites = new SpriteGroup();
@@ -79,13 +78,14 @@ Stage* setStage(){
     stage->setSpriteGroup(activeSprites);
     /*Se agrega otro sprite al escenario*/
     stage->addSprite(bloque3);
-    stage->addSprite(circulo1);
-    stage->addSprite(circulo2);
+//    stage->addSprite(circulo1);
+//    stage->addSprite(circulo2);
 
     return stage;
 }
 
 int main(int argc, char** argv){
+	Logger::getInstance();	//se inicializa el logger
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("ejemplo.json");
