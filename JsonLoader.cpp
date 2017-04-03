@@ -8,6 +8,7 @@
 #include "Graficos/Renderer.hpp"
 #include "Graficos/Window.hpp"
 #include "Graficos/Camara.hpp"
+#include "Graficos/Bloque.hpp"
 
 using namespace std;
 
@@ -22,26 +23,27 @@ JsonLoader::JsonLoader(char* ruta){
 
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();
+	
+	stage->setDimensiones(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
+							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",Window::getInstance().getHeight()*2));
 
-	stage->setDimensiones(json["escenario"]["dimensiones"]["ancho"].asInt(),json["escenario"]["dimensiones"]["alto"].asInt());
+	if(this->validateValue(json["escenario"]["capas"],"[escenario][capas]")){
 
-	this->checkNullValue(json["escenario"]["capas"]);
+		for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
+			Layer* layer = new Layer();
 
-	for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
-    	Layer* layer = new Layer();
+			layer->setTexPath(this->getString((*it)["ruta_imagen"]));
+			layer->setDimensions( stage->getWidth(), stage->getHeight());
+			layer->loadImage();
+			layer->setIndexZ((*it)["index_z"].asInt());
 
-		layer->setTexPath(this->getString((*it)["ruta_imagen"]));
-		layer->setDimensions( stage->getWidth(), stage->getHeight());
-		layer->loadImage();
-		layer->setIndexZ(this->getPositiveInt((*it)["index_z"]));
-
-		stage->addLayer(layer);
+			stage->addLayer(layer);
+		}
 	}
 
-    /*Se agregan al grupo de sprites*/
+    
     SpriteGroup* activeSprites = this->getSprites(json);
 
-    /*Se define el sprite group del escenario como el creado recien*/
     stage->setSpriteGroup(activeSprites);
 
     return stage;
@@ -54,9 +56,9 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	this->checkNullValue(json["escenario"]["entidades"]);
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
-
+	
 		Sprite* sprite;
-
+		
 		/*
 		if((*it)["circulo"].asBool()){
 			sprite = new Circulo(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
@@ -64,8 +66,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		}
 		*/
 
-		sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
-									this->getPositiveInt((*it)["dimensiones"]["alto"]),  this->getPositiveInt((*it)["dimensiones"]["ancho"]));
+		sprite = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
 		sprite->setBackgroundColor(255,130,15);
 		activeSprites->add(sprite);
 	}
@@ -87,22 +88,23 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 void JsonLoader::setWindow(Json::Value json){
 
-	Window::getInstance().setDimensions(this->getPositiveInt(json["ventana"]["dimensiones"]["ancho"]), this->getPositiveInt(json["ventana"]["dimensiones"]["alto"]));
+	Window::getInstance().setDimensions(json["ventana"]["dimensiones"]["ancho"].asInt(), json["ventana"]["dimensiones"]["alto"].asInt());
     Window::getInstance().init();
 }
 
-int JsonLoader::getPositiveInt(Json::Value json){
-	this->checkNullValue(json);
-	if(!json.isInt() || (json.asInt() <= 0)){
-		//handle
+int JsonLoader::getPositiveInt(Json::Value json, string where, int defaultValue){
+	int value;
+	
+	if(!json.isInt() || (json.asInt() < 0) || !(this->validateValue(json,where))){
+		value = defaultValue;
 	}
-	return json.asInt();
+	else
+		value = json.asInt();
+	return value;
 }
 
-void JsonLoader::checkNullValue(Json::Value json){
-	if(json == Json::nullValue){
-		//no encontro la clave, levantar excepcion
-	}
+bool JsonLoader::checkNullValue(Json::Value json){
+	return (json == Json::nullValue);
 }
 
 string JsonLoader::getString(Json::Value json){
@@ -133,3 +135,13 @@ camara* JsonLoader::getCamara(){
     camara_pantalla->setApuntado(seguido);
 	return camara_pantalla;
 }
+
+bool JsonLoader::validateValue(Json::Value json, string where){
+	bool valid = true;
+	if(this->checkNullValue(json)){ 
+		printf("No se encontro la clave %s \n",where);
+		valid = false;
+	}
+	return valid;
+}
+

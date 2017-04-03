@@ -18,8 +18,8 @@ class JsonLoader{
 		SpriteGroup* getSprites(Json::Value json);
 		void setWindow(Json::Value json);
 		void setRenderer();
-		int getPositiveInt(Json::Value json);
-		void checkNullValue(Json::Value json);
+		int getPositiveInt(Json::Value json, string where, int defaultValue);
+		bool checkNullValue(Json::Value json);
 		string getString(Json::Value json);
-		
+		bool validateValue(Json::Value json, string where);
 };
