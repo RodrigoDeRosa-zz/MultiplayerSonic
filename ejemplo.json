@@ -28,6 +28,13 @@
 				"dimensiones": {"ancho": 50, "alto": 50},
 				"coordenada": {"x": 50, "y": 50},
 				"index_z": 100
+			},
+			{
+				"circulo": 1,
+				"color": "verde",
+				"coordenada": {"x": 200, "y": 200},
+				"radio": {"r": 200},
+				"index_z": 100
 			}
 		],
 		"texturas" : [
