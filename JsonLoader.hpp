@@ -4,11 +4,18 @@
 #include "json/json-forwards.h"
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/SpriteGroup.hpp"
+#include <map>
+#include <vector>
 
 using namespace std;
 
+bool isPositiveInteger(Json::Value json, string where);
+bool isInteger(Json::Value json, string where);
+bool fileExists(string path);
+
 class JsonLoader{
 	Stage* stage;
+	map<string,int*> colores;
 	public:
 		JsonLoader(char* ruta);
 		Stage* getStage();
