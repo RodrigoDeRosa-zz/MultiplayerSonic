@@ -38,7 +38,7 @@ public:
 
 	//Operaciones apuntado
 	void setApuntado( Apuntado* apun);
-	void moveApuntado(int x, int y);
+	void moveApuntado();
 	void setEventApuntado( SDL_Event& e );
 
 	void render();

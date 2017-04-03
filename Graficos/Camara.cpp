@@ -32,8 +32,8 @@ void camara::moveCamara(){
 void camara::setEventApuntado( SDL_Event& e ){
 	apuntado->handleEvent(e);
 }
-void camara::moveApuntado(int x, int y){
-	apuntado->move(x,y);
+void camara::moveApuntado(){
+	apuntado->move(ancho_escenario, alto_escenario);
 }
 
 void camara::render(){

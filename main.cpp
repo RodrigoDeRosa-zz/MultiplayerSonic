@@ -114,9 +114,8 @@ int main(int argc, char** argv){
                 break;}
             camara_pantalla->setEventApuntado(e);
         }
-        /*recordatorio: aca tiene que pasarse como parametros 2 veces el tam
-        despues ver bien el tema de los layers y eso*/
-        camara_pantalla->moveApuntado(2*TAM,2*TAM);
+
+        camara_pantalla->moveApuntado();
         camara_pantalla->moveCamara();
 
         //setea el color de fondo de blanco

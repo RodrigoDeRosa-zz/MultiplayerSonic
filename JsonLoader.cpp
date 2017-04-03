@@ -123,8 +123,9 @@ Stage* JsonLoader::getStage(){
 }
 
 camara* JsonLoader::getCamara(){
-	camara* camara_pantalla = new camara(0,0,1,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
-	Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
+	int velocidad = 3;
+	camara* camara_pantalla = new camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
+	Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
     Texture* invisible = new Texture();
     invisible->setKeyColor(0,0,0);
     seguido->setBackgroundColor(0, 0, 0);
