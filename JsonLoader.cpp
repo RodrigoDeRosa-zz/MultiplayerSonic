@@ -23,7 +23,7 @@ JsonLoader::JsonLoader(char* ruta){
 
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();
-	
+
 	stage->setDimensiones(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
 							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",Window::getInstance().getHeight()*2));
 
@@ -41,7 +41,7 @@ Stage* JsonLoader::setStage(Json::Value json){
 		}
 	}
 
-    
+
     SpriteGroup* activeSprites = this->getSprites(json);
 
     stage->setSpriteGroup(activeSprites);
@@ -56,9 +56,9 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	this->checkNullValue(json["escenario"]["entidades"]);
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
-	
+
 		Sprite* sprite;
-		
+
 		/*
 		if((*it)["circulo"].asBool()){
 			sprite = new Circulo(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
@@ -68,6 +68,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 		sprite = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
 		sprite->setBackgroundColor(255,130,15);
+		sprite->setIndexZ((*it)["index_z"].asInt());
 		activeSprites->add(sprite);
 	}
 
@@ -94,7 +95,7 @@ void JsonLoader::setWindow(Json::Value json){
 
 int JsonLoader::getPositiveInt(Json::Value json, string where, int defaultValue){
 	int value;
-	
+
 	if(!json.isInt() || (json.asInt() < 0) || !(this->validateValue(json,where))){
 		value = defaultValue;
 	}
@@ -138,10 +139,9 @@ camara* JsonLoader::getCamara(){
 
 bool JsonLoader::validateValue(Json::Value json, string where){
 	bool valid = true;
-	if(this->checkNullValue(json)){ 
+	if(this->checkNullValue(json)){
 		printf("No se encontro la clave %s \n",where);
 		valid = false;
 	}
 	return valid;
 }
-

@@ -16,7 +16,7 @@ Sprite::Sprite(int x, int y, int w, int h){
     red = 0;
     green = 0;
     blue = 0;
-
+    zIndex = 0;
 }
 
 Sprite::~Sprite(){
@@ -27,6 +27,7 @@ Sprite::~Sprite(){
     red = 0;
     green = 0;
     blue = 0;
+    zIndex = 0;
 
     if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
 }
@@ -82,6 +83,18 @@ Texture* Sprite::getTexture(){
 
 bool Sprite::operator==(Sprite& other) const{
     return (texture == other.getTexture());
+}
+
+void Sprite::setIndexZ(int index){
+        zIndex = index;
+}
+
+int Sprite::getZIndex(){
+    return zIndex;
+}
+
+bool Sprite::operator<(Sprite& other) const{
+    return (zIndex < other.getZIndex());
 }
 
 int Sprite::getX(){

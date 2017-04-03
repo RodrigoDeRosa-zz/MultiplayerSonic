@@ -26,8 +26,8 @@
 				"circulo": 0,
 				"color": "verde",
 				"dimensiones": {"ancho": 50, "alto": 50},
-				"coordenada": {"x": 150, "y": 150},
-				"index_z": 98
+				"coordenada": {"x": 50, "y": 50},
+				"index_z": 100
 			}
 		],
 		"texturas" : [

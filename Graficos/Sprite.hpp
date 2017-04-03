@@ -14,7 +14,7 @@ class Sprite{
     protected:
         Texture* texture;
         SDL_Rect rectangle;
-        int originX, originY, width, height;
+        int originX, originY, width, height, zIndex;
         Uint8 red, green, blue;
 
     public:
@@ -30,7 +30,11 @@ class Sprite{
         /*Define el color predeterminado del sprite en caso de falta de textura*/
         void setBackgroundColor(Uint8 r, Uint8 g, Uint8 b);
         bool operator==(Sprite& other) const;
+        bool operator<(Sprite& other) const;
         Texture* getTexture();
+        int getZIndex();
+
+        void setIndexZ(int);
 
         /*getters*/
         int getX();

@@ -1,6 +1,7 @@
 #include "SpriteGroup.hpp"
 #include "Sprite.hpp"
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 SpriteGroup::SpriteGroup(){}
@@ -32,6 +33,7 @@ void SpriteGroup::update(){
 
 void SpriteGroup::render(camara* camara){
     if (!sprites.empty()) {
+        sort(sprites.begin(), sprites.end());
         for (int i = 0; i < (int)sprites.size(); i++) {
             	sprites[i]->render(camara);
         }
