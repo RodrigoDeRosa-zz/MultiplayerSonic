@@ -23,6 +23,7 @@ class Texture{
         void render(int x, int y, SDL_Rect* clip);
         int getWidth();
         int getHeight();
+        void setDimensions(int w, int h);
         bool operator==(Texture& other) const;
 };
 

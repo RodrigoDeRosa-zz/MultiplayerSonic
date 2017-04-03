@@ -56,7 +56,7 @@ bool Texture::loadFromFile(string path){
         newTex = Renderer::getInstance().getTextureFromSurface(loadedSurface);
         if(!newTex){
             //printf("ERROR: Unable to create texture from %s! SDL Error: %s", path.c_str(), SDL_GetError());
-	    Logger::getInstance().log(string(TEXTURE_CREATETEXTURE_MSG) + path + string(". SDL_Image Error: ") + string(SDL_GetError()));	
+	    Logger::getInstance().log(string(TEXTURE_CREATETEXTURE_MSG) + path + string(". SDL_Image Error: ") + string(SDL_GetError()));
             /*Libera la superficie cargada de la imagen.*/
             SDL_FreeSurface(loadedSurface);
             return false;
@@ -75,8 +75,14 @@ bool Texture::loadFromFile(string path){
 void Texture::render(int x, int y, SDL_Rect* clip){
     SDL_Rect renderQuad = {x, y, width, height};
     if (clip){
-        renderQuad.w = clip->w;
-        renderQuad.h = clip->h;
+        if (width < clip->w){
+            SDL_Rect fillRect = {x + clip->w, y, width - clip->w, clip->h};
+            Renderer::getInstance().fillRect(&fillRect);
+        } else renderQuad.w = clip->w;
+        if (height < clip->h){
+            SDL_Rect fillRect = {x, y + clip->h, clip->w, height - clip->h};
+            Renderer::getInstance().fillRect(&fillRect);
+        } else renderQuad.h = clip->h;
     }
     Renderer::getInstance().renderTexture(texture, clip, &renderQuad);
 }
@@ -87,6 +93,12 @@ int Texture::getWidth(){
 int Texture::getHeight(){
     return height;
 }
+
+void Texture::setDimensions(int w, int h){
+    width = w;
+    height = h;
+}
+
 
 SDL_Texture* Texture::getTexture(){
     return texture;

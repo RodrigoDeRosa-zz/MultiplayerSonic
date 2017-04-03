@@ -1,8 +1,8 @@
 {
-	"ventana": {"dimensiones": {"ancho": 600, "alto": 600}},
+	"ventana": {"dimensiones": {"ancho": 400, "alto": 640}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
-		"dimensiones": {"ancho": 1200, "alto": 1200},
+		"dimensiones": {"ancho": 1200, "alto": 640},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
@@ -18,7 +18,7 @@
 			{
 				"circulo": 0,
 				"color": "rojo",
-				"dimensiones": {"ancho": 100, "alto": 100},
+				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
 			},

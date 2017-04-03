@@ -66,7 +66,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		}
 		*/
 
-		sprite = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
+		sprite = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["ancho"].asInt(),(*it)["dimensiones"]["alto"].asInt());
 		sprite->setBackgroundColor(255,130,15);
 		sprite->setIndexZ((*it)["index_z"].asInt());
 		activeSprites->add(sprite);
@@ -126,10 +126,11 @@ Stage* JsonLoader::getStage(){
 }
 
 camara* JsonLoader::getCamara(){
-	int velocidad = 3;
+	int velocidad = 1;
 	camara* camara_pantalla = new camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
 	Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
     Texture* invisible = new Texture();
+	invisible->setDimensions(30, 30);
     invisible->setKeyColor(0,0,0);
     seguido->setBackgroundColor(0, 0, 0);
     seguido->setTexture(invisible);
