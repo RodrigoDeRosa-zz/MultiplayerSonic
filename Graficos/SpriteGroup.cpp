@@ -5,8 +5,8 @@ using namespace std;
 
 SpriteGroup::SpriteGroup(){}
 SpriteGroup::~SpriteGroup(){
-    for (int i = 0; i < size; i++) {
-		delete sprites[i];
+    for (int i = 0; i < (int)sprites.size(); i++) {
+        if(sprites[i]) delete sprites[i];
 	}
 }
 
@@ -15,7 +15,7 @@ void SpriteGroup::add(Sprite* sprite){
 }
 
 void SpriteGroup::remove(Sprite sprite){
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < (int)sprites.size(); i++) {
         if (*sprites[i] == sprite) {
             sprites.erase(sprites.begin() + i);
         }

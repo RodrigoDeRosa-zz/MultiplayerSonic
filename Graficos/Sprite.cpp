@@ -29,7 +29,6 @@ Sprite::~Sprite(){
     blue = 0;
 
     if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
-
 }
 
 void Sprite::update(){
