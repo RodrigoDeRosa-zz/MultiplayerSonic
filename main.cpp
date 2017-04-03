@@ -9,18 +9,16 @@
 #include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
 #include "Graficos/Bloque.hpp"
-//#include "Graficos/Circulo.hpp"
+#include "Graficos/Circulo.hpp"
 #include "JsonLoader.hpp"
 #include "Logger2.hpp"
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
 /*FALTA:
-  -Crear la camara desde el parser.
-  -Manejar errores sintacticos del parser.
-  -Manejar errores si no se encuentra el json.
-  -Acomodar las dimensiones del Layer
-*/
+  -Circulo con color
+  -Cropear circulo ancho y alto independientemente
+  -Agregar path a los circulos(esta predefinido)*/
 void initSeguido(camara* camara){
     Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
     Texture* invisible = new Texture();

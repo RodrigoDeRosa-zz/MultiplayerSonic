@@ -84,7 +84,18 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		Bloque* bloque;
 		Circulo* circulo;
 
-		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades]") + string("[coordenada][x]"),-1);
+		if((*it)["circulo"].asBool()){
+			circulo = new Circulo(((*it)["coordenada"]["x"]).asInt(), ((*it)["coordenada"]["y"]).asInt(),
+			(*it)["radio"]["r"].asInt());
+			circulo->setTexture("Graficos/index.png");
+			activeSprites->add(circulo);
+		}
+		else{
+			bloque = new Bloque((*it)["coordenada"]["x"].asInt(), (*it)["coordenada"]["y"].asInt(),(*it)["dimensiones"]["alto"].asInt(),(*it)["dimensiones"]["ancho"].asInt());
+			bloque->setBackgroundColor(255,130,15);
+			activeSprites->add(bloque);}
+
+		/*int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades]") + string("[coordenada][x]"),-1);
 		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades]") +  string("[coordenada][y]"),-1);
 
 		if(x<0 || y<0){
@@ -99,6 +110,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 		if((*it)["circulo"].asBool()){
 			circulo = new Circulo(x, y,(*it)["radio"]["r"].asInt());
+			circulo->setTexture("Graficos/index.png");
 			activeSprites->add(circulo);
 		}
 		else{
@@ -112,7 +124,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			bloque->setBackgroundColor(255,130,15);
 			activeSprites->add(bloque);
 		}
-		contadorEntidades++;
+		contadorEntidades++;*/
 	}
 
 	vector<Sprite*> vectorSprites = activeSprites->getSprites();

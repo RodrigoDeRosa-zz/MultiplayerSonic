@@ -1,1 +1,54 @@
 
+----------------------------------------
+----------------------------------------
+2017-04-03 19:53:07 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 19:53:51 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 19:58:46 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 19:58:56 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 20:00:18 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 20:00:29 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 20:01:13 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+----------------------------------------
+----------------------------------------
+2017-04-03 20:06:50 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 20:07:10 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 20:08:57 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 20:09:08 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 20:09:30 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 20:09:34 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 20:12:19 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 20:12:27 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
