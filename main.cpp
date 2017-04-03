@@ -91,22 +91,22 @@ int main(int argc, char** argv){
     JsonLoader* json = new JsonLoader("ejemplo.json");
 
 
-    //Stage* stage = json->getStage(); DESCOMENTAR!
+    Stage* stage = json->getStage(); //DESCOMENTAR!
     //stage->setDimensiones(2*TAM, 2*TAM);
 
     //para probar
-    Stage* stage = setStage();
-    stage->setDimensiones(2*TAM, 2*TAM);
+    //Stage* stage = setStage();
+    //stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
     SDL_Event e;
 
     //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
-    int an_escenario=stage->getWidth();
-    int al_escenario=stage->getHeight();
-    camara* camara_pantalla = new camara(0,0,1,TAM,TAM,an_escenario, al_escenario );
-    initSeguido(camara_pantalla);
-
+    //int an_escenario=stage->getWidth();
+    //int al_escenario=stage->getHeight();
+    //camara* camara_pantalla = new camara(0,0,1,TAM,TAM,an_escenario, al_escenario );
+    //initSeguido(camara_pantalla);
+	camara* camara_pantalla = json->getCamara();
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){

@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include "Graficos/Renderer.hpp"
 #include "Graficos/Window.hpp"
+#include "Graficos/Camara.hpp"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ JsonLoader::JsonLoader(char* ruta){
 
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();
+
+	stage->setDimensiones(json["escenario"]["dimensiones"]["ancho"].asInt(),json["escenario"]["dimensiones"]["alto"].asInt());
 
 	this->checkNullValue(json["escenario"]["capas"]);
 
@@ -50,10 +53,17 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	this->checkNullValue(json["escenario"]["entidades"]);
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
+	
+		Sprite* sprite;
+		
+		/*
+		if((*it)["circulo"].asBool()){
+			sprite = new Circulo(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
+									this->getPositiveInt((*it)["dimensiones"]["radio"]));
+		}
+		*/
 
-		//hay que chequear el tema de la velocidad de los sprites
-
-		Sprite* sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
+		sprite = new Sprite(this->getPositiveInt((*it)["coordenada"]["x"]), this->getPositiveInt((*it)["coordenada"]["y"]),
 									this->getPositiveInt((*it)["dimensiones"]["alto"]),  this->getPositiveInt((*it)["dimensiones"]["ancho"]));
 		sprite->setBackgroundColor(255,130,15);
 		activeSprites->add(sprite);
@@ -62,8 +72,6 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	vector<Sprite*> vectorSprites = activeSprites->getSprites();
 
 	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
-
-		//hay que chequear el tema de la velocidad de los sprites
 
 		Texture* texture = new Texture();
 		texture->loadFromFile((*it)["ruta"].asString());
@@ -111,4 +119,15 @@ void JsonLoader::setRenderer(){
 
 Stage* JsonLoader::getStage(){
 	return this->stage;
+}
+
+camara* JsonLoader::getCamara(){
+	camara* camara_pantalla = new camara(0,0,1,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
+	Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
+    Texture* invisible = new Texture();
+    invisible->setKeyColor(0,0,0);
+    seguido->setBackgroundColor(0, 0, 0);
+    seguido->setTexture(invisible);
+    camara_pantalla->setApuntado(seguido);
+	return camara_pantalla;
 }

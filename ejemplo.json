@@ -2,7 +2,7 @@
 	"ventana": {"dimensiones": {"ancho": 600, "alto": 600}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
-		"dimensiones": {"ancho": 3600, "alto": 600},
+		"dimensiones": {"ancho": 1200, "alto": 1200},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
@@ -16,16 +16,14 @@
 		],
 		"entidades": [
 			{
-				"id": 1,
-				"tipo": "rectangulo",
+				"circulo": 0,
 				"color": "rojo",
 				"dimensiones": {"ancho": 100, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
 			},
 			{
-				"id": 2,
-				"tipo": "rectangulo",
+				"circulo": 0,
 				"color": "verde",
 				"dimensiones": {"ancho": 50, "alto": 50},
 				"coordenada": {"x": 150, "y": 150},
