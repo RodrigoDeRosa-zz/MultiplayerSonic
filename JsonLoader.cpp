@@ -65,7 +65,6 @@ Stage* JsonLoader::setStage(Json::Value json){
 
 	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
 							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",Window::getInstance().getHeight()*2));
-	stage->initDefault();
 
 	if(this->validateValue(json["escenario"]["capas"],"[escenario][capas]")){
 

@@ -1,5 +1,5 @@
 {
-	"ventana": {"dimensiones": {"ancho": 400, "alto": 640}},
+	"ventana": {"dimensiones": {"ancho": 600, "alto": 640}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
 		"dimensiones": {"ancho": 1200, "alto": 640},
@@ -11,7 +11,7 @@
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"Graficos/back.png"
+				"ruta_imagen":"Graficos/background.png"
 			}
 		],
 		"entidades": [

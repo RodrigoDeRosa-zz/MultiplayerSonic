@@ -42,7 +42,7 @@ int Stage::getHeight(){
 void Stage::addLayer(Layer* layer){
     /*Si ya se tienen ambas capas no se pueden agregar mas*/
     if (front && background){
-	Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!",ALTO);
+	    Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!",ALTO);
         return;
     }
     /*Si no habia ninguna capa se define la de adelante*/
@@ -60,8 +60,22 @@ void Stage::addLayer(Layer* layer){
 }
 
 void Stage::render(camara* camara){
-    if(front) front->render(camara);
-    if(background) background->render(camara);
+    if(!front){
+        Layer* defaultFront = new Layer();
+        defaultFront->setTexPath("Graficos/defaultFront.png");
+        defaultFront->setDimensions(width, height);
+        defaultFront->loadImage();
+        front = defaultFront;
+    }
+    if(!background){
+        Layer* defaultBackground = new Layer();
+        defaultBackground->setTexPath("Graficos/defaultBackground.png");
+        defaultBackground->setDimensions(width, height);
+        defaultBackground->loadImage();
+        background = defaultBackground;
+    }
+    front->render(camara);
+    background->render(camara);
     if(sprites) sprites->render(camara);
 }
 
