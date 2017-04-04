@@ -31,9 +31,16 @@ void SpriteGroup::update(){
     }
 }
 
+/*Funcion de ordenamiento del array de sprites*/
+struct order{
+    inline bool operator() (Sprite* sprite1, Sprite* sprite2){
+        return ( sprite1->getZIndex() < sprite2->getZIndex());
+    }
+};
+
 void SpriteGroup::render(camara* camara){
     if (!sprites.empty()) {
-        sort(sprites.begin(), sprites.end());
+        std::sort(sprites.begin(), sprites.end(), order());
         for (int i = 0; i < (int)sprites.size(); i++) {
             	sprites[i]->render(camara);
         }

@@ -20,21 +20,21 @@
 				"color": "rojo",
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
-				"index_z": 99
+				"index_z": 98
 			},
 			{
 				"circulo": 0,
 				"color": "violeta",
 				"dimensiones": {"ancho": 50, "alto": 50},
 				"coordenada": {"x": 50, "y": 50},
-				"index_z": 100
+				"index_z": 99
 			},
 			{
 				"circulo": 1,
 				"color": "amarillo",
 				"coordenada": {"x": 200, "y": 200},
 				"radio": 200,
-				"index_z": 100
+				"index_z": 97
 			}
 		],
 		"texturas" : [

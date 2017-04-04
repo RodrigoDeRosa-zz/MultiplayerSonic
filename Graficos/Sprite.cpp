@@ -86,7 +86,7 @@ bool Sprite::operator==(Sprite& other) const{
 }
 
 void Sprite::setIndexZ(int index){
-        zIndex = index;
+    zIndex = index;
 }
 
 int Sprite::getZIndex(){

@@ -37,14 +37,14 @@ vector<int> violeta (violetaRGB, violetaRGB + sizeof(violetaRGB) / sizeof(int) )
 
 
 JsonLoader::JsonLoader(char* ruta){
-	
+
 	(colores["verde"]) = verde;
 	(colores["rojo"]) = rojo;
 	(colores["azul"]) = azul;
 	(colores["amarillo"]) = amarillo;
-	(colores["violeta"]) = violeta;	
-	
-	
+	(colores["violeta"]) = violeta;
+
+
 	ifstream in(ruta);
 	Json::Value json;
 
@@ -100,12 +100,12 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 		Bloque* bloque;
 		Circulo* circulo;
-		
+
 		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades]") + string("[coordenada][x]"),-1);
 		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades]") +  string("[coordenada][y]"),-1);
-		
+
 		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
-		
+
 		if(x<0 || y<0){
 			Logger::getInstance().log("No se creo el sprite");
 			continue;
@@ -119,6 +119,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			}
 			circulo = new Circulo(x, y, r);
 			circulo->setBackgroundColor(color[0],color[1],color[2]);
+			circulo->setIndexZ(this->getPositiveInt((*it)["index_z"],"[escenario][entidades][index_z]", 0));
 			activeSprites->add(circulo);
 		}
 		else{
@@ -130,6 +131,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			}
 			bloque = new Bloque(x, y, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
+			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],"[escenario][entidades][index_z]", 0));
 			activeSprites->add(bloque);
 		}
 		contadorEntidades++;
