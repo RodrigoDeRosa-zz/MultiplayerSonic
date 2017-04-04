@@ -25,6 +25,7 @@ class JsonLoader{
 	bool isInteger(Json::Value json, string where);
 	bool fileExists(string path);
 	bool isString(Json::Value json, string where);
+	bool isArray(Json::Value json, string where);
 	vector<int> getColor(Json::Value json, string where);
 	public:
 		JsonLoader(char* ruta);
