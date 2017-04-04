@@ -15,7 +15,7 @@
 #include <vector>
 #include <stdlib.h>
 
-
+#define JSONLOADER_SPRITE_NOCREAT_MSG "No se creo el sprite"
 #define JSONLOADER_PARAM_NOT_FOUND_MSG "No se encontro el parametro "
 #define JSONLOADER_PARAM_NOT_INT_MSG "No se reconoce como entero el parametro "
 #define JSONLOADER_PARAM_NOT_POS_MSG "No es positivo el parametro "
@@ -107,14 +107,14 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
 		
 		if(x<0 || y<0){
-			Logger::getInstance().log("No se creo el sprite");
+			Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 			continue;
 		}
 
 		if((*it)["circulo"].asBool()){
 			int r = this->getPositiveInt((*it)["radio"],string("[escenario][entidades]") + string("[radio]"),-1);
 			if(r < 0){
-				Logger::getInstance().log("No se creo el sprite");
+				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 				continue;
 			}
 			circulo = new Circulo(x, y, r);
@@ -125,7 +125,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			int h = this->getPositiveInt((*it)["dimensiones"]["alto"],string("[escenario][entidades]") + string("[dimensiones][alto]"),-1);
 			int w = this->getPositiveInt((*it)["dimensiones"]["ancho"],string("[escenario][entidades]") + string("[dimensiones][ancho]"),-1);
 			if(h<0 || w<0){
-				Logger::getInstance().log("No se creo el sprite");
+				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 				continue;
 			}
 			bloque = new Bloque(x, y, h, w);
