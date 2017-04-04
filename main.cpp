@@ -84,7 +84,7 @@ Stage* setStage(){
 
 int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger
-	//Logger::getInstance().setLogLevel(MEDIO); //setea el nivel de detalle del logger
+	Logger::getInstance().setLogLevel(MEDIO); //setea el nivel de detalle del logger
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("ejemplo.json");

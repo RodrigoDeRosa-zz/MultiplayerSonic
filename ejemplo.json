@@ -11,7 +11,7 @@
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"Graficos/back.png"
+				"ruta_imagen":"Graficos/background.png"
 			}
 		],
 		"entidades": [
@@ -19,7 +19,7 @@
 				"circulo": 0,
 				"color": "rojo",
 				"dimensiones": {"ancho": 120, "alto": 100},
-				"coordenada": {"x": 10, "y": 10},
+				"coordenada": {"x": 10, "y": 100},
 				"index_z": 98
 			},
 			{
@@ -32,7 +32,7 @@
 			{
 				"circulo": 1,
 				"color": "amarillo",
-				"coordenada": {"x": 200, "y": 200},
+				"coordenada": {"x": 200, "y": 350},
 				"radio": 200,
 				"index_z": 97
 			}

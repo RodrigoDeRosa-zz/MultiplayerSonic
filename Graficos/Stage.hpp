@@ -26,7 +26,7 @@ class Stage{
 
         int getHeight();
         int getWidth();
-		void setDimensiones(int w, int h);
+		void setDimensions(int w, int h);
 		Stage& getInstance();
 
 };

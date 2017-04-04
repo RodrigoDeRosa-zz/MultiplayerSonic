@@ -49,15 +49,15 @@ bool Layer::loadImage(){
     if(texPath == ""){
         //printf("WARNING: No path to load texture from!\n");
 		Logger::getInstance().log(LAYER_NOPATH_MSG,ALTO);
-	
+
     }else{
         /*Se crea la textura que ira de fondo*/
         texture = new Texture();
         if(!texture->loadFromFile(texPath)){
-            //printf("WARNING: Couldn't load layer texture!\n");
 			Logger::getInstance().log(LAYER_TEX_NOLOAD_MSG,MEDIO);
             delete texture;
             texture = NULL;
+            return false;
         };
     }
     /*Se crea el sprite que sera renderizado*/
@@ -70,9 +70,9 @@ bool Layer::loadImage(){
 void Layer::render(camara* camara){
     if(image) image->render(0,0,camara);
 }
-bool Layer::operator<=(Layer& other) const{
+bool Layer::operator<(Layer& other) const{
     return other.isBigger(zIndex);
 }
 bool Layer::isBigger(unsigned char z){
-    return zIndex >= z;
+    return zIndex > z;
 }

@@ -63,8 +63,9 @@ JsonLoader::JsonLoader(char* ruta){
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();
 
-	stage->setDimensiones(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
+	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
 							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",Window::getInstance().getHeight()*2));
+	stage->initDefault();
 
 	if(this->validateValue(json["escenario"]["capas"],"[escenario][capas]")){
 
@@ -74,7 +75,10 @@ Stage* JsonLoader::setStage(Json::Value json){
 
 			layer->setTexPath(this->getString((*it)["ruta_imagen"],"[escenario][capas][ruta_imagen]"));
 			layer->setDimensions( stage->getWidth(), stage->getHeight());
-			layer->loadImage();
+			if (!layer->loadImage()){
+				delete layer;
+				continue;
+			}
 			layer->setIndexZ(this->getPositiveInt((*it)["index_z"],"[escenario][capas][index_z]",i));
 
 			stage->addLayer(layer);

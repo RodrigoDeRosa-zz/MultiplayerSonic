@@ -26,7 +26,7 @@ Stage::~Stage(){
     }
 }
 
-void Stage::setDimensiones(int w, int h){
+void Stage::setDimensions(int w, int h){
     width = w;
     height = h;
 }
@@ -42,7 +42,6 @@ int Stage::getHeight(){
 void Stage::addLayer(Layer* layer){
     /*Si ya se tienen ambas capas no se pueden agregar mas*/
     if (front && background){
-        //printf("ERROR: Stage already has two layers!\n");
 	Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!",ALTO);
         return;
     }
