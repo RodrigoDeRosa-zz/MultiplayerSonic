@@ -5,7 +5,7 @@
 		"dimensiones": {"ancho": 1200, "alto": 640},
 		"capas": [{
 				"id": 1,
-				"index_z": 99
+				"index_z": 99,
 				"ruta_imagen":"Graficos/front.png"
 			},
 			{

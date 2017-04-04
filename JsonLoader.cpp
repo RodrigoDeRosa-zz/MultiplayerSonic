@@ -20,7 +20,7 @@
 #define JSONLOADER_PARAM_NOT_INT_MSG "No se reconoce como entero el parametro "
 #define JSONLOADER_PARAM_NOT_POS_MSG "No es positivo el parametro "
 #define JSONLOADER_PARAM_NOT_STR_MSG "No se reconoce como cadena el parametro "
-#define DEFAULT_PATH "ejemplo.json"
+#define DEFAULT_PATH "ejemplo2.json"
 
 using namespace std;
 
@@ -53,7 +53,17 @@ JsonLoader::JsonLoader(char* ruta){
 		in.clear();
 		in.open(DEFAULT_PATH);
 	}
-	in >> json;
+	try{
+		in >> json;
+	}catch(Json::RuntimeError *e){
+
+		Logger::getInstance().log("Error de sintaxis en el archivo .json",BAJO);
+	
+		in.clear();
+		in.open(DEFAULT_PATH);
+
+		in >> json;
+	}
 	this->setWindow(json);
 	this->setRenderer();
 	this->stage = this->setStage(json);
