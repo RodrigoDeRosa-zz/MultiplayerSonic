@@ -50,7 +50,7 @@ void Stage::addLayer(Layer* layer){
         front = layer;
     }else{
         /*Si habia una capa se verifica cual de las dos es la del frente.*/
-        if (layer <= front){
+        if (*layer <= *front){
             background = layer;
         } else{
             background = front;
@@ -60,22 +60,26 @@ void Stage::addLayer(Layer* layer){
 }
 
 void Stage::render(camara* camara){
-    if(!front){
+    if(!front->getTexture()){
+        delete front;
+        front = NULL;
         Layer* defaultFront = new Layer();
         defaultFront->setTexPath("Graficos/defaultFront.png");
         defaultFront->setDimensions(width, height);
         defaultFront->loadImage();
         front = defaultFront;
     }
-    if(!background){
+    if(!background->getTexture()){
+        delete background;
+        background = NULL;
         Layer* defaultBackground = new Layer();
         defaultBackground->setTexPath("Graficos/defaultBackground.png");
         defaultBackground->setDimensions(width, height);
         defaultBackground->loadImage();
         background = defaultBackground;
     }
-    front->render(camara);
     background->render(camara);
+    front->render(camara);
     if(sprites) sprites->render(camara);
 }
 

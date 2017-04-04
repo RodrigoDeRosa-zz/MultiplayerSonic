@@ -47,7 +47,6 @@ void Layer::setDimensions(int w, int h){
 /*Carga la imagen desde la direccion que se almaceno*/
 bool Layer::loadImage(){
     if(texPath == ""){
-        //printf("WARNING: No path to load texture from!\n");
 		Logger::getInstance().log(LAYER_NOPATH_MSG,ALTO);
 
     }else{
@@ -57,8 +56,7 @@ bool Layer::loadImage(){
 			Logger::getInstance().log(LAYER_TEX_NOLOAD_MSG,MEDIO);
             delete texture;
             texture = NULL;
-            return false;
-        };
+        }
     }
     /*Se crea el sprite que sera renderizado*/
     image = new Sprite(0, 0, width, height);
@@ -70,9 +68,12 @@ bool Layer::loadImage(){
 void Layer::render(camara* camara){
     if(image) image->render(0,0,camara);
 }
-bool Layer::operator<(Layer& other) const{
+Texture* Layer::getTexture(){
+    return texture;
+}
+bool Layer::operator<=(Layer& other) const{
     return other.isBigger(zIndex);
 }
 bool Layer::isBigger(unsigned char z){
-    return zIndex > z;
+    return zIndex >= z;
 }

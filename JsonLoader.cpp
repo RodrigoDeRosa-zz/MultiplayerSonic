@@ -74,10 +74,7 @@ Stage* JsonLoader::setStage(Json::Value json){
 
 			layer->setTexPath(this->getString((*it)["ruta_imagen"],"[escenario][capas][ruta_imagen]"));
 			layer->setDimensions( stage->getWidth(), stage->getHeight());
-			if (!layer->loadImage()){
-				delete layer;
-				continue;
-			}
+			layer->loadImage();
 			layer->setIndexZ(this->getPositiveInt((*it)["index_z"],"[escenario][capas][index_z]",i));
 
 			stage->addLayer(layer);

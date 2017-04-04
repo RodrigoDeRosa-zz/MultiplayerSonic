@@ -56,8 +56,7 @@ void Window::setTitle(string s){
 bool Window::init(){
     window = SDL_CreateWindow( title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN );
     if(!window){
-        //printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
-	Logger::getInstance().log(string(WINDOW_NOINIT_MSG)+string(SDL_GetError()),MEDIO);
+        Logger::getInstance().log(string(WINDOW_NOINIT_MSG)+string(SDL_GetError()),MEDIO);
         return false;
     }
     return true;

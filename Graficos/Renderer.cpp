@@ -28,13 +28,11 @@ Renderer& Renderer::getInstance(){
 /*Incializa el SDL_Renderer*/
 bool Renderer::init(){
     if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")){
-        //printf("WARNING: Linear texture filtering not enabled!\n");
-	Logger::getInstance().log("In Renderer::init(): Linear texture filtering not enabled!",ALTO);
+	    Logger::getInstance().log("In Renderer::init(): Linear texture filtering not enabled!",ALTO);
     }
     renderer = Window::getInstance().initRenderer();
     if(!renderer){
-        //printf("ERROR: Renderer could not be initialized!\n");
-	Logger::getInstance().log("In Renderer::init(): Renderer could not be initialized!",MEDIO);
+        Logger::getInstance().log("In Renderer::init(): Renderer could not be initialized!",MEDIO);
         return false;
     }
     setDrawColor(0x00, 0xFF, 0xFF, 0xFF);
@@ -43,8 +41,7 @@ bool Renderer::init(){
 /*Define el color de dibujado del renderer*/
 void Renderer::setDrawColor(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha){
     if(!renderer){
-        //printf("ERROR: No renderer to set color to!\n");
-	Logger::getInstance().log("In Renderer::SetDrawColor(): No renderer to set color to!");
+	    Logger::getInstance().log("In Renderer::SetDrawColor(): No renderer to set color to!");
         return;
     }
     SDL_SetRenderDrawColor(renderer, red, green, blue, alpha);

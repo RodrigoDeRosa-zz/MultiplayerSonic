@@ -16,13 +16,11 @@ SDLHandler& SDLHandler::getInstance(){
 
 bool SDLHandler::init(){
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        //printf("ERROR: SDL could not initialize! SDL Error: %s", SDL_GetError());
-	Logger::getInstance().log(string(SDLHANDLER_NONINITSDL_MSG)+string(SDL_GetError()),BAJO);
+        Logger::getInstance().log(string(SDLHANDLER_NONINITSDL_MSG)+string(SDL_GetError()),BAJO);
         return false;
     }
     if(!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)){
-        //printf("ERROR: SDL_image could not initialize! SDL_image Error: %s", IMG_GetError());
-	Logger::getInstance().log(string(SDLHANDLER_NONINITIMG_MSG)+string(IMG_GetError()),BAJO);
+        Logger::getInstance().log(string(SDLHANDLER_NONINITIMG_MSG)+string(IMG_GetError()),BAJO);
         SDL_Quit();//Se cierra el SDL originalmente inicializado
         return false;
     }

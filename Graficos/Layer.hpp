@@ -24,8 +24,9 @@ class Layer{
         bool loadImage();
         /*Presenta la imagen en pantalla*/
         void render(camara*);
+        Texture* getTexture();
 
-        bool operator<(Layer&) const;
+        bool operator<=(Layer&) const;
         /*Utilizado para comparar zIndex*/
         bool isBigger(unsigned char);
 

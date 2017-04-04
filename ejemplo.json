@@ -1,17 +1,17 @@
 {
-	"ventana": {"dimensiones": {"ancho": 600, "alto": 640}},
+	"ventana": {"dimensiones": {"ancho": 600, "alto": 450}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
 		"dimensiones": {"ancho": 1200, "alto": 640},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
-				"ruta_imagen":"Graficos/front.png"
+				"ruta_imagen":"Graficos/font.png"
 			},
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"Graficos/background.png"
+				"ruta_imagen":"Graficos/bakground.png"
 			}
 		],
 		"entidades": [
