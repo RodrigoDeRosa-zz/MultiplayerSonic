@@ -12,7 +12,7 @@ Sprite::Sprite(int x, int y, int w, int h){
     originY = y;
     width = w;
     height = h;
-    rectangle = {0, 0, w, h};
+    rectangle = {x, y, w, h};
     red = 0;
     green = 0;
     blue = 0;
@@ -86,7 +86,7 @@ bool Sprite::operator==(Sprite& other) const{
 }
 
 void Sprite::setIndexZ(int index){
-    zIndex = index;
+        zIndex = index;
 }
 
 int Sprite::getZIndex(){

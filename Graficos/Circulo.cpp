@@ -12,6 +12,10 @@ Circulo::Circulo(int x, int y, int r)
 
 	radius = r;
 
+	rectangle.x = 0;
+	rectangle.y = 0;
+
+	
 	colored_texture = NULL;
 	colored_aux_texture = NULL;
 
