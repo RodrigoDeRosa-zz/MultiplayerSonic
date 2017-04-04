@@ -16,6 +16,7 @@ class Circulo: public Sprite {
 	Mat3b text_img;
 	Mat3b aux_img;
 	Texture* colored_texture;
+	Texture* colored_aux_texture;
 	int radius;
 	void CrearImagenCircular(Mat3b im);
 public:

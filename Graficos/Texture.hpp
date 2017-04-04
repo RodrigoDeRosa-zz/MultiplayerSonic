@@ -19,6 +19,8 @@ class Texture{
         void free();
         /*Define el color de transparencia de la superficie*/
         void setKeyColor(Uint8 r, Uint8 g, Uint8 b);
+        //Setea un multiplicador de color para la textura
+        void setBackgroundColor(Uint8 r, Uint8 g, Uint8 b);
         /*Renderiza en la posicion dada por (x,y), usando el SDL_Rect como clipper*/
         void render(int x, int y, SDL_Rect* clip);
         int getWidth();

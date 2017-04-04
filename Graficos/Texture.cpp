@@ -37,6 +37,12 @@ void Texture::setKeyColor(Uint8 r, Uint8 g, Uint8 b){
     keyR = r; keyG = g; keyB = b;
 }
 
+//Multiplica la texturea por el color pasado en RGB
+void Texture::setBackgroundColor(Uint8 r, Uint8 g, Uint8 b){
+    SDL_SetTextureColorMod(texture, r, g, b);
+}
+
+
 bool Texture::loadFromFile(string path){
     //Se libera la textura preexistente si es que existia
     free();

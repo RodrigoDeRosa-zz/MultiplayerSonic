@@ -13,23 +13,43 @@ Circulo::Circulo(int x, int y, int r)
 
 	radius = r;
 	//calculo el centro del circulo
-	originX = x;// + (radius);
-	originY = y;// + (radius);
 
+	//chequeo que no queden valores negativos
+	if (originX < 0){
+		rectangle.x = x;
+	}
+	if (y < 0){
+		rectangle.y = y;
+	}
+
+	originX = x;
+	originY = y;
 
 	colored_texture = NULL;
+	colored_aux_texture = NULL;
+
+	//se define una textura circular de color
 	Size size(width,height);
+	//podria cargar cualquier textura aca
 	Mat3b colored_img = imread("Graficos/texture.png",IMREAD_UNCHANGED);
-	colored_img.setTo(cv::Scalar(red,green,blue));
+	//el circulo por default se seta blanco
+	colored_img.setTo(cv::Scalar(255,255,255));
 	resize(colored_img, aux_img, size,INTER_NEAREST);
 	vector<int> compression_params;
 	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
 	compression_params.push_back(9);
 	imwrite("Graficos/circularcolor.png", aux_img ,compression_params);
 
+	//se guarda una textura auxiliar para usar con la textura original
 	Texture* aux_color = new Texture();
 	aux_color->loadFromFile("circularcolor.png");
-	colored_texture = aux_color;
+	colored_aux_texture = aux_color;
+
+	//se define una textura de color
+	CrearImagenCircular(aux_img);
+	Texture* color = new Texture();
+	color->loadFromFile("Graficos/circulartexture.png");
+	colored_texture = color;
 
 }
 
@@ -51,7 +71,7 @@ void Circulo::setTexture(string path){
 void Circulo::CrearImagenCircular(Mat3b im){
 
 		Mat1b mask(width, height, uchar(0));
-		circle(mask, Point(originX , originY  ), radius, Scalar(255), CV_FILLED);
+		circle(mask, Point(originX , originY), radius, Scalar(255), CV_FILLED);
 
 		int nx = (mask.cols / im.cols) + 1;
 		int ny = (mask.rows / im.rows) + 1;
@@ -78,6 +98,7 @@ void Circulo::render(camara* cam){
 
 	if(texture) texture->render(auxX, auxY, &rectangle);
 			else{
+				colored_texture->setBackgroundColor(red, green, blue);
 				colored_texture->render(auxX, auxY, &rectangle);
 			}
 		}
