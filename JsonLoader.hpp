@@ -11,6 +11,7 @@ using namespace std;
 
 
 class JsonLoader{
+	camara* camaraPantalla;
 	Stage* stage;
 	map<string,vector<int> > colores;
 	Stage* setStage(Json::Value json);
@@ -23,9 +24,9 @@ class JsonLoader{
 	bool validateValue(Json::Value json, string where);
 	bool isPositiveInteger(Json::Value json, string where, bool zero = false);
 	bool isInteger(Json::Value json, string where);
-	bool fileExists(string path);
 	bool isString(Json::Value json, string where);
 	bool isArray(Json::Value json, string where);
+	camara* setCamara(Json::Value json);
 	vector<int> getColor(Json::Value json, string where);
 	public:
 		JsonLoader(char* ruta);

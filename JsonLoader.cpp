@@ -68,6 +68,7 @@ JsonLoader::JsonLoader(char* ruta){
 	this->setWindow(json);
 	this->setRenderer();
 	this->stage = this->setStage(json);
+	this->camaraPantalla = this->setCamara(json);
 }
 
 
@@ -166,7 +167,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			continue;
 		}
 		Texture* texture = new Texture();
-		texture->loadFromFile(getString((*it)["ruta"],"[escenario][texturas][") + contador + string("][ruta]"));
+		texture->loadFromFile(getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]")));
 		
 		
 
@@ -231,10 +232,6 @@ bool JsonLoader::isString(Json::Value json, string where){
 	return false;
 }
 
-bool JsonLoader::fileExists(string path){
-	return true;
-}
-
 void JsonLoader::setRenderer(){
 	Renderer::getInstance().init();
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
@@ -244,8 +241,8 @@ Stage* JsonLoader::getStage(){
 	return this->stage;
 }
 
-camara* JsonLoader::getCamara(){
-	int velocidad = 1;
+camara* JsonLoader::setCamara(Json::Value json){
+	int velocidad = getPositiveInt(json["vel_scroll"],"[vel_scroll]",1);
 	camara* camara_pantalla = new camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
 	Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
     Texture* invisible = new Texture();
@@ -255,6 +252,10 @@ camara* JsonLoader::getCamara(){
     seguido->setTexture(invisible);
     camara_pantalla->setApuntado(seguido);
 	return camara_pantalla;
+}
+
+camara* JsonLoader::getCamara(){
+	return this->camaraPantalla;
 }
 
 bool JsonLoader::validateValue(Json::Value json, string where){

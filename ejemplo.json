@@ -1,6 +1,6 @@
 {
 	"ventana": {"dimensiones": {"ancho": 600, "alto": 450}},
-	"configuracion": {"vel_scroll": 20},
+	"vel_scroll": 3,
 	"escenario": {
 		"dimensiones": {"ancho": 1200, "alto": 640},
 		"capas": [{

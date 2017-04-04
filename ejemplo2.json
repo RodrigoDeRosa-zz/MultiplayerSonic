@@ -1,6 +1,6 @@
 {
 	"ventana": {"dimensiones": {"ancho": 600, "alto": 640}},
-	"configuracion": {"vel_scroll": 20},
+	"vel_scroll": 20,
 	"escenario": {
 		"dimensiones": {"ancho": 1200, "alto": 640},
 		"capas": [{
@@ -17,7 +17,7 @@
 		"entidades": [
 			{
 				"circulo": 0,
-				"color": "rojo"
+				"color": "rojo",
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
