@@ -15,7 +15,7 @@
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
-/*FALTA:
+/*COSAS QUE FALTAN:
   -Circulo con color
   -Cropear circulo ancho y alto independientemente
   -Agregar path a los circulos(esta predefinido)*/
