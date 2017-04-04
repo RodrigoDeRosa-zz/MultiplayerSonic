@@ -8,14 +8,13 @@
 #include <vector>
 
 Circulo::Circulo(int x, int y, int r)
-: Sprite(x - r, y - r, r*2, r*2){
+: Sprite(x -r, y - r, r*2, r*2){
 
 	radius = r;
 
 	rectangle.x = 0;
 	rectangle.y = 0;
 
-	
 	colored_texture = NULL;
 	colored_aux_texture = NULL;
 
@@ -31,11 +30,6 @@ Circulo::Circulo(int x, int y, int r)
 	compression_params.push_back(9);
 	imwrite("Graficos/circularcolor.png", aux_img ,compression_params);
 
-	//se guarda una textura auxiliar para usar con la textura original
-	Texture* aux_color = new Texture();
-	aux_color->loadFromFile("circularcolor.png");
-	colored_aux_texture = aux_color;
-
 	//se define una textura de color
 	CrearImagenCircular(aux_img);
 	Texture* color = new Texture();
@@ -50,6 +44,20 @@ void Circulo::setTexture(string path){
 	//si la imagen es mas chica en h y w que el sprite
 	if((text_img.cols < aux_img.cols) && (text_img.rows < aux_img.rows)){
 		text_img.copyTo(aux_img(Rect(0,0,text_img.cols,text_img.rows)));
+		CrearImagenCircular(aux_img);
+	}
+
+	//si la imagen es mas chica solo en w que el sprite
+	else if((text_img.cols > aux_img.cols) && (text_img.rows < aux_img.rows)){
+		Mat cropedImage = text_img(Rect(0,0,aux_img.cols,text_img.rows));
+		cropedImage.copyTo(aux_img(Rect(0,0,cropedImage.cols,cropedImage.rows)));
+		CrearImagenCircular(aux_img);
+	}
+
+	//si la imagen es mas chica solo en w que el sprite
+	else if((text_img.cols < aux_img.cols) && (text_img.rows > aux_img.rows)){
+		Mat cropedImage = text_img(Rect(0,0,text_img.cols,aux_img.rows));
+		cropedImage.copyTo(aux_img(Rect(0,0,cropedImage.cols,cropedImage.rows)));
 		CrearImagenCircular(aux_img);
 	}
 
