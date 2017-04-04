@@ -2,7 +2,12 @@
 #include "Texture.hpp"
 #include "Sprite.hpp"
 #include <string>
+#include "Logger2.hpp"
+
+#define LAYER_NOPATH_MSG "WARNING: No path to load texture from!"
+#define LAYER_TEX_NOLOAD_MSG "WARNING: Couldn't load layer texture!"
 using namespace std;
+
 
 Layer::Layer(){
     texture = NULL;
@@ -42,12 +47,15 @@ void Layer::setDimensions(int w, int h){
 /*Carga la imagen desde la direccion que se almaceno*/
 bool Layer::loadImage(){
     if(texPath == ""){
-        printf("WARNING: No path to load texture from!\n");
+        //printf("WARNING: No path to load texture from!\n");
+		Logger::getInstance().log(LAYER_NOPATH_MSG,ALTO);
+	
     }else{
         /*Se crea la textura que ira de fondo*/
         texture = new Texture();
         if(!texture->loadFromFile(texPath)){
-            printf("WARNING: Couldn't load layer texture!\n");
+            //printf("WARNING: Couldn't load layer texture!\n");
+			Logger::getInstance().log(LAYER_TEX_NOLOAD_MSG,MEDIO);
             delete texture;
             texture = NULL;
         };
