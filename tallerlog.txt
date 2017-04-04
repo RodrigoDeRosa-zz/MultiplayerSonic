@@ -1,0 +1,22 @@
+----------------------------------------
+----------------------------------------
+2017-04-03 22:36:59 Se inicia la ejecucion del programa con LogLv BAJO
+2017-04-03 22:37:10 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 22:38:38 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||Se cambia nivel de log a MEDIO
+MEDIO||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 22:38:48 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+2017-04-03 22:41:14 Se inicia la ejecucion del programa con LogLv BAJO
+  N/E||Se cambia nivel de log a MEDIO
+MEDIO||In Texture::loadFromFile(): Unable to load image circularcolor.png. SDL_Image Error: Couldn't open circularcolor.png
+2017-04-03 22:41:19 Se termina la ejecucion del programa
+----------------------------------------
+----------------------------------------

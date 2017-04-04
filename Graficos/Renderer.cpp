@@ -29,12 +29,12 @@ Renderer& Renderer::getInstance(){
 bool Renderer::init(){
     if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")){
         //printf("WARNING: Linear texture filtering not enabled!\n");
-	Logger::getInstance().log("In Renderer::init(): Linear texture filtering not enabled!");
+	Logger::getInstance().log("In Renderer::init(): Linear texture filtering not enabled!",ALTO);
     }
     renderer = Window::getInstance().initRenderer();
     if(!renderer){
         //printf("ERROR: Renderer could not be initialized!\n");
-	Logger::getInstance().log("In Renderer::init(): Renderer could not be initialized!");
+	Logger::getInstance().log("In Renderer::init(): Renderer could not be initialized!",MEDIO);
         return false;
     }
     setDrawColor(0x00, 0xFF, 0xFF, 0xFF);

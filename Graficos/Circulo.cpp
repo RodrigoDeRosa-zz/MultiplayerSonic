@@ -4,7 +4,7 @@
 #include "Texture.hpp"
 #include "Renderer.hpp"
 #include "Circulo.hpp"
-#include <SDL2/SDL2_gfxPrimitives.h>
+//#include <SDL2/SDL2_gfxPrimitives.h>
 #include "Logger2.hpp"
 #include <vector>
 

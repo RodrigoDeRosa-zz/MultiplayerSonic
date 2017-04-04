@@ -46,7 +46,7 @@ bool Texture::loadFromFile(string path){
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(!loadedSurface){
         //printf("ERROR: Unable to load image %s! SDL_Image Error: %s\n", path.c_str(), IMG_GetError() );
-       	Logger::getInstance().log(string(TEXTURE_LOADFILE_MSG) + path + string(". SDL_Image Error: ") + string(IMG_GetError()));
+       	Logger::getInstance().log(string(TEXTURE_LOADFILE_MSG) + path + string(". SDL_Image Error: ") + string(IMG_GetError()),MEDIO);
 	return false;
     }else{
         //Se le pasa el color utilizado como key a la superficie
@@ -56,7 +56,7 @@ bool Texture::loadFromFile(string path){
         newTex = Renderer::getInstance().getTextureFromSurface(loadedSurface);
         if(!newTex){
             //printf("ERROR: Unable to create texture from %s! SDL Error: %s", path.c_str(), SDL_GetError());
-	    Logger::getInstance().log(string(TEXTURE_CREATETEXTURE_MSG) + path + string(". SDL_Image Error: ") + string(SDL_GetError()));
+	    Logger::getInstance().log(string(TEXTURE_CREATETEXTURE_MSG) + path + string(". SDL_Image Error: ") + string(SDL_GetError()),MEDIO);
             /*Libera la superficie cargada de la imagen.*/
             SDL_FreeSurface(loadedSurface);
             return false;

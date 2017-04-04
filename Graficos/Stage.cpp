@@ -43,7 +43,7 @@ void Stage::addLayer(Layer* layer){
     /*Si ya se tienen ambas capas no se pueden agregar mas*/
     if (front && background){
         //printf("ERROR: Stage already has two layers!\n");
-	Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!");
+	Logger::getInstance().log("In Stage::addLayer(): Stage already has two layers!",ALTO);
         return;
     }
     /*Si no habia ninguna capa se define la de adelante*/

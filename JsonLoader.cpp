@@ -28,7 +28,7 @@ JsonLoader::JsonLoader(char* ruta){
 	Json::Value json;
 
 	if(in.fail()){
-		Logger::getInstance().log("No se encontro el archivo .json");
+		Logger::getInstance().log("No se encontro el archivo .json",BAJO);
 		//in.close();
 		in.clear();
 		in.open(DEFAULT_PATH);
@@ -165,13 +165,13 @@ bool JsonLoader::checkNullValue(Json::Value json){
 
 bool isPositiveInteger(Json::Value json, string where){
 	if (json.asInt() > 0) return true;
-	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_POS_MSG) + where);
+	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_POS_MSG) + where,MEDIO);
 	return false;
 }
 
 bool isInteger(Json::Value json, string where){
 	if (json.isInt()) return true;
-	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_INT_MSG) + where);
+	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_INT_MSG) + where,MEDIO);
 	return false;
 }
 
@@ -213,7 +213,7 @@ bool JsonLoader::validateValue(Json::Value json, string where){
 	bool valid = true;
 	if(this->checkNullValue(json)){
 		//printf("No se encontro la clave %s \n",where);
-		Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_FOUND_MSG) + where);
+		Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_FOUND_MSG) + where,MEDIO);
 		valid = false;
 	}
 	return valid;
