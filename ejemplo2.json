@@ -1,5 +1,5 @@
 {
-	"ventana": {"dimensiones": {"ancho": 400, "alto": 640}},
+	"ventana": {"dimensiones": {"ancho": 600, "alto": 640}},
 	"configuracion": {"vel_scroll": 20},
 	"escenario": {
 		"dimensiones": {"ancho": 1200, "alto": 640},
@@ -11,13 +11,13 @@
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"Graficos/back.png"
+				"ruta_imagen":"Graficos/background.png"
 			}
 		],
 		"entidades": [
 			{
 				"circulo": 0,
-				"color": "rojo",
+				"color": "rojo"
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
@@ -32,7 +32,7 @@
 			{
 				"circulo": 1,
 				"color": "amarillo",
-				"coordenada": {"x": 200, "y": 200},
+				"coordenada": {"x": 300, "y": 350},
 				"radio": 200,
 				"index_z": 100
 			}

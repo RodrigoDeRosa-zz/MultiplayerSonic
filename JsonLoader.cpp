@@ -47,7 +47,7 @@ JsonLoader::JsonLoader(char* ruta){
 
 	ifstream in(ruta);
 	Json::Value json;
-
+	Json::Value jsonAux;
 	if(in.fail()){
 		Logger::getInstance().log("No se encontro el archivo .json",BAJO);
 		in.clear();
@@ -55,14 +55,10 @@ JsonLoader::JsonLoader(char* ruta){
 	}
 	try{
 		in >> json;
-	}catch(Json::RuntimeError *e){
-
+	}catch(Json::RuntimeError e){
 		Logger::getInstance().log("Error de sintaxis en el archivo .json",BAJO);
-	
-		in.clear();
-		in.open(DEFAULT_PATH);
-
-		in >> json;
+		ifstream input(DEFAULT_PATH);
+		input >> json;
 	}
 	this->setWindow(json);
 	this->setRenderer();
