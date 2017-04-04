@@ -12,7 +12,7 @@ Sprite::Sprite(int x, int y, int w, int h){
     originY = y;
     width = w;
     height = h;
-    rectangle = {x, y, w, h};
+    rectangle = {0, 0, w, h};
     red = 0;
     green = 0;
     blue = 0;
