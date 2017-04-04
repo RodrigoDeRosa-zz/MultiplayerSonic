@@ -22,7 +22,7 @@ class Circulo: public Sprite {
 public:
 	Circulo(int x, int y, int r);
 	void render(camara*);
-	void setTexture(string);
+	bool setTexture(string);
 	//falta modificar el free
 };
 

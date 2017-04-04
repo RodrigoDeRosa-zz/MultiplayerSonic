@@ -7,6 +7,8 @@
 #include "Logger2.hpp"
 #include <vector>
 
+#define CIRCULO_SETTEXTURE_OPENCV_MSG "In Circulo::setTexture(): Unable to load image "
+
 Circulo::Circulo(int x, int y, int r)
 : Sprite(x -r, y - r, r*2, r*2){
 
@@ -38,8 +40,14 @@ Circulo::Circulo(int x, int y, int r)
 
 }
 
-void Circulo::setTexture(string path){
+bool Circulo::setTexture(string path){
+
 	Mat3b text_img = imread(path ,IMREAD_UNCHANGED);
+
+	if(text_img.data == NULL){
+			Logger::getInstance().log(string(CIRCULO_SETTEXTURE_OPENCV_MSG) + path + string(". Opencv Error: ") + "Unable to load image",MEDIO);
+			return false;
+	}
 
 	//si la imagen es mas chica en h y w que el sprite
 	if((text_img.cols < aux_img.cols) && (text_img.rows < aux_img.rows)){
@@ -69,6 +77,8 @@ void Circulo::setTexture(string path){
 	Texture* aux_texture = new Texture();
 	aux_texture->loadFromFile("Graficos/circulartexture.png");
 	texture = aux_texture;
+
+	return true;
 
 }
 
