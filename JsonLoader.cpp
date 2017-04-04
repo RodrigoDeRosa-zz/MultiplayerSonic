@@ -12,6 +12,7 @@
 #include "Graficos/Circulo.hpp"
 #include "Logger2.hpp"
 #include <map>
+#include <vector>
 #include <stdlib.h>
 
 
@@ -23,20 +24,26 @@
 
 using namespace std;
 
-int verde[]= {0,204,0};
-int rojo[]= {204,0,0};
-int azul[]= {0,0,204};
-int amarillo[]= {255,255,0};
-int violeta[]= {102,0,102};
+int verdeRGB[]= {0,204,0};
+vector<int> verde (verdeRGB, verdeRGB + sizeof(verdeRGB) / sizeof(int) );
+int rojoRGB[]= {204,0,0};
+vector<int> rojo (rojoRGB, rojoRGB + sizeof(rojoRGB) / sizeof(int) );
+int azulRGB[]= {0,0,204};
+vector<int> azul (azulRGB, azulRGB + sizeof(azulRGB) / sizeof(int) );
+int amarilloRGB[]= {255,255,0};
+vector<int> amarillo (amarilloRGB, amarilloRGB + sizeof(amarilloRGB) / sizeof(int) );
+int violetaRGB[]= {102,0,102};
+vector<int> violeta (violetaRGB, violetaRGB + sizeof(violetaRGB) / sizeof(int) );
 
 
 JsonLoader::JsonLoader(char* ruta){
 	
-	colores["verde"] = verde;
-	colores["rojo"] = rojo;
-	colores["azul"] = azul;
-	colores["amarillo"] = amarillo;
-	colores["violeta"] = violeta;	
+	(colores["verde"]) = verde;
+	(colores["rojo"]) = rojo;
+	(colores["azul"]) = azul;
+	(colores["amarillo"]) = amarillo;
+	(colores["violeta"]) = violeta;	
+	
 	
 	ifstream in(ruta);
 	Json::Value json;
@@ -97,7 +104,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades]") + string("[coordenada][x]"),-1);
 		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades]") +  string("[coordenada][y]"),-1);
 		
-		int* color = this->getColor((*it)["color"],"[escenario][entidades][color]");
+		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
 		
 		if(x<0 || y<0){
 			Logger::getInstance().log("No se creo el sprite");
@@ -184,7 +191,7 @@ bool JsonLoader::isInteger(Json::Value json, string where){
 
 string JsonLoader::getString(Json::Value json, string where, string defaultValue){
 
-	if(!this->isString(json,where)){
+	if(!this->validateValue(json,where) || !this->isString(json,where)){
 		return defaultValue;
 	}
 	return json.asString();
@@ -231,7 +238,8 @@ bool JsonLoader::validateValue(Json::Value json, string where){
 	return valid;
 }
 
-int* JsonLoader::getColor(Json::Value json, string where){
-	string color = this->getString(json,where,"verde");
-	int* colorRGB = colores[color];
+vector<int> JsonLoader::getColor(Json::Value json, string where){
+	string color = getString(json,where,"verde");
+	vector<int> colorRGB = colores[color];
+	return colorRGB;
 }

@@ -10,10 +10,9 @@
 using namespace std;
 
 
-
 class JsonLoader{
 	Stage* stage;
-	map<string,int*> colores;
+	map<string,vector<int> > colores;
 	Stage* setStage(Json::Value json);
 	SpriteGroup* getSprites(Json::Value json);
 	void setWindow(Json::Value json);
@@ -26,7 +25,7 @@ class JsonLoader{
 	bool isInteger(Json::Value json, string where);
 	bool fileExists(string path);
 	bool isString(Json::Value json, string where);
-	int* getColor(Json::Value json, string where);
+	vector<int> getColor(Json::Value json, string where);
 	public:
 		JsonLoader(char* ruta);
 		Stage* getStage();

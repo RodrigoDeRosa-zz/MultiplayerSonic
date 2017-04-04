@@ -39,12 +39,8 @@
 		],
 		"texturas" : [
 			{
-				"ruta": 450 ,
-				"ids": []
-			},
-			{
-				"ruta": "Graficos/index.png",
-				"ids": []
+				"ruta": "Graficos/index.png" ,
+				"ids": [2]
 			}
 		]
 	}
