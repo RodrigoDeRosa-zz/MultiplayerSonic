@@ -26,6 +26,7 @@
 #define JSONLOADER_PARAM_NOT_STR_MSG "No se reconoce como cadena el parametro "
 #define JSONLOADER_PARAM_NOT_ARRAY_MSG "No se reconoce como array el parametro "
 #define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
+#define JSONLOADER_PARAM_NOT_STR_VALID "No se reconoce como valido al string "
 #define DEFAULT_PATH "ejemplo2.json"
 
 using namespace std;
@@ -170,7 +171,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 				continue;
 			}
-			bloque = new Bloque(x-h/2, y-h/2, h, w);
+			bloque = new Bloque(x, y, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
 			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
@@ -277,9 +278,10 @@ bool JsonLoader::isBool(Json::Value json, string where){
 }
 
 vector<int> JsonLoader::getColor(Json::Value json, string where){
-	string color = getString(json,where,"verde");
+  string color = getString(json,where,"verde");
   vector<int> colorRGB = colores[color];
   if (colorRGB.empty()){
+      Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_STR_VALID) + where,MEDIO);
       colorRGB = colores["verde"];
       return colorRGB;
   }

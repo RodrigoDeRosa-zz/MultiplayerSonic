@@ -17,7 +17,7 @@
 		"entidades": [
 			{
 				"circulo": false,
-				"color": "rojo",
+				"color": 1,
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
@@ -25,10 +25,10 @@
 			{
 				"circulo": false,
 				"color": "violeta",
-				"dimensiones": {"ancho": 50, "alto": 50},
+				"dimensiones": {"ancho": 100, "alto": 100},
 				"coordenada": {"x": 50, "y": 50},
 				"index_z": 100,
-				"imagen": "Graficos/index.png"
+				"imagen": "Graficos/texture.png"
 			},
 			{
 				"circulo": true,
