@@ -28,6 +28,10 @@
 #define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
 #define JSONLOADER_PARAM_NOT_STR_VALID "No se reconoce como valido al string "
 #define DEFAULT_PATH "ejemplo2.json"
+#define DEFAULT_WIDTH 1200
+#define DEFAULT_HEIGHT 640
+#define DEFAULT_STAGE_WIDHT 3600
+#define DEFAULT_STAGE_HEIGHT 640
 
 using namespace std;
 
@@ -79,8 +83,8 @@ Stage* JsonLoader::setStage(Json::Value json){
 
     this->validateValue(json["escenario"],"[escenario]");
 
-	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
-							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",Window::getInstance().getHeight()*2));
+	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",DEFAULT_STAGE_WIDHT),
+							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",DEFAULT_STAGE_HEIGHT));
 
 	if(this->validateValue(json["escenario"]["capas"],"[escenario][capas]")){
 
@@ -184,8 +188,10 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 }
 
 void JsonLoader::setWindow(Json::Value json){
+    int width = this->getPositiveInt(json["ventana"]["dimensiones"]["ancho"], string("[ventana][dimensiones][ancho]"), DEFAULT_WIDTH);
+    int height = this->getPositiveInt(json["ventana"]["dimensiones"]["alto"], string("[ventana][dimensiones][alto]"), DEFAULT_HEIGHT);
 
-	Window::getInstance().setDimensions(json["ventana"]["dimensiones"]["ancho"].asInt(), json["ventana"]["dimensiones"]["alto"].asInt());
+	Window::getInstance().setDimensions(width, height);
     Window::getInstance().init();
 }
 
