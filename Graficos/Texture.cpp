@@ -88,7 +88,13 @@ void Texture::render(int x, int y, SDL_Rect* clip){
             Renderer::getInstance().fillRect(&fillRect);
         } else renderQuad.h = clip->h;
     }
+    int auxX = clip->x;
+    int auxY = clip->y;
+    clip->x = 0;
+    clip->y = 0;
     Renderer::getInstance().renderTexture(texture, clip, &renderQuad);
+    clip->x = auxX;
+    clip->y = auxY;
 }
 
 int Texture::getWidth(){
