@@ -26,7 +26,7 @@
 #define JSONLOADER_PARAM_NOT_STR_MSG "No se reconoce como cadena el parametro "
 #define JSONLOADER_PARAM_NOT_ARRAY_MSG "No se reconoce como array el parametro "
 #define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
-#define JSONLOADER_PARAM_NOT_STR_VALID "No se reconoce como valido al string "
+#define JSONLOADER_PARAM_NOT_CLR_MSG "No se reconoce como color al string "
 #define DEFAULT_PATH "ejemplo2.json"
 #define DEFAULT_WIDTH 1200
 #define DEFAULT_HEIGHT 640
@@ -66,8 +66,9 @@ JsonLoader::JsonLoader(char* ruta){
 	}
 	try{
 		in >> json;
-	}catch(Json::RuntimeError e){
-		Logger::getInstance().log("Error de sintaxis en el archivo .json",BAJO);
+	}catch(const Json::RuntimeError& e){
+		Logger::getInstance().log(string("Error de sintaxis en el archivo .json . Error: \n") + string(e.what()),BAJO);
+		//Logger::getInstance().log(e.what(),BAJO);
 		ifstream input(DEFAULT_PATH);
 		input >> json;
 	}
@@ -90,6 +91,7 @@ Stage* JsonLoader::setStage(Json::Value json){
 
 		int i = 0;
 		for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
+			if(i==2) break;
 			Layer* layer = new Layer();
 
 			layer->setTexPath(this->getString((*it)["ruta_imagen"],"[escenario][capas][ruta_imagen]"));
@@ -145,7 +147,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
 		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1,true);
 
-		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
+		vector<int> color = this->getColor((*it)["color"],string("[escenario][entidades][") + contador + string("][color]"));
 		string imagen = getString((*it)["imagen"],string("[escenario][entidades][") + contador + string("][imagen]"));
 
 		if(x<0 || y<0){
@@ -287,7 +289,7 @@ vector<int> JsonLoader::getColor(Json::Value json, string where){
   string color = getString(json,where,"verde");
   vector<int> colorRGB = colores[color];
   if (colorRGB.empty()){
-      Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_STR_VALID) + where,MEDIO);
+      Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_CLR_MSG) + where,MEDIO);
       colorRGB = colores["verde"];
       return colorRGB;
   }
