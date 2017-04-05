@@ -25,6 +25,7 @@
 #define JSONLOADER_PARAM_NOT_POS_MSG "No es positivo el parametro "
 #define JSONLOADER_PARAM_NOT_STR_MSG "No se reconoce como cadena el parametro "
 #define JSONLOADER_PARAM_NOT_ARRAY_MSG "No se reconoce como array el parametro "
+#define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
 #define DEFAULT_PATH "ejemplo2.json"
 
 using namespace std;
@@ -104,12 +105,31 @@ Stage* JsonLoader::setStage(Json::Value json){
 }
 
 SpriteGroup* JsonLoader::getSprites(Json::Value json){
+	this->validateValue(json["escenario"]["texturas"],"[escenario][texturas]");
+	
+	int contadorTexturas = 0;
+	
+	map<string,Texture*> texturas;
 
+	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
+		
+		string contador = SSTR( contadorTexturas );
+		if(getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]")) == string("")) {
+			contadorTexturas++;
+			continue;
+		}
+		string ruta = getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]"));
+		Texture* texture = new Texture();
+		texture->loadFromFile(ruta);
+		texturas[ruta] = texture;
+	}
+		
 	SpriteGroup* activeSprites = new SpriteGroup();
 	
 	this->validateValue(json["escenario"]["entidades"],"[escenario][entidades]");
 
 	int contadorEntidades = 0;
+	
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
 
 		Bloque* bloque;
@@ -121,13 +141,17 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1);
 
 		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
+		string imagen = getString((*it)["imagen"],string("[escenario][entidades][") + contador + string("][imagen]"));
 
 		if(x<0 || y<0){
 			Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 			continue;
 		}
-
-		if((*it)["circulo"].asBool()){
+		
+		bool binarioCirculo = validateValue((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"))
+			 && isBool((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"));
+		
+		if(binarioCirculo && (*it)["circulo"].asBool()){
 			int r = this->getPositiveInt((*it)["radio"],string("[escenario][entidades][") + contador + string("][radio]"),-1);
 			if(r < 0){
 				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
@@ -136,9 +160,10 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			circulo = new Circulo(x, y, r);
 			circulo->setBackgroundColor(color[0],color[1],color[2]);
 			circulo->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
+			circulo->setTexture(imagen);
 			activeSprites->add(circulo);
 		}
-		else{
+		else if(binarioCirculo){
 			int h = this->getPositiveInt((*it)["dimensiones"]["alto"],string("[escenario][entidades][") + contador + string("][dimensiones][alto]"),-1);
 			int w = this->getPositiveInt((*it)["dimensiones"]["ancho"],string("[escenario][entidades][") + contador + string("][dimensiones][ancho]"),-1);
 			if(h<0 || w<0){
@@ -148,41 +173,13 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			bloque = new Bloque(x, y, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
+			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
 			activeSprites->add(bloque);
 		}
 		contadorEntidades++;
 	}
-
-	this->validateValue(json["escenario"]["texturas"],"[escenario][texturas]");
-
-	vector<Sprite*> vectorSprites = activeSprites->getSprites();
-	
-	int contadorTexturas = 0;
-
-	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
-		
-		string contador = SSTR( contadorTexturas );
-		if(!validateValue((*it)["ids"],string("[escenario][texturas][") + contador + string("][ids]")) || !isArray((*it)["ids"],string("[escenario][texturas][") + contador + string("][ids]"))) {
-			contadorTexturas++;
-			continue;
-		}
-		Texture* texture = new Texture();
-		texture->loadFromFile(getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]")));
-		
-		
-
-		for(Json::Value::iterator idIt = (*it)["ids"].begin();idIt != (*it)["ids"].end();idIt++){
-			int spriteIndex = (*idIt).asInt();
-			if((*idIt).asInt() >= vectorSprites.size()) continue;
-			if(dynamic_cast<Circulo*>(vectorSprites[spriteIndex]) != NULL) {
-				((Circulo*)vectorSprites[spriteIndex])->setTexture((*it)["ruta"].asString());
-				continue;
-			}
-			vectorSprites[(*idIt).asInt()]->setTexture(texture);
-		}
-	}
-
 	return activeSprites;
+
 }
 
 void JsonLoader::setWindow(Json::Value json){
@@ -270,6 +267,12 @@ bool JsonLoader::validateValue(Json::Value json, string where){
 bool JsonLoader::isArray(Json::Value json, string where){
 	if (json.isArray()) return true;
 	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_ARRAY_MSG) + where,MEDIO);
+	return false;
+}
+
+bool JsonLoader::isBool(Json::Value json, string where){
+	if (json.isBool()) return true;
+	Logger::getInstance().log(string(JSONLOADER_PARAM_NOT_BOOL_MSG) + where,MEDIO);
 	return false;
 }
 

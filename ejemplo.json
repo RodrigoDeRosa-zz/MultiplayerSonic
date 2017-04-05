@@ -1,8 +1,8 @@
 {
-	"ventana": {"dimensiones": {"ancho": 600, "alto": 450}},
+	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
 	"vel_scroll": 3,
 	"escenario": {
-		"dimensiones": {"ancho": 1200, "alto": 640},
+		"dimensiones": {"ancho": 2000, "alto": 640},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
@@ -16,31 +16,32 @@
 		],
 		"entidades": [
 			{
-				"circulo": 0,
+				"circulo": false,
 				"color": "rojo",
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
 			},
 			{
-				"circulo": 0,
+				"circulo": false,
 				"color": "violeta",
-				"dimensiones": {"ancho": 500, "alto": 500},
-				"coordenada": {"x": 600, "y": 50},
-				"index_z": 100
+				"dimensiones": {"ancho": 50, "alto": 50},
+				"coordenada": {"x": 50, "y": 50},
+				"index_z": 100,
+				"imagen": "Graficos/index.png"
 			},
 			{
-				"circulo": 1,
+				"circulo": true,
 				"color": "amarillo",
 				"coordenada": {"x": 500, "y": 200},
-				"radio": 50,
-				"index_z": 100
+				"radio": 200,
+				"index_z": 100,
+				"imagen":"Graficos/index.png"
 			}
 		],
 		"texturas" : [
 			{
-				"ruta": "Graficos/index.png" ,
-				"ids": [1,2]
+				"ruta": "Graficos/index.png"
 			}
 		]
 	}

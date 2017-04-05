@@ -26,6 +26,7 @@ class JsonLoader{
 	bool isInteger(Json::Value json, string where);
 	bool isString(Json::Value json, string where);
 	bool isArray(Json::Value json, string where);
+	bool isBool(Json::Value json, string where);
 	camara* setCamara(Json::Value json);
 	vector<int> getColor(Json::Value json, string where);
 	public:
