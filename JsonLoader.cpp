@@ -137,8 +137,8 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		
 		string contador = SSTR( contadorEntidades );
 
-		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1);
-		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1);
+		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
+		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1,true);
 
 		vector<int> color = this->getColor((*it)["color"],"[escenario][entidades][color]");
 		string imagen = getString((*it)["imagen"],string("[escenario][entidades][") + contador + string("][imagen]"));
