@@ -25,22 +25,22 @@
 			{
 				"circulo": 0,
 				"color": "violeta",
-				"dimensiones": {"ancho": 50, "alto": 50},
-				"coordenada": {"x": 50, "y": 50},
+				"dimensiones": {"ancho": 500, "alto": 500},
+				"coordenada": {"x": 600, "y": 50},
 				"index_z": 100
 			},
 			{
 				"circulo": 1,
 				"color": "amarillo",
-				"coordenada": {"x": 200, "y": 200},
-				"radio": 200,
+				"coordenada": {"x": 500, "y": 200},
+				"radio": 50,
 				"index_z": 100
 			}
 		],
 		"texturas" : [
 			{
 				"ruta": "Graficos/index.png" ,
-				"ids": [2]
+				"ids": [1,2]
 			}
 		]
 	}
