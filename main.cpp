@@ -28,74 +28,14 @@ void initSeguido(camara* camara){
     camara->setApuntado(seguido);
 }
 
-Stage* setStage(){
-    Stage* stage = new Stage();
-    /*Capa frontal*/
-    Layer* front = new Layer();
-    front->setTexPath("Graficos/front.png");
-    front->loadImage();
-    front->setIndexZ(99);
-    /*Capa de fondo*/
-    Layer* back = new Layer();
-    back->setTexPath("Graficos/back.png");
-    back->loadImage();
-    back->setIndexZ(98);
-
-    stage->addLayer(front);
-    stage->addLayer(back);
-
-    /*Se crea la textura de los sprites*/
-    Texture* tex = new Texture();
-    tex->loadFromFile("Graficos/texture.png");
-
-    /*Se crean 2 sprites*/
-//    Circulo* circulo1 = new Circulo(150, 300, 100);
-//    Circulo* circulo2 = new Circulo(300, 150, 100);
-    Bloque* bloque2 = new Bloque(100, 100, 100, 100);
-    Bloque* bloque3 = new Bloque(Window::getInstance().getHeight()/2, Window::getInstance().getWidth()/2, 200, 200);
-
-    /*El primero tiene textura*/
-    bloque2->setTexture(tex);
-
-    /*El tercero tiene color de fondo*/
-    bloque3->setBackgroundColor(255,130,15);
-
-    //el primer circulo tiene color de fondo
-//    circulo1->setBackgroundColor(145, 143, 98);
-
-    //el segundo circulo se le carga una imagen
-//    SDL_Surface* aux_texture = IMG_Load("Graficos/index.png");
-//    circulo2->setTexture(aux_texture);
-
-    /*Se agregan al grupo de sprites*/
-    SpriteGroup* activeSprites = new SpriteGroup();
-
-    activeSprites->add(bloque2);
-
-    /*Se define el sprite group del escenario como el creado recien*/
-    stage->setSpriteGroup(activeSprites);
-    /*Se agrega otro sprite al escenario*/
-    stage->addSprite(bloque3);
-//    stage->addSprite(circulo1);
-//    stage->addSprite(circulo2);
-
-    return stage;
-}
-
 int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger
-	Logger::getInstance().setLogLevel(MEDIO); //setea el nivel de detalle del logger
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("ejemplo.json");
 
 
     Stage* stage = json->getStage(); //DESCOMENTAR!
-    //stage->setDimensiones(2*TAM, 2*TAM);
-
-    //para probar
-    //Stage* stage = setStage();
-    //stage->setDimensiones(2*TAM, 2*TAM);
 
     bool running = true;
     SDL_Event e;

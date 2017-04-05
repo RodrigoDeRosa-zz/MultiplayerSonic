@@ -43,6 +43,7 @@ int azulRGB[]= {0,0,204};
 vector<int> azul (azulRGB, azulRGB + sizeof(azulRGB) / sizeof(int) );
 int amarilloRGB[]= {255,255,0};
 vector<int> amarillo (amarilloRGB, amarilloRGB + sizeof(amarilloRGB) / sizeof(int) );
+
 int violetaRGB[]= {102,0,102};
 vector<int> violeta (violetaRGB, violetaRGB + sizeof(violetaRGB) / sizeof(int) );
 
