@@ -27,6 +27,7 @@
 #define JSONLOADER_PARAM_NOT_ARRAY_MSG "No se reconoce como array el parametro "
 #define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
 #define JSONLOADER_PARAM_NOT_CLR_MSG "No se reconoce como color al string "
+#define INVALID_LOG_LVL_MSG "Nivel de log invalido. (Seteado en bajo)"
 #define DEFAULT_PATH "ejemplo2.json"
 #define DEFAULT_WIDTH 1200
 #define DEFAULT_HEIGHT 640
@@ -69,16 +70,23 @@ JsonLoader::JsonLoader(char* ruta){
 		in >> json;
 	}catch(const Json::RuntimeError& e){
 		Logger::getInstance().log(string("Error de sintaxis en el archivo .json . Error: \n") + string(e.what()),BAJO);
-		//Logger::getInstance().log(e.what(),BAJO);
 		ifstream input(DEFAULT_PATH);
 		input >> json;
 	}
+    this->setLogger(json);
 	this->setWindow(json);
 	this->setRenderer();
 	this->stage = this->setStage(json);
 	this->camaraPantalla = this->setCamara(json);
 }
 
+void JsonLoader::setLogger(Json::Value json){
+    string level = getString(json["log_lvl"],"[log_lvl]","bajo");
+    if (level == "bajo") Logger::getInstance().setLogLevel(BAJO);
+    else if (level == "medio") Logger::getInstance().setLogLevel(MEDIO);
+    else if (level == "alto") Logger::getInstance().setLogLevel(ALTO);
+    else Logger::getInstance().setLogLevel(BAJO);
+}
 
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();

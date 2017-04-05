@@ -27,11 +27,12 @@ class JsonLoader{
 	bool isString(Json::Value json, string where);
 	bool isArray(Json::Value json, string where);
 	bool isBool(Json::Value json, string where);
+	void setLogger(Json::Value);
 	camara* setCamara(Json::Value json);
 	vector<int> getColor(Json::Value json, string where);
 	public:
 		JsonLoader(char* ruta);
 		Stage* getStage();
 		camara* getCamara();
-		
+
 };

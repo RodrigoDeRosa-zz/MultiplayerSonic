@@ -1,12 +1,13 @@
 {
 	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
 	"vel_scroll": 3,
+	"log_lvl": "alto",
 	"escenario": {
-		"dimensiones": {"ancho": "caca", "alto": 640},
+		"dimensiones": {"ancho": "3600", "alto": 640},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
-				"ruta_imagen":"Graficos/Level2Front.png"
+				"ruta_imagen":"Graficos/Level1Front.png"
 			},
 			{
 				"id": 2,
@@ -17,7 +18,7 @@
 		"entidades": [
 			{
 				"circulo": false,
-				"color": 1,
+				"color": "verde",
 				"dimensiones": {"ancho": 120, "alto": 100},
 				"coordenada": {"x": 10, "y": 10},
 				"index_z": 99
