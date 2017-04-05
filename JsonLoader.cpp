@@ -75,7 +75,7 @@ JsonLoader::JsonLoader(char* ruta){
 
 Stage* JsonLoader::setStage(Json::Value json){
     Stage* stage = new Stage();
-    
+
     this->validateValue(json["escenario"],"[escenario]");
 
 	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",Window::getInstance().getWidth()*2),
@@ -106,13 +106,13 @@ Stage* JsonLoader::setStage(Json::Value json){
 
 SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	this->validateValue(json["escenario"]["texturas"],"[escenario][texturas]");
-	
+
 	int contadorTexturas = 0;
-	
+
 	map<string,Texture*> texturas;
 
 	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
-		
+
 		string contador = SSTR( contadorTexturas );
 		if(getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]")) == string("")) {
 			contadorTexturas++;
@@ -123,18 +123,18 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 		texture->loadFromFile(ruta);
 		texturas[ruta] = texture;
 	}
-		
+
 	SpriteGroup* activeSprites = new SpriteGroup();
-	
+
 	this->validateValue(json["escenario"]["entidades"],"[escenario][entidades]");
 
 	int contadorEntidades = 0;
-	
+
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
 
 		Bloque* bloque;
 		Circulo* circulo;
-		
+
 		string contador = SSTR( contadorEntidades );
 
 		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
@@ -147,10 +147,10 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 			continue;
 		}
-		
+
 		bool binarioCirculo = validateValue((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"))
 			 && isBool((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"));
-		
+
 		if(binarioCirculo && (*it)["circulo"].asBool()){
 			int r = this->getPositiveInt((*it)["radio"],string("[escenario][entidades][") + contador + string("][radio]"),-1);
 			if(r < 0){
@@ -278,6 +278,10 @@ bool JsonLoader::isBool(Json::Value json, string where){
 
 vector<int> JsonLoader::getColor(Json::Value json, string where){
 	string color = getString(json,where,"verde");
-	vector<int> colorRGB = colores[color];
+  vector<int> colorRGB = colores[color];
+  if (colorRGB.empty()){
+      colorRGB = colores["verde"];
+      return colorRGB;
+  }
 	return colorRGB;
 }
