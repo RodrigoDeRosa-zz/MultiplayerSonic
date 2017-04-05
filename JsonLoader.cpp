@@ -170,7 +170,7 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 				continue;
 			}
-			bloque = new Bloque(x, y, h, w);
+			bloque = new Bloque(x-h/2, y-h/2, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
 			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
