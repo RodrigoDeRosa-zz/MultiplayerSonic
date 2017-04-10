@@ -1,0 +1,33 @@
+CHANGELOG PARA PRUEBAS DE SERVER-CLIENT DE LA ENTREGA2
+
+Carpetas en orden de creacion y explicacion de por qué, con diferencias respecto de lo anterior
+
+1)Serverclient1
+Un servidor que espera cxs, cuando abren una le manda un msg y cierra la cx.
+El cliente solo busca establecer la cx y despues muestra el msg recibido en pantalla.
+
+-Esto solo sirve de demo, no tiene uso práctico
+
+2)Selectserver1
+Un servidor que espera cxs y NO MUESTRA ABSOLUTAMENTE NADA.
+Cuando recibe una cx nueva la acepta y luego funciona como repartidor:
+cada cliente que se conecta envia mensajes (como tiras de bits) y el sv se lo manda al resto de los clientes (EL SV NO MUESTRA MSGS)
+
+
+-Esto ya implementa el select (==mutex) pero no multithreading.
+-Antes de multithread habría que agregar un objeto (claramente singleton) para facilitar el manejo de cxs, hay loops horribles y cosas de muy bajo nivel al pedo. Posiblemente se haga en la prox iteracion.
+-A futuro también habría que buscar forma de loggear en vez de printear (ojo a perror, intentar no usar redireccion).
+-Cuando se implemente MT, joderán los flush (blocking) del logger? a lo mejor se puede mandar a otro thread, o tal vez otro proceso(intentar que no).
+
+3)Selectserver1_5
+Se cambian lugares de declaraciones de cosas, para probar el scope real que tienen. Se mantiene todo lo que se dijo en (2)
+UPDATE: No se puede usar un vector más que para guardar las cxs activas debido a cómo funciona select y lo que le hace a los fd_set. Se puede llegar a usar un vector para cxs_activas pero no mucho más.
+
+4)Selectserver2
+Ahora tiene todo modularizado (se puede discutir si esta bien hecho o refactorizar).
+No se usa ningun objeto pero tranquilamente se puede extender metiendo las f's adentro de un singleton.
+También si se define una f handle_data(msg,sender) se puede hacer un thread.run(handle_data,args) y pasa a ser multithread.
+
+-Sigue faltando uso de MT.
+-No se usan objetos (para lectura es más dificil pero es mejor en performance).
+-Falta pasar de prints a logger.
