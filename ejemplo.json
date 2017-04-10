@@ -1,6 +1,6 @@
 {
 	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
-	"vel_scroll": 3,
+	"vel_scroll": 10,
 	"log_lvl": "alto",
 	"escenario": {
 		"dimensiones": {"ancho": "3600", "alto": 640},
@@ -29,7 +29,7 @@
 				"dimensiones": {"ancho": 100, "alto": 100},
 				"coordenada": {"x": 50, "y": 50},
 				"index_z": 100,
-				"imagen": "Graficos/texture.png"
+				"imagen": "Graficos/index.png"
 			},
 			{
 				"circulo": true,
@@ -37,13 +37,16 @@
 				"coordenada": {"x": 500, "y": 200},
 				"radio": 200,
 				"index_z": 100,
-				"imagen":"Graficos/index.png"
+				"imagen":"Graficos/inde.png"
 			}
 		],
 		"texturas" : [
 			{
 				"ruta": "Graficos/index.png"
-			}
+			},
+            {
+                "ruta": "Graficos/texture.png"
+            }
 		]
 	}
 }
