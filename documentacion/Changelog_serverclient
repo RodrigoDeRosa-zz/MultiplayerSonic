@@ -1,5 +1,3 @@
-CHANGELOG PARA PRUEBAS DE SERVER-CLIENT DE LA ENTREGA2
-
 Carpetas en orden de creacion y explicacion de por qué, con diferencias respecto de lo anterior
 
 1)Serverclient1
@@ -31,3 +29,11 @@ También si se define una f handle_data(msg,sender) se puede hacer un thread.run
 -Sigue faltando uso de MT.
 -No se usan objetos (para lectura es más dificil pero es mejor en performance).
 -Falta pasar de prints a logger.
+
+5)Client1-listener1
+Es un client que se conecta al sv y solo imprime lo que le manda, es incapaz de enviar nada.
+Corta si recibe un EOF(== se cierra la cx).
+
+6)Client2-chatter1   NO TERMINADO
+La idea es armar un client que pueda chatear de forma parecida a "telnet localhost 9034".
+Se pretende poner en otro thread la f para recibir el string a enviar y enviarlo, asi se puede seguir loopeando.
