@@ -1,0 +1,5 @@
+Por alguna razon el makefile no me esta andando (siempre tira g++ t1.cpp -o t1) asi que con estas lineas se puede compilar tranqui
+
+g++ -std=c++11 -Wconversion -g -pthread XXX.cpp -o XXX
+
+---> con XXX lo que uno quiere
