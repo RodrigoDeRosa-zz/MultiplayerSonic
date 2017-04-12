@@ -202,11 +202,11 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			bloque = new Bloque(x, y, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
-<<<<<<< HEAD
+
 			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
             else Logger::getInstance().log(MISSING_TEX_ERR + imagen, MEDIO);
             activeSprites->add(bloque);
-=======
+
             if(imagen != string("")){
 			    if(texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
                 else{
@@ -216,7 +216,6 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
                 }
             }
 			activeSprites->add(bloque);
->>>>>>> 5050f5d02bab867d46f7907b2d868c9e96506b95
 		}
 		contadorEntidades++;
 	}
