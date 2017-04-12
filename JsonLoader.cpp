@@ -28,6 +28,7 @@
 #define JSONLOADER_PARAM_NOT_BOOL_MSG "No se reconoce como booleano el parametro "
 #define JSONLOADER_PARAM_NOT_CLR_MSG "No se reconoce como color al string "
 #define INVALID_LOG_LVL_MSG "Nivel de log invalido. (Seteado en bajo)"
+#define MISSING_TEX_ERR "No se encontro la textura "
 #define DEFAULT_PATH "ejemplo2.json"
 #define DEFAULT_WIDTH 1200
 #define DEFAULT_HEIGHT 640
@@ -180,8 +181,8 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			activeSprites->add(circulo);
 		}
 		else if(binarioCirculo){
-			int h = this->getPositiveInt((*it)["dimensiones"]["alto"],string("[escenario][entidades][") + contador + string("][dimensiones][alto]"),-1);
-			int w = this->getPositiveInt((*it)["dimensiones"]["ancho"],string("[escenario][entidades][") + contador + string("][dimensiones][ancho]"),-1);
+			int h = this->getPositiveInt((*it)["dimensiones"]["ancho"],string("[escenario][entidades][") + contador + string("][dimensiones][ancho]"),-1);
+			int w = this->getPositiveInt((*it)["dimensiones"]["alto"],string("[escenario][entidades][") + contador + string("][dimensiones][alto]"),-1);
 			if(h<0 || w<0){
 				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
 				continue;
@@ -190,7 +191,8 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
 			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
-			activeSprites->add(bloque);
+            else Logger::getInstance().log(MISSING_TEX_ERR + imagen, MEDIO);
+            activeSprites->add(bloque);
 		}
 		contadorEntidades++;
 	}
