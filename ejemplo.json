@@ -12,7 +12,7 @@
 			{
 				"id": 2,
 				"index_z": 98,
-				"ruta_imagen":"Graficos/Level1Background.png"
+				"ruta_imagen":"Graficos/Level1Backgroud.png"
 			}
 		],
 		"entidades": [
@@ -29,7 +29,7 @@
 				"dimensiones": {"ancho": 100, "alto": 100},
 				"coordenada": {"x": 50, "y": 50},
 				"index_z": 100,
-				"imagen": "Graficos/index.png"
+				"imagen": "Graficos/inde.png"
 			},
 			{
 				"circulo": true,

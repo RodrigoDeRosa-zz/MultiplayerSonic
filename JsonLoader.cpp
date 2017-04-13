@@ -188,8 +188,10 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			circulo->setBackgroundColor(color[0],color[1],color[2]);
 			circulo->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
             //la ruta no es valida
-			if(!(circulo->setTexture(imagen)))
+			if(imagen == string("") || texturas.find(imagen) == texturas.end() || !(circulo->setTexture(imagen))){
                 circulo->setTexture(DEFAULT_IMAGE);
+		Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
+		}
 			activeSprites->add(circulo);
 		}
 		else if(binarioCirculo){
@@ -203,13 +205,12 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
 
-			if(imagen != string("") && texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
-            else Logger::getInstance().log(MISSING_TEX_ERR + imagen, MEDIO);
-            activeSprites->add(bloque);
+            //
 
             if(imagen != string("")){
 			    if(texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
                 else{
+		    Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
                     Texture* texture = new Texture();
                     texture->loadFromFile(DEFAULT_IMAGE);
                     bloque->setTexture(texture);
