@@ -52,16 +52,25 @@ vector<int> violeta (violetaRGB, violetaRGB + sizeof(violetaRGB) / sizeof(int) )
 
 
 JsonLoader::JsonLoader(char* ruta){
-
 	(colores["verde"]) = verde;
 	(colores["rojo"]) = rojo;
 	(colores["azul"]) = azul;
 	(colores["amarillo"]) = amarillo;
 	(colores["violeta"]) = violeta;
 
+    
+	Json::Value json = this->getJson(ruta);
+    this->setLogger(json);
+	this->setWindow(json);
+	this->setRenderer();
+	this->stage = this->setStage(json);
+	this->camaraPantalla = this->setCamara(json);
+}
+
+Json::Value JsonLoader::getJson(char* ruta){
     //carga el .json
 	ifstream in(ruta);
-	Json::Value json;
+    Json::Value json;
 
     //no encuentra el archivo
 	if(in.fail()){
@@ -78,11 +87,7 @@ JsonLoader::JsonLoader(char* ruta){
 		ifstream input(DEFAULT_PATH);
 		input >> json;
 	}
-    this->setLogger(json);
-	this->setWindow(json);
-	this->setRenderer();
-	this->stage = this->setStage(json);
-	this->camaraPantalla = this->setCamara(json);
+    return json;
 }
 
 void JsonLoader::setLogger(Json::Value json){
@@ -106,14 +111,8 @@ Stage* JsonLoader::setStage(Json::Value json){
 		int i = 0;
 		for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
 			if(i==2) break; //no hay mas de dos capas
-			Layer* layer = new Layer();
-
-			layer->setTexPath(this->getString((*it)["ruta_imagen"],"[escenario][capas][ruta_imagen]"));
-			layer->setDimensions( stage->getWidth(), stage->getHeight());
-			layer->loadImage();
-			layer->setIndexZ(this->getPositiveInt((*it)["index_z"],"[escenario][capas][index_z]",i));
-
-			stage->addLayer(layer);
+			Layer* layer = this->getLayer((*it),i,stage->getWidth(),stage->getHeight());
+            stage->addLayer(layer);
 			i++;
 		}
 	}
@@ -125,30 +124,18 @@ Stage* JsonLoader::setStage(Json::Value json){
     return stage;
 }
 
+Layer* JsonLoader::getLayer(Json::Value json, int layerNumber,int width, int height){
+    Layer* layer = new Layer();
+	layer->setTexPath(this->getString(json["ruta_imagen"],"[escenario][capas][ruta_imagen]"));
+	layer->setDimensions( width, height);
+	layer->loadImage();
+	layer->setIndexZ(this->getPositiveInt(json["index_z"],"[escenario][capas][index_z]",layerNumber));
+    return layer;
+}
+
 SpriteGroup* JsonLoader::getSprites(Json::Value json){
-	this->validateValue(json["escenario"]["texturas"],"[escenario][texturas]");
-
-	int contadorTexturas = 0;
-
-	map<string,Texture*> texturas;
-
-	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
-
-		string contador = SSTR( contadorTexturas );
-
-        //la ruta no es una cadena
-		if(getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]")) == string("")) {
-			contadorTexturas++;
-			continue;
-		}
-		string ruta = getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]"));
-		Texture* texture = new Texture();
-
-        //la ruta no es valida
-		if(!(texture->loadFromFile(ruta)))
-            texture->loadFromFile(DEFAULT_IMAGE);
-		texturas[ruta] = texture;
-	}
+	
+    map<string,Texture*> texturas = this->getTextures(json);
 
 	SpriteGroup* activeSprites = new SpriteGroup();
 
@@ -158,71 +145,117 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
 
-		Bloque* bloque;
-		Circulo* circulo;
-
 		string contador = SSTR( contadorEntidades );
+        
+        Sprite* sprite = this->getSprite((*it),contador,texturas);
+        
+        contadorEntidades++;
+        
+        if(!sprite) continue;
 
-		int x = this->getPositiveInt((*it)["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
-		int y = this->getPositiveInt((*it)["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1,true);
+        activeSprites->add(sprite);				
+	}
+	return activeSprites;
+}
 
-		vector<int> color = this->getColor((*it)["color"],string("[escenario][entidades][") + contador + string("][color]"));
-		string imagen = getString((*it)["imagen"],string("[escenario][entidades][") + contador + string("][imagen]"));
+Sprite* JsonLoader::getSprite(Json::Value json, string contador, map<string,Texture*> texturas){
+       
+		int x = this->getPositiveInt(json["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
+		int y = this->getPositiveInt(json["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1,true);
+
+		vector<int> color = this->getColor(json["color"],string("[escenario][entidades][") + contador + string("][color]"));
+		string imagen = getString(json["imagen"],string("[escenario][entidades][") + contador + string("][imagen]"));
 
 		if(x<0 || y<0){
 			Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
-			continue;
+			return NULL;
 		}
 
         //chequeo que el parametro "circulo" exista y sea bool
-		bool binarioCirculo = validateValue((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"))
-			 && isBool((*it)["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"));
+		bool binarioCirculo = validateValue(json["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"))
+			 && isBool(json["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"));
 
-		if(binarioCirculo && (*it)["circulo"].asBool()){
-			int r = this->getPositiveInt((*it)["radio"],string("[escenario][entidades][") + contador + string("][radio]"),-1);
-			if(r < 0){
-				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
-				continue;
-			}
-			circulo = new Circulo(x, y, r);
-			circulo->setBackgroundColor(color[0],color[1],color[2]);
-			circulo->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
-            //la ruta no es valida
-			if(imagen == string("") || texturas.find(imagen) == texturas.end() || !(circulo->setTexture(imagen))){
-                circulo->setTexture(DEFAULT_IMAGE);
-		Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
-		}
-			activeSprites->add(circulo);
+		if(binarioCirculo && json["circulo"].asBool()){
+			return this->getCirculo(json,contador,x,y,imagen,texturas,color);
 		}
 		else if(binarioCirculo){
-			int h = this->getPositiveInt((*it)["dimensiones"]["ancho"],string("[escenario][entidades][") + contador + string("][dimensiones][ancho]"),-1);
-			int w = this->getPositiveInt((*it)["dimensiones"]["alto"],string("[escenario][entidades][") + contador + string("][dimensiones][alto]"),-1);
+			return this->getBloque(json,contador,x,y,imagen,texturas,color);
+		}
+        return NULL;
+}
+
+Bloque* JsonLoader::getBloque(Json::Value json, string contador, int x, int y, string imagen, map<string,Texture*> texturas, vector<int> color){
+            int h = this->getPositiveInt(json["dimensiones"]["ancho"],string("[escenario][entidades][") + contador + string("][dimensiones][ancho]"),-1);
+			int w = this->getPositiveInt(json["dimensiones"]["alto"],string("[escenario][entidades][") + contador + string("][dimensiones][alto]"),-1);
 			if(h<0 || w<0){
 				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
-				continue;
+				return NULL;
 			}
-			bloque = new Bloque(x, y, h, w);
+			Bloque* bloque = new Bloque(x, y, h, w);
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
-			bloque->setIndexZ(this->getPositiveInt((*it)["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
-
-            //
-
+			bloque->setIndexZ(this->getPositiveInt(json["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
             if(imagen != string("")){
-			    if(texturas.find(imagen) != texturas.end()) bloque->setTexture(texturas[imagen]);
+			    if(texturas.find(imagen) != texturas.end()) 
+                    bloque->setTexture(texturas[imagen]);
                 else{
-		    Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
+		            Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
                     Texture* texture = new Texture();
                     texture->loadFromFile(DEFAULT_IMAGE);
                     bloque->setTexture(texture);
                 }
             }
-			activeSprites->add(bloque);
-		}
-		contadorEntidades++;
-	}
-	return activeSprites;
-
+            return bloque;
 }
+
+Circulo* JsonLoader::getCirculo(Json::Value json, string contador, int x, int y, string imagen, map<string,Texture*> texturas, vector<int> color){
+            int r = this->getPositiveInt(json["radio"],string("[escenario][entidades][") + contador + string("][radio]"),-1);
+			if(r < 0){
+				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
+				return NULL;
+			}
+			Circulo* circulo = new Circulo(x, y, r);
+			circulo->setBackgroundColor(color[0],color[1],color[2]);
+			circulo->setIndexZ(this->getPositiveInt(json["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
+            //la ruta no es valida
+			if(imagen == string("") || texturas.find(imagen) == texturas.end() || !(circulo->setTexture(imagen))){
+                circulo->setTexture(DEFAULT_IMAGE);
+		        Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
+		    }
+			return circulo;
+}
+
+map<string,Texture*> JsonLoader::getTextures(Json::Value json){
+
+    this->validateValue(json["escenario"]["texturas"],"[escenario][texturas]");
+
+    int contadorTexturas = 0;
+
+	map<string,Texture*> texturas;
+
+	for (Json::Value::iterator it = json["escenario"]["texturas"].begin(); it != json["escenario"]["texturas"].end(); it++) {
+
+		string contador = SSTR( contadorTexturas );
+
+        string ruta = getString((*it)["ruta"],string("[escenario][texturas][") + contador + string("][ruta]"));
+
+        //la ruta no es una cadena
+		if(ruta == string("")) {
+			contadorTexturas++;
+			continue;
+		}
+		
+		Texture* texture = new Texture();
+
+        //la ruta no es valida
+		if(!(texture->loadFromFile(ruta)))
+            texture->loadFromFile(DEFAULT_IMAGE);
+
+		texturas[ruta] = texture;
+	}
+    return texturas;
+}
+
+
 
 void JsonLoader::setWindow(Json::Value json){
     int width = this->getPositiveInt(json["ventana"]["dimensiones"]["ancho"], string("[ventana][dimensiones][ancho]"), DEFAULT_WIDTH);

@@ -1,5 +1,7 @@
 #include "Graficos/Window.hpp"
 #include "Graficos/Stage.hpp"
+#include "Graficos/Circulo.hpp"
+#include "Graficos/Bloque.hpp"
 #include "json/json.h"
 #include "json/json-forwards.h"
 #include "Graficos/SpriteGroup.hpp"
@@ -14,8 +16,14 @@ class JsonLoader{
 	camara* camaraPantalla;
 	Stage* stage;
 	map<string,vector<int> > colores;
+    Json::Value getJson(char* ruta);
 	Stage* setStage(Json::Value json);
+    Layer* getLayer(Json::Value json, int layerNumber,int width, int height);
 	SpriteGroup* getSprites(Json::Value json);
+    map<string,Texture*> getTextures(Json::Value json);
+    Sprite* getSprite(Json::Value json, string contador, map<string,Texture*> texturas);
+    Circulo* getCirculo(Json::Value json, string contador, int x, int y, string imagen, map<string,Texture*> texturas, vector<int> color);
+    Bloque* getBloque(Json::Value json, string contador, int x, int y, string imagen, map<string,Texture*> texturas, vector<int> color);
 	void setWindow(Json::Value json);
 	void setRenderer();
 	int getPositiveInt(Json::Value json, string where, int defaultValue, bool zero = false);
