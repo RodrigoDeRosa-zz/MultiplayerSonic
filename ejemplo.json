@@ -26,23 +26,15 @@
 			{
 				"circulo": false,
 				"color": "violeta",
-				"dimensiones": {"ancho": 100, "alto": 100},
-				"coordenada": {"x": 50, "y": 50},
+				"dimensiones": {"ancho": 177, "alto": 274},
+				"coordenada": {"x": 500, "y": 100},
 				"index_z": 100,
-				"imagen": "Graficos/inde.png"
-			},
-			{
-				"circulo": true,
-				"color": "amarillo",
-				"coordenada": {"x": 500, "y": 200},
-				"radio": 200,
-				"index_z": 100,
-				"imagen":"Graficos/inde.png"
+				"imagen": "Graficos/sonic_prueba.png"
 			}
 		],
 		"texturas" : [
 			{
-				"ruta": "Graficos/index.png"
+				"ruta": "Graficos/sonic_prueba.png"
 			},
             {
                 "ruta": "Graficos/texture.png"
