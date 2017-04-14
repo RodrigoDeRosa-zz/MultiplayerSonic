@@ -15,18 +15,6 @@
 #include <SDL2/SDL.h>
 
 const int TAM = 600;
-/*COSAS QUE FALTAN:
-  -Circulo con color
-  -Cropear circulo ancho y alto independientemente
-  -Agregar path a los circulos(esta predefinido)*/
-void initSeguido(camara* camara){
-    Apuntado* seguido = new Apuntado(0, 0, 30, 30,3);
-    Texture* invisible = new Texture();
-    invisible->setKeyColor(0,0,0);
-    seguido->setBackgroundColor(0, 0, 0);
-    seguido->setTexture(invisible);
-    camara->setApuntado(seguido);
-}
 
 int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger
@@ -35,16 +23,11 @@ int main(int argc, char** argv){
     JsonLoader* json = new JsonLoader("ejemplo.json");
 
 
-    Stage* stage = json->getStage(); //DESCOMENTAR!
+    Stage* stage = json->getStage();
 
     bool running = true;
     SDL_Event e;
 
-    //Parametros: iniX, iniY, velocidad, ancho, alto, ancho_escenario, alto escenario
-    //int an_escenario=stage->getWidth();
-    //int al_escenario=stage->getHeight();
-    //camara* camara_pantalla = new camara(0,0,1,TAM,TAM,an_escenario, al_escenario );
-    //initSeguido(camara_pantalla);
 	camara* camara_pantalla = json->getCamara();
     while(running){
         while(SDL_PollEvent(&e)){
