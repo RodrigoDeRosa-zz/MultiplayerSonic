@@ -10,6 +10,7 @@
 #include "Graficos/Camara.hpp"
 #include "Graficos/Bloque.hpp"
 #include "Graficos/Circulo.hpp"
+#include "Juego/Juego.hpp"
 #include "JsonLoader.hpp"
 #include "Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -22,8 +23,10 @@ int main(int argc, char** argv){
 
     JsonLoader* json = new JsonLoader("ejemplo.json");
 
-
     Stage* stage = json->getStage();
+
+		Juego* juego = new Juego();
+		juego->setStage(stage);
 
     bool running = true;
     SDL_Event e;
@@ -44,7 +47,7 @@ int main(int argc, char** argv){
         Renderer::getInstance().setDrawColor(255, 255, 255, 1);
 
         Renderer::getInstance().clear();
-        stage->render(camara_pantalla);
+        juego->render(camara_pantalla);
         camara_pantalla->render();
         Renderer::getInstance().draw();
     }
