@@ -7,9 +7,6 @@
 #include <string>
 #include <iostream>
 
-//class Sprite;
-//class camara;
-
 class Apuntado : public Sprite{
 public:
 			Apuntado(int x, int y, int w, int h, int vel_s);

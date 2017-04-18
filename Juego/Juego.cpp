@@ -14,7 +14,7 @@ void Juego::setStage(Stage* new_stage){
 //     //tendria que recibir datos del servidor para actualizar la posicion de todos los jugadores
 // }
 
-void Juego::render(camara* camara){
+void Juego::render(Camara* camara){
     //this.actualizarJugadores();
     stage->render(camara);
 }

@@ -21,7 +21,7 @@ class Circulo: public Sprite {
 	void CrearImagenCircular(Mat3b im);
 public:
 	Circulo(int x, int y, int r);
-	void render(camara*);
+	void render(Camara*);
 	bool setTexture(string);
 	//falta modificar el free
 };

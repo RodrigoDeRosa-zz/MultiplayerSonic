@@ -1,6 +1,6 @@
 #include "Camara.hpp"
 
-camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
+Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
 	vel= vel_c;
 	velX= 0;
 	velY= 0;
@@ -11,7 +11,7 @@ camara::camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 	cam = {posX_c,posY_c,ancho_c,alto_c};
 }
 
-void camara::moveCamara(){
+void Camara::moveCamara(){
 
 	cam.x = ( apuntado->getX() + (apuntado->getWidth() / 2) ) - ancho / 2;
 	cam.y = ( apuntado->getY() + (apuntado->getHeight() / 2) ) - alto / 2;
@@ -29,28 +29,28 @@ void camara::moveCamara(){
 		cam.y = alto_escenario - cam.h;}
 }
 
-void camara::setEventApuntado( SDL_Event& e ){
+void Camara::setEventApuntado( SDL_Event& e ){
 	apuntado->handleEvent(e);
 }
-void camara::moveApuntado(){
+void Camara::moveApuntado(){
 	apuntado->move(ancho_escenario, alto_escenario);
 }
 
-void camara::render(){
+void Camara::render(){
 	apuntado->render(this);
 }
-void camara::setApuntado(Apuntado* apun){
+void Camara::setApuntado(Apuntado* apun){
 		apuntado = apun;
 }
 
-SDL_Rect camara::getCamara(){
+SDL_Rect Camara::getCamara(){
 	return cam;
 }
 
-int camara::getX(){
+int Camara::getX(){
 	return cam.x;
 }
 
-int camara::getY(){
+int Camara::getY(){
 	return cam.y;
 }

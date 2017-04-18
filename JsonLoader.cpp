@@ -58,7 +58,7 @@ JsonLoader::JsonLoader(char* ruta){
 	(colores["amarillo"]) = amarillo;
 	(colores["violeta"]) = violeta;
 
-    
+
 	Json::Value json = this->getJson(ruta);
     this->setLogger(json);
 	this->setWindow(json);
@@ -134,7 +134,7 @@ Layer* JsonLoader::getLayer(Json::Value json, int layerNumber,int width, int hei
 }
 
 SpriteGroup* JsonLoader::getSprites(Json::Value json){
-	
+
     map<string,Texture*> texturas = this->getTextures(json);
 
 	SpriteGroup* activeSprites = new SpriteGroup();
@@ -146,20 +146,20 @@ SpriteGroup* JsonLoader::getSprites(Json::Value json){
 	for (Json::Value::iterator it = json["escenario"]["entidades"].begin(); it != json["escenario"]["entidades"].end(); it++) {
 
 		string contador = SSTR( contadorEntidades );
-        
+
         Sprite* sprite = this->getSprite((*it),contador,texturas);
-        
+
         contadorEntidades++;
-        
+
         if(!sprite) continue;
 
-        activeSprites->add(sprite);				
+        activeSprites->add(sprite);
 	}
 	return activeSprites;
 }
 
 Sprite* JsonLoader::getSprite(Json::Value json, string contador, map<string,Texture*> texturas){
-       
+
 		int x = this->getPositiveInt(json["coordenada"]["x"],string("[escenario][entidades][") + contador + string("][coordenada][x]"),-1,true);
 		int y = this->getPositiveInt(json["coordenada"]["y"],string("[escenario][entidades][") + contador + string("][coordenada][y]"),-1,true);
 
@@ -195,7 +195,7 @@ Bloque* JsonLoader::getBloque(Json::Value json, string contador, int x, int y, s
 			bloque->setBackgroundColor(color[0],color[1],color[2]);
 			bloque->setIndexZ(this->getPositiveInt(json["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
             if(imagen != string("")){
-			    if(texturas.find(imagen) != texturas.end()) 
+			    if(texturas.find(imagen) != texturas.end())
                     bloque->setTexture(texturas[imagen]);
                 else{
 		            Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
@@ -243,7 +243,7 @@ map<string,Texture*> JsonLoader::getTextures(Json::Value json){
 			contadorTexturas++;
 			continue;
 		}
-		
+
 		Texture* texture = new Texture();
 
         //la ruta no es valida
@@ -315,9 +315,9 @@ Stage* JsonLoader::getStage(){
 	return this->stage;
 }
 
-camara* JsonLoader::setCamara(Json::Value json){
+Camara* JsonLoader::setCamara(Json::Value json){
 	int velocidad = getPositiveInt(json["vel_scroll"],"[vel_scroll]",1);
-	camara* camara_pantalla = new camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
+	Camara* camara_pantalla = new Camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
 	Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
     Texture* invisible = new Texture();
 	invisible->setDimensions(30, 30);
@@ -328,7 +328,7 @@ camara* JsonLoader::setCamara(Json::Value json){
 	return camara_pantalla;
 }
 
-camara* JsonLoader::getCamara(){
+Camara* JsonLoader::getCamara(){
 	return this->camaraPantalla;
 }
 

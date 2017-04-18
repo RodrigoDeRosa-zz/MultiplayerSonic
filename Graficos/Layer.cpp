@@ -65,7 +65,7 @@ bool Layer::loadImage(){
 }
 
 /*Presenta la imagen en pantalla*/
-void Layer::render(camara* camara){
+void Layer::render(Camara* camara){
     if(image) image->render(0,0,camara);
 }
 Texture* Layer::getTexture(){

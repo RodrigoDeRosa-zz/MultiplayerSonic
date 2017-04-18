@@ -20,7 +20,7 @@ class SpriteGroup{
         void remove(Sprite);
         void update();
         /*Renderiza todos los sprites del grupo*/
-        void render(camara*);
+        void render(Camara*);
         /*Remueve todos los sprites del grupo*/
         void empty();
         /*Verrifica si el sprite indicado es parte del grupo*/

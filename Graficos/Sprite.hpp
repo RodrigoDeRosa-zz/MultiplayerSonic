@@ -7,7 +7,7 @@
 #include <string>
 #include <iostream>
 
-class camara;
+class Camara;
 
 class Sprite{
     Texture* get_texture();
@@ -22,9 +22,9 @@ class Sprite{
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
-        virtual void render(camara*);
+        virtual void render(Camara*);
         /*Dibuja las imagenes de fondo*/
-        void render(int x, int y, camara* cam);
+        void render(int x, int y, Camara* cam);
         /*Define la textura del sprite*/
         void setTexture(Texture*);
         /*Define el color predeterminado del sprite en caso de falta de textura*/

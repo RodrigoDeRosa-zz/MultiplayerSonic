@@ -6,7 +6,7 @@
 #include <string>
 
 class Jugador{
-    camara* cam;
+    Camara* cam;
     string nombreJugador;
     string nombrePersonaje;
     public:
@@ -15,7 +15,7 @@ class Jugador{
     Jugador(string nomJugador, string nomPersonaje);
     //devuelve el nombre del jugador
     string getNombre();
-    void setCamara(camara*);
+    void setCamara(Camara*);
     bool operator==(Jugador& other) const;
     ~Jugador();
 };

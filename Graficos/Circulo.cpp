@@ -105,7 +105,7 @@ void Circulo::CrearImagenCircular(Mat3b im){
 		imwrite("Graficos/circulartexture.png", result ,compression_params);
 }
 
-void Circulo::render(camara* cam){
+void Circulo::render(Camara* cam){
 	//Si no tiene textura cargada, pinta con el color de fondo.
 	int auxX = originX - cam->getX();
 	int auxY = originY - cam->getY();

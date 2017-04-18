@@ -7,9 +7,7 @@
 #include <stdio.h>
 #include <string>
 
-//class Apuntado;
-
-class camara{
+class Camara{
 private:
 	//camara
 	SDL_Rect cam;
@@ -28,7 +26,7 @@ private:
 	Apuntado* apuntado;
 
 public:
-	camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
+	Camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
 	void moveCamara();
 
 	/*getters*/

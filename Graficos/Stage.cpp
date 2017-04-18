@@ -59,7 +59,7 @@ void Stage::addLayer(Layer* layer){
     }
 }
 
-void Stage::render(camara* camara){
+void Stage::render(Camara* camara){
     if(!front->getTexture()){
         delete front;
         front = NULL;

@@ -13,7 +13,7 @@ using namespace std;
 
 
 class JsonLoader{
-	camara* camaraPantalla;
+	Camara* camaraPantalla;
 	Stage* stage;
 	map<string,vector<int> > colores;
     Json::Value getJson(char* ruta);
@@ -36,11 +36,11 @@ class JsonLoader{
 	bool isArray(Json::Value json, string where);
 	bool isBool(Json::Value json, string where);
 	void setLogger(Json::Value);
-	camara* setCamara(Json::Value json);
+	Camara* setCamara(Json::Value json);
 	vector<int> getColor(Json::Value json, string where);
 	public:
 		JsonLoader(char* ruta);
 		Stage* getStage();
-		camara* getCamara();
+		Camara* getCamara();
 
 };

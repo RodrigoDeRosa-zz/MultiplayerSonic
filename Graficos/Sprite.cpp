@@ -40,7 +40,7 @@ void Sprite::setTexture(Texture* newTex){
     texture = newTex;
 }
 
-void Sprite::render(camara* cam){
+void Sprite::render(Camara* cam){
     //Si no tiene textura cargada, pinta con el color de fondo.
     int auxX = originX - cam->getX();
     int auxY = originY - cam->getY();
@@ -61,7 +61,7 @@ void Sprite::render(camara* cam){
         }
     }
 
-void Sprite::render(int x, int y, camara* cam){
+void Sprite::render(int x, int y, Camara* cam){
     //renderiza las texturas de fondo.
     SDL_Rect camara = cam -> getCamara();
     int X = originX - cam->getX();

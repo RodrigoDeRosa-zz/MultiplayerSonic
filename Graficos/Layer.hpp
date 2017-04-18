@@ -23,7 +23,7 @@ class Layer{
         /*Carga la imagen desde la direccion que se almaceno*/
         bool loadImage();
         /*Presenta la imagen en pantalla*/
-        void render(camara*);
+        void render(Camara*);
         Texture* getTexture();
 
         bool operator<=(Layer&) const;

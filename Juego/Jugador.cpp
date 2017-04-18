@@ -10,7 +10,7 @@ string Jugador::getNombre(){
     return nombreJugador;
 }
 
-void Jugador::setCamara(camara* new_cam){
+void Jugador::setCamara(Camara* new_cam){
     cam = new_cam;
     //falta crear un personaje y asignarselo a la camara
 }

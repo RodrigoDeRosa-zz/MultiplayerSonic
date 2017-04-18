@@ -17,7 +17,7 @@ class Juego{
     Juego();
     void setStage(Stage* stage);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
-    void render(camara* camara);
+    void render(Camara* camara);
     ~Juego();
 };
 

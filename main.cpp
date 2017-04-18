@@ -31,7 +31,7 @@ int main(int argc, char** argv){
     bool running = true;
     SDL_Event e;
 
-	camara* camara_pantalla = json->getCamara();
+	Camara* camara_pantalla = json->getCamara();
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
