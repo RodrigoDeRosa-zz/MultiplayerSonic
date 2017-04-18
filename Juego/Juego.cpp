@@ -4,6 +4,7 @@
 Juego::Juego(){
     jugadores = NULL;
     stage = NULL;
+    camara = NULL;
 }
 
 void Juego::setStage(Stage* new_stage){
@@ -14,9 +15,20 @@ void Juego::setStage(Stage* new_stage){
 //     //tendria que recibir datos del servidor para actualizar la posicion de todos los jugadores
 // }
 
-void Juego::render(Camara* camara){
+void Juego::render(){
     //this.actualizarJugadores();
     stage->render(camara);
+    camara->render();
+    jugadores->render(camara);
+}
+
+void Juego::addJugador(string nombreJugador, string nombrePersonaje){
+    jugadores->addJugador(nombreJugador,nombrePersonaje);
+}
+
+
+void Juego::setCamara(Camara* cam){
+    camara = cam;
 }
 
 Juego::~Juego(){

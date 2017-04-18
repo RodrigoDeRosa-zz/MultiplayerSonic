@@ -1,11 +1,13 @@
 #include "Jugadores.hpp"
 #include "Logger2.hpp"
+#include "../Graficos/Camara.hpp"
 using namespace std;
 
 Jugadores::Jugadores(){}
 
-void Jugadores::add(Jugador* jugador){
-    jugadores[jugador->getNombre()] = jugador;
+void Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
+    Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
+    //jugadores.insert(make_pair(nombreJugador,jug));
 }
 
 bool Jugadores::remove(string nombreJugador){
@@ -16,6 +18,12 @@ bool Jugadores::remove(string nombreJugador){
         return true;
     }
     return false;
+}
+
+void Jugadores::render(Camara* camara){
+      //for(std::map<string, Jugador*>::iterator it=jugadores.begin(); it!=jugadores.end(); ++it){
+          //(jugadores[it->second]) -> render(camara);
+      //}
 }
 
 void Jugadores::update(){

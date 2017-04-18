@@ -27,11 +27,14 @@ int main(int argc, char** argv){
 
 		Juego* juego = new Juego();
 		juego->setStage(stage);
+		Camara* camara_pantalla = json->getCamara();
+		juego->setCamara(camara_pantalla);
+
+		//juego->addJugador("facu","sonic");
 
     bool running = true;
     SDL_Event e;
 
-	Camara* camara_pantalla = json->getCamara();
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -47,8 +50,8 @@ int main(int argc, char** argv){
         Renderer::getInstance().setDrawColor(255, 255, 255, 1);
 
         Renderer::getInstance().clear();
-        juego->render(camara_pantalla);
-        camara_pantalla->render();
+        juego->render();
+        //camara_pantalla->render();
         Renderer::getInstance().draw();
     }
     delete stage;

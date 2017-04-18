@@ -5,6 +5,7 @@
 #include "../Graficos/Camara.hpp"
 #include "Jugadores.hpp"
 #include <iostream>
+#include <string>
 
 /*El Juego tiene como atributos al Stage y a los Jugadores y es el responsable de relacionarlos para calcular
   colisiones entre ellos, entre otras cosas.
@@ -13,11 +14,14 @@
 class Juego{
     Jugadores* jugadores;
     Stage* stage;
+    Camara* camara;
   public:
     Juego();
     void setStage(Stage* stage);
+    void addJugador(string nombreJugador, string nombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
-    void render(Camara* camara);
+    void render();
+    void setCamara(Camara* cam);
     ~Juego();
 };
 
