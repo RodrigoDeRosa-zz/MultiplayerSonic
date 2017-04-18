@@ -2,10 +2,13 @@
 #define JUGADOR_HPP
 
 #include "../Graficos/Camara.hpp"
+#include "Personaje.hpp"
+#include "Sonic.hpp"
 #include <iostream>
 #include <string>
 
 class Jugador{
+    Personaje* personaje;
     string nombreJugador;
     string nombrePersonaje;
     public:
@@ -14,6 +17,7 @@ class Jugador{
     Jugador(string nomJugador, string nomPersonaje);
     //devuelve el nombre del jugador
     string getNombre();
+    void setPersonaje(Personaje*);
     void setCamara(Camara*);
     void render(Camara*);
     bool operator==(Jugador& other) const;
