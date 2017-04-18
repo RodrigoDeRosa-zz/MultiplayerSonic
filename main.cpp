@@ -1,21 +1,15 @@
 #include "Graficos/Window.hpp"
 #include "Graficos/Renderer.hpp"
 #include "Graficos/SDLHandler.hpp"
-#include "Graficos/Layer.hpp"
 #include "Graficos/Stage.hpp"
-#include "Graficos/Texture.hpp"
-#include "Graficos/Sprite.hpp"
-#include "Graficos/Apuntado.hpp"
-#include "Graficos/SpriteGroup.hpp"
 #include "Graficos/Camara.hpp"
-#include "Graficos/Bloque.hpp"
-#include "Graficos/Circulo.hpp"
 #include "Juego/Juego.hpp"
 #include "JsonLoader.hpp"
+#include "Juego/SegaFactory.hpp"
+#include "Juego/Sonic.hpp"
 #include "Logger2.hpp"
 #include <SDL2/SDL.h>
 
-const int TAM = 600;
 
 int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger
@@ -29,7 +23,6 @@ int main(int argc, char** argv){
 		juego->setStage(stage);
 		Camara* camara_pantalla = json->getCamara();
 		juego->setCamara(camara_pantalla);
-
 		//juego->addJugador("facu","sonic");
 
     bool running = true;
