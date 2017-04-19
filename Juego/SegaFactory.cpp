@@ -21,7 +21,8 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       Sonic* sonic = new Sonic(nomJugador);
       //todos los sprites con sus texturas se tendrian que crear en el json loader
       Bloque* bloque = new Bloque(100, 200, 50, 50);
+      bloque->setBackgroundColor(0,0,0);
+      bloque->setIndexZ(99);
       sonic->setBloque(bloque);
       return sonic;
-
 }

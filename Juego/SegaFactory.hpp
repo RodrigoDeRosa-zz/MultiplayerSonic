@@ -8,8 +8,9 @@ using namespace std;
 
 class SegaFactory{
   private:
-    Sonic* getSonic(string);
+    //tenemos qe hacer que get sonic sea privada
   public:
+    Sonic* getSonic(string);
     SegaFactory();
     /*agregar todas las funciones de creacion de cada personaje
     recibe nombre valido del personaje y nombre del jugador

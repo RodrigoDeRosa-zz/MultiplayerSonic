@@ -4,6 +4,7 @@ using namespace std;
 
 #include "Jugador.hpp"
 #include "../Graficos/Camara.hpp"
+#include "SegaFactory.hpp"
 #include <string>
 #include <iostream>
 #include <map>
@@ -11,13 +12,15 @@ using namespace std;
 class Jugadores{
     map <string, Jugador*> jugadores;
     Jugador* jugadorActual;
+    SegaFactory* factory;
   public:
     Jugadores();
     /*Agrega un jugador a la lista de jugadores.*/
-    void addJugador(string nombreJugador, string nombrePersonaje);
+    bool addJugador(string nombreJugador, string nombrePersonaje);
     /*Saca el jugador pedido de la lista, devuelve valor booleano dependiendo de como ejecuto la operacion*/
     bool remove(string);
     void update();
+    void setFactory(SegaFactory*);
     void render(Camara* camara);
     /*Remueve todos los jugadores*/
     void empty();

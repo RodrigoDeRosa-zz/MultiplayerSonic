@@ -23,7 +23,10 @@ int main(int argc, char** argv){
 		juego->setStage(stage);
 		Camara* camara_pantalla = json->getCamara();
 		juego->setCamara(camara_pantalla);
-		//juego->addJugador("facu","sonic");
+		Jugadores* jugs = new Jugadores();
+		juego->setJugadores(jugs);
+		juego->addJugador("facu","Sonic");
+
 
     bool running = true;
     SDL_Event e;
@@ -43,7 +46,7 @@ int main(int argc, char** argv){
         Renderer::getInstance().setDrawColor(255, 255, 255, 1);
 
         Renderer::getInstance().clear();
-        juego->render();
+				juego->render();
         //camara_pantalla->render();
         Renderer::getInstance().draw();
     }

@@ -1,6 +1,9 @@
 #include "Juego.hpp"
 #include "Logger2.hpp"
+#include "SegaFactory.hpp"
 
+/*get sonic privada
+ en jugadores que se cree un personaje generico*/
 Juego::Juego(){
     jugadores = NULL;
     stage = NULL;
@@ -9,6 +12,10 @@ Juego::Juego(){
 
 void Juego::setStage(Stage* new_stage){
     stage = new_stage;
+}
+
+void Juego::setJugadores(Jugadores* jugs){
+    jugadores=jugs;
 }
 
 // void Juego::actualizarJugadores(){
@@ -22,10 +29,14 @@ void Juego::render(){
     jugadores->render(camara);
 }
 
-void Juego::addJugador(string nombreJugador, string nombrePersonaje){
-    jugadores->addJugador(nombreJugador,nombrePersonaje);
+bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
+    return jugadores->addJugador(nombreJugador,nombrePersonaje);
 }
 
+void Juego::setFactory(){
+    SegaFactory* fact = new SegaFactory();
+    jugadores->setFactory(fact);
+}
 
 void Juego::setCamara(Camara* cam){
     camara = cam;

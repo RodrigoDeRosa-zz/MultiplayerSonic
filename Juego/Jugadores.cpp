@@ -1,13 +1,22 @@
 #include "Jugadores.hpp"
 #include "Logger2.hpp"
+#include "Personaje.hpp"
+#include "Sonic.hpp"
 #include "../Graficos/Camara.hpp"
 using namespace std;
 
 Jugadores::Jugadores(){}
 
-void Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
+bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
+    //aca en vez de crear un sonic hay que crear un personaje
     Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
-    //jugadores.insert(make_pair(nombreJugador,jug));
+    Sonic* newPersonaje = factory->getSonic(nombreJugador);
+    if(newPersonaje){
+      jug->setPersonaje(newPersonaje);
+      jugadores[nombreJugador]=jug;
+      return true;
+    }
+    return false;
 }
 
 bool Jugadores::remove(string nombreJugador){
@@ -20,10 +29,16 @@ bool Jugadores::remove(string nombreJugador){
     return false;
 }
 
+void Jugadores::setFactory(SegaFactory* fact){
+    factory=fact;
+}
+
 void Jugadores::render(Camara* camara){
-      //for(std::map<string, Jugador*>::iterator it=jugadores.begin(); it!=jugadores.end(); ++it){
-          //(jugadores[it->second]) -> render(camara);
-      //}
+      for(std::map<string, Jugador*>::iterator it=jugadores.begin(); it!=jugadores.end(); it++){
+          string clave = it->first;
+          Jugador* actual = jugadores[clave];
+          actual->render(camara);
+      }
 }
 
 void Jugadores::update(){

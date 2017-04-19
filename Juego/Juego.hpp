@@ -17,10 +17,12 @@ class Juego{
     Camara* camara;
   public:
     Juego();
+    void setJugadores(Jugadores*);
     void setStage(Stage* stage);
-    void addJugador(string nombreJugador, string nombrePersonaje);
+    bool addJugador(string nombreJugador, string nombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
     void render();
+    void setFactory();
     void setCamara(Camara* cam);
     ~Juego();
 };
