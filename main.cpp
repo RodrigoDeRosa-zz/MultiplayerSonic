@@ -4,7 +4,7 @@
 #include "Graficos/Stage.hpp"
 #include "Graficos/Camara.hpp"
 #include "Juego/Juego.hpp"
-#include "JsonLoader.hpp"
+#include "json/JsonLoader.hpp"
 #include "Juego/SegaFactory.hpp"
 #include "Juego/Sonic.hpp"
 #include "Logger2.hpp"
@@ -15,7 +15,7 @@ int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger
     SDLHandler::getInstance().init();
 
-    JsonLoader* json = new JsonLoader("ejemplo.json");
+    JsonLoader* json = new JsonLoader("json/ejemplo.json");
 
     Stage* stage = json->getStage();
 
