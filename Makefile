@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = logger/current/Logger2.cpp Graficos/Window.cpp Graficos/Renderer.cpp Graficos/SDLHandler.cpp Graficos/Texture.cpp Graficos/Sprite.cpp Graficos/Layer.cpp Graficos/SpriteGroup.cpp Graficos/Apuntado.cpp Graficos/Bloque.cpp Graficos/Circulo.cpp Graficos/Stage.cpp Graficos/Camara.cpp Juego/Jugadores.cpp Juego/Juego.cpp Juego/Jugador.cpp Juego/Personaje.cpp Juego/Sonic.cpp Juego/SegaFactory.cpp JsonLoader.cpp jsoncpp.cpp main.cpp
+OBJS = logger/current/Logger2.cpp Graficos/Window.cpp Graficos/Renderer.cpp Graficos/SDLHandler.cpp Graficos/Texture.cpp Graficos/Sprite.cpp Graficos/Layer.cpp Graficos/SpriteGroup.cpp Graficos/Apuntado.cpp Graficos/Bloque.cpp Graficos/Circulo.cpp Graficos/Stage.cpp Graficos/Camara.cpp Juego/Jugadores.cpp Juego/Juego.cpp Juego/Jugador.cpp Juego/Personaje.cpp Juego/Sonic.cpp Juego/SegaFactory.cpp json/JsonLoader.cpp json/jsoncpp.cpp main.cpp
 #CC specifies which compiler we're using
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
