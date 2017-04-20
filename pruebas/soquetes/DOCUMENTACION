@@ -48,3 +48,10 @@ Se cambia (casi) toda la implementación, ahora el "main" loop lanza un thread p
 2-los fd's abiertos para mandar.
 Habra problemas de uso de recurso si trato de leer y mandar desde el mismo socket? Parece que no, y sino mutex (si se puede lo evitamos). 
 
+9)Server5
+5-0-1 a 5-0-2 recibe pero no manda
+5-0-3 tiene una prueba de como desencolar, sigue sin mandar.
+
+5-0-4 va a tener para mandar a todos.
+5-0-5 va a tener un thread por socket también para mandar.
+
