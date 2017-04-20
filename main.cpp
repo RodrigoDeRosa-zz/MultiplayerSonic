@@ -12,7 +12,7 @@
 
 
 int main(int argc, char** argv){
-	Logger::getInstance();	//se inicializa el logger
+	Logger::getInstance();	//se inicializa el logger .
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("json/ejemplo.json");
