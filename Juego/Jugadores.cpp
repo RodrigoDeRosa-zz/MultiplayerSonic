@@ -5,11 +5,14 @@
 #include "../Graficos/Camara.hpp"
 using namespace std;
 
+#define SONIC1 "SONIC"
+#define SONIC2 "Sonic"
+#define SONIC3 "sonic"
+
 Jugadores::Jugadores(){}
 
-bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
-    //aca en vez de crear un sonic hay que crear un personaje
-    Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
+bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug){
+
     Sonic* newPersonaje = factory->getSonic(nombreJugador);
     if(newPersonaje){
       jug->setPersonaje(newPersonaje);
@@ -17,6 +20,18 @@ bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
       return true;
     }
     return false;
+
+}
+
+bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
+
+    Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
+    bool exito = false;
+    //como c++ no deja hacer switch con strings hacemos ifs.
+    if( (nombrePersonaje == SONIC1) || (nombrePersonaje == SONIC2) || (nombrePersonaje == SONIC3)){
+      exito = addSonic(nombreJugador, nombrePersonaje, jug);
+    }
+    return exito;
 }
 
 bool Jugadores::remove(string nombreJugador){

@@ -10,9 +10,13 @@ using namespace std;
 #include <map>
 
 class Jugadores{
+  private:
     map <string, Jugador*> jugadores;
     Jugador* jugadorActual;
     SegaFactory* factory;
+
+    bool addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug);
+
   public:
     Jugadores();
     /*Agrega un jugador a la lista de jugadores.*/
