@@ -12,7 +12,7 @@ using namespace std;
 Jugadores::Jugadores(){}
 
 bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug){
-
+  //
     Sonic* newPersonaje = factory->getSonic(nombreJugador);
     if(newPersonaje){
       jug->setPersonaje(newPersonaje);
