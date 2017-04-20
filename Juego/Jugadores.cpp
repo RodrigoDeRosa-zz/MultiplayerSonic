@@ -13,6 +13,7 @@ Jugadores::Jugadores(){}
 
 bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug){
   //funcion que devuelve a sonic
+  //son todo re puto
     Sonic* newPersonaje = factory->getSonic(nombreJugador);
     if(newPersonaje){
       jug->setPersonaje(newPersonaje);
