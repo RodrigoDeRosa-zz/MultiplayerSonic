@@ -23,6 +23,7 @@ class Texture{
         void setBackgroundColor(Uint8 r, Uint8 g, Uint8 b);
         /*Renderiza en la posicion dada por (x,y), usando el SDL_Rect como clipper*/
         void render(int x, int y, SDL_Rect* clip);
+        void renderWithMovement(int x, int y, SDL_Rect* clip);
         int getWidth();
         int getHeight();
         void setDimensions(int w, int h);

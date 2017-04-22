@@ -1,15 +1,20 @@
 #ifndef PERSONAJE_HPP
 #define PERSONAJE_HPP
 
-#include "../Graficos/Bloque.hpp"
+#include "../Juego/MovingBloque.hpp"
 #include "../Graficos/Camara.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
 
 class Personaje{
-    Bloque* bloque_pers;
+  protected:
+    MovingBloque* bloque_pers;
     string nombreJugador;
+    int frameRight, frameLeft;
+    void moveRight(float);
+    void moveLeft(float);
+
   public:
     //recibe un string de nombre de jugador que no puede estar repetido
     Personaje(string);
@@ -17,9 +22,16 @@ class Personaje{
     string getNombreJugador();
     //Renderiza el bloque interno, devuelve false si falla
     bool render(Camara*);
-    void setBloque(Bloque*);
+    void setMovingBloque(MovingBloque*);
+    void update(float, float);
     bool operator==(Personaje& other) const;
     ~Personaje();
+    int getX();
+    int getY();
+
+    // int getVelX();
+    // int getVelY();
+
 };
 
 #endif /*PERSONAJE_HPP*/

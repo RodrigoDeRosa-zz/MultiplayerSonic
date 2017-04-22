@@ -6,7 +6,7 @@
 
 int velocidad = 1;
 
-Sprite::Sprite(int x, int y, int w, int h){
+Sprite::Sprite(float x, float y, int w, int h){
     texture = NULL;
     originX = x;
     originY = y;

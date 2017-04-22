@@ -25,7 +25,7 @@ void Juego::setJugadores(Jugadores* jugs){
 void Juego::render(){
     //this.actualizarJugadores();
     stage->render(camara);
-    camara->render();
+    //camara->render();
     jugadores->render(camara);
 }
 

@@ -10,6 +10,8 @@ class Sonic: public Personaje {
   public:
     //recibe el nombre del jugador
     Sonic(string);
+    void setEventMovimiento( SDL_Event& e );
+
 };
 
 #endif

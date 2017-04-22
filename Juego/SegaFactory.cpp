@@ -1,4 +1,5 @@
 #include "SegaFactory.hpp"
+#include "MovingSonic.hpp"
 #define SONIC "Sonic"
 using namespace std;
 
@@ -11,7 +12,12 @@ SegaFactory::SegaFactory(){
 Sonic* SegaFactory::getSonic(string nomJugador){
       Sonic* sonic = new Sonic(nomJugador);
       //todos los sprites con sus texturas se tendrian que crear en el json loader
-      Bloque* bloque = new Bloque(100, 200, 50, 50);
-      sonic->setBloque(bloque);
+      MovingSonic* bloque = new MovingSonic(100, 200, 1032, 1943, 1);
+
+      Texture* tex = new Texture();
+  		tex->loadFromFile("Graficos/sonic_sprites.png");
+  		bloque->setTexture(tex);
+
+      sonic->setMovingBloque(bloque);
       return sonic;
 }

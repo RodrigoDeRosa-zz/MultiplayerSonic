@@ -1,5 +1,5 @@
 #include "Camara.hpp"
-
+#define AVANCE 10
 Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
 	vel= vel_c;
 	velX= 0;
@@ -11,10 +11,16 @@ Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 	cam = {posX_c,posY_c,ancho_c,alto_c};
 }
 
-void Camara::moveCamara(){
+void Camara::moveCamara(bool direccion){
+	/*Recibe un bool que es true si se mueve para la derecha
+	o false si se mueve para la izquierda*/
 
-	cam.x = ( apuntado->getX() + (apuntado->getWidth() / 2) ) - ancho / 2;
-	cam.y = ( apuntado->getY() + (apuntado->getHeight() / 2) ) - alto / 2;
+	if (direccion){
+		cam.x += AVANCE;
+	}
+	else{
+		cam.x -= AVANCE;
+	}
 
 	if( cam.x < 0 ){
 		cam.x = 0;}

@@ -27,7 +27,7 @@ private:
 
 public:
 	Camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
-	void moveCamara();
+	void moveCamara(bool);
 
 	/*getters*/
 	SDL_Rect getCamara();

@@ -14,11 +14,12 @@ class Sprite{
     protected:
         Texture* texture;
         SDL_Rect rectangle;
-        int originX, originY, width, height, zIndex;
+        float originX, originY;
+        int width, height, zIndex;
         Uint8 red, green, blue;
 
     public:
-        Sprite(int x, int y, int w, int h);
+        Sprite(float x, float y, int w, int h);
         ~Sprite();
         void update();
         /*Dibuja el sprite en pantalla*/
