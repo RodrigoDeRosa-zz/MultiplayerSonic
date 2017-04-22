@@ -10,12 +10,16 @@ class MovingSonic: public MovingBloque{
   public:
     MovingSonic(int x, int y, int w, int h, int vel_s);
     /*Funciones de movimiento */
-    void moveRight(int, int, float, int);
-    void moveLeft(int, int, float, int);
+    void moveLeft(float);
+    void moveRight(float);
+    void moveLef(int frameL, int cantF, float vel ,int fact);
+
     void caminarDerecha(float);
-    void correrDerecha(float);
     void caminarIzquierda(float);
+    void correrDerecha(float);
     void correrIzquierda(float);
+
+    void moveLeft(int, int, float ,int);
 
 };
 

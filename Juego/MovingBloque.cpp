@@ -4,8 +4,9 @@ using namespace std;
 #define ANCHO_ESCENARIO 3600
 #define ALTO_ESCENARIO 640
 
-void MovingBloque::moveRight(int frame, int cant_frames, float vel_x, int fact){}
-void MovingBloque::moveLeft(int frame, int cant_frames, float vel_x, int fact){}
+void MovingBloque::moveRight(float vel_x){}
+void MovingBloque::moveLeft(float vel_x){}
+void MovingBloque::moveLef(int frameL, int cantF, float vel ,int fact){}
 
 MovingBloque::MovingBloque(int x, int y, int w, int h,int vel_s):
   Bloque(x,y,w,h){
@@ -16,12 +17,16 @@ MovingBloque::MovingBloque(int x, int y, int w, int h,int vel_s):
     rectangle.y = 0;
     rectangle.w = 38.796992481;
     rectangle.h = 51;
-
+    frameRight = 0;
+    frameLeft = 0;
   }
 
-void MovingBloque::setVelocidades(){
+/*Setters*/
+void MovingBloque::setPosicionInicio(){
     velX = 0.0;
     velY = 0.0;
+    frameLeft=0;
+    frameRight=0;
 }
 
 void MovingBloque::render(Camara* cam){

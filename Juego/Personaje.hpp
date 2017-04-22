@@ -14,6 +14,7 @@ class Personaje{
     int frameRight, frameLeft;
     void moveRight(float);
     void moveLeft(float);
+    //void moveUp(float);
 
   public:
     //recibe un string de nombre de jugador que no puede estar repetido
