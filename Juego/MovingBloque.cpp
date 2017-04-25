@@ -6,27 +6,35 @@ using namespace std;
 
 void MovingBloque::moveRight(float vel_x){}
 void MovingBloque::moveLeft(float vel_x){}
-void MovingBloque::moveLef(int frameL, int cantF, float vel ,int fact){}
+void MovingBloque::jump(float,float){}
 
 MovingBloque::MovingBloque(int x, int y, int w, int h,int vel_s):
   Bloque(x,y,w,h){
     velX=0.0;
     velY=0.0;
     velocidad=vel_s;
-    rectangle.x = 0;
-    rectangle.y = 0;
-    rectangle.w = 38.796992481;
-    rectangle.h = 51;
     frameRight = 0;
     frameLeft = 0;
+    frameQuiet = 0;
+    frameJumping = 0;
+    clipsMovimientos = new ClipGroup();
+    //La direccion se setea en true cuando esta para la derecha.
+    direccion = true;
   }
 
 /*Setters*/
-void MovingBloque::setPosicionInicio(){
-    velX = 0.0;
-    velY = 0.0;
-    frameLeft=0;
-    frameRight=0;
+void MovingBloque::setPosicionInicio(){}
+
+void MovingBloque::setClip(string nombre){
+  clipsMovimientos->addClip(nombre);
+}
+
+void MovingBloque::setRectangulo(string nombre, int x, int y, int w, int h){
+  clipsMovimientos->addRectangulo(nombre,x,y,w,h);
+}
+
+void MovingBloque::printMap(){
+  clipsMovimientos->printMap();
 }
 
 void MovingBloque::render(Camara* cam){

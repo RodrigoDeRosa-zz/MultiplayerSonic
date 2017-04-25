@@ -37,7 +37,7 @@ int main(int argc, char** argv){
 		float velX = 0.0;
 		float velY = 0.0;
 		float velocidad = 0.35;
-
+		float vel = -0.8;
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -50,16 +50,16 @@ int main(int argc, char** argv){
             //sonic->setEventMovimiento(e);
 						if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
 							switch( e.key.keysym.sym ){
-								case SDLK_UP: velY -= velocidad; break;
-								case SDLK_DOWN: velY += velocidad; break;
+								case SDLK_UP: velY = vel; break;
+								//case SDLK_DOWN: velY += velocidad; break;
 								case SDLK_LEFT: velX -= velocidad; break;
 								case SDLK_RIGHT: velX += velocidad; break;
 							}
 						}
 						else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
 							switch( e.key.keysym.sym ){
-								case SDLK_UP: velY += velocidad; break;
-								case SDLK_DOWN: velY -= velocidad; break;
+								//case SDLK_UP: velY += velocidad; break;
+								//case SDLK_DOWN: velY -= velocidad; break;
 								case SDLK_LEFT: velX += velocidad; break;
 								case SDLK_RIGHT: velX -= velocidad; break;
 							}

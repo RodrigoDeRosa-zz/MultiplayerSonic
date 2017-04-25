@@ -12,7 +12,7 @@ class MovingSonic: public MovingBloque{
     /*Funciones de movimiento */
     void moveLeft(float);
     void moveRight(float);
-    void moveLef(int frameL, int cantF, float vel ,int fact);
+    void jump(float,float);
 
     void caminarDerecha(float);
     void caminarIzquierda(float);
@@ -20,6 +20,7 @@ class MovingSonic: public MovingBloque{
     void correrIzquierda(float);
 
     void moveLeft(int, int, float ,int);
+    void setPosicionInicio();
 
 };
 

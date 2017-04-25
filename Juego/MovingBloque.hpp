@@ -4,22 +4,27 @@
 #include "../Graficos/Bloque.hpp"
 #include "../Graficos/Camara.hpp"
 #include "../Graficos/Renderer.hpp"
+#include "ClipGroup.hpp"
 using namespace std;
 
 class MovingBloque: public Bloque{
 protected:
-  int velocidad;
+  int velocidad, frameRight, frameLeft, frameQuiet,frameJumping;
   float velX,velY;
-  int frameRight, frameLeft;
+  bool direccion;
+  ClipGroup* clipsMovimientos;
 
 public:
   MovingBloque(int x, int y, int w, int h, int vel_s);
   void render(Camara* camara);
   virtual void moveRight(float vel_x);
   virtual void moveLeft(float vel_x);
+  virtual void jump(float,float);
 
-  virtual void moveLef(int frameL, int cantF, float vel ,int fact);
+  void setClip(string);
+  void setRectangulo(string, int, int, int, int);
+  void printMap();
 
-  void setPosicionInicio();
+  virtual void setPosicionInicio();
 };
 #endif /*MOVINGBLOQUE_HPP*/

@@ -24,16 +24,21 @@ string Personaje::getNombreJugador(){
     return nombreJugador;
 }
 
+void Personaje::printMap(){
+  bloque_pers->printMap();
+}
+
 /*setters*/
 void Personaje::setMovingBloque(MovingBloque* new_bloque){
     bloque_pers = new_bloque;
 }
 
+
 /*Funciones de movimiento*/
 void Personaje::update(float vel_x, float vel_y){
-  // if(vel_y> 0.0){
-  //   moveUp(vel_y);
-  // }
+  if(vel_y< 0.0){
+     jump(vel_x,vel_y);
+  }
   if(vel_x> 0.0){
     moveRight(vel_x);}
   else if(vel_x < 0.0){
@@ -46,38 +51,16 @@ void Personaje::update(float vel_x, float vel_y){
 }
 
 void Personaje::moveRight(float vel_x){
-
-    // frameLeft = 0;
-    // if( frameRight / (FACTOR*WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
-    //   frameRight=0;
-    // }
-
     bloque_pers->moveRight(vel_x);
-    // bloque_pers->moveRight(frameRight, WALKING_ANIMATION_FRAMES, vel_x,FACTOR);
-    // frameRight++;
 }
 
 void Personaje::moveLeft(float vel_x){
-    frameRight = 0;
-
-    if( frameLeft / FACTOR*WALKING_ANIMATION_FRAMES >= WALKING_ANIMATION_FRAMES){
-      frameLeft=0;
-    }
-
-    bloque_pers->moveLef(frameLeft, WALKING_ANIMATION_FRAMES, vel_x,FACTOR);
-    frameLeft++;
-
-    //bloque_pers->moveLeft(vel_x);
+    bloque_pers->moveLeft(vel_x);
 }
 
-// void Personaje::moveUp(float vel_y){
-//
-//   if( frameUp / (FACTOR*WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
-//     frameRight=0;
-//   }
-//   bloque_pers->moveUp(frameUp, WALKING_ANIMATION_FRAMES, vel_x, FACTOR);
-//   frameUp++;
-// }
+void Personaje::jump(float vel_x, float vel_y){
+  bloque_pers->jump(vel_x,vel_y);
+}
 
 bool Personaje::operator==(Personaje& other) const{
     return (nombreJugador == other.getNombreJugador());

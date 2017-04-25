@@ -2,13 +2,15 @@
 #define SEGAFACTORY_HPP
 
 #include "Sonic.hpp"
+#include "MovingSonic.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
 
 class SegaFactory{
   private:
-    //tenemos qe hacer que get sonic sea privada
+    void initClips(MovingSonic*);
+
   public:
     Sonic* getSonic(string);
     SegaFactory();

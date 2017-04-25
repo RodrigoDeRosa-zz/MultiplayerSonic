@@ -3,6 +3,7 @@
 
 #include "../Juego/MovingBloque.hpp"
 #include "../Graficos/Camara.hpp"
+#include "ClipGroup.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -14,25 +15,25 @@ class Personaje{
     int frameRight, frameLeft;
     void moveRight(float);
     void moveLeft(float);
-    //void moveUp(float);
+    void jump(float,float);
 
   public:
     //recibe un string de nombre de jugador que no puede estar repetido
     Personaje(string);
+    ~Personaje();
     //devuelve el nombre del jugador
     string getNombreJugador();
-    //Renderiza el bloque interno, devuelve false si falla
-    bool render(Camara*);
-    void setMovingBloque(MovingBloque*);
-    void update(float, float);
-    bool operator==(Personaje& other) const;
-    ~Personaje();
     int getX();
     int getY();
-
-    // int getVelX();
-    // int getVelY();
+    void printMap();
+    /*setters*/
+    void setMovingBloque(MovingBloque*);
+    void setClip(string);
+    void setRectangulo(string, int, int ,int ,int);
+    //Renderiza el bloque interno, devuelve false si falla
+    bool render(Camara*);
+    void update(float, float);
+    bool operator==(Personaje& other) const;
 
 };
-
 #endif /*PERSONAJE_HPP*/
