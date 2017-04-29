@@ -209,19 +209,6 @@ void* read_on_thread(void* fd_ptr){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //*******defs hasta selectserver3.5***********
 
 //loopea y hace todo acá(accept, read y send)
@@ -274,7 +261,7 @@ void loopear_y_manejar(fd_set* master_ptr,int* fdmax_ptr, int listener){
 //..una nueva cx, si no puede hace todo para acomodarla, si lo logra todo queda andando con cx nueva
 //Post: la nueva cx se agregó en TODOS LADOS QUE HAGA FALTA
 void aceptar_nueva_cx(fd_set* master_ptr, int* fdmax_ptr,int listener) {
-	struct sockaddr_storage remoteAddr;	
+	struct sockaddr_storage remoteAddr;	//MARTIN: será necesario declararla afuera? no creo.
 	socklen_t addrlen = sizeof remoteAddr;
 	int newfd = accept(listener, (struct sockaddr *)&remoteAddr, &addrlen);
 	if (newfd == -1) {
@@ -310,9 +297,6 @@ void* send_one(void* casted_send_one_data){
 	perror("send"); 	//si no pudiera enviar las cosas				
 }
 //end: defs hasta selectserver3.5
-
-
-
 
 //end:DEFINICIONES
 
