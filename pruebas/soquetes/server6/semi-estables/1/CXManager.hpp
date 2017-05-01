@@ -78,7 +78,6 @@ class CXManager{
 //FUNCIONES PARA EL MANEJO DE THREADS
 //NOTA: hay que ver como pasar el fd en data, data = &fd no funciona, pero void* > int  en size ..
 //.. asi que tal vez se puede wrappear
-void init(const char* port, int* listening_fd);
 void* reader_f(void* data);
 void* writer_f(void* data);
 void* accepter_f(void* data);
