@@ -39,7 +39,7 @@ void Personaje::update(float vel_x, float vel_y){
   if(vel_y< 0.0){
      jump(vel_x,vel_y);
   }
-  if(vel_x> 0.0){
+  else if(vel_x> 0.0){
     moveRight(vel_x);}
   else if(vel_x < 0.0){
     moveLeft(vel_x);}

@@ -43,6 +43,7 @@ void MovingSonic::setPosicionInicio(){
     velY = 0.0;
     frameLeft=0;
     frameRight=0;
+    frameJumping=0;
 
     if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
       frameQuiet=0;
