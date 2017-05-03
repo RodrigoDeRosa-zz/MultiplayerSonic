@@ -18,7 +18,19 @@ Player* Model::getPlayer(string nombre){
 	return NULL;
 }
 
-void Model::setPlayerPosition(string playerName, float velX, float velY){
+void Model::setPlayerPosition(string playerName, float x, float y){
+	Player* player = this->getPlayer(playerName);
+	player->setX(x);
+	player->setY(y);
+}
+
+void Model::setPlayerVelocities(string playerName, float velX, float velY){
+	Player* player = this->getPlayer(playerName);
+	player->setVelX(velX);
+	player->setVelY(velY);
+}
+
+void Model::updatePlayerPosition(string playerName, float velX, float velY){
 	Player* player = this->getPlayer(playerName);
 	player->updateXY(velX,velY);
 }
