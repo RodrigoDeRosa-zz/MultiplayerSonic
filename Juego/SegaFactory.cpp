@@ -32,11 +32,6 @@ Sonic* SegaFactory::getSonic(string nomJugador){
 
       initClips(bloque);
 
-      idPers++;
-      if(idPers >= MAX_SPRITES){
-          idPers = 0;
-      }
-
       return sonic;
 }
 
