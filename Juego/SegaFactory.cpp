@@ -15,13 +15,14 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000, 0.35);
       Texture* tex = new Texture();
   		tex->loadFromFile("Graficos/sonicSprites.png");
+      tex->setKeyColor(255,152,199);
+      tex->setColorMod();
   		bloque->setTexture(tex);
 
       sonic->setMovingBloque(bloque);
 
       initClips(bloque);
 
-      //sonic->printMap();
       return sonic;
 }
 

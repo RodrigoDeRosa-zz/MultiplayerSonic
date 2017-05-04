@@ -28,6 +28,7 @@ class Texture{
         int getHeight();
         void setDimensions(int w, int h);
         bool operator==(Texture& other) const;
+        void setColorMod();
 };
 
 #endif /*TEXTURE_HPP*/

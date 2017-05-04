@@ -133,3 +133,7 @@ SDL_Texture* Texture::getTexture(){
 bool Texture::operator==(Texture& other) const{
     return (texture == other.getTexture());
 }
+
+void Texture::setColorMod(){
+    SDL_SetTextureColorMod(texture, keyR, keyG, keyB);
+}
