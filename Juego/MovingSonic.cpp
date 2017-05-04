@@ -55,11 +55,8 @@ void MovingSonic::jump(float vel_x,float vel_y){
   if(tiempoY == 0 && not jumping){
     tiempoY = SALTO;
     jumping = true;
-    printf("SETEO LA VELOCIDAD\n" );
   }
 
-  printf("%f", tiempoX);
-  //velH cambiarlo por vel_X
   float velH = 0;
   if(vel_x>0){
     velH = 3.0;
@@ -68,15 +65,13 @@ void MovingSonic::jump(float vel_x,float vel_y){
     velH = -3.0;
   }
 
-  if(tiempoY >= (SALTO*-1) ){
-    tiempoY = (SALTO*-1);
-  }
-
   originX += velH * tiempoSalto;
   originY += (tiempoY * tiempoSalto);
   tiempoY += (GRAVEDAD * tiempoSalto);
-  rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
-  printf("velocidad en y %f posicion en y %f \n", tiempoY, originY);
+  if(vel_x >= 0){
+    rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
+  }
+  else{  rectangle = clipsMovimientos->getRectangulo(SALTARI,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));}
   tiempoSalto += CONTROL_MOVIMIENTO;
   frameJumping ++;
 
@@ -85,9 +80,10 @@ void MovingSonic::jump(float vel_x,float vel_y){
     tiempoSalto = 0.0;
     jumping = false;
     tiempoY = 0.0;
-    printf("SETEO EL FRENADO\n");
   }
 
+  if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+  if( originX < 0 ){originX = 0;}
 }
 
 
