@@ -28,6 +28,7 @@ MovingSonic::MovingSonic(int x, int y, int w, int h, float vel_s):
 void MovingSonic::setPosicionInicio(){
   tiempoX = 0.0;
   tiempoY = 0.0;
+  tiempoSalto = 0.0;
   frameLeft=0;
   frameRight=0;
   frameJumping=0;
@@ -55,26 +56,31 @@ void MovingSonic::jump(float vel_x,float vel_y){
     jumping = true;
     printf("SETEO LA VELOCIDAD\n" );
   }
-  if(tiempoY >= 12.0 && jumping){
-    tiempoSalto = 0.0;
-    jumping = false;
-    printf("SETEO EL FRENADO\n");
-  }
 
   float velH = 0;
   if(vel_x>0){
-    velH = velocidad;
+    velH = 3.0;
   }
   if(vel_x<0){
-    velH = velocidad*-1;
+    velH = -3.0;
   }
 
   originX += velH * tiempoSalto;
-  originY += (tiempoY * tiempoSalto) - ((GRAVEDAD * tiempoSalto * tiempoSalto)/2);
+  originY += (tiempoY * tiempoSalto);
   tiempoY += (GRAVEDAD * tiempoSalto);
+  rectangle = clipsMovimientos->getRectangulo(SALTARD,(3*frameJumping)/(2*JUMPING_ANIMATION_FRAMES));
   printf("velocidad en y %f posicion en y %f \n", tiempoY, originY);
   tiempoSalto += CONTROL_MOVIMIENTO;
   frameJumping ++;
+
+  //Este chequeo se hace para que vuelva a empezar de 0 el salto.
+  if(tiempoY >= (SALTO*-1) && jumping){
+    tiempoSalto = 0.0;
+    jumping = false;
+    tiempoY = 0.0;
+    printf("SETEO EL FRENADO\n");
+  }
+
 }
 
 
