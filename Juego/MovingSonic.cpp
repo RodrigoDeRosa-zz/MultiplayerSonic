@@ -4,7 +4,7 @@
 #define CONTROL_MOVIMIENTO 0.001
 #define CONTROL_CAMINATA 1.0
 #define CONTROL_SALTO 0.0001
-#define GRAVEDAD 0.3
+#define GRAVEDAD 0.5
 #define SALTO -12.0
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
@@ -51,19 +51,25 @@ void MovingSonic::jump(float vel_x,float vel_y){
   if( frameJumping / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
      frameJumping=0;
   }
+
   if(tiempoY == 0 && not jumping){
     tiempoY = SALTO;
     jumping = true;
     printf("SETEO LA VELOCIDAD\n" );
   }
 
+  printf("%f", tiempoX);
   //velH cambiarlo por vel_X
   float velH = 0;
   if(vel_x>0){
-    velH = 4.0;
+    velH = 3.0;
   }
   if(vel_x<0){
     velH = -3.0;
+  }
+
+  if(tiempoY >= (SALTO*-1) ){
+    tiempoY = (SALTO*-1);
   }
 
   originX += velH * tiempoSalto;
