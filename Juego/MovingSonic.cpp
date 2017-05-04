@@ -1,16 +1,21 @@
 #include "MovingSonic.hpp"
+
+/*DIMENSIONES ESCENARIO*/
 #define ANCHO_ESCENARIO 3600
 #define ALTO_ESCENARIO 640
+/*CONSTANTES*/
 #define CONTROL_MOVIMIENTO 0.001
 #define CONTROL_CAMINATA 1.0
 #define CONTROL_SALTO 0.0001
 #define GRAVEDAD 0.5
 #define SALTO -12.0
+#define FACTOR 12
+/*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
 #define JUMPING_ANIMATION_FRAMES 5
 #define QUIET_ANIMATION_FRAMES 7
-
+/*MOVIMIENTOS*/
 #define QUIETOD "quietoDer"
 #define QUIETOI "quietoIzq"
 #define CAMINARD "caminarDer"
@@ -19,7 +24,6 @@
 #define CORRERI "correrIzq"
 #define SALTARD "saltarDer"
 #define SALTARI "saltarIzq"
-#define FACTOR 12
 
 MovingSonic::MovingSonic(int x, int y, int w, int h, float vel_s):
   MovingBloque(x,y,w,h, vel_s){
