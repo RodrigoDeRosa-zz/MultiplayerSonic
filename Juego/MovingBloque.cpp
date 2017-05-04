@@ -10,9 +10,10 @@ void MovingBloque::jump(float,float){}
 
 MovingBloque::MovingBloque(int x, int y, int w, int h,float vel_s):
   Bloque(x,y,w,h){
-    velX=0.0;
-    velY=0.0;
+    tiempoX=0.0;
+    tiempoY=0.0;
     velocidad=vel_s;
+    tiempoSalto=0.0;
     frameRight = 0;
     frameLeft = 0;
     frameQuiet = 0;
@@ -20,6 +21,7 @@ MovingBloque::MovingBloque(int x, int y, int w, int h,float vel_s):
     clipsMovimientos = new ClipGroup();
     //La direccion se setea en true cuando esta para la derecha.
     direccion = true;
+    jumping = false;
   }
 
 /*Setters*/
@@ -33,6 +35,9 @@ void MovingBloque::setRectangulo(string nombre, int x, int y, int w, int h){
   clipsMovimientos->addRectangulo(nombre,x,y,w,h);
 }
 
+bool MovingBloque::estaSaltando(){
+  return jumping;
+}
 void MovingBloque::printMap(){
   clipsMovimientos->printMap();
 }

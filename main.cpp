@@ -47,7 +47,7 @@ int main(int argc, char** argv){
 		*/
 
 		float velocidadHorizontal = 0.35;
-		float velocidadVertical = -0.8;
+		float velocidadVertical = -12.0;
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -67,6 +67,7 @@ int main(int argc, char** argv){
 						}
 						else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
 							switch( e.key.keysym.sym ){
+								case SDLK_SPACE: velY -= velocidadVertical; break;
 								case SDLK_LEFT: velX += velocidadHorizontal; break;
 								case SDLK_RIGHT: velX -= velocidadHorizontal; break;
 							}

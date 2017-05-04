@@ -9,10 +9,9 @@ using namespace std;
 
 class MovingBloque: public Bloque{
 protected:
-  float velocidad;
   int frameRight, frameLeft, frameQuiet,frameJumping;
-  float velX,velY;
-  bool direccion;
+  float velocidad,tiempoX,tiempoY, tiempoSalto;
+  bool direccion, jumping;
   ClipGroup* clipsMovimientos;
 
 public:
@@ -21,6 +20,7 @@ public:
   virtual void moveRight(float vel_x);
   virtual void moveLeft(float vel_x);
   virtual void jump(float,float);
+  bool estaSaltando();
 
   void setClip(string);
   void setRectangulo(string, int, int, int, int);

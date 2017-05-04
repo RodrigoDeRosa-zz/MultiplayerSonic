@@ -3,75 +3,95 @@
 #define ALTO_ESCENARIO 640
 #define CONTROL_MOVIMIENTO 0.001
 #define CONTROL_CAMINATA 1.0
+#define CONTROL_SALTO 1.0
+#define GRAVEDAD 0.5
+#define SALTO -12.0
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
 #define JUMPING_ANIMATION_FRAMES 5
 #define QUIET_ANIMATION_FRAMES 7
 
-#define CORRERD "correrDer"
-#define CORRERI "correrIzq"
-#define CAMINARD "caminarDer"
-#define CAMINARI "caminarIzq"
 #define QUIETOD "quietoDer"
 #define QUIETOI "quietoIzq"
+#define CAMINARD "caminarDer"
+#define CAMINARI "caminarIzq"
+#define CORRERD "correrDer"
+#define CORRERI "correrIzq"
+#define SALTARD "saltarDer"
+#define SALTARI "saltarIzq"
 #define FACTOR 12
 
 MovingSonic::MovingSonic(int x, int y, int w, int h, float vel_s):
   MovingBloque(x,y,w,h, vel_s){
   }
 
-void MovingSonic::jump(float vel_x,float vel_y){
-  //
-  // if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
-  //   frameQuiet=0;
-  // }
-  // if(direccion){
-  //   rectangle = clipsMovimientos->getRectangulo(QUIETOD,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
-  // }
-  // else{
-  //   rectangle = clipsMovimientos->getRectangulo(QUIETOI,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
-  // }
-  // frameQuiet++;
-  //
-  // originX += vel_x*frame;
-  // originY += vel_y*frame;
-  // vel_y+= gravedad*frame;
+void MovingSonic::setPosicionInicio(){
+  tiempoX = 0.0;
+  tiempoY = 0.0;
+  frameLeft=0;
+  frameRight=0;
+  frameJumping=0;
+
+  if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
+    frameQuiet=0;
+  }
+  //si esta apuntando para la derecha
+  if(direccion){
+    rectangle = clipsMovimientos->getRectangulo(QUIETOD,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
+  }
+  else{
+    rectangle = clipsMovimientos->getRectangulo(QUIETOI,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
+  }
+  frameQuiet++;
 }
 
-void MovingSonic::setPosicionInicio(){
-    velX = 0.0;
-    velY = 0.0;
-    frameLeft=0;
-    frameRight=0;
-    frameJumping=0;
+void MovingSonic::jump(float vel_x,float vel_y){
 
-    if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
-      frameQuiet=0;
-    }
-    //si esta apuntando para la derecha
-    if(direccion){
-      rectangle = clipsMovimientos->getRectangulo(QUIETOD,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
-    }
-    else{
-      rectangle = clipsMovimientos->getRectangulo(QUIETOI,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
-    }
-    frameQuiet++;
+  if( frameJumping / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+     frameJumping=0;
   }
+  if(tiempoY == 0 && not jumping){
+    tiempoY = SALTO;
+    jumping = true;
+    printf("SETEO LA VELOCIDAD\n" );
+  }
+  if(tiempoY >= 12.0 && jumping){
+    tiempoSalto = 0.0;
+    jumping = false;
+    printf("SETEO EL FRENADO\n");
+  }
+
+  float velH = 0;
+  if(vel_x>0){
+    velH = velocidad;
+  }
+  if(vel_x<0){
+    velH = velocidad*-1;
+  }
+
+  originX += velH * tiempoSalto;
+  originY += (tiempoY * tiempoSalto) - ((GRAVEDAD * tiempoSalto * tiempoSalto)/2);
+  tiempoY += (GRAVEDAD * tiempoSalto);
+  printf("velocidad en y %f posicion en y %f \n", tiempoY, originY);
+  tiempoSalto += CONTROL_MOVIMIENTO;
+  frameJumping ++;
+}
+
 
 void MovingSonic::moveRight(float vel_x){
 
     //Si la velocidad era menor a 0, se movia para la izquierda.
-    if(velX <= 0.0){
+    if(tiempoX <= 0.0){
       direccion = true;
       frameLeft = 0;
       frameQuiet=0;
-      velX = 0.0;
+      tiempoX = 0.0;
     }
     //Actualizamos el control de movimiento
-    velX += CONTROL_MOVIMIENTO;
+    tiempoX += CONTROL_MOVIMIENTO;
 
-    if (velX<CONTROL_CAMINATA){caminarDerecha();}
-    else if(velX>=CONTROL_CAMINATA){correrDerecha();}
+    if (tiempoX<CONTROL_CAMINATA){caminarDerecha();}
+    else if(tiempoX>=CONTROL_CAMINATA){correrDerecha();}
 
     //Actualizamos el frame
     frameRight++;
@@ -81,17 +101,17 @@ void MovingSonic::moveRight(float vel_x){
 
 void MovingSonic::moveLeft(float vel_x){
   //Si la velocidad era mayor a 0, se movia para la derecha
-  if(velX >= 0.0){
+  if(tiempoX >= 0.0){
     direccion = false;
     frameRight =0;
     frameQuiet=0;
-    velX = 0.0;
+    tiempoX = 0.0;
   }
   //Actualizamos el control de movimiento.
-  velX -= CONTROL_MOVIMIENTO;
+  tiempoX -= CONTROL_MOVIMIENTO;
 
-  if(velX > -CONTROL_CAMINATA){caminarIzquierda();}
-  else if(velX <= -CONTROL_CAMINATA){correrIzquierda();}
+  if(tiempoX > -CONTROL_CAMINATA){caminarIzquierda();}
+  else if(tiempoX <= -CONTROL_CAMINATA){correrIzquierda();}
 
   //actualizamos el frame
   frameLeft++;
