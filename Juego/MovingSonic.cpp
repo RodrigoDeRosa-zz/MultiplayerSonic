@@ -3,7 +3,7 @@
 #define ALTO_ESCENARIO 640
 #define CONTROL_MOVIMIENTO 0.001
 #define CONTROL_CAMINATA 1.0
-#define CONTROL_SALTO 1.0
+#define CONTROL_SALTO 0.0001
 #define GRAVEDAD 0.3
 #define SALTO -12.0
 #define WALKING_ANIMATION_FRAMES 14
@@ -48,7 +48,7 @@ void MovingSonic::setPosicionInicio(){
 
 void MovingSonic::jump(float vel_x,float vel_y){
 
-  if( frameJumping / (6*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+  if( frameJumping / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
      frameJumping=0;
   }
   if(tiempoY == 0 && not jumping){
@@ -69,7 +69,7 @@ void MovingSonic::jump(float vel_x,float vel_y){
   originX += velH * tiempoSalto;
   originY += (tiempoY * tiempoSalto);
   tiempoY += (GRAVEDAD * tiempoSalto);
-  rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(6*JUMPING_ANIMATION_FRAMES));
+  rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
   printf("velocidad en y %f posicion en y %f \n", tiempoY, originY);
   tiempoSalto += CONTROL_MOVIMIENTO;
   frameJumping ++;
