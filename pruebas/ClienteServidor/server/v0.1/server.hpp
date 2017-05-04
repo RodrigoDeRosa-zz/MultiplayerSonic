@@ -21,7 +21,7 @@ class Server{
         /*Pone el servidor en linea*/
         bool setOnline();
         /*Acepta una conexion entrante*/
-        bool acceptConnection();
+        void* acceptConnection(void*);
 };
 
 #endif /*SERVER_HPP*/
