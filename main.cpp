@@ -29,7 +29,7 @@ int main(int argc, char** argv){
 		//juego->addJugador("facu","Sonic");
 
 		SegaFactory* factory = new SegaFactory();
-		Sonic* sonic = factory -> getSonic("facu");
+		Sonic* sonic = factory -> getSonic("0");
 
     bool running = true;
     SDL_Event e;

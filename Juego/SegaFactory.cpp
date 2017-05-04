@@ -5,9 +5,6 @@
 using namespace std;
 
 SegaFactory::SegaFactory(){
-
-    idPers = 0;
-
     imagenes.push_back("Graficos/sonicSprites.png");
     imagenes.push_back("Graficos/sonicSpritesVioleta.png");
     imagenes.push_back("Graficos/sonicSpritesRojo.png");
@@ -23,7 +20,12 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       /*creacion de el bloque */
       MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000, 0.35);
       Texture* tex = new Texture();
-  		tex->loadFromFile(imagenes[idPers]);
+      int idJugador = atoi(nomJugador.c_str());
+      if(idJugador >= MAX_SPRITES){
+          //llamada al log, "nombre del jugador invalido"
+          idJugador = 0;
+      }
+  		tex->loadFromFile(imagenes[idJugador]);
   		bloque->setTexture(tex);
 
       sonic->setMovingBloque(bloque);
