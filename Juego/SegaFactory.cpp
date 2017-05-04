@@ -12,7 +12,7 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       Sonic* sonic = new Sonic(nomJugador);
       //todos los sprites con sus texturas se tendrian que crear en el json loader
       /*creacion de el bloque */
-      MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000, 1);
+      MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000, 0.35);
       Texture* tex = new Texture();
   		tex->loadFromFile("Graficos/sonicSprites.png");
   		bloque->setTexture(tex);
@@ -26,6 +26,24 @@ Sonic* SegaFactory::getSonic(string nomJugador){
 }
 
 void SegaFactory::initClips(MovingSonic* sonic){
+
+  sonic->setClip("quietoDer");
+  sonic->setRectangulo("quietoDer",0,1452,92,121);
+  sonic->setRectangulo("quietoDer",92,1452,97,121);
+  sonic->setRectangulo("quietoDer",189,1452,97,121);
+  sonic->setRectangulo("quietoDer",286,1452,91,121);
+  sonic->setRectangulo("quietoDer",377,1452,95,121);
+  sonic->setRectangulo("quietoDer",472,1452,95,121);
+  sonic->setRectangulo("quietoDer",567,1452,95,121);
+
+  sonic->setClip("quietoIzq");
+  sonic->setRectangulo("quietoIzq",0,1573,92,121);
+  sonic->setRectangulo("quietoIzq",94,1573,97,121);
+  sonic->setRectangulo("quietoIzq",191,1573,97,121);
+  sonic->setRectangulo("quietoIzq",288,1573,91,121);
+  sonic->setRectangulo("quietoIzq",379,1573,95,121);
+  sonic->setRectangulo("quietoIzq",474,1573,95,121);
+  sonic->setRectangulo("quietoIzq",569,1573,95,121);
 
   sonic->setClip("caminarDer");
   sonic->setRectangulo("caminarDer",0,726,111,121);
@@ -59,24 +77,6 @@ void SegaFactory::initClips(MovingSonic* sonic){
   sonic->setRectangulo("caminarIzq",1177,847,85,121);
   sonic->setRectangulo("caminarIzq",1262,847,90,121);
 
-  sonic->setClip("quietoDer");
-  sonic->setRectangulo("quietoDer",0,1452,92,121);
-  sonic->setRectangulo("quietoDer",92,1452,97,121);
-  sonic->setRectangulo("quietoDer",189,1452,97,121);
-  sonic->setRectangulo("quietoDer",286,1452,91,121);
-  sonic->setRectangulo("quietoDer",377,1452,95,121);
-  sonic->setRectangulo("quietoDer",472,1452,95,121);
-  sonic->setRectangulo("quietoDer",567,1452,95,121);
-
-  sonic->setClip("quietoIzq");
-  sonic->setRectangulo("quietoIzq",0,1573,92,121);
-  sonic->setRectangulo("quietoIzq",94,1573,97,121);
-  sonic->setRectangulo("quietoIzq",191,1573,97,121);
-  sonic->setRectangulo("quietoIzq",288,1573,91,121);
-  sonic->setRectangulo("quietoIzq",379,1573,95,121);
-  sonic->setRectangulo("quietoIzq",474,1573,95,121);
-  sonic->setRectangulo("quietoIzq",569,1573,95,121);
-
   sonic->setClip("correrDer");
   sonic->setRectangulo("correrDer",0,968,96,121);
   sonic->setRectangulo("correrDer",96,968,96,121);
@@ -96,4 +96,19 @@ void SegaFactory::initClips(MovingSonic* sonic){
   sonic->setRectangulo("correrIzq",480,1089,88,121);
   sonic->setRectangulo("correrIzq",568,1089,98,121);
   sonic->setRectangulo("correrIzq",666,1089,94,121);
+
+  sonic->setClip("saltarDer");
+  sonic->setRectangulo("saltarDer",0,1694,94,121);
+  sonic->setRectangulo("saltarDer",94,1694,91,121);
+  sonic->setRectangulo("saltarDer",185,1694,91,121);
+  sonic->setRectangulo("saltarDer",276,1694,91,121);
+  sonic->setRectangulo("saltarDer",367,1694,91,121);
+
+  sonic->setClip("saltarIzq");
+  sonic->setRectangulo("saltarIzq",0,1815,94,121);
+  sonic->setRectangulo("saltarIzq",94,1815,91,121);
+  sonic->setRectangulo("saltarIzq",185,1815,91,121);
+  sonic->setRectangulo("saltarIzq",276,1815,91,121);
+  sonic->setRectangulo("saltarIzq",367,1815,91,121);
+
 }

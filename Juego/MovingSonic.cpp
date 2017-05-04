@@ -5,7 +5,7 @@
 #define CONTROL_CAMINATA 1.0
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
-#define JUMPING_ANIMATION_FRAMES 6
+#define JUMPING_ANIMATION_FRAMES 5
 #define QUIET_ANIMATION_FRAMES 7
 
 #define CORRERD "correrDer"
@@ -16,7 +16,7 @@
 #define QUIETOI "quietoIzq"
 #define FACTOR 12
 
-MovingSonic::MovingSonic(int x, int y, int w, int h, int vel_s):
+MovingSonic::MovingSonic(int x, int y, int w, int h, float vel_s):
   MovingBloque(x,y,w,h, vel_s){
   }
 
@@ -70,8 +70,8 @@ void MovingSonic::moveRight(float vel_x){
     //Actualizamos el control de movimiento
     velX += CONTROL_MOVIMIENTO;
 
-    if (velX<CONTROL_CAMINATA){caminarDerecha(vel_x);}
-    else if(velX>=CONTROL_CAMINATA){correrDerecha(vel_x);}
+    if (velX<CONTROL_CAMINATA){caminarDerecha();}
+    else if(velX>=CONTROL_CAMINATA){correrDerecha();}
 
     //Actualizamos el frame
     frameRight++;
@@ -90,8 +90,8 @@ void MovingSonic::moveLeft(float vel_x){
   //Actualizamos el control de movimiento.
   velX -= CONTROL_MOVIMIENTO;
 
-  if(velX > -CONTROL_CAMINATA){caminarIzquierda(vel_x);}
-  else if(velX <= -CONTROL_CAMINATA){correrIzquierda(vel_x);}
+  if(velX > -CONTROL_CAMINATA){caminarIzquierda();}
+  else if(velX <= -CONTROL_CAMINATA){correrIzquierda();}
 
   //actualizamos el frame
   frameLeft++;
@@ -99,36 +99,36 @@ void MovingSonic::moveLeft(float vel_x){
   if( originX < 0 ){originX = 0;}
 }
 
-void MovingSonic::caminarDerecha(float vel_x){
+void MovingSonic::caminarDerecha(){
   if( frameRight / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
     frameRight=0;
   }
   rectangle = clipsMovimientos->getRectangulo(CAMINARD,frameRight/WALKING_ANIMATION_FRAMES);
-  originX += vel_x;
+  originX += velocidad;
 }
 
-void MovingSonic::caminarIzquierda(float vel_x){
+void MovingSonic::caminarIzquierda(){
   if( frameLeft / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
     frameLeft=0;
   }
   rectangle = clipsMovimientos->getRectangulo(CAMINARI,frameLeft/WALKING_ANIMATION_FRAMES);
-  originX += vel_x;
+  originX -= velocidad;
 }
 
-void MovingSonic::correrDerecha(float vel_x){
+void MovingSonic::correrDerecha(){
   if( frameRight / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
     frameRight=0;
   }
   rectangle = clipsMovimientos->getRectangulo(CORRERD,frameRight/RUNNING_ANIMATION_FRAMES);
-  vel_x += 0.70;
-  originX += vel_x;
+  float vel = velocidad + 0.70;
+  originX += vel;
 }
 
-void MovingSonic::correrIzquierda(float vel_x){
+void MovingSonic::correrIzquierda(){
   if( frameLeft / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
     frameLeft=0;
   }
   rectangle = clipsMovimientos->getRectangulo(CORRERI,frameLeft/RUNNING_ANIMATION_FRAMES);
-  vel_x -= 0.7;
-  originX += vel_x;
+  float vel = (velocidad*-1) - 0.7;
+  originX += vel;
 }

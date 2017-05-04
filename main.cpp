@@ -36,6 +36,16 @@ int main(int argc, char** argv){
 
 		float velX = 0.0;
 		float velY = 0.0;
+
+		/*Estas son variables que se le pasan a los personajes,
+		pero dentro de cada personaje sabe con que velocidad se tiene
+		que mover. esta velocidad no es con la que se va a mover el
+		jugador, sirve para saber para que lado se esta moviendo.
+
+		---- velX > 0 implica que se mueve para la derecha.
+		---- velY > 0 implica que salto.
+		*/
+
 		float velocidadHorizontal = 0.35;
 		float velocidadVertical = -0.8;
     while(running){

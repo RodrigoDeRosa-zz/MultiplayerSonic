@@ -8,7 +8,7 @@ void MovingBloque::moveRight(float vel_x){}
 void MovingBloque::moveLeft(float vel_x){}
 void MovingBloque::jump(float,float){}
 
-MovingBloque::MovingBloque(int x, int y, int w, int h,int vel_s):
+MovingBloque::MovingBloque(int x, int y, int w, int h,float vel_s):
   Bloque(x,y,w,h){
     velX=0.0;
     velY=0.0;

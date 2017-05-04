@@ -9,13 +9,14 @@ using namespace std;
 
 class MovingBloque: public Bloque{
 protected:
-  int velocidad, frameRight, frameLeft, frameQuiet,frameJumping;
+  float velocidad;
+  int frameRight, frameLeft, frameQuiet,frameJumping;
   float velX,velY;
   bool direccion;
   ClipGroup* clipsMovimientos;
 
 public:
-  MovingBloque(int x, int y, int w, int h, int vel_s);
+  MovingBloque(int x, int y, int w, int h, float vel_s);
   void render(Camara* camara);
   virtual void moveRight(float vel_x);
   virtual void moveLeft(float vel_x);
