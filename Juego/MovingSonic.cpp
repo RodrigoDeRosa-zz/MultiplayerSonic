@@ -48,7 +48,7 @@ void MovingSonic::setPosicionInicio(){
 
 void MovingSonic::jump(float vel_x,float vel_y){
 
-  if( frameJumping / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+  if( frameJumping / (8*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
      frameJumping=0;
   }
   if(tiempoY == 0 && not jumping){
@@ -57,6 +57,7 @@ void MovingSonic::jump(float vel_x,float vel_y){
     printf("SETEO LA VELOCIDAD\n" );
   }
 
+  //velH cambiarlo por vel_X
   float velH = 0;
   if(vel_x>0){
     velH = 3.0;
@@ -68,7 +69,7 @@ void MovingSonic::jump(float vel_x,float vel_y){
   originX += velH * tiempoSalto;
   originY += (tiempoY * tiempoSalto);
   tiempoY += (GRAVEDAD * tiempoSalto);
-  rectangle = clipsMovimientos->getRectangulo(SALTARD,(3*frameJumping)/(2*JUMPING_ANIMATION_FRAMES));
+  rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(8*JUMPING_ANIMATION_FRAMES));
   printf("velocidad en y %f posicion en y %f \n", tiempoY, originY);
   tiempoSalto += CONTROL_MOVIMIENTO;
   frameJumping ++;
