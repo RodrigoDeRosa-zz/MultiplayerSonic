@@ -1,11 +1,20 @@
 #include "SegaFactory.hpp"
+
 #define SONIC "Sonic"
+#define MAX_SPRITES 7
 using namespace std;
 
 SegaFactory::SegaFactory(){
-    /*mas adelante si esta la opcion de que alla mas de un Sonic
-    se pueden cargar todas las texturas y sprites en la creacion
-    de la factory*/
+
+    idPers = 0;
+
+    imagenes.push_back("Graficos/sonicSprites.png");
+    imagenes.push_back("Graficos/sonicSpritesVioleta.png");
+    imagenes.push_back("Graficos/sonicSpritesRojo.png");
+    imagenes.push_back("Graficos/sonicSpritesDorado.png");
+    imagenes.push_back("Graficos/sonicSpritesRosa.png");
+    imagenes.push_back("Graficos/sonicSpritesCian.png");
+    imagenes.push_back("Graficos/sonicSpritesNaranja.png");
 }
 
 Sonic* SegaFactory::getSonic(string nomJugador){
@@ -14,14 +23,17 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       /*creacion de el bloque */
       MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000, 0.35);
       Texture* tex = new Texture();
-  		tex->loadFromFile("Graficos/sonicSprites.png");
-      tex->setKeyColor(255,152,199);
-      tex->setColorMod();
+  		tex->loadFromFile(imagenes[idPers]);
   		bloque->setTexture(tex);
 
       sonic->setMovingBloque(bloque);
 
       initClips(bloque);
+
+      idPers++;
+      if(idPers >= MAX_SPRITES){
+          idPers = 0;
+      }
 
       return sonic;
 }

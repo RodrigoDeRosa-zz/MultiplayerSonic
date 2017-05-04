@@ -106,6 +106,7 @@ void Texture::renderWithMovement(int x, int y, SDL_Rect* clip){
             Renderer::getInstance().fillRect(&fillRect);
         } else renderQuad.w = clip->w;
         if (height < clip->h){
+
             SDL_Rect fillRect = {x, y + clip->h, clip->w, height - clip->h};
             Renderer::getInstance().fillRect(&fillRect);
         } else renderQuad.h = clip->h;
