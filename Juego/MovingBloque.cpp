@@ -8,11 +8,10 @@ void MovingBloque::moveRight(float vel_x){}
 void MovingBloque::moveLeft(float vel_x){}
 void MovingBloque::jump(float,float){}
 
-MovingBloque::MovingBloque(int x, int y, int w, int h,float vel_s):
+MovingBloque::MovingBloque(int x, int y, int w, int h):
   Bloque(x,y,w,h){
     tiempoX=0.0;
     tiempoY=0.0;
-    velocidad=vel_s;
     tiempoSalto=0.0;
     frameRight = 0;
     frameLeft = 0;

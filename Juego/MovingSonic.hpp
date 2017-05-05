@@ -8,7 +8,7 @@ using namespace std;
 class MovingSonic: public MovingBloque{
 
   public:
-    MovingSonic(int x, int y, int w, int h, float vel_s);
+    MovingSonic(int x, int y, int w, int h);
     /*Funciones de movimiento */
     void moveLeft(float);
     void moveRight(float);
@@ -18,8 +18,9 @@ class MovingSonic: public MovingBloque{
     void caminarIzquierda();
     void correrDerecha();
     void correrIzquierda();
+    void jumpDerecha(float*);
+    void jumpIzquierda(float*);
 
-    void moveLeft(int, int, float ,int);
     void setPosicionInicio();
 
 };

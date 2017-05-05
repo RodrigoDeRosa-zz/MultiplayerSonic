@@ -15,7 +15,7 @@ protected:
   ClipGroup* clipsMovimientos;
 
 public:
-  MovingBloque(int x, int y, int w, int h, float vel_s);
+  MovingBloque(int x, int y, int w, int h);
   void render(Camara* camara);
   virtual void moveRight(float vel_x);
   virtual void moveLeft(float vel_x);
