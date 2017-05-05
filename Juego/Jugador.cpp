@@ -10,6 +10,12 @@ void Jugador::updatePersonaje(float velx, float vely, float posx, float posy, fl
   if(personaje == NULL){
     //LOGGER
   }
+  if(conectado == false){
+      personaje->grisearBolque();
+  }
+  else{
+      personaje->desGrisearBolque();
+  }
   personaje->update(velx, vely);
 }
 

@@ -25,7 +25,6 @@ Sonic* SegaFactory::getSonic(string nomJugador){
           //llamada al log, "nombre del jugador invalido"
           idJugador = 0;
       }
-      printf("que esta pasando perro?\n");
   		tex->loadFromFile(imagenes[idJugador]);
   		bloque->setTexture(tex);
 

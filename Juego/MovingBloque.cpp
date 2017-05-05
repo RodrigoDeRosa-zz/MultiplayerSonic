@@ -41,6 +41,16 @@ void MovingBloque::printMap(){
   clipsMovimientos->printMap();
 }
 
+void MovingBloque::grisearTexture(){
+  texture->setKeyColor(30, 30, 30);
+  texture->setColorMod();
+}
+
+void MovingBloque::desGrisearTexture(){
+  texture->setKeyColor(255, 255, 255);
+  texture->setColorMod();
+}
+
 void MovingBloque::render(Camara* cam){
   //Si no tiene textura cargada, pinta con el color de fondo.
   int auxX = originX - cam->getX();

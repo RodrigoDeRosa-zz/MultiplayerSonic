@@ -26,6 +26,9 @@ public:
   void setRectangulo(string, int, int, int, int);
   void printMap();
 
+  void grisearTexture();
+  void desGrisearTexture();
+
   virtual void setPosicionInicio();
 };
 #endif /*MOVINGBLOQUE_HPP*/

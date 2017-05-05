@@ -27,10 +27,10 @@ int main(int argc, char** argv){
 		juego->setCamara(camara_pantalla);
 		Jugadores* jugs = new Jugadores();
 		juego->setJugadores(jugs);
-		//string a = "2";
-		//juego->addJugador(a,"Sonic");
-		SegaFactory* factory = new SegaFactory();
-		Sonic* sonic = factory -> getSonic("1");
+		juego->setFactory();
+		juego->addJugador("1","Sonic");
+		// SegaFactory* factory = new SegaFactory();
+		// Sonic* sonic = factory -> getSonic("1");
 
     bool running = true;
     SDL_Event e;
@@ -75,7 +75,7 @@ int main(int argc, char** argv){
 						}
         }
 
-				sonic->update(velX,velY);
+				juego->updateJugador("1", velX, velY, 0, 0, true);
 				//printf("Velocidad sin dividir:%f \n",velX);
 
 				//se le envia un string que dice que movimiento va a realizar
@@ -90,7 +90,6 @@ int main(int argc, char** argv){
 
         Renderer::getInstance().clear();
 				juego->render();
-				sonic->render(camara_pantalla);
         //camara_pantalla->render();
         Renderer::getInstance().draw();
     }

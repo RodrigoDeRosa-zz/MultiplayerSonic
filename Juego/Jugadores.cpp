@@ -14,12 +14,10 @@ Jugadores::Jugadores(){}
 bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug){
     Sonic* newPersonaje;
     newPersonaje = factory -> getSonic(nombreJugador);
-    printf("que onda amiwo?\n");
     if( newPersonaje){
 
     // bool exito= factory->getPersonaje(nombrePersonaje,nombreJugador, newPersonaje);
     // if(exito){
-      printf("GAY\n" );
       jug->setPersonaje(newPersonaje);
       jugadores[nombreJugador]=jug;
       return true;

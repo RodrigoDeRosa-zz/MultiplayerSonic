@@ -26,6 +26,8 @@ class Personaje{
     int getX();
     int getY();
     void printMap();
+    void grisearBolque();
+    void desGrisearBolque();
     /*setters*/
     void setMovingBloque(MovingBloque*);
     void setClip(string);

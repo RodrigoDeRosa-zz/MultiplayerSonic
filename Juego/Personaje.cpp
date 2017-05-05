@@ -62,6 +62,14 @@ void Personaje::jump(float vel_x, float vel_y){
   bloque_pers->jump(vel_x,vel_y);
 }
 
+void Personaje::grisearBolque(){
+  bloque_pers->grisearTexture();
+}
+
+void Personaje::desGrisearBolque(){
+  bloque_pers->desGrisearTexture();
+}
+
 bool Personaje::operator==(Personaje& other) const{
     return (nombreJugador == other.getNombreJugador());
 }
