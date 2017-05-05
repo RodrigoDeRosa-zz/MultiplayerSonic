@@ -93,6 +93,9 @@ void MovingSonic::jump(float vel_x,float vel_y){
 void MovingSonic::jumpDerecha(float* velH){
     direccion = true;
     *velH = VELOCIDAD*5;
+    if(tiempoX >= CONTROL_CAMINATA){
+      *velH += RUN*2;
+    }
     //rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
     if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 }
@@ -100,6 +103,9 @@ void MovingSonic::jumpDerecha(float* velH){
 void MovingSonic::jumpIzquierda(float* velH){
   direccion = false;
   *velH = VELOCIDAD*(-5);
+  if(tiempoX <= -CONTROL_CAMINATA){
+    *velH -= RUN*2;
+  }
   //rectangle = clipsMovimientos->getRectangulo(SALTARI,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
   if( originX < 0 ){originX = 0;}
 }
