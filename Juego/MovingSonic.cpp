@@ -75,7 +75,7 @@ void MovingSonic::jump(float vel_x,float vel_y){
   if(not direccion){rectangle = clipsMovimientos->getRectangulo(SALTARI,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));}
 
   originX += 3*(velH * tiempoSalto);
-  originY += (1.5)*(tiempoY * tiempoSalto);
+  originY += 2*(tiempoY * tiempoSalto);
   tiempoY += (GRAVEDAD * tiempoSalto);
 
   tiempoSalto += CONTROL_MOVIMIENTO;

@@ -21,7 +21,7 @@ class Juego{
     Juego();
     void setJugadores(Jugadores*);
     void setStage(Stage* stage);
-    bool addJugador(string nombreJugador, string nombrePersonaje);
+    bool addJugador(string , string );
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
     void render();
     void setFactory();
