@@ -6,6 +6,8 @@
 #include "Jugadores.hpp"
 #include <iostream>
 #include <string>
+#include <map>
+#include <vector>
 
 /*El Juego tiene como atributos al Stage y a los Jugadores y es el responsable de relacionarlos para calcular
   colisiones entre ellos, entre otras cosas.
@@ -24,6 +26,9 @@ class Juego{
     void render();
     void setFactory();
     void setCamara(Camara* cam);
+
+    void updateJugadores(map <string, vector <int>>);
+    void updateJugador(string, int, int, int, int, int);
     ~Juego();
 };
 

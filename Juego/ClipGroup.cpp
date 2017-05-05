@@ -16,7 +16,6 @@ void ClipGroup::addRectangulo(string nombre,int x, int y, int w, int h){
 void ClipGroup::printMap(){
 
   for (map<string,Clip*>::iterator it=clips.begin(); it!=clips.end(); ++it){
-    printf("%s",it->first.c_str());
     Clip* clip= it->second;
     clip->printClip();
   }
