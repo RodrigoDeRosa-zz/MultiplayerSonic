@@ -12,13 +12,14 @@ using namespace std;
 Jugadores::Jugadores(){}
 
 bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* jug){
-
     Sonic* newPersonaje;
     newPersonaje = factory -> getSonic(nombreJugador);
+    printf("que onda amiwo?\n");
     if( newPersonaje){
 
     // bool exito= factory->getPersonaje(nombrePersonaje,nombreJugador, newPersonaje);
     // if(exito){
+      printf("GAY\n" );
       jug->setPersonaje(newPersonaje);
       jugadores[nombreJugador]=jug;
       return true;
@@ -27,17 +28,7 @@ bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* 
 
 }
 
-void Jugadores::updateJugador(string id, float velx, float vely, float posx, float posy, float conectado){
-
-    if(not has(id)){
-      //logger
-    }
-    Jugador* actual = jugadores[id];
-    actual->updatePersonaje(velx,vely,posx,posy,conectado);
-
-}
 bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
-
     Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
     bool exito = false;
     //como c++ no deja hacer switch con strings hacemos ifs.
@@ -45,6 +36,16 @@ bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
       exito = addSonic(nombreJugador, nombrePersonaje, jug);
     }
     return exito;
+}
+
+void Jugadores::updateJugador(string id, float velx, float vely, float posx, float posy, float conectado){
+
+  if(not has(id)){
+    //logger
+  }
+  Jugador* actual = jugadores[id];
+  actual->updatePersonaje(velx,vely,posx,posy,conectado);
+
 }
 
 bool Jugadores::remove(string nombreJugador){

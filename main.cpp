@@ -10,6 +10,7 @@
 #include "Juego/Sonic.hpp"
 #include "Logger2.hpp"
 #include <SDL2/SDL.h>
+#include <string>
 
 
 int main(int argc, char** argv){
@@ -26,10 +27,10 @@ int main(int argc, char** argv){
 		juego->setCamara(camara_pantalla);
 		Jugadores* jugs = new Jugadores();
 		juego->setJugadores(jugs);
-		//juego->addJugador("facu","Sonic");
-
+		//string a = "2";
+		//juego->addJugador(a,"Sonic");
 		SegaFactory* factory = new SegaFactory();
-		Sonic* sonic = factory -> getSonic("0");
+		Sonic* sonic = factory -> getSonic("1");
 
     bool running = true;
     SDL_Event e;
@@ -74,11 +75,12 @@ int main(int argc, char** argv){
 						}
         }
 
+				sonic->update(velX,velY);
 				//printf("Velocidad sin dividir:%f \n",velX);
 
 				//se le envia un string que dice que movimiento va a realizar
 
-				sonic->update(velX,velY);
+				//juego->updateJugador("0",velX,velY,0,0,0);
         //camara_pantalla->moveApuntado();
 				//calcular mov camara con todos los personajes
 				//camara_pantalla->moveCamara();

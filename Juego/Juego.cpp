@@ -29,6 +29,10 @@ void Juego::updateJugador(string id, float velx, float vely, float posx, float p
   jugadores->updateJugador(id, velx, vely, posx,posy,conectado);
 }
 
+bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
+  return jugadores->addJugador(nombreJugador,nombrePersonaje);
+}
+
 /*VISTA*/
 void Juego::setStage(Stage* new_stage){
     stage = new_stage;
@@ -47,10 +51,6 @@ void Juego::render(){
     stage->render(camara);
     //camara->render();
     jugadores->render(camara);
-}
-
-bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
-    return jugadores->addJugador(nombreJugador,nombrePersonaje);
 }
 
 void Juego::setFactory(){
