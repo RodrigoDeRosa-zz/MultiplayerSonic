@@ -6,6 +6,13 @@ Jugador::Jugador(string nomJugador, string nomPersonaje){
     personaje = NULL;
 }
 
+void Jugador::updatePersonaje(float velx, float vely, float posx, float posy, float conectado){
+  if(personaje == NULL){
+    //LOGGER
+  }
+  personaje->update(velx, vely);
+}
+
 void Jugador::setPersonaje(Personaje* new_personaje){
     personaje = new_personaje;
 }

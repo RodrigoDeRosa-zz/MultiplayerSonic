@@ -27,6 +27,15 @@ bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* 
 
 }
 
+void Jugadores::updateJugador(string id, float velx, float vely, float posx, float posy, float conectado){
+
+    if(not has(id)){
+      //logger
+    }
+    Jugador* actual = jugadores[id];
+    actual->updatePersonaje(velx,vely,posx,posy,conectado);
+
+}
 bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
 
     Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
