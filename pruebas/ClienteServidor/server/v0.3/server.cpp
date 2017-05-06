@@ -17,6 +17,7 @@ using namespace std;
 
 #define BACKLOG 10
 
+#define USLEEP_EVENTHANDLING 1000	//[useg]
 void* eventHandling(void* arg){
     /*Mientras el servidor esta conectado, busca eventos para procesar*/
     while(Server::getInstance().isOnline()){
@@ -32,6 +33,7 @@ void* eventHandling(void* arg){
         */
         char* outEvent = Server::getInstance().getOutEvent();
         if (outEvent) CXManager::getInstance().queueOutEvent(outEvent);
+		else usleep(USLEEP_EVENTHANDLING);
     }
 
     return NULL;
@@ -128,10 +130,10 @@ void Server::queueInEvent(char* event){
 	pthread_mutex_unlock(&inEventsMux);
     //TODO: Pasar evento al juego para que haga algo con el.
     //Por ahora solo avisamos que llego mandando un string.
-    char* string = "Message received!";
+	/*char* str = "Message received!";
 	pthread_mutex_lock(&outEventsMux);
-    outEvents.push_back(string);
-	pthread_mutex_unlock(&outEventsMux);
+    outEvents.push_back(str);
+	pthread_mutex_unlock(&outEventsMux);*/
 }
 
 void Server::queueOutEvent(char* event){

@@ -7,9 +7,11 @@
 #include <string.h>
 
 #define COMMAND_LENGTH 15
+#define MESSAGE_LENGTH 40
 #define CONNECT "connect"
 #define DISCONNECT "disconnect"
 #define EXIT "exit"
+#define INPUT "message"
 
 void* printReceived(void *arg){
     Client* client = (Client*) arg;
@@ -64,6 +66,7 @@ int main(int argc, char** argv){
     printf("Insert a command: ");
     while(running){
         char command[COMMAND_LENGTH];
+		char message[MESSAGE_LENGTH];
         fgets(command, COMMAND_LENGTH, stdin);
         strtok(command, "\n");
 
@@ -78,7 +81,11 @@ int main(int argc, char** argv){
             self->disconnect(0);
             pthread_join(game, &exit_status);
             running = false;
-        }
+        } else if (!strcmp(command, INPUT)){
+			printf("Write message to send: ");
+			fgets(message, MESSAGE_LENGTH, stdin);
+			self->queueToSend(message);
+		}
     }
 
     /*Destruye el objeto cliente*/

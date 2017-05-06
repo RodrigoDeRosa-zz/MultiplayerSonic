@@ -11,6 +11,9 @@
 #define PORT "8080"
 #define MAX_CONN 10
 
+
+#define PIJA 1
+
 void* accept(void* arg){
     int MAX_CONNECTIONS = CXM().maxConnections;
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
@@ -71,6 +74,31 @@ int main(int argc, char** argv){
     pthread_create(&acceptT, NULL, accept, NULL);
     pthread_create(&eventDistrT, NULL, eventDistribution, NULL);
     /*Se espera a que finalicen los threads*/
+/**/	
+	while(!SERVER().isOnline()){	//POR LAS DUDAS QUE NO ESTUVIERA ONLINE
+		sleep(PIJA);
+	}
+	char* ev;
+	char* state;
+	char id[]="1";
+
+	//QUILOMBO 	
+	Server** sv = SERVER();
+/*	while((*sv).isOnline()){	//GAME DUMMY
+		ev=(*sv).getInEvent();
+		state=ev;	//cambiar esto por id+ev
+		(*sv).queueOutEvent(state);
+	}
+	//end:QUILOMBO
+*/
+	bool isOnl = true;
+	while (isOnl){
+		ev = sv.getInEvent();
+		state = ev;//procesamiento del juego
+		sv.queueOutEvent(state);
+		isOnl=sv.isOnline();
+	}
+
     void* exit_status;
     pthread_join(acceptT, &exit_status);
     pthread_join(eventDistrT, &exit_status);

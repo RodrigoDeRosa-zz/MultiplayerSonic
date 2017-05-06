@@ -20,6 +20,7 @@ void* read(void* arg){
             break;
         }
         if (!strcmp(message, "")) continue;
+		if (!strcmp(strtok(message, "\n"), "ping")) continue;
         printf("message: %s\n", message);
         CXManager::getInstance().queueInEvent(message);
     }

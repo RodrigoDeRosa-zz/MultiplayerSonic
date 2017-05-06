@@ -8,6 +8,7 @@ using namespace std;
 
 #define MAXDATASIZE 100
 
+#define SLEEP_T 800000	//.8 seg
 pthread_mutex_t socketLock;
 
 typedef struct thread{
@@ -22,7 +23,7 @@ void* ping(void* arg){
     char* message = "ping";
 
     while(client->connected()){
-        usleep(500000);
+        usleep(SLEEP_T);
         /*Mutex por las dudas que pisar sends haga lio.*/
         pthread_mutex_lock(&socketLock);
         bool status = client->send(message, strlen(message));
