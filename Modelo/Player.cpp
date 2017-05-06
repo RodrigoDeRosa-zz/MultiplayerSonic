@@ -15,6 +15,7 @@ Player::Player(string name){
 	this->eventCounterY = 0;
 	this->eventCounterJump = 0;
 	this->jumping = false;
+	this->connected = true;
 }
 
 string Player::getName(){
@@ -100,5 +101,13 @@ void Player::jumpRight(float* velH){
       *velH += RUNNING_VELOCITY*2;
     }
     //chequear no pasarse del escenario
+}
+
+bool Player::isConnected(){
+    return this->connected;
+}
+
+void Player::setConnected(bool connected){
+    this->connected = connected;
 }
 

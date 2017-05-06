@@ -11,6 +11,7 @@ class Player{
 	int eventCounterY;
 	int eventCounterJump;
 	bool jumping;
+	bool connected;
 	void moveX(float dirX);
 	void jumpLeft(float* velH);
 	void jumpRight(float* velH);
@@ -24,4 +25,6 @@ class Player{
 		void stop();
 		void updateXY(float dirX, float dirY);
 		void jump(float dirX);
+		bool isConnected();
+		void setConnected(bool connected);
 };

@@ -39,7 +39,19 @@ vector<float> Model::getPlayerPosition(string playerName){
 
 bool Model::playerInPosition(float position){
 	for(int i = 0; i < players->size(); i++){
+		if(!((*players)[i]->isConnected())) continue;
 		if((*players)[i]->getX() == position) return true;
 	}
 	return false;
+}
+
+void Model::moveDisconnectedPlayers(float position){
+	for(int i = 0; i < players->size(); i++){
+		if(!((*players)[i]->isConnected())) (*players)[i]->setX(position);
+	}
+}
+
+void Model::setPlayerConnection(string playerName, bool connection){
+	Player* player = this->getPlayer(playerName);
+	player->setConnected(connection);
 }

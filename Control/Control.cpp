@@ -21,7 +21,8 @@ vector<float> Control::handleEvent(string playerName, SDL_Event e){
 		directions[0] = 0;
 		directions[1] = 0;
 	}
-	//mandar directions y cameraPosition a la vista
+	else this->model->moveDisconnectedPlayers(this->getDisconnectedPlayersNewPosition(directions[0]));
+	//mandar directions posicion desconectados y cameraPosition a la vista
 	 //la funcion va a ser void pero queda para probar
 	return directions;
 }
@@ -61,5 +62,10 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 		return false;
 	}
 	return true;
+}
+
+float Control::getDisconnectedPlayersNewPosition(float dirX){
+	if (dirX > 0) return this->cameraControl->getLeftEdge();
+	return this->cameraControl->getRightEdge();
 }
 

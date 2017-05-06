@@ -15,4 +15,5 @@ class Control{
 		void addPlayer(string playerName);
 		bool moveCamera(float newPlayerX);
 		bool moveCameraAndPlayer(string playerName, vector<float> directions);
+		float getDisconnectedPlayersNewPosition(float dirX);
 };
