@@ -10,7 +10,7 @@
 
 class Bloque: public Sprite {
 public:
-	Bloque(int x, int y, int w, int h);
+	Bloque(float x, float y, int w, int h);
 };
 
 #endif

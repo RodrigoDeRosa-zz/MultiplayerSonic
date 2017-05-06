@@ -1,6 +1,6 @@
 #include "Camara.hpp"
 #define AVANCE 10
-Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es){
+Camara::Camara(float posX_c,float posY_c, float vel_c, float ancho_c, float alto_c, float ancho_es, float alto_es){
 	vel= vel_c;
 	velX= 0;
 	velY= 0;
@@ -11,7 +11,7 @@ Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 	cam = {posX_c,posY_c,ancho_c,alto_c};
 }
 
-void Camara::setPosicion(int posx, int posy){
+void Camara::setPosicion(float posx, float posy){
 	cam.x = posx;
 	cam.y = posy;
 }
@@ -48,11 +48,11 @@ SDL_Rect Camara::getCamara(){
 	return cam;
 }
 
-int Camara::getX(){
+float Camara::getX(){
 	return cam.x;
 }
 
-int Camara::getY(){
+float Camara::getY(){
 	return cam.y;
 }
 

@@ -52,7 +52,6 @@ int main(int argc, char** argv){
 		control->addPlayer("1");
 		float cameraPosition;
 		vector<float> directions;
-
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -63,17 +62,15 @@ int main(int argc, char** argv){
 						SERVER, ES UN EJEMPLO DE COMO LO TIENE QUE HACER*/
 
             //sonic->setEventMovimiento(e);
-						directions = control->getDirections(e,velX,velY);
-						velX = directions[0];
-						velY = directions[1];
-						cameraPosition = control->getCameraPosition();
-						}
-
-				control->moveCameraAndPlayer("1",directions);
-
-
+							directions = control->getDirections(e,velX,velY);
+							velX = directions[0];
+							velY = directions[1];
+					}
+					control->moveCameraAndPlayer("1",directions);
+					cameraPosition = control->getCameraPosition();
 				juego->updateJugador("1", velX, velY, 0, 0, true);
 				juego->updateCamara(cameraPosition,0);
+
 				//printf("Velocidad sin dividir:%f \n",velX);
 
 				//se le envia un string que dice que movimiento va a realizar

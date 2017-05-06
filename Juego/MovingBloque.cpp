@@ -8,7 +8,7 @@ void MovingBloque::moveRight(float vel_x){}
 void MovingBloque::moveLeft(float vel_x){}
 void MovingBloque::jump(float,float){}
 
-MovingBloque::MovingBloque(int x, int y, int w, int h):
+MovingBloque::MovingBloque(float x, float y, int w, int h):
   Bloque(x,y,w,h){
     tiempoX=0.0;
     tiempoY=0.0;
@@ -30,7 +30,7 @@ void MovingBloque::setClip(string nombre){
   clipsMovimientos->addClip(nombre);
 }
 
-void MovingBloque::setRectangulo(string nombre, int x, int y, int w, int h){
+void MovingBloque::setRectangulo(string nombre, float x, float y, int w, int h){
   clipsMovimientos->addRectangulo(nombre,x,y,w,h);
 }
 
@@ -53,14 +53,14 @@ void MovingBloque::desGrisearTexture(){
 
 void MovingBloque::render(Camara* cam){
   //Si no tiene textura cargada, pinta con el color de fondo.
-  int auxX = originX - cam->getX();
-  int auxY = originY - cam->getY();
+  float auxX = originX - cam->getX();
+  float auxY = originY - cam->getY();
   Renderer::getInstance().setDrawColor(red, green, blue, 1);
 
   if(texture) texture->renderWithMovement(auxX, auxY, &rectangle);
       else{
-        int aux1 = rectangle.x;
-        int aux2 = rectangle.y;
+        float aux1 = rectangle.x;
+        float aux2 = rectangle.y;
 
           rectangle.x -= cam->getX();
           rectangle.y -= cam->getY();

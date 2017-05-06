@@ -5,6 +5,6 @@
 #include "Renderer.hpp"
 #include "Bloque.hpp"
 
-Bloque::Bloque(int x, int y, int w, int h)
+Bloque::Bloque(float x, float y, int w, int h)
 : Sprite(x, y, w, h){
 }

@@ -15,7 +15,7 @@ protected:
   ClipGroup* clipsMovimientos;
 
 public:
-  MovingBloque(int x, int y, int w, int h);
+  MovingBloque(float x, float y, int w, int h);
   void render(Camara* camara);
   virtual void moveRight(float vel_x);
   virtual void moveLeft(float vel_x);
@@ -23,7 +23,7 @@ public:
   bool estaSaltando();
 
   void setClip(string);
-  void setRectangulo(string, int, int, int, int);
+  void setRectangulo(string, float, float, int, int);
   void printMap();
 
   void grisearTexture();

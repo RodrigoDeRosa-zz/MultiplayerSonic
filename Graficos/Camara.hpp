@@ -12,28 +12,28 @@ private:
 	//camara
 	SDL_Rect cam;
 	//Velocidad fija en la que se mueve la camara
-	int vel;
+	float vel;
 	//Velocidades para manejar el movimiento de la camara
-	int velX;
-	int velY;
+	float velX;
+	float velY;
 	//Dimensiones de la camara
-	int ancho;
-	int alto;
+	float ancho;
+	float alto;
 	//Dimensiones del escenario
-	int ancho_escenario;
-	int alto_escenario;
+	float ancho_escenario;
+	float alto_escenario;
 	//Sprite al que sigue la camara
 	Apuntado* apuntado;
 
 public:
-	Camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
+	Camara(float posX_c,float posY_c,float vel_c, float ancho_c, float alto_c, float ancho_es, float alto_es);
 	void moveCamara(bool);
-	void setPosicion(int, int);
+	void setPosicion(float, float);
 
 	/*getters*/
 	SDL_Rect getCamara();
-	int getX();
-	int getY();
+	float getX();
+	float getY();
 
 	void render();
 

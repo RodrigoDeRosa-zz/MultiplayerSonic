@@ -1,5 +1,7 @@
 #include "CameraControl.hpp"
 #include <stdio.h>
+#define MARGIN_FACTOR 0.25
+#define CHARACTER_WIDTH 118
 
 CameraControl::CameraControl(float width){
 	this->width = width;
@@ -10,37 +12,35 @@ CameraControl::CameraControl(float width){
 }
 
 float CameraControl::getLeftEdge(){
-	return this->position;
+	return this->position + width*MARGIN_FACTOR;
 }
 
 float CameraControl::getRightEdge(){
-	return this->position + width;
+	return this->position + width*(1-MARGIN_FACTOR);
 }
 
 float CameraControl::getPosition(){
 	return this->position;
 }
 
-bool CameraControl::validNewPosition(float newPosition, Model* model){
-	//la camara se mueve para la derecha pero hay alguien en el limite izquierdo
-	if((newPosition < 0) && (model->playerInPosition(this->getLeftEdge()))){
-		return false;
-	}
-	//la camara se mueve para la izquierda pero hay alguien en el limite derecho
-	else if((newPosition < this->getLeftEdge()) && (model->playerInPosition(this->getRightEdge()))){
-		return false;
-	}
+bool CameraControl::moveCameraLeft(float newPosition,Model* model){
+	if(model->playerInPosition(this->getRightEdge())) return false;
+	this->position = newPosition-(this->width*MARGIN_FACTOR);
+	if(this->position < 0) this->position = 0;
+	return true;
+}
+
+bool CameraControl::moveCameraRight(float newPosition,Model* model){
+	if(model->playerInPosition(this->getLeftEdge())) return false;
+	this->position = newPosition-(this->width*(1-MARGIN_FACTOR));
 	return true;
 }
 
 bool CameraControl::moveCamera(float newPosition,Model* model){
-	newPosition = this->getRightEdge() - newPosition;
+	//printf("camera: %f\n player:%f \n\n", this->position,newPosition);
 	if((newPosition <= this->getRightEdge()) && (newPosition >= this->getLeftEdge())){
 		return true;
 	}
-	if(this->validNewPosition(newPosition,model)){
-		this->position -= newPosition;
-		return true;
-	}
-	return false;
+	if(newPosition < this->getLeftEdge()) return this->moveCameraLeft(newPosition,model);
+	return this->moveCameraRight(newPosition,model);
 }

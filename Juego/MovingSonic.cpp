@@ -28,7 +28,7 @@
 #define SALTARD "saltarDer"
 #define SALTARI "saltarIzq"
 
-MovingSonic::MovingSonic(int x, int y, int w, int h):
+MovingSonic::MovingSonic(float x, float y, int w, int h):
   MovingBloque(x,y,w,h){}
 
 void MovingSonic::setPosicionInicio(){
@@ -38,6 +38,7 @@ void MovingSonic::setPosicionInicio(){
   frameLeft=0;
   frameRight=0;
   frameJumping=0;
+  jumping = false;
 
   if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
     frameQuiet=0;
@@ -115,6 +116,7 @@ void MovingSonic::moveRight(float vel_x){
 
     //Si la VELOCIDAD era menor a 0, se movia para la izquierda.
     if(tiempoX <= 0.0){
+      jumping =false;
       direccion = true;
       frameLeft = 0;
       frameQuiet=0;
@@ -135,6 +137,7 @@ void MovingSonic::moveRight(float vel_x){
 void MovingSonic::moveLeft(float vel_x){
   //Si la VELOCIDAD era mayor a 0, se movia para la derecha
   if(tiempoX >= 0.0){
+    jumping =false;
     direccion = false;
     frameRight =0;
     frameQuiet=0;

@@ -38,10 +38,7 @@ void Player::setY(float y){
 }
 
 void Player::updateXY(float dirX,float dirY){
-	// convierto dirX y dirY en +- 1
-
 	this->sonic->update(dirX,dirY);
-	printf("%f\n", this->getX());
 }
 
 bool Player::isConnected(){

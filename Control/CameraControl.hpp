@@ -5,7 +5,8 @@ class CameraControl{
 	float width;
 	bool playerOnLeftEdge;
 	bool playerOnRightEdge;
-	bool validNewPosition(float newPosition, Model* model);
+	bool moveCameraLeft(float newPosition,Model* model);
+	bool moveCameraRight(float newPosition,Model* model);
 	public:
 		CameraControl(float width);
 		bool moveCamera(float newPosition, Model* model);
