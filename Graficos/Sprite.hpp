@@ -21,7 +21,7 @@ class Sprite{
     public:
         Sprite(float x, float y, int w, int h);
         ~Sprite();
-        void update();
+        void update(float, float);
         /*Dibuja el sprite en pantalla*/
         virtual void render(Camara*);
         /*Dibuja las imagenes de fondo*/

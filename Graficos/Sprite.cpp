@@ -32,8 +32,10 @@ Sprite::~Sprite(){
     if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
 }
 
-void Sprite::update(){
-    //To be overriden by subclass
+void Sprite::update(float new_x, float new_y){
+
+    originX = new_x;
+    originY = new_y;
 }
 
 void Sprite::setTexture(Texture* newTex){

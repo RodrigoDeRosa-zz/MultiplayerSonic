@@ -34,7 +34,7 @@ class Personaje{
     void setRectangulo(string, int, int ,int ,int);
     //Renderiza el bloque interno, devuelve false si falla
     bool render(Camara*);
-    void update(float, float);
+    void update(float, float, float = -1.0, float = -1.0);
     bool operator==(Personaje& other) const;
 
 };

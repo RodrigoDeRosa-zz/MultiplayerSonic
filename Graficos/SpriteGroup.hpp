@@ -18,7 +18,8 @@ class SpriteGroup{
         void add(Sprite*);
         /*Saca el sprite pedido de la lista*/
         void remove(Sprite);
-        void update();
+        //actualiza la posicion pasada a todos los sprites
+        void update(float, float);
         /*Renderiza todos los sprites del grupo*/
         void render(Camara*);
         /*Remueve todos los sprites del grupo*/

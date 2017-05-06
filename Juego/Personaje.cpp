@@ -35,7 +35,13 @@ void Personaje::setMovingBloque(MovingBloque* new_bloque){
 
 
 /*Funciones de movimiento*/
-void Personaje::update(float vel_x, float vel_y){
+void Personaje::update(float vel_x, float vel_y, float posX, float posY){
+
+  //si no se pasa una posicion al update, este no la modifica
+  if(posX >= 0 || posX >= 0){
+      bloque_pers->update(posX, posY);
+  }
+
   if(vel_y< 0.0 || bloque_pers->estaSaltando()){
      jump(vel_x,vel_y);
   }

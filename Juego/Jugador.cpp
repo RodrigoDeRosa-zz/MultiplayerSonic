@@ -11,12 +11,14 @@ void Jugador::updatePersonaje(float velx, float vely, float posx, float posy, fl
     //LOGGER
   }
   if(conectado == false){
+      //si esta desconectado entonces se lo grisa y se actualiza la posicion dejandolo quieto
       personaje->grisearBolque();
+      personaje->update(0, 0, posx, posy);
   }
   else{
       personaje->desGrisearBolque();
+      personaje->update(velx, vely);
   }
-  personaje->update(velx, vely);
 }
 
 void Jugador::setPersonaje(Personaje* new_personaje){

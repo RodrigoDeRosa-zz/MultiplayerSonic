@@ -23,10 +23,10 @@ void SpriteGroup::remove(Sprite sprite){
     }
 }
 
-void SpriteGroup::update(){
+void SpriteGroup::update(float new_x, float new_y){
     if (!sprites.empty()) {
         for (int i = 0; i < (int)sprites.size(); i++) {
-            (sprites[i])->update();
+            (sprites[i])->update(new_x, new_y);
         }
     }
 }
