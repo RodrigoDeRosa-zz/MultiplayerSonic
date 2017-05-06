@@ -6,8 +6,14 @@ class Player{
 	string name;
 	float x;
 	float y;
-	float velX;
-	float velY;
+	float vel;
+	int eventCounterX;
+	int eventCounterY;
+	int eventCounterJump;
+	bool jumping;
+	void moveX(float dirX);
+	void jumpLeft(float* velH);
+	void jumpRight(float* velH);
 	public:
 		Player(string name);
 		string getName();
@@ -15,11 +21,7 @@ class Player{
 		float getY();
 		void setX(float x);
 		void setY(float y);
-		void setVelX(float velX);
-		void setVelY(float velY);
-		float getVelX();
-		float getVelY();
-		void updateX(float velX);
-		void updateY(float velY);
-		void updateXY(float velX, float velY);
+		void stop();
+		void updateXY(float dirX, float dirY);
+		void jump(float dirX);
 };

@@ -9,9 +9,8 @@ class Model{
 		Model();
 		void addPlayer(string playerName);
 		Player* getPlayer(string name);
-		void updatePlayerPosition(string playerName, float velX, float velY);
+		void movePlayer(string playerName, float dirX, float dirY);
 		void setPlayerPosition(string playerName, float x, float y);
-		void setPlayerVelocities(string playerName, float velX, float velY);
-		vector<float> getPlayerVelocities(string playerName);
 		vector<float> getPlayerPosition(string playerName);
+		bool playerInPosition(float position);
 };

@@ -24,23 +24,9 @@ void Model::setPlayerPosition(string playerName, float x, float y){
 	player->setY(y);
 }
 
-void Model::setPlayerVelocities(string playerName, float velX, float velY){
+void Model::movePlayer(string playerName, float dirX, float dirY){
 	Player* player = this->getPlayer(playerName);
-	player->setVelX(velX);
-	player->setVelY(velY);
-}
-
-void Model::updatePlayerPosition(string playerName, float velX, float velY){
-	Player* player = this->getPlayer(playerName);
-	player->updateXY(velX,velY);
-}
-
-vector<float> Model::getPlayerVelocities(string playerName){
-	vector<float> velocities;
-	Player* player = this->getPlayer(playerName);
-	velocities.push_back(player->getVelX());
-	velocities.push_back(player->getVelY());
-	return velocities;
+	player->updateXY(dirX,dirY);
 }
 
 vector<float> Model::getPlayerPosition(string playerName){
@@ -49,4 +35,11 @@ vector<float> Model::getPlayerPosition(string playerName){
 	position.push_back(player->getX());
 	position.push_back(player->getY());
 	return position;
+}
+
+bool Model::playerInPosition(float position){
+	for(int i = 0; i < players->size(); i++){
+		if((*players)[i]->getX() == position) return true;
+	}
+	return false;
 }

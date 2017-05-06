@@ -16,23 +16,23 @@ float CameraControl::getRightEdge(){
 	return this->position;
 }
 
-bool CameraControl::validNewPosition(float newPosition){
+bool CameraControl::validNewPosition(float newPosition, Model* model){
 	//limite izquierdo del escenario
 	if(newPosition < 0) return false;
 	//la camara se mueve para la derecha pero hay alguien en el limite izquierdo
-	else if((newPosition > this->getRightEdge()) && (this->playerOnLeftEdge)){
+	else if((newPosition > this->getRightEdge()) && !(model->playerInPosition(this->getLeftEdge()))){
 		return false;
 	}
 	//la camara se mueve para la izquierda pero hay alguien en el limite derecho
-	else if((newPosition < this->getLeftEdge()) && (this->playerOnRightEdge)){
-		this->position = newPosition;
+	else if((newPosition < this->getLeftEdge()) && !(model->playerInPosition(this->getRightEdge()))){
 		return false;
 	}
 	return true;
 }
 
-bool CameraControl::moveCamera(float newPosition){
-	if(this->validNewPosition(newPosition)){
+bool CameraControl::moveCamera(float newPosition,Model* model){
+	if((newPosition <= this->position) && (newPosition >= this->getLeftEdge())) return true;
+	if(this->validNewPosition(newPosition,model)){
 		this->position = newPosition;
 		return true;
 	}

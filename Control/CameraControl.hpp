@@ -1,3 +1,5 @@
+#include "../Modelo/Model.hpp"
+
 class CameraControl{
 	float position;
 	float width;
@@ -5,8 +7,8 @@ class CameraControl{
 	bool playerOnRightEdge;
 	float getLeftEdge();
 	float getRightEdge();
-	bool validNewPosition(float newPosition);
+	bool validNewPosition(float newPosition, Model* model);
 	public:
 		CameraControl(float width);
-		bool moveCamera(float newPosition);
+		bool moveCamera(float newPosition, Model* model);
 };
