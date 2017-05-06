@@ -29,6 +29,7 @@ class Juego{
 
     void updateJugadores(map <string, vector <float>>);
     void updateJugador(string, float, float, float, float, float);
+    void updateCamara(int, int);
     ~Juego();
 };
 

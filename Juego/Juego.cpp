@@ -29,6 +29,10 @@ void Juego::updateJugador(string id, float velx, float vely, float posx, float p
   jugadores->updateJugador(id, velx, vely, posx,posy,conectado);
 }
 
+void Juego::updateCamara(int posx, int posy){
+  camara -> setPosicion(posx, posy);
+}
+
 bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
   return jugadores->addJugador(nombreJugador,nombrePersonaje);
 }

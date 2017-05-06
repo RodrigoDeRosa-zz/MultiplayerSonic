@@ -306,13 +306,13 @@ Stage* JsonLoader::getStage(){
 Camara* JsonLoader::setCamara(Json::Value json){
 	int velocidad = getPositiveInt(json["vel_scroll"],"[vel_scroll]",1);
 	Camara* camara_pantalla = new Camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
-	Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
-    Texture* invisible = new Texture();
-	invisible->setDimensions(30, 30);
-    invisible->setKeyColor(0,0,0);
-    seguido->setBackgroundColor(0, 0, 0);
-    seguido->setTexture(invisible);
-    camara_pantalla->setApuntado(seguido);
+	// Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
+  //   Texture* invisible = new Texture();
+	// invisible->setDimensions(30, 30);
+  //   invisible->setKeyColor(0,0,0);
+  //   seguido->setBackgroundColor(0, 0, 0);
+  //   seguido->setTexture(invisible);
+  //   camara_pantalla->setApuntado(seguido);
 	return camara_pantalla;
 }
 

@@ -11,6 +11,11 @@ Camara::Camara(int posX_c,int posY_c, int vel_c, int ancho_c, int alto_c, int an
 	cam = {posX_c,posY_c,ancho_c,alto_c};
 }
 
+void Camara::setPosicion(int posx, int posy){
+	cam.x = posx;
+	cam.y = posy;
+}
+
 void Camara::moveCamara(bool direccion){
 	/*Recibe un bool que es true si se mueve para la derecha
 	o false si se mueve para la izquierda*/
@@ -35,18 +40,8 @@ void Camara::moveCamara(bool direccion){
 		cam.y = alto_escenario - cam.h;}
 }
 
-void Camara::setEventApuntado( SDL_Event& e ){
-	apuntado->handleEvent(e);
-}
-void Camara::moveApuntado(){
-	apuntado->move(ancho_escenario, alto_escenario);
-}
-
 void Camara::render(){
 	apuntado->render(this);
-}
-void Camara::setApuntado(Apuntado* apun){
-		apuntado = apun;
 }
 
 SDL_Rect Camara::getCamara(){
@@ -60,3 +55,13 @@ int Camara::getX(){
 int Camara::getY(){
 	return cam.y;
 }
+
+// void Camara::setEventApuntado( SDL_Event& e ){
+// 	apuntado->handleEvent(e);
+// }
+// void Camara::moveApuntado(){
+// 	apuntado->move(ancho_escenario, alto_escenario);
+// }
+// void Camara::setApuntado(Apuntado* apun){
+// 		apuntado = apun;
+// }

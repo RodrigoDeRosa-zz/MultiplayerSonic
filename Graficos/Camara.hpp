@@ -28,18 +28,19 @@ private:
 public:
 	Camara(int posX_c,int posY_c,int vel_c, int ancho_c, int alto_c, int ancho_es, int alto_es);
 	void moveCamara(bool);
+	void setPosicion(int, int);
 
 	/*getters*/
 	SDL_Rect getCamara();
 	int getX();
 	int getY();
 
-	//Operaciones apuntado
-	void setApuntado( Apuntado* apun);
-	void moveApuntado();
-	void setEventApuntado( SDL_Event& e );
-
 	void render();
+
+	//Operaciones apuntado
+	// void setApuntado( Apuntado* apun);
+	// void moveApuntado();
+	// void setEventApuntado( SDL_Event& e );
 };
 
 #endif /* CAMARA_H_ */
