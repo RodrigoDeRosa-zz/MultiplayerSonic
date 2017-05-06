@@ -12,7 +12,7 @@
 using namespace std;
 
 #define PORT "8080"
-#define HOSTNAME_LENGTH 64
+#define HOSTNAME "localhost"
 
 /*Imprime el ip del servidor cuya informacion se recibe luego del mensaje recibido*/
 void printHostIP(string message, struct addrinfo* serverInfo){
@@ -24,16 +24,6 @@ void printHostIP(string message, struct addrinfo* serverInfo){
     printf("%s %s\n", message.c_str(), ipstr);
 }
 
-/**Se pide y devuelve el hostname del servidor. (puede ser IP address).*/
-char* setHostname(){
-    char *hostname = new char[HOSTNAME_LENGTH];
-    printf("Hostname: ");
-    fgets(hostname, HOSTNAME_LENGTH, stdin);
-    strtok(hostname, "\n");
-
-    return hostname;
-}
-
 /*Pide un hostname o dirección y obtiene la información sobre dicho servidor.
  *Repite hasta obtener un hostname valido.
  *Devuelve un struct addrinfo
@@ -41,22 +31,13 @@ char* setHostname(){
 addrinfo* resolveServerInfo(){
     int status;
     struct addrinfo hints, *serverInfo;
-    char* hostname;
-    /*Se pide un hostname hasta que sea posible conectarse*/
-    do{
-        /*Primero se guarda el nombre o direccion del servidor al que se quiere conectar*/
-        hostname = setHostname();
-        printf("Resolving hostname...\n");
-        /*Se define el struct que indica como será el addrinfo del server*/
-        memset(&hints, 0, sizeof hints);//Se limpia
-        hints.ai_family = AF_INET; //IPv4
-        hints.ai_socktype = SOCK_STREAM; //TCP
-        /*Se guarda la informacion del host*/
-        status = getaddrinfo(hostname, PORT, &hints, &serverInfo);
-        if (status != 0)
-            fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status));
-    } while (status != 0);
-    delete[](hostname); //Ya no lo necesito.
+    /*Se define el struct que indica como será el addrinfo del server*/
+    memset(&hints, 0, sizeof hints);//Se limpia
+    hints.ai_family = AF_INET; //IPv4
+    hints.ai_socktype = SOCK_STREAM; //TCP
+    /*Se guarda la informacion del host*/
+    status = getaddrinfo(HOSTNAME, PORT, &hints, &serverInfo);
+    if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status));
 
     printHostIP("Hostname resolved to:", serverInfo);
 
