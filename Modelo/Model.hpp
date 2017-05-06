@@ -1,10 +1,12 @@
 #include <vector>
 #include "Player.hpp"
+#include "../Juego/SegaFactory.hpp"
 
 using namespace std;
 
 class Model{
 	vector<Player*>* players;
+	SegaFactory* segaFactory;
 	public:
 		Model();
 		void addPlayer(string playerName);

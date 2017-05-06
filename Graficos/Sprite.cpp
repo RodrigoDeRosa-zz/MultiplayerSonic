@@ -99,11 +99,11 @@ bool Sprite::operator<(Sprite& other) const{
     return (zIndex < other.getZIndex());
 }
 
-int Sprite::getX(){
+float Sprite::getX(){
     return originX;
 }
 
-int Sprite::getY(){
+float Sprite::getY(){
     return originY;
 }
 

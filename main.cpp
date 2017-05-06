@@ -9,6 +9,7 @@
 #include "Juego/SegaFactory.hpp"
 #include "Juego/Sonic.hpp"
 #include "Logger2.hpp"
+#include "Control/Control.hpp"
 #include <SDL2/SDL.h>
 #include <string>
 
@@ -29,8 +30,8 @@ int main(int argc, char** argv){
 		juego->setJugadores(jugs);
 		juego->setFactory();
 		juego->addJugador("1","Sonic");
-		// SegaFactory* factory = new SegaFactory();
-		// Sonic* sonic = factory -> getSonic("1");
+		//SegaFactory* factory = new SegaFactory();
+		//Sonic* sonicc = factory -> getSonic("1");
 
     bool running = true;
     SDL_Event e;
@@ -47,8 +48,11 @@ int main(int argc, char** argv){
 		---- velY > 0 implica que salto.
 		*/
 
-		float velocidadHorizontal = 0.35;
-		float velocidadVertical = -12.0;
+		Control* control = new Control();
+		control->addPlayer("1");
+		float cameraPosition;
+		vector<float> directions;
+
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -59,23 +63,17 @@ int main(int argc, char** argv){
 						SERVER, ES UN EJEMPLO DE COMO LO TIENE QUE HACER*/
 
             //sonic->setEventMovimiento(e);
-						if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
-							switch( e.key.keysym.sym ){
-								case SDLK_SPACE: velY += velocidadVertical; break;
-								case SDLK_LEFT: velX -= velocidadHorizontal; break;
-								case SDLK_RIGHT: velX += velocidadHorizontal; break;
-							}
+						directions = control->getDirections(e,velX,velY);
+						velX = directions[0];
+						velY = directions[1];
+						cameraPosition = control->getCameraPosition();
 						}
-						else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
-							switch( e.key.keysym.sym ){
-								case SDLK_SPACE: velY -= velocidadVertical; break;
-								case SDLK_LEFT: velX += velocidadHorizontal; break;
-								case SDLK_RIGHT: velX -= velocidadHorizontal; break;
-							}
-						}
-        }
+
+				control->moveCameraAndPlayer("1",directions);
+
 
 				juego->updateJugador("1", velX, velY, 0, 0, true);
+				juego->updateCamara(cameraPosition,0);
 				//printf("Velocidad sin dividir:%f \n",velX);
 
 				//se le envia un string que dice que movimiento va a realizar
@@ -90,7 +88,6 @@ int main(int argc, char** argv){
 
         Renderer::getInstance().clear();
 				juego->render();
-        //camara_pantalla->render();
         Renderer::getInstance().draw();
     }
     delete stage;

@@ -10,10 +10,11 @@ class Control{
 	void setCameraPosition(float cameraPosition);
 	public:
 		Control();
-		vector<float> getDirections(SDL_Event e);
-		vector<float> handleEvent(string playerName,SDL_Event e);
+		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
+		vector<float> handleEvent(string playerName,SDL_Event e,float dirX, float dirY);
 		void addPlayer(string playerName);
 		bool moveCamera(float newPlayerX);
 		bool moveCameraAndPlayer(string playerName, vector<float> directions);
 		float getDisconnectedPlayersNewPosition(float dirX);
+		float getCameraPosition();
 };

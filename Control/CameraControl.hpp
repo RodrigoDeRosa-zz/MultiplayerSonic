@@ -11,4 +11,5 @@ class CameraControl{
 		bool moveCamera(float newPosition, Model* model);
 		float getLeftEdge();
 		float getRightEdge();
+		float getPosition();
 };

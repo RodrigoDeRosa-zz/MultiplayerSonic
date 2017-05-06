@@ -38,8 +38,8 @@ class Sprite{
         void setIndexZ(int);
 
         /*getters*/
-        int getX();
-        int getY();
+        float getX();
+        float getY();
 
         int getWidth();
         int getHeight();

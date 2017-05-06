@@ -1,4 +1,5 @@
 #include <string>
+#include "../Juego/Sonic.hpp"
 
 using namespace std;
 
@@ -12,19 +13,15 @@ class Player{
 	int eventCounterJump;
 	bool jumping;
 	bool connected;
-	void moveX(float dirX);
-	void jumpLeft(float* velH);
-	void jumpRight(float* velH);
+	Sonic* sonic;
 	public:
-		Player(string name);
+		Player(string name, Sonic* sonic);
 		string getName();
 		float getX();
 		float getY();
 		void setX(float x);
 		void setY(float y);
-		void stop();
 		void updateXY(float dirX, float dirY);
-		void jump(float dirX);
 		bool isConnected();
 		void setConnected(bool connected);
 };

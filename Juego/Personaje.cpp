@@ -11,15 +11,6 @@ Personaje::Personaje(string nomJugador){
   frameLeft = 0;
 }
 
-/*Getters*/
-int Personaje::getX(){
-  return bloque_pers->getX();
-}
-
-int Personaje::getY(){
-  return bloque_pers->getY();
-}
-
 string Personaje::getNombreJugador(){
     return nombreJugador;
 }
@@ -36,7 +27,6 @@ void Personaje::setMovingBloque(MovingBloque* new_bloque){
 
 /*Funciones de movimiento*/
 void Personaje::update(float vel_x, float vel_y, float posX, float posY){
-
   //si no se pasa una posicion al update, este no la modifica
   if(posX >= 0 || posX >= 0){
       bloque_pers->update(posX, posY);
@@ -78,6 +68,14 @@ void Personaje::desGrisearBolque(){
 
 bool Personaje::operator==(Personaje& other) const{
     return (nombreJugador == other.getNombreJugador());
+}
+
+float Personaje::getX(){
+    return bloque_pers->getX();
+}
+
+float Personaje::getY(){
+    return bloque_pers->getY();
 }
 
 bool Personaje::render(Camara* cam){

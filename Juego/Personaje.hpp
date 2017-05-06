@@ -23,8 +23,6 @@ class Personaje{
     ~Personaje();
     //devuelve el nombre del jugador
     string getNombreJugador();
-    int getX();
-    int getY();
     void printMap();
     void grisearBolque();
     void desGrisearBolque();
@@ -36,6 +34,8 @@ class Personaje{
     bool render(Camara*);
     void update(float, float, float = -1.0, float = -1.0);
     bool operator==(Personaje& other) const;
+    float getX();
+    float getY();
 
 };
 #endif /*PERSONAJE_HPP*/

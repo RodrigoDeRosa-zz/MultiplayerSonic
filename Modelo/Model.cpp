@@ -1,11 +1,13 @@
 #include "Model.hpp"
 
+
 Model::Model(){
 	players = new vector<Player*>();
+	segaFactory = new SegaFactory();
 }
 
 void Model::addPlayer(string playerName){
-	Player* player = new Player(playerName);
+	Player* player = new Player(playerName, this->segaFactory->getSonic(playerName));
 	(this->players)->push_back(player);
 }
 
