@@ -7,6 +7,13 @@
 #include <unistd.h>
 using namespace std;
 
+enum key_event {LEFT, RIGHT, SPACE};
+
+typedef struct in_message{
+    int id;
+    key_event key;
+} in_message_t;
+
 class CXManager;
 
 class Connection{

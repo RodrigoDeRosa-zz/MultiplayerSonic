@@ -41,14 +41,24 @@ void* read(void* arg){
             break;
         }
 		strcpy(message, msg_buffer);
+
+        /*Si el mensaje es vacio o ping, no se hace nada*/
         if (!strcmp(message, "")) continue;
-		//if (!strcmp(strtok(message, "\n"), "ping")){
         if (!strcmp(message, "ping")){
             connection->pings++;
             continue;
         }
+        /*Se le saca el \n al mensaje*/
         strtok(message, "\n");
-        printf("Client %d sent: %s\n", connection->id, message);
+        /*Estructura para que procese el juego*/
+        in_message_t messageStruct;
+        messageStruct.id = connection->id;
+        /*Identifiacion del evento*/
+        if (!strcmp(message, "moveRight")) messageStruct.key = RIGHT;
+        if (!strcmp(message, "moveLeft")) messageStruct.key = LEFT;
+        if (!strcmp(message, "jump")) messageStruct.key = SPACE;
+        /*Se guarda el struct*/
+        printf("Client %d sent: %d\n", messageStruct.id, messageStruct.key);
         CXManager::getInstance().queueInEvent(message);
     }
 
