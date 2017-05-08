@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stddef.h>
 #include <stdio.h>
+#include <string.h>
 
 Socket::Socket(){
     sockfd = 0;
@@ -49,8 +50,10 @@ Socket* Socket::sockAccept(struct sockaddr* clientAddr, socklen_t* addrLen){
 bool Socket::sockReceive(char* buffer, int size){
     int receivedBytes = 0;
     ssize_t reception;
+	memset(buffer,0,size);//DEBUG
     while (receivedBytes < size){
         reception = recv(sockfd, buffer + receivedBytes, size - receivedBytes, MSG_NOSIGNAL);
+		//printf("en sockReceive buffer es: %s\n",buffer);//DEBUG
         if (reception < 0) return false;
         if (reception == 0) break;
         receivedBytes += reception;

@@ -12,13 +12,15 @@ using namespace std;
 void* read(void* arg){
     Connection* connection = (Connection*) arg;
     char message[MAX_DATASIZE];
+	char msg_buffer[MAX_DATASIZE];
 
     while (connection->isOnline()){
         /*Si falla la recepcion se considera que se perdio la conexion*/
-        if(!connection->receiveMessage(message, MAX_DATASIZE)){
+        if(!connection->receiveMessage(msg_buffer, MAX_DATASIZE)){
             connection->disconnect();
             break;
         }
+		strcpy(message,msg_buffer);
         if (!strcmp(message, "")) continue;
 		if (!strcmp(strtok(message, "\n"), "ping")) continue;
         printf("message: %s\n", message);

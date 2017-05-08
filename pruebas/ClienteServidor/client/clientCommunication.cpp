@@ -8,7 +8,7 @@ using namespace std;
 
 #define MAXDATASIZE 100
 
-#define SLEEP_T 800000	//.8 seg
+#define SLEEP_T 3000000	//.8 seg
 pthread_mutex_t socketLock;
 
 typedef struct thread{
