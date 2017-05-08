@@ -4,14 +4,14 @@
 #include "connection.hpp"
 #include <pthread.h>
 #include <stdio.h>
+#include <string.h>
 
 #define SERVER()(Server::getInstance())
 #define CXM()(CXManager::getInstance())
 
 #define PORT "8080"
 #define MAX_CONN 10
-
-
+#define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 
 void* accept(void* arg){
@@ -78,21 +78,22 @@ int main(int argc, char** argv){
 		sleep(ONLINE_TIMEOUT);
 	}
 
-	char* ev;
-	char* state;
+	in_message_t* ev;
+	char* state = new char[PRINTLEN];
 	char id[]="1";
 
 	while(SERVER().isOnline()){
-		ev=SERVER().getInEvent();
+		ev = SERVER().getInEvent();
 		if(!ev) {
 			usleep(3000);
 			continue;
 		}
-		//ev es un evento entrante, a procesar por el juego
-		state=ev;
+        //ev es un evento entrante, a procesar por el juego
+        snprintf(state, PRINTLEN,"Client %d sent event %d", ev->id, ev->key);
 		//state es un evento saliente, que encola el juego
 		SERVER().queueOutEvent(state);
 	}
+    delete[](state);
 
     /*Se espera a que finalicen los threads*/
     void* exit_status;

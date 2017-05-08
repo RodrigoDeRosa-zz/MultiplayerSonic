@@ -51,15 +51,16 @@ void* read(void* arg){
         /*Se le saca el \n al mensaje*/
         strtok(message, "\n");
         /*Estructura para que procese el juego*/
-        in_message_t messageStruct;
-        messageStruct.id = connection->id;
+        in_message_t* messageStruct = new in_message_t;
+        messageStruct->id = connection->id;
         /*Identifiacion del evento*/
-        if (!strcmp(message, "moveRight")) messageStruct.key = RIGHT;
-        if (!strcmp(message, "moveLeft")) messageStruct.key = LEFT;
-        if (!strcmp(message, "jump")) messageStruct.key = SPACE;
+        if (!strcmp(message, "moveRight")) messageStruct->key = RIGHT;
+        else if (!strcmp(message, "moveLeft")) messageStruct->key = LEFT;
+        else if (!strcmp(message, "jump")) messageStruct->key = SPACE;
+        else continue;
         /*Se guarda el struct*/
-        printf("Client %d sent: %d\n", messageStruct.id, messageStruct.key);
-        CXManager::getInstance().queueInEvent(message);
+        printf("Client %d sent: %d\n", messageStruct->id, messageStruct->key);
+        CXManager::getInstance().queueInEvent(messageStruct);
     }
 
     return NULL;

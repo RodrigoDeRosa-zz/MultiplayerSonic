@@ -16,7 +16,7 @@ class CXManager{
 		pthread_mutex_t inEventsMux;
 		pthread_mutex_t outEventsMux;
 
-        deque<char*> inEvents;
+        deque<in_message_t*> inEvents;
         deque<char*> outEvents;
 
         CXManager();
@@ -40,9 +40,9 @@ class CXManager{
         bool hasOutEvents();
         /*Devuelven el primer elemento de la cola*/
         char* getOutEvent();
-        char* getInEvent();
+        in_message_t* getInEvent();
         /*Encolan el evento recibido*/
-        void queueInEvent(char* event);
+        void queueInEvent(in_message_t* event);
         void queueOutEvent(char* event);
 };
 

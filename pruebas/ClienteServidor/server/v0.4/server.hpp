@@ -2,6 +2,7 @@
 #define SERVER_HPP
 
 #include "socket.hpp"
+#include "connection.hpp" //in_message_t
 #include <sys/socket.h>
 #include <deque>
 #include <pthread.h>
@@ -22,8 +23,8 @@ class Server{
 
 		pthread_mutex_t inEventsMux;
 		pthread_mutex_t outEventsMux;
-	
-        deque<char*> inEvents;
+
+        deque<in_message_t*> inEvents;
         deque<char*> outEvents;
 
         //Game* game; //Juego al que se le envian eventos y del cual se reciben
@@ -46,13 +47,13 @@ class Server{
         /*Desconecta al servidor de internet*/
         void disconnect();
         /*Guarda el evento recibido en la cola de eventos*/
-        void queueInEvent(char* event);
+        void queueInEvent(in_message_t* event);
         /*Guarda un evento en la cola de eventos salientes*/
         void queueOutEvent(char* event);
         /*Devuelve el proximo evento de salida*/
         char* getOutEvent();
         /*Devuelve el proximo evento de entrada*/
-        char* getInEvent();
+        in_message_t* getInEvent();
 };
 
 #endif /*SERVER_HPP*/

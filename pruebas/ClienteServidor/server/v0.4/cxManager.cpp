@@ -48,21 +48,21 @@ Connection* CXManager::getConnection(int id){
 }
 
 bool CXManager::hasInEvents(){
-	pthread_mutex_lock(&inEventsMux);	
-	bool not_empty =!inEvents.empty(); 
+	pthread_mutex_lock(&inEventsMux);
+	bool not_empty =!inEvents.empty();
 	pthread_mutex_unlock(&inEventsMux);
     return not_empty;
 }
 
 
 bool CXManager::hasOutEvents(){
-	pthread_mutex_lock(&outEventsMux);	
-	bool not_empty =!outEvents.empty(); 
+	pthread_mutex_lock(&outEventsMux);
+	bool not_empty =!outEvents.empty();
 	pthread_mutex_unlock(&outEventsMux);
     return not_empty;
 }
 
-void CXManager::queueInEvent(char* event){
+void CXManager::queueInEvent(in_message_t* event){
 	pthread_mutex_lock(&inEventsMux);
     inEvents.push_back(event);
 	pthread_mutex_unlock(&inEventsMux);
@@ -87,13 +87,13 @@ char* CXManager::getOutEvent(){
     return event;
 }
 
-char* CXManager::getInEvent(){
+in_message_t* CXManager::getInEvent(){
 	pthread_mutex_lock(&inEventsMux);
     if (inEvents.empty()) {
 		pthread_mutex_unlock(&inEventsMux);
 		return NULL;
 	}
-    char* event = inEvents.at(0);
+    in_message_t* event = inEvents.at(0);
     inEvents.pop_front();
 	pthread_mutex_unlock(&inEventsMux);
     return event;

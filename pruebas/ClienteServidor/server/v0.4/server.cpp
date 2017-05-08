@@ -44,13 +44,13 @@ Server::Server(){
     accSocket = NULL;
     online = false;
 	pthread_mutex_init(&inEventsMux,NULL);
-	pthread_mutex_init(&outEventsMux,NULL);	
+	pthread_mutex_init(&outEventsMux,NULL);
 }
 
 Server::~Server(){
     serverInfo = NULL;
 	pthread_mutex_destroy(&inEventsMux);
-	pthread_mutex_destroy(&outEventsMux);	
+	pthread_mutex_destroy(&outEventsMux);
     disconnect();
 }
 
@@ -124,17 +124,10 @@ void Server::disconnect(){
     online = false;
 }
 
-void Server::queueInEvent(char* event){
+void Server::queueInEvent(in_message_t* event){
 	pthread_mutex_lock(&inEventsMux);
     inEvents.push_back(event);
 	pthread_mutex_unlock(&inEventsMux);
-    //TODO: Pasar evento al juego para que haga algo con el.
-    //Por ahora solo avisamos que llego mandando un string.
-/*	char* str = "Message received!";
-	pthread_mutex_lock(&outEventsMux);
-    outEvents.push_back(str);
-	pthread_mutex_unlock(&outEventsMux);
-*/
 }
 
 void Server::queueOutEvent(char* event){
@@ -154,12 +147,12 @@ char* Server::getOutEvent(){
     return event;
 }
 
-char* Server::getInEvent(){
+in_message_t* Server::getInEvent(){
 	pthread_mutex_lock(&inEventsMux);
     if (inEvents.empty()) {
 		pthread_mutex_unlock(&inEventsMux);
 		return NULL;}
-    char* event = inEvents.at(0);
+    in_message_t* event = inEvents.at(0);
     inEvents.pop_front();
 	pthread_mutex_unlock(&inEventsMux);
     return event;
