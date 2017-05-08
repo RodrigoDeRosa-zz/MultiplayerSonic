@@ -15,13 +15,15 @@ class Connection{
     private:
         Socket* socket; //Socket sobre el cual se realiza la comunicacion
         bool online;
-        int id;
 
         pthread_t reader;
         pthread_t writer;
+        pthread_t pinger;
 
         deque<char*> outEvents;
     public:
+        int pings;
+        int id;
         Connection(Socket*);
         ~Connection();
         /*Recibe un mensaje a traves del socket*/

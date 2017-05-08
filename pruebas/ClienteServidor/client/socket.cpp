@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stddef.h>
 #include <stdio.h>
+#include <string.h>
 
 Socket::Socket(){
     sockfd = 0;

@@ -8,20 +8,45 @@
 using namespace std;
 
 #define MAX_DATASIZE 200
+#define PINGS_PASSED 10
+#define PING_UTIME 100000 //medio segundo
+
+void* pingControl(void* arg){
+    Connection* connection = (Connection*) arg;
+
+    int pings;
+    int previousPings = 0;
+    while(connection->isOnline()){
+        usleep(PINGS_PASSED*PING_UTIME);
+        pings = connection->pings;
+        /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
+        if(previousPings < pings) previousPings = pings;
+        else{
+            connection->disconnect();
+            break;
+        }
+    }
+    return NULL;
+}
 
 void* read(void* arg){
     Connection* connection = (Connection*) arg;
     char message[MAX_DATASIZE];
+	char msg_buffer[MAX_DATASIZE];
 
     while (connection->isOnline()){
         /*Si falla la recepcion se considera que se perdio la conexion*/
-        if(!connection->receiveMessage(message, MAX_DATASIZE)){
+        if(!connection->receiveMessage(msg_buffer, MAX_DATASIZE)){
             connection->disconnect();
             break;
         }
+		strcpy(message,msg_buffer);
         if (!strcmp(message, "")) continue;
-		if (!strcmp(strtok(message, "\n"), "ping")) continue;
-        printf("message: %s\n", message);
+		if (!strcmp(strtok(message, "\n"), "ping")){
+            connection->pings++;
+            continue;
+        }
+        printf("Client %d sent: %s\n", connection->id, message);
         CXManager::getInstance().queueInEvent(message);
     }
 
@@ -46,9 +71,11 @@ void* write(void* arg){
 Connection::Connection(Socket* sock){
     socket = sock;
     online = true;
+    pings = 0;
     /*Se crean los threads de recepcion y envio de la conexion*/
     pthread_create(&reader, NULL, read, this);
     pthread_create(&writer, NULL, write, this);
+    pthread_create(&pinger, NULL, pingControl, this);
 }
 
 Connection::~Connection(){
@@ -65,6 +92,10 @@ void Connection::disconnect(){
     void* exit_status;
     pthread_join(reader, &exit_status);
     pthread_join(writer, &exit_status);
+    pthread_join(pinger, &exit_status);
+    printf("Client %d disconnected.\n", id);
+    id = 0;
+    pings = 0;
 }
 
 void Connection::setID(int n){

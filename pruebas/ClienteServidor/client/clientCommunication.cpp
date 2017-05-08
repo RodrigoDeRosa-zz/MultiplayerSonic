@@ -8,7 +8,7 @@ using namespace std;
 
 #define MAXDATASIZE 100
 
-#define SLEEP_T 800000	//.8 seg
+#define SLEEP_T 100000	//.5 seg
 pthread_mutex_t socketLock;
 
 typedef struct thread{
@@ -30,6 +30,7 @@ void* ping(void* arg){
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);
+            break;
         }
     }
     return NULL;
@@ -38,16 +39,21 @@ void* ping(void* arg){
 void* sendMessage(void* arg){
     Client* client = (Client*) arg;
 
+    char* message;
+    int msgLen;
     while(client->connected()){
-        char* message = client->getEventToSend();
+        message = client->getEventToSend();
         if (!message) continue;
+        msgLen = strlen(message);
         /*Bloquea y envia*/
         pthread_mutex_lock(&socketLock);
-        bool status = client->send(message, strlen(message));
+        bool status = client->send(message, msgLen);
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);
+            break;
         }
+        memset(message, 0, msgLen);
     }
     return NULL;
 }
@@ -57,12 +63,15 @@ void* receiveMessage(void* arg){
 
     while(client->connected()){
         char message[MAXDATASIZE];
+        char receivedMessage[MAXDATASIZE];
+        memset(receivedMessage, 0, MAXDATASIZE);
         /*Bloquea y envia*/
-        bool status = client->receive(message, MAXDATASIZE);
+        bool status = client->receive(receivedMessage, MAXDATASIZE);
         if (!status){
             client->disconnect(1);
             break;
         }
+        memcpy(message, receivedMessage, MAXDATASIZE);
         client->queueReceived(message);
     }
     return NULL;

@@ -130,10 +130,11 @@ void Server::queueInEvent(char* event){
 	pthread_mutex_unlock(&inEventsMux);
     //TODO: Pasar evento al juego para que haga algo con el.
     //Por ahora solo avisamos que llego mandando un string.
-	/*char* str = "Message received!";
+/*	char* str = "Message received!";
 	pthread_mutex_lock(&outEventsMux);
     outEvents.push_back(str);
-	pthread_mutex_unlock(&outEventsMux);*/
+	pthread_mutex_unlock(&outEventsMux);
+*/
 }
 
 void Server::queueOutEvent(char* event){

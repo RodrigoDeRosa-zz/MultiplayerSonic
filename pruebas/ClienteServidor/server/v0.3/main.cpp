@@ -13,6 +13,7 @@
 
 
 #define PIJA 1
+#define SIZE_ASD 120
 
 void* accept(void* arg){
     int MAX_CONNECTIONS = CXM().maxConnections;
@@ -74,7 +75,7 @@ int main(int argc, char** argv){
     pthread_create(&acceptT, NULL, accept, NULL);
     pthread_create(&eventDistrT, NULL, eventDistribution, NULL);
     /*Se espera a que finalicen los threads*/
-/**/	
+
 	while(!SERVER().isOnline()){	//POR LAS DUDAS QUE NO ESTUVIERA ONLINE
 		sleep(PIJA);
 	}
@@ -82,21 +83,18 @@ int main(int argc, char** argv){
 	char* state;
 	char id[]="1";
 
-	//QUILOMBO 	
-	Server** sv = SERVER();
-/*	while((*sv).isOnline()){	//GAME DUMMY
-		ev=(*sv).getInEvent();
-		state=ev;	//cambiar esto por id+ev
-		(*sv).queueOutEvent(state);
-	}
-	//end:QUILOMBO
-*/
-	bool isOnl = true;
-	while (isOnl){
-		ev = sv.getInEvent();
-		state = ev;//procesamiento del juego
-		sv.queueOutEvent(state);
-		isOnl=sv.isOnline();
+
+	while(SERVER().isOnline()){
+		ev=SERVER().getInEvent();
+		if(!ev) {
+			//printf("ev es NULL\n");
+			usleep(3000);
+			continue;
+		}
+		//ev es un evento entrante, a procesar por el juego
+		state=ev;
+		//state es un evento saliente, que encola el juego
+		SERVER().queueOutEvent(state);
 	}
 
     void* exit_status;
