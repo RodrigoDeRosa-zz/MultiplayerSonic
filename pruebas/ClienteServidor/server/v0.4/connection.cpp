@@ -2,6 +2,7 @@
 #include "socket.hpp"
 #include "cxManager.hpp"
 #include <pthread.h>
+#include <unistd.h>
 #include <deque>
 #include <string.h>
 #include <stdio.h>
@@ -11,17 +12,18 @@ using namespace std;
 #define PINGS_PASSED 5
 #define PING_UTIME 100000 //0.1s
 
-void* pingControl(void* arg){
+void* ping(void* arg){
     Connection* connection = (Connection*) arg;
 
-    int pings;
-    int previousPings = 0;
+    char* message = "ping";
+    bool status;
     while(connection->isOnline()){
-        usleep(PINGS_PASSED*PING_UTIME);
-        pings = connection->pings;
-        /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
-        if(previousPings < pings) previousPings = pings;
-        else{
+        usleep(PING_UTIME);
+        /*Mutex por las dudas que pisar sends haga lio.*/
+        pthread_mutex_lock(&connection->sendLock);
+        status = connection->sendMessage(message, strlen(message));
+        pthread_mutex_unlock(&connection->sendLock);
+        if (!status){
             connection->disconnect();
             break;
         }
@@ -75,7 +77,9 @@ void* write(void* arg){
         message = connection->getOutEvent();
         if (!message) continue; //Si esta vacia la cola, sigue
         /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
+        pthread_mutex_lock(&connection->sendLock);
         if(!connection->sendMessage(message, strlen(message))) connection->disconnect();
+        pthread_mutex_unlock(&connection->sendLock);
     }
 
     return NULL;
@@ -85,10 +89,11 @@ Connection::Connection(Socket* sock){
     socket = sock;
     online = true;
     pings = 0;
+    pthread_mutex_init(&sendLock, NULL);
     /*Se crean los threads de recepcion y envio de la conexion*/
     pthread_create(&reader, NULL, read, this);
     pthread_create(&writer, NULL, write, this);
-    pthread_create(&pinger, NULL, pingControl, this);
+    pthread_create(&pinger, NULL, ping, this);
 }
 
 Connection::~Connection(){
@@ -106,6 +111,7 @@ void Connection::disconnect(){
     pthread_join(reader, &exit_status);
     pthread_join(writer, &exit_status);
     pthread_join(pinger, &exit_status);
+    pthread_mutex_destroy(&sendLock);
     printf("Client %d disconnected.\n", id);
     id = 0;
     pings = 0;

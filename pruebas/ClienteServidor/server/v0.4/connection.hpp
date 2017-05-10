@@ -27,6 +27,7 @@ class Connection{
 
         deque<char*> outEvents;
     public:
+        pthread_mutex_t sendLock;
         int pings;
         int id;
         Connection(Socket*);
