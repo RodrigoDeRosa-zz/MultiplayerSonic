@@ -14,6 +14,7 @@ class Client{
         deque<char*> received;
         deque<char*> toSend;
     public:
+        int pings;
         Client();
         ~Client();
         /*Inicializa el socket del cliente y guarda la direccion del servidor al que

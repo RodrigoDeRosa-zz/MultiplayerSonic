@@ -9,12 +9,14 @@
 Client::Client(){
     socket = NULL;
     online = false;
+    pings = 0;
     received = deque<char*>();
     toSend = deque<char*>();
 }
 Client::~Client(){
     if (socket) delete socket;
     socket = NULL;
+    pings = 0;
     online = false;
 }
 
@@ -83,4 +85,5 @@ void Client::disconnect(int how){
     socket->sockShutdown(SHUT_RDWR);
     socket->sockClose();
     online = false;
+    pings = 0;
 }

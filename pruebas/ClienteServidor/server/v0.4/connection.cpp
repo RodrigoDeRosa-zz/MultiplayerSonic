@@ -12,6 +12,23 @@ using namespace std;
 #define PINGS_PASSED 5
 #define PING_UTIME 100000 //0.1s
 
+void* connectionControl(void* arg){
+    Connection* connection = (Connection*) arg;
+
+    int pings;
+    while(connection->isOnline()){
+        usleep(PINGS_PASSED*PING_UTIME);
+        pings = connection->pings;
+        /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
+        if(pings > 0) connection->pings = 0;
+        else{
+            connection->disconnect();
+            break;
+        }
+    }
+    return NULL;
+}
+
 void* ping(void* arg){
     Connection* connection = (Connection*) arg;
 
@@ -94,6 +111,7 @@ Connection::Connection(Socket* sock){
     pthread_create(&reader, NULL, read, this);
     pthread_create(&writer, NULL, write, this);
     pthread_create(&pinger, NULL, ping, this);
+    pthread_create(&controller, NULL, connectionControl, this);
 }
 
 Connection::~Connection(){
@@ -111,6 +129,7 @@ void Connection::disconnect(){
     pthread_join(reader, &exit_status);
     pthread_join(writer, &exit_status);
     pthread_join(pinger, &exit_status);
+    pthread_join(controller, &exit_status);
     pthread_mutex_destroy(&sendLock);
     printf("Client %d disconnected.\n", id);
     id = 0;

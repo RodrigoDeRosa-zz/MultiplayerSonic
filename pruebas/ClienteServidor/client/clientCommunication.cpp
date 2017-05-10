@@ -7,6 +7,7 @@
 using namespace std;
 
 #define MAXDATASIZE 100
+#define PINGS_PASSED 5
 #define SLEEP_T 100000	//.5 seg
 
 pthread_mutex_t socketLock;
@@ -15,6 +16,24 @@ typedef struct thread{
     pthread_t id;
     void* exit_status;
 } thread_t;
+
+void* connectionControl(void* arg){
+    Client* client = (Client*) arg;
+
+    int pings;
+    while(client->connected()){
+        usleep(PINGS_PASSED*SLEEP_T);
+        pings = client->pings;
+        /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
+        if(pings > 0) client->pings = 0;
+        else{
+            printf("Client disconnecting\n");
+            client->disconnect(1);
+            break;
+        }
+    }
+    return NULL;
+}
 
 /*Envia mensajes al servidor cada 1 segundo para notificar que sigue conectado*/
 void* ping(void* arg){
@@ -95,11 +114,14 @@ void* startCommunication(void* arg){
     /*Se abre el thread para recibir mensajes*/
     thread_t receiveThread;
     pthread_create(&(receiveThread.id), NULL, receiveMessage, client);
+    thread_t controlThread;
+    pthread_create(&(controlThread.id), NULL, connectionControl, client);
 
     /*Los threads terminan solo cuando el cliente se desconecta*/
     pthread_join(pingThread.id, &(pingThread.exit_status));
     pthread_join(sendThread.id, &(sendThread.exit_status));
     pthread_join(receiveThread.id, &(receiveThread.exit_status));
+    pthread_join(controlThread.id, &(controlThread.exit_status));
     /*Se destruyen los mutex*/
     pthread_mutex_destroy(&socketLock);
 

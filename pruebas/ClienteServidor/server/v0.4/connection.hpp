@@ -24,6 +24,7 @@ class Connection{
         pthread_t reader;
         pthread_t writer;
         pthread_t pinger;
+        pthread_t controller;
 
         deque<char*> outEvents;
     public:
