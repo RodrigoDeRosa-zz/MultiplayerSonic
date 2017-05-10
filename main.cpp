@@ -22,69 +22,51 @@ int main(int argc, char** argv){
 
     Stage* stage = json->getStage();
 
-		Juego* juego = new Juego();
-		juego->setStage(stage);
-		Camara* camara_pantalla = json->getCamara();
-		juego->setCamara(camara_pantalla);
-		Jugadores* jugs = new Jugadores();
-		juego->setJugadores(jugs);
-		juego->setFactory();
-		juego->addJugador("1","Sonic");
-		//SegaFactory* factory = new SegaFactory();
-		//Sonic* sonicc = factory -> getSonic("1");
+	Juego* juego = new Juego();
+	juego->setStage(stage);
+	Camara* camara_pantalla = json->getCamara();
+	juego->setCamara(camara_pantalla);
+	Jugadores* jugs = new Jugadores();
+	juego->setJugadores(jugs);
+	juego->setFactory();
+	juego->addJugador("1","Sonic");
+	juego->addJugador("2","Sonic");
 
     bool running = true;
     SDL_Event e;
 
-		float velX = 0.0;
-		float velY = 0.0;
-
-		/*Estas son variables que se le pasan a los personajes,
-		pero dentro de cada personaje sabe con que velocidad se tiene
-		que mover. esta velocidad no es con la que se va a mover el
-		jugador, sirve para saber para que lado se esta moviendo.
-
-		---- velX > 0 implica que se mueve para la derecha.
-		---- velY > 0 implica que salto.
-		*/
-
-		Control* control = new Control();
-		control->addPlayer("1");
-		float cameraPosition;
-		vector<float> directions;
+	float velX = 0.0;
+	float velY = 0.0;
+	Control* control = new Control();
+	control->addPlayer("1");
+	control->addPlayer("2");
+	control->setPlayerConnection("2",false);
+	float cameraPosition;
+	vector<float> directions;
+		
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                 running = false;
                 break;}
-
-						/*ESTO ES SUPER CABEZA PERO LO TIENE QUE MANEJAR EL
-						SERVER, ES UN EJEMPLO DE COMO LO TIENE QUE HACER*/
-
-            //sonic->setEventMovimiento(e);
-							directions = control->getDirections(e,velX,velY);
-							velX = directions[0];
-							velY = directions[1];
-					}
-					control->moveCameraAndPlayer("1",directions);
-					cameraPosition = control->getCameraPosition();
-				juego->updateJugador("1", velX, velY, 0, 0, true);
-				juego->updateCamara(cameraPosition,0);
-
-				//printf("Velocidad sin dividir:%f \n",velX);
-
-				//se le envia un string que dice que movimiento va a realizar
-
-				//juego->updateJugador("0",velX,velY,0,0,0);
-        //camara_pantalla->moveApuntado();
-				//calcular mov camara con todos los personajes
-				//camara_pantalla->moveCamara();
-
+			directions = control->getDirections(e,velX,velY);
+			velX = directions[0];
+			velY = directions[1];
+		}
+		float auxVelX = velX;
+		float auxVelY = velY;
+		if(!(control->moveCameraAndPlayer("1",directions))){
+				auxVelX = 0;
+				auxVelY = 0;
+		}
+		cameraPosition = control->getCameraPosition();
+		juego->updateJugador("1", auxVelX, auxVelY, 0, 0, true);
+		juego->updateJugador("2",0,0,control->getPlayerPosition("2")[0],300,false);
+		juego->updateCamara(cameraPosition,0);
         //setea el color de fondo de blanco
         Renderer::getInstance().setDrawColor(255, 255, 255, 1);
-
         Renderer::getInstance().clear();
-				juego->render();
+		juego->render();
         Renderer::getInstance().draw();
     }
     delete stage;

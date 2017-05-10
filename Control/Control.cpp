@@ -15,21 +15,8 @@ void Control::addPlayer(string playerName){
 	this->model->addPlayer(playerName);
 }
 
-vector<float> Control::handleEvent(string playerName, SDL_Event e,float dirX,float dirY){
-	vector<float> directions = this->getDirections(e,dirX,dirY);
-	if(!(this->moveCameraAndPlayer(playerName,directions))){
-		directions[0] = 0;
-		directions[1] = 0;
-	}
-	else this->model->moveDisconnectedPlayers(this->getDisconnectedPlayersNewPosition(directions[0]));
-	//mandar directions posicion desconectados y cameraPosition a la vista
-	 //la funcion va a ser void pero queda para probar
-
-	return directions;
-}
-
 float Control::getCameraPosition(){
-	this->cameraControl->getPosition();
+	return this->cameraControl->getPosition();
 }
 
 vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
@@ -53,23 +40,27 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 	return directions;
 }
 
-bool Control::moveCamera(float newPlayerX){
-	return 	(this->cameraControl->moveCamera(newPlayerX,this->model));
+bool Control::moveCamera(float newPlayerX,string playerName){
+	return 	(this->cameraControl->moveCamera(newPlayerX,this->model,playerName));
 }
 
 bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
-	 vector<float> previousPlayerPosition = this->model->getPlayerPosition(playerName);
+	vector<float> previousPlayerPosition = this->model->getPlayerPosition(playerName);
 	this->model->movePlayer(playerName,directions[0],directions[1]);
-	 vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
-	 if(!(this->moveCamera(newPlayerPosition[0]))){
-	// 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
+	vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
+	if(!(this->moveCamera(newPlayerPosition[0],playerName))){
+	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
 	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0],previousPlayerPosition[1]);
 	 	return false;
 	}
+	this->model->moveDisconnectedPlayers(this->getCameraPosition(),directions[0]);
 	return true;
 }
 
-float Control::getDisconnectedPlayersNewPosition(float dirX){
-	if (dirX > 0) return this->cameraControl->getLeftEdge();
-	return this->cameraControl->getRightEdge();
+void Control::setPlayerConnection(string playerName, bool connection){
+	this->model->setPlayerConnection(playerName,connection);
+}
+
+vector<float> Control::getPlayerPosition(string playerName){
+	return this->model->getPlayerPosition(playerName);
 }
