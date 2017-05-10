@@ -22,7 +22,7 @@ void* connectionControl(void* arg){
         /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
         if(pings > 0) connection->pings = 0;
         else{
-            connection->disconnect();
+            connection->disconnect(0);
             break;
         }
     }
@@ -41,7 +41,7 @@ void* ping(void* arg){
         status = connection->sendMessage(message, strlen(message));
         pthread_mutex_unlock(&connection->sendLock);
         if (!status){
-            connection->disconnect();
+            connection->disconnect(1);
             break;
         }
     }
@@ -56,7 +56,7 @@ void* read(void* arg){
     while (connection->isOnline()){
         /*Si falla la recepcion se considera que se perdio la conexion*/
         if(!connection->receiveMessage(msg_buffer, MAX_DATASIZE)){
-            connection->disconnect();
+            connection->disconnect(2);
             break;
         }
 		strcpy(message, msg_buffer);
@@ -88,6 +88,7 @@ void* read(void* arg){
 void* write(void* arg){
     Connection* connection = (Connection*) arg;
     char* message;
+    bool status;
 
     while (connection->isOnline()){
         /*Toma el mensaje de la cola de eventos salientes*/
@@ -95,8 +96,12 @@ void* write(void* arg){
         if (!message) continue; //Si esta vacia la cola, sigue
         /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
         pthread_mutex_lock(&connection->sendLock);
-        if(!connection->sendMessage(message, strlen(message))) connection->disconnect();
+        status = connection->sendMessage(message, strlen(message));
         pthread_mutex_unlock(&connection->sendLock);
+        if(!status){
+            connection->disconnect(3);
+            break;
+        }
     }
 
     return NULL;
@@ -118,20 +123,24 @@ Connection::~Connection(){
 
 }
 
-void Connection::disconnect(){
+void Connection::disconnect(int from){
+    //printf("Disconnected from %d\n", from);
+    if (online) printf("Client %d disconnected.\n", id);
     online = false;
-    CXManager::getInstance().removeConnection(id);
-    if (socket){
-        socket->sockClose();
-        socket = NULL;
-    }
+
     void* exit_status;
     pthread_join(reader, &exit_status);
     pthread_join(writer, &exit_status);
     pthread_join(pinger, &exit_status);
     pthread_join(controller, &exit_status);
     pthread_mutex_destroy(&sendLock);
-    if (online) printf("Client %d disconnected.\n", id);
+
+    CXManager::getInstance().removeConnection(id);
+
+    if (socket){
+        socket->sockClose();
+        socket = NULL;
+    }
     id = 0;
     pings = 0;
 }

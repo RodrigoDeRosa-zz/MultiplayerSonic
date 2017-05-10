@@ -11,7 +11,7 @@
 #include <stdlib.h>
 using namespace std;
 
-#define PORT "8080"
+#define PORT "9034"
 #define HOSTNAME "localhost"
 
 /*Imprime el ip del servidor cuya informacion se recibe luego del mensaje recibido*/

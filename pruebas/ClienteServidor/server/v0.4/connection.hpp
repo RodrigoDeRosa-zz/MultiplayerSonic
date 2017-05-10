@@ -44,7 +44,7 @@ class Connection{
         /*Toma el primer evento de la cola de eventos a enviar*/
         char* getOutEvent();
         bool isOnline();
-        void disconnect();
+        void disconnect(int);
 };
 
 #endif /*CONNECTION_HPP*/

@@ -37,6 +37,7 @@ void CXManager::addConnection(Connection* connection){
 void CXManager::removeConnection(int id){
     connections.erase(id);
     ids.push_back(id);
+    actualConnections -= 1;
 }
 
 Connection* CXManager::getConnection(int id){
@@ -49,7 +50,7 @@ Connection* CXManager::getConnection(int id){
 
 bool CXManager::hasInEvents(){
 	pthread_mutex_lock(&inEventsMux);
-	bool not_empty =!inEvents.empty();
+	bool not_empty = !inEvents.empty();
 	pthread_mutex_unlock(&inEventsMux);
     return not_empty;
 }

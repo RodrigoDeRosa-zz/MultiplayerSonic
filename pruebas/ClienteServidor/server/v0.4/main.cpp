@@ -9,24 +9,25 @@
 #define SERVER()(Server::getInstance())
 #define CXM()(CXManager::getInstance())
 
-#define PORT "8080"
-#define MAX_CONN 10
+#define PORT "9034"
+#define MAX_CONN 4
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
+#define ACCEPT_TIMEOUT 1
 
 void* accept(void* arg){
-    int MAX_CONNECTIONS = CXM().maxConnections;
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
     printf("Server now accepting...\n");
     while(SERVER().isOnline()){
+        sleep(ACCEPT_TIMEOUT);
         Socket* socket = SERVER().accept();
-        printf("Connection accepted!\n");
         if (!socket) continue;
         /*Se verifica que no este completo el servidor*/
-        if (CXM().actualConnections == MAX_CONNECTIONS){
+        if (CXM().actualConnections == CXM().maxConnections){
             socket->sockClose();
             continue;
         }
+        printf("Connection accepted!\n");
         /*Se crea un thread para la nueva conexion*/
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
@@ -80,7 +81,6 @@ int main(int argc, char** argv){
 
 	in_message_t* ev;
 	char* state = new char[PRINTLEN];
-	char id[]="1";
 
 	while(SERVER().isOnline()){
 		ev = SERVER().getInEvent();
