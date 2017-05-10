@@ -7,7 +7,7 @@
 using namespace std;
 
 #define MAXDATASIZE 100
-#define PINGS_PASSED 5
+#define PINGS_PASSED 10
 #define SLEEP_T 100000	//.5 seg
 
 pthread_mutex_t socketLock;
@@ -27,7 +27,6 @@ void* connectionControl(void* arg){
         /*Chequea si recibio pings en el ultimo segundo y sino desconecta*/
         if(pings > 0) client->pings = 0;
         else{
-            printf("Client disconnecting\n");
             client->disconnect(1);
             break;
         }
@@ -91,6 +90,10 @@ void* receiveMessage(void* arg){
             break;
         }
         memcpy(message, receivedMessage, MAXDATASIZE);
+        if (!strcmp(message, "ping")){
+            client->pings++;
+            continue;
+        }
         client->queueReceived(message);
     }
     return NULL;

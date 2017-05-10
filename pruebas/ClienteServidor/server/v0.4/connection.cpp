@@ -131,7 +131,7 @@ void Connection::disconnect(){
     pthread_join(pinger, &exit_status);
     pthread_join(controller, &exit_status);
     pthread_mutex_destroy(&sendLock);
-    printf("Client %d disconnected.\n", id);
+    if (online) printf("Client %d disconnected.\n", id);
     id = 0;
     pings = 0;
 }
