@@ -14,7 +14,8 @@ class Model{
 		void movePlayer(string playerName, float dirX, float dirY);
 		void setPlayerPosition(string playerName, float x, float y);
 		vector<float> getPlayerPosition(string playerName);
-		bool playerInPosition(float position);
-		void moveDisconnectedPlayers(float position);
+		bool otherPlayerInPosition(string playerName,float position, bool left);
+		void moveDisconnectedPlayers(float position,float dirX);
 		void setPlayerConnection(string playerName, bool connection);
+		vector<string> getDisconnectedPlayers();
 };

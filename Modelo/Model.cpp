@@ -39,21 +39,43 @@ vector<float> Model::getPlayerPosition(string playerName){
 	return position;
 }
 
-bool Model::playerInPosition(float position){
+bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 	for(int i = 0; i < players->size(); i++){
-		if(!((*players)[i]->isConnected())) continue;
-		if((*players)[i]->getX() == position) return true;
+		if((*players)[i]->getName() == playerName){
+			continue;
+		}
+		if(!((*players)[i]->isConnected())){
+			continue;
+		}
+		//el jugador esta a la izquierda de la posicion
+		if((left) && ((*players)[i]->getX() < position)) return true;
+		//el jugador esta a la derecha de la posicion
+		if(!(left) && ((*players)[i]->getX() > position)) return true;
 	}
 	return false;
 }
 
-void Model::moveDisconnectedPlayers(float position){
+void Model::moveDisconnectedPlayers(float position,float dirX){
 	for(int i = 0; i < players->size(); i++){
-		if(!((*players)[i]->isConnected())) (*players)[i]->setX(position);
+		if(!((*players)[i]->isConnected())){
+			vector<float> playerPosition = this->getPlayerPosition((*players)[i]->getName());
+			if((dirX > 0) && (playerPosition[0] < position))
+				(*players)[i]->setX(position);
+			else if((dirX < 0) && (playerPosition[0] > position))
+				(*players)[i]->setX(position);
+		}
 	}
 }
 
 void Model::setPlayerConnection(string playerName, bool connection){
 	Player* player = this->getPlayer(playerName);
 	player->setConnected(connection);
+}
+
+vector<string> Model::getDisconnectedPlayers(){
+	vector<string> names;
+	for(int i = 0; i < players->size(); i++){
+		if(!((*players)[i]->isConnected())) names.push_back((*players)[i]->getName());
+	}
+	return names;
 }

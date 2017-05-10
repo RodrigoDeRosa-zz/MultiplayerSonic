@@ -27,7 +27,7 @@ class Juego{
     void setFactory();
     void setCamara(Camara* cam);
 
-    void updateJugadores(map <string, vector <float>>);
+    void updateJugadores(map <string, vector <float> >);
     void updateJugador(string, float, float, float, float, float);
     void updateCamara(int, int);
     ~Juego();
