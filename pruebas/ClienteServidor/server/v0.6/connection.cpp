@@ -50,32 +50,30 @@ void* ping(void* arg){
 
 void* read(void* arg){
     Connection* connection = (Connection*) arg;
-    char message[MAX_DATASIZE];
+    int message;
 	char msg_buffer[MAX_DATASIZE];
 
     while (connection->isOnline()){
         /*Si falla la recepcion se considera que se perdio la conexion*/
-        if(!connection->receiveMessage(msg_buffer, MAX_DATASIZE)){
+        if(!connection->receiveMessage(msg_buffer, MAX_DATASIZE, sizeof(int))){
             connection->disconnect(2);
             break;
         }
-		strcpy(message, msg_buffer);
+		memcpy(&message, msg_buffer, sizeof(int)); //Descarta mensajes que lleguen pegados
 
-        /*Si el mensaje es vacio o ping, no se hace nada*/
-        if (!strcmp(message, "")) continue;
-        if (!strcmp(message, "ping")){
+        /*Si el mensaje es ping, no se hace nada*/
+        if (message == PING){
             connection->pings++;
             continue;
         }
-        /*Se le saca el \n al mensaje*/
-        strtok(message, "\n");
         /*Estructura para que procese el juego*/
         in_message_t* messageStruct = new in_message_t;
         messageStruct->id = connection->id;
         /*Identifiacion del evento*/
-        if (!strcmp(message, "moveRight")) messageStruct->key = RIGHT;
-        else if (!strcmp(message, "moveLeft")) messageStruct->key = LEFT;
-        else if (!strcmp(message, "jump")) messageStruct->key = SPACE;
+        //TODO: messageStruct->key = message;
+        if (message == RIGHT) messageStruct->key = RIGHT;
+        else if (message == LEFT) messageStruct->key = LEFT;
+        else if (message == SPACE) messageStruct->key = SPACE;
         else continue;
         /*Se guarda el struct*/
         printf("Client %d sent: %d\n", messageStruct->id, messageStruct->key);
@@ -153,8 +151,8 @@ bool Connection::isOnline(){
     return online;
 }
 
-bool Connection::receiveMessage(char* buffer, int size){
-    if(!socket->sockReceive(buffer, size)) return false;
+bool Connection::receiveMessage(char* buffer, int size, long int dataLen){
+    if(!socket->sockReceive(buffer, size, dataLen)) return false;
     return true;
 }
 

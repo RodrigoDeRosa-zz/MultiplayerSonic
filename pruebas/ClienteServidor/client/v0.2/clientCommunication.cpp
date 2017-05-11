@@ -38,13 +38,15 @@ void* connectionControl(void* arg){
 void* ping(void* arg){
     /*Hay que castear el parametro que viene void*/
     Client* client = (Client*) arg;
-    char* message = "ping";
+    int ping = 0;
+    char message[sizeof(int)];
+    memcpy(message, &ping, sizeof(int));
 
     while(client->connected()){
         usleep(SLEEP_T);
         /*Mutex por las dudas que pisar sends haga lio.*/
         pthread_mutex_lock(&socketLock);
-        bool status = client->send(message, strlen(message));
+        bool status = client->send(message, sizeof(int));
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);
@@ -59,13 +61,25 @@ void* sendMessage(void* arg){
 
     char* message;
     int msgLen;
+    char toSend[sizeof(int)];
+    int key;
+
     while(client->connected()){
         message = client->getEventToSend();
         if (!message) continue;
-        msgLen = strlen(message);
+
+        key = -1;
+
+        if (!strcmp(strtok(message, "\n"), "right")) key = 1;
+        if (!strcmp(strtok(message, "\n"), "left")) key = 2;
+        if (!strcmp(strtok(message, "\n"), "jump")) key = 3;
+        if (key == -1) continue;
+
+        memcpy(toSend, &key, sizeof(int));
+
         /*Bloquea y envia*/
         pthread_mutex_lock(&socketLock);
-        bool status = client->send(message, msgLen);
+        bool status = client->send(toSend, sizeof(int));
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);

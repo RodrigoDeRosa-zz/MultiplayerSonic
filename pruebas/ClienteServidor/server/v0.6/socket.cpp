@@ -47,19 +47,17 @@ Socket* Socket::sockAccept(struct sockaddr* clientAddr, socklen_t* addrLen){
     return newSock;
 }
 
-bool Socket::sockReceive(char* buffer, int size){
+bool Socket::sockReceive(char* buffer, int size, int dataLen){
     int receivedBytes = 0;
     ssize_t reception;
-	memset(buffer,0,size);//DEBUG
+	memset(buffer, 0, size);
     while (receivedBytes < size){
         reception = recv(sockfd, buffer + receivedBytes, size - receivedBytes, MSG_NOSIGNAL);
-		//printf("en sockReceive buffer es: %s\n",buffer);//DEBUG
         if (reception < 0) return false;
-        if (reception == 0) break;
+        if (reception == 0) return false;
         receivedBytes += reception;
-        if (buffer[receivedBytes] == '\0') break;
+        if (receivedBytes >= dataLen) break;
     }
-    buffer[receivedBytes] = '\0';
     return true;
 }
 

@@ -7,7 +7,7 @@
 #include <unistd.h>
 using namespace std;
 
-enum key_event {LEFT, RIGHT, SPACE};
+enum key_event {PING, LEFT, RIGHT, SPACE};
 
 typedef struct in_message{
     int id;
@@ -34,7 +34,7 @@ class Connection{
         Connection(Socket*);
         ~Connection();
         /*Recibe un mensaje a traves del socket*/
-        bool receiveMessage(char* buffer, int size);
+        bool receiveMessage(char* buffer, int size, long int dataLen);
         /*Envia un mensaje a traves del socket*/
         bool sendMessage(char* buffer, int size);
         /*Setea el identificador que se usa como clave en el CXManager*/

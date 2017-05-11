@@ -1,0 +1,17 @@
+Cliente:
+    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
+    - Cambiar el socketReceive para que sea largo fijo. (idem abajo)
+    - Cambiar el clientReceive para que tenga largo fijo. (Igual que el server pero ahora en vez de un int es el struct de outMessage)
+    - Cambiar el thread de recepcion en clientCommunication para que maneje outMessages
+    - Cambiar colas received<char*> para que tenga outMessages
+    - El struct outMessage tiene que contemplar el ping
+Server:
+    - Debe pingear acorde a lo que recibe el cliente (outMessage).
+    - Debe enviar outMessages
+    - La cola de salida debe ser <outMessage>(con o sin *, nose)
+    - Destruir los estados de juego enviados a los clientes una vez que se enviaron
+    - El thread de recepcion de eventos no tiene que tener ningun if, lo que desencole van a ser directamente eventos conocidos.
+    - El thread de escritura tiene que mandar outMessages (para esto no hace falta editar el socket [VER SEND EN CLIENTE]).
+main:
+    - Castear los estados que devuelve el juego a char* para que el server no se entere que es algo mas que char*
+    (Es decir, el server solo usa el sizeof(outMessage) [en connection.cpp])

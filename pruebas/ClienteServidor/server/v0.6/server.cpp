@@ -21,9 +21,6 @@ using namespace std;
 void* eventHandling(void* arg){
     /*Mientras el servidor esta conectado, busca eventos para procesar*/
     while(Server::getInstance().isOnline()){
-        /*Se fija si recibio algun evento y lo encola.*/
-        //char* inEvent = Server::getInstance().getInEvent();
-        //if (inEvent) Server::getInstance().queueInEvent(inEvent);
         /*  Cuando lo encola, se lo da al juego para que lo procese y el se encarga
          *de encolar el evento saliente en outEvent.
          *  Como el juego puede tardar, se sigue ciclando viendo si llegaron eventos

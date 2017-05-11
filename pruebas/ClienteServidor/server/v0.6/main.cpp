@@ -109,15 +109,17 @@ int main(int argc, char** argv){
 		sleep(ONLINE_TIMEOUT);
 	}
 
-	in_message_t* ev;
-	char* state = new char[PRINTLEN];
-
 	while(SERVER().isOnline()){
+        in_message_t* ev;
+
 		ev = SERVER().getInEvent();
 		if(!ev) {
 			usleep(3000);
 			continue;
 		}
+        //TODO: Los states van a ser del tipo OutMessage, pero se deben castear a
+        //char* para que el server lo encole y lo mande
+        char* state = new char[PRINTLEN];
         //ev es un evento entrante, a procesar por el juego
         snprintf(state, PRINTLEN,"Client %d sent event %d", ev->id, ev->key);
 		//state es un evento saliente, que encola el juego
