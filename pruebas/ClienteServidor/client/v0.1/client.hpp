@@ -14,8 +14,10 @@ class Client{
         deque<char*> received;
         deque<char*> toSend;
     public:
+        const char* port;
+        const char* hostname;
         int pings;
-        Client();
+        Client(const char* p, const char* h);
         ~Client();
         /*Inicializa el socket del cliente y guarda la direccion del servidor al que
          *se conectará.

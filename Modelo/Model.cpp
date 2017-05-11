@@ -55,14 +55,18 @@ bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 	return false;
 }
 
-void Model::moveDisconnectedPlayers(float position,float dirX){
+void Model::moveDisconnectedPlayers(float position, float diff, float dirX){
 	for(int i = 0; i < players->size(); i++){
 		if(!((*players)[i]->isConnected())){
 			vector<float> playerPosition = this->getPlayerPosition((*players)[i]->getName());
-			if((dirX > 0) && (playerPosition[0] < position))
-				(*players)[i]->setX(position);
-			else if((dirX < 0) && (playerPosition[0] > position))
-				(*players)[i]->setX(position);
+			if(dirX > 0){
+				if(playerPosition[0] < position) (*players)[i]->setX(position);
+				else (*players)[i]->setX(playerPosition[0] + diff);
+			}
+			else if(dirX < 0){
+				if(playerPosition[0] > position) (*players)[i]->setX(position);
+				else (*players)[i]->setX(playerPosition[0] + diff);
+			}
 		}
 	}
 }

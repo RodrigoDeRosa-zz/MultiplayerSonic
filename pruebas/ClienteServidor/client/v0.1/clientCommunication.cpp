@@ -90,10 +90,11 @@ void* receiveMessage(void* arg){
             break;
         }
         memcpy(message, receivedMessage, MAXDATASIZE);
-        if (!strcmp(message, "ping")){
+        if (!strcmp(message, "ping") || !strcmp(strtok(message, "\n"), "ping")){
             client->pings++;
             continue;
         }
+        printf("Message %s\n", message);
         client->queueReceived(message);
     }
     return NULL;

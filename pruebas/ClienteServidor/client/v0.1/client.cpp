@@ -6,13 +6,17 @@
 #include <stddef.h>
 #include <stdio.h>
 
-Client::Client(){
+
+Client::Client(const char* p, const char* h){
     socket = NULL;
     online = false;
     pings = 0;
+    port = p;
+    hostname = h;
     received = deque<char*>();
     toSend = deque<char*>();
 }
+
 Client::~Client(){
     if (socket) delete socket;
     socket = NULL;

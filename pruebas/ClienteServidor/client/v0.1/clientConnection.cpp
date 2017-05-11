@@ -28,7 +28,7 @@ void printHostIP(string message, struct addrinfo* serverInfo){
  *Repite hasta obtener un hostname valido.
  *Devuelve un struct addrinfo
 */
-addrinfo* resolveServerInfo(){
+addrinfo* resolveServerInfo(Client* client){
     int status;
     struct addrinfo hints, *serverInfo;
     /*Se define el struct que indica como será el addrinfo del server*/
@@ -36,7 +36,7 @@ addrinfo* resolveServerInfo(){
     hints.ai_family = AF_INET; //IPv4
     hints.ai_socktype = SOCK_STREAM; //TCP
     /*Se guarda la informacion del host*/
-    status = getaddrinfo(HOSTNAME, PORT, &hints, &serverInfo);
+    status = getaddrinfo(client->hostname, client->port, &hints, &serverInfo);
     if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status));
 
     printHostIP("Hostname resolved to:", serverInfo);
@@ -50,7 +50,7 @@ addrinfo* resolveServerInfo(){
 bool initializeConnection(Client* client){
     /*Se obtiene la informacion del servidor al que se quiere conectar.*/
     struct addrinfo *serverInfo;
-    serverInfo = resolveServerInfo();
+    serverInfo = resolveServerInfo(client);
     //Se configura el cliente para conectarse al servidor.
     if (!client->setConnectionInfo(serverInfo)) return false;
     if (!client->connectToServer()) return false;

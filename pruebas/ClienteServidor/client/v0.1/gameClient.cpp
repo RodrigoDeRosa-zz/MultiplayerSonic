@@ -5,6 +5,12 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
+#include <fstream>
+#include <string>
+#include <vector>
+#include "json/json.h"
+#include "json/json-forwards.h"
+using namespace std;
 
 #define COMMAND_LENGTH 15
 #define MESSAGE_LENGTH 40
@@ -12,6 +18,38 @@
 #define DISCONNECT "disconnect"
 #define EXIT "exit"
 #define INPUT "message"
+#define DEFAULT_PATH "clientDefault.json"
+
+vector<const char*>* loadJson(char* path){
+    ifstream in(path);
+    Json::Value json;
+
+    //no encuentra el archivo
+	if(in.fail()){
+		//Logger::getInstance().log("No se encontro el archivo .json",BAJO);
+        printf("No se encontro el archivo %s\n", path);
+        in.clear();
+		in.open(DEFAULT_PATH);
+	}
+
+    //hay un error de sintaxis
+	try{
+		in >> json;
+	}catch(const Json::RuntimeError& e){
+        printf("Error de sintaxis.\n");
+        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+		ifstream input(DEFAULT_PATH);
+		input >> json;
+	}
+
+    const char* port = json["port"].asString().c_str();
+    const char* hostname = json["hostname"].asString().c_str();
+    printf("host: %s\n", hostname);
+    vector<const char*>* v = new vector<const char*>;
+    v->push_back(port);
+    v->push_back(hostname);
+    return v;
+}
 
 void* printReceived(void *arg){
     Client* client = (Client*) arg;
@@ -48,14 +86,34 @@ void* runGame(void* arg){
 }
 
 int main(int argc, char** argv){
-    /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
-    Client* self = new Client();
-
     if (argc != 2){
         printf("Usage: ./clientGame <JSONfile>\n");
         return 1;
     }
-    printf("JSON file %s loaded!\n", argv[1]);
+    char* path = argv[1];
+    /*Lectura del JSON*/
+    ifstream in(path);
+    Json::Value json;
+    //no encuentra el archivo
+    if(in.fail()){
+        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
+        printf("No se encontro el archivo %s\n", path);
+        in.clear();
+        in.open(DEFAULT_PATH);
+    }
+    //hay un error de sintaxis
+    try{
+        in >> json;
+    }catch(const Json::RuntimeError& e){
+        printf("Error de sintaxis.\n");
+        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+        ifstream input(DEFAULT_PATH);
+        input >> json;
+    }
+    const char* port = json["port"].asString().c_str();
+    const char* hostname = json["hostname"].asString().c_str();
+    /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
+    Client* self = new Client(port, hostname);
 
     bool running = true;
     bool started = false;
@@ -85,7 +143,9 @@ int main(int argc, char** argv){
 			printf("Write message to send: ");
 			fgets(message, MESSAGE_LENGTH, stdin);
 			self->queueToSend(message);
-		}
+		} else if(strcmp(command, "")){
+            self->queueToSend(command);
+        }
     }
 
     /*Destruye el objeto cliente*/
