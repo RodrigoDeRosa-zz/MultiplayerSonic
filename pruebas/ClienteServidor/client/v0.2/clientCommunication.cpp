@@ -61,7 +61,6 @@ void* sendMessage(void* arg){
     Client* client = (Client*) arg;
 
     key_event event;
-    int msgLen;
     char toSend[sizeof(int)];
 
     while(client->connected()){
@@ -75,16 +74,15 @@ void* sendMessage(void* arg){
         /*El entero que representa a la tecla se convierte en char* para mandar
         via socket*/
         memcpy(toSend, &event, sizeof(int));
-
         /*Bloquea y envia*/
         pthread_mutex_lock(&socketLock);
         bool status = client->send(toSend, sizeof(int));
-        memset(toSend, 0, msgLen);
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);
             break;
         }
+        memset(toSend, 0, sizeof(int));
     }
     return NULL;
 }

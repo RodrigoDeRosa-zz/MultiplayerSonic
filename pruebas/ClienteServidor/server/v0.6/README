@@ -1,7 +1,3 @@
-!!!!!!!!!!!!
-El server flashea que recibe siempre un evento 5. Ahora como y trato de arregarlo
-!!!!!!!!!!!!
-
 Cliente:
     HECHO    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
     - Cambiar el socketReceive para que sea largo fijo. (idem abajo)

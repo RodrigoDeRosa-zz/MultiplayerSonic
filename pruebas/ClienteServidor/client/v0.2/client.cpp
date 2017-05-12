@@ -48,7 +48,9 @@ void Client::queueToSend(key_event event){
 }
 
 key_event Client::getEventToSend(){
-    if (toSend.empty()) return KEY_TOTAL;
+    if (toSend.empty()){
+        return KEY_TOTAL;
+    }
     key_event element = toSend.at(0);
     toSend.pop_front();
     return element;

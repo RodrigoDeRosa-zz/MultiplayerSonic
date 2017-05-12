@@ -120,8 +120,7 @@ int main(int argc, char** argv){
             else if (!strcmp(message, "up")) key = UP;
             else if (!strcmp(message, "down")) key = DOWN;
             else if (!strcmp(message, "quit")) key = QUIT;
-            else continue;
-            self->queueToSend(key);
+            if (key != KEY_TOTAL) self->queueToSend(key);
 		}
     }
 
