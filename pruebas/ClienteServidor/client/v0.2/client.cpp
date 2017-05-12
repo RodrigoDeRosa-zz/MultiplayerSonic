@@ -14,7 +14,7 @@ Client::Client(const char* p, const char* h){
     pings = 0;
     port = p;
     hostname = h;
-    received = deque<char*>();
+    received = deque<out_message_t*>();
     toSend = deque<key_event>();
 }
 
@@ -64,21 +64,21 @@ bool Client::send(void *buffer, int size){
     return true;
 }
 
-bool Client::receive(void *buffer, int size){
+bool Client::receive(void *buffer, int size, long int dataLen){
     char* data = (char*) buffer;
-    if (!socket->sockReceive(data, size)){
+    if (!socket->sockReceive(data, size, dataLen)){
         return false;
     }
     return true;
 }
 
-void Client::queueReceived(char* event){
-    received.push_back(event);
+void Client::queueReceived(out_message_t* state){
+    received.push_back(state);
 }
 
-char* Client::getEventReceived(){
+out_message_t* Client::getEventReceived(){
     if (received.empty()) return NULL;
-    char* element = received.at(0);
+    out_message_t* element = received.at(0);
     received.pop_front();
     return element;
 }

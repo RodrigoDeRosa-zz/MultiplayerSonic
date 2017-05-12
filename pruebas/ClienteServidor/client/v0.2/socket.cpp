@@ -28,17 +28,17 @@ bool Socket::sockConnect(struct sockaddr* address, size_t addrLen){
     return connect(sockfd, address, addrLen) != -1;
 }
 
-bool Socket::sockReceive(char* buffer, int size){
+bool Socket::sockReceive(char* buffer, int size, int dataLen){
     int receivedBytes = 0;
     ssize_t reception;
+	memset(buffer, 0, size);
     while (receivedBytes < size){
         reception = recv(sockfd, buffer + receivedBytes, size - receivedBytes, MSG_NOSIGNAL);
         if (reception < 0) return false;
-        if (reception == 0) break;
+        if (reception == 0) return false;
         receivedBytes += reception;
-        if (buffer[receivedBytes] == '\0') break;
+        if (receivedBytes >= dataLen) break;
     }
-    buffer[receivedBytes] = '\0';
     return true;
 }
 

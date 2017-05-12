@@ -18,7 +18,7 @@ class Socket{
         /*Lee una cadena de bytes de tamaño size del servidor al que esta conectado
          *y lo guarda en el buffer.
         */
-        bool sockReceive(char *buffer, int size);
+        bool sockReceive(char *buffer, int size, int dataLen);
         /*Envia la cadena de bytes del buffer tamaño size al servidor al que esta conectado*/
         bool sockSend(char *buffer, int size);
         /*Desactiva toda o parte de la conexion.

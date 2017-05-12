@@ -25,9 +25,12 @@ void* printReceived(void *arg){
     Client* client = (Client*) arg;
 
     while(client->connected()){
-        char* message = client->getEventReceived();
-        if (!message || strlen(message) == 0) continue;
-        printf("Server message: '%s'\n", message);
+        out_message_t* message = client->getEventReceived();
+        if (!message){
+            usleep(1000); //msec
+            continue;
+        }
+        printf("Client %s is in pos %f", message->playerName, message->posX);
     }
     return NULL;
 }

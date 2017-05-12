@@ -12,7 +12,7 @@ class Client{
         Socket* socket;
         struct addrinfo *serverInfo;
         bool online;
-        deque<char*> received;
+        deque<out_message_t*> received;
         deque<key_event> toSend;
     public:
         const char* port;
@@ -27,17 +27,17 @@ class Client{
         /*Crea su socket e intenta conectarse al servidor cuya información recibe*/
         bool connectToServer();
         /*Encola un evento para enviar al servidor.*/
-        void queueToSend(key_event event);
+        void queueToSend(key_event);
         /*Devuelve el proximo evento a enviar. NULL si no hay ninguno*/
         key_event getEventToSend();
         /*Envia el buffer al servidor al que esta conectado.*/
         bool send(void *buffer, int size);
         /*Recibe mensajes del servidor al que esta conectado y lo guarda en el buffer*/
-        bool receive(void *buffer, int size);
+        bool receive(void *buffer, int size, long int dataLen);
         /*Encola un evento recibido desde el servidor.*/
-        void queueReceived(char* event);
+        void queueReceived(out_message_t*);
         /*Devuelve el proximo evento recibido. NULL si no hay ninguno*/
-        char* getEventReceived();
+        out_message_t* getEventReceived();
         /*Indica si el cliente esta conectado a un servidor o no.*/
         bool connected();
         /*Se deconecta del servidor. El parametro how vale 1 si es por perdida

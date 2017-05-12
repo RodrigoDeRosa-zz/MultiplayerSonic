@@ -91,21 +91,20 @@ void* receiveMessage(void* arg){
     Client* client = (Client*) arg;
 
     while(client->connected()){
-        char message[MAXDATASIZE];
         char receivedMessage[MAXDATASIZE];
-        memset(receivedMessage, 0, MAXDATASIZE);
-        /*Bloquea y envia*/
-        bool status = client->receive(receivedMessage, MAXDATASIZE);
+        memset(receivedMessage, 0, MAXDATASIZE); //resetea el buffer
+        /*Envia el mensaje*/
+        bool status = client->receive(receivedMessage, MAXDATASIZE, sizeof(out_message_t));
         if (!status){
             client->disconnect(1);
             break;
         }
-        memcpy(message, receivedMessage, MAXDATASIZE);
+        /*Hace una copia solo de la parte que representaria a UN out_message_t*/
+        out_message_t* message = new out_message_t;
+        memcpy(message, receivedMessage, sizeof(out_message_t));
 
-        if (!strcmp(message, "ping") || !strcmp(strtok(message, "\n"), "ping")){
-            client->pings++;
-            continue;
-        }
+        //TODO: determinar si es PING o no
+
         client->queueReceived(message);
     }
     return NULL;

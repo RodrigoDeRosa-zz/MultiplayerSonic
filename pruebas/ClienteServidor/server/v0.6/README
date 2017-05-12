@@ -1,10 +1,11 @@
 Cliente:
-    HECHO    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
-    - Cambiar el socketReceive para que sea largo fijo. (idem abajo)
-    - Cambiar el clientReceive para que tenga largo fijo. (Igual que el server pero ahora en vez de un int es el struct de outMessage)
-    - Cambiar el thread de recepcion en clientCommunication para que maneje outMessages
-    - Cambiar colas received<char*> para que tenga outMessages
-    - El struct outMessage tiene que contemplar el ping
+    HECHO(y probado)    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
+    HECHO               - Cambiar el socketReceive para que sea largo fijo. (idem abajo)
+    HECHO               - Cambiar el clientReceive para que tenga largo fijo. (Igual que el server pero ahora en vez de un int es el struct de outMessage)
+    HECHO               - Cambiar el thread de recepcion en clientCommunication para que maneje outMessages
+    HECHO               - Cambiar colas received<char*> para que tenga outMessages
+    HECHO               - El struct outMessage tiene que contemplar el ping
+------------------Para probar todo lo hecho pero no probado, hay que hacer lo del server, ahora hago eso y pruebo todo junto-----------
 Server:
     - Debe pingear acorde a lo que recibe el cliente (outMessage).
     - Debe enviar outMessages
