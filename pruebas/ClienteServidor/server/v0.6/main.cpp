@@ -120,11 +120,19 @@ int main(int argc, char** argv){
 		}
         //TODO: Los states van a ser del tipo OutMessage, pero se deben castear a
         //char* para que el server lo encole y lo mande
-        char* state = new char[PRINTLEN];
-        //ev es un evento entrante, a procesar por el juego
-        snprintf(state, PRINTLEN,"Client %d sent event %d", ev->id, ev->key);
-		//state es un evento saliente, que encola el juego
-		SERVER().queueOutEvent(state);
+        out_message_t* state = new out_message_t;
+        state->ping = 0;
+        state->id = ev->id;
+        state->connection = true;
+        state->dirX = 0.0;
+        state->dirY = 0.0;
+        state->posX = 1.2;
+        state->posY = 0.0;
+        char* outState = new char[sizeof(out_message_t)];
+        memcpy(outState, state, sizeof(out_message_t));
+        delete state; //Una vez copiado al char* no lo necesitamos mas
+        
+		SERVER().queueOutEvent(outState);
 	}
 
     /*Se espera a que finalicen los threads*/

@@ -33,18 +33,23 @@ void* connectionControl(void* arg){
 void* ping(void* arg){
     Connection* connection = (Connection*) arg;
 
-    char* message = "ping";
+    out_message_t message;
+    message.ping = 1;
     bool status;
     while(connection->isOnline()){
         usleep(PING_UTIME);
+        /*Se pasa el ping a char* para enviar via socket*/
+        char toSend[sizeof(out_message_t)];
+        memcpy(toSend, &message, sizeof(out_message_t));
         /*Mutex por las dudas que pisar sends haga lio.*/
         pthread_mutex_lock(&connection->sendLock);
-        status = connection->sendMessage(message, strlen(message));
+        status = connection->sendMessage(toSend, sizeof(out_message_t));
         pthread_mutex_unlock(&connection->sendLock);
         if (!status){
             connection->disconnect(1);
             break;
         }
+        memset(toSend, 0, sizeof(out_message_t));
     }
     return NULL;
 }
@@ -69,8 +74,9 @@ void* read(void* arg){
         }
         /*Estructura para que procese el juego*/
         in_message_t* messageStruct = new in_message_t;
+        /*Guardamos un char* en in_message_t para que lo procese el juego*/
         messageStruct->id = connection->id;
-        /*Identifiacion del evento*/
+        /*Identificacion del evento*/
         messageStruct->key = message;
         /*Se guarda el struct*/
         printf("Client %d sent: %d\n", messageStruct->id, messageStruct->key);
@@ -81,7 +87,10 @@ void* read(void* arg){
 }
 
 void* write(void* arg){
+    /*Esta funcion no maneja out_message_t porque el juego se encarga de castearlo
+    a char* y todos los eventos de salida se manejan de esa manera en el servidor*/
     Connection* connection = (Connection*) arg;
+
     char* message;
     bool status;
 
@@ -91,7 +100,7 @@ void* write(void* arg){
         if (!message) continue; //Si esta vacia la cola, sigue
         /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
         pthread_mutex_lock(&connection->sendLock);
-        status = connection->sendMessage(message, strlen(message));
+        status = connection->sendMessage(message, sizeof(out_message_t));
         pthread_mutex_unlock(&connection->sendLock);
         if(!status){
             connection->disconnect(3);

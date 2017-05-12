@@ -30,7 +30,8 @@ void* printReceived(void *arg){
             usleep(1000); //msec
             continue;
         }
-        printf("Client %s is in pos %f", message->playerName, message->posX);
+        printf("Client %d is in pos %f\n", message->id, message->posX);
+        delete message;
     }
     return NULL;
 }

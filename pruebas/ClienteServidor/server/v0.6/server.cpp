@@ -138,7 +138,8 @@ char* Server::getOutEvent(){
 	pthread_mutex_lock(&outEventsMux);
     if (outEvents.empty()) {
 		pthread_mutex_unlock(&outEventsMux);
-		return NULL;}
+		return NULL;
+    }
     char* event = outEvents.at(0);
     outEvents.pop_front();
 	pthread_mutex_unlock(&outEventsMux);
@@ -149,7 +150,8 @@ in_message_t* Server::getInEvent(){
 	pthread_mutex_lock(&inEventsMux);
     if (inEvents.empty()) {
 		pthread_mutex_unlock(&inEventsMux);
-		return NULL;}
+		return NULL;
+    }
     in_message_t* event = inEvents.at(0);
     inEvents.pop_front();
 	pthread_mutex_unlock(&inEventsMux);

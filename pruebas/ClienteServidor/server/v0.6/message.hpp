@@ -5,7 +5,8 @@
 enum key_event {PING, LEFT, RIGHT, UP, DOWN, SPACE, QUIT, KEY_TOTAL};
 
 typedef struct out_message{
-	char* playerName;
+	char ping; //En 1 indica que el mensaje es un ping del servidor
+	int id;
 	bool connection;
 	float dirX;
 	float dirY;
