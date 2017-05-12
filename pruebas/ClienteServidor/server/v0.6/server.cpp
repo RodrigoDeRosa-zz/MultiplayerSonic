@@ -1,6 +1,7 @@
 #include "server.hpp"
 #include "socket.hpp"
 #include "cxManager.hpp"
+#include "message.hpp"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

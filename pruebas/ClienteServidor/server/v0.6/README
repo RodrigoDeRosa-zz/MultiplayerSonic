@@ -1,5 +1,9 @@
+!!!!!!!!!!!!
+El server flashea que recibe siempre un evento 5. Ahora como y trato de arregarlo
+!!!!!!!!!!!!
+
 Cliente:
-    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
+    HECHO    - Cambiar colas toSend de <char*> a int (Va a ser un enum que represente a cada evento de SDL)
     - Cambiar el socketReceive para que sea largo fijo. (idem abajo)
     - Cambiar el clientReceive para que tenga largo fijo. (Igual que el server pero ahora en vez de un int es el struct de outMessage)
     - Cambiar el thread de recepcion en clientCommunication para que maneje outMessages

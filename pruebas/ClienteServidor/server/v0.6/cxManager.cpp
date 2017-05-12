@@ -1,5 +1,6 @@
 #include "cxManager.hpp"
 #include "connection.hpp"
+#include "message.hpp"
 #include <map>
 #include <deque>
 using namespace std;

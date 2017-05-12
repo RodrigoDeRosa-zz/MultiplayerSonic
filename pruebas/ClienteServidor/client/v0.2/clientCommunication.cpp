@@ -1,4 +1,5 @@
 #include "client.hpp"
+#include "message.hpp"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -38,7 +39,7 @@ void* connectionControl(void* arg){
 void* ping(void* arg){
     /*Hay que castear el parametro que viene void*/
     Client* client = (Client*) arg;
-    int ping = 0;
+    key_event ping = PING;
     char message[sizeof(int)];
     memcpy(message, &ping, sizeof(int));
 
@@ -59,33 +60,31 @@ void* ping(void* arg){
 void* sendMessage(void* arg){
     Client* client = (Client*) arg;
 
-    char* message;
+    key_event event;
     int msgLen;
     char toSend[sizeof(int)];
-    int key;
 
     while(client->connected()){
-        message = client->getEventToSend();
-        if (!message) continue;
+        event = client->getEventToSend(); //Se desencola un evento directo
+        if (event == KEY_TOTAL) continue;
+        if (event == QUIT){
+            client->disconnect(1);
+            break;
+        }
 
-        key = -1;
-
-        if (!strcmp(strtok(message, "\n"), "right")) key = 1;
-        if (!strcmp(strtok(message, "\n"), "left")) key = 2;
-        if (!strcmp(strtok(message, "\n"), "jump")) key = 3;
-        if (key == -1) continue;
-
-        memcpy(toSend, &key, sizeof(int));
+        /*El entero que representa a la tecla se convierte en char* para mandar
+        via socket*/
+        memcpy(toSend, &event, sizeof(int));
 
         /*Bloquea y envia*/
         pthread_mutex_lock(&socketLock);
         bool status = client->send(toSend, sizeof(int));
+        memset(toSend, 0, msgLen);
         pthread_mutex_unlock(&socketLock);
         if (!status){
             client->disconnect(1);
             break;
         }
-        memset(message, 0, msgLen);
     }
     return NULL;
 }
@@ -104,11 +103,11 @@ void* receiveMessage(void* arg){
             break;
         }
         memcpy(message, receivedMessage, MAXDATASIZE);
+
         if (!strcmp(message, "ping") || !strcmp(strtok(message, "\n"), "ping")){
             client->pings++;
             continue;
         }
-        printf("Message %s\n", message);
         client->queueReceived(message);
     }
     return NULL;

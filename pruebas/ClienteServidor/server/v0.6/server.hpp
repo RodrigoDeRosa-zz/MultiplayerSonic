@@ -2,7 +2,7 @@
 #define SERVER_HPP
 
 #include "socket.hpp"
-#include "connection.hpp" //in_message_t
+#include "message.hpp" //in_message_t
 #include <sys/socket.h>
 #include <deque>
 #include <pthread.h>

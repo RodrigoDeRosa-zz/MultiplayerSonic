@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "message.hpp"
 #include "json/json.h"
 #include "json/json-forwards.h"
 using namespace std;
@@ -111,7 +112,16 @@ int main(int argc, char** argv){
         } else if (!strcmp(command, INPUT)){
 			printf("Write message to send: ");
 			fgets(message, MESSAGE_LENGTH, stdin);
-			self->queueToSend(message);
+            key_event key = KEY_TOTAL;
+            strtok(message, "\n");
+            if (!strcmp(message, "right")) key = RIGHT;
+            else if (!strcmp(message, "left")) key = LEFT;
+            else if (!strcmp(message, "jump")) key = SPACE;
+            else if (!strcmp(message, "up")) key = UP;
+            else if (!strcmp(message, "down")) key = DOWN;
+            else if (!strcmp(message, "quit")) key = QUIT;
+            else continue;
+            self->queueToSend(key);
 		}
     }
 

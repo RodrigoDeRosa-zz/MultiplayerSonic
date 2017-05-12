@@ -1,4 +1,5 @@
 #include "connection.hpp"
+#include "message.hpp"
 #include "socket.hpp"
 #include "cxManager.hpp"
 #include <pthread.h>
@@ -50,7 +51,7 @@ void* ping(void* arg){
 
 void* read(void* arg){
     Connection* connection = (Connection*) arg;
-    int message;
+    key_event message;
 	char msg_buffer[MAX_DATASIZE];
 
     while (connection->isOnline()){
@@ -70,11 +71,7 @@ void* read(void* arg){
         in_message_t* messageStruct = new in_message_t;
         messageStruct->id = connection->id;
         /*Identifiacion del evento*/
-        //TODO: messageStruct->key = message;
-        if (message == RIGHT) messageStruct->key = RIGHT;
-        else if (message == LEFT) messageStruct->key = LEFT;
-        else if (message == SPACE) messageStruct->key = SPACE;
-        else continue;
+        messageStruct->key = message;
         /*Se guarda el struct*/
         printf("Client %d sent: %d\n", messageStruct->id, messageStruct->key);
         CXManager::getInstance().queueInEvent(messageStruct);

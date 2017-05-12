@@ -2,6 +2,7 @@
 #include "socket.hpp"
 #include "cxManager.hpp"
 #include "connection.hpp"
+#include "message.hpp"
 #include "json/json.h"
 #include "json/json-forwards.h"
 #include <fstream>
@@ -125,7 +126,6 @@ int main(int argc, char** argv){
 		//state es un evento saliente, que encola el juego
 		SERVER().queueOutEvent(state);
 	}
-    delete[](state);
 
     /*Se espera a que finalicen los threads*/
     void* exit_status;

@@ -2,6 +2,7 @@
 #define CLIENT_HPP
 
 #include "socket.hpp"
+#include "message.hpp"
 #include <sys/socket.h>
 #include <deque>
 using namespace std;
@@ -12,7 +13,7 @@ class Client{
         struct addrinfo *serverInfo;
         bool online;
         deque<char*> received;
-        deque<char*> toSend;
+        deque<key_event> toSend;
     public:
         const char* port;
         const char* hostname;
@@ -26,9 +27,9 @@ class Client{
         /*Crea su socket e intenta conectarse al servidor cuya información recibe*/
         bool connectToServer();
         /*Encola un evento para enviar al servidor.*/
-        void queueToSend(char* event);
+        void queueToSend(key_event event);
         /*Devuelve el proximo evento a enviar. NULL si no hay ninguno*/
-        char* getEventToSend();
+        key_event getEventToSend();
         /*Envia el buffer al servidor al que esta conectado.*/
         bool send(void *buffer, int size);
         /*Recibe mensajes del servidor al que esta conectado y lo guarda en el buffer*/

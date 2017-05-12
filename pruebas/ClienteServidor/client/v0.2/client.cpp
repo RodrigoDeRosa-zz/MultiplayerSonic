@@ -1,5 +1,6 @@
 #include "client.hpp"
 #include "socket.hpp"
+#include "message.hpp"
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netdb.h>
@@ -14,7 +15,7 @@ Client::Client(const char* p, const char* h){
     port = p;
     hostname = h;
     received = deque<char*>();
-    toSend = deque<char*>();
+    toSend = deque<key_event>();
 }
 
 Client::~Client(){
@@ -42,13 +43,13 @@ bool Client::connectToServer(){
     return true;
 }
 
-void Client::queueToSend(char* event){
+void Client::queueToSend(key_event event){
     toSend.push_back(event);
 }
 
-char* Client::getEventToSend(){
-    if (toSend.empty()) return NULL;
-    char* element = toSend.at(0);
+key_event Client::getEventToSend(){
+    if (toSend.empty()) return KEY_TOTAL;
+    key_event element = toSend.at(0);
     toSend.pop_front();
     return element;
 }
