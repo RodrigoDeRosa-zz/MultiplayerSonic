@@ -54,7 +54,7 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0],previousPlayerPosition[1]);
 	 	return false;
 	}
-	if(this->getCameraPosition() != previousCameraPosition) this->model->moveDisconnectedPlayers(this->getCameraPosition(),previousPlayerPosition[0] - newPlayerPosition[0],directions[0]);
+	if(this->getCameraPosition() != previousCameraPosition) this->model->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
 	return true;
 }
 
