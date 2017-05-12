@@ -39,7 +39,7 @@ int violetaRGB[]= {102,0,102};
 vector<int> violeta (violetaRGB, violetaRGB + sizeof(violetaRGB) / sizeof(int) );
 
 
-JsonLoader::JsonLoader(char* ruta){
+JsonLoader::JsonLoader(char* ruta, char* rutaDefault){
 	(colores["verde"]) = verde;
 	(colores["rojo"]) = rojo;
 	(colores["azul"]) = azul;
@@ -47,15 +47,10 @@ JsonLoader::JsonLoader(char* ruta){
 	(colores["violeta"]) = violeta;
 
 
-	Json::Value json = this->getJson(ruta);
-    this->setLogger(json);
-	this->setWindow(json);
-	this->setRenderer();
-	this->stage = this->setStage(json);
-	this->camaraPantalla = this->setCamara(json);
+	this->setJson(ruta, rutaDefault);
 }
 
-Json::Value JsonLoader::getJson(char* ruta){
+void JsonLoader::setJson(char* ruta, char* rutaDefault){
     //carga el .json
 	ifstream in(ruta);
     Json::Value json;
@@ -64,7 +59,7 @@ Json::Value JsonLoader::getJson(char* ruta){
 	if(in.fail()){
 		Logger::getInstance().log("No se encontro el archivo .json",BAJO);
 		in.clear();
-		in.open(DEFAULT_PATH);
+		in.open(rutaDefault);
 	}
 
     //hay un error de sintaxis
@@ -72,32 +67,32 @@ Json::Value JsonLoader::getJson(char* ruta){
 		in >> json;
 	}catch(const Json::RuntimeError& e){
 		Logger::getInstance().log(string("Error de sintaxis en el archivo .json . Error: \n") + string(e.what()),BAJO);
-		ifstream input(DEFAULT_PATH);
+		ifstream input(rutaDefault);
 		input >> json;
 	}
-    return json;
+    this->json = json;
 }
 
-void JsonLoader::setLogger(Json::Value json){
-    string level = getString(json["log_lvl"],"[log_lvl]","bajo");
+void JsonLoader::setLogger(){
+    string level = getString((this->json)["log_lvl"],"[log_lvl]","bajo");
     if (level == "bajo") Logger::getInstance().setLogLevel(BAJO);
     else if (level == "medio") Logger::getInstance().setLogLevel(MEDIO);
     else if (level == "alto") Logger::getInstance().setLogLevel(ALTO);
     else Logger::getInstance().setLogLevel(BAJO);
 }
 
-Stage* JsonLoader::setStage(Json::Value json){
+Stage* JsonLoader::getStage(){
     Stage* stage = new Stage();
 
-    this->validateValue(json["escenario"],"[escenario]");
+    this->validateValue((this->json)["escenario"],"[escenario]");
 
-	stage->setDimensions(this->getPositiveInt(json["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",DEFAULT_STAGE_WIDHT),
-							this->getPositiveInt(json["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",DEFAULT_STAGE_HEIGHT));
+	stage->setDimensions(this->getPositiveInt((this->json)["escenario"]["dimensiones"]["ancho"],"[escenario][dimensiones][ancho]",DEFAULT_STAGE_WIDHT),
+							this->getPositiveInt((this->json)["escenario"]["dimensiones"]["alto"],"[escenario][dimensiones][alto]",DEFAULT_STAGE_HEIGHT));
 
-	if(this->validateValue(json["escenario"]["capas"],"[escenario][capas]")){
+	if(this->validateValue((this->json)["escenario"]["capas"],"[escenario][capas]")){
 
 		int i = 0;
-		for(Json::Value::iterator it = json["escenario"]["capas"].begin(); it != json["escenario"]["capas"].end(); it++){
+		for(Json::Value::iterator it = (this->json)["escenario"]["capas"].begin(); it != (this->json)["escenario"]["capas"].end(); it++){
 			if(i==2) break; //no hay mas de dos capas
 			Layer* layer = this->getLayer((*it),i,stage->getWidth(),stage->getHeight());
             stage->addLayer(layer);
@@ -105,7 +100,7 @@ Stage* JsonLoader::setStage(Json::Value json){
 		}
 	}
 
-    SpriteGroup* activeSprites = this->getSprites(json);
+    SpriteGroup* activeSprites = this->getSprites((this->json));
 
     stage->setSpriteGroup(activeSprites);
 
@@ -245,9 +240,9 @@ map<string,Texture*> JsonLoader::getTextures(Json::Value json){
 
 
 
-void JsonLoader::setWindow(Json::Value json){
-    int width = this->getPositiveInt(json["ventana"]["dimensiones"]["ancho"], string("[ventana][dimensiones][ancho]"), DEFAULT_WIDTH);
-    int height = this->getPositiveInt(json["ventana"]["dimensiones"]["alto"], string("[ventana][dimensiones][alto]"), DEFAULT_HEIGHT);
+void JsonLoader::setWindow(){
+    int width = this->getPositiveInt((this->json)["ventana"]["dimensiones"]["ancho"], string("[ventana][dimensiones][ancho]"), DEFAULT_WIDTH);
+    int height = this->getPositiveInt((this->json)["ventana"]["dimensiones"]["alto"], string("[ventana][dimensiones][alto]"), DEFAULT_HEIGHT);
 
 	Window::getInstance().setDimensions(width, height);
     Window::getInstance().init();
@@ -299,25 +294,10 @@ void JsonLoader::setRenderer(){
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
 }
 
-Stage* JsonLoader::getStage(){
-	return this->stage;
-}
-
-Camara* JsonLoader::setCamara(Json::Value json){
-	int velocidad = getPositiveInt(json["vel_scroll"],"[vel_scroll]",1);
-	Camara* camara_pantalla = new Camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(this->stage)->getWidth(), (this->stage)->getHeight() );
-	// Apuntado* seguido = new Apuntado(0, 0, 30, 30,velocidad);
-  //   Texture* invisible = new Texture();
-	// invisible->setDimensions(30, 30);
-  //   invisible->setKeyColor(0,0,0);
-  //   seguido->setBackgroundColor(0, 0, 0);
-  //   seguido->setTexture(invisible);
-  //   camara_pantalla->setApuntado(seguido);
+Camara* JsonLoader::getCamara(Stage* stage){
+	int velocidad = getPositiveInt((this->json)["vel_scroll"],"[vel_scroll]",1);
+	Camara* camara_pantalla = new Camara(0,0,velocidad,Window::getInstance().getWidth(),Window::getInstance().getHeight(),(stage)->getWidth(), (stage)->getHeight() );
 	return camara_pantalla;
-}
-
-Camara* JsonLoader::getCamara(){
-	return this->camaraPantalla;
 }
 
 bool JsonLoader::validateValue(Json::Value json, string where){
@@ -350,4 +330,10 @@ vector<int> JsonLoader::getColor(Json::Value json, string where){
       return colorRGB;
   }
 	return colorRGB;
+}
+
+void JsonLoader::setGame(){
+	this->setLogger();
+	this->setWindow();
+	this->setRenderer();
 }

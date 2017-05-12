@@ -13,18 +13,20 @@
 #include <SDL2/SDL.h>
 #include <string>
 
+#define DEFAULT_JSON "json/ejemplo2.json"
+
 
 int main(int argc, char** argv){
 	Logger::getInstance();	//se inicializa el logger .
     SDLHandler::getInstance().init();
 
-    JsonLoader* json = new JsonLoader("json/ejemplo.json");
-
+    JsonLoader* json = new JsonLoader("json/ejemplo.json", DEFAULT_JSON);
+    json->setGame();
     Stage* stage = json->getStage();
 
 	Juego* juego = new Juego();
 	juego->setStage(stage);
-	Camara* camara_pantalla = json->getCamara();
+	Camara* camara_pantalla = json->getCamara(stage);
 	juego->setCamara(camara_pantalla);
 	Jugadores* jugs = new Jugadores();
 	juego->setJugadores(jugs);
