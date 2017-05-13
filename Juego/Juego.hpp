@@ -15,12 +15,26 @@
   creados desde afuera (en este caso el jsonLoader)*/
 class Juego{
     Jugadores* jugadores;
-    Stage* stage;
+    vector <Stage*> stages;
+    Stage* stageActual;
     Camara* camara;
   public:
     Juego();
     void setJugadores(Jugadores*);
+
+    /*ESTE METODO SE TIENE QUE CAMBIAR POR:
+     * void addStage(Stage* stage);
+     * Todos los stages se tienen que cargar al inciar el juego
+     * con el metodo add stage.
+     * CUANDO CARGUEN TODOS LOS STAGES EN EL VECTOR, HAY QUE DEJAR POR DEFECTO
+     * EL stageActual = stages[0]. ahora no se hace para no romper el tp.*/
     void setStage(Stage* stage);
+
+    /*FALTA AGREGAR UN METODO PARA CAMBIAR AL SIGUIENTE SIGUIENTE STAGE
+     * CUANDO SE TERMINA EL ACTUAL, CON LA SIGUIENTE FIRMA:
+     * void nextStage();
+     */
+
     bool addJugador(string nombreJugador, string ombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
     void render();

@@ -6,7 +6,7 @@
  en jugadores que se cree un personaje generico*/
 Juego::Juego(){
     jugadores = NULL;
-    stage = NULL;
+    stageActual = NULL;
     camara = NULL;
 }
 /*SERVER*/
@@ -39,7 +39,7 @@ bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
 
 /*VISTA*/
 void Juego::setStage(Stage* new_stage){
-    stage = new_stage;
+    stageActual = new_stage;
 }
 
 void Juego::setJugadores(Jugadores* jugs){
@@ -52,7 +52,7 @@ void Juego::setJugadores(Jugadores* jugs){
 
 void Juego::render(){
     //this.actualizarJugadores();
-    stage->render(camara);
+    stageActual->render(camara);
     //camara->render();
     jugadores->render(camara);
 }
@@ -71,8 +71,8 @@ Juego::~Juego(){
         delete jugadores;
         jugadores = NULL;
     }
-    if (stage){
-        delete stage;
-        stage = NULL;
+    if (stageActual){
+        delete stageActual;
+        stageActual = NULL;
     }
 }
