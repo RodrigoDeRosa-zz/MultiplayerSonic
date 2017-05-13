@@ -23,11 +23,11 @@ void SpriteGroup::remove(Sprite sprite){
     }
 }
 
-void SpriteGroup::update(int id,float new_x, float new_y){
+void SpriteGroup::update(int index,float new_x, float new_y){
     /*POR CADA CLASE NUEVA VAMOS A TENER UN UPDATE.
      * ENCARGARSE DE CHEQUEAR EL ERROR DE SI EL SPRITE
      * NO EXISTE */
-    sprites[id]->update(new_x, new_y);
+    sprites[index]->update(new_x, new_y);
 }
 
 
