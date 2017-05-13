@@ -30,6 +30,17 @@ class Juego{
     void updateJugadores(map <string, vector <float> >);
     void updateJugador(string, float, float, float, float, float);
     void updateCamara(int, int);
+
+    /*EJEMPLO DE UTILZACION
+     * desde aca se tiene que crear el metodo para actualizar
+     * el stage, con la siguiente firma:
+     * void updateStage(string nom,int index, float newX, float newY);
+     * PARAMETROS:
+     * el string que recibe es el nombre del spriteGroup al que pertenece
+     * la entidad.
+     * el int es el indice de su ubicacion el la lista
+     * los dos floats son las nuevas posiciones de los sprites*/
+
     ~Juego();
 };
 

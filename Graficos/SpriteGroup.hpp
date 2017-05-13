@@ -28,9 +28,10 @@ class SpriteGroup{
         vector <Sprite*> getSprites();
 
         /*EJEMPLO DE COMO VAMOS A MANEJAR LOS UPDATE */
-        /*Vamos a tener un update por cada clase que necesitemos,
-         * solo dejamos uno de ejemplo ya que no sabemos que clases
-         * vamos a necesitar*/
+        /*Este metodo es llamado desde el juego para actualizar
+         * los sprites de el stage. recibe un int que es la posicion
+         * en la lista, y los floats son las nuevas posiciones del
+         * sprite.*/
         void update(int ,float, float);
 };
 
