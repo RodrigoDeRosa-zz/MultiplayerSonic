@@ -18,8 +18,6 @@ class SpriteGroup{
         void add(Sprite*);
         /*Saca el sprite pedido de la lista*/
         void remove(Sprite);
-        //actualiza la posicion pasada a todos los sprites
-        void update(float, float);
         /*Renderiza todos los sprites del grupo*/
         void render(Camara*);
         /*Remueve todos los sprites del grupo*/
@@ -28,6 +26,12 @@ class SpriteGroup{
         bool has(Sprite);
         SpriteGroup copy();
         vector <Sprite*> getSprites();
+
+        /*EJEMPLO DE COMO VAMOS A MANEJAR LOS UPDATE */
+        /*Vamos a tener un update por cada clase que necesitemos,
+         * solo dejamos uno de ejemplo ya que no sabemos que clases
+         * vamos a necesitar*/
+        void update(int ,float, float);
 };
 
 

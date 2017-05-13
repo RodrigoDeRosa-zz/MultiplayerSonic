@@ -23,13 +23,13 @@ void SpriteGroup::remove(Sprite sprite){
     }
 }
 
-void SpriteGroup::update(float new_x, float new_y){
-    if (!sprites.empty()) {
-        for (int i = 0; i < (int)sprites.size(); i++) {
-            (sprites[i])->update(new_x, new_y);
-        }
-    }
+void SpriteGroup::update(int id,float new_x, float new_y){
+    /*POR CADA CLASE NUEVA VAMOS A TENER UN UPDATE.
+     * ENCARGARSE DE CHEQUEAR EL ERROR DE SI EL SPRITE
+     * NO EXISTE */
+    (sprites[id])->update(new_x, new_y);
 }
+
 
 /*Funcion de ordenamiento del array de sprites*/
 struct order{
