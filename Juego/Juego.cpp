@@ -1,5 +1,5 @@
 #include "Juego.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 #include "SegaFactory.hpp"
 
 /*get sonic privada

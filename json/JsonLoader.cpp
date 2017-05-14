@@ -1,7 +1,7 @@
 #include "JsonLoader.hpp"
 #include <fstream>
 #include "../Graficos/Renderer.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
@@ -336,4 +336,12 @@ void JsonLoader::setGame(){
 	this->setLogger();
 	this->setWindow();
 	this->setRenderer();
+}
+
+string JsonLoader::getPort(){
+	return this->getString((this->json)["port"],"port","9034");
+}
+
+string JsonLoader::getHostname(){
+	return this->getString((this->json)["hostname"],"hostname","localhost");
 }

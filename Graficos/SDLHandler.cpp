@@ -1,7 +1,7 @@
 #include "SDLHandler.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 #define SDLHANDLER_NONINITSDL_MSG "In SDLHandler::init(): SDL could not initialize! SDL Error: "
 #define SDLHANDLER_NONINITIMG_MSG "In SDLHandler::init(): SDL_image could not initialize! SDL_image Error: "

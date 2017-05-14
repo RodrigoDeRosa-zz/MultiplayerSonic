@@ -2,7 +2,7 @@
 #include "Texture.hpp"
 #include "Sprite.hpp"
 #include <string>
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 #define LAYER_NOPATH_MSG "WARNING: No path to load texture from!"
 #define LAYER_TEX_NOLOAD_MSG "WARNING: Couldn't load layer texture!"

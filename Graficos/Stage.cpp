@@ -1,7 +1,7 @@
 #include "Stage.hpp"
 #include "Layer.hpp"
 #include "SpriteGroup.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 Stage::Stage(){
     sprites = NULL;

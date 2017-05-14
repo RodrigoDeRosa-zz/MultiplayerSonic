@@ -1,5 +1,5 @@
 #include "Jugadores.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 #include "Personaje.hpp"
 #include "Sonic.hpp"
 #include "../Graficos/Camara.hpp"

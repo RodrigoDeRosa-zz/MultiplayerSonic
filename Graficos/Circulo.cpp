@@ -4,7 +4,7 @@
 #include "Texture.hpp"
 #include "Renderer.hpp"
 #include "Circulo.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 #include <vector>
 
 #define CIRCULO_SETTEXTURE_OPENCV_MSG "In Circulo::setTexture(): Unable to load image "

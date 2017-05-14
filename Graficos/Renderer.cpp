@@ -2,7 +2,7 @@
 #include "Renderer.hpp"
 #include <SDL2/SDL.h>
 //#include <SDL2/SDL2_gfxPrimitives.h>
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 #define PI 3.14159265
 #define MAX_ARRAY 360
 

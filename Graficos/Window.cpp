@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include "Window.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 #define WINDOW_NOINIT_MSG "Window could not be created! SDL Error: "
 

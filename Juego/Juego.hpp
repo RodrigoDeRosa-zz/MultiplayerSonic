@@ -20,6 +20,7 @@ class Juego{
     Camara* camara;
   public:
     Juego();
+    
     void setJugadores(Jugadores*);
 
     /*ESTE METODO SE TIENE QUE CAMBIAR POR:

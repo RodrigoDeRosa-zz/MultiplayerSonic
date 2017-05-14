@@ -38,5 +38,7 @@ class JsonLoader{
 		void setGame();
 		Stage* getStage();
 		Camara* getCamara(Stage* stage);
+		string getPort();
+		string getHostname();
 
 };

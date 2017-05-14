@@ -1,5 +1,5 @@
 #include "ClipGroup.hpp"
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 
 ClipGroup::ClipGroup(){}
 

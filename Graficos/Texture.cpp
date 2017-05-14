@@ -3,7 +3,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Logger2.hpp"
+#include "../logger/current/Logger2.hpp"
 using namespace std;
 
 #define TEXTURE_LOADFILE_MSG "In Texture::loadFromFile(): Unable to load image "
