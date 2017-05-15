@@ -100,7 +100,7 @@ void setOutMessage(out_message_t* message,char ping,int id,bool connection,float
 vector<out_message_t*> Control::handleInMessage(in_message_t* ev){
 	vector<out_message_t*> v;
 	string playerName = SSTR(ev->id);
-	out_message_t* message;
+	out_message_t* message = new out_message_t;
 	vector<float> directions = this->getDirections(ev->key);
 	setOutMessage(message,0,ev->id,true,directions[0],directions[1],0,0,this->getCameraPosition());
 	if(!(this->moveCameraAndPlayer(playerName,directions))){
