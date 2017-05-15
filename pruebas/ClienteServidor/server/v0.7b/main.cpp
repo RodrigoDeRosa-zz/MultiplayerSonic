@@ -58,7 +58,7 @@ void* accept(void* arg){
         CXManager::getInstance().addConnection(connection);
 
         if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
-			SERVER().start_game();
+			SERVER().start_game();		
 		}
     }
 
