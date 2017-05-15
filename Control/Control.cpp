@@ -24,7 +24,10 @@ float Control::getCameraPosition(){
 	return this->cameraControl->getPosition();
 }
 
-vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
+vector<float> Control::getDirections(SDL_Event e,string playerName){
+    vector<float> directions = this->model->getPlayerDirections(playerName);
+    float dirX = directions[0];
+    float dirY = directions[1];
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
 		switch( e.key.keysym.sym ){
 			case SDLK_SPACE: dirY -= 1; break;
@@ -39,13 +42,15 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 			case SDLK_RIGHT: dirX -= 1; break;
 		}
 	}
-	vector<float> directions;
-	directions.push_back(dirX);
-	directions.push_back(dirY);
+	directions[0] = dirX;
+    directions[1] = dirY;
 	return directions;
 }
 
-vector<float> Control::getDirections(key_event e, float dirX = 0, float dirY =	0){
+vector<float> Control::getDirections(key_event e, string playerName){
+    vector<float> directions = this->model->getPlayerDirections(playerName);
+    float dirX = directions[0];
+    float dirY = directions[1];
 	switch( e ){
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
@@ -54,9 +59,8 @@ vector<float> Control::getDirections(key_event e, float dirX = 0, float dirY =	0
 		case LEFT_UP: dirX += 1; break;
 		case RIGHT_UP: dirX -= 1; break;
 	}
-	vector<float> directions;
-	directions.push_back(dirX);
-	directions.push_back(dirY);
+    directions[0] = dirX;
+    directions[1] = dirY;
 	return directions;
 }
 
@@ -101,7 +105,7 @@ vector<out_message_t*> Control::handleInMessage(in_message_t* ev){
 	vector<out_message_t*> v;
 	string playerName = SSTR(ev->id);
 	out_message_t* message;
-	vector<float> directions = this->getDirections(ev->key);
+	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	setOutMessage(message,0,ev->id,true,directions[0],directions[1],0,0,this->getCameraPosition());
 	if(!(this->moveCameraAndPlayer(playerName,directions))){
 		message->dirX = 0;

@@ -29,6 +29,15 @@ float Player::getY(){
 	return this->sonic->getY();
 }
 
+float Player::getDirX(){
+	return this->sonic->getDirX();
+}
+
+float Player::getDirY(){
+	//printf("DirY: %f /n",this->sonic->getDirY());
+	return this->sonic->getDirY();
+}
+
 void Player::setX(float x){
 	this->sonic->update(0,0,x,this->getY());
 }

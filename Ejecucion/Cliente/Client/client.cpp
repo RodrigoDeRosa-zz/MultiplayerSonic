@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-Client::Client(const char* p, const char* h, Juego* juego){
+Client::Client(const char* p, const char* h, Juego* j){
     socket = NULL;
     online = false;
     game_on = false;
@@ -17,7 +17,7 @@ Client::Client(const char* p, const char* h, Juego* juego){
     hostname = h;
     received = deque<out_message_t*>();
     toSend = deque<key_event>();
-    this->juego = juego;
+    juego = j;
 }
 
 Client::~Client(){
@@ -111,5 +111,5 @@ void Client::endGame(){
 }
 
 Juego* Client::getJuego(){
-    return this->juego;
+    return juego;
 }

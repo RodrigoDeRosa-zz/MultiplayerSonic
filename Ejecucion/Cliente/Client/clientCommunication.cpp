@@ -106,7 +106,10 @@ void* receiveMessage(void* arg){
         if (message->ping == 1){
             client->pings++;
             continue; //El mensaje recibido solo era un ping del server
-        } else if (message->ping == 3) client->endGame();
+        } else if (message->ping == 3){
+            client->endGame();
+            break;
+        }
 
         client->queueReceived(message);
     }

@@ -1,12 +1,12 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = ../../logger/current/Logger2.cpp ../../Graficos/*.cpp ../../Modelo/Model.cpp ../../Modelo/Player.cpp ../../Control/*.cpp ../../Juego/*.cpp ../../json/*.cpp Client/*.cpp  mainClient.cpp
+OBJS = ../../logger/current/Logger2.cpp ../../json/jsoncpp.cpp Client/*.cpp  gameClient.cpp
 #CC specifies which compiler we're using
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
 COMPILER_FLAGS = -w -g
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -opencv2 -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
+LINKER_FLAGS = -I ./logger/current -lpthread
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = mainClient
 #This is the target that compiles our executable

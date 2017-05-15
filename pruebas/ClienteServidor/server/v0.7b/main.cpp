@@ -58,7 +58,7 @@ void* accept(void* arg){
         CXManager::getInstance().addConnection(connection);
 
         if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
-			SERVER().start_game();		
+			SERVER().start_game();
 		}
     }
 
@@ -174,7 +174,7 @@ int main(int argc, char** argv){
 }
 
 // LA PRIMERA
-/* 
+/*
 void process_dummy(out_message_t* mOut, in_message_t* mIn){
 
 	mOut->ping = 0;
@@ -213,4 +213,3 @@ void process_dummy(out_message_t* mOut, in_message_t* mIn){
 	}
 
 }
-

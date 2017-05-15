@@ -3,6 +3,7 @@
 #include "Client/client.hpp"
 #include "Client/message.hpp"
 #include "../../json/JsonLoader.hpp"
+#include "../../Graficos/SDLHandler.hpp"
 //#include "../../Juego/Juego.hpp"
 #include <stdio.h>
 #include <pthread.h>
@@ -40,18 +41,50 @@ void* runGame(void* arg){
     pthread_create(&comThreadID, NULL, startCommunication, self);
     /*Se espera el mensaje con la cantidad de jugadores del servidor*/
     while(!self->gameOn()){
-        in_message_t* message = self->getEventReceived();
-        if (!message) usleep(10000);
+        out_message_t* message = self->getEventReceived();
+        if (!message){
+            usleep(10000);
+            continue;
+        }
         if (message->ping == 2){
-            for (int i = 0; i < message->id; i++){
-                self->getJuego()->addJugador(SSTR(i),"sonic");
-            }
-            self->startGame();
+            //for (int i = 0; i < message->id; i++){
+                //self->getJuego()->addJugador(SSTR(i),"sonic");
+            //}
+            //self->startGame();
+            printf("Jugadores: %d\n", message->ping);
             break;
         }
     }
     /*Espera la finalizacion del thread de comunicacion*/
     pthread_join(comThreadID, &comThread_exit);
+
+    return NULL;
+}
+
+void* consoleInteraction(void* arg){
+    Client* self = (Client*) arg;
+
+    pthread_t initT;
+    void* exit_status;
+
+    bool running = true;
+    while(running){
+        char command[COMMAND_LENGTH];
+        fgets(command, COMMAND_LENGTH, stdin);
+        strtok(command, "\n");
+
+        if (strcmp(command, CONNECT) == 0 && !self->connected()){
+            pthread_create(&initT, NULL, runGame, self);
+        } else if (strcmp(command, DISCONNECT) == 0){
+            self->disconnect(0);
+            pthread_join(initT, &exit_status);
+            printf("Disconnected.\n");
+        } else if (strcmp(command, EXIT) == 0){
+            self->disconnect(0);
+            pthread_join(initT, &exit_status);
+            running = false;
+        }
+    }
 
     return NULL;
 }
@@ -69,56 +102,41 @@ int main(int argc, char** argv){
 
     //carga de datos del archivo .json
     JsonLoader* json = new JsonLoader(path,DEFAULT_PATH);
-    json->setGame();
 
     const char* port = json->getPort().c_str();
     const char* hostname = json->getHostname().c_str();
-
-    Stage* stage = json->getStage();
-    Camara* camara = json->getCamara(stage);
-
+/*
     //Objeto juego que maneja la vista
     Juego* juego = new Juego();
-    juego->setStage(stage);
-    juego->setCamara(camara);
     Jugadores* jugs = new Jugadores();
     juego->setJugadores(jugs);
     juego->setFactory();
-
+*/
     /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
-    Client* self = new Client(port, hostname, juego);
+    Client* self = new Client(port, hostname, NULL);
 
-
-    bool running = true;
     bool started = false;
-    pthread_t initT;
-    pthtead_t game_thread;
+    pthread_t game_thread;
+    pthread_t interact;
     void* exit_status;
 
     printf("If the game is running, type the command you want whenever you need\n");
     printf("Insert a command: ");
-    while(running){
-        char command[COMMAND_LENGTH];
-        fgets(command, COMMAND_LENGTH, stdin);
-        strtok(command, "\n");
-
-        if (strcmp(command, CONNECT) == 0 && !self->connected()){
-            pthread_create(&initT, NULL, runGame, self);
-        } else if (strcmp(command, DISCONNECT) == 0){
-            self->disconnect(0);
-            pthread_join(initT, &exit_status);
-            printf("Disconnected.\n");
-        } else if (strcmp(command, EXIT) == 0){
-            self->disconnect(0);
-            pthread_join(initT, &exit_status);
-            running = false;
-        }
+    pthread_create(&interact, NULL, consoleInteraction, self);
+    /*while(!started){
         if(self->gameOn()){
+            started = true;
+            SDLHandler::getInstance().init();
+            json->setGame();
+            Stage* stage = json->getStage();
+            Camara* camara = json->getCamara(stage);
+            juego->setStage(stage);
+            juego->setCamara(camara);
             pthread_create(&game_thread, NULL, gameControl, self);
         }
-    }
-    void* exit_status;
-    pthread_join(game_thread, &exit_status);
+    }*/
+    //pthread_join(game_thread, &exit_status);
+    pthread_join(interact, &exit_status);
     /*Destruye el objeto cliente*/
     delete self;
 
@@ -126,8 +144,6 @@ int main(int argc, char** argv){
 }
 
 void* gameControl(void* arg){
-    SDLHandler::getInstance().init();
-
     /*Thread de que envia los mensajes de eventos de teclado*/
     pthread_t controller_thread;
     pthread_create(&controller_thread, NULL, f_controller, arg);
@@ -150,7 +166,7 @@ void* f_controller(void* arg){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                self->endGame();
-               self->disconnect();
+               self->disconnect(1);
             }
             if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
                 switch( e.key.keysym.sym ){

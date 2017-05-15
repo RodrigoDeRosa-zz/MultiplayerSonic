@@ -1,10 +1,10 @@
-#include "server.hpp"
-#include "socket.hpp"
-#include "cxManager.hpp"
-#include "connection.hpp"
-#include "message.hpp"
-#include "json/json.h"
-#include "json/json-forwards.h"
+#include "Server/server.hpp"
+#include "Server/socket.hpp"
+#include "Server/cxManager.hpp"
+#include "Server/connection.hpp"
+#include "Server/message.hpp"
+#include "../../json/JsonLoader.hpp"
+#include "../../Control/Control.hpp"
 #include <fstream>
 #include <pthread.h>
 #include <stdio.h>
@@ -15,14 +15,13 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 4
+#define MAX_CONN 2
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
-void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
 
-void avisarEmpiezaJuego(){
+void avisarEmpiezaJuego(char* outState){
 	out_message_t* state = new out_message_t;
 
 	state->ping=2;
@@ -34,7 +33,6 @@ void avisarEmpiezaJuego(){
 	state->posY=0;
 	state->posX=0;
 
-    char* outState = new char[sizeof(out_message_t)];
     memcpy(outState, state, sizeof(out_message_t));
     delete state;
 	SERVER().queueOutEvent(outState);
@@ -58,7 +56,7 @@ void* accept(void* arg){
         CXManager::getInstance().addConnection(connection);
 
         if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
-			SERVER().start_game();		
+			SERVER().start_game();
 		}
     }
 
@@ -95,25 +93,10 @@ int main(int argc, char** argv){
     }
     char* path = argv[1];
     /*Lectura del JSON*/
-    ifstream in(path);
-    Json::Value json;
-    //no encuentra el archivo
-    if(in.fail()){
-        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
-        printf("No se encontro el archivo %s\n", path);
-        in.clear();
-        in.open(DEFAULT_PATH);
-    }
-    //hay un error de sintaxis
-    try{
-        in >> json;
-    }catch(const Json::RuntimeError& e){
-        printf("Error de sintaxis.\n");
-        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
-        ifstream input(DEFAULT_PATH);
-        input >> json;
-    }
-    const char* port = json["port"].asString().c_str();
+    JsonLoader* json = new JsonLoader(path,DEFAULT_PATH);
+    const char* port = json->getPort().c_str();
+
+	Control* gameControl = new Control();
 
     if(!SERVER().init(port)){
         printf("Failed to initialize server!\n");
@@ -138,9 +121,9 @@ int main(int argc, char** argv){
 	while(!SERVER().is_running()){
 		usleep(30000);
 	}
-	avisarEmpiezaJuego();
+	char* outState = new char[sizeof(out_message_t)];
+	avisarEmpiezaJuego(outState);
 	//LOOP DEL JUEGO
-	printf("ojo que arranca\n");
 	while(SERVER().is_running()){
         in_message_t* ev;
 
@@ -166,44 +149,5 @@ int main(int argc, char** argv){
     return 0;
 }
 
-// LA PRIMERA
-/* 
-void process_dummy(out_message_t* mOut, in_message_t* mIn){
-
-	mOut->ping = 0;
-    mOut->id = mIn->id;
-    mOut->connection = true;
-    mOut->dirX = 0.0;
-    mOut->dirY = 0.0;
-    mOut->posX = 1.2;
-    mOut->posY = 0.0;
-
-}*/
-
-void process_dummy(out_message_t* mOut, in_message_t* mIn){
-
-	mOut->ping = 0;
-    mOut->id = mIn->id;
-    mOut->connection = true;
-    mOut->dirX = 0.0;
-    mOut->dirY = 0.0;
-    mOut->posX = 0.0;
-    mOut->posY = 0.0;
-	switch(mIn->key){
-		case LEFT_UP:
-			mOut->dirX=-1.0;break;
-		case RIGHT_UP:
-			mOut->dirX=1.0;break;
-		case SPACE_UP:
-			mOut->dirY=1.0;break;
-		case LEFT_DOWN:
-			mOut->dirY=-1.0;break;
-		case RIGHT_DOWN:
-			mOut->posY=100.0;break;
-		default: //PING, QUIT o KEY_TOTAL
-			//panic!
-			mOut->posY=-999.0;break;
-	}
 
 }
-

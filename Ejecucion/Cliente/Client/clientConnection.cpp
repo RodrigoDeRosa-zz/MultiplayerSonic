@@ -36,7 +36,7 @@ addrinfo* resolveServerInfo(Client* client){
     hints.ai_family = AF_INET; //IPv4
     hints.ai_socktype = SOCK_STREAM; //TCP
     /*Se guarda la informacion del host*/
-    status = getaddrinfo(client->hostname, client->port, &hints, &serverInfo);
+    status = getaddrinfo(client->hostname, PORT, &hints, &serverInfo);
     if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status));
 
     printHostIP("Hostname resolved to:", serverInfo);
