@@ -18,7 +18,7 @@ class Server{
         Socket* accSocket;
 
         bool online;
-
+		bool game_is_on;
         pthread_t eventThread;
 
 		pthread_mutex_t inEventsMux;
@@ -54,6 +54,12 @@ class Server{
         char* getOutEvent();
         /*Devuelve el proximo evento de entrada*/
         in_message_t* getInEvent();
+
+		//getter y setter de game_running
+		bool is_running();
+		void start_game();
+		void end_game();
+
 };
 
 #endif /*SERVER_HPP*/

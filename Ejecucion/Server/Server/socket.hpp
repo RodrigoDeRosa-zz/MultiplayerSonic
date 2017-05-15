@@ -3,10 +3,16 @@
 
 #include <sys/socket.h>
 
+#define SOCKET_BUFSZ 300 //[Bytes]
+//!IMPORTANTE: dado sizeof(out_msg)=28B, esto alcanza para ~10 mensajes encolados hasta estallar!
+
 class Socket{
     private:
         int sockfd;
         void setSockFD(int);
+
+		int receivedBytes;
+		char* buf1;
     public:
         Socket();
         ~Socket();

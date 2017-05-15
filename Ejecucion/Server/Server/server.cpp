@@ -157,3 +157,15 @@ in_message_t* Server::getInEvent(){
 	pthread_mutex_unlock(&inEventsMux);
     return event;
 }
+
+bool Server::is_running(){
+	return game_is_on;
+}
+
+void Server::start_game(){
+	game_is_on=true;
+}
+
+void Server::end_game(){
+	game_is_on=false;
+}

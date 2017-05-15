@@ -9,12 +9,16 @@
 #include <string.h>
 
 Socket::Socket(){
+	receivedBytes=0;
     sockfd = 0;
+	buf1 = new char[SOCKET_BUFSZ];
+	memset(buf1,0,SOCKET_BUFSZ);
 }
 Socket::~Socket(){
     //Si el socket no estaba cerrado, lo cierra.
     if (sockfd > 0) sockClose();
     sockfd = 0;
+	delete[] buf1;
 }
 
 void Socket::setSockFD(int socket){
@@ -47,18 +51,27 @@ Socket* Socket::sockAccept(struct sockaddr* clientAddr, socklen_t* addrLen){
     return newSock;
 }
 
-bool Socket::sockReceive(char* buffer, int size, int dataLen){
-    int receivedBytes = 0;
+//NEW
+//se asume dataLen << size
+bool Socket::sockReceive(char* buffer, int size, int datalen){
     ssize_t reception;
-	memset(buffer, 0, size);
-    while (receivedBytes < size){
-        reception = recv(sockfd, buffer + receivedBytes, size - receivedBytes, MSG_NOSIGNAL);
-        if (reception < 0) return false;
-        if (reception == 0) return false;
-        receivedBytes += reception;
-        if (receivedBytes >= dataLen) break;
-    }
-    return true;
+	//se debe cumplir que buf1[0:receivedBytes] tenga un estado valido
+	//puede que no entre al while si le sobraron datos suficientes para pasar
+	while(receivedBytes < datalen){
+		reception = recv(sockfd, buf1 + receivedBytes, SOCKET_BUFSZ - receivedBytes, MSG_NOSIGNAL);
+		if (reception == 0) return false;//socket shutdown
+		if (reception < 0) return false; //socket ERROR
+		receivedBytes+=reception;
+	}
+	receivedBytes-=datalen;//ahora recB son los datos QUE SOBRAN
+	memcpy(buffer,buf1,datalen);
+	if (!receivedBytes){//si no sobro nada
+		return true;
+	}	
+	for(int i=0;i<receivedBytes;i++){
+		buf1[i]=buf1[i+datalen];
+	}
+	return true;
 }
 
 bool Socket::sockSend(char* buffer, int size){

@@ -1,14 +1,14 @@
-#include "Server/server.hpp"
-#include "Server/socket.hpp"
-#include "Server/cxManager.hpp"
-#include "Server/connection.hpp"
-#include "Server/message.hpp"
-#include "../../json/JsonLoader.hpp"
-#include "../../Control/Control.hpp"
+#include "server.hpp"
+#include "socket.hpp"
+#include "cxManager.hpp"
+#include "connection.hpp"
+#include "message.hpp"
+#include "json/json.h"
+#include "json/json-forwards.h"
+#include <fstream>
 #include <pthread.h>
 #include <stdio.h>
 #include <string.h>
-
 using namespace std;
 
 #define SERVER()(Server::getInstance())
@@ -19,6 +19,26 @@ using namespace std;
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
+
+void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
+
+void avisarEmpiezaJuego(){
+	out_message_t* state = new out_message_t;
+
+	state->ping=2;
+	state->id=CXM().actualConnections;
+	//el resto (lo de abajo) no importa
+	state->connection=true;
+	state->dirX=0;
+	state->dirY=0;
+	state->posY=0;
+	state->posX=0;
+
+    char* outState = new char[sizeof(out_message_t)];
+    memcpy(outState, state, sizeof(out_message_t));
+    delete state;
+	SERVER().queueOutEvent(outState);
+}
 
 void* accept(void* arg){
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
@@ -36,6 +56,10 @@ void* accept(void* arg){
         /*Se crea un thread para la nueva conexion*/
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
+
+        if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
+			SERVER().start_game();		
+		}
     }
 
     return NULL;
@@ -71,12 +95,25 @@ int main(int argc, char** argv){
     }
     char* path = argv[1];
     /*Lectura del JSON*/
-    JsonLoader* json = new JsonLoader(path,DEFAULT_PATH);
-
-    const char* port = json->getPort().c_str();
-
-    /*Inicializo el objeto que controla los aspectos del juego*/
-    Control* gameControl = new Control();
+    ifstream in(path);
+    Json::Value json;
+    //no encuentra el archivo
+    if(in.fail()){
+        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
+        printf("No se encontro el archivo %s\n", path);
+        in.clear();
+        in.open(DEFAULT_PATH);
+    }
+    //hay un error de sintaxis
+    try{
+        in >> json;
+    }catch(const Json::RuntimeError& e){
+        printf("Error de sintaxis.\n");
+        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+        ifstream input(DEFAULT_PATH);
+        input >> json;
+    }
+    const char* port = json["port"].asString().c_str();
 
     if(!SERVER().init(port)){
         printf("Failed to initialize server!\n");
@@ -97,7 +134,14 @@ int main(int argc, char** argv){
 		sleep(ONLINE_TIMEOUT);
 	}
 
-	while(SERVER().isOnline()){
+	//PARTE DE INICIALIZACION
+	while(!SERVER().is_running()){
+		usleep(30000);
+	}
+	avisarEmpiezaJuego();
+	//LOOP DEL JUEGO
+	printf("ojo que arranca\n");
+	while(SERVER().is_running()){
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
@@ -105,13 +149,13 @@ int main(int argc, char** argv){
 			usleep(3000);
 			continue;
 		}
-        
+
         vector<out_message_t*> v = gameControl->handleInMessage(ev);
         for(int i = 0; i < v.size(); i++){
             char* outState = new char[sizeof(out_message_t)];
             memcpy(outState, v[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
-        }
+
 	}
 
     /*Se espera a que finalicen los threads*/
@@ -120,5 +164,46 @@ int main(int argc, char** argv){
     pthread_join(eventDistrT, &exit_status);
 
     return 0;
+}
+
+// LA PRIMERA
+/* 
+void process_dummy(out_message_t* mOut, in_message_t* mIn){
+
+	mOut->ping = 0;
+    mOut->id = mIn->id;
+    mOut->connection = true;
+    mOut->dirX = 0.0;
+    mOut->dirY = 0.0;
+    mOut->posX = 1.2;
+    mOut->posY = 0.0;
+
+}*/
+
+void process_dummy(out_message_t* mOut, in_message_t* mIn){
+
+	mOut->ping = 0;
+    mOut->id = mIn->id;
+    mOut->connection = true;
+    mOut->dirX = 0.0;
+    mOut->dirY = 0.0;
+    mOut->posX = 0.0;
+    mOut->posY = 0.0;
+	switch(mIn->key){
+		case LEFT_UP:
+			mOut->dirX=-1.0;break;
+		case RIGHT_UP:
+			mOut->dirX=1.0;break;
+		case SPACE_UP:
+			mOut->dirY=1.0;break;
+		case LEFT_DOWN:
+			mOut->dirY=-1.0;break;
+		case RIGHT_DOWN:
+			mOut->posY=100.0;break;
+		default: //PING, QUIT o KEY_TOTAL
+			//panic!
+			mOut->posY=-999.0;break;
+	}
+
 }
 
