@@ -13,6 +13,7 @@ class Personaje{
     MovingBloque* bloque_pers;
     string nombreJugador;
     int frameRight, frameLeft;
+    float direccionX, direccionY;
     void moveRight(float);
     void moveLeft(float);
     void jump(float,float);
@@ -36,6 +37,8 @@ class Personaje{
     bool operator==(Personaje& other) const;
     float getX();
     float getY();
+    float getDirX();
+    float getDirY();
 
 };
 #endif /*PERSONAJE_HPP*/

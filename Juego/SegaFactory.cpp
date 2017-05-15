@@ -5,13 +5,34 @@
 using namespace std;
 
 SegaFactory::SegaFactory(){
-    imagenes.push_back("Graficos/sonicSprites.png");
-    imagenes.push_back("Graficos/sonicSpritesVioleta.png");
-    imagenes.push_back("Graficos/sonicSpritesRojo.png");
-    imagenes.push_back("Graficos/sonicSpritesDorado.png");
-    imagenes.push_back("Graficos/sonicSpritesRosa.png");
-    imagenes.push_back("Graficos/sonicSpritesCian.png");
-    imagenes.push_back("Graficos/sonicSpritesNaranja.png");
+    Texture* tex1 = new Texture();
+    tex1->loadFromFile("Graficos/sonicSprites.png");
+    texturas.push_back(tex1);
+
+    Texture* tex2 = new Texture();
+    tex2->loadFromFile("Graficos/sonicSpritesVioleta.png");
+    texturas.push_back(tex2);
+
+    Texture* tex3 = new Texture();
+    tex3->loadFromFile("Graficos/sonicSpritesRojo.png");
+    texturas.push_back(tex3);
+
+    Texture* tex4 = new Texture();
+    tex4->loadFromFile("Graficos/sonicSpritesDorado.png");
+    texturas.push_back(tex4);
+
+    Texture* tex5 = new Texture();
+    tex5->loadFromFile("Graficos/sonicSpritesRosa.png");
+    texturas.push_back(tex5);
+
+    Texture* tex6 = new Texture();
+    tex6->loadFromFile("Graficos/sonicSpritesCian.png");
+    texturas.push_back(tex6);
+
+    Texture* tex7 = new Texture();
+    tex7->loadFromFile("Graficos/sonicSpritesNaranja.png");
+    texturas.push_back(tex7);
+
 }
 
 Sonic* SegaFactory::getSonic(string nomJugador){
@@ -19,14 +40,12 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       //todos los sprites con sus texturas se tendrian que crear en el json loader
       /*creacion de el bloque */
       MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000);
-      Texture* tex = new Texture();
       int idJugador = atoi(nomJugador.c_str());
       if(idJugador >= MAX_SPRITES){
           //llamada al log, "nombre del jugador invalido"
           idJugador = 0;
       }
-  		tex->loadFromFile(imagenes[idJugador]);
-  		bloque->setTexture(tex);
+      bloque->setTexture(texturas[idJugador]);
 
       sonic->setMovingBloque(bloque);
 

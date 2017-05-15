@@ -9,6 +9,8 @@ Personaje::Personaje(string nomJugador){
   bloque_pers = NULL;
   frameRight = 0;
   frameLeft = 0;
+  direccionX = 0.0;
+  direccionY = 0.0;
 }
 
 string Personaje::getNombreJugador(){
@@ -44,6 +46,8 @@ void Personaje::update(float vel_x, float vel_y, float posX, float posY){
   else{
     bloque_pers->setPosicionInicio();
   }
+    direccionX = vel_x;
+    direccionY = vel_y;
 }
 
 void Personaje::moveRight(float vel_x){
@@ -87,4 +91,12 @@ bool Personaje::render(Camara* cam){
   //cambiar por llamada al logger
   printf("El bloque no pudo renderizarse\n");
   return false;
+}
+
+float Personaje::getDirX(){
+    return direccionX;
+}
+
+float Personaje::getDirY(){
+    return direccionY;
 }
