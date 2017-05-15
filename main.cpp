@@ -39,36 +39,33 @@ int main(int argc, char** argv){
 
 	float velX = 0.0;
 	float velY = 0.0;
-	float auxVelX;
-	float auxVelY;
 	Control* control = new Control();
 	control->addPlayer("1");
 	control->addPlayer("2");
 	control->setPlayerConnection("2",false);
 	float cameraPosition;
 	vector<float> directions;
-
+		
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
                 running = false;
-                break;
-			}
-				directions = control->getDirections(e,"1");
-		}
+                break;}
+			directions = control->getDirections(e,velX,velY);
 			velX = directions[0];
 			velY = directions[1];
-			auxVelX = velX;
-			auxVelY = velY;
-			if(!(control->moveCameraAndPlayer("1",directions))){
+		}
+		float auxVelX = velX;
+		float auxVelY = velY;
+		if(!(control->moveCameraAndPlayer("1",directions))){
 				auxVelX = 0;
 				auxVelY = 0;
-			}
-			cameraPosition = control->getCameraPosition();
-			juego->updateJugador("1", auxVelX, auxVelY, 0, 0, true);
-			juego->updateJugador("2",0,0,control->getPlayerPosition("2")[0],300,false);
-			juego->updateCamara(cameraPosition,0);
-	        //setea el color de fondo de blanco
+		}
+		cameraPosition = control->getCameraPosition();
+		juego->updateJugador("1", auxVelX, auxVelY, 0, 0, true);
+		juego->updateJugador("2",0,0,control->getPlayerPosition("2")[0],300,false);
+		juego->updateCamara(cameraPosition,0);
+        //setea el color de fondo de blanco
         Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
 		juego->render();

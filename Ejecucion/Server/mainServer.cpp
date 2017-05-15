@@ -15,15 +15,14 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 2
+#define MAX_CONN 4
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
 void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
 
-void avisarEmpiezaJuego(char* outState){
-	printf("ojo que arranca\n");
+void avisarEmpiezaJuego(){
 	out_message_t* state = new out_message_t;
 
 	state->ping=2;
@@ -35,6 +34,7 @@ void avisarEmpiezaJuego(char* outState){
 	state->posY=0;
 	state->posX=0;
 
+    char* outState = new char[sizeof(out_message_t)];
     memcpy(outState, state, sizeof(out_message_t));
     delete state;
 	SERVER().queueOutEvent(outState);
@@ -138,9 +138,9 @@ int main(int argc, char** argv){
 	while(!SERVER().is_running()){
 		usleep(30000);
 	}
-    char* outState = new char[sizeof(out_message_t)];
-	avisarEmpiezaJuego(outState);
+	avisarEmpiezaJuego();
 	//LOOP DEL JUEGO
+	printf("ojo que arranca\n");
 	while(SERVER().is_running()){
         in_message_t* ev;
 
@@ -149,20 +149,13 @@ int main(int argc, char** argv){
 			usleep(3000);
 			continue;
 		}
-        //TODO: Los states van a ser del tipo OutMessage, pero se deben castear a
-        //char* para que el server lo encole y lo mande
-        out_message_t* state = new out_message_t;
 
-		process_dummy(state,ev);//simula el procesamiento que haga el modelo
+        vector<out_message_t*> v = gameControl->handleInMessage(ev);
+        for(int i = 0; i < v.size(); i++){
+            char* outState = new char[sizeof(out_message_t)];
+            memcpy(outState, v[i], sizeof(out_message_t));
+            SERVER().queueOutEvent(outState);
 
-        char* outState = new char[sizeof(out_message_t)];
-        memcpy(outState, state, sizeof(out_message_t));
-        delete state; //Una vez copiado al char* no lo necesitamos mas
-
-
-			//MARTIN: podria castearse a char* directamente al encolar y listo? Yo creo que si, ..
-			//.. probamos cuando ande todo y si tenemos tiempo.
-		SERVER().queueOutEvent(outState);
 	}
 
     /*Se espera a que finalicen los threads*/

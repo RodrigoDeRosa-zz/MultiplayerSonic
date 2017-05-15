@@ -19,8 +19,6 @@ class Player{
 		string getName();
 		float getX();
 		float getY();
-		float getDirX();
-		float getDirY();
 		void setX(float x);
 		void setY(float y);
 		void updateXY(float dirX, float dirY);

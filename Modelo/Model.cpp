@@ -39,15 +39,6 @@ vector<float> Model::getPlayerPosition(string playerName){
 	return position;
 }
 
-vector<float> Model::getPlayerDirections(string playerName){
-	vector<float> directions;
-	Player* player = this->getPlayer(playerName);
-	directions.push_back(player->getDirX());
-	directions.push_back(player->getDirY());
-	return directions;
-}
-
-
 bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 	for(int i = 0; i < players->size(); i++){
 		if((*players)[i]->getName() == playerName){
