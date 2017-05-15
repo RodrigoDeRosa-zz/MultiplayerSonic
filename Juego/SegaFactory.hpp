@@ -12,7 +12,7 @@ class SegaFactory{
   private:
     void initClips(MovingSonic*);
     //vector con la dirreccion de los distintos sprites
-    vector<string> imagenes;
+    vector<Texture*> texturas;
   public:
     Sonic* getSonic(string);
     SegaFactory();
