@@ -13,6 +13,7 @@ class Client{
         Socket* socket;
         struct addrinfo *serverInfo;
         bool online;
+        bool game_on;
         deque<out_message_t*> received;
         deque<key_event> toSend;
         Juego* juego;
@@ -45,6 +46,9 @@ class Client{
         /*Se deconecta del servidor. El parametro how vale 1 si es por perdida
         de conexion con el servidor y 0 sino*/
         void disconnect(int how);
+        bool gameOn();
+        void startGame();
+        void endGame();
         /*Devuelve la instancia de Juego que tiene como atributo*/
         Juego* getJuego();
 };

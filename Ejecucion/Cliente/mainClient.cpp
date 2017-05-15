@@ -27,63 +27,6 @@ using namespace std;
 #define INPUT "message"
 #define DEFAULT_PATH "ClientConfigDefault.json"
 
-//DEBUG
-#define CMD_SPAM_10	"spam 10"
-#define CMD_SPAM_100 "spam 100"
-#define SPAM_SLEEPTIME	500	//[useg]
-#define FORMAT1 "Client %d has posX %.3f, posY %.3f, dirX %.3f, dirY %.3f\n"
-#define FORMAT2 "Client %d has posX %x, posY %x, dirX %x, dirY %x\n"
-
-//DEBUGGING
-
-void hexdump_raw(out_message_t* msg){
-	unsigned char* reg = (unsigned char*) msg;
-	for (int i=0;i<sizeof(out_message_t);i++,reg++){
-		printf("%x",*reg);
-	}
-	printf("\n");
-}
-void hexdump_outmsg(out_message_t* msg){
-	unsigned char* reg = (unsigned char*) msg;
-	for (int i=0;i<sizeof(out_message_t);i++,reg++){
-		switch(i){
-			case 0:
-				printf("PING\n0-3: "); break;
-			case 4:
-				printf("\nID\n4-7: "); break;
-			case 8:
-				printf("\nCONNECTION\n8-11: "); break;
-			case 12:
-				printf("\nDIR X\n12-15: "); break;
-			case 16:
-				printf("\nDIR Y\n16-19: "); break;
-			case 20:
-				printf("\nPOS X\n20-23: "); break;
-			case 24:
-				printf("\nPOS Y\n24-28: "); break;
-		}
-		printf("%x",*reg);
-	}
-	printf("\n");
-}
-//END:DEBUGGING
-void* printReceived(void *arg){
-    Client* client = (Client*) arg;
-
-    while(client->connected()){
-        out_message_t* message = client->getEventReceived();
-        if (!message){
-            usleep(1000); //msec
-            continue;
-        }
-		hexdump_raw(message);
-		//hexdump_outmsg(message);
-        //printf(FORMAT1, message->id, message->posX,message->posY,message->dirX,message->dirY);
-        delete message;
-    }
-    return NULL;
-}
-
 void* runGame(void* arg){
     Client* self = (Client*) arg;
     /*Conexion del cliente al servidor*/
@@ -95,20 +38,27 @@ void* runGame(void* arg){
     pthread_t comThreadID;
     void* comThread_exit;
     pthread_create(&comThreadID, NULL, startCommunication, self);
-
-    pthread_t printThreadID;
-    void* printThread_exit;
-    pthread_create(&printThreadID, NULL, printReceived, self);
-
+    /*Se espera el mensaje con la cantidad de jugadores del servidor*/
+    while(!self->gameOn()){
+        in_message_t* message = self->getEventReceived();
+        if (!message) usleep(10000);
+        if (message->ping == 2){
+            for (int i = 0; i < message->id; i++){
+                self->getJuego()->addJugador(SSTR(i),"sonic");
+            }
+            self->startGame();
+            break;
+        }
+    }
     /*Espera la finalizacion del thread de comunicacion*/
     pthread_join(comThreadID, &comThread_exit);
-    pthread_join(printThreadID, &printThread_exit);
 
     return NULL;
 }
 
 void* f_controller(void* arg);
 void* f_view(void* arg);
+void* gameControl(void* arg);
 
 int main(int argc, char** argv){
     if (argc != 2){
@@ -136,16 +86,13 @@ int main(int argc, char** argv){
     juego->setFactory();
 
     /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
-    Client* self = new Client(port, hostname,juego);
+    Client* self = new Client(port, hostname, juego);
 
-    pthread_t controller_thread;
-    pthread_t view_thread;
-
-    
 
     bool running = true;
     bool started = false;
-    pthread_t game;
+    pthread_t initT;
+    pthtead_t game_thread;
     void* exit_status;
 
     printf("If the game is running, type the command you want whenever you need\n");
@@ -156,36 +103,54 @@ int main(int argc, char** argv){
         strtok(command, "\n");
 
         if (strcmp(command, CONNECT) == 0 && !self->connected()){
-            pthread_create(&game, NULL, runGame, self);
-            started = true;
+            pthread_create(&initT, NULL, runGame, self);
         } else if (strcmp(command, DISCONNECT) == 0){
             self->disconnect(0);
-            pthread_join(game, &exit_status);
+            pthread_join(initT, &exit_status);
             printf("Disconnected.\n");
         } else if (strcmp(command, EXIT) == 0){
             self->disconnect(0);
-            pthread_join(game, &exit_status);
+            pthread_join(initT, &exit_status);
             running = false;
         }
-        //if(game started){
-            pthread_create(&controller_thread,NULL,f_controller,(void*)self);
-            pthread_create(&view_thread,NULL,f_view,(void*)self);
-        //}
+        if(self->gameOn()){
+            pthread_create(&game_thread, NULL, gameControl, self);
+        }
     }
+    void* exit_status;
+    pthread_join(game_thread, &exit_status);
     /*Destruye el objeto cliente*/
     delete self;
 
     return 0;
 }
 
+void* gameControl(void* arg){
+    SDLHandler::getInstance().init();
+
+    /*Thread de que envia los mensajes de eventos de teclado*/
+    pthread_t controller_thread;
+    pthread_create(&controller_thread, NULL, f_controller, arg);
+    /*Thread que recibe la informacion a dibujar*/
+    pthread_t view_thread;
+    pthread_create(&view_thread, NULL, f_view, arg);
+
+    void* exit_status;
+    pthread_join(view_thread, &exit_status);
+    pthread_join(controller_thread, &exit_status);
+
+    return NULL;
+}
+
 void* f_controller(void* arg){
     Client* self = (Client*)arg;
     SDL_Event e;
     key_event key = KEY_TOTAL;
-    //while(juego corriendo){
+    while(self->gameOn()){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
-               //SDL_QUIT
+               self->endGame();
+               self->disconnect();
             }
             if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
                 switch( e.key.keysym.sym ){
@@ -203,22 +168,27 @@ void* f_controller(void* arg){
             }
             if (key != KEY_TOTAL) self->queueToSend(key);
         }
-    //}
+    }
+    SDLHandler::getInstance().close();
+
     return NULL;
 }
 
 void* f_view(void* arg){
     Client* self = (Client*)arg;
-    //while(juego corriendo){
+    while(self->gameOn()){
         out_message_t* message = self->getEventReceived();
         if(message == NULL){
             usleep(500);
-            //continue;
+            continue;
         }
-        self->getJuego()->updateJugador(SSTR(message->id),message->dirX,message->dirY,message->posX,message->posY,message->connection);          
+        self->getJuego()->updateJugador(SSTR(message->id),message->dirX,message->dirY,message->posX,message->posY,message->connection);
         self->getJuego()->updateCamara(message->camPos,0);
-         
-    //}
+        Renderer::getInstance().setDrawColor(255, 255, 255, 1);
+        Renderer::getInstance().clear();
+        self->getJuego()->render();
+        Renderer::getInstance().draw();
+    }
     //a partir de aca no esta andando el juego (andando==false)
     //cerrar todo lo que haya que cerrar
     return NULL;

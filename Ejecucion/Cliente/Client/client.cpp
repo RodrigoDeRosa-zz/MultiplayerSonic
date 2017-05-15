@@ -11,6 +11,7 @@
 Client::Client(const char* p, const char* h, Juego* juego){
     socket = NULL;
     online = false;
+    game_on = false;
     pings = 0;
     port = p;
     hostname = h;
@@ -92,8 +93,21 @@ void Client::disconnect(int how){
     if (how == 1 && online) printf("Lost connection with server. Disconnecting...\n");
     socket->sockShutdown(SHUT_RDWR);
     socket->sockClose();
+    game_on = false;
     online = false;
     pings = 0;
+}
+
+bool Client::gameOn(){
+    return game_on;
+}
+
+void Client::startGame(){
+    game_on = true;
+}
+
+void Client::endGame(){
+    game_on = false;
 }
 
 Juego* Client::getJuego(){
