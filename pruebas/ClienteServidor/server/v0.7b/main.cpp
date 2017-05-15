@@ -15,14 +15,15 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 4
+#define MAX_CONN 2
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
 void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
 
-void avisarEmpiezaJuego(){
+void avisarEmpiezaJuego(char* outState){
+	printf("ojo que arranca\n");
 	out_message_t* state = new out_message_t;
 
 	state->ping=2;
@@ -34,7 +35,6 @@ void avisarEmpiezaJuego(){
 	state->posY=0;
 	state->posX=0;
 
-    char* outState = new char[sizeof(out_message_t)];
     memcpy(outState, state, sizeof(out_message_t));
     delete state;
 	SERVER().queueOutEvent(outState);
@@ -138,9 +138,9 @@ int main(int argc, char** argv){
 	while(!SERVER().is_running()){
 		usleep(30000);
 	}
-	avisarEmpiezaJuego();
+    char* outState = new char[sizeof(out_message_t)];
+	avisarEmpiezaJuego(outState);
 	//LOOP DEL JUEGO
-	printf("ojo que arranca\n");
 	while(SERVER().is_running()){
         in_message_t* ev;
 
