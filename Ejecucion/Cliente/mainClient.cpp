@@ -1,9 +1,9 @@
-#include "../../pruebas/ClienteServidor/client/v0.3/clientConnection.hpp"
-#include "../../pruebas/ClienteServidor/client/v0.3/clientCommunication.hpp"
-#include "../../pruebas/ClienteServidor/client/v0.3/client.hpp"
-#include "../../pruebas/ClienteServidor/client/v0.3/message.hpp"
+#include "Client/clientConnection.hpp"
+#include "Client/clientCommunication.hpp"
+#include "Client/client.hpp"
+#include "Client/message.hpp"
 #include "../../json/JsonLoader.hpp"
-#include "../../Juego/Juego.hpp"
+//#include "../../Juego/Juego.hpp"
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -14,6 +14,10 @@
 
 
 using namespace std;
+
+//int to string
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
 
 #define COMMAND_LENGTH 15
 #define MESSAGE_LENGTH 40
@@ -103,7 +107,8 @@ void* runGame(void* arg){
     return NULL;
 }
 
-
+void* f_controller(void* arg);
+void* f_view(void* arg);
 
 int main(int argc, char** argv){
     if (argc != 2){
@@ -121,9 +126,6 @@ int main(int argc, char** argv){
 
     Stage* stage = json->getStage();
     Camara* camara = json->getCamara(stage);
-    
-    /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
-    Client* self = new Client(port, hostname);
 
     //Objeto juego que maneja la vista
     Juego* juego = new Juego();
@@ -132,6 +134,14 @@ int main(int argc, char** argv){
     Jugadores* jugs = new Jugadores();
     juego->setJugadores(jugs);
     juego->setFactory();
+
+    /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
+    Client* self = new Client(port, hostname,juego);
+
+    pthread_t controller_thread;
+    pthread_t view_thread;
+
+    
 
     bool running = true;
     bool started = false;
@@ -158,32 +168,58 @@ int main(int argc, char** argv){
             running = false;
         }
         //if(game started){
-            SDL_Event e;
-            key_event key = KEY_TOTAL;
-            while(SDL_PollEvent(&e)){
-                if (e.type == SDL_QUIT){
-                   //SDL_QUIT
-                }
-                if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
-                    switch( e.key.keysym.sym ){
-                        case SDLK_SPACE: key = SPACE_DOWN; break;
-                        case SDLK_LEFT: key = LEFT_DOWN; break;
-                        case SDLK_RIGHT: key = RIGHT_DOWN; break;
-                    }
-                }
-                else if( e.type == SDL_KEYUP && e.key.repeat == 0){
-                    switch( e.key.keysym.sym ){
-                        case SDLK_SPACE: key = SPACE_UP; break;
-                        case SDLK_LEFT: key = LEFT_UP; break;
-                        case SDLK_RIGHT: key = RIGHT_UP; break;
-                    }
-                }
-                if (key != KEY_TOTAL) self->queueToSend(key);
-            }
+            pthread_create(&controller_thread,NULL,f_controller,(void*)self);
+            pthread_create(&view_thread,NULL,f_view,(void*)self);
         //}
     }
     /*Destruye el objeto cliente*/
     delete self;
 
     return 0;
+}
+
+void* f_controller(void* arg){
+    Client* self = (Client*)arg;
+    SDL_Event e;
+    key_event key = KEY_TOTAL;
+    //while(juego corriendo){
+        while(SDL_PollEvent(&e)){
+            if (e.type == SDL_QUIT){
+               //SDL_QUIT
+            }
+            if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
+                switch( e.key.keysym.sym ){
+                    case SDLK_SPACE: key = SPACE_DOWN; break;
+                    case SDLK_LEFT: key = LEFT_DOWN; break;
+                    case SDLK_RIGHT: key = RIGHT_DOWN; break;
+                }
+            }
+            else if( e.type == SDL_KEYUP && e.key.repeat == 0){
+                switch( e.key.keysym.sym ){
+                    case SDLK_SPACE: key = SPACE_UP; break;
+                    case SDLK_LEFT: key = LEFT_UP; break;
+                    case SDLK_RIGHT: key = RIGHT_UP; break;
+                }
+            }
+            if (key != KEY_TOTAL) self->queueToSend(key);
+        }
+    //}
+    return NULL;
+}
+
+void* f_view(void* arg){
+    Client* self = (Client*)arg;
+    //while(juego corriendo){
+        out_message_t* message = self->getEventReceived();
+        if(message == NULL){
+            usleep(500);
+            //continue;
+        }
+        self->getJuego()->updateJugador(SSTR(message->id),message->dirX,message->dirY,message->posX,message->posY,message->connection);          
+        self->getJuego()->updateCamara(message->camPos,0);
+         
+    //}
+    //a partir de aca no esta andando el juego (andando==false)
+    //cerrar todo lo que haya que cerrar
+    return NULL;
 }

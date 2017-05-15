@@ -1,8 +1,13 @@
 #include "Control.hpp"
 #include <stdio.h>
+#include <sstream>
 
 #define VELOCITY 0.35 //definidos como constantes pero lo mejor es pasarlos como parametro para que sea consistente con la vista
 #define VEL -0.8
+
+//int to string
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
 
 using namespace std;
 
@@ -40,6 +45,21 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 	return directions;
 }
 
+vector<float> Control::getDirections(key_event e, float dirX = 0, float dirY =	0){
+	switch( e ){
+		case SPACE_DOWN: dirY -= 1; break;
+		case LEFT_DOWN: dirX -= 1; break;
+		case RIGHT_DOWN: dirX += 1; break;
+		case SPACE_UP: dirY += 1; break;
+		case LEFT_UP: dirX += 1; break;
+		case RIGHT_UP: dirX -= 1; break;
+	}
+	vector<float> directions;
+	directions.push_back(dirX);
+	directions.push_back(dirY);
+	return directions;
+}
+
 bool Control::moveCamera(float newPlayerX,string playerName){
 	return 	(this->cameraControl->moveCamera(newPlayerX,this->model,playerName));
 }
@@ -64,4 +84,39 @@ void Control::setPlayerConnection(string playerName, bool connection){
 
 vector<float> Control::getPlayerPosition(string playerName){
 	return this->model->getPlayerPosition(playerName);
+}
+
+void setOutMessage(out_message_t* message,char ping,int id,bool connection,float dirX,float dirY,float posX,float posY,float camPos){
+	message->ping = ping;
+	message->id = id;
+	message->connection = connection;
+	message->dirX = dirX;
+	message->dirY = dirY;
+	message->posX = posX;
+	message->posY = posY;
+	message->camPos = camPos;
+}
+
+vector<out_message_t*> Control::handleInMessage(in_message_t* ev){
+	vector<out_message_t*> v;
+	string playerName = SSTR(ev->id);
+	out_message_t* message;
+	vector<float> directions = this->getDirections(ev->key);
+	setOutMessage(message,0,ev->id,true,directions[0],directions[1],0,0,this->getCameraPosition());
+	if(!(this->moveCameraAndPlayer(playerName,directions))){
+		message->dirX = 0;
+		message->dirY = 0;
+		v.push_back(message);
+		return v;
+	}
+	message->camPos = this->getCameraPosition();
+	v.push_back(message);
+	vector<string> disconnectedPlayers = this->model->getDisconnectedPlayers();
+	for(int i = 0; i < disconnectedPlayers.size(); i++){
+		out_message_t* disconnectedMessage;
+		vector<float> position = getPlayerPosition(disconnectedPlayers[i]);
+		setOutMessage(disconnectedMessage,0,atoi(disconnectedPlayers[i].c_str()),false,0,0,position[0],position[1],this->getCameraPosition());
+		v.push_back(disconnectedMessage);
+	}
+	return v;
 }

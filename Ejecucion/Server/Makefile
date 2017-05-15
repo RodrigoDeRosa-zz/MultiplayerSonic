@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = ../../logger/current/Logger2.cpp ../../Graficos/*.cpp ../../Modelo/Model.cpp ../../Modelo/Player.cpp ../../Control/*.cpp ../../Juego/*.cpp ../../json/*.cpp Client/*.cpp  mainClient.cpp
+OBJS = ../../logger/current/Logger2.cpp ../../Graficos/*.cpp ../../Modelo/*.cpp ../../Control/*.cpp ../../Juego/*.cpp ../../json/*.cpp Server/*.cpp  mainServer.cpp
 #CC specifies which compiler we're using
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
@@ -8,7 +8,7 @@ COMPILER_FLAGS = -w -g
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -opencv2 -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = mainClient
+OBJ_NAME = mainServer
 #This is the target that compiles our executable
 all : $(OBJS)
 	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
