@@ -160,16 +160,16 @@ int main(int argc, char** argv){
 			fgets(message, MESSAGE_LENGTH, stdin);
             key_event key = KEY_TOTAL;
             strtok(message, "\n");
-            if (!strcmp(message, "right")) key = RIGHT;
-            else if (!strcmp(message, "left")) key = LEFT;
-            else if (!strcmp(message, "jump")) key = SPACE;
-            else if (!strcmp(message, "up")) key = UP;
-            else if (!strcmp(message, "down")) key = DOWN;
+            if (!strcmp(message, "right")) key = RIGHT_UP;
+            else if (!strcmp(message, "left")) key = LEFT_UP;
+            else if (!strcmp(message, "jump")) key = SPACE_UP;
+            else if (!strcmp(message, "up")) key = LEFT_DOWN;
+            else if (!strcmp(message, "down")) key = RIGHT_DOWN;
             else if (!strcmp(message, "quit")) key = QUIT;
             if (key != KEY_TOTAL) self->queueToSend(key);
 		}	else if (!strcmp(command, CMD_SPAM_10)){
 				for(int i = 0; i<10; i++){
-					key_event key = RIGHT;//MARTIN: hara falta un new o se pasa por valor? veremos
+					key_event key = RIGHT_UP;//MARTIN: hara falta un new o se pasa por valor? veremos
 					self->queueToSend(key);
 					printf("|%d sent|",i);
 					usleep(SPAM_SLEEPTIME);
@@ -177,7 +177,7 @@ int main(int argc, char** argv){
 				printf("\n");
 		}   else if (!strcmp(command, CMD_SPAM_100)){
 				for(int i = 0; i<100; i++){
-					key_event key = SPACE;//MARTIN: hara falta un new o se pasa por valor? veremos
+					key_event key = SPACE_UP;//MARTIN: hara falta un new o se pasa por valor? veremos
 					self->queueToSend(key);
 					if (i%10 == 0) printf("|%d sent|",i);
 					usleep(SPAM_SLEEPTIME);

@@ -2,6 +2,12 @@ enum key_event {LEFT,RIGHT,SPACE,QUIT};
 
 
 //InMessage
+struct in_message{
+	char* playerName;
+	bool connection; //si no se puede bool, char
+	key_event key;
+};
+
 typedef struct in_message InMessage;
 //Getters
 char* getPlayerName(InMessage* in);
@@ -14,6 +20,15 @@ void setKey(InMessage* in, key_event key);
 
 
 //OutMessage
+struct out_message{
+	char* playerName;
+	bool connection; //si no se puede bool, char
+	float dirX;
+	float dirY;
+	float posX;
+	float posY;
+};
+
 typedef struct out_message OutMessage;
 //Getters
 char* getPlayerName(OutMessage* out);

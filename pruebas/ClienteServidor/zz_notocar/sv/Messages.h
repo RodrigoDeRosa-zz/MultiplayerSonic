@@ -1,5 +1,6 @@
 
 #define PLAYERNAME_LEN 10
+#define PINGNAME	"ping"
 
 enum key_event {LEFT,RIGHT,SPACE,QUIT};
 

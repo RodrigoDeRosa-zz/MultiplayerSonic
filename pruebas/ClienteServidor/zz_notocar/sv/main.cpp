@@ -83,6 +83,8 @@ void process_dummy(InMessage* in_msg, OutMessage* out_msg){
 
 
 int main(int argc, char** argv){
+	printf("Size of InMessage es %u\n",sizeof(InMessage));//DEBUG
+	printf("Size of OutMessage es %u\n",sizeof(OutMessage));//DEBUG
     if(!SERVER().init(PORT)){
         printf("Failed to initialize server!\n");
         return 1;

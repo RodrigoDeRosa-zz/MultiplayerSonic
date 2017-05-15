@@ -1,10 +1,6 @@
 #include "Messages.h"
 
-struct in_message{
-	char* playerName;
-	bool connection; //si no se puede bool, char
-	key_event key;
-};
+
 
 char* getPlayerName(InMessage* in){
 	return in->playerName;
@@ -32,14 +28,6 @@ void setKey(InMessage* in, key_event key){
 
 
 
-struct out_message{
-	char* playerName;
-	bool connection; //si no se puede bool, char
-	float dirX;
-	float dirY;
-	float posX;
-	float posY;
-};
 
 char* getPlayerName(OutMessage* out){
 	return out->playerName;
