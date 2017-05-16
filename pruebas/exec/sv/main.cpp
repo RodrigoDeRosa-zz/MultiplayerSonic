@@ -24,8 +24,6 @@ using namespace std;
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
-void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
-
 void avisarEmpiezaJuego(char* outState){
 	out_message_t* state = new out_message_t;
 
