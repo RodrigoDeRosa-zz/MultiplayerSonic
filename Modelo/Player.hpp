@@ -1,5 +1,5 @@
 #include <string>
-#include "../Juego/Sonic.hpp"
+#include "ModelSonic.hpp"
 
 using namespace std;
 
@@ -13,9 +13,9 @@ class Player{
 	int eventCounterJump;
 	bool jumping;
 	bool connected;
-	Sonic* sonic;
+	ModelSonic* sonic;
 	public:
-		Player(string name, Sonic* sonic);
+		Player(string name, ModelSonic* sonic);
 		string getName();
 		float getX();
 		float getY();

@@ -7,7 +7,7 @@
 #define MOVEMENT_CONTROL 0.001
 #define GRAVITY 0.5
 
-Player::Player(string name, Sonic* sonic){
+Player::Player(string name, ModelSonic* sonic){
 	this->name = name;
 	this->vel = 0.35;
 	this->eventCounterX = 0;

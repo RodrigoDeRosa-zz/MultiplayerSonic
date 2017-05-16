@@ -68,7 +68,6 @@ void Client::updatePlayers(){
 
 		float estado = player[4];
 
-        printf("%f",player[0]);
 		this->juego->updateJugador(SSTR(i), player[0], player[1], player[2], player[3], estado);
 	}
 }

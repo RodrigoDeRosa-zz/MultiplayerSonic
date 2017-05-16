@@ -19,7 +19,7 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 1
+#define MAX_CONN 2
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
