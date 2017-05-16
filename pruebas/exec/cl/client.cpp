@@ -8,11 +8,11 @@
 #include <stdio.h>
 
 
-Client::Client(const char* p, const char* h, Juego* j){
+Client::Client(const char* p, const char* h){
     socket = NULL;
     online = false;
     gameStarted = false;
-    juego = j;
+    juego = NULL;
     pings = 0;
     port = p;
     hostname = h;
@@ -104,6 +104,10 @@ void Client::endGame(){
 
 Juego* Client::getJuego(){
     return this->juego;
+}
+
+void Client::addJuego(Juego* j){
+    juego = j;
 }
 
 void Client::disconnect(int how){

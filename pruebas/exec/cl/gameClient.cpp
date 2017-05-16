@@ -68,29 +68,59 @@ void hexdump_outmsg(out_message_t* msg){
 	}
 	printf("\n");
 }
-//END:DEBUGGING
+
+void* f_view(void* arg);
+void* keyControl(void* arg);
+
 void* initGame(void *arg){
     Client* client = (Client*) arg;
 
     while(client->connected()){
         out_message_t* message = client->getEventReceived();
         if (!message){
-            usleep(1000); //msec
+            usleep(1000);
             continue;
         } else if (message->ping == 2){
+            SDLHandler::getInstance().init();
+
+            JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
+            gameJson->setGame();
+            Stage* stage = gameJson->getStage();
+            Juego* juego = new Juego();
+            juego->setStage(stage);
+            Camara* camara_pantalla = gameJson->getCamara(stage);
+            juego->setCamara(camara_pantalla);
+            Jugadores* jugs = new Jugadores();
+            juego->setJugadores(jugs);
+            juego->setFactory();
+
+            client->addJuego(juego);
+
 			for(int i = 0; i < message->id; i++){
 				client->getJuego()->addJugador(SSTR(i), "sonic");
 			}
 			client->startGame();
 			hexdump_raw(message);
-            //TODO Poner la incializacion de la ventana aca!!!
 			break;
 		}
 		hexdump_raw(message);
         delete message;
     }
-    SDLHandler::getInstance().init();
-    Window::getInstance().init();
+
+   	/*Maneja la vista del jugador*/
+	pthread_t viewThreadID;
+	void* viewThread_exit;
+	pthread_create(&viewThreadID, NULL, f_view, client);
+
+	/*Thread que maneja los eventos de teclado*/
+	pthread_t eventThreadID;
+	void* eventThread_exit;
+	pthread_create(&eventThreadID, NULL, keyControl, client);
+
+	/*Se espera que terminen los threads*/
+    pthread_join(viewThreadID, &eventThread_exit);
+	pthread_join(eventThreadID, &eventThread_exit);
+
     return NULL;
 }
 
@@ -99,25 +129,24 @@ void* keyControl(void* arg){return NULL;}
 void* f_view(void* arg){
 	Client* self = (Client*) arg;
 
-	while (!self->gameOn()){
-		usleep(3000);
-		continue;
-	}
-
 	while (self->gameOn()){
-
-		out_message_t* message = self->getEventReceived();
-        if (!message){
-            usleep(1000); //msec
-            continue;
-        }
-		//renderizar
+		/*Limpiar pantalla*/
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
+
+        self->getJuego()->updateJugador("0", 0, 0, 0, 0, true);
+		out_message_t* message = self->getEventReceived();
+        if (!message){
+        	//renderizar
+			self->getJuego()->render();
+        	Renderer::getInstance().draw();
+   			usleep(1000);
+            continue;
+        }
+        //renderizar
 		self->getJuego()->render();
         Renderer::getInstance().draw();
 	}
-
 
 	return NULL;
 
@@ -139,22 +168,10 @@ void* runGame(void* arg){
     pthread_t initThreadID;
     void* initThread_exit;
     pthread_create(&initThreadID, NULL, initGame, self);
-    
-	/*Maneja la vista del jugador*/
-	pthread_t viewThreadID;
-	void* viewThread_exit;
-	pthread_create(&viewThreadID, NULL, f_view, self);
-
-	/*Thread que maneja los eventos de teclado*/
-	pthread_t eventThreadID;
-	void* eventThread_exit;
-	pthread_create(&eventThreadID, NULL, keyControl, self);
 
     /*Espera la finalizacion del thread de comunicacion*/
     pthread_join(comThreadID, &comThread_exit);
-    pthread_join(viewThreadID, &eventThread_exit);
 	pthread_join(initThreadID, &initThread_exit);
-	pthread_join(eventThreadID, &eventThread_exit);
 
     return NULL;
 }
@@ -246,31 +263,14 @@ int main(int argc, char** argv){
     const char* port = json["port"].asString().c_str();
     const char* hostname = json["hostname"].asString().c_str();
 	/************************************************FIN CARGA DE JSON*************************************************************/
-	
-	
-    //TODO lleva todo lo que es inicializacion de ventana en linea 75(o por ahi)
-	JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
-	gameJson->setGame();
-	Stage* stage = gameJson->getStage();
-	Juego* juego = new Juego();
-	juego->setStage(stage);
-	Camara* camara_pantalla = gameJson->getCamara(stage);
-	juego->setCamara(camara_pantalla);
-	Jugadores* jugs = new Jugadores();
-	juego->setJugadores(jugs);
-	juego->setFactory();
-	
-    /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
-    Client* self = new Client(port, hostname,juego);
 
-    bool running = true;
-    bool started = false;
+    /*Objeto cliente a travÃ©s del cual se realizan las comunicaciones con el server*/
+    Client* self = new Client(port, hostname);
 
 	/*Thread que procesa las ordenes de consola*/
 	pthread_t console;
     void* exit_status;
 	pthread_create(&console, NULL, consoleChat, self);
-
 
 	pthread_join(console, &exit_status);
     /*Destruye el objeto cliente*/

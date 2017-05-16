@@ -21,7 +21,7 @@ class Client{
         const char* port;
         const char* hostname;
         int pings;
-        Client(const char* p, const char* h, Juego* j);
+        Client(const char* p, const char* h);
         ~Client();
         /*Inicializa el socket del cliente y guarda la direccion del servidor al que
          *se conectará.
@@ -50,6 +50,7 @@ class Client{
         void startGame();
         void endGame();
         Juego* getJuego();
+        void addJuego(Juego*);
 };
 
 #endif /*CLIENT_HPP*/
