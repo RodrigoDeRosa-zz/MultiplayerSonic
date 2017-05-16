@@ -46,7 +46,7 @@ JsonLoader::JsonLoader(char* ruta, char* rutaDefault){
 	(colores["amarillo"]) = amarillo;
 	(colores["violeta"]) = violeta;
 
-
+    this->setLogger();
 	this->setJson(ruta, rutaDefault);
 }
 
@@ -333,8 +333,9 @@ vector<int> JsonLoader::getColor(Json::Value json, string where){
 }
 
 void JsonLoader::setGame(){
-	this->setLogger();
+    printf("forro\n" );
 	this->setWindow();
+    printf("cagon\n");
 	this->setRenderer();
 }
 

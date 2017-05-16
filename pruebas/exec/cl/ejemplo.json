@@ -1,0 +1,44 @@
+{
+	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
+	"vel_scroll": 10,
+	"log_lvl": "alto",
+	"escenario": {
+		"dimensiones": {"ancho": 3600, "alto": 640},
+		"capas": [{
+				"id": 1,
+				"index_z": 99,
+				"ruta_imagen":"Graficos/Level1Front.png"
+			},
+			{
+				"id": 2,
+				"index_z": 98,
+				"ruta_imagen":"Graficos/Level1Backgroud.png"
+			}
+		],
+		"entidades": [
+			{
+				"circulo": false,
+				"color": "verde",
+				"dimensiones": {"ancho": 120, "alto": 100},
+				"coordenada": {"x": 10, "y": 10},
+				"index_z": 99
+			},
+			{
+				"circulo": false,
+				"color": "violeta",
+				"dimensiones": {"ancho": 177, "alto": 274},
+				"coordenada": {"x": 500, "y": 100},
+				"index_z": 100,
+				"imagen": "Graficos/sonic_prueba.png"
+			}
+		],
+		"texturas" : [
+			{
+				"ruta": "Graficos/sonic_prueba.png"
+			},
+            {
+                "ruta": "Graficos/texture.png"
+            }
+		]
+	}
+}

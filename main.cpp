@@ -21,7 +21,7 @@ int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("json/ejemplo.json", DEFAULT_JSON);
-    json->setGame();
+    json->setGame();/*
     Stage* stage = json->getStage();
 
 	Juego* juego = new Juego();
@@ -45,7 +45,7 @@ int main(int argc, char** argv){
 	control->setPlayerConnection("2",false);
 	float cameraPosition;
 	vector<float> directions;
-		
+
     while(running){
         while(SDL_PollEvent(&e)){
             if (e.type == SDL_QUIT){
@@ -73,6 +73,6 @@ int main(int argc, char** argv){
     }
     delete stage;
     SDLHandler::getInstance().close();
-
+*/
     return 0;
 }

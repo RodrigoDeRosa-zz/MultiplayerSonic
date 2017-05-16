@@ -182,7 +182,7 @@ int main(int argc, char** argv){
 					if (i%10 == 0) printf("|%d sent|",i);
 					usleep(SPAM_SLEEPTIME);
 				}
-				printf("\n");	
+				printf("\n");
 		}
     }
 

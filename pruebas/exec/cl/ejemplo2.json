@@ -1,0 +1,48 @@
+{
+	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
+	"vel_scroll": 3,
+	"escenario": {
+		"dimensiones": {"ancho": "caca", "alto": 640},
+		"capas": [{
+				"id": 1,
+				"index_z": 99,
+				"ruta_imagen":"Graficos/Level2Front.png"
+			},
+			{
+				"id": 2,
+				"index_z": 98,
+				"ruta_imagen":"Graficos/Level1Background.png"
+			}
+		],
+		"entidades": [
+			{
+				"circulo": false,
+				"color": 1,
+				"dimensiones": {"ancho": 120, "alto": 100},
+				"coordenada": {"x": 10, "y": 10},
+				"index_z": 99
+			},
+			{
+				"circulo": false,
+				"color": "violeta",
+				"dimensiones": {"ancho": 100, "alto": 100},
+				"coordenada": {"x": 50, "y": 50},
+				"index_z": 100,
+				"imagen": "Graficos/texture.png"
+			},
+			{
+				"circulo": true,
+				"color": "amarillo",
+				"coordenada": {"x": 500, "y": 200},
+				"radio": 200,
+				"index_z": 100,
+				"imagen":"Graficos/index.png"
+			}
+		],
+		"texturas" : [
+			{
+				"ruta": "Graficos/index.png"
+			}
+		]
+	}
+}
