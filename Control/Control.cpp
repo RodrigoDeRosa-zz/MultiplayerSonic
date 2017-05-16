@@ -45,7 +45,8 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 	return directions;
 }
 
-vector<float> Control::getDirections(key_event e, float dirX = 0, float dirY =	0){
+vector<float> Control::getDirections(key_event e, string playerName){
+	vector<float> directions = this->model->getPlayerDirections(playerName);
 	switch( e ){
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
@@ -54,9 +55,8 @@ vector<float> Control::getDirections(key_event e, float dirX = 0, float dirY =	0
 		case LEFT_UP: dirX += 1; break;
 		case RIGHT_UP: dirX -= 1; break;
 	}
-	vector<float> directions;
-	directions.push_back(dirX);
-	directions.push_back(dirY);
+	directions[0] = dirX;
+	directions[1] = dirY;
 	return directions;
 }
 

@@ -14,7 +14,7 @@ class Control{
 	public:
 		Control();
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
-		vector<float> getDirections(key_event e, float dirX, float dirY);
+		vector<float> getDirections(key_event e, string playerName);
 		void addPlayer(string playerName);
 		bool moveCameraAndPlayer(string playerName, vector<float> directions);
 		vector<float> getPlayerPosition(string playerName);
