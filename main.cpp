@@ -21,7 +21,7 @@ int main(int argc, char** argv){
     SDLHandler::getInstance().init();
 
     JsonLoader* json = new JsonLoader("json/ejemplo.json", DEFAULT_JSON);
-    json->setGame();/*
+    json->setGame();
     Stage* stage = json->getStage();
 
 	Juego* juego = new Juego();
@@ -73,6 +73,6 @@ int main(int argc, char** argv){
     }
     delete stage;
     SDLHandler::getInstance().close();
-*/
+
     return 0;
 }

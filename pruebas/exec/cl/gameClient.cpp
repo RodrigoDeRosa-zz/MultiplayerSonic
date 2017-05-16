@@ -106,6 +106,16 @@ void* f_view(void* arg){
 
 	while (self->gameOn()){
 
+		out_message_t* message = self->getEventReceived();
+        if (!message){
+            usleep(1000); //msec
+            continue;
+        }
+		//renderizar
+		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
+        Renderer::getInstance().clear();
+		self->getJuego()->render();
+        Renderer::getInstance().draw();
 	}
 
 
