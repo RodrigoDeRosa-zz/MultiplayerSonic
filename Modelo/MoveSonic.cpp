@@ -106,7 +106,8 @@ void ModelSonic::jumpDerecha(float* velH){
     if(tiempoX >= CONTROL_CAMINATA){
         *velH += RUN*2;
     }
-    //rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
+    frameActual = ((frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
+    moveActual = JUMPD;
     if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 }
 
@@ -116,7 +117,8 @@ void ModelSonic::jumpIzquierda(float* velH){
     if(tiempoX <= -CONTROL_CAMINATA){
         *velH -= RUN*2;
     }
-    //rectangle = clipsMovimientos->getRectangulo(SALTARI,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
+    frameActual = ((frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
+    moveActual = JUMPI;
     if( originX < 0 ){originX = 0;}
 }
 
@@ -168,7 +170,8 @@ void ModelSonic::caminarDerecha(){
     if( frameRight / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
         frameRight=0;
     }
-    //rectangle = clipsMovimientos->getRectangulo(CAMINARD,frameRight/WALKING_ANIMATION_FRAMES);
+    frameActual = (frameRight/WALKING_ANIMATION_FRAMES);
+    moveActual = WALKD;
     originX += VELOCIDAD;
 }
 
@@ -176,7 +179,8 @@ void ModelSonic::caminarIzquierda(){
     if( frameLeft / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
         frameLeft=0;
     }
-    //rectangle = clipsMovimientos->getRectangulo(CAMINARI,frameLeft/WALKING_ANIMATION_FRAMES);
+    frameActual = (frameLeft/WALKING_ANIMATION_FRAMES);
+    moveActual = WALKI;
     originX -= VELOCIDAD;
 }
 
@@ -184,7 +188,8 @@ void ModelSonic::correrDerecha(){
     if( frameRight / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
         frameRight=0;
     }
-    //rectangle = clipsMovimientos->getRectangulo(CORRERD,frameRight/RUNNING_ANIMATION_FRAMES);
+    frameActual = (frameRight/RUNNING_ANIMATION_FRAMES);
+    moveActual = RUND;
     float vel = VELOCIDAD + RUN;
     originX += vel;
 }
@@ -193,7 +198,15 @@ void ModelSonic::correrIzquierda(){
     if( frameLeft / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
         frameLeft=0;
     }
-    //rectangle = clipsMovimientos->getRectangulo(CORRERI,frameLeft/RUNNING_ANIMATION_FRAMES);
+    frameActual = (frameLeft/RUNNING_ANIMATION_FRAMES);
+    moveActual = RUNI;
     float vel = (VELOCIDAD*-1) - RUN;
     originX += vel;
+}
+
+int ModelSonic::getFrame(){
+    return frameActual;
+}
+move_type getMovement(){
+    return moveActual;
 }
