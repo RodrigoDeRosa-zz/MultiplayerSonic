@@ -48,7 +48,7 @@ vector<float> Client::getPlayer(int index){
 	return players[index];
 }
 
-void Client::updatePlayer(int index,float velX,float velY,float posX, float posY, float estado){
+void Client::updatePlayer(int index, float velX, float velY, float posX, float posY, float estado){
     vector<float> player;
 	player = players[index];
 	player[0] = velX;

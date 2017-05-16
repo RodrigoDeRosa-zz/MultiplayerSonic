@@ -36,39 +36,6 @@ using namespace std;
 #define FORMAT1 "Client %d has posX %.3f, posY %.3f, dirX %.3f, dirY %.3f\n"
 #define FORMAT2 "Client %d has posX %x, posY %x, dirX %x, dirY %x\n"
 
-//DEBUGGING
-
-void hexdump_raw(out_message_t* msg){
-	unsigned char* reg = (unsigned char*) msg;
-	for (int i=0;i<sizeof(out_message_t);i++,reg++){
-		printf("%x",*reg);
-	}
-	printf("\n");
-}
-void hexdump_outmsg(out_message_t* msg){
-	unsigned char* reg = (unsigned char*) msg;
-	for (int i=0;i<sizeof(out_message_t);i++,reg++){
-		switch(i){
-			case 0:
-				printf("PING\n0-3: "); break;
-			case 4:
-				printf("\nID\n4-7: "); break;
-			case 8:
-				printf("\nCONNECTION\n8-11: "); break;
-			case 12:
-				printf("\nDIR X\n12-15: "); break;
-			case 16:
-				printf("\nDIR Y\n16-19: "); break;
-			case 20:
-				printf("\nPOS X\n20-23: "); break;
-			case 24:
-				printf("\nPOS Y\n24-28: "); break;
-		}
-		printf("%x",*reg);
-	}
-	printf("\n");
-}
-
 void* f_view(void* arg);
 void* keyControl(void* arg);
 
@@ -101,10 +68,8 @@ void* initGame(void *arg){
 				client->getJuego()->addJugador(SSTR(i), "sonic");
 			}
 			client->startGame();
-			hexdump_raw(message);
 			break;
 		}
-		hexdump_raw(message);
         delete message;
     }
 
@@ -177,16 +142,14 @@ void* f_view(void* arg){
             continue;
         }
         if(message->ping == 0){
-
 	        float estado;
 			if (message->connection == false){
 				estado = 0.0;
-			}
-			else{
+			} else {
 				estado = 1.0;
 			}
-        	self->updatePlayer(message->id, message->dirX, message->dirY, message->posX, message->posY, estado);
-            self->getJuego()->updateCamara(message->camPos,0);
+        	//self->updatePlayer(message->id, message->dirX, message->dirY, message->posX, message->posY, estado);
+            //self->getJuego()->updateCamara(message->camPos,0);
         }
         //renderizar
 		self->updatePlayers();
@@ -247,34 +210,6 @@ void* consoleChat(void* arg){
 			self->disconnect(0);
 			pthread_join(game, &exit_status);
 			running = false;
-		} else if (self->gameOn() && !strcmp(command, INPUT)){
-			printf("Write message to send: ");
-			fgets(message, MESSAGE_LENGTH, stdin);
-			key_event key = KEY_TOTAL;
-			strtok(message, "\n");
-			if (!strcmp(message, "right")) key = RIGHT_UP;
-			else if (!strcmp(message, "left")) key = LEFT_UP;
-			else if (!strcmp(message, "jump")) key = SPACE_UP;
-			else if (!strcmp(message, "up")) key = LEFT_DOWN;
-			else if (!strcmp(message, "down")) key = RIGHT_DOWN;
-			else if (!strcmp(message, "quit")) key = QUIT;
-			if (key != KEY_TOTAL) self->queueToSend(key);
-		} else if (!strcmp(command, CMD_SPAM_10)){
-				for(int i = 0; i<10; i++){
-					key_event key = RIGHT_UP;//MARTIN: hara falta un new o se pasa por valor? veremos
-					self->queueToSend(key);
-					printf("|%d sent|",i);
-					usleep(SPAM_SLEEPTIME);
-				}
-				printf("\n");
-		} else if (!strcmp(command, CMD_SPAM_100)){
-				for(int i = 0; i<100; i++){
-					key_event key = SPACE_UP;//MARTIN: hara falta un new o se pasa por valor? veremos
-					self->queueToSend(key);
-					if (i%10 == 0) printf("|%d sent|",i);
-					usleep(SPAM_SLEEPTIME);
-				}
-				printf("\n");
 		}
 	}
 	return NULL;

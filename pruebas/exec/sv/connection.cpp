@@ -79,7 +79,6 @@ void* read(void* arg){
         /*Identificacion del evento*/
         messageStruct->key = message;
         /*Se guarda el struct*/
-        printf("Client %d sent: %d\n", messageStruct->id, messageStruct->key);
         CXManager::getInstance().queueInEvent(messageStruct);
     }
 
