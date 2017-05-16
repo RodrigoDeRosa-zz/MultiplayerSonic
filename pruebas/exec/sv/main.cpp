@@ -19,7 +19,7 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 1
+#define MAX_CONN 2
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
@@ -27,18 +27,12 @@ using namespace std;
 void process_dummy(out_message_t* mOut, in_message_t* mIn);//prototipo
 
 void avisarEmpiezaJuego(char* outState){
-	printf("ojo que arranca\n");
 	out_message_t* state = new out_message_t;
 
+    memset(state, 0, sizeof(out_message_t));
 	state->ping=2;
 	state->id=CXM().actualConnections;
-	//el resto (lo de abajo) no importa
-	state->connection=true;
-	state->dirX=0;
-	state->dirY=0;
-	state->posY=0;
-	state->posX=0;
-    state->camPos=0;
+	//el resto de los atributos del estado no importan
     memcpy(outState, state, sizeof(out_message_t));
     delete state;
 	SERVER().queueOutEvent(outState);
@@ -97,6 +91,7 @@ int main(int argc, char** argv){
         printf("Usage: ./main <JSONfile>\n");
         return 1;
     }
+    /***************************************LECTURA JSON***********************************************************/
     char* path = argv[1];
     /*Lectura del JSON*/
     ifstream in(path);
@@ -118,6 +113,7 @@ int main(int argc, char** argv){
         input >> json;
     }
     const char* port = json["port"].asString().c_str();
+    /***************************************FIN LECTURA JSON***********************************************************/
 
     if(!SERVER().init(port)){
         printf("Failed to initialize server!\n");
@@ -178,45 +174,4 @@ int main(int argc, char** argv){
     pthread_join(eventDistrT, &exit_status);
 
     return 0;
-}
-
-// LA PRIMERA
-/*
-void process_dummy(out_message_t* mOut, in_message_t* mIn){
-
-	mOut->ping = 0;
-    mOut->id = mIn->id;
-    mOut->connection = true;
-    mOut->dirX = 0.0;
-    mOut->dirY = 0.0;
-    mOut->posX = 1.2;
-    mOut->posY = 0.0;
-
-}*/
-
-void process_dummy(out_message_t* mOut, in_message_t* mIn){
-
-	mOut->ping = 0;
-    mOut->id = mIn->id;
-    mOut->connection = true;
-    mOut->dirX = 0.0;
-    mOut->dirY = 0.0;
-    mOut->posX = 0.0;
-    mOut->posY = 0.0;
-	switch(mIn->key){
-		case LEFT_UP:
-			mOut->dirX=-1.0;break;
-		case RIGHT_UP:
-			mOut->dirX=1.0;break;
-		case SPACE_UP:
-			mOut->dirY=1.0;break;
-		case LEFT_DOWN:
-			mOut->dirY=-1.0;break;
-		case RIGHT_DOWN:
-			mOut->posY=100.0;break;
-		default: //PING, QUIT o KEY_TOTAL
-			//panic!
-			mOut->posY=-999.0;break;
-	}
-
 }

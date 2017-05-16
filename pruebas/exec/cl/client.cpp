@@ -47,7 +47,7 @@ vector<float> Client::getPlayer(int index){
 	return players[index];
 }
 
-void Client::updatePlayer(int index,float velX,float velY,float posX, float posY, float estado){
+void Client::updatePlayer(int index, float velX, float velY, float posX, float posY, float estado){
     vector<float> player;
 	player = players[index];
 	player[0] = velX;
@@ -65,7 +65,6 @@ void Client::updatePlayers(){
 
 		float estado = player[4];
 
-        printf("%f",player[0]);
 		this->juego->updateJugador(SSTR(i), player[0], player[1], player[2], player[3], estado);
 	}
 }
