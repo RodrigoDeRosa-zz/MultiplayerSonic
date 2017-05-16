@@ -56,6 +56,8 @@ void Client::updatePlayer(int index,float velX,float velY,float posX, float posY
 	player[3] = posY;
 	player[4] = estado;
     players[index] = player;
+    printf("Nombre Jugador en Client: %s \n",this->getName().c_str());
+    printf("Posicion en Cliente despues de actualizar: x=%f y=%f \n",posX,posY);
 }
 
 void Client::updatePlayers(){
