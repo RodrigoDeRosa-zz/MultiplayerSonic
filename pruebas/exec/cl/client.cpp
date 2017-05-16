@@ -55,6 +55,7 @@ void Client::updatePlayer(int index,float velX,float velY,float posX, float posY
 	player[2] = posX;
 	player[3] = posY;
 	player[4] = estado;
+    players[index] = player;
 }
 
 void Client::updatePlayers(){
@@ -64,6 +65,7 @@ void Client::updatePlayers(){
 
 		float estado = player[4];
 
+        printf("%f",player[0]);
 		this->juego->updateJugador(SSTR(i), player[0], player[1], player[2], player[3], estado);
 	}
 }
