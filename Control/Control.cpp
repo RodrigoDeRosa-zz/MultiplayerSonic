@@ -47,6 +47,8 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 
 vector<float> Control::getDirections(key_event e, string playerName){
 	vector<float> directions = this->model->getPlayerDirections(playerName);
+	float dirX = directions[0];
+	float dirY = directions[1];
 	switch( e ){
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
@@ -101,7 +103,7 @@ vector<out_message_t*> Control::handleInMessage(in_message_t* ev){
 	vector<out_message_t*> v;
 	string playerName = SSTR(ev->id);
 	out_message_t* message = new out_message_t;
-	vector<float> directions = this->getDirections(ev->key);
+	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	setOutMessage(message,0,ev->id,true,directions[0],directions[1],0,0,this->getCameraPosition());
 	if(!(this->moveCameraAndPlayer(playerName,directions))){
 		message->dirX = 0;

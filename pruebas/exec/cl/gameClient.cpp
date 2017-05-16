@@ -185,7 +185,7 @@ void* f_view(void* arg){
 			else{
 				estado = 1.0;
 			}
-            
+			hexdump_outmsg(message);
         	self->updatePlayer(message->id, message->dirX, message->dirY, message->posX, message->posY, estado);
             self->getJuego()->updateCamara(message->camPos,0);
         }
