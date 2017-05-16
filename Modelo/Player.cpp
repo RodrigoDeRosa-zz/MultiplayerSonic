@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <stdio.h>
 #define RUNNNING_EVENTS 1000
 #define RUNNING_VELOCITY 0.7
 #define EVENT_UNIT 1
@@ -6,14 +7,9 @@
 #define MOVEMENT_CONTROL 0.001
 #define GRAVITY 0.5
 
-Player::Player(string name, Sonic* sonic){
+Player::Player(string name){
 	this->name = name;
-	this->vel = 0.35;
-	this->eventCounterX = 0;
-	this->eventCounterY = 0;
-	this->eventCounterJump = 0;
-	this->jumping = false;
-	this->connected = true;
+	ModelSonic* sonic = new ModelSonic(100,300);
 	this->sonic = sonic;
 }
 
@@ -47,6 +43,8 @@ void Player::setY(float y){
 
 void Player::updateXY(float dirX,float dirY){
 	this->sonic->update(dirX,dirY);
+	printf("Nombre Jugador en Control: %s \n",this->getName().c_str());
+	printf("Posicion en Control despues de actualizar: x=%f y=%f \n",this->getX(),this->getY());
 }
 
 bool Player::isConnected(){

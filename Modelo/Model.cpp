@@ -3,11 +3,10 @@
 
 Model::Model(){
 	players = new vector<Player*>();
-	segaFactory = new SegaFactory();
 }
 
 void Model::addPlayer(string playerName){
-	Player* player = new Player(playerName, this->segaFactory->getSonic(playerName));
+	Player* player = new Player(playerName);
 	(this->players)->push_back(player);
 }
 

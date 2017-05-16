@@ -6,7 +6,6 @@ using namespace std;
 
 class Model{
 	vector<Player*>* players;
-	SegaFactory* segaFactory;
 	public:
 		Model();
 		void addPlayer(string playerName);

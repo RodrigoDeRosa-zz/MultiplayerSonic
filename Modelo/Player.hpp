@@ -1,21 +1,13 @@
 #include <string>
-#include "../Juego/Sonic.hpp"
+#include "ModelSonic.hpp"
 
 using namespace std;
 
 class Player{
 	string name;
-	float x;
-	float y;
-	float vel;
-	int eventCounterX;
-	int eventCounterY;
-	int eventCounterJump;
-	bool jumping;
-	bool connected;
-	Sonic* sonic;
+	ModelSonic* sonic;
 	public:
-		Player(string name, Sonic* sonic);
+		Player(string name);
 		string getName();
 		float getX();
 		float getY();
