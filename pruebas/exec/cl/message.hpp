@@ -12,6 +12,7 @@ typedef struct out_message{
 	float dirY;
 	float posX;
 	float posY;
+	float camPos;
 } out_message_t;
 
 typedef struct in_message{

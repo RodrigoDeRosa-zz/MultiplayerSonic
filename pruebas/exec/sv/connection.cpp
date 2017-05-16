@@ -67,9 +67,9 @@ void* read(void* arg){
         }
 		memcpy(&message, msg_buffer, sizeof(int)); //Descarta mensajes que lleguen pegados
 
+        connection->pings++;
         /*Si el mensaje es ping, no se hace nada*/
         if (message == PING){
-            connection->pings++;
             continue;
         }
         /*Estructura para que procese el juego*/

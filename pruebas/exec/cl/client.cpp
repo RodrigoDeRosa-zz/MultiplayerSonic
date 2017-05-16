@@ -6,7 +6,13 @@
 #include <netdb.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <vector>
+#include <sstream>
 
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+
+using namespace std;
 
 Client::Client(const char* p, const char* h){
     socket = NULL;
@@ -26,6 +32,40 @@ Client::~Client(){
     pings = 0;
     online = false;
     gameStarted = false;
+}
+
+void Client::addPlayer(){
+	vector<float> player;
+	for(int i= 0; i<4; i++){
+		player.push_back(0);
+	}
+	player.push_back(1);
+	players.push_back(player);
+}
+
+vector<float> Client::getPlayer(int index){
+	return players[index];
+}
+
+void Client::updatePlayer(int index,float velX,float velY,float posX, float posY, float estado){
+    vector<float> player;
+	player = players[index];
+	player[0] = velX;
+	player[1] = velY;
+	player[2] = posX;
+	player[3] = posY;
+	player[4] = estado;
+}
+
+void Client::updatePlayers(){
+	for(int i = 0; i < (this->players).size(); i++){
+		vector <float> player;
+		player = players[i];
+
+		float estado = player[4];
+
+		this->juego->updateJugador(SSTR(i), player[0], player[1], player[2], player[3], estado);
+	}
 }
 
 bool Client::setConnectionInfo(struct addrinfo *srvInfo){

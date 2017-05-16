@@ -103,8 +103,8 @@ void* receiveMessage(void* arg){
         out_message_t* message = new out_message_t;
         memcpy(message, receivedMessage, sizeof(out_message_t));
 
+        client->pings++;
         if (message->ping == 1){
-            client->pings++;
             continue; //El mensaje recibido solo era un ping del server
         }
 

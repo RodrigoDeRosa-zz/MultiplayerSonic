@@ -6,6 +6,7 @@
 #include "../../../Juego/Juego.hpp"
 #include <sys/socket.h>
 #include <deque>
+#include <vector>
 using namespace std;
 
 class Client{
@@ -17,6 +18,7 @@ class Client{
         deque<out_message_t*> received;
         deque<key_event> toSend;
         Juego* juego;
+        vector<vector<float> > players;
     public:
         const char* port;
         const char* hostname;
@@ -51,6 +53,10 @@ class Client{
         void endGame();
         Juego* getJuego();
         void addJuego(Juego*);
+        void addPlayer();
+        vector<float> getPlayer(int index);
+        void updatePlayer(int index,float velX,float velY,float posX, float posY, float estado);
+        void updatePlayers();
 };
 
 #endif /*CLIENT_HPP*/

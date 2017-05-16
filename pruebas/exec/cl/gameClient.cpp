@@ -18,8 +18,8 @@
 using namespace std;
 
 //int to string
-#define SSTR( x ) static_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
+#define SSTR( x ) static_cast< ostringstream & >( \
+        ( ostringstream() << dec << x ) ).str()
 
 #define COMMAND_LENGTH 15
 #define MESSAGE_LENGTH 40
@@ -97,6 +97,7 @@ void* initGame(void *arg){
             client->addJuego(juego);
 
 			for(int i = 0; i < message->id; i++){
+				client->addPlayer();
 				client->getJuego()->addJugador(SSTR(i), "sonic");
 			}
 			client->startGame();
@@ -124,7 +125,38 @@ void* initGame(void *arg){
     return NULL;
 }
 
-void* keyControl(void* arg){return NULL;}
+void* keyControl(void* arg){
+    Client* self = (Client*)arg;
+
+	key_event key = KEY_TOTAL;
+    SDL_Event e;
+
+	while(self->gameOn()){
+		while(SDL_PollEvent(&e)){
+			if (e.type == SDL_QUIT){
+	        	//TODO: quit
+	        }
+			if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
+				switch( e.key.keysym.sym ){
+					case SDLK_SPACE: key = SPACE_DOWN; break;
+					case SDLK_LEFT: key = LEFT_DOWN; break;
+					case SDLK_RIGHT: key = RIGHT_DOWN; break;
+				}
+			}
+			else if( e.type == SDL_KEYUP && e.key.repeat == 0){
+				switch( e.key.keysym.sym ){
+					case SDLK_SPACE: key = SPACE_UP; break;
+					case SDLK_LEFT: key = LEFT_UP; break;
+					case SDLK_RIGHT: key = RIGHT_UP; break;
+				}
+			}
+		}
+        if (key != KEY_TOTAL) self->queueToSend(key);
+        key = KEY_TOTAL;
+	}
+
+    return NULL;
+}
 
 void* f_view(void* arg){
 	Client* self = (Client*) arg;
@@ -134,16 +166,31 @@ void* f_view(void* arg){
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
 
-        self->getJuego()->updateJugador("0", 0, 0, 0, 0, true);
 		out_message_t* message = self->getEventReceived();
+
         if (!message){
         	//renderizar
+        	self->updatePlayers();
 			self->getJuego()->render();
         	Renderer::getInstance().draw();
    			usleep(1000);
             continue;
         }
+        if(message->ping == 0){
+
+	        float estado;
+			if (message->connection == false){
+				estado = 0.0;
+			}
+			else{
+				estado = 1.0;
+			}
+            
+        	self->updatePlayer(message->id, message->dirX, message->dirY, message->posX, message->posY, estado);
+            self->getJuego()->updateCamara(message->camPos,0);
+        }
         //renderizar
+		self->updatePlayers();
 		self->getJuego()->render();
         Renderer::getInstance().draw();
 	}

@@ -38,6 +38,7 @@ void avisarEmpiezaJuego(char* outState){
 	state->dirY=0;
 	state->posY=0;
 	state->posX=0;
+    state->camPos=0;
     memcpy(outState, state, sizeof(out_message_t));
     delete state;
 	SERVER().queueOutEvent(outState);
@@ -61,7 +62,7 @@ void* accept(void* arg){
         CXManager::getInstance().addConnection(connection);
 
         if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
-			SERVER().start_game();		
+			SERVER().start_game();
 		}
     }
 
@@ -180,7 +181,7 @@ int main(int argc, char** argv){
 }
 
 // LA PRIMERA
-/* 
+/*
 void process_dummy(out_message_t* mOut, in_message_t* mIn){
 
 	mOut->ping = 0;
@@ -219,4 +220,3 @@ void process_dummy(out_message_t* mOut, in_message_t* mIn){
 	}
 
 }
-
