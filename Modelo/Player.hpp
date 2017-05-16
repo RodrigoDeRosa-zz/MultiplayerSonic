@@ -5,17 +5,9 @@ using namespace std;
 
 class Player{
 	string name;
-	float x;
-	float y;
-	float vel;
-	int eventCounterX;
-	int eventCounterY;
-	int eventCounterJump;
-	bool jumping;
-	bool connected;
 	ModelSonic* sonic;
 	public:
-		Player(string name, ModelSonic* sonic);
+		Player(string name);
 		string getName();
 		float getX();
 		float getY();
