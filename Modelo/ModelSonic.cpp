@@ -54,10 +54,6 @@ void ModelSonic::jump(float vel_x, float vel_y){
     bloque_pers->jump(vel_x,vel_y);
 }
 
-bool ModelSonic::operator==(ModelSonic& other) const{
-    return (nombreJugador == other.getNombreJugador());
-}
-
 float ModelSonic::getX(){
     return bloque_pers->getX();
 }

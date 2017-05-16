@@ -20,15 +20,6 @@
 #define RUNNING_ANIMATION_FRAMES 8
 #define JUMPING_ANIMATION_FRAMES 5
 #define QUIET_ANIMATION_FRAMES 7
-/*MOVIMIENTOS*/
-#define QUIETOD "quietoDer"
-#define QUIETOI "quietoIzq"
-#define CAMINARD "caminarDer"
-#define CAMINARI "caminarIzq"
-#define CORRERD "correrDer"
-#define CORRERI "correrIzq"
-#define SALTARD "saltarDer"
-#define SALTARI "saltarIzq"
 
 ModelSonic::ModelSonic(float x, float y){
     originX = x;
@@ -41,6 +32,7 @@ ModelSonic::ModelSonic(float x, float y){
     frameLeft = 0;
     frameQuiet = 0;
     frameJumping = 0;
+    frameActual = 0;
     //La direccion se setea en true cuando esta para la derecha.
     direccion = true;
     jumping = false;
@@ -59,11 +51,12 @@ void ModelSonic::setPosicionInicio(){
         frameQuiet=0;
     }
     //si esta apuntando para la derecha
+    frameActual = (frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
     if(direccion){
-        //rectangle = clipsMovimientos->getRectangulo(QUIETOD,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
+        moveActual = IDELD;
     }
     else{
-        //rectangle = clipsMovimientos->getRectangulo(QUIETOI,frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
+        moveActual = IDELI;
     }
     frameQuiet++;
 }
@@ -87,8 +80,9 @@ void ModelSonic::jump(float vel_x,float vel_y){
         jumpIzquierda(&velH);
     }
 
-    //if(direccion){rectangle = clipsMovimientos->getRectangulo(SALTARD,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));}
-    //if(not direccion){rectangle = clipsMovimientos->getRectangulo(SALTARI,(frameJumping)/(4*JUMPING_ANIMATION_FRAMES));}
+    frameActual = (frameJumping)/(4*JUMPING_ANIMATION_FRAMES);
+    if(direccion){moveActual = JUMPD;}
+    if(not direccion){moveActual = JUMPI;}
 
     originX += 3*(velH * tiempoSalto);
     originY += 2*(tiempoY * tiempoSalto);

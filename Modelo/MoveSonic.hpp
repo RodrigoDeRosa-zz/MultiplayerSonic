@@ -3,6 +3,8 @@
 
 using namespace std;
 
+enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
+
 class ModelSonic{
     private:
         float originX;
@@ -11,13 +13,15 @@ class ModelSonic{
         float tiempoX;
         float tiempoY;
         float tiempoSalto;
-        float frameRight;
-        float frameLeft;
-        float frameQuiet;
-        float frameJumping;
+        int frameRight;
+        int frameLeft;
+        int frameQuiet;
+        int frameJumping;
         //La direccion se setea en true cuando esta para la derecha.
         float direccion;
         float jumping;
+        int frameActual;
+        move_type moveActual;
     public:
         ModelSonic(float x, float y);
         /*Funciones de movimiento */
@@ -31,6 +35,9 @@ class ModelSonic{
         void correrIzquierda();
         void jumpDerecha(float*);
         void jumpIzquierda(float*);
+
+        int getFrame();
+        move_type getMovement();
 
         void setPosicionInicio();
 }

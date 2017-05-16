@@ -9,7 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="Carga reducida">
+    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" />
@@ -42,18 +42,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1494976045060" expanded="true" signature="343:366" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="388:420" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="442:474" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="499:534" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="559:594" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="622:667" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="695:740" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="786:985" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="1013:1044" ph="{...}" />
-                <marker date="1494976045060" expanded="true" signature="1087:1123" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,18 +50,18 @@
       <file leaf-file-name="MoveSonic.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="34" lean-forward="true" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
+            <state relative-caret-position="460">
+              <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveSonic.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MoveSonic.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="201" column="6" lean-forward="false" selection-start-line="201" selection-start-column="6" selection-end-line="201" selection-end-column="6" />
+            <state relative-caret-position="489">
+              <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,18 +70,18 @@
       <file leaf-file-name="ModelSonic.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="420">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelSonic.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ModelSonic.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="671">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="115">
+              <caret line="54" column="1" lean-forward="false" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -134,10 +123,10 @@
         <option value="$PROJECT_DIR$/Modelo/Player.cpp" />
         <option value="$PROJECT_DIR$/Modelo/Player.hpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.h" />
-        <option value="$PROJECT_DIR$/Modelo/MoveSonic.hpp" />
-        <option value="$PROJECT_DIR$/Modelo/MoveSonic.cpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.hpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.cpp" />
+        <option value="$PROJECT_DIR$/Modelo/MoveSonic.hpp" />
+        <option value="$PROJECT_DIR$/Modelo/MoveSonic.cpp" />
       </list>
     </option>
   </component>
@@ -190,7 +179,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Modelo" />
+              <option name="myItemId" value="Graficos" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -526,7 +515,7 @@
       <workItem from="1494695551322" duration="7939000" />
       <workItem from="1494859657614" duration="2476000" />
       <workItem from="1494872974646" duration="20000" />
-      <workItem from="1494965393939" duration="9825000" />
+      <workItem from="1494965393939" duration="11517000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -605,11 +594,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494974127902</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="model y move sonic">
+      <created>1494976104879</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1494976104879</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20260000" />
+    <option name="totallyTimeSpent" value="21952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-7" width="1600" height="844" extended-state="6" />
@@ -647,7 +643,8 @@
     <MESSAGE value="ACTUALIZACION UPDATE JUEGO" />
     <MESSAGE value="Getters direcciones" />
     <MESSAGE value="Carga reducida" />
-    <option name="LAST_COMMIT_MESSAGE" value="Carga reducida" />
+    <MESSAGE value="model y move sonic" />
+    <option name="LAST_COMMIT_MESSAGE" value="model y move sonic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -919,25 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1494976045060" expanded="true" signature="343:366" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="388:420" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="442:474" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="499:534" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="559:594" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="622:667" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="695:740" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="786:985" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="1013:1044" ph="{...}" />
-            <marker date="1494976045060" expanded="true" signature="1087:1123" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Player.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -970,34 +948,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.hpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="34" lean-forward="true" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
+        <state relative-caret-position="115">
+          <caret line="54" column="1" lean-forward="false" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="201" column="6" lean-forward="false" selection-start-line="201" selection-start-column="6" selection-end-line="201" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="420">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="460">
+          <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding />
         </state>
       </provider>

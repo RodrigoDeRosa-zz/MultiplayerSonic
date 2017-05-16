@@ -1,9 +1,9 @@
 #ifndef TALLERSONIC_MODELSONIC_HPP
 #define TALLERSONIC_MODELSONIC_HPP
 
-using namespace std;
+#include "MoveSonic.hpp";
 
-enum move_type{IDLE,JUMP,RUN,WALK,MOVE_TOTAL};
+using namespace std;
 
 class ModelSonic{
 private:
