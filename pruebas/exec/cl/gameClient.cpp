@@ -82,12 +82,15 @@ void* initGame(void *arg){
 				client->getJuego()->addJugador(SSTR(i), "sonic");
 			}
 			client->startGame();
+			hexdump_raw(message);
             //TODO Poner la incializacion de la ventana aca!!!
 			break;
 		}
 		hexdump_raw(message);
         delete message;
     }
+    SDLHandler::getInstance().init();
+    Window::getInstance().init();
     return NULL;
 }
 
@@ -126,7 +129,7 @@ void* runGame(void* arg){
     pthread_t initThreadID;
     void* initThread_exit;
     pthread_create(&initThreadID, NULL, initGame, self);
-
+    
 	/*Maneja la vista del jugador*/
 	pthread_t viewThreadID;
 	void* viewThread_exit;
@@ -233,8 +236,8 @@ int main(int argc, char** argv){
     const char* port = json["port"].asString().c_str();
     const char* hostname = json["hostname"].asString().c_str();
 	/************************************************FIN CARGA DE JSON*************************************************************/
-	SDLHandler::getInstance().init();
-
+	
+	
     //TODO lleva todo lo que es inicializacion de ventana en linea 75(o por ahi)
 	JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
 	gameJson->setGame();
@@ -246,7 +249,7 @@ int main(int argc, char** argv){
 	Jugadores* jugs = new Jugadores();
 	juego->setJugadores(jugs);
 	juego->setFactory();
-
+	
     /*Objeto cliente a través del cual se realizan las comunicaciones con el server*/
     Client* self = new Client(port, hostname,juego);
 

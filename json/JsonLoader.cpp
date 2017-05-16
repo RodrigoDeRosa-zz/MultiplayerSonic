@@ -245,7 +245,7 @@ void JsonLoader::setWindow(){
     int height = this->getPositiveInt((this->json)["ventana"]["dimensiones"]["alto"], string("[ventana][dimensiones][alto]"), DEFAULT_HEIGHT);
 
 	Window::getInstance().setDimensions(width, height);
-    Window::getInstance().init();
+    //Window::getInstance().init();
 }
 
 int JsonLoader::getPositiveInt(Json::Value json, string where, int defaultValue, bool zero){
@@ -333,9 +333,7 @@ vector<int> JsonLoader::getColor(Json::Value json, string where){
 }
 
 void JsonLoader::setGame(){
-    printf("forro\n" );
 	this->setWindow();
-    printf("cagon\n");
 	this->setRenderer();
 }
 
