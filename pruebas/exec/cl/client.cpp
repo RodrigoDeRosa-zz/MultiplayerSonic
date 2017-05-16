@@ -36,9 +36,10 @@ Client::~Client(){
 
 void Client::addPlayer(){
 	vector<float> player;
-	for(int i= 0; i<4; i++){
-		player.push_back(0);
-	}
+	player.push_back(0);
+    player.push_back(0);
+    player.push_back(100);
+    player.push_back(300);
 	player.push_back(1);
 	players.push_back(player);
 }
@@ -56,7 +57,7 @@ void Client::updatePlayer(int index,float velX,float velY,float posX, float posY
 	player[3] = posY;
 	player[4] = estado;
     players[index] = player;
-    printf("Nombre Jugador en Client: %s \n",this->getName().c_str());
+    printf("Nombre Jugador en Client: %d \n",index);
     printf("Posicion en Cliente despues de actualizar: x=%f y=%f \n",posX,posY);
 }
 
