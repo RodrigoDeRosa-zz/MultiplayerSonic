@@ -173,6 +173,7 @@ void* updateControl(void* arg){
 
     while (SERVER().is_running()){
         gameControl->update();
+        usleep(2000);
     }
 
 
@@ -208,7 +209,7 @@ void* outStatesHandle(void* arg){
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
         }
-        usleep(4000);
+        usleep(10000);
     }
 
     return NULL;

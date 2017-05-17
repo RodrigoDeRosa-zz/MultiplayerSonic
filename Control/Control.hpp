@@ -6,6 +6,7 @@
 using namespace std;
 
 class Control{
+	int k;
 	Model* model;
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);

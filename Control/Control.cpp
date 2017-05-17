@@ -14,6 +14,7 @@ using namespace std;
 Control::Control(){
 	this->model = new Model();
 	this->cameraControl = new CameraControl(1200); //el ancho de la camara tambien tiene que venir por parametro
+    k = 0;
 }
 
 void Control::addPlayer(string playerName){
@@ -124,7 +125,13 @@ vector<out_message_t*> Control::getStatus(){
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
 		this->moveCameraAndPlayer(players[i],directions);
 		vector<float> newPlayerPosition = this->model->getPlayerPosition(players[i]);
-		//if((playerPosition[0] == newPlayerPosition[0]) && (playerPosition[1] == newPlayerPosition[1])) continue;
+        if (k < 10){
+            if((playerPosition[0] == newPlayerPosition[0]) && (playerPosition[1] == newPlayerPosition[1])){
+                k++;
+                continue;
+            }
+        }
+        k = 0;
 		setOutMessage(message,0,atoi(players[i].c_str()),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
 						playerPosition[0],playerPosition[1],this->getCameraPosition());
 		v.push_back(message);
