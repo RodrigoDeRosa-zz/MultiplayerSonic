@@ -54,15 +54,12 @@ bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 		if(!((*players)[i]->isConnected())){
 			continue;
 		}
-		//printf("chequeo jugador con id: %s\n", (*players)[i]->getName().c_str());
 		//el jugador esta a la izquierda de la posicion
-		if((left) && ((*players)[i]->getX() < position)){ 
-			//printf("esta en el borde izquierdo\n");
+		if((left) && ((*players)[i]->getX() <= position)){
 			return true;
 		}
 		//el jugador esta a la derecha de la posicion
-		if(!(left) && ((*players)[i]->getX() > position)) {
-			//printf("esta en el borde derecho \n");
+		if(!(left) && ((*players)[i]->getX() >= position)) {
 			return true;
 		}
 	}

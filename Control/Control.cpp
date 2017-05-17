@@ -74,7 +74,6 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 	vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
 	float previousCameraPosition = this->getCameraPosition();
 	if(!(this->moveCamera(newPlayerPosition[0],playerName))){
-		printf("Entra al if \n");
 	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
 	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
@@ -107,7 +106,7 @@ void Control::handleInMessage(in_message_t* ev){
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	//muevo el jugador y la camara con las direcciones obtenidas
-	this->moveCameraAndPlayer(playerName,directions);
+	this->model->movePlayer(playerName,directions[0], directions[1]);
 }
 
 void Control::update(){

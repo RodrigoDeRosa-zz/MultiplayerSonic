@@ -31,7 +31,6 @@ bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerN
 
 bool CameraControl::moveCameraRight(float newPosition,Model* model, string playerName){
 	if(model->otherPlayerInPosition(playerName,this->getLeftEdge(),true)){
-		printf("Hay un jugador en el borde izquierdo, devuelvo falso \n");
 		return false;
 	}
 	this->position = newPosition-(this->width*(1-MARGIN_FACTOR))+CHARACTER_WIDTH;
