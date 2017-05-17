@@ -39,7 +39,7 @@ bool CameraControl::moveCameraRight(float newPosition,Model* model, string playe
 }
 
 bool CameraControl::playerInCameraRange(float playerPosition){
-	if((playerPosition <= this->getRightEdge()) && (playerPosition >= this->getLeftEdge())){
+	if((playerPosition < this->getRightEdge()) && (playerPosition > this->getLeftEdge())){
 		return true;
 	}
 	return false;
@@ -49,6 +49,6 @@ bool CameraControl::moveCamera(float newPosition,Model* model, string playerName
 	if(this->playerInCameraRange(newPosition)){
 		return true;
 	}
-	if(newPosition < this->getLeftEdge()) return this->moveCameraLeft(newPosition,model,playerName);
+	if(newPosition <= this->getLeftEdge()) return this->moveCameraLeft(newPosition,model,playerName);
 	return this->moveCameraRight(newPosition,model,playerName);
 }
