@@ -52,6 +52,7 @@ vector<float> Control::getDirections(key_event e, string playerName){
 	float dirY = directions[1];
 	switch( e ){
 		case QUIT: this->model->setPlayerConnection(playerName,false); break;
+        case RECONNECTION: this->model->setPlayerConnection(playerName, true); break;
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
 		case RIGHT_DOWN: dirX += 1; break;

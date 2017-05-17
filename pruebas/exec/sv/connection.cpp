@@ -140,6 +140,12 @@ void Connection::disconnect(int from){
 
     CXManager::getInstance().removeConnection(id);
 
+    /*Se envia un mensaje para que se grise el personaje*/
+    in_message_t* disconnection = new in_message_t;
+    disconnection->id = id;
+    disconnection->key = QUIT;
+    CXManager::getInstance().queueInEvent(disconnection);
+
     if (socket){
         socket->sockClose();
         socket = NULL;

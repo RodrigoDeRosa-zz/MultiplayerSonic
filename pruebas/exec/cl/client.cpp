@@ -44,6 +44,10 @@ void Client::addPlayer(){
 	players.push_back(player);
 }
 
+void Client::cleanPlayers(){
+    players.clear();
+}
+
 out_message_t* Client::getPlayer(int id){
 	return players[id];
 }

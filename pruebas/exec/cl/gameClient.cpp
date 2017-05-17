@@ -22,19 +22,10 @@ using namespace std;
         ( ostringstream() << dec << x ) ).str()
 
 #define COMMAND_LENGTH 15
-#define MESSAGE_LENGTH 40
 #define CONNECT "connect"
 #define DISCONNECT "disconnect"
 #define EXIT "exit"
-#define INPUT "message"
 #define DEFAULT_PATH "clientDefault.json"
-
-//DEBUG
-#define CMD_SPAM_10	"spam 10"
-#define CMD_SPAM_100 "spam 100"
-#define SPAM_SLEEPTIME	500	//[useg]
-#define FORMAT1 "Client %d has posX %.3f, posY %.3f, dirX %.3f, dirY %.3f\n"
-#define FORMAT2 "Client %d has posX %x, posY %x, dirX %x, dirY %x\n"
 
 void* f_view(void* arg);
 void* keyControl(void* arg);
@@ -63,7 +54,7 @@ void* initGame(void *arg){
 
             client->addJuego(juego);
 
-			for(int i = 0; i < message->id; i++){
+			for (int i = 0; i < message->id; i++){
 				client->addPlayer();
 				client->getJuego()->addJugador(SSTR(i), "sonic");
 			}
@@ -99,7 +90,9 @@ void* keyControl(void* arg){
 	while(self->gameOn()){
 		while(SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT){
-	        	//TODO: quit
+	        	key = QUIT;
+                self->endGame();
+                break;
 	        }
 			if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
 				switch( e.key.keysym.sym ){
@@ -150,6 +143,8 @@ void* f_view(void* arg){
 		self->getJuego()->render();
         Renderer::getInstance().draw();
 	}
+    SDLHandler::getInstance().close();
+    self->cleanPlayers();
 
 	return NULL;
 
@@ -190,7 +185,6 @@ void* consoleChat(void* arg){
 	printf("Insert a command: ");
 	while(running){
 		char command[COMMAND_LENGTH];
-		char message[MESSAGE_LENGTH];
 		fgets(command, COMMAND_LENGTH, stdin);
 		strtok(command, "\n");
 
@@ -198,10 +192,12 @@ void* consoleChat(void* arg){
 			pthread_create(&game, NULL, runGame, self);
 		} else if (strcmp(command, DISCONNECT) == 0){
 			self->disconnect(0);
+            self->endGame();
 			pthread_join(game, &exit_status);
 			printf("Disconnected.\n");
 		} else if (strcmp(command, EXIT) == 0){
 			self->disconnect(0);
+            self->endGame();
 			pthread_join(game, &exit_status);
 			running = false;
 		}

@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "CameraControl.hpp"
-#include "message.hpp"
+#include "../message.hpp"
 
 using namespace std;
 

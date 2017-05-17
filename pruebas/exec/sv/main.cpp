@@ -20,7 +20,6 @@ using namespace std;
 #define CXM()(CXManager::getInstance())
 
 #define DEFAULT_PATH "serverDefault.json"
-#define MAX_CONN 2
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
@@ -39,6 +38,7 @@ void avisarEmpiezaJuego(char* outState){
 
 void* accept(void* arg){
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
+    bool has_started = false;
     printf("Server now accepting...\n");
     while(SERVER().isOnline()){
         sleep(ACCEPT_TIMEOUT);
@@ -57,6 +57,27 @@ void* accept(void* arg){
         if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
 			SERVER().start_game();
 		}
+        /*Esto se da cuando se desconecta alguien y otra persona toma su lugar*/
+        if (SERVER().is_running() && has_started){
+            out_message_t* connectMsg = new out_message_t;
+            memset(connectMsg, 0, sizeof(out_message_t));
+            connectMsg->ping = 2;
+            connectMsg->id = CXM().maxConnections; //Aca aunque en gris, estan todos!
+            //Se le avisa que arranque, y con cuantos jugadores/
+            char* message = new char[sizeof(out_message_t)];
+            memcpy(message, connectMsg, sizeof(out_message_t));
+            delete connectMsg; //Ya no se necesita
+
+            connection->sendMessage(message, sizeof(out_message_t));
+            //Ahora se le avisa al servidor que cierto jugador se reconecto/
+            in_message_t* reconnectionNotif = new in_message_t;
+            reconnectionNotif->id = connection->id;
+            reconnectionNotif->key = RECONNECTION;
+            SERVER().queueInEvent(reconnectionNotif);
+        }
+        /*Ahora se setea esto como un flag, porque no quiero que la primera vez que se inicia el
+        juego se envie el mensaje de arriba!!!*/
+        if(SERVER().is_running()){has_started = true;}
     }
 
     return NULL;
@@ -115,6 +136,7 @@ int main(int argc, char** argv){
         input >> json;
     }
     const char* port = json["port"].asString().c_str();
+    int maxServerConns = json["max_connections"].asInt();
     /***************************************FIN LECTURA JSON***********************************************************/
 
     if(!SERVER().init(port)){
@@ -128,7 +150,7 @@ int main(int argc, char** argv){
 
 	Control* gameControl = new Control();
 
-    CXM().init(MAX_CONN);
+    CXM().init(maxServerConns);
 
     pthread_t acceptT, eventDistrT;
     /*Se inician los threads de aceptacion de sockets y de distribucion de eventos*/

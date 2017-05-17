@@ -2,7 +2,7 @@
 #define MESSAGE_HPP
 
 //KEY_TOTAL se devuelve en caso que la cola este vacia
-enum key_event {PING, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN, SPACE_UP, SPACE_DOWN, QUIT, KEY_TOTAL};
+enum key_event {PING, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN, SPACE_UP, SPACE_DOWN, QUIT, RECONNECTION, KEY_TOTAL};
 enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
 
 typedef struct out_message{

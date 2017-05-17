@@ -54,6 +54,7 @@ class Client{
         Juego* getJuego();
         void addJuego(Juego*);
         void addPlayer();
+        void cleanPlayers();
         out_message_t* getPlayer(int id);
         void updatePlayer(out_message_t*);
         void updatePlayers();
