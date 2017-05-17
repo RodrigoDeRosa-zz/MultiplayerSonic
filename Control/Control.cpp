@@ -104,7 +104,7 @@ void Control::handleInMessage(in_message_t* ev){
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	//muevo el jugador y la camara con las direcciones obtenidas
-	this->moveCameraAndPlayer(playerName,directions);
+	this->model->movePlayer(playerName,directions[0],directions[1]);
 }
 
 vector<out_message_t*> Control::getStatus(){
