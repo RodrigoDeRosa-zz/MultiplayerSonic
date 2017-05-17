@@ -164,6 +164,7 @@ int main(int argc, char** argv){
     pthread_join(outStateT, &exit_status);
     pthread_join(acceptT, &exit_status);
     pthread_join(eventDistrT, &exit_status);
+    pthread_join(updateT, &exit_status);
 
     return 0;
 }
@@ -173,7 +174,7 @@ void* updateControl(void* arg){
 
     while (SERVER().is_running()){
         gameControl->update();
-        usleep(2000);
+        usleep(5000);
     }
 
 
@@ -209,7 +210,7 @@ void* outStatesHandle(void* arg){
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
         }
-        usleep(10000);
+        usleep(5000);
     }
 
     return NULL;

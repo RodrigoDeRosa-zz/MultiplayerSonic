@@ -123,7 +123,7 @@ vector<out_message_t*> Control::getStatus(){
 		out_message_t* message = new out_message_t;
 		vector<float> playerPosition = this->model->getPlayerPosition(players[i]);
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
-		this->moveCameraAndPlayer(players[i],directions);
+		//this->moveCameraAndPlayer(players[i],directions);
 		vector<float> newPlayerPosition = this->model->getPlayerPosition(players[i]);
         if (k < 10){
             if((playerPosition[0] == newPlayerPosition[0]) && (playerPosition[1] == newPlayerPosition[1])){
