@@ -2,11 +2,9 @@
 
 #define WALKING_ANIMATION_FRAMES 6
 #define FACTOR 8
-using namespace std;
 
 
-
-ModelSonic::ModelSonic{
+ModelSonic::ModelSonic(){
     bloque_pers = NULL;
     frameRight = 0;
     frameLeft = 0;
