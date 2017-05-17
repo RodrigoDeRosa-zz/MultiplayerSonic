@@ -3,9 +3,10 @@
 #define MARGIN_FACTOR 0.01
 #define CHARACTER_WIDTH 118
 
-CameraControl::CameraControl(float width){
+CameraControl::CameraControl(float width, float stageEnd){
 	this->width = width;
 	this->position = 0;
+	this->stageEnd = stageEnd;
 }
 
 float CameraControl::getLeftEdge(){
@@ -26,6 +27,7 @@ bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerN
 	}
 	this->position = newPosition-(this->width*MARGIN_FACTOR);
 	if(this->position < 0) this->position = 0;
+	else if((this->getPosition() + this->width) >= this->stageEnd) this->position = stageEnd - this->width;
 	return true;
 }
 

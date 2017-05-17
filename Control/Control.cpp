@@ -13,7 +13,7 @@ using namespace std;
 
 Control::Control(){
 	this->model = new Model();
-	this->cameraControl = new CameraControl(1200); //el ancho de la camara tambien tiene que venir por parametro
+	this->cameraControl = new CameraControl(1200,3600); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 }
 
