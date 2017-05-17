@@ -153,10 +153,10 @@ void Client::addJuego(Juego* j){
 }
 
 void Client::disconnect(int how){
+    endGame();
     if (how == 1 && online) printf("Lost connection with server. Disconnecting...\n");
     socket->sockShutdown(SHUT_RDWR);
     socket->sockClose();
     online = false;
-    gameStarted = false;
     pings = 0;
 }

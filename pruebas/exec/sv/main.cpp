@@ -64,13 +64,13 @@ void* accept(void* arg){
             memset(connectMsg, 0, sizeof(out_message_t));
             connectMsg->ping = 2;
             connectMsg->id = CXM().maxConnections; //Aca aunque en gris, estan todos!
-            //Se le avisa que arranque, y con cuantos jugadores/
+            //Se le avisa que arranque, y con cuantos jugadores
             char* message = new char[sizeof(out_message_t)];
             memcpy(message, connectMsg, sizeof(out_message_t));
             delete connectMsg; //Ya no se necesita
 
             connection->sendMessage(message, sizeof(out_message_t));
-            //Ahora se le avisa al servidor que cierto jugador se reconecto/
+            //Ahora se le avisa al servidor que cierto jugador se reconecto
             control->setPlayerConnection(SSTR_(connection->id), true);
         }
         /*Ahora se setea esto como un flag, porque no quiero que la primera vez que se inicia el
@@ -213,6 +213,10 @@ void* inEventsHandle(void* arg){
             usleep(1000);
             continue;
 		}
+        if (ev->key == QUIT){
+            gameControl->setPlayerConnection(SSTR_(ev->id), false);
+            continue;
+        }
         gameControl->handleInMessage(ev);
 	}
 

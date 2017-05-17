@@ -38,6 +38,7 @@ void CXManager::addConnection(Connection* connection){
 void CXManager::removeConnection(int id){
     connections.erase(id);
     ids.push_back(id);
+    printf("ids length: %d\n", ids.size());
     actualConnections -= 1;
 }
 

@@ -129,7 +129,15 @@ Connection::~Connection(){
 void Connection::disconnect(int from){
     //printf("Disconnected from %d\n", from);
     if (online) printf("Client %d disconnected.\n", id);
+
+    if (online) CXManager::getInstance().removeConnection(id);
     online = false;
+
+    /*Se envia un mensaje para que se grise el personaje*/
+    in_message_t* disconnection = new in_message_t;
+    disconnection->id = id;
+    disconnection->key = QUIT;
+    CXManager::getInstance().queueInEvent(disconnection);
 
     void* exit_status;
     pthread_join(reader, &exit_status);
@@ -138,18 +146,10 @@ void Connection::disconnect(int from){
     pthread_join(controller, &exit_status);
     pthread_mutex_destroy(&sendLock);
 
-    CXManager::getInstance().removeConnection(id);
-
     if (socket){
         socket->sockClose();
         socket = NULL;
     }
-
-    /*Se envia un mensaje para que se grise el personaje*/
-    in_message_t* disconnection = new in_message_t;
-    disconnection->id = id;
-    disconnection->key = QUIT;
-    CXManager::getInstance().queueInEvent(disconnection);
 
     id = 0;
     pings = 0;

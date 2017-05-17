@@ -3,6 +3,7 @@
 #include "../../../message.hpp"
 #include <map>
 #include <deque>
+#include <stdio.h>
 using namespace std;
 
 CXManager::CXManager(){}

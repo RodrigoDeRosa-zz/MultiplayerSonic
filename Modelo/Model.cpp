@@ -21,7 +21,6 @@ Player* Model::getPlayer(string nombre){
 
 void Model::setPlayerPosition(string playerName, float x){
 	Player* player = this->getPlayer(playerName);
-	printf("%f", x);
 	player->setX(x);
 }
 
@@ -56,7 +55,7 @@ bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 		}
 		//printf("chequeo jugador con id: %s\n", (*players)[i]->getName().c_str());
 		//el jugador esta a la izquierda de la posicion
-		if((left) && ((*players)[i]->getX() < position)){ 
+		if((left) && ((*players)[i]->getX() < position)){
 			//printf("esta en el borde izquierdo\n");
 			return true;
 		}
