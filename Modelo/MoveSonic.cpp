@@ -214,3 +214,7 @@ void MoveSonic::update(float new_x, float new_y){
     originX = new_x;
     originY = new_y;
 }
+
+bool MoveSonic::estaSaltando(){
+    return jumping;
+}
