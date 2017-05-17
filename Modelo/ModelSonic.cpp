@@ -16,6 +16,14 @@ ModelSonic::ModelSonic(){
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 
+    if(vel_x >= 1.0){
+        vel_x = 1.0;
+    }
+
+    if(vel_x <= -1.0){
+        vel_x = -1.0;
+    }
+
     if(vel_y< 0.0 || bloque_pers->estaSaltando()){
         jump(vel_x,vel_y);
     }
