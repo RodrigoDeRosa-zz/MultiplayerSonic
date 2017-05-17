@@ -157,12 +157,12 @@ int main(int argc, char** argv){
 			continue;
 		}
 
-        vector<out_message_t*> v = gameControl->handleInMessage(ev);
+        /*vector<out_message_t*> v = gameControl->handleInMessage(ev);
         for(int i = 0; i < v.size(); i++){
             char* outState = new char[sizeof(out_message_t)];
             memcpy(outState, v[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
-		}
+		}*/
 
 	}
 
