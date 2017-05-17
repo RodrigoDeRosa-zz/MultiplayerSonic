@@ -19,10 +19,9 @@ Player* Model::getPlayer(string nombre){
 	return NULL;
 }
 
-void Model::setPlayerPosition(string playerName, float x, float y){
+void Model::setPlayerPosition(string playerName, float x){
 	Player* player = this->getPlayer(playerName);
 	player->setX(x);
-	player->setY(y);
 }
 
 void Model::movePlayer(string playerName, float dirX, float dirY){
@@ -54,10 +53,17 @@ bool Model::otherPlayerInPosition(string playerName,float position, bool left){
 		if(!((*players)[i]->isConnected())){
 			continue;
 		}
+		//printf("chequeo jugador con id: %s\n", (*players)[i]->getName().c_str());
 		//el jugador esta a la izquierda de la posicion
-		if((left) && ((*players)[i]->getX() < position)) return true;
+		if((left) && ((*players)[i]->getX() < position)){ 
+			//printf("esta en el borde izquierdo\n");
+			return true;
+		}
 		//el jugador esta a la derecha de la posicion
-		if(!(left) && ((*players)[i]->getX() > position)) return true;
+		if(!(left) && ((*players)[i]->getX() > position)) {
+			//printf("esta en el borde derecho \n");
+			return true;
+		}
 	}
 	return false;
 }

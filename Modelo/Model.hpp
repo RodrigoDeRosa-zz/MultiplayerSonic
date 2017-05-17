@@ -10,7 +10,7 @@ class Model{
 		Player* getPlayer(string name);
 		vector<string> getPlayerNames();
 		void movePlayer(string playerName, float dirX, float dirY);
-		void setPlayerPosition(string playerName, float x, float y);
+		void setPlayerPosition(string playerName, float x);
 		vector<float> getPlayerPosition(string playerName);
 		vector<float> getPlayerDirections(string playerName);
 		move_type getPlayerMovement(string playerName);

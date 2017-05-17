@@ -16,6 +16,7 @@ class Player{
 		float getDirY();
 		void setX(float x);
 		void setY(float y);
+		void setXY(float x, float y);
 		void updateXY(float dirX, float dirY);
 		bool isConnected();
 		void setConnected(bool connected);

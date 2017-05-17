@@ -35,11 +35,13 @@ float Player::getDirY(){
 }
 
 void Player::setX(float x){
-	this->sonic->update(0,0,x,this->getY());
+	printf("Seteo la posicion del jugador a: %f \n",x);
+	this->sonic->update(this->getDirX(),this->getDirY(),x,this->getY());
+	printf("Posicion del jugador despues del seteo: %f \n",this->getX());
 }
 
 void Player::setY(float y){
-	this->sonic->update(0,0,this->getX(),y);
+	this->sonic->update(this->getDirX(),this->getDirY(),this->getX(),y);
 }
 
 void Player::updateXY(float dirX,float dirY){
@@ -60,4 +62,8 @@ move_type Player::getMovement(){
 
 int Player::getFrame(){
 	return this->sonic->getFrame();
+}
+
+void Player::setXY(float x, float y){
+	this->sonic->update(0,0,x,y);
 }
