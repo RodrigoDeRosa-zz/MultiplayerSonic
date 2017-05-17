@@ -3,11 +3,12 @@
 class CameraControl{
 	float position;
 	float width;
+	float stageEnd;
 	bool moveCameraLeft(float newPosition,Model* model, string playerName);
 	bool moveCameraRight(float newPosition,Model* model, string playerName);
 	bool playerInCameraRange(float playerPosition);
 	public:
-		CameraControl(float width);
+		CameraControl(float width, float stageEnd);
 		bool moveCamera(float newPosition, Model* model, string playerName, float dirX);
 		float getPosition();
 		float getLeftEdge();
