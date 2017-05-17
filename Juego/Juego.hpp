@@ -43,7 +43,7 @@ class Juego{
     void setCamara(Camara* cam);
 
     void updateJugadores(map <string, vector <float> >);
-    void updateJugador(string, float, float, float, float, float);
+    void updateJugador(string, float, float, move_type, int, bool);
     void updateCamara(int, int);
 
     /*EJEMPLO DE UTILZACION

@@ -1,11 +1,11 @@
-#ifndef TALLERSONIC_MODELSONIC_HPP
-#define TALLERSONIC_MODELSONIC_HPP
+#ifndef TALLERSONIC_MOVESONIC_HPP
+#define TALLERSONIC_MOVESONIC_HPP
 
 using namespace std;
 
 enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
 
-class ModelSonic{
+class MoveSonic{
     private:
         float originX;
         float originY;
@@ -23,7 +23,7 @@ class ModelSonic{
         int frameActual;
         move_type moveActual;
     public:
-        ModelSonic(float x, float y);
+        MoveSonic(float x, float y);
         /*Funciones de movimiento */
         void moveLeft(float);
         void moveRight(float);
@@ -40,6 +40,6 @@ class ModelSonic{
         move_type getMovement();
 
         void setPosicionInicio();
-}
+};
 
-#endif //TALLERSONIC_MODELSONIC_HPP
+#endif //TALLERSONIC_MOVESONIC_HPP

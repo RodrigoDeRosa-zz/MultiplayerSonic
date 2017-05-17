@@ -6,19 +6,20 @@ Jugador::Jugador(string nomJugador, string nomPersonaje){
     personaje = NULL;
 }
 
-void Jugador::updatePersonaje(float velx, float vely, float posx, float posy, float conectado){
-  if(personaje == NULL){
+float,float,move_type,int,bool
+void Jugador::updatePersonaje(float posx, float posy, move_type movimiento, int frame, bool conectado){
+    if(personaje == NULL){
     //LOGGER
-  }
-  if(conectado == false){
+    }
+    if(conectado == false){
       //si esta desconectado entonces se lo grisa y se actualiza la posicion dejandolo quieto
       personaje->grisearBolque();
-      personaje->update(0, 0, posx, posy);
-  }
-  else{
+    }
+    else{
       personaje->desGrisearBolque();
-      personaje->update(velx, vely);
-  }
+    }
+    personaje->update(posx, posy, movimiento, frame);
+
 }
 
 void Jugador::setPersonaje(Personaje* new_personaje){

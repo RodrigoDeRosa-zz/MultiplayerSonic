@@ -1,6 +1,4 @@
-#include "ModelSonic.h"
-
-#include "ModelSonic.hpp"
+#include "MoveSonic.hpp"
 
 /*DIMENSIONES ESCENARIO*/
 #define ANCHO_ESCENARIO 3600
@@ -21,7 +19,7 @@
 #define JUMPING_ANIMATION_FRAMES 5
 #define QUIET_ANIMATION_FRAMES 7
 
-ModelSonic::ModelSonic(float x, float y){
+MoveSonic::MoveSonic(float x, float y){
     originX = x;
     originY = y;
     width = 117;
@@ -38,7 +36,7 @@ ModelSonic::ModelSonic(float x, float y){
     jumping = false;
 }
 
-void ModelSonic::setPosicionInicio(){
+void MoveSonic::setPosicionInicio(){
     tiempoX = 0.0;
     tiempoY = 0.0;
     tiempoSalto = 0.0;
@@ -61,7 +59,7 @@ void ModelSonic::setPosicionInicio(){
     frameQuiet++;
 }
 
-void ModelSonic::jump(float vel_x,float vel_y){
+void MoveSonic::jump(float vel_x,float vel_y){
 
     if( frameJumping / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
         frameJumping=0;
@@ -100,7 +98,7 @@ void ModelSonic::jump(float vel_x,float vel_y){
 
 }
 
-void ModelSonic::jumpDerecha(float* velH){
+void MoveSonic::jumpDerecha(float* velH){
     direccion = true;
     *velH = VELOCIDAD*5;
     if(tiempoX >= CONTROL_CAMINATA){
@@ -111,7 +109,7 @@ void ModelSonic::jumpDerecha(float* velH){
     if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 }
 
-void ModelSonic::jumpIzquierda(float* velH){
+void MoveSonic::jumpIzquierda(float* velH){
     direccion = false;
     *velH = VELOCIDAD*(-5);
     if(tiempoX <= -CONTROL_CAMINATA){
@@ -123,7 +121,7 @@ void ModelSonic::jumpIzquierda(float* velH){
 }
 
 
-void ModelSonic::moveRight(float vel_x){
+void MoveSonic::moveRight(float vel_x){
 
     //Si la VELOCIDAD era menor a 0, se movia para la izquierda.
     if(tiempoX <= 0.0){
@@ -145,7 +143,7 @@ void ModelSonic::moveRight(float vel_x){
     if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 }
 
-void ModelSonic::moveLeft(float vel_x){
+void MoveSonic::moveLeft(float vel_x){
     //Si la VELOCIDAD era mayor a 0, se movia para la derecha
     if(tiempoX >= 0.0){
         jumping =false;
@@ -166,7 +164,7 @@ void ModelSonic::moveLeft(float vel_x){
     if( originX < 0 ){originX = 0;}
 }
 
-void ModelSonic::caminarDerecha(){
+void MoveSonic::caminarDerecha(){
     if( frameRight / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
         frameRight=0;
     }
@@ -175,7 +173,7 @@ void ModelSonic::caminarDerecha(){
     originX += VELOCIDAD;
 }
 
-void ModelSonic::caminarIzquierda(){
+void MoveSonic::caminarIzquierda(){
     if( frameLeft / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
         frameLeft=0;
     }
@@ -184,7 +182,7 @@ void ModelSonic::caminarIzquierda(){
     originX -= VELOCIDAD;
 }
 
-void ModelSonic::correrDerecha(){
+void MoveSonic::correrDerecha(){
     if( frameRight / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
         frameRight=0;
     }
@@ -194,7 +192,7 @@ void ModelSonic::correrDerecha(){
     originX += vel;
 }
 
-void ModelSonic::correrIzquierda(){
+void MoveSonic::correrIzquierda(){
     if( frameLeft / (RUNNING_ANIMATION_FRAMES) >= RUNNING_ANIMATION_FRAMES){
         frameLeft=0;
     }
@@ -204,7 +202,7 @@ void ModelSonic::correrIzquierda(){
     originX += vel;
 }
 
-int ModelSonic::getFrame(){
+int MoveSonic::getFrame(){
     return frameActual;
 }
 move_type getMovement(){

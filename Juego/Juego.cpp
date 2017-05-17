@@ -24,9 +24,9 @@ void Juego::updateJugadores(map <string, vector <float> > jug){
   }
 }
 
-void Juego::updateJugador(string id, float velx, float vely, float posx, float posy, float conectado){
+void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado){
 
-  jugadores->updateJugador(id, velx, vely, posx,posy,conectado);
+  jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado);
 }
 
 void Juego::updateCamara(int posx, int posy){

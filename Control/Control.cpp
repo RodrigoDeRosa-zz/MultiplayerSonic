@@ -88,37 +88,34 @@ vector<float> Control::getPlayerPosition(string playerName){
 	return this->model->getPlayerPosition(playerName);
 }
 
-void setOutMessage(out_message_t* message,char ping,int id,bool connection,float dirX,float dirY,float posX,float posY,float camPos){
+void setOutMessage(out_message_t* message,char ping,int id,bool connection,int frame,move_type move,float posX,float posY,float camPos){
 	message->ping = ping;
 	message->id = id;
 	message->connection = connection;
-	message->dirX = dirX;
-	message->dirY = dirY;
 	message->posX = posX;
 	message->posY = posY;
+	message->frame = frame;
+	message->move = move;
 	message->camPos = camPos;
 }
 
-vector<out_message_t*> Control::handleInMessage(in_message_t* ev){
-	vector<out_message_t*> v;
+void Control::handleInMessage(in_message_t* ev){
 	string playerName = SSTR(ev->id);
-	out_message_t* message = new out_message_t;
+	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
-	setOutMessage(message,0,ev->id,true,directions[0],directions[1],0,0,this->getCameraPosition());
-	if(!(this->moveCameraAndPlayer(playerName,directions))){
-		message->dirX = 0;
-		message->dirY = 0;
+	//muevo el jugador y la camara con las direcciones obtenidas
+	this->moveCameraAndPlayer(playerName,directions);
+}
+
+vector<out_message_t*> Control::getStatus(){
+	vector<out_message_t*> v;
+	vector<string> players = this->model->getPlayerNames();
+	for(int i=0; i < players.size(); i++){
+		out_message_t* message = new out_message_t*;
+		vector<float> playerPosition = this->model->getPlayerPosition(players[i]);
+		setOutMessage(message,0,atoi(players[i]),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
+						playerPosition[0],playerPosition[1],this->getCameraPosition());
 		v.push_back(message);
-		return v;
-	}
-	message->camPos = this->getCameraPosition();
-	v.push_back(message);
-	vector<string> disconnectedPlayers = this->model->getDisconnectedPlayers();
-	for(int i = 0; i < disconnectedPlayers.size(); i++){
-		out_message_t* disconnectedMessage;
-		vector<float> position = getPlayerPosition(disconnectedPlayers[i]);
-		setOutMessage(disconnectedMessage,0,atoi(disconnectedPlayers[i].c_str()),false,0,0,position[0],position[1],this->getCameraPosition());
-		v.push_back(disconnectedMessage);
 	}
 	return v;
 }
