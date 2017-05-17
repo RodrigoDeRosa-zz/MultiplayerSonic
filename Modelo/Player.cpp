@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "ModelSonic.hpp"
 #include <stdio.h>
 #define RUNNNING_EVENTS 1000
 #define RUNNING_VELOCITY 0.7
