@@ -38,6 +38,8 @@ void Client::addPlayer(){
 	out_message_t* player;
     player->posX = 100;
     player->posY = 300;
+    player->move = IDLED;
+    player->frame = 0;
 	player->connection = true;
 	players.push_back(player);
 }
