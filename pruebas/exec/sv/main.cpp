@@ -3,8 +3,8 @@
 #include "socket.hpp"
 #include "cxManager.hpp"
 #include "connection.hpp"
-#include "json/json.h"
-#include "json/json-forwards.h"
+#include "../../../json/json/json.h"
+#include "../../../json/json/json-forwards.h"
 #include <fstream>
 #include <pthread.h>
 #include <stdio.h>
