@@ -3,7 +3,7 @@
 
 using namespace std;
 
-enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
+//enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
 
 class MoveSonic{
     private:
@@ -38,6 +38,9 @@ class MoveSonic{
 
         void update(float, float);
         bool estaSaltando();
+
+        int getX();
+        int getY();
 
         int getFrame();
         move_type getMovement();

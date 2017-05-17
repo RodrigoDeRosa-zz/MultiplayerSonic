@@ -51,10 +51,10 @@ void MoveSonic::setPosicionInicio(){
     //si esta apuntando para la derecha
     frameActual = (frameQuiet/(FACTOR*QUIET_ANIMATION_FRAMES));
     if(direccion){
-        moveActual = IDELD;
+        moveActual = IDLED;
     }
     else{
-        moveActual = IDELI;
+        moveActual = IDLEI;
     }
     frameQuiet++;
 }
@@ -217,4 +217,12 @@ void MoveSonic::update(float new_x, float new_y){
 
 bool MoveSonic::estaSaltando(){
     return jumping;
+}
+
+int MoveSonic::getX(){
+    return originX;
+}
+
+int MoveSonic::getY(){
+    return originY;
 }
