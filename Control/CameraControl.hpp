@@ -8,7 +8,7 @@ class CameraControl{
 	bool playerInCameraRange(float playerPosition);
 	public:
 		CameraControl(float width);
-		bool moveCamera(float newPosition, Model* model, string playerName);
+		bool moveCamera(float newPosition, Model* model, string playerName, float dirX);
 		float getPosition();
 		float getLeftEdge();
 		float getRightEdge();

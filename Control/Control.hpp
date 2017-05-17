@@ -11,7 +11,7 @@ class Control{
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);
 	void setDisconnectedPlayersPosition(float dirX);
-	bool moveCamera(float newPlayerX, string playerName);
+	bool moveCamera(float newPlayerX, string playerName, float dirX);
 	public:
 		Control();
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
