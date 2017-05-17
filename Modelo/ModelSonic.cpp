@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-ModelSonic::ModelSonic(){
+ModelSonic::ModelSonic{
     bloque_pers = NULL;
     frameRight = 0;
     frameLeft = 0;

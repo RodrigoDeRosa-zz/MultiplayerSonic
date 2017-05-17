@@ -19,5 +19,5 @@ class Model{
 		void moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,float dirX);
 		void setPlayerConnection(string playerName, bool connection);
 		vector<string> getDisconnectedPlayers();
-		bool playerIsConnected(playerName);
+		bool playerIsConnected(string playerName);
 };
