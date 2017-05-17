@@ -15,6 +15,16 @@ protected:
   ClipGroup* clipsMovimientos;
 
 public:
+
+  virtual void quietoDerecha(int);
+  virtual void quietoIzquierda(int);
+  virtual void caminarDerecha(int);
+  virtual void caminarIzquierda(int);
+  virtual void correrDerecha(int);
+  virtual void correrIzquierda(int);
+  virtual void jumpDerecha(int);
+  virtual void jumpIzquierda(int);
+
   MovingBloque(float x, float y, int w, int h);
   void render(Camara* camara);
 

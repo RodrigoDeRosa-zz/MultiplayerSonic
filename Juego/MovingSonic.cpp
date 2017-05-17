@@ -43,7 +43,7 @@ void MovingSonic::caminarDerecha(int frame){
   rectangle = clipsMovimientos->getRectangulo(CAMINARD,frame);
 }
 
-void MovingSonic::quietoIzquierda(int frame) {
+void MovingSonic::caminarIzquierda(int frame) {
   rectangle = clipsMovimientos->getRectangulo(CAMINARI,frame);
 }
 

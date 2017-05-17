@@ -20,6 +20,15 @@ MovingBloque::MovingBloque(float x, float y, int w, int h):
     jumping = false;
   }
 
+void MovingBloque::quietoDerecha(int){};
+void MovingBloque::quietoIzquierda(int){};
+void MovingBloque::caminarDerecha(int){};
+void MovingBloque::caminarIzquierda(int){};
+void MovingBloque::correrDerecha(int){};
+void MovingBloque::correrIzquierda(int){};
+void MovingBloque::jumpDerecha(int){};
+void MovingBloque::jumpIzquierda(int){};
+
 /*Setters*/
 
 void MovingBloque::setClip(string nombre){
