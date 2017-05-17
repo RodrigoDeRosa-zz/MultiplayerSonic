@@ -22,4 +22,5 @@ class Control{
 		void setPlayerConnection(string playerName, bool connection);
 		void handleInMessage(in_message_t* ev);
 		vector<out_message_t*> getStatus();
+		void update();
 };

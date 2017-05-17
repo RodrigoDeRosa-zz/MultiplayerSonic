@@ -107,6 +107,14 @@ void Control::handleInMessage(in_message_t* ev){
 	this->model->movePlayer(playerName,directions[0],directions[1]);
 }
 
+void Control::update(){
+	vector<string> players = this->model->getPlayerNames();
+	for(int i=0; i < players.size(); i++){
+		vector<float> directions = this->model->getPlayerDirections(players[i]);
+		this->moveCameraAndPlayer(players[i],directions);
+	}
+}
+
 vector<out_message_t*> Control::getStatus(){
 	vector<out_message_t*> v;
 	vector<string> players = this->model->getPlayerNames();

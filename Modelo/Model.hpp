@@ -20,4 +20,5 @@ class Model{
 		void setPlayerConnection(string playerName, bool connection);
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);
+		void update();
 };
