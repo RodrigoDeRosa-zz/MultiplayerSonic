@@ -84,6 +84,8 @@ void* eventDistribution(void* arg){
     return NULL;
 }
 
+void* inEventsHandle(void* arg);
+void* outStatesHandle(void* arg);
 
 int main(int argc, char** argv){
     if (argc != 2){
@@ -148,30 +150,49 @@ int main(int argc, char** argv){
 		gameControl->addPlayer(SSTR_(i));
 	}
 
-	//LOOP DEL JUEGO
-	while(SERVER().is_running()){
+    pthread_t inEventT;
+    pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
+    pthread_t outStateT;
+    pthread_create(&outStateT, NULL, outStatesHandle, gameControl);
+
+    /*Se espera a que finalicen los threads*/
+    void* exit_status;
+    pthread_join(inEventT, &exit_status);
+    pthread_join(outStateT, &exit_status);
+    pthread_join(acceptT, &exit_status);
+    pthread_join(eventDistrT, &exit_status);
+
+    return 0;
+}
+
+void* inEventsHandle(void* arg){
+    Control* gameControl = (Control*) arg;
+
+    while(SERVER().is_running()){
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
         /*Si hay evento, se procesa.*/
-		if (ev){
-            gameControl->handleInMessage(ev);
+		if (!ev){
+            usleep(1000);
+            continue;
 		}
+        gameControl->handleInMessage(ev);
+        usleep(1000);
+	}
+}
+
+void* outStatesHandle(void* arg){
+    Control* gameControl = (Control*) arg;
+
+    while(SERVER().is_running()){
         /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/
-        usleep(10000);
         vector<out_message_t*> states = gameControl->getStatus();
         for(int i = 0; i < states.size(); i++){
             char* outState = new char[sizeof(out_message_t)];
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
-		}
-
-	}
-
-    /*Se espera a que finalicen los threads*/
-    void* exit_status;
-    pthread_join(acceptT, &exit_status);
-    pthread_join(eventDistrT, &exit_status);
-
-    return 0;
+        }
+        usleep(10000);
+    }
 }

@@ -138,7 +138,7 @@ void* f_view(void* arg){
         	self->updatePlayers();
 			self->getJuego()->render();
         	Renderer::getInstance().draw();
-   			usleep(1000);
+            usleep(2000);
             continue;
         }
         if(message->ping == 0){
