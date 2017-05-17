@@ -9,11 +9,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="personaje">
+    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/exec/cl/mainClient" afterPath="$PROJECT_DIR$/pruebas/exec/cl/mainClient" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/exec/sv/mainServer" afterPath="$PROJECT_DIR$/pruebas/exec/sv/mainServer" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego/Personaje.cpp" afterPath="$PROJECT_DIR$/Juego/Personaje.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.cpp" afterPath="$PROJECT_DIR$/Control/Control.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,14 +26,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Control.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Control.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="101" column="48" lean-forward="true" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
-              <folding>
-                <marker date="1494989030811" expanded="true" signature="3697:4362" ph="{...}" />
-              </folding>
+            <state relative-caret-position="314">
+              <caret line="129" column="20" lean-forward="true" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -41,18 +39,18 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pruebas/exec/sv/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="161" column="24" lean-forward="true" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+            <state relative-caret-position="525">
+              <caret line="213" column="5" lean-forward="false" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Personaje.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Juego/Personaje.cpp">
+      <file leaf-file-name="gameClient.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+            <state relative-caret-position="77">
+              <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -85,8 +83,6 @@
         <option value="$PROJECT_DIR$/Graficos/SpriteGroup.hpp" />
         <option value="$PROJECT_DIR$/Juego/SegaFactory.hpp" />
         <option value="$PROJECT_DIR$/Juego/SegaFactory.cpp" />
-        <option value="$PROJECT_DIR$/Control/Control.cpp" />
-        <option value="$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp" />
         <option value="$PROJECT_DIR$/Modelo/Player.cpp" />
         <option value="$PROJECT_DIR$/Modelo/Player.hpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.h" />
@@ -104,8 +100,10 @@
         <option value="$PROJECT_DIR$/Juego/Juego.hpp" />
         <option value="$PROJECT_DIR$/Juego/Juego.cpp" />
         <option value="$PROJECT_DIR$/pruebas/exec/cl/client.cpp" />
-        <option value="$PROJECT_DIR$/pruebas/exec/sv/main.cpp" />
         <option value="$PROJECT_DIR$/Juego/Personaje.cpp" />
+        <option value="$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp" />
+        <option value="$PROJECT_DIR$/pruebas/exec/sv/main.cpp" />
+        <option value="$PROJECT_DIR$/Control/Control.cpp" />
       </list>
     </option>
   </component>
@@ -158,7 +156,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Juego" />
+              <option name="myItemId" value="pruebas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -186,7 +184,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/sv/main.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/sv/mainServer</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -491,7 +491,7 @@
       <workItem from="1494695551322" duration="7939000" />
       <workItem from="1494859657614" duration="2476000" />
       <workItem from="1494872974646" duration="20000" />
-      <workItem from="1494965393939" duration="23577000" />
+      <workItem from="1494965393939" duration="29612000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -724,11 +724,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494986432797</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="personaje">
+      <created>1494990109793</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1494990109793</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34012000" />
+    <option name="totallyTimeSpent" value="40047000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-7" width="1600" height="844" extended-state="6" />
@@ -738,7 +745,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2615176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50269026" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32791328" sideWeight="0.49730977" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32791328" sideWeight="0.49730977" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -905,14 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="64" column="21" lean-forward="false" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Juego/Sonic.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1030,7 +1029,7 @@
         <state relative-caret-position="370">
           <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="112" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1133,14 +1132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3620">
-          <caret line="181" column="29" lean-forward="true" selection-start-line="181" selection-start-column="29" selection-end-line="181" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pruebas/exec/cl/client.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -1173,28 +1164,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
+    <entry file="file://$PROJECT_DIR$/Juego/Personaje.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="101" column="48" lean-forward="true" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
-          <folding>
-            <marker date="1494989030811" expanded="true" signature="3697:4362" ph="{...}" />
-          </folding>
+        <state relative-caret-position="880">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="926">
+          <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pruebas/exec/sv/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="161" column="24" lean-forward="true" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+        <state relative-caret-position="525">
+          <caret line="213" column="5" lean-forward="false" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Juego/Personaje.cpp">
+    <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+        <state relative-caret-position="314">
+          <caret line="129" column="20" lean-forward="true" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="20" />
           <folding />
         </state>
       </provider>
