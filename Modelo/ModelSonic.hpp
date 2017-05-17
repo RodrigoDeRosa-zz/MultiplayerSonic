@@ -2,18 +2,16 @@
 #define TALLERSONIC_MODELSONIC_HPP
 
 #include "MoveSonic.hpp"
+#include <iostream>
 
 using namespace std;
 
 class ModelSonic{
 private:
-    float originX;
-    float originY;
-    float direccionX;
-    float direccionY;
-    bool running;
-    bool jumping;
 
+    MoveSonic* bloque_pers;
+    int frameRight, frameLeft;
+    float direccionX, direccionY;
 
 public:
     ModelSonic();

@@ -1,4 +1,5 @@
 #include "ModelSonic.hpp"
+using namespace std;
 
 #define WALKING_ANIMATION_FRAMES 6
 #define FACTOR 8

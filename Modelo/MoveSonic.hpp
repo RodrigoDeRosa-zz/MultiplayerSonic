@@ -18,8 +18,8 @@ class MoveSonic{
         int frameQuiet;
         int frameJumping;
         //La direccion se setea en true cuando esta para la derecha.
-        float direccion;
-        float jumping;
+        bool direccion;
+        bool jumping;
         int frameActual;
         move_type moveActual;
     public:
