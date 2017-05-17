@@ -48,7 +48,7 @@ out_message_t* Client::getPlayer(int id){
 	return players[id];
 }
 
-void Client::updatePlayer(int id, float posX, float posY, move_type move, int fram, bool estado){
+void Client::updatePlayer(int id, float posX, float posY, move_type move, int frame, bool estado){
     out_message_t* player = players[id];
 	player->posX = posX;
 	player->posY = posY;
