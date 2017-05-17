@@ -30,22 +30,22 @@ void Personaje::update(float posX, float posY, move_type movimiento, int frame){
     else if(movimiento == IDLEI){
         bloque_pers->quietoIzquierda(frame);
     }
-    else if(movimiento == JUMPD){
+    else if(movimiento == JUMPI){
         bloque_pers->jumpIzquierda(frame);
     }
-    else if(movimiento == JUMPI){
+    else if(movimiento == JUMPD){
         bloque_pers->jumpDerecha(frame);
     }
-    else if(movimiento == RUND){
+    else if(movimiento == RUNI){
         bloque_pers->correrIzquierda(frame);
     }
-    else if(movimiento == RUNI){
+    else if(movimiento == RUND){
         bloque_pers->correrDerecha(frame);
     }
-    else if(movimiento == WALKD){
+    else if(movimiento == WALKI){
         bloque_pers->caminarIzquierda(frame);
     }
-    else if(movimiento == WALKI){
+    else if(movimiento == WALKD){
         bloque_pers->caminarDerecha(frame);
     }
 }
