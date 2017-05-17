@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/CameraControl.cpp" afterPath="$PROJECT_DIR$/Control/CameraControl.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Model.cpp" afterPath="$PROJECT_DIR$/Modelo/Model.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,6 +25,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Control.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="77" column="86" lean-forward="false" selection-start-line="77" selection-start-column="86" selection-end-line="77" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Control.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Control/Control.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Model.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/Model.hpp">
           <provider selected="true" editor-type-id="text-editor">
@@ -33,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraControl.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CameraControl.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Control/CameraControl.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="151">
+              <caret line="32" column="74" lean-forward="false" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -56,7 +78,7 @@
       <file leaf-file-name="MoveSonic.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
+            <state relative-caret-position="481">
               <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="25" />
               <folding />
             </state>
@@ -66,7 +88,7 @@
       <file leaf-file-name="ModelSonic.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
+            <state relative-caret-position="511">
               <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
               <folding />
             </state>
@@ -76,27 +98,8 @@
       <file leaf-file-name="Model.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/Model.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-              <folding>
-                <marker date="1495023693261" expanded="true" signature="1197:1792" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1884:2272" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="2341:2426" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="2474:2642" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="2697:2778" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="2824:2902" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="2942:3076" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="3126:3207" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modelo/Player.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -108,33 +111,23 @@
             <state relative-caret-position="1020">
               <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
-                <marker date="1495023693261" expanded="true" signature="642:839" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="867:940" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="986:1022" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1050:1081" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1124:1160" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1193:1232" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1256:1292" ph="{...}" />
-                <marker date="1495023693261" expanded="true" signature="1330:1364" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="642:796" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="824:897" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="943:979" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="1007:1038" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="1081:1117" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="1150:1189" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="1213:1249" ph="{...}" />
+                <marker date="1495024923463" expanded="true" signature="1287:1321" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameClient.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoveSonic.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoveSonic.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
+            <state relative-caret-position="551">
               <caret line="231" column="20" lean-forward="false" selection-start-line="231" selection-start-column="20" selection-end-line="231" selection-end-column="20" />
               <folding />
             </state>
@@ -177,19 +170,19 @@
         <option value="$PROJECT_DIR$/Juego/Jugadores.cpp" />
         <option value="$PROJECT_DIR$/Juego/Jugadores.hpp" />
         <option value="$PROJECT_DIR$/Modelo/Model.hpp" />
-        <option value="$PROJECT_DIR$/Modelo/Model.cpp" />
         <option value="$PROJECT_DIR$/Juego/Juego.hpp" />
         <option value="$PROJECT_DIR$/Juego/Juego.cpp" />
         <option value="$PROJECT_DIR$/pruebas/exec/cl/client.cpp" />
         <option value="$PROJECT_DIR$/Juego/Personaje.cpp" />
         <option value="$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp" />
         <option value="$PROJECT_DIR$/pruebas/exec/sv/main.cpp" />
-        <option value="$PROJECT_DIR$/Control/Control.cpp" />
-        <option value="$PROJECT_DIR$/Control/CameraControl.cpp" />
         <option value="$PROJECT_DIR$/Modelo/MoveSonic.hpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.cpp" />
         <option value="$PROJECT_DIR$/Modelo/ModelSonic.hpp" />
         <option value="$PROJECT_DIR$/Modelo/MoveSonic.cpp" />
+        <option value="$PROJECT_DIR$/Control/Control.cpp" />
+        <option value="$PROJECT_DIR$/Modelo/Model.cpp" />
+        <option value="$PROJECT_DIR$/Control/CameraControl.cpp" />
       </list>
     </option>
   </component>
@@ -272,9 +265,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Ejecucion/Cliente/Client/client.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/sv/connection.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/sv/main.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.cpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -580,7 +571,7 @@
       <workItem from="1494859657614" duration="2476000" />
       <workItem from="1494872974646" duration="20000" />
       <workItem from="1494965393939" duration="33440000" />
-      <workItem from="1495019593184" duration="4885000" />
+      <workItem from="1495019593184" duration="5512000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -848,21 +839,29 @@
       <option name="project" value="LOCAL" />
       <updated>1495024463135</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="personaje">
+      <created>1495024492116</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1495024492116</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48760000" />
+    <option name="totallyTimeSpent" value="49387000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1602" height="849" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2615176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50269026" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32791328" sideWeight="0.49730977" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32791328" sideWeight="0.49730977" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1170,6 +1169,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1177,21 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Control/Control.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="79" column="21" lean-forward="true" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,14 +1201,14 @@
         <state relative-caret-position="1020">
           <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <marker date="1495023693261" expanded="true" signature="642:839" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="867:940" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="986:1022" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1050:1081" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1124:1160" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1193:1232" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1256:1292" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1330:1364" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="642:796" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="824:897" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="943:979" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="1007:1038" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="1081:1117" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="1150:1189" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="1213:1249" ph="{...}" />
+            <marker date="1495024923463" expanded="true" signature="1287:1321" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1236,27 +1221,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Model.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <marker date="1495023693261" expanded="true" signature="1197:1792" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="1884:2272" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="2341:2426" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="2474:2642" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="2697:2778" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="2824:2902" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="2942:3076" ph="{...}" />
-            <marker date="1495023693261" expanded="true" signature="3126:3207" ph="{...}" />
-          </folding>
+        <state relative-caret-position="551">
+          <caret line="231" column="20" lean-forward="false" selection-start-line="231" selection-start-column="20" selection-end-line="231" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Control/CameraControl.cpp">
+    <entry file="file://$PROJECT_DIR$/Control/Control.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state relative-caret-position="380">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="77" column="86" lean-forward="false" selection-start-line="77" selection-start-column="86" selection-end-line="77" selection-end-column="86" />
           <folding />
         </state>
       </provider>
@@ -1269,26 +1253,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="481">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/MoveSonic.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Model.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="231" column="20" lean-forward="false" selection-start-line="231" selection-start-column="20" selection-end-line="231" selection-end-column="20" />
+        <state relative-caret-position="187">
+          <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modelo/ModelSonic.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Control/CameraControl.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="32" column="74" lean-forward="false" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
           <folding />
         </state>
       </provider>
