@@ -9,7 +9,7 @@
 
 Player::Player(string name){
 	this->name = name;
-	ModelSonic* sonic = new ModelSonic(100,300);
+	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
 }
 

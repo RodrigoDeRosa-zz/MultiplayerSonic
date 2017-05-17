@@ -6,6 +6,7 @@ using namespace std;
 class Player{
 	string name;
 	ModelSonic* sonic;
+	bool connected;
 	public:
 		Player(string name);
 		string getName();
