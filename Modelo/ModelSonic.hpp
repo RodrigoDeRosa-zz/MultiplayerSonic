@@ -18,7 +18,7 @@ public:
     void setMoveSonic(MoveSonic*);
     void moveRight(float);
     void moveLeft(float);
-    void jump();
+    void jump(float, float);
     int getFrame();
     move_type getMovement();
     float getX();
