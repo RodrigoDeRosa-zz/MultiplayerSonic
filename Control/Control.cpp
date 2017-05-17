@@ -113,9 +113,13 @@ vector<out_message_t*> Control::getStatus(){
 	for(int i=0; i < players.size(); i++){
 		out_message_t* message = new out_message_t;
 		vector<float> playerPosition = this->model->getPlayerPosition(players[i]);
+		vector<float> directions = this->model->getPlayerDirections(players[i]);
+		this->moveCameraAndPlayer(players[i],directions);
 		setOutMessage(message,0,atoi(players[i].c_str()),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
 						playerPosition[0],playerPosition[1],this->getCameraPosition());
 		v.push_back(message);
 	}
 	return v;
 }
+
+
