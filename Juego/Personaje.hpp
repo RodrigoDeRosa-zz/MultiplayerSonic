@@ -8,15 +8,12 @@
 #include <string>
 using namespace std;
 
+enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
+
 class Personaje{
   protected:
     MovingBloque* bloque_pers;
     string nombreJugador;
-    int frameRight, frameLeft;
-    float direccionX, direccionY;
-    void moveRight(float);
-    void moveLeft(float);
-    void jump(float,float);
 
   public:
     //recibe un string de nombre de jugador que no puede estar repetido
@@ -24,21 +21,16 @@ class Personaje{
     ~Personaje();
     //devuelve el nombre del jugador
     string getNombreJugador();
-    void printMap();
     void grisearBolque();
     void desGrisearBolque();
     /*setters*/
     void setMovingBloque(MovingBloque*);
-    void setClip(string);
-    void setRectangulo(string, int, int ,int ,int);
     //Renderiza el bloque interno, devuelve false si falla
     bool render(Camara*);
-    void update(float, float, float = -1.0, float = -1.0);
+    void update(float, float, move_type, int);
     bool operator==(Personaje& other) const;
     float getX();
     float getY();
-    float getDirX();
-    float getDirY();
 
 };
 #endif /*PERSONAJE_HPP*/
