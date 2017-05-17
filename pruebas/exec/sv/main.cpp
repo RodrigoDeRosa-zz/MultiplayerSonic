@@ -196,7 +196,7 @@ void* updateControl(void* arg){
 
     while (SERVER().is_running()){
         gameControl->update();
-        usleep(5000);
+        usleep(2500);
     }
 
 

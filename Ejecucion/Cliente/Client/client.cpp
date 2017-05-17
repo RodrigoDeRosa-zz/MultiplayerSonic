@@ -90,10 +90,10 @@ bool Client::connected(){
 }
 
 void Client::disconnect(int how){
+    endGame();
     if (how == 1 && online) printf("Lost connection with server. Disconnecting...\n");
     socket->sockShutdown(SHUT_RDWR);
     socket->sockClose();
-    game_on = false;
     online = false;
     pings = 0;
 }
