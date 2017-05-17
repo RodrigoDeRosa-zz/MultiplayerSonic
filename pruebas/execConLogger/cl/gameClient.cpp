@@ -14,6 +14,7 @@
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
+#include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
 using namespace std;
 
@@ -26,6 +27,8 @@ using namespace std;
 #define DISCONNECT "disconnect"
 #define EXIT "exit"
 #define DEFAULT_PATH "clientDefault.json"
+
+#define LOGGER()(Logger::getInstance())
 
 void* f_view(void* arg);
 void* keyControl(void* arg);
@@ -161,6 +164,7 @@ void* runGame(void* arg){
     /*Conexion del cliente al servidor*/
     if(!initializeConnection(self)){
         printf("Failed to initialize connection. Disconnecting.\n"); //LOGGEAR
+		LOGGER().log("Failed to initialize connection. Disconnecting.",BAJO);
         return NULL;
     }
     /*Una vez conectado, empieza a enviar y recibir mensajes en otro thread.*/
@@ -202,6 +206,7 @@ void* consoleChat(void* arg){
             self->disconnect(0);
 			pthread_join(game, &exit_status);
 			printf("Disconnected.\n"); //LOGGEAR
+			LOGGER().log("Disconnected.",BAJO);
 		} else if (strcmp(command, EXIT) == 0){
             self->endGame();
             usleep(500);
@@ -225,8 +230,8 @@ int main(int argc, char** argv){
     Json::Value json;
     //no encuentra el archivo
     if(in.fail()){
-        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
-        printf("No se encontro el archivo %s\n", path); //LOGGEAR
+        LOGGER().log("No se encontro el archivo .json",BAJO);
+        //printf("No se encontro el archivo %s\n", path); //LOGGEAR
         in.clear();
         in.open(DEFAULT_PATH);
     }
@@ -234,8 +239,8 @@ int main(int argc, char** argv){
     try{
         in >> json;
     }catch(const Json::RuntimeError& e){
-        printf("Error de sintaxis.\n"); //LOGGEAR
-        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+        //printf("Error de sintaxis.\n"); //LOGGEAR
+        LOGGER().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
         ifstream input(DEFAULT_PATH);
         input >> json;
     }

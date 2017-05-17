@@ -9,19 +9,24 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../../logger/current/Logger2.hpp"
+#define LOGGER()(Logger::getInstance())
 using namespace std;
 
 #define PORT "9034"
 #define HOSTNAME "localhost"
 
 /*Imprime el ip del servidor cuya informacion se recibe luego del mensaje recibido*/
-void printHostIP(string message, struct addrinfo* serverInfo){
+void printHostIP(string message, struct addrinfo* serverInfo, bool log_it){
     char ipstr[INET_ADDRSTRLEN];
     /*Se castea el ai_addr a IPv4*/
     struct sockaddr_in* sockAddr = (struct sockaddr_in*) serverInfo->ai_addr;
     /*Se pasa el ip de network a presentation*/
     inet_ntop(serverInfo->ai_family, &(sockAddr->sin_addr), ipstr, sizeof ipstr);
     printf("%s %s\n", message.c_str(), ipstr);
+	if(log_it) {
+		LOGGER().log(string(message)+string(ipstr),BAJO);
+	}
 }
 
 /*Pide un hostname o dirección y obtiene la información sobre dicho servidor.
@@ -37,9 +42,12 @@ addrinfo* resolveServerInfo(Client* client){
     hints.ai_socktype = SOCK_STREAM; //TCP
     /*Se guarda la informacion del host*/
     status = getaddrinfo(client->hostname, client->port, &hints, &serverInfo);
-    if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
-
-    printHostIP("Hostname resolved to:", serverInfo); //LOGGEAR
+    if (status != 0) {
+		//fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
+		LOGGER().log(string("Failed to connect! Error: ")+string(gai_strerror(status)),BAJO);
+	}	
+    printHostIP("Hostname resolved to:", serverInfo, true); //LOGGEAR
+	
 
     return serverInfo;
 }
@@ -54,6 +62,6 @@ bool initializeConnection(Client* client){
     //Se configura el cliente para conectarse al servidor.
     if (!client->setConnectionInfo(serverInfo)) return false;
     if (!client->connectToServer()) return false;
-    printHostIP("Connected to:", serverInfo); //NO LOGGEAR
+    printHostIP("Connected to:", serverInfo, false); //NO LOGGEAR
     return true;
 }

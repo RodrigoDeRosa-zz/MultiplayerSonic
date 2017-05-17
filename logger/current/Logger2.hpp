@@ -3,7 +3,7 @@ v2.0: Este tiene implementado adentro los mapas para .log(LOG_ERROR logerr)
 v2.1: Logea a DEFAULT_OUTPUT_PATH en vez de stdout       
 v2.3: Se agrega .log(const char*) wrapper de .log(string) para ahorrar sintaxis, se prueba de flushear
 v2.4: Se agrega .log(str,LOGLV), .log(const char*, LOGLV) para parchear por ahora.
-TODO:	-agregar mas funciones sobrecargadas de log (aunque hace falta mas que esto?)
+v2.5: Se agrega mutex para ser llamado en forma concurrente y mantener estabilidad en el logfile
 		
 */
 
@@ -12,6 +12,7 @@ TODO:	-agregar mas funciones sobrecargadas de log (aunque hace falta mas que est
 #include <string>
 #include <exception>
 #include <map>
+#include <pthread.h>
 
 using namespace std; 
 
@@ -48,6 +49,7 @@ public:
 
 private:
 	FILE* output_file;
+    pthread_mutex_t logMux;
 	map<LOG_ERROR,string> log_error_msg;	//mensaje correspondiente a cada error
 	map<LOG_ERROR,LOGLV> log_error_prior;	//nivel de detalle correspondiente a cada error
 	~Logger();	

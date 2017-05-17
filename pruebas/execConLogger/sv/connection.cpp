@@ -7,6 +7,8 @@
 #include <deque>
 #include <string.h>
 #include <stdio.h>
+#include "../../../logger/current/Logger2.hpp"
+#define LOGGER()(Logger::getInstance())
 using namespace std;
 
 #define MAX_DATASIZE 200
@@ -128,8 +130,12 @@ Connection::~Connection(){
 
 void Connection::disconnect(int from){
     //printf("Disconnected from %d\n", from);
-    if (online) printf("Client %d disconnected.\n", id); //LOGGEAR
-
+    if (online){ 
+		printf("Client %d disconnected.\n", id); //LOGGEAR
+		char* logmsg = new char[40];
+		sprintf(logmsg,"Client %d disconnected.", id);
+		LOGGER().log(string(logmsg),BAJO);	
+	}
     if (online) CXManager::getInstance().removeConnection(id);
     online = false;
 

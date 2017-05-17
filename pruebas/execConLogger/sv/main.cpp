@@ -11,6 +11,8 @@
 #include <string.h>
 #include <vector>
 #include "../../../Control/Control.hpp"
+#include "../../../logger/current/Logger2.hpp"
+#define LOGGER()(Logger::getInstance())
 using namespace std;
 
 #define SSTR_( x ) static_cast< std::ostringstream & >( \
@@ -41,6 +43,7 @@ void* accept(void* arg){
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
     bool has_started = false;
     printf("Server now accepting...\n"); //LOGGEAR
+	LOGGER().log("Server now accepting",BAJO);
     while(SERVER().isOnline()){
         sleep(ACCEPT_TIMEOUT);
         Socket* socket = SERVER().accept();
@@ -51,6 +54,7 @@ void* accept(void* arg){
             continue;
         }
         printf("Connection accepted!\n"); //LOGGEAR
+		LOGGER().log("Connection accepted",BAJO);
         /*Se crea un thread para la nueva conexion*/
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
@@ -119,7 +123,7 @@ int main(int argc, char** argv){
     Json::Value json;
     //no encuentra el archivo
     if(in.fail()){
-        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
+        LOGGER().log("No se encontro el archivo .json",BAJO);
         printf("No se encontro el archivo %s\n", path); //LOGGEAR
         in.clear();
         in.open(DEFAULT_PATH);
@@ -129,26 +133,26 @@ int main(int argc, char** argv){
         in >> json;
     }catch(const Json::RuntimeError& e){
         printf("Error de sintaxis.\n"); //LOGGEAR
-        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+        LOGGER().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
         ifstream input(DEFAULT_PATH);
         input >> json;
     }
     const char* port = json["port"].asString().c_str();
     int maxServerConns = json["max_connections"].asInt();
-    int windowSize = json["ancho_ventana"].asInt();
-    int stageSize = json["ancho_escenario"].asInt();
     /***************************************FIN LECTURA JSON***********************************************************/
 
     if(!SERVER().init(port)){
         printf("Failed to initialize server!\n"); //LOGGEAR
+		LOGGER().log("Failed to initialize server",BAJO);
         return 1;
     }
     if(!SERVER().setOnline()){
         printf("Failed to get server online!\n"); //LOGGEAR
+		LOGGER().log("Failed to get server online",BAJO);
         return 1;
     }
 
-	Control* gameControl = new Control(windowSize,stageSize);
+	Control* gameControl = new Control();
 
     CXM().init(maxServerConns);
 
