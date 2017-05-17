@@ -180,9 +180,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/cl/client.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/cl/client.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/cl/gameClient.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingSonic.cpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -487,7 +487,7 @@
       <workItem from="1494695551322" duration="7939000" />
       <workItem from="1494859657614" duration="2476000" />
       <workItem from="1494872974646" duration="20000" />
-      <workItem from="1494965393939" duration="16116000" />
+      <workItem from="1494965393939" duration="16143000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -629,11 +629,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494982631361</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="personaje">
+      <created>1494982648271</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1494982648271</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26551000" />
+    <option name="totallyTimeSpent" value="26578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-7" width="1600" height="844" extended-state="6" />
