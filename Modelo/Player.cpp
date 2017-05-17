@@ -35,7 +35,9 @@ float Player::getDirY(){
 }
 
 void Player::setX(float x){
+	printf("Seteo la posicion del jugador a: %f \n",x);
 	this->sonic->update(this->getDirX(),this->getDirY(),x,this->getY());
+	printf("Posicion del jugador despues del seteo: %f \n",this->getX());
 }
 
 void Player::setY(float y){
