@@ -36,13 +36,13 @@ bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
     return exito;
 }
 
-void Jugadores::updateJugador(string id, float velx, float vely, float posx, float posy, float conectado){
+void Jugadores::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado){
 
   if(not has(id)){
     //logger
   }
   Jugador* actual = jugadores[id];
-  actual->updatePersonaje(velx,vely,posx,posy,conectado);
+  actual->updatePersonaje(posx,posy, movimiento, frame, conectado);
 
 }
 
