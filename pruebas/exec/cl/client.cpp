@@ -44,31 +44,25 @@ void Client::addPlayer(){
 	players.push_back(player);
 }
 
-vector<float> Client::getPlayer(int index){
-	return players[index];
+out_message_t* Client::getPlayer(int id){
+	return players[id];
 }
 
-void Client::updatePlayer(int index, float velX, float velY, float posX, float posY, float estado){
-    vector<float> player;
-	player = players[index];
-	player[0] = velX;
-	player[1] = velY;
-	player[2] = posX;
-	player[3] = posY;
-	player[4] = estado;
-    players[index] = player;
-    printf("Nombre Jugador en Client: %d \n",index);
-    printf("Posicion en Cliente despues de actualizar: x=%f y=%f \n",posX,posY);
+void Client::updatePlayer(int id, float posX, float posY, move_type move, int fram, bool estado){
+    out_message_t* player = players[id];
+	player->posX = posX;
+	player->posY = posY;
+	player->move = move;
+	player->frame = frame;
+	player->connection = estado;
+    players[id] = player;
 }
 
 void Client::updatePlayers(){
 	for(int i = 0; i < (this->players).size(); i++){
-		vector <float> player;
-		player = players[i];
+		out_message_t* player = players[i];
 
-		float estado = player[4];
-
-		this->juego->updateJugador(SSTR(i), player[0], player[1], player[2], player[3], estado);
+		this->juego->updateJugador(SSTR(i), player->posX, player->posY, player->move, player->frame, player->connection);
 	}
 }
 

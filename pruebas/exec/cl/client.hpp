@@ -18,7 +18,7 @@ class Client{
         deque<out_message_t*> received;
         deque<key_event> toSend;
         Juego* juego;
-        vector<vector<float> > players;
+        vector<out_message_t*> players; //Guarda la informacion previa de cada uno
     public:
         const char* port;
         const char* hostname;
@@ -54,8 +54,8 @@ class Client{
         Juego* getJuego();
         void addJuego(Juego*);
         void addPlayer();
-        vector<float> getPlayer(int index);
-        void updatePlayer(int index,float velX,float velY,float posX, float posY, float estado);
+        vector<out_message_t*> getPlayer(int id);
+        void updatePlayer(int id, float posX, float posY, move_type moveT, int frame, bool estado);
         void updatePlayers();
 };
 

@@ -142,14 +142,8 @@ void* f_view(void* arg){
             continue;
         }
         if(message->ping == 0){
-	        float estado;
-			if (message->connection == false){
-				estado = 0.0;
-			} else {
-				estado = 1.0;
-			}
-        	//self->updatePlayer(message->id, message->dirX, message->dirY, message->posX, message->posY, estado);
-            //self->getJuego()->updateCamara(message->camPos,0);
+        	self->updatePlayer(message->id, message->posX, message->posY, message->move, message->frame, message->connection);
+            self->getJuego()->updateCamara(message->camPos,0);
         }
         //renderizar
 		self->updatePlayers();
