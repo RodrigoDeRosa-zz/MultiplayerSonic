@@ -1,4 +1,6 @@
 {
     "port" : "9034",
-    "max_connections" : 2
+    "max_connections" : 2,
+    "ancho_ventana":1200,
+    "ancho_escenario":3600
 }

@@ -11,9 +11,9 @@
 
 using namespace std;
 
-Control::Control(){
+Control::Control(float windowSize, float stageSize){
 	this->model = new Model();
-	this->cameraControl = new CameraControl(1200,3600); //el ancho de la camara tambien tiene que venir por parametro
+	this->cameraControl = new CameraControl(windowSize,stageSize); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 }
 
