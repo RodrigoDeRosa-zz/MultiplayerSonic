@@ -35,12 +35,10 @@ Client::~Client(){
 }
 
 void Client::addPlayer(){
-	vector<float> player;
-	player.push_back(0);
-    player.push_back(0);
-    player.push_back(100);
-    player.push_back(300);
-	player.push_back(1);
+	out_message_t* player;
+    player->posX = 100;
+    player->posY = 300;
+	player->connection = true;
 	players.push_back(player);
 }
 
