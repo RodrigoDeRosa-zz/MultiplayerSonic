@@ -30,6 +30,7 @@ bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerN
 bool CameraControl::moveCameraRight(float newPosition,Model* model, string playerName){
 	if(model->otherPlayerInPosition(playerName,this->getLeftEdge(),true)) return false;
 	this->position = newPosition-(this->width*(1-MARGIN_FACTOR))+CHARACTER_WIDTH;
+	if(this->position < 0) this->position = 0;
 	return true;
 }
 
