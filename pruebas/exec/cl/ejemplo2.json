@@ -15,34 +15,8 @@
 			}
 		],
 		"entidades": [
-			{
-				"circulo": false,
-				"color": 1,
-				"dimensiones": {"ancho": 120, "alto": 100},
-				"coordenada": {"x": 10, "y": 10},
-				"index_z": 99
-			},
-			{
-				"circulo": false,
-				"color": "violeta",
-				"dimensiones": {"ancho": 100, "alto": 100},
-				"coordenada": {"x": 50, "y": 50},
-				"index_z": 100,
-				"imagen": "Graficos/texture.png"
-			},
-			{
-				"circulo": true,
-				"color": "amarillo",
-				"coordenada": {"x": 500, "y": 200},
-				"radio": 200,
-				"index_z": 100,
-				"imagen":"Graficos/index.png"
-			}
 		],
 		"texturas" : [
-			{
-				"ruta": "Graficos/index.png"
-			}
 		]
 	}
 }
