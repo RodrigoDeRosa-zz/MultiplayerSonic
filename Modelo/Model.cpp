@@ -21,7 +21,6 @@ Player* Model::getPlayer(string nombre){
 
 void Model::setPlayerPosition(string playerName, float x){
 	Player* player = this->getPlayer(playerName);
-	printf("%f", x);
 	player->setX(x);
 }
 

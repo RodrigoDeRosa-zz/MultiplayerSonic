@@ -64,8 +64,8 @@ vector<float> Control::getDirections(key_event e, string playerName){
 	return directions;
 }
 
-bool Control::moveCamera(float newPlayerX,string playerName){
-	return 	(this->cameraControl->moveCamera(newPlayerX,this->model,playerName));
+bool Control::moveCamera(float newPlayerX,string playerName,float dirX){
+	return 	(this->cameraControl->moveCamera(newPlayerX,this->model,playerName,dirX));
 }
 
 bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
@@ -73,7 +73,7 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 	this->model->movePlayer(playerName,directions[0],directions[1]);
 	vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
 	float previousCameraPosition = this->getCameraPosition();
-	if(!(this->moveCamera(newPlayerPosition[0],playerName))){
+	if(!(this->moveCamera(newPlayerPosition[0],playerName,directions[0]))){
 	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
 	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
