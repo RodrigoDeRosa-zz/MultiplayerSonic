@@ -54,3 +54,11 @@ bool Player::isConnected(){
 void Player::setConnected(bool connected){
     this->connected = connected;
 }
+
+move_type Player::getMovement(){
+	return this->sonic->getMovement();
+}
+
+int Player::getFrame(){
+	return this->sonic->getFrame();
+}

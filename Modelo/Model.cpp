@@ -88,3 +88,26 @@ vector<string> Model::getDisconnectedPlayers(){
 	}
 	return names;
 }
+
+move_type Model::getPlayerMovement(string playerName){
+	Player* player = this->getPlayer(playerName);
+	return player->getMovement();
+}
+
+int Model::getPlayerFrame(string playerName){
+	Player* player = this->getPlayer(playerName);
+	return player->getFrame();
+}
+
+vector<string> Model::getPlayerNames(){
+	vector<string> v;
+	for(int i = 0; i < this->players->size(); i++){
+		v->push_back((*(this->players))[i]->getName());
+	}
+	return v;
+}
+
+bool Model::playerIsConnected(playerName){
+	Player* player = this->getPlayer(playerName);
+	return player->isConnected();
+}

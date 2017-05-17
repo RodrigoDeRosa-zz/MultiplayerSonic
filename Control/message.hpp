@@ -3,16 +3,17 @@
 
 //KEY_TOTAL se devuelve en caso que la cola este vacia
 enum key_event {PING, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN, SPACE_UP, SPACE_DOWN, QUIT, KEY_TOTAL};
+enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
 
 typedef struct out_message{
 	char ping; //En 1 indica que el mensaje es un ping del servidor
 	int id;
 	bool connection;
-	float dirX;
-	float dirY;
 	float posX;
 	float posY;
 	float camPos;
+	move_type move;
+	int frame;
 } out_message_t;
 
 typedef struct in_message{

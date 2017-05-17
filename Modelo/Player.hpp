@@ -18,6 +18,8 @@ class Player{
 		void updateXY(float dirX, float dirY);
 		bool isConnected();
 		void setConnected(bool connected);
+		move_type getMovement();
+		int getFrame();
 
 	/* ACA TENEMOS QUE DEFINIR UNA FUNCION QUE SEA:
 	 * void afectarseCon( entidad );

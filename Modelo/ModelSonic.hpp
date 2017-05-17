@@ -1,7 +1,7 @@
 #ifndef TALLERSONIC_MODELSONIC_HPP
 #define TALLERSONIC_MODELSONIC_HPP
 
-#include "MoveSonic.hpp";
+#include "MoveSonic.hpp"
 
 using namespace std;
 
@@ -27,6 +27,6 @@ public:
     float getDirX();
     float getDirY();
     void update(float,float,float,float);
-}
+};
 
 #endif //TALLERSONIC_MODELSONIC_HPP
