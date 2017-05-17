@@ -9,6 +9,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <string.h>
+#include <vector>
 #include "../../../Control/Control.hpp"
 using namespace std;
 
@@ -152,17 +153,18 @@ int main(int argc, char** argv){
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
-		if(!ev) {
-			usleep(3000);
-			continue;
+        /*Si hay evento, se procesa.*/
+		if (ev){
+            gameControl->handleInMessage(ev);
 		}
-
-        /*vector<out_message_t*> v = gameControl->handleInMessage(ev);
-        for(int i = 0; i < v.size(); i++){
+        /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/
+        usleep(10000);
+        vector<out_message_t*> states = gameControl->getStatus();
+        for(int i = 0; i < states.size(); i++){
             char* outState = new char[sizeof(out_message_t)];
-            memcpy(outState, v[i], sizeof(out_message_t));
+            memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
-		}*/
+		}
 
 	}
 
