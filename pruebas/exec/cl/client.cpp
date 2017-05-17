@@ -35,7 +35,7 @@ Client::~Client(){
 }
 
 void Client::addPlayer(){
-	out_message_t* player;
+	out_message_t* player = new out_message_t;
     player->posX = 100;
     player->posY = 300;
     player->move = IDLED;
@@ -49,7 +49,13 @@ out_message_t* Client::getPlayer(int id){
 }
 
 void Client::updatePlayer(out_message_t* message){
-    players[message->id] = message;
+    out_message_t* player = players[message->id];
+    player->posX = message->posX;
+    player->posY = message->posY;
+    player->move = message->move;
+    player->frame = message->frame;
+    player->connection = message->connection;
+    players[message->id] = player;
 }
 
 void Client::updatePlayers(){
