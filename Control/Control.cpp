@@ -115,6 +115,8 @@ vector<out_message_t*> Control::getStatus(){
 		vector<float> playerPosition = this->model->getPlayerPosition(players[i]);
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
 		this->moveCameraAndPlayer(players[i],directions);
+		vector<float> newPlayerPosition = this->model->getPlayerPosition(players[i]);
+		if((playerPosition[0] == newPlayerPosition[0]) && (playerPosition[1] == newPlayerPosition[1])) continue;
 		setOutMessage(message,0,atoi(players[i].c_str()),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
 						playerPosition[0],playerPosition[1],this->getCameraPosition());
 		v.push_back(message);
