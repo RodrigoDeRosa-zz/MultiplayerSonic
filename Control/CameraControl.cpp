@@ -21,20 +21,24 @@ float CameraControl::getPosition(){
 }
 
 bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerName){
-	if(model->otherPlayerInPosition(playerName,this->getRightEdge(),false)) {
+	if(model->otherPlayerInPosition(playerName,this->getRightEdge(),false)){
+		printf("Hay un jugador en el borde derecho, devuelvo falso \n");
 		return false;
 	}
 	this->position = newPosition-(this->width*MARGIN_FACTOR);
 	if(this->position < 0) this->position = 0;
+	printf("La camara se mueve a la izquierda, devuelvo verdadero \n");
 	return true;
 }
 
 bool CameraControl::moveCameraRight(float newPosition,Model* model, string playerName){
 	if(model->otherPlayerInPosition(playerName,this->getLeftEdge(),true)){
+		printf("Hay un jugador en el borde izquierdo, devuelvo falso \n");
 		return false;
 	}
 	this->position = newPosition-(this->width*(1-MARGIN_FACTOR))+CHARACTER_WIDTH;
 	if(this->position < 0) this->position = 0;
+	printf("La camara se mueve a la derecha, devuelvo verdadero \n");
 	return true;
 }
 

@@ -75,6 +75,7 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 	vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
 	float previousCameraPosition = this->getCameraPosition();
 	if(!(this->moveCamera(newPlayerPosition[0],playerName))){
+		printf("Entra al if \n");
 	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
 	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
