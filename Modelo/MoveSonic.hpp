@@ -46,6 +46,7 @@ class MoveSonic{
         move_type getMovement();
 
         void setPosicionInicio();
+        void setX(float);
 };
 
 #endif //TALLERSONIC_MOVESONIC_HPP
