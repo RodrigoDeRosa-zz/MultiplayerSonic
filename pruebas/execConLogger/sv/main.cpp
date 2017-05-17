@@ -12,6 +12,7 @@
 #include <vector>
 #include "../../../Control/Control.hpp"
 #include "../../../logger/current/Logger2.hpp"
+#define LOGGER()(Logger::getInstance())
 using namespace std;
 
 #define SSTR_( x ) static_cast< std::ostringstream & >( \
@@ -24,11 +25,6 @@ using namespace std;
 #define PRINTLEN 100
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
-
-#define LOGGER() (Logger::getInstance())
-//defines para el logger
-#define LOGGERPATH
-#define LOGGER_OUTPUT_PATH "serverlog.txt"
 
 void avisarEmpiezaJuego(char* outState){
 	out_message_t* state = new out_message_t;
@@ -47,6 +43,7 @@ void* accept(void* arg){
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
     bool has_started = false;
     printf("Server now accepting...\n"); //LOGGEAR
+	LOGGER().log("Server now accepting",BAJO);
     while(SERVER().isOnline()){
         sleep(ACCEPT_TIMEOUT);
         Socket* socket = SERVER().accept();
@@ -57,6 +54,7 @@ void* accept(void* arg){
             continue;
         }
         printf("Connection accepted!\n"); //LOGGEAR
+		LOGGER().log("Connection accepted",BAJO);
         /*Se crea un thread para la nueva conexion*/
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
@@ -118,7 +116,6 @@ int main(int argc, char** argv){
         printf("Usage: ./main <JSONfile>\n");
         return 1;
     }
-	LOGGER();//inicializa logger
     /***************************************LECTURA JSON***********************************************************/
     char* path = argv[1];
     /*Lectura del JSON*/
@@ -126,7 +123,7 @@ int main(int argc, char** argv){
     Json::Value json;
     //no encuentra el archivo
     if(in.fail()){
-        //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
+        LOGGER().log("No se encontro el archivo .json",BAJO);
         printf("No se encontro el archivo %s\n", path); //LOGGEAR
         in.clear();
         in.open(DEFAULT_PATH);
@@ -136,7 +133,7 @@ int main(int argc, char** argv){
         in >> json;
     }catch(const Json::RuntimeError& e){
         printf("Error de sintaxis.\n"); //LOGGEAR
-        //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
+        LOGGER().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
         ifstream input(DEFAULT_PATH);
         input >> json;
     }
@@ -146,10 +143,12 @@ int main(int argc, char** argv){
 
     if(!SERVER().init(port)){
         printf("Failed to initialize server!\n"); //LOGGEAR
+		LOGGER().log("Failed to initialize server",BAJO);
         return 1;
     }
     if(!SERVER().setOnline()){
         printf("Failed to get server online!\n"); //LOGGEAR
+		LOGGER().log("Failed to get server online",BAJO);
         return 1;
     }
 
