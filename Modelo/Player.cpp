@@ -39,7 +39,7 @@ void Player::setX(float x){
 }
 
 void Player::setY(float y){
-	this->sonic->update(0,0,this->getX(),y);
+	this->sonic->update(this->getDirX(),this->getDirY(),this->getX(),y);
 }
 
 void Player::updateXY(float dirX,float dirY){
