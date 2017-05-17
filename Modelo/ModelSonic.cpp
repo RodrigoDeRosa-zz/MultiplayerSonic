@@ -6,16 +6,11 @@ using namespace std;
 
 
 ModelSonic::ModelSonic(){
-    bloque_pers = NULL;
+    bloque_pers = new MoveSonic(100.0, 300.0);
     frameRight = 0;
     frameLeft = 0;
     direccionX = 0.0;
     direccionY = 0.0;
-}
-
-/*setters*/
-void ModelSonic::setMoveSonic(MoveSonic* new_bloque){
-    bloque_pers = new_bloque;
 }
 
 /*Funciones de movimiento*/
