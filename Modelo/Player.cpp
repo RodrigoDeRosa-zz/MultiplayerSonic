@@ -35,8 +35,8 @@ float Player::getDirY(){
 }
 
 void Player::setX(float x){
-	printf("seteo X\n");
-	this->sonic->update(this->getDirX(),this->getDirY(),x,this->getY());
+	this->sonic->update(this->getDirX(),this->getDirY());
+	this->sonic->setX(x);
 }
 
 void Player::setY(float y){
