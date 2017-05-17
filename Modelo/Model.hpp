@@ -1,7 +1,5 @@
 #include <vector>
 #include "Player.hpp"
-#include "../Juego/SegaFactory.hpp"
-
 using namespace std;
 
 class Model{

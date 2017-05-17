@@ -1,5 +1,5 @@
-#ifndef TALLERSONIC_MODELSONIC_HPP
-#define TALLERSONIC_MODELSONIC_HPP
+#ifndef TALLERSONIC_MOVESONIC_HPP
+#define TALLERSONIC_MOVESONIC_HPP
 
 using namespace std;
 
@@ -42,4 +42,4 @@ class MoveSonic{
         void setPosicionInicio();
 };
 
-#endif //TALLERSONIC_MODELSONIC_HPP
+#endif //TALLERSONIC_MOVESONIC_HPP

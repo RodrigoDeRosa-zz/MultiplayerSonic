@@ -1,5 +1,3 @@
-#include "MoveSonic.h"
-
 #include "MoveSonic.hpp"
 
 /*DIMENSIONES ESCENARIO*/
