@@ -15,10 +15,6 @@ ModelSonic::ModelSonic(){
 
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
-    //si no se pasa una posicion al update, este no la modifica
-    if(posX >= 0 || posY >= 0){
-        bloque_pers->update(posX, posY);
-    }
 
     if(vel_y< 0.0 || bloque_pers->estaSaltando()){
         jump(vel_x,vel_y);
@@ -32,8 +28,18 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     else{
         bloque_pers->setPosicionInicio();
     }
+
+    //si no se pasa una posicion al update, este no la modifica
+    if(posX >= 0 || posY >= 0){
+        bloque_pers->update(posX, posY);
+    }
+
     direccionX = vel_x;
     direccionY = vel_y;
+}
+
+void ModelSonic::setX(float new_x){
+    bloque_pers->setX(new_x);
 }
 
 void ModelSonic::moveRight(float vel_x){

@@ -227,3 +227,7 @@ int MoveSonic::getX(){
 int MoveSonic::getY(){
     return originY;
 }
+
+void MoveSonic::setX(float new_x){
+    originX = new_x;
+}
