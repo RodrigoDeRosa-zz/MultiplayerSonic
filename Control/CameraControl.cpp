@@ -27,7 +27,6 @@ bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerN
 	}
 	this->position = newPosition-(this->width*MARGIN_FACTOR);
 	if(this->position < 0) this->position = 0;
-	else if((this->getPosition() + this->width) >= this->stageEnd) this->position = stageEnd - this->width;
 	return true;
 }
 
@@ -37,6 +36,7 @@ bool CameraControl::moveCameraRight(float newPosition,Model* model, string playe
 	}
 	this->position = newPosition-(this->width*(1-MARGIN_FACTOR))+CHARACTER_WIDTH;
 	if(this->position < 0) this->position = 0;
+	else if((this->position + this->width) >= this->stageEnd) this->position = this->stageEnd - this->width;
 	return true;
 }
 
