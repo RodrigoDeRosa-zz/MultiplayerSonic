@@ -142,7 +142,7 @@ void* f_view(void* arg){
             continue;
         }
         if(message->ping == 0){
-        	self->updatePlayer(message->id, message->posX, message->posY, message->move, message->frame, message->connection);
+        	self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
         }
         //renderizar
