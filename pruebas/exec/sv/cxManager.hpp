@@ -2,7 +2,7 @@
 #define CXMANAGER_HPP
 
 #include "connection.hpp"
-#include "message.hpp"
+#include "../../../message.hpp"
 #include <map>
 #include <deque>
 using namespace std;

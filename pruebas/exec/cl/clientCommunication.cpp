@@ -1,5 +1,5 @@
 #include "client.hpp"
-#include "message.hpp"
+#include "../../../message.hpp"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>

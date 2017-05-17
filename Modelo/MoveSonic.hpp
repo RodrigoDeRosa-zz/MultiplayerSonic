@@ -1,9 +1,9 @@
 #ifndef TALLERSONIC_MOVESONIC_HPP
 #define TALLERSONIC_MOVESONIC_HPP
 
-using namespace std;
+#include "../message.hpp"
 
-enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
+using namespace std;
 
 class MoveSonic{
     private:

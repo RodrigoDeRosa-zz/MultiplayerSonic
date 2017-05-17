@@ -10,7 +10,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "message.hpp"
+#include "../../../message.hpp"
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
 #include "../../../Graficos/SDLHandler.hpp"

@@ -1,4 +1,5 @@
 #include "MoveSonic.hpp"
+#include "../message.hpp"
 
 /*DIMENSIONES ESCENARIO*/
 #define ANCHO_ESCENARIO 3600

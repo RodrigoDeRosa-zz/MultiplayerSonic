@@ -2,7 +2,7 @@
 #define CLIENT_HPP
 
 #include "socket.hpp"
-#include "message.hpp"
+#include "../../../message.hpp"
 #include "../../../Juego/Juego.hpp"
 #include <sys/socket.h>
 #include <deque>
