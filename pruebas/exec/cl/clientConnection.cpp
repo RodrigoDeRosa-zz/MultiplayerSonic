@@ -37,9 +37,9 @@ addrinfo* resolveServerInfo(Client* client){
     hints.ai_socktype = SOCK_STREAM; //TCP
     /*Se guarda la informacion del host*/
     status = getaddrinfo(client->hostname, client->port, &hints, &serverInfo);
-    if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status));
+    if (status != 0) fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
 
-    printHostIP("Hostname resolved to:", serverInfo);
+    printHostIP("Hostname resolved to:", serverInfo); //LOGGEAR
 
     return serverInfo;
 }
@@ -54,6 +54,6 @@ bool initializeConnection(Client* client){
     //Se configura el cliente para conectarse al servidor.
     if (!client->setConnectionInfo(serverInfo)) return false;
     if (!client->connectToServer()) return false;
-    printHostIP("Connected to:", serverInfo);
+    printHostIP("Connected to:", serverInfo); //NO LOGGEAR
     return true;
 }

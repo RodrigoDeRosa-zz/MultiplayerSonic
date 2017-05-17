@@ -128,7 +128,7 @@ Connection::~Connection(){
 
 void Connection::disconnect(int from){
     //printf("Disconnected from %d\n", from);
-    if (online) printf("Client %d disconnected.\n", id);
+    if (online) printf("Client %d disconnected.\n", id); //LOGGEAR
 
     if (online) CXManager::getInstance().removeConnection(id);
     online = false;
