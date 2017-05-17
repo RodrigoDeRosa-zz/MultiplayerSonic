@@ -22,29 +22,30 @@ void Personaje::setMovingBloque(MovingBloque* new_bloque){
 /*Funciones de movimiento*/
 void Personaje::update(float posX, float posY, move_type movimiento, int frame){
 
+    bloque_pers->update(posX, posY);
     if(movimiento == IDLED){
-        bloque_pers->quietoDerecha(posX, posY, frame);
+        bloque_pers->quietoDerecha(frame);
     }
     else if(movimiento == IDLEI){
-        bloque_pers->quietoIzquierda(posX, posY, frame);
+        bloque_pers->quietoIzquierda(frame);
     }
     else if(movimiento == JUMPD){
-        bloque_pers->jumpIzquierda(posX, posY, frame);
+        bloque_pers->jumpIzquierda(frame);
     }
     else if(movimiento == JUMPI){
-        bloque_pers->jumpDerecha(posX, posY, frame);
+        bloque_pers->jumpDerecha(frame);
     }
     else if(movimiento == RUND){
-        bloque_pers->correrIzquierda(posX, posY, frame);
+        bloque_pers->correrIzquierda(frame);
     }
     else if(movimiento == RUNI){
-        bloque_pers->correrDerecha(posX, posY, frame);
+        bloque_pers->correrDerecha(frame);
     }
     else if(movimiento == WALKD){
-        bloque_pers->caminarIzquierda(posX, posY, frame);
+        bloque_pers->caminarIzquierda(frame);
     }
     else if(movimiento == WALKI){
-        bloque_pers->caminarDerecha(posX, posY, frame);
+        bloque_pers->caminarDerecha(frame);
     }
 }
 

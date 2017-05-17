@@ -4,9 +4,6 @@ using namespace std;
 #define ANCHO_ESCENARIO 3600
 #define ALTO_ESCENARIO 640
 
-void MovingBloque::moveRight(float vel_x){}
-void MovingBloque::moveLeft(float vel_x){}
-void MovingBloque::jump(float,float){}
 
 MovingBloque::MovingBloque(float x, float y, int w, int h):
   Bloque(x,y,w,h){
@@ -24,7 +21,6 @@ MovingBloque::MovingBloque(float x, float y, int w, int h):
   }
 
 /*Setters*/
-void MovingBloque::setPosicionInicio(){}
 
 void MovingBloque::setClip(string nombre){
   clipsMovimientos->addClip(nombre);
@@ -32,13 +28,6 @@ void MovingBloque::setClip(string nombre){
 
 void MovingBloque::setRectangulo(string nombre, float x, float y, int w, int h){
   clipsMovimientos->addRectangulo(nombre,x,y,w,h);
-}
-
-bool MovingBloque::estaSaltando(){
-  return jumping;
-}
-void MovingBloque::printMap(){
-  clipsMovimientos->printMap();
 }
 
 void MovingBloque::grisearTexture(){
