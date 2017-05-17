@@ -11,6 +11,7 @@ Player::Player(string name){
 	this->name = name;
 	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
+	this->setConnected(true);
 }
 
 string Player::getName(){
