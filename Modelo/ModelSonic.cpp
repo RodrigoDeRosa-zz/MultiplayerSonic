@@ -16,7 +16,7 @@ ModelSonic::ModelSonic(){
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     //si no se pasa una posicion al update, este no la modifica
-    if(posX >= 0 || posX >= 0){
+    if(posX >= 0 || posY >= 0){
         bloque_pers->update(posX, posY);
     }
 

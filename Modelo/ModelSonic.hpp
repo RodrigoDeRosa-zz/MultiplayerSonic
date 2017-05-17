@@ -24,7 +24,7 @@ public:
     float getY();
     float getDirX();
     float getDirY();
-    void update(float,float,float,float);
+    void update(float,float,float = -1.0, float = -1.0);
 };
 
 #endif //TALLERSONIC_MODELSONIC_HPP
