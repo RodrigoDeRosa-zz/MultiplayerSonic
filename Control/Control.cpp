@@ -51,7 +51,7 @@ vector<float> Control::getDirections(key_event e, string playerName){
 	float dirX = directions[0];
 	float dirY = directions[1];
 	switch( e ){
-		case QUIT: this->model->setPlayerConnection(playerName,false); break;
+		case QUIT: this->model->setPlayerConnection(playerName, false); break;
         case RECONNECTION: this->model->setPlayerConnection(playerName, true); break;
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
@@ -107,7 +107,7 @@ void Control::handleInMessage(in_message_t* ev){
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	//muevo el jugador y la camara con las direcciones obtenidas
-	this->model->movePlayer(playerName,directions[0],directions[1]);
+	this->model->movePlayer(playerName,directions[0], directions[1]);
 }
 
 void Control::update(){

@@ -190,14 +190,16 @@ void* consoleChat(void* arg){
 
 		if (strcmp(command, CONNECT) == 0 && !self->connected()){
 			pthread_create(&game, NULL, runGame, self);
-		} else if (strcmp(command, DISCONNECT) == 0){
-			self->disconnect(0);
+		} else if (strcmp(command, DISCONNECT) == 0 && self->connected()){
             self->endGame();
+            usleep(500);
+            self->disconnect(0);
 			pthread_join(game, &exit_status);
 			printf("Disconnected.\n");
 		} else if (strcmp(command, EXIT) == 0){
-			self->disconnect(0);
             self->endGame();
+            usleep(500);
+			self->disconnect(0);
 			pthread_join(game, &exit_status);
 			running = false;
 		}

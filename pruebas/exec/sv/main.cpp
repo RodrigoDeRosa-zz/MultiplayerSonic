@@ -37,6 +37,7 @@ void avisarEmpiezaJuego(char* outState){
 }
 
 void* accept(void* arg){
+    Control* control = (Control*) arg;
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
     bool has_started = false;
     printf("Server now accepting...\n");
@@ -70,10 +71,7 @@ void* accept(void* arg){
 
             connection->sendMessage(message, sizeof(out_message_t));
             //Ahora se le avisa al servidor que cierto jugador se reconecto/
-            in_message_t* reconnectionNotif = new in_message_t;
-            reconnectionNotif->id = connection->id;
-            reconnectionNotif->key = RECONNECTION;
-            SERVER().queueInEvent(reconnectionNotif);
+            control->setPlayerConnection(SSTR_(connection->id), true);
         }
         /*Ahora se setea esto como un flag, porque no quiero que la primera vez que se inicia el
         juego se envie el mensaje de arriba!!!*/
@@ -154,7 +152,7 @@ int main(int argc, char** argv){
 
     pthread_t acceptT, eventDistrT;
     /*Se inician los threads de aceptacion de sockets y de distribucion de eventos*/
-    pthread_create(&acceptT, NULL, accept, NULL);
+    pthread_create(&acceptT, NULL, accept, gameControl);
     pthread_create(&eventDistrT, NULL, eventDistribution, NULL);
 
 	while(!SERVER().isOnline()){	//POR LAS DUDAS QUE NO ESTUVIERA ONLINE
