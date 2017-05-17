@@ -36,6 +36,8 @@ class MoveSonic{
         void jumpDerecha(float*);
         void jumpIzquierda(float*);
 
+        void update(float, float);
+
         int getFrame();
         move_type getMovement();
 

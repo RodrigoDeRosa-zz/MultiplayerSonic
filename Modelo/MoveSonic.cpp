@@ -205,6 +205,12 @@ void MoveSonic::correrIzquierda(){
 int MoveSonic::getFrame(){
     return frameActual;
 }
-move_type getMovement(){
+
+move_type MoveSonic::getMovement(){
     return moveActual;
+}
+
+void MoveSonic::update(float new_x, float new_y){
+    originX = new_x;
+    originY = new_y;
 }
