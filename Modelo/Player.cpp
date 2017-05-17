@@ -61,3 +61,7 @@ move_type Player::getMovement(){
 int Player::getFrame(){
 	return this->sonic->getFrame();
 }
+
+void Player::setXY(float x, float y){
+	this->sonic->update(0,0,x,y);
+}

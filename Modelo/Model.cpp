@@ -21,8 +21,7 @@ Player* Model::getPlayer(string nombre){
 
 void Model::setPlayerPosition(string playerName, float x, float y){
 	Player* player = this->getPlayer(playerName);
-	player->setX(x);
-	player->setY(y);
+	player->setXY(x,y);
 }
 
 void Model::movePlayer(string playerName, float dirX, float dirY){
