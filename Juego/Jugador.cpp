@@ -6,7 +6,6 @@ Jugador::Jugador(string nomJugador, string nomPersonaje){
     personaje = NULL;
 }
 
-float,float,move_type,int,bool
 void Jugador::updatePersonaje(float posx, float posy, move_type movimiento, int frame, bool conectado){
     if(personaje == NULL){
     //LOGGER
