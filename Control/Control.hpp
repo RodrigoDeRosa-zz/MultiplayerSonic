@@ -20,5 +20,6 @@ class Control{
 		vector<float> getPlayerPosition(string playerName);
 		float getCameraPosition();
 		void setPlayerConnection(string playerName, bool connection);
-		vector<out_message_t*> handleInMessage(in_message_t* ev);
+		void handleInMessage(in_message_t* ev);
+		vector<out_message_t*> getStatus();
 };

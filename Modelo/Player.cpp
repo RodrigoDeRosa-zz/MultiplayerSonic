@@ -43,8 +43,6 @@ void Player::setY(float y){
 
 void Player::updateXY(float dirX,float dirY){
 	this->sonic->update(dirX,dirY);
-	printf("Nombre Jugador en Control: %s \n",this->getName().c_str());
-	printf("Posicion en Control despues de actualizar: x=%f y=%f \n",this->getX(),this->getY());
 }
 
 bool Player::isConnected(){
