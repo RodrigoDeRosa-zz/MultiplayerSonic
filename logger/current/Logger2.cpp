@@ -3,7 +3,7 @@ v2.0: Este tiene implementado adentro los mapas para .log(LOG_ERROR logerr)
 v2.1: Logea a DEFAULT_OUTPUT_PATH en vez de stdout       
 v2.3: Se agrega .log(const char*) wrapper de .log(string) para ahorrar sintaxis, se prueba de flushear
 v2.4: Se agrega .log(str,LOGLV), .log(const char*, LOGLV) para parchear por ahora.
-TODO:	-agregar mas funciones sobrecargadas de log (aunque hace falta mas que esto?)
+v2.5: Se agrega mutex para ser llamado en forma concurrente y mantener estabilidad en el logfile
 		
 */
 
@@ -24,14 +24,20 @@ using namespace std;
 
 //singletons
 Logger::Logger(){
+		pthread_mutex_init(&logMux,NULL);
 		log_level = BAJO;
+		#ifndef LOGGERPATH
 		output_file = fopen(DEFAULT_OUTPUT_PATH,"at");
+		#else 
+		output_file = fopen(LOGGER_OUTPUT_PATH,"at");
+		#endif
 		logProgStart();
 		initMaps();
 	}
 Logger::~Logger(){
 	logProgFinish();
 	fclose(output_file);
+	pthread_mutex_destroy(&logMux);
 }
 Logger& Logger::getInstance(){
 		static Logger instance;
@@ -61,8 +67,10 @@ void Logger::log(string str){
 }
 
 void Logger::log(const char* str){
+	pthread_mutex_lock(&logMux);
 	fprintf(output_file,STR_FORMAT,"N/E",str);
 	fflush(output_file);
+	pthread_mutex_unlock(&logMux);
 }
 
 void Logger::log(string str, LOGLV lv){
@@ -75,8 +83,10 @@ void Logger::log(string str, LOGLV lv){
 			s="MEDIO";break;
 		case ALTO:
 			s="ALTO";break;}
+	pthread_mutex_lock(&logMux);
 	fprintf(output_file,STR_FORMAT,s.c_str(),str.c_str());
 	fflush(output_file);
+	pthread_mutex_unlock(&logMux);
 }
 
 void Logger::log(const char* str, LOGLV lv){

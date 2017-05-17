@@ -26,7 +26,11 @@ using namespace std;
 Logger::Logger(){
 		pthread_mutex_init(&logMux,NULL);
 		log_level = BAJO;
+		#ifndef LOGGERPATH
 		output_file = fopen(DEFAULT_OUTPUT_PATH,"at");
+		#else 
+		output_file = fopen(LOGGER_OUTPUT_PATH,"at");
+		#endif
 		logProgStart();
 		initMaps();
 	}
