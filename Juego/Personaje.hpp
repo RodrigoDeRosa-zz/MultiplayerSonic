@@ -4,11 +4,10 @@
 #include "../Juego/MovingBloque.hpp"
 #include "../Graficos/Camara.hpp"
 #include "ClipGroup.hpp"
+#include "../message.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
-
-enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, MOVE_TOTAL};
 
 class Personaje{
   protected:

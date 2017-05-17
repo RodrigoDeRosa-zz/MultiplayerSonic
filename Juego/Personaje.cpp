@@ -1,4 +1,5 @@
 #include "Personaje.hpp"
+#include "../message.hpp"
 
 #define WALKING_ANIMATION_FRAMES 6
 #define FACTOR 8
