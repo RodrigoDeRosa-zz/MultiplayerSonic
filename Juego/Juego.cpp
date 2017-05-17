@@ -10,19 +10,19 @@ Juego::Juego(){
     camara = NULL;
 }
 /*SERVER*/
-void Juego::updateJugadores(map <string, vector <float> > jug){
-  /**Funcion que se utiliza desde el server para actualizar los jugadores.
-  Recibe un mapa que contiene como clave el id de el jugador a actualizar,
-  como valor un vector del ints [velX, velX, posX, posY, conectado].
-  El int de conectado funciona como un booleano.
-  Conectado == 1*/
-
-  for (map<string,vector <float> >::iterator it=jug.begin(); it!=jug.end(); ++it){
-    string id= it->first;
-    vector <float> valores = it->second;
-    updateJugador(id, valores[0], valores[1], valores[2], valores[3], valores [4]);
-  }
-}
+//void Juego::updateJugadores(map <string, vector <float> > jug){
+//  /**Funcion que se utiliza desde el server para actualizar los jugadores.
+//  Recibe un mapa que contiene como clave el id de el jugador a actualizar,
+//  como valor un vector del ints [velX, velX, posX, posY, conectado].
+//  El int de conectado funciona como un booleano.
+//  Conectado == 1*/
+//
+////  for (map<string,vector <float> >::iterator it=jug.begin(); it!=jug.end(); ++it){
+////    string id= it->first;
+////    vector <float> valores = it->second;
+////    updateJugador(id, valores[0], valores[1], valores[2], valores[3], valores [4]);
+////  }
+//}
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado){
 
