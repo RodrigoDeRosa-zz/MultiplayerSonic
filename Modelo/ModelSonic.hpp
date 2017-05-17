@@ -16,6 +16,7 @@ private:
 
 
 public:
+    ModelSonic();
     void setMoveSonic(MoveSonic*);
     void moveRight(float);
     void moveLeft(float);
