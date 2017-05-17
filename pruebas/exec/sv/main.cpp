@@ -40,7 +40,7 @@ void* accept(void* arg){
     Control* control = (Control*) arg;
     /*Ciclo semi infinito de aceptacion (hasta que se cierre el servidor)*/
     bool has_started = false;
-    printf("Server now accepting...\n");
+    printf("Server now accepting...\n"); //LOGGEAR
     while(SERVER().isOnline()){
         sleep(ACCEPT_TIMEOUT);
         Socket* socket = SERVER().accept();
@@ -50,7 +50,7 @@ void* accept(void* arg){
             socket->sockClose();
             continue;
         }
-        printf("Connection accepted!\n");
+        printf("Connection accepted!\n"); //LOGGEAR
         /*Se crea un thread para la nueva conexion*/
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
@@ -120,7 +120,7 @@ int main(int argc, char** argv){
     //no encuentra el archivo
     if(in.fail()){
         //Logger::getInstance().log("No se encontro el archivo .json",BAJO);
-        printf("No se encontro el archivo %s\n", path);
+        printf("No se encontro el archivo %s\n", path); //LOGGEAR
         in.clear();
         in.open(DEFAULT_PATH);
     }
@@ -128,7 +128,7 @@ int main(int argc, char** argv){
     try{
         in >> json;
     }catch(const Json::RuntimeError& e){
-        printf("Error de sintaxis.\n");
+        printf("Error de sintaxis.\n"); //LOGGEAR
         //Logger::getInstance().log(string("Error de sintaxis en el archivo client.json . Error: \n") + string(e.what()),BAJO);
         ifstream input(DEFAULT_PATH);
         input >> json;
@@ -138,11 +138,11 @@ int main(int argc, char** argv){
     /***************************************FIN LECTURA JSON***********************************************************/
 
     if(!SERVER().init(port)){
-        printf("Failed to initialize server!\n");
+        printf("Failed to initialize server!\n"); //LOGGEAR
         return 1;
     }
     if(!SERVER().setOnline()){
-        printf("Failed to get server online!\n");
+        printf("Failed to get server online!\n"); //LOGGEAR
         return 1;
     }
 
