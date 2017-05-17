@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/MoveSonic.hpp" afterPath="$PROJECT_DIR$/Modelo/MoveSonic.hpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -194,9 +191,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingSonic.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/cl/message.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/exec/sv/message.hpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -501,7 +497,7 @@
       <workItem from="1494695551322" duration="7939000" />
       <workItem from="1494859657614" duration="2476000" />
       <workItem from="1494872974646" duration="20000" />
-      <workItem from="1494965393939" duration="17164000" />
+      <workItem from="1494965393939" duration="17184000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -664,11 +660,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494982756827</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="personaje">
+      <created>1494983695192</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1494983695192</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27599000" />
+    <option name="totallyTimeSpent" value="27619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-7" width="1600" height="844" extended-state="6" />
