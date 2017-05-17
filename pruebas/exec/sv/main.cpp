@@ -86,6 +86,7 @@ void* eventDistribution(void* arg){
 
 void* inEventsHandle(void* arg);
 void* outStatesHandle(void* arg);
+void* updateControl(void* arg);
 
 int main(int argc, char** argv){
     if (argc != 2){
@@ -154,6 +155,8 @@ int main(int argc, char** argv){
     pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
     pthread_t outStateT;
     pthread_create(&outStateT, NULL, outStatesHandle, gameControl);
+    pthread_t updateT;
+    pthread_create(&updateT, NULL, updateControl, gameControl);
 
     /*Se espera a que finalicen los threads*/
     void* exit_status;
@@ -163,6 +166,17 @@ int main(int argc, char** argv){
     pthread_join(eventDistrT, &exit_status);
 
     return 0;
+}
+
+void* updateControl(void* arg){
+    Control* gameControl = (Control*) arg;
+
+    while (SERVER().is_running()){
+        gameControl->update();
+    }
+
+
+    return NULL;
 }
 
 void* inEventsHandle(void* arg){
@@ -178,8 +192,9 @@ void* inEventsHandle(void* arg){
             continue;
 		}
         gameControl->handleInMessage(ev);
-        usleep(1000);
 	}
+
+    return NULL;
 }
 
 void* outStatesHandle(void* arg){
@@ -193,6 +208,8 @@ void* outStatesHandle(void* arg){
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
         }
-        usleep(10000);
+        usleep(4000);
     }
+
+    return NULL;
 }
