@@ -1,22 +1,27 @@
+/*FALTA DIVIDIR: 
+	-Score.
+	-Modos juego.
+	-Enemigos Finales.
+	-Vidas
+	-Cosas extra.
+*/
+
 /* -------------- NIVELES -------------------- */
 
 // RODRI
 
 /* FECHAS ENTREGA CON CONTENIDO MINIMO:
 
-	VIERNES 19/05:
-		Tiene que estar el stage REFACTORIZADO, con el vector de stages funcionando.
-		Es decir tienen que cargarse los stages directamente al vector y dejar por defecto
-		el stage 0 del vector. No hace falta que hayan entenidades nuevas todavia
-
 	LUNES 21/05:
-		Tiene que porlomenos haber un nivel funcionando, con la logica planteada.
+		1 Nivel y que se vean las cosas .
 
 	PROXIMAS A ACORDAR!
 
 */
 
-/*
+/*	
+	*Transiciones entre niveles: Mostrar score, ganador y demas.
+
 	*Cada nivel se carga por un lado su parte estatica (sprites que no evolucionan en el tiempo)
 	mediante distintas instancias del objeto Stage.
 
@@ -49,32 +54,15 @@
 
 /* FECHAS ENTREGA CON CONTENIDO MINIMO:
 
-	VIERNES 19/05:
-		Ya que no trabajo con nada de la vista, queremos que leaa y entienda como funciona todo.
-		Es decir queremos que entienda para que sirven los frames, como se manejan los estado, los
-		movimientos y todo lo que tenga relacion con estos. Obviamente si necesita ayuda, FACU Y MARCOS
-		laburaron en todo esto, asi que podemos conectarnos o ayudarte con cualquier cosa que necesites.
 
 	LUNES 21/05:
-		Tiene que estar la refactorizacion andando. es decir, llevar toda la logica interna al server,
-		y que el personaje solo se encargue de moverse deacuerdo a lo que recibe por parametros.
+		Entender bien las cosas y dejar implementado algo.
 
 	PROXIMAS A ACORDAR!
 
 */
 
 /*
-	*Refactorizar la vista para que solo reciba el tipo de movimiento, el frame,
-	y la nueva posicion. Antes estabamos manejando todos los frames por dentro
-	y tenemos estados para cuando salta, camina, corre.
-	Queremos que esos estados y frames se manejen desde el server y que
-	directamente el personaje reciba los parametros mencionados arriba,
-	para que se mueva sin importarle en que estado esta.
-	Entonces desde el server se va a tener que identificar que tipo de movimiento
-	se esta llevando a cabo para poder pasarle el frame y el tipo de movimiento
-	correspondiente. El personaje recibe esto y solamente se sabe dibujar.
-	VER MOVING SONIC Y PERSONAJE, AHI SE HACE TODO LO QUE TIENE QUE HACER EL SERVER.
-	QUEREMOS LLEVAR ESE COMPORTAMIENTO AL SERVER.
 
 	*Encargarse de agregar todos los nuevos posibles movimientos que se requieran.
 	De por si ya falta:
@@ -88,7 +76,7 @@
 		movimiento tiene que quedarse esperando, y si despues de un tiempo no recibe
 		movimiento tiene que apurarse. Hay que cargar ambos sprites y diferenciarlos con frames.
 
-		-BOLITA: Falta implementar todo el comportamiento de la bolita. Cuando
+		-BOLITA ATTACK: Falta implementar todo el comportamiento de la bolita. Cuando
 		se agacha y se empieza a apretandar varias veces la barra espaciadora, la bola se carga en el lugar.
 		Cuando se suelta la tecla de abajo, sonic sale en estado corriendo que se mantiene si al mismo tiempo
 		se mantiene apretada la flecha de la direccion correspondiente.
@@ -111,13 +99,9 @@
 
 /* FECHAS ENTREGA CON CONTENIDO MINIMO:
 
-	VIERNES 19/05:
-		Necesitamos todas las clases madres creadas y por lo menos con su funcionalidad minima
-		(que se pueda probar el juego y ande) para que FACU Y MARCOS puedan avanzar con las colisiones.
-
 	LUNES 21/05:
-		Tener por lo menos 2 entidades con su respectivo efecto probada y funcionando (entdidad del enunciado).
-		Si podes armar mas mejor, pero que 2 por lo menos anden perfecto
+		Tener por lo menos 1 entidades con su respectivo efecto probada y funcionando(entdidad del enunciado).
+		Si podes armar mas mejor, pero que 1 por lo menos anden perfecto
 
 	PROXIMAS A ACORDAR!
 
@@ -125,10 +109,12 @@
 
 /*
 	*Encargarse de todas las entidades/clases no creadas hasta ahora. Estas son:
-	Monedas, distintos Villanos, Bonus, etc. Cuando este subida la consigna posta
-	va a poder saberlo con mayor certeza. Todos estos tendrian que heredar de una clase
-	madre llamada "Entidad". Lo que tenes que hacer es crear Entidad y aparte
-	agregarle comportamiento especifico a cada una de estas nuevas clases.
+	Monedas, Distintos Villanos: cangrejo, pes, mosca, Bonus: invencibilidad, moneda, escudo,
+	Entidades piso: piedras y pinches.
+	
+	*Todos estos tendrian que heredar de una clase madre llamada "Entidad". 
+	Lo que tenes que hacer es crear Entidad y aparte agregarle comportamiento 
+	especifico a cada una de estas nuevas clases.
 
 	*Si es una clase estatica como seria la villano, tiene que ser un personaje con
 	un movimiento y respuesta prederminado, una vida particular, etc.
@@ -143,9 +129,7 @@
 	entonces que sea personaje.aplicarEfecto(efecto) que reciba cualquier tipo de
 	efecto y sepa manejarlo.
 
-	*Mas adelante en la entrega tenes que encargarte de las generalidades del juego en si.
-	Es decir, cuando se gana, cuando se pierde, la suma de puntos, y otras cosas a ver
-	mas en detalle cuando tengamos el enunciado
+	*
 
 	HPP'S comentados : player.hpp.
 */
