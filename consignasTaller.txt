@@ -1,0 +1,205 @@
+/* -------------- NIVELES -------------------- */
+
+// RODRI
+
+/* FECHAS ENTREGA CON CONTENIDO MINIMO:
+
+	VIERNES 19/05:
+		Tiene que estar el stage REFACTORIZADO, con el vector de stages funcionando.
+		Es decir tienen que cargarse los stages directamente al vector y dejar por defecto
+		el stage 0 del vector. No hace falta que hayan entenidades nuevas todavia
+
+	LUNES 21/05:
+		Tiene que porlomenos haber un nivel funcionando, con la logica planteada.
+
+	PROXIMAS A ACORDAR!
+
+*/
+
+/*
+	*Cada nivel se carga por un lado su parte estatica (sprites que no evolucionan en el tiempo)
+	mediante distintas instancias del objeto Stage.
+
+	*Todos los Stage's deben ser cargados al inicio de la aplicacion por el json loader.
+
+	*La clase Juego guarda una lista de Stage's y un stage actual. Al terminar el nivel desde el modelo se tendria
+	que llamar a un metodo que cambie al siguiente stage (siguiente nivel).
+
+	*Hay que hacer las funciones que lleguen desde el juego al stage, para que cuando sea necesario
+	se pueda modificar el stage.
+
+	*El stage tiene por dentro distintos spriteGroups que representan los objetos con comportamiento
+	similar. por ejemplo se espera que haya un stage para las monedas, otro para los enemigos, otro para
+	los sprites del suelo, etc...
+
+	*Cada uno tiene que tener un metodo para actulizarlo (por ejemplo stage.updateMonedas(idMoneda, new_pos_x, new_pos_x).
+	idMoneda tiene que ser un entero que identifique a la moneda en cuestion; se utiliza para actualizar dicho sprite dentro
+	del spriteGroup.
+
+	*Para toda entidad nueva que se necesite (ejemplo Moneda) se debe hacer una nueva clase que herede de Bloque si es estatica,
+	y si va a tener movimiento entonces que herede de MovingBloque.
+
+	HPP's comentados para editar: Juego.hpp, Stage.hpp, SpriteGroup.hpp
+	Revisar todos esos y luego sus respectivos cpp
+*/
+
+/* --------------- MOVIMIENTOS --------------- */
+
+// MARTIN
+
+/* FECHAS ENTREGA CON CONTENIDO MINIMO:
+
+	VIERNES 19/05:
+		Ya que no trabajo con nada de la vista, queremos que leaa y entienda como funciona todo.
+		Es decir queremos que entienda para que sirven los frames, como se manejan los estado, los
+		movimientos y todo lo que tenga relacion con estos. Obviamente si necesita ayuda, FACU Y MARCOS
+		laburaron en todo esto, asi que podemos conectarnos o ayudarte con cualquier cosa que necesites.
+
+	LUNES 21/05:
+		Tiene que estar la refactorizacion andando. es decir, llevar toda la logica interna al server,
+		y que el personaje solo se encargue de moverse deacuerdo a lo que recibe por parametros.
+
+	PROXIMAS A ACORDAR!
+
+*/
+
+/*
+	*Refactorizar la vista para que solo reciba el tipo de movimiento, el frame,
+	y la nueva posicion. Antes estabamos manejando todos los frames por dentro
+	y tenemos estados para cuando salta, camina, corre.
+	Queremos que esos estados y frames se manejen desde el server y que
+	directamente el personaje reciba los parametros mencionados arriba,
+	para que se mueva sin importarle en que estado esta.
+	Entonces desde el server se va a tener que identificar que tipo de movimiento
+	se esta llevando a cabo para poder pasarle el frame y el tipo de movimiento
+	correspondiente. El personaje recibe esto y solamente se sabe dibujar.
+	VER MOVING SONIC Y PERSONAJE, AHI SE HACE TODO LO QUE TIENE QUE HACER EL SERVER.
+	QUEREMOS LLEVAR ESE COMPORTAMIENTO AL SERVER.
+
+	*Encargarse de agregar todos los nuevos posibles movimientos que se requieran.
+	De por si ya falta:
+
+		-FRENADO: cuando el personaje viene corriendo tiene que tener un frenado
+		distinto al que cuando viene caminando. Aparte se tienen que cargar los sprites
+		especiales para cuando frena.
+
+		-QUIETO: Falta distinguir cuando el personaje esta quieto y te apura.
+		ahora solamente esta cargado el que te apura. Cuando se queda quieto al terminar un
+		movimiento tiene que quedarse esperando, y si despues de un tiempo no recibe
+		movimiento tiene que apurarse. Hay que cargar ambos sprites y diferenciarlos con frames.
+
+		-BOLITA: Falta implementar todo el comportamiento de la bolita. Cuando
+		se agacha y se empieza a apretandar varias veces la barra espaciadora, la bola se carga en el lugar.
+		Cuando se suelta la tecla de abajo, sonic sale en estado corriendo que se mantiene si al mismo tiempo
+		se mantiene apretada la flecha de la direccion correspondiente.
+		Cargar los frames y sprites.
+
+		-LASTIMADO: Cuando un personaje es golpeado por un malo, tiene que saltar hacia atras
+		y poner cara de enojado. Podes chusmiar la logica del salto para hacerlo.
+		Esto tiene que pasar independientemente de si tocan alguna tecla en el medio.
+
+		COMENTARIO: Para detalles de los movimientos bajate el juego y miralo bien.
+
+		Mas adelante vas a tener que armar movimientos fijos (independientes de las teclas)
+		de villanos o de otras entidades.
+
+*/
+
+/* ------------- AFECTABLES/BONUS/JUGABILIDAD ------------------- */
+
+//GUIDO
+
+/* FECHAS ENTREGA CON CONTENIDO MINIMO:
+
+	VIERNES 19/05:
+		Necesitamos todas las clases madres creadas y por lo menos con su funcionalidad minima
+		(que se pueda probar el juego y ande) para que FACU Y MARCOS puedan avanzar con las colisiones.
+
+	LUNES 21/05:
+		Tener por lo menos 2 entidades con su respectivo efecto probada y funcionando (entdidad del enunciado).
+		Si podes armar mas mejor, pero que 2 por lo menos anden perfecto
+
+	PROXIMAS A ACORDAR!
+
+*/
+
+/*
+	*Encargarse de todas las entidades/clases no creadas hasta ahora. Estas son:
+	Monedas, distintos Villanos, Bonus, etc. Cuando este subida la consigna posta
+	va a poder saberlo con mayor certeza. Todos estos tendrian que heredar de una clase
+	madre llamada "Entidad". Lo que tenes que hacer es crear Entidad y aparte
+	agregarle comportamiento especifico a cada una de estas nuevas clases.
+
+	*Si es una clase estatica como seria la villano, tiene que ser un personaje con
+	un movimiento y respuesta prederminado, una vida particular, etc.
+	Ademas adentro suyo debe tener un EFECTO para saber afectar a los personajes.
+
+	*Cada entidad va a tener una clase EFECTO, la cual va a tener
+	el atributo a modificar (representado por un string) y
+	en que cantidad lo modifica. Entonces cuando MARCOS y FACU hagan
+	personaje->afectarseCon(entidad)
+	van a pedir a la entidad el efecto y de acuerdo a su tipo y cantidad
+	se van a modificar los atributos del personaje. Vos tenes que hacer un metodo
+	entonces que sea personaje.aplicarEfecto(efecto) que reciba cualquier tipo de
+	efecto y sepa manejarlo.
+
+	*Mas adelante en la entrega tenes que encargarte de las generalidades del juego en si.
+	Es decir, cuando se gana, cuando se pierde, la suma de puntos, y otras cosas a ver
+	mas en detalle cuando tengamos el enunciado
+
+	HPP'S comentados : player.hpp.
+*/
+
+
+/* -------------- COLISIONES/PHOTOSHOP ------------------ */
+
+//MARCOS Y FACU
+
+/* FECHAS ENTREGA CON CONTENIDO MINIMO:
+
+	VIERNES 19/05:
+		Desarrollo del loop de colisiones con los metodos a las llamadas y la logica
+		general ya planteada (Apenas guido tenga las entidades se empieza a probar).
+		Analizar del enunciado posibles calculos de colisiones a realizar y
+		organizar los metodos por funciones.
+
+	LUNES 21/05:
+		Tener colisiones con sprites estaticos funcionando.
+		Avanzar con diseño de Sprites individuales.
+
+
+	PROXIMAS A ACORDAR!
+
+*/
+
+/*
+
+	*Cualquiera que necesite algun Sprite o imagen QUE NO PUEDA HACER POR SU CUENTA,
+	MARCOS se va a dedicar a eso mientras facu avanza con el resto de las coliciones.
+
+	*Para todos los personajes que manejemos vamos a tener que hacer un for
+	para todos los afectables que haya, y ver de acuerdo a la posicion si le
+	corresponde afectarse o no.
+
+	*Calcular momivientos como consecuencia de afectarse con una entidad.
+	Por ejemplo cuando es chocado por un malo, tiene que saltar hacia atras
+	con cara de "que estas haciendo wachin?"
+
+	*Cada entidad sabe como afectar al personaje.
+	Vamos tener una funcion que sea:
+	sonic->afectarseCon(moneda) y la moneda sabe que le tiene
+	que sumar puntaje.
+	El personaje en si sabe que se tiene que afectar, pero la entidad
+	sabe como afectar al personaje.
+
+	*Cada entidad va a tener una clase EFECTO, la cual va a tener
+	el atributo del personaje al que modifica (representado por un string) y
+	en que cantidad lo modifica. Entonces cuando hagamos
+	personaje->afectarseCon(entidad)
+	vamos a pedir a la entidad el efecto y deacuerdo a su tipo y cantidad
+	vamos a modificar los atributos del personaje.
+
+	*Cuando se termina la accion de afectarse, hay que verificar el estado
+	del personaje para ver si no murio o tuvo algun efecto.
+
+*/
