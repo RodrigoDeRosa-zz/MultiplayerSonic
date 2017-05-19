@@ -66,3 +66,13 @@ int Player::getFrame(){
 void Player::setXY(float x, float y){
 	this->sonic->update(0,0,x,y);
 }
+
+void Player::afectarseCon(Entidad* entidad){
+	//calcular colision
+	this->aplicarEfecto(entidad->getEfecto());
+}
+
+void Player::aplicarEfecto(Efecto* efecto){
+	string atributo = efecto->getAtributo(); //hacer lo que haga falta con atributo
+	int cantidad = efecto->getCantidad(); //hacer lo que haga falta con entidad
+}

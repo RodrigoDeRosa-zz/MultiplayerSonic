@@ -3,6 +3,7 @@
 
 Model::Model(){
 	players = new vector<Player*>();
+	entidades = new vector<Entidad*>();
 }
 
 void Model::addPlayer(string playerName){

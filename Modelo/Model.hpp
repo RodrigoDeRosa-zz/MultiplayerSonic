@@ -4,6 +4,7 @@ using namespace std;
 
 class Model{
 	vector<Player*>* players;
+	vector<Entidad*>* entidades;
 	public:
 		Model();
 		void addPlayer(string playerName);

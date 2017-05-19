@@ -1,5 +1,6 @@
 #include <string>
 #include "ModelSonic.hpp"
+#include "Entidades/Entidad.hpp"
 
 using namespace std;
 
@@ -22,6 +23,8 @@ class Player{
 		void setConnected(bool connected);
 		move_type getMovement();
 		int getFrame();
+		void afectarseCon(Entidad* entidad);
+		void aplicarEfecto(Efecto* efecto);
 
 	/* ACA TENEMOS QUE DEFINIR UNA FUNCION QUE SEA:
 	 * void afectarseCon( entidad );
