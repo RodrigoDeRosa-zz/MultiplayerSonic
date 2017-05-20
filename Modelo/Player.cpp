@@ -12,7 +12,7 @@ Player::Player(string name){
 	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
 	this->setConnected(true);
-    this->collitionBoxes = this->cargarMapCollitionBoxes();
+    this->cargarMapCollitionBoxes();
 }
 
 string Player::getName(){
@@ -97,17 +97,30 @@ void Player::cargarMapCollitionBoxes(){
 
     //El h hay que cambiarlo a medida que vayamos ajustando
     //las colisiones
-    this->collitionBoxes[IDLED] = [97,121];
-    this->collitionBoxes[IDLEI] = [97, 121];
 
-    this->collitionBoxes[JUMPI] = [94, 121];
-    this->collitionBoxes[JUMPD] = [94, 121];
+    vector<float> quieto;
+    quieto.push_back(97);
+    quieto.push_back(121);
+    this->collitionBoxes[IDLED] = quieto;
+    this->collitionBoxes[IDLEI] = quieto;
 
-    this->collitionBoxes[RUNI] = [98, 121];
-    this->collitionBoxes[RUND] = [98, 121];
+    vector<float> jump;
+    jump.push_back(97);
+    jump.push_back(121);
+    this->collitionBoxes[JUMPI] = jump;
+    this->collitionBoxes[JUMPD] = jump;
 
-    this->collitionBoxes[WALKI] = [100, 121];
-    this->collitionBoxes[WALKD] = [100, 121];
+    vector<float> run;
+    run.push_back(97);
+    run.push_back(121);
+    this->collitionBoxes[RUNI] = run;
+    this->collitionBoxes[RUND] = run;
+
+    vector<float> caminar;
+    caminar.push_back(100);
+    caminar.push_back(121);
+    this->collitionBoxes[WALKI] = caminar;
+    this->collitionBoxes[WALKD] = caminar;
 
     //en el futuro agregar el resto de los movimientos
 }
@@ -142,11 +155,11 @@ void Player::afectarseCon(Entidad* entidad){
     float bordeAbajoP = entidad-> getBordeAbajo();
 
     //agregar factores para retocar con mas presicion
-    bool colisionX = ((bodeDerP > bordeIzqE) || (bodeDerE > bordeIzqP));
-    bool contactoX = ((bodeDerP >= bordeIzqE) || (bodeDerE >= bordeIzqP));
+    bool colisionX = ((bordeDerP > bordeIzqE) || (bordeDerE > bordeIzqP));
+    bool contactoX = ((bordeDerP >= bordeIzqE) || (bordeDerE >= bordeIzqP));
 
-    bool colisionY = ((bodeArribaP > bordeAbajoE) || (bodeArribaE > bordeAbajoP));
-    bool contactoY = ((bodeArribaP >= bordeAbajoE) || (bodeArribaE >= bordeAbajoP));
+    bool colisionY = ((bordeArribaP > bordeAbajoE) || (bordeArribaE > bordeAbajoP));
+    bool contactoY = ((bordeArribaP >= bordeAbajoE) || (bordeArribaE >= bordeAbajoP));
 
     //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
     if (colisionX && contactoY){

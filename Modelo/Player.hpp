@@ -2,9 +2,11 @@
 #define PLAYER_HPP
 
 #include <string>
+#include <iostream>
 #include "ModelSonic.hpp"
 #include "Entidades/Entidad.hpp"
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -12,7 +14,7 @@ class Player{
 	string name;
 	ModelSonic* sonic;
 	bool connected;
-	map <move_type, List> collitionBoxes;
+    map <move_type, vector<float>> collitionBoxes;
 	public:
 		Player(string name);
 		string getName();
