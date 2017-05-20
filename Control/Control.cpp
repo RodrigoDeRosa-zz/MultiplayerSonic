@@ -110,14 +110,10 @@ void Control::handleInMessage(in_message_t* ev){
 }
 
 void Control::update(){
+	// en lugar de hacer los dos for llamar a:
+	// this->model->colisionarTodos()  (afuera del for)
 	vector<string> players = this->model->getPlayerNames();
 	for(int i=0; i < players.size(); i++){
-
-//COMENTARIO: Descomentar cuando esten implementadas las entidades
-//        for(int j = 0; j < entidades.size(); j++){
-//            player[i]->afectarseCon(entidades[j]);
-//            //quizas aca adentro hay que cambiar la direccion
-//        }
 
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
 		this->moveCameraAndPlayer(players[i],directions);

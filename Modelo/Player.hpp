@@ -14,7 +14,7 @@ class Player{
 	string name;
 	ModelSonic* sonic;
 	bool connected;
-    map <move_type, vector<float>> collitionBoxes;
+    map <move_type, vector<float> > collitionBoxes;
 	public:
 		Player(string name);
 		string getName();
@@ -22,6 +22,7 @@ class Player{
 		float getY();
 		float getDirX();
 		float getDirY();
+		vector<float> getDirections();
 		void setX(float x);
 		void setY(float y);
 		void setXY(float x, float y);
@@ -31,7 +32,6 @@ class Player{
 		move_type getMovement();
 		int getFrame();
 		void afectarseCon(Entidad* entidad);
-		void aplicarEfecto(Efecto* efecto);
 
 		float getBordeDer();
 		float getBordeIzq();

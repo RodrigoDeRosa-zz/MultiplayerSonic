@@ -1,8 +1,10 @@
 #include "Entidad.hpp"
 
-Entidad::Entidad(float x, float y){
+Entidad::Entidad(float x, float y, float w, float h){
 	this->x = x;
 	this->y = y;
+	this->w = w;
+	this->h = h;
 }
 
 float Entidad::getX(){
@@ -11,14 +13,6 @@ float Entidad::getX(){
 
 float Entidad::getY(){
 	return this->y;
-}
-
-Efecto* Entidad::getEfecto(){
-	return this->efecto;
-}
-
-void Entidad::setEfecto(Efecto* efecto){
-	this->efecto = efecto;
 }
 
 void Entidad::setW(float x){
@@ -51,10 +45,10 @@ float Entidad::getBordeIzq(){
 
 float Entidad::getBordeArriba(){
 
-	return this->getY() + (this->h);
+	return this->getY();
 }
 
 float Entidad::getBordeAbajo(){
 
-	return this->getY();
+	return this->getY() + (this->h);
 }

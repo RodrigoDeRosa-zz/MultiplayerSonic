@@ -115,3 +115,11 @@ bool Model::playerIsConnected(string playerName){
 	Player* player = this->getPlayer(playerName);
 	return player->isConnected();
 }
+
+void Model::colisionarTodos(){
+	for(int i = 0; i < (players)->size(); i++){
+		for(int j = 0; j < (entidades)->size(); j++){
+			(*players)[i]->afectarseCon((*entidades)[j]);
+		}
+	}
+}

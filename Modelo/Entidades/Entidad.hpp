@@ -1,7 +1,7 @@
 #ifndef ENTIDAD_HPP
 #define ENTIDAD_HPP
 
-#include "../Efecto.hpp"
+class Player;
 
 class Entidad{
 protected:
@@ -9,9 +9,10 @@ protected:
 	float y;
 	float w;
 	float h;
-	Efecto* efecto;
 public:
-	Entidad(float x, float y);
+	Entidad(float x, float y, float w, float h);
+
+	virtual void afectarA(Player* jugador) = 0;
 
 	/*Getters*/
 	float getX();
@@ -22,10 +23,8 @@ public:
 	float getBordeIzq();
 	float getBordeArriba();
 	float getBordeAbajo();
-	Efecto* getEfecto();
 
 	/*Setters*/
-	void setEfecto(Efecto* efecto);
 	void setW(float);
 	void setH(float);
 };

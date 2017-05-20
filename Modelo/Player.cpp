@@ -35,13 +35,22 @@ float Player::getDirY(){
 	return this->sonic->getDirY();
 }
 
+vector<float> Player::getDirections(){
+    vector<float> directions;
+    directions.push_back(this->getDirX());
+    directions.push_back(this->getDirY());
+    return directions;
+}
+
 void Player::setX(float x){
 	this->sonic->update(this->getDirX(),this->getDirY());
 	this->sonic->setX(x);
 }
 
 void Player::setY(float y){
-	this->sonic->update(this->getDirX(),this->getDirY(),this->getX(),y);
+    // si el jugador viene saltando hago que se detenga
+	if((this->getMovement() == JUMPI) || (this->getMovement() == JUMPD))this->sonic->update(0,0,this->getX(),y);
+    else this->sonic->update(this->getDirX(),this->getDirY(),this->getX(),y);
 }
 
 void Player::updateXY(float dirX,float dirY){
@@ -66,11 +75,6 @@ int Player::getFrame(){
 
 void Player::setXY(float x, float y){
 	this->sonic->update(0,0,x,y);
-}
-
-void Player::aplicarEfecto(Efecto* efecto){
-	string atributo = efecto->getAtributo(); //hacer lo que haga falta con atributo
-	int cantidad = efecto->getCantidad(); //hacer lo que haga falta con entidad
 }
 
 float Player::getBordeDer(){
@@ -163,9 +167,9 @@ void Player::afectarseCon(Entidad* entidad){
 
     //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
     if (colisionX && contactoY){
-        this->aplicarEfecto(entidad->getEfecto());
+        entidad->afectarA(this);
     }
     else if(colisionY && contactoX){
-        this->aplicarEfecto(entidad->getEfecto());
+        entidad->afectarA(this);;
     }
 }
