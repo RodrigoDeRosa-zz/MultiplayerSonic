@@ -27,7 +27,6 @@ class SpriteGroup{
         SpriteGroup copy();
         vector <Sprite*> getSprites();
 
-        /*EJEMPLO DE COMO VAMOS A MANEJAR LOS UPDATE */
         /*Este metodo es llamado desde el juego para actualizar
          * los sprites de el stage. recibe un int que es la posicion
          * en la lista, y los floats son las nuevas posiciones del

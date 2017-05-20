@@ -2,6 +2,9 @@
 #include "Layer.hpp"
 #include "SpriteGroup.hpp"
 #include "../logger/current/Logger2.hpp"
+#include <map>
+#include <string>
+using namespace std;
 
 Stage::Stage(){
     sprites = NULL;
@@ -83,13 +86,41 @@ void Stage::render(Camara* camara){
     if(sprites) sprites->render(camara);
 }
 
-
+/*Viejo*/
 void Stage::setSpriteGroup(SpriteGroup* group){
     sprites = group;
 }
-
+/*Nuevo*/
+void Stage::addSpriteGroup(string key, SpriteGroup* group){
+    spriteGroups.insert(make_pair(key, group));
+}
+/*Viejo*/
 void Stage::addSprite(Sprite* sprite){
     sprites->add(sprite);
+}
+
+SpriteGroup* Stage::getSpriteGroup(string groupKey){
+    map<string, SpriteGroup*>::iterator it;
+    it = spriteGroups.find(groupKey);
+    if (it == spriteGroups.end()){
+        //Si no existe el grupo, no hace nada
+        printf("Sprite group %s no existe!\n", groupKey);
+        return NULL;
+    }
+    return it->second; //Se agarra el valor de la clave.
+}
+
+/*Nuevo*/
+void Stage::addSprite(string groupKey, Sprite* sprite){
+    SpriteGroup* group = getSpriteGroup(grouKey);
+    if (!group) return;
+    group.add(sprite); //Se añade el sprite
+}
+
+void updateSprite(string groupKey, int index, float x, float y){
+    SpriteGroup* group = getSpriteGroup(groupKey);
+    if (!group) return;
+    group.update(index, x, y); //Le pasa la tarea al grupo.
 }
 
 Stage& Stage::getInstance(){

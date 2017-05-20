@@ -5,16 +5,20 @@
 #include "SpriteGroup.hpp"
 #include "Camara.hpp"
 #include <vector>
+#include <map>
+#include <string>
+using namespace std;
 
 class Stage{
     private:
-
-        SpriteGroup* sprites;
-        //El sprites de arriba tiene que cambiarse por map <string, SpriteGroup*> spriteGroups;
+        SpriteGroup* sprites; //Viejo
+        map<string, SpriteGroup*> spriteGroups; //Nuevo
 
         Layer* front;
         Layer* background;
         int width, height;
+
+        SpriteGroup* getSpriteGroup(string key);
     public:
         Stage();
         ~Stage();
@@ -26,24 +30,24 @@ class Stage{
         void addLayer(Layer*);
 
         /*Define el sprite group del escenario como el recibido*/
-        void setSpriteGroup(SpriteGroup*);
-        //el metodo anterior tiene que cambiarse por:
-        //void setSpriteGroup(string, SpriteGroup*);
-        //que agrega al map "spriteGroups" un nuevo SpriteGroup con el nombre pasado
+        void setSpriteGroup(SpriteGroup*); //Viejo
+        /*Agrega un grupo de sprites al stage.
+         * @param: {string} key en el mapa de sprites group.
+        */
+        void addSpriteGroup(string, SpriteGroup*); //Nuevo
 
         /*Agrega el sprite al sprite group*/
-        void addSprite(Sprite*);
-        //el metodo anterior tiene que cambiarse por:
-        //void addSprite(string, Sprite*);
-        //que agrega un nuevo sprite al group guardado en el mapa con ese nombre
+        void addSprite(Sprite*); //Viejo
+        /*Agrega el sprite recibido al sprite group que corresponde a la clave
+         *pasada en el string.
+         */
+        void addSprite(string, Sprite*); //Nuevo
 
-        //COMENTARIO:
-        //falta agregar un metodo:
-        //void updateSprite(string, indiceSprite, new_pos_x, new_pos_y);
-        //Debe acceder al SpriteGroup correspondiente representado por el string
-        //y al tenerlo debe llamar al metodo update de la siguiente manera
-        //spriteGroupPedido.update(indiceSprite, new_pos_x, new_pos_y);
-        //este metodo ya esta implementado
+        /*Actualiza la posicion del sprite cuyo indice se recibe, en el sprite
+         *group guardado como valor de la clave recibida en el string en el mapa
+         *de spriteGroups.
+        */
+        void updateSprite(string groupKey, int index, float x, float y);
 
         int getHeight();
         int getWidth();

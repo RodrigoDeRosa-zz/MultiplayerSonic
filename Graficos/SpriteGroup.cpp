@@ -24,9 +24,10 @@ void SpriteGroup::remove(Sprite sprite){
 }
 
 void SpriteGroup::update(int index,float new_x, float new_y){
-    /*POR CADA CLASE NUEVA VAMOS A TENER UN UPDATE.
-     * ENCARGARSE DE CHEQUEAR EL ERROR DE SI EL SPRITE
-     * NO EXISTE */
+    if (index > sprites.size()){
+        printf("SpriteGroup::update | index %d fuera de rango!\n", index);
+        return;
+    }
     sprites[index]->update(new_x, new_y);
 }
 
