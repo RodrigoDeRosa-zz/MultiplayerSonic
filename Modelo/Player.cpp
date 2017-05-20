@@ -69,7 +69,7 @@ void Player::setXY(float x, float y){
 
 void Player::afectarseCon(Entidad* entidad){
 	//calcular colision
-	this->aplicarEfecto(entidad->getEfecto());
+	//this->aplicarEfecto(entidad->getEfecto());
 }
 
 void Player::aplicarEfecto(Efecto* efecto){

@@ -1,3 +1,6 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include <string>
 #include "ModelSonic.hpp"
 #include "Entidades/Entidad.hpp"
@@ -41,3 +44,5 @@ class Player{
 	 * como debe modificarlo. Esto ultimo es responsabilidad
 	 * del efecto, este sabe si tiene que sumar o restar.*/
 };
+
+#endif /*PLAYER_HPP*/

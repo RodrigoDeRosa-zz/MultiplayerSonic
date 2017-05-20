@@ -1,7 +1,12 @@
+#ifndef CONTROL_HPP
+#define CONTROL_HPP
+
 #include <SDL2/SDL.h>
 #include <vector>
 #include "CameraControl.hpp"
 #include "../message.hpp"
+#include "../Modelo/Player.hpp"
+#include "../Modelo/Entidades/Entidad.hpp"
 
 using namespace std;
 
@@ -24,4 +29,7 @@ class Control{
 		void handleInMessage(in_message_t* ev);
 		vector<out_message_t*> getStatus();
 		void update();
+		bool enRango(Entidad*, Player*);
 };
+
+#endif /*CONTROL_HPP*/

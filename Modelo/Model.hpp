@@ -1,3 +1,6 @@
+#ifndef MODEL_HPP
+#define MODEL_HPP
+
 #include <vector>
 #include "Player.hpp"
 using namespace std;
@@ -22,3 +25,5 @@ class Model{
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);
 };
+
+#endif /*MODEL_HPP*/
