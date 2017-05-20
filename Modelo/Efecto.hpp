@@ -1,3 +1,6 @@
+#ifndef EFECTO_HPP
+#define EFECTO_HPP
+
 #include <string>
 
 using namespace std;
@@ -10,3 +13,5 @@ public:
 	string getAtributo();
 	int getCantidad();
 };
+
+#endif /*EFECTO_HPP*/
