@@ -112,15 +112,15 @@ SpriteGroup* Stage::getSpriteGroup(string groupKey){
 
 /*Nuevo*/
 void Stage::addSprite(string groupKey, Sprite* sprite){
-    SpriteGroup* group = getSpriteGroup(grouKey);
-    if (!group) return;
-    group.add(sprite); //Se añade el sprite
-}
-
-void updateSprite(string groupKey, int index, float x, float y){
     SpriteGroup* group = getSpriteGroup(groupKey);
     if (!group) return;
-    group.update(index, x, y); //Le pasa la tarea al grupo.
+    group->add(sprite); //Se añade el sprite
+}
+
+void Stage::updateSprite(string groupKey, int index, float x, float y){
+    SpriteGroup* group = getSpriteGroup(groupKey);
+    if (!group) return;
+    group->update(index, x, y); //Le pasa la tarea al grupo.
 }
 
 Stage& Stage::getInstance(){

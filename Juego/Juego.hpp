@@ -17,24 +17,20 @@ class Juego{
     Jugadores* jugadores;
     vector <Stage*> stages;
     Stage* stageActual;
+    int stageActualIndex; //Se agrega esto para hacer mas rapido el avance de stages
     Camara* camara;
   public:
     Juego();
-    
+
     void setJugadores(Jugadores*);
 
-    /*ESTE METODO SE TIENE QUE CAMBIAR POR:
-     * void addStage(Stage* stage);
-     * Todos los stages se tienen que cargar al inciar el juego
-     * con el metodo add stage.
-     * CUANDO CARGUEN TODOS LOS STAGES EN EL VECTOR, HAY QUE DEJAR POR DEFECTO
-     * EL stageActual = stages[0]. ahora no se hace para no romper el tp.*/
-    void setStage(Stage* stage);
+    void setStage(Stage* stage); //Viejo
+    /*Los stages se deben agregar en orden, porque despues en el transcurso del
+    juego se iteran en orden*/
+    void addStage(Stage* stage); //Nuevo
 
-    /*FALTA AGREGAR UN METODO PARA CAMBIAR AL SIGUIENTE SIGUIENTE STAGE
-     * CUANDO SE TERMINA EL ACTUAL, CON LA SIGUIENTE FIRMA:
-     * void nextStage();
-     */
+    /*Carga como stage actual al proximo stage de la lista*/
+    void nextStage();
 
     bool addJugador(string nombreJugador, string ombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
@@ -45,16 +41,8 @@ class Juego{
     //void updateJugadores(map <string, vector <float> >);
     void updateJugador(string, float, float, move_type, int, bool);
     void updateCamara(int, int);
-
-    /*EJEMPLO DE UTILZACION
-     * desde aca se tiene que crear el metodo para actualizar
-     * el stage, con la siguiente firma:
-     * void updateStage(string nom,int index, float newX, float newY);
-     * PARAMETROS:
-     * el string que recibe es el nombre del spriteGroup al que pertenece
-     * la entidad.
-     * el int es el indice de su ubicacion el la lista
-     * los dos floats son las nuevas posiciones de los sprites*/
+    /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
+    void updateStage(string groupKey, int index, float x, float y);
 
     ~Juego();
 };

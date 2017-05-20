@@ -42,6 +42,27 @@ void Juego::setStage(Stage* new_stage){
     stageActual = new_stage;
 }
 
+void Juego::addStage(Stage* stage){
+    if (stages.empty()){
+        stageActual = stage;
+        stageActualIndex = 0;
+    }
+    stages.push_back(stage);
+}
+
+void Juego::nextStage(){
+    if (stageActualIndex == stages.size()){
+        printf("No hay mas escenarios!\n");
+        return;
+    }
+    stageActualIndex++;
+    stageActual = stages[stageActualIndex];
+}
+
+void Juego::updateStage(string groupKey, int index, float x, float y){
+    stageActual->updateSprite(groupKey, index, x, y);
+}
+
 void Juego::setJugadores(Jugadores* jugs){
     jugadores=jugs;
 }
