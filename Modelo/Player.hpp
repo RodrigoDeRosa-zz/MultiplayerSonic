@@ -4,6 +4,7 @@
 #include <string>
 #include "ModelSonic.hpp"
 #include "Entidades/Entidad.hpp"
+#include <map>
 
 using namespace std;
 
@@ -11,6 +12,7 @@ class Player{
 	string name;
 	ModelSonic* sonic;
 	bool connected;
+	map <move_type, List> collitionBoxes;
 	public:
 		Player(string name);
 		string getName();
@@ -28,6 +30,15 @@ class Player{
 		int getFrame();
 		void afectarseCon(Entidad* entidad);
 		void aplicarEfecto(Efecto* efecto);
+
+		float getBordeDer();
+		float getBordeIzq();
+		float getBordeArriba();
+		float getBordeAbajo();
+		float getCentroX();
+		float getCentroY();
+
+		void cargarMapCollitionBoxes();
 
 	/* ACA TENEMOS QUE DEFINIR UNA FUNCION QUE SEA:
 	 * void afectarseCon( entidad );

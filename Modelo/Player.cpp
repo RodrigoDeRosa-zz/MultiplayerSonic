@@ -12,6 +12,7 @@ Player::Player(string name){
 	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
 	this->setConnected(true);
+    this->collitionBoxes = this->cargarMapCollitionBoxes();
 }
 
 string Player::getName(){
@@ -67,12 +68,91 @@ void Player::setXY(float x, float y){
 	this->sonic->update(0,0,x,y);
 }
 
-void Player::afectarseCon(Entidad* entidad){
-	//calcular colision
-	//this->aplicarEfecto(entidad->getEfecto());
-}
-
 void Player::aplicarEfecto(Efecto* efecto){
 	string atributo = efecto->getAtributo(); //hacer lo que haga falta con atributo
 	int cantidad = efecto->getCantidad(); //hacer lo que haga falta con entidad
+}
+
+float Player::getBordeDer(){
+
+    return this->getX() + (this->collitionBoxes[this->getMovement()][0]);
+}
+
+float Player::getBordeIzq(){
+
+    return this->getX() - (this->collitionBoxes[this->getMovement()][0]);
+}
+
+float Player::getBordeArriba(){
+
+    return this->getY() + (this->collitionBoxes[this->getMovement()][1]);
+}
+
+float Player::getBordeAbajo(){
+
+    return this->getY();
+}
+
+void Player::cargarMapCollitionBoxes(){
+
+    //El h hay que cambiarlo a medida que vayamos ajustando
+    //las colisiones
+    this->collitionBoxes[IDLED] = [97,121];
+    this->collitionBoxes[IDLEI] = [97, 121];
+
+    this->collitionBoxes[JUMPI] = [94, 121];
+    this->collitionBoxes[JUMPD] = [94, 121];
+
+    this->collitionBoxes[RUNI] = [98, 121];
+    this->collitionBoxes[RUND] = [98, 121];
+
+    this->collitionBoxes[WALKI] = [100, 121];
+    this->collitionBoxes[WALKD] = [100, 121];
+
+    //en el futuro agregar el resto de los movimientos
+}
+
+float Player::getCentroX(){
+    return this->getX() + (this->collitionBoxes[this->getMovement()][0] / 2);
+}
+
+float Player::getCentroY(){
+    return this->getY() + (this->collitionBoxes[this->getMovement()][1] / 2);
+}
+
+void Player::afectarseCon(Entidad* entidad){
+
+    //calculo de la colision mas meticuloso que el rango
+
+    float centroEntX = entidad->getCentroX();
+    float centroPlayX = this->getCentroX();
+    float centroEntY = entidad->getCentroY();
+    float centroPlayY = this->getCentroY();
+
+    float bordeDerE = entidad-> getBordeDer();
+    float bordeIzqE = entidad-> getBordeIzq();
+
+    float bordeDerP = this-> getBordeDer();
+    float bordeIzqP = this-> getBordeIzq();
+
+    float bordeArribaE = entidad -> getBordeArriba();
+    float bordeArribaP = this -> getBordeArriba();
+
+    float bordeAbajoE = entidad -> getBordeAbajo();
+    float bordeAbajoP = entidad-> getBordeAbajo();
+
+    //agregar factores para retocar con mas presicion
+    bool colisionX = ((bodeDerP > bordeIzqE) || (bodeDerE > bordeIzqP));
+    bool contactoX = ((bodeDerP >= bordeIzqE) || (bodeDerE >= bordeIzqP));
+
+    bool colisionY = ((bodeArribaP > bordeAbajoE) || (bodeArribaE > bordeAbajoP));
+    bool contactoY = ((bodeArribaP >= bordeAbajoE) || (bodeArribaE >= bordeAbajoP));
+
+    //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
+    if (colisionX && contactoY){
+        this->aplicarEfecto(entidad->getEfecto());
+    }
+    else if(colisionY && contactoX){
+        this->aplicarEfecto(entidad->getEfecto());
+    }
 }

@@ -110,38 +110,19 @@ void Control::handleInMessage(in_message_t* ev){
 }
 
 void Control::update(){
+	vector<string> players = this->model->getPlayerNames();
+	for(int i=0; i < players.size(); i++){
 
-    vector<string> players = this->model->getPlayerNames();
-
-//    for(int i=0; i < players.size(); i++){
+//COMENTARIO: Descomentar cuando esten implementadas las entidades
 //        for(int j = 0; j < entidades.size(); j++){
-//            if( this->enRango(entidades[j],player[i]) ){
-//                player[i]->afectarseCon(entidades[j]);
-                //quizas aca adentro hay que cambiar la direccion
-//            }
-//            entidades[j]->update();
+//            player[i]->afectarseCon(entidades[j]);
+//            //quizas aca adentro hay que cambiar la direccion
 //        }
-//        vector<float> directions = this->model->getPlayerDirections(players[i]);
-//        this->moveCameraAndPlayer(players[i],directions);
-//    }
+
+		vector<float> directions = this->model->getPlayerDirections(players[i]);
+		this->moveCameraAndPlayer(players[i],directions);
+	}
 }
-
-bool Control::enRango(Entidad* entidad, Player* player){
-
-//    float centroEnt = entidad->getCentroX();
-//    float centroPlay = player->getCentroX();
-
-
-//    float bordeDerE = entidad-> getBordeDer();
-//    float bordeIzqE = entidad-> getBordeIzq();
-
-//    float bordeDerP = player-> getBordeDer();
-//    float bordeIzqP = player-> getBordeIzq();
-
-//    return ((bodeDerP >= bordeIzqE) || (bodeDerE >= bordeIzqP));
-
-}
-
 
 vector<out_message_t*> Control::getStatus(){
 	vector<out_message_t*> v;
