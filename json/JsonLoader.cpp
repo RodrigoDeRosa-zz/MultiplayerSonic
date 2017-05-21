@@ -102,7 +102,8 @@ Stage* JsonLoader::getStage(){
 
     SpriteGroup* activeSprites = this->getSprites((this->json));
 
-    stage->setSpriteGroup(activeSprites);
+    //stage->setSpriteGroup(activeSprites);
+    stage->addSpriteGroup("active", activeSprites);
 
     return stage;
 }

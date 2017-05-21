@@ -24,7 +24,6 @@ class Stage{
         ~Stage();
         /*Renderiza todos los elementos del escenario*/
         void render(Camara*);
-        //Al render debe renderizar todos los SpriteGroups contenidos en el map.
 
         /*Agrega una capa y la define como front o background segun su z-index*/
         void addLayer(Layer*);
@@ -32,7 +31,7 @@ class Stage{
         /*Define el sprite group del escenario como el recibido*/
         void setSpriteGroup(SpriteGroup*); //Viejo
         /*Agrega un grupo de sprites al stage.
-         * @param: {string} key en el mapa de sprites group.
+         * @param: {string} key que representara el grupo en el mapa de sprites group.
         */
         void addSpriteGroup(string, SpriteGroup*); //Nuevo
 

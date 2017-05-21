@@ -83,7 +83,10 @@ void Stage::render(Camara* camara){
     }
     background->render(camara);
     front->render(camara);
-    if(sprites) sprites->render(camara);
+    /*Recorre todos los SpriteGroups y los renderiza*/
+    for (map<string, SpriteGroup*>::iterator it = spriteGroups.begin(); it != spriteGroups.end(); it++){
+        it->second->render(camara); //it->second es el valor, es decir, el spriteGroup
+    }
 }
 
 /*Viejo*/
