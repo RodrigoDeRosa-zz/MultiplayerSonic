@@ -54,7 +54,7 @@ void* initGame(void *arg){
             gameJson->setGame();
             Stage* stage = gameJson->getStage();
             Juego* juego = new Juego();
-            juego->setStage(stage);
+            juego->addStage(stage);
             Camara* camara_pantalla = gameJson->getCamara(stage);
             juego->setCamara(camara_pantalla);
             Jugadores* jugs = new Jugadores();
