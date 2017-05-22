@@ -24,6 +24,9 @@ class Model{
 		void setPlayerConnection(string playerName, bool connection);
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);
+		void playerCrouch(string playerName);
+		void playerCharge(string playerName);
+		void playerRelease(string playerName);
 		void colisionarTodos();
 };
 

@@ -10,6 +10,8 @@
 #define CONTROL_SALTO 0.0001
 #define FACTOR 12
 #define FACTOR_FRENADO 1	//que tan rapido frena (deberia ser 10, pero para que se note que frena)
+#define FACTOR_CHARGES	1
+#define LIM_CHARGE 3
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
@@ -306,6 +308,7 @@ void MoveSonic::crouch(){
 }
 
 void MoveSonic::release(){
+	//AGREGAR CASO BORDE SI CHARGES=0 ENTONCES VA A SETEARPOSINICIO()
 	noActionCounter=0;
 	//TODO para que esto ande tiene que estar andando otra funcion que si no hay nada 
 	//apretado igual actualiza la posicion en base a tiempoX y lo va decrementando, en vez
@@ -315,9 +318,11 @@ void MoveSonic::release(){
 	if (!direccion){
 		tiempoX *= -1;
 	}
+	charges=0;	//resetea charges
 }
 
 void MoveSonic::charge(){
+	//AGREGAR ANIMACIONES
 	noActionCounter=0;
 	if (charges > LIM_CHARGE){
 		charges = LIM_CHARGE;
