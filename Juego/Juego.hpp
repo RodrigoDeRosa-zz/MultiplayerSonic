@@ -15,6 +15,9 @@
   creados desde afuera (en este caso el jsonLoader)*/
 class Juego{
     Jugadores* jugadores;
+    map<string, Texture*> texturas;
+    /*Se setean las texturas de todas las entidades*/
+    void setTexturas();
     vector <Stage*> stages;
     Stage* stageActual;
     int stageActualIndex; //Se agrega esto para hacer mas rapido el avance de stages

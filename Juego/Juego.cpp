@@ -16,6 +16,15 @@ Juego::Juego(){
     stageActual = NULL;
     camara = NULL;
 }
+
+void Juego::setTexturas(){
+    //TODO: Llenar el mapa texturas con lo que corresponda:
+    /*
+    Texture* texturaMoneda = new Texture();
+    texturaMoneda->loadFromFile("pathTexturaMoneda");
+    texturas.insert(make_pair("monedas", texturaMoneda))
+    */
+}
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
 //  /**Funcion que se utiliza desde el server para actualizar los jugadores.
@@ -80,7 +89,12 @@ void Juego::addSprite(string groupKey, Sprite* sprite){
 
 void Juego::addPiedra(float x, float y){
     Piedra* piedra = new Piedra(x, y);
-    /*Aca habria que cargar la textura de la piedra*/
+    /*Aca habria que cargar la textura de la piedra
+        map<string, Texture*>::iterator it;
+        it = textures.find("piedras");
+        Texture* tex = it->second;
+        piedra->setTexture(tex);
+    */
     piedra->setBackgroundColor(80, 80, 0);
     piedra->setIndexZ(99);
     stageActual->addSprite("piedras", piedra);

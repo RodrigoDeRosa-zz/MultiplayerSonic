@@ -170,6 +170,9 @@ void* f_view(void* arg){
         if(message->ping == PLAYER_UPDATE){
         	self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
+        } else if (message->ping == COIN_UPDATE){
+            printf("Updating coin!\n");
+            self->getJuego()->updateStage("monedas", message->id, message->posX, message->posY);
         }
         //renderizar
 		self->updatePlayers();

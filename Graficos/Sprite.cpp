@@ -33,7 +33,6 @@ Sprite::~Sprite(){
 }
 
 void Sprite::update(float new_x, float new_y){
-
     originX = new_x;
     originY = new_y;
 }

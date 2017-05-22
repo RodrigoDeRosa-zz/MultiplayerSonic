@@ -71,6 +71,26 @@ void avisarEmpiezaJuego(char* outState){
     SERVER().queueOutEvent(spikeInfo);
     usleep(1000);
 
+    char* coinInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = COIN_SET;
+    state->id = 0; //id del pinche
+    state->posX = 500;
+    state->posY = 180;
+    memcpy(coinInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(coinInfo);
+    usleep(1000);
+
+    char* coin2Info = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = COIN_SET;
+    state->id = 1; //id del pinche
+    state->posX = 200;
+    state->posY = 180;
+    memcpy(coin2Info, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(coin2Info);
+    usleep(1000);
+
     char* startMessage = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_START;
@@ -302,8 +322,22 @@ void* inEventsHandle(void* arg){
 
 void* outStatesHandle(void* arg){
     Control* gameControl = (Control*) arg;
-
+    int k = 0;
     while(SERVER().is_running()){
+        k++;
+        if (k == 1000){
+            printf("K == 1000\n");
+            out_message_t* state = new out_message_t;
+            memset(state, 0, sizeof(out_message_t));
+            state->ping = COIN_UPDATE;
+            state->id = 0;
+            state->posX = 102;
+            state->posY = 100;
+            char* outMessage = new char[sizeof(out_message_t)];
+            memcpy(outMessage, state, sizeof(out_message_t));
+            SERVER().queueOutEvent(outMessage);
+            delete state;
+        }
         /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/
         vector<out_message_t*> states = gameControl->getStatus();
         for(int i = 0; i < states.size(); i++){

@@ -126,7 +126,6 @@ void Model::colisionarTodos(){
 			if(((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0))
 				||
 				((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() + 118 <= ((*players)[i]->getX()))){
-				printf("colision\n");
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
 
