@@ -61,6 +61,13 @@ void* initGame(void *arg){
             Jugadores* jugs = new Jugadores();
             juego->setJugadores(jugs);
             juego->setFactory();
+            juego->addSpriteGroup("piedras");
+            juego->addSpriteGroup("cangrejos");
+            juego->addSpriteGroup("monedas");
+            juego->addSpriteGroup("moscas");
+            juego->addSpriteGroup("peces");
+            juego->addSpriteGroup("pinches");
+            juego->addSpriteGroup("bonus");
 
             client->addJuego(juego);
         } else if (message->ping == GAME_START){
@@ -73,8 +80,22 @@ void* initGame(void *arg){
                 client->getJuego()->addJugador(SSTR(i), "sonic");
             }
         } else if (message->ping == ROCK_SET){
-            client->getJuego()->updateStage("piedras", message->id, message->posX, message->posY);
+            client->getJuego()->addPiedra(message->posX, message->posY);
+        } else if (message->ping == SPIKE_SET){
+            client->getJuego()->addPinche(message->posX, message->posY);
+        } else if (message->ping == COIN_SET){
+            client->getJuego()->addMoneda(message->posX, message->posY);
+        } else if (message->ping == BONUS_SET){
+            client->getJuego()->addBonus(message->posX, message->posY);
+        } else if (message->ping == CRAB_SET){
+            client->getJuego()->addCangrejo(message->posX, message->posY);
+        } else if (message->ping == FLY_SET){
+            client->getJuego()->addMosca(message->posX, message->posY);
+        } else if (message->ping == FISH_SET){
+            client->getJuego()->addPez(message->posX, message->posY);
         }
+
+        delete message;
     }
 
    	/*Maneja la vista del jugador*/

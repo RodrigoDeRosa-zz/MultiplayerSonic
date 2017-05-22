@@ -1,7 +1,7 @@
 #ifndef CANGREJO_HPP
 #define CANGREJO_HPP
 
-#include "MovingBloque.hpp"
+#include "../MovingBloque.hpp"
 
 class Cangrejo: public MovingBloque{
     public:

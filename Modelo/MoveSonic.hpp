@@ -51,7 +51,7 @@ class MoveSonic{
         void update(float, float);
         bool estaSaltando();
 		bool estaAgachado();
-		
+
         int getX();
         int getY();
 
@@ -60,6 +60,7 @@ class MoveSonic{
 
         void setPosicionInicio();
         void setX(float);
+        void setY(float);
 };
 
 #endif //TALLERSONIC_MOVESONIC_HPP

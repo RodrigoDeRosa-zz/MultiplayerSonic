@@ -89,17 +89,14 @@ void Stage::render(Camara* camara){
     }
 }
 
-/*Viejo*/
-void Stage::setSpriteGroup(SpriteGroup* group){
-    sprites = group;
-}
 /*Nuevo*/
 void Stage::addSpriteGroup(string key, SpriteGroup* group){
     spriteGroups.insert(make_pair(key, group));
 }
-/*Viejo*/
-void Stage::addSprite(Sprite* sprite){
-    sprites->add(sprite);
+/*Nuevo v0.2*/
+void Stage::addSpriteGroup(string key){
+    SpriteGroup* group = new SpriteGroup();
+    spriteGroups.insert(make_pair(key, group));
 }
 
 SpriteGroup* Stage::getSpriteGroup(string groupKey){

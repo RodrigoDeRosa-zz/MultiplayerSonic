@@ -1,7 +1,7 @@
 #ifndef MONEDA_HPP
 #define MONEDA_HPP
 
-#include "MovingBloque.hpp"
+#include "../MovingBloque.hpp"
 
 class Moneda: public MovingBloque{
     public:

@@ -1,6 +1,13 @@
 #include "Juego.hpp"
 #include "../logger/current/Logger2.hpp"
 #include "SegaFactory.hpp"
+#include "Entidades/Piedra.hpp"
+#include "Entidades/Pinche.hpp"
+#include "Entidades/Moneda.hpp"
+#include "Entidades/Bonus.hpp"
+#include "Entidades/Cangrejo.hpp"
+#include "Entidades/Mosca.hpp"
+#include "Entidades/Pez.hpp"
 
 /*get sonic privada
  en jugadores que se cree un personaje generico*/
@@ -61,6 +68,76 @@ void Juego::nextStage(){
 
 void Juego::updateStage(string groupKey, int index, float x, float y){
     stageActual->updateSprite(groupKey, index, x, y);
+}
+
+void Juego::addSpriteGroup(string groupKey){
+    stageActual->addSpriteGroup(groupKey);
+}
+
+void Juego::addSprite(string groupKey, Sprite* sprite){
+    stageActual->addSprite(groupKey, sprite);
+}
+
+void Juego::addPiedra(float x, float y){
+    Piedra* piedra = new Piedra(x, y);
+    /*Aca habria que cargar la textura de la piedra*/
+    piedra->setBackgroundColor(80, 80, 0);
+    piedra->setIndexZ(99);
+    stageActual->addSprite("piedras", piedra);
+}
+
+/*Agrega pinches en las posiciones dadas*/
+void Juego::addPinche(float x, float y){
+    Pinche* pinche = new Pinche(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    pinche->setBackgroundColor(0, 0, 0);
+    pinche->setIndexZ(99);
+    stageActual->addSprite("pinches", pinche);
+}
+
+/*Agrega una moneda en las posiciones dadas*/
+void Juego::addMoneda(float x, float y){
+    Moneda* moneda = new Moneda(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    moneda->setBackgroundColor(200, 200, 0);
+    moneda->setIndexZ(99);
+    stageActual->addSprite("monedas", moneda);
+}
+
+/*Agrega un bonus en las posiciones dadas*/
+void Juego::addBonus(float x, float y){
+    Bonus* bonus = new Bonus(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    bonus->setBackgroundColor(80, 80, 80);
+    bonus->setIndexZ(99);
+    stageActual->addSprite("bonus", bonus);
+}
+
+/*Agrega un pez en las posiciones dadas*/
+void Juego::addPez(float x, float y){
+    Pez* pez = new Pez(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    pez->setBackgroundColor(255, 0, 0);
+    pez->setIndexZ(99);
+    stageActual->addSprite("peces", pez);
+}
+
+/*Agrega un cangrejo en las posiciones dadas*/
+void Juego::addCangrejo(float x, float y){
+    Cangrejo* cangrejo = new Cangrejo(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    cangrejo->setBackgroundColor(0, 250, 0);
+    cangrejo->setIndexZ(99);
+    stageActual->addSprite("cangrejos", cangrejo);
+}
+
+/*Agrega un pajaro en las posiciones dadas*/
+void Juego::addMosca(float x, float y){
+    Mosca* mosca = new Mosca(x, y);
+    /*Aca habria que cargarle la textura de pinche*/
+    mosca->setBackgroundColor(0, 0, 250);
+    mosca->setIndexZ(99);
+    stageActual->addSprite("moscas", mosca);
 }
 
 void Juego::setJugadores(Jugadores* jugs){

@@ -43,7 +43,7 @@ void SpriteGroup::render(Camara* camara){
     if (!sprites.empty()) {
         std::sort(sprites.begin(), sprites.end(), order());
         for (int i = 0; i < (int)sprites.size(); i++) {
-            	sprites[i]->render(camara);
+            sprites[i]->render(camara);
         }
     }
 }

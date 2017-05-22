@@ -32,7 +32,7 @@ class Juego{
     /*Carga como stage actual al proximo stage de la lista*/
     void nextStage();
 
-    bool addJugador(string nombreJugador, string ombrePersonaje);
+    bool addJugador(string nombreJugador, string nombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
     void render();
     void setFactory();
@@ -43,6 +43,25 @@ class Juego{
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStage(string groupKey, int index, float x, float y);
+    /*Agrega un sprite al spriteGroup indicado, en el stage actua*/
+    void addSprite(string groupKey, Sprite* sprite);
+    /*Agrega un spriteGroup en el stage actual*/
+    void addSpriteGroup(string groupKey);
+
+    /*Agrega una piedra en las posiciones dadas*/
+    void addPiedra(float x, float y);
+    /*Agrega pinches en las posiciones dadas*/
+    void addPinche(float x, float y);
+    /*Agrega una moneda en las posiciones dadas*/
+    void addMoneda(float x, float y);
+    /*Agrega un bonus en las posiciones dadas*/
+    void addBonus(float x, float y);
+    /*Agrega un pez en las posiciones dadas*/
+    void addPez(float x, float y);
+    /*Agrega un cangrejo en las posiciones dadas*/
+    void addCangrejo(float x, float y);
+    /*Agrega una mosca en las posiciones dadas*/
+    void addMosca(float x, float y);
 
     ~Juego();
 };

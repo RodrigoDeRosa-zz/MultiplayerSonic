@@ -273,6 +273,9 @@ void MoveSonic::setX(float new_x){
     originX = new_x;
 }
 
+void MoveSonic::setY(float new_y){
+    originY = new_y;
+}
 
 
 void MoveSonic::crouch(){

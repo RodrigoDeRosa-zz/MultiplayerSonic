@@ -1,7 +1,7 @@
 #ifndef PEZ_HPP
 #define PEZ_HPP
 
-#include "MovingBloque.hpp"
+#include "../MovingBloque.hpp"
 
 class Pez: public MovingBloque{
     public:

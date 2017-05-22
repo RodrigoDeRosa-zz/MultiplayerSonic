@@ -1,7 +1,7 @@
 #ifndef BONUS_HPP
 #define BONUS_HPP
 
-#include "../Graficos/Bloque.hpp"
+#include "../../Graficos/Bloque.hpp"
 
 class Bonus: public Bloque{
     public:

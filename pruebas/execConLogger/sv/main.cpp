@@ -29,34 +29,54 @@ using namespace std;
 void avisarEmpiezaJuego(char* outState){
     out_message_t* state = new out_message_t;
 
+    char* message = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_SET;
-    memcpy(outState, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(outState);
-    usleep(5000);
+    memcpy(message, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(message);
+    usleep(1000);
 
+    char* playerSetting = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
-	state->ping = PLAYER_SET;
-	state->id = CXM().actualConnections;
-	//el resto de los atributos del estado no importan
-    memcpy(outState, state, sizeof(out_message_t));
-	SERVER().queueOutEvent(outState);
-    usleep(5000);
+    state->ping = PLAYER_SET;
+    state->id = CXM().actualConnections;
+    //el resto de los atributos del estado no importan
+    memcpy(playerSetting, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(playerSetting);
+    usleep(1000);
 
-    /*memset(state, 0, sizeof(out_message_t));
+    /*Para cada roca del nivel, se envia un mensaje con su informacion.
+    Falta hacer lo mismo para todas las entidades de todo tipo*/
+    /*
+    for (int i = 0; i < control->cantidadRocas; i++){
+    }
+    */
+    char* rockInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
     state->ping = ROCK_SET;
     state->id = 0; //id de la piedra
-    state->posX = 400.0;
-    state->posY = 100.0;
-    memcpy(outState, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(outState);
-    sleep(5000);*/
+    state->posX = 500;
+    state->posY = 298;
+    memcpy(rockInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(rockInfo);
+    usleep(1000);
 
+    char* spikeInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = SPIKE_SET;
+    state->id = 0; //id del pinche
+    state->posX = 100;
+    state->posY = 380;
+    memcpy(spikeInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(spikeInfo);
+    usleep(1000);
+
+    char* startMessage = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_START;
-    memcpy(outState, state, sizeof(out_message_t));
+    memcpy(startMessage, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(startMessage);
     delete state;
-    SERVER().queueOutEvent(outState);
 }
 
 void* accept(void* arg){
@@ -87,34 +107,42 @@ void* accept(void* arg){
         if (SERVER().is_running() && has_started){
             out_message_t* state = new out_message_t;
             char* message = new char[sizeof(out_message_t)];
-
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_SET;
             memcpy(message, state, sizeof(out_message_t));
             connection->sendMessage(message, sizeof(out_message_t));
-            usleep(5000);
+            usleep(1000);
 
+            char* playerSetting = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
         	state->ping = PLAYER_SET;
         	state->id = CXM().actualConnections;
         	//el resto de los atributos del estado no importan
-            memcpy(message, state, sizeof(out_message_t));
-            connection->sendMessage(message, sizeof(out_message_t));
-            usleep(5000);
+            memcpy(playerSetting, state, sizeof(out_message_t));
+            connection->sendMessage(playerSetting, sizeof(out_message_t));
+            usleep(1000);
 
-            /*memset(state, 0, sizeof(out_message_t));
+            /*Para cada roca del nivel, se envia un mensaje con su informacion.
+            Falta hacer lo mismo para todas las entidades de todo tipo*/
+            /*
+            for (int i = 0; i < control->cantidadRocas; i++){
+            }
+            */
+            char* rockInfo = new char[sizeof(out_message_t)];
+            memset(state, 0, sizeof(out_message_t));
             state->ping = ROCK_SET;
             state->id = 0; //id de la piedra
-            state->posX = 400.0;
-            state->posY = 100.0;
-            memcpy(outState, state, sizeof(out_message_t));
-            SERVER().queueOutEvent(outState);
-            sleep(5000);*/
+            state->posX = 500;
+            state->posY = 220;
+            memcpy(rockInfo, state, sizeof(out_message_t));
+            connection->sendMessage(rockInfo, sizeof(out_message_t));
+            usleep(1000);
 
+            char* startMessage = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_START;
-            memcpy(message, state, sizeof(out_message_t));
-            connection->sendMessage(message, sizeof(out_message_t));
+            memcpy(startMessage, state, sizeof(out_message_t));
+            connection->sendMessage(startMessage, sizeof(out_message_t));
             delete state;
 
             //Ahora se le avisa al servidor que cierto jugador se reconecto

@@ -28,15 +28,13 @@ class Stage{
         /*Agrega una capa y la define como front o background segun su z-index*/
         void addLayer(Layer*);
 
-        /*Define el sprite group del escenario como el recibido*/
-        void setSpriteGroup(SpriteGroup*); //Viejo
         /*Agrega un grupo de sprites al stage.
          * @param: {string} key que representara el grupo en el mapa de sprites group.
         */
         void addSpriteGroup(string, SpriteGroup*); //Nuevo
+        /*No hace falta recibir el spriteGroup, se crea adentro. SE DEJA LA VIEJA POR LAS DUDAS*/
+        void addSpriteGroup(string);
 
-        /*Agrega el sprite al sprite group*/
-        void addSprite(Sprite*); //Viejo
         /*Agrega el sprite recibido al sprite group que corresponde a la clave
          *pasada en el string.
          */

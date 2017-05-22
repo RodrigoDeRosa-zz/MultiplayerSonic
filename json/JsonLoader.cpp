@@ -2,13 +2,6 @@
 #include <fstream>
 #include "../Graficos/Renderer.hpp"
 #include "../logger/current/Logger2.hpp"
-#include "../Juego/Moneda.hpp"
-#include "../Juego/Bonus.hpp"
-#include "../Juego/Cangrejo.hpp"
-#include "../Juego/Pez.hpp"
-#include "../Juego/Pajaro.hpp"
-#include "../Juego/Piedra.hpp"
-
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
@@ -105,49 +98,6 @@ Stage* JsonLoader::getStage(){
 			i++;
 		}
 	}
-
-    /*
-    SpriteGroup* monedas = new SpriteGroup();
-    Moneda* m1 = new Moneda(10, 300);
-    m1->setBackgroundColor(200, 200, 0);
-    m1->setIndexZ(99);
-    stage->addSpriteGroup("monedas", monedas);
-    stage->addSprite("monedas", m1);
-
-    SpriteGroup* bonus = new SpriteGroup();
-    Bonus* b1 = new Bonus(200, 300);
-    b1->setBackgroundColor(80, 80, 80);
-    b1->setIndexZ(99);
-    stage->addSpriteGroup("bonus", bonus);
-    stage->addSprite("bonus", b1);
-
-    SpriteGroup* peces = new SpriteGroup();
-    Pez* p1 = new Pez(300, 500);
-    p1->setBackgroundColor(255, 0, 0);
-    p1->setIndexZ(99);
-    stage->addSpriteGroup("peces", peces);
-    stage->addSprite("peces", p1);
-
-    SpriteGroup* cangrejos = new SpriteGroup();
-    Cangrejo* c1 = new Cangrejo(240, 400);
-    c1->setBackgroundColor(180, 0, 180);
-    c1->setIndexZ(99);
-    stage->addSpriteGroup("cangrejos", cangrejos);
-    stage->addSprite("cangrejos", c1);
-
-    SpriteGroup* pajaros = new SpriteGroup();
-    Pajaro* pj1 = new Pajaro(70, 150);
-    pj1->setBackgroundColor(0, 0, 180);
-    pj1->setIndexZ(99);
-    stage->addSpriteGroup("pajaros", pajaros);
-    stage->addSprite("pajaros", pj1);*/
-
-    SpriteGroup* piedras = new SpriteGroup();
-    Piedra* r1 = new Piedra(500, 220);
-    r1->setBackgroundColor(80, 80, 0);
-    r1->setIndexZ(99);
-    stage->addSpriteGroup("piedras", piedras);
-    stage->addSprite("piedras", r1);
 
     return stage;
 }

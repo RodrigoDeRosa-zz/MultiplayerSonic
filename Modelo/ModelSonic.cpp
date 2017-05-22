@@ -57,6 +57,10 @@ void ModelSonic::setX(float new_x){
     bloque_pers->setX(new_x);
 }
 
+void ModelSonic::setY(float new_y){
+    bloque_pers->setY(new_y);
+}
+
 void ModelSonic::moveRight(float vel_x){
     bloque_pers->moveRight(vel_x);
 }
