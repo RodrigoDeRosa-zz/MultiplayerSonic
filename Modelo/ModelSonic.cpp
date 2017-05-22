@@ -40,7 +40,7 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
         moveLeft(vel_x);}
 
         //si no se movio para ningun seteamos las velocidades y frames a 0
-    else{
+    else{//MARTIN: creo que por esta cosa nunca llega a frenar, soltas las teclas e impone el IDLE
         bloque_pers->setPosicionInicio();
     }
 
