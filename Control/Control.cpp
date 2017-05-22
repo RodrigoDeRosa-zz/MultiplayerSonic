@@ -90,7 +90,7 @@ vector<float> Control::getPlayerPosition(string playerName){
 	return this->model->getPlayerPosition(playerName);
 }
 
-void setOutMessage(out_message_t* message,char ping,int id,bool connection,int frame,move_type move,float posX,float posY,float camPos){
+void setOutMessage(out_message_t* message, message_type ping,int id,bool connection,int frame,move_type move,float posX,float posY,float camPos){
 	message->ping = ping;
 	message->id = id;
 	message->connection = connection;
@@ -118,6 +118,7 @@ void Control::update(){
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
 		this->moveCameraAndPlayer(players[i],directions);
 	}
+    this->model->colisionarTodos();
 }
 
 vector<out_message_t*> Control::getStatus(){
@@ -136,7 +137,7 @@ vector<out_message_t*> Control::getStatus(){
             }
         }
         k = 0;
-		setOutMessage(message,0,atoi(players[i].c_str()),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
+		setOutMessage(message,PLAYER_UPDATE,atoi(players[i].c_str()),this->model->playerIsConnected(players[i]),this->model->getPlayerFrame(players[i]),this->model->getPlayerMovement(players[i]),
 						playerPosition[0],playerPosition[1],this->getCameraPosition());
 		v.push_back(message);
 	}

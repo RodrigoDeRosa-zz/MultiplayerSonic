@@ -143,7 +143,7 @@ Stage* JsonLoader::getStage(){
     stage->addSprite("pajaros", pj1);*/
 
     SpriteGroup* piedras = new SpriteGroup();
-    Piedra* r1 = new Piedra(70, 300);
+    Piedra* r1 = new Piedra(500, 220);
     r1->setBackgroundColor(80, 80, 0);
     r1->setIndexZ(99);
     stage->addSpriteGroup("piedras", piedras);

@@ -36,7 +36,7 @@ void* ping(void* arg){
     Connection* connection = (Connection*) arg;
 
     out_message_t message;
-    message.ping = 1;
+    message.ping = PINGO;
     bool status;
     while(connection->isOnline()){
         usleep(PING_UTIME);
@@ -130,11 +130,11 @@ Connection::~Connection(){
 
 void Connection::disconnect(int from){
     //printf("Disconnected from %d\n", from);
-    if (online){ 
+    if (online){
 		printf("Client %d disconnected.\n", id); //LOGGEAR
 		char* logmsg = new char[40];
 		sprintf(logmsg,"Client %d disconnected.", id);
-		LOGGER().log(string(logmsg),BAJO);	
+		LOGGER().log(string(logmsg),BAJO);
 	}
     if (online) CXManager::getInstance().removeConnection(id);
     online = false;

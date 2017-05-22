@@ -104,7 +104,7 @@ void* receiveMessage(void* arg){
         memcpy(message, receivedMessage, sizeof(out_message_t));
 
         client->pings++;
-        if (message->ping == 1){
+        if (message->ping == PINGO){
             continue; //El mensaje recibido solo era un ping del server
         }
 

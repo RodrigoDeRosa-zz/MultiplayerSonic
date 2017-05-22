@@ -46,7 +46,8 @@ void* initGame(void *arg){
         if (!message){
             usleep(1000);
             continue;
-        } else if (message->ping == 2){
+        }
+        if (message->ping == GAME_SET) {
             printf("Iniciando juego.\n"); //NO LOGGEAR
             SDLHandler::getInstance().init();
 
@@ -62,15 +63,18 @@ void* initGame(void *arg){
             juego->setFactory();
 
             client->addJuego(juego);
-
-			for (int i = 0; i < message->id; i++){
-				client->addPlayer();
-				client->getJuego()->addJugador(SSTR(i), "sonic");
-			}
-			client->startGame();
-			break;
-		}
-        delete message;
+        } else if (message->ping == GAME_START){
+            client->startGame();
+            delete message;
+            break;
+        } else if (message->ping == PLAYER_SET){
+            for (int i = 0; i < message->id; i++){
+                client->addPlayer();
+                client->getJuego()->addJugador(SSTR(i), "sonic");
+            }
+        } else if (message->ping == ROCK_SET){
+            client->getJuego()->updateStage("piedras", message->id, message->posX, message->posY);
+        }
     }
 
    	/*Maneja la vista del jugador*/
@@ -142,7 +146,7 @@ void* f_view(void* arg){
             usleep(2000);
             continue;
         }
-        if(message->ping == 0){
+        if(message->ping == PLAYER_UPDATE){
         	self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
         }

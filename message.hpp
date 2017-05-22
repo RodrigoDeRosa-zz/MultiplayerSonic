@@ -4,18 +4,19 @@
 //KEY_TOTAL se devuelve en caso que la cola este vacia
 enum key_event {PING, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN, SPACE_UP, SPACE_DOWN, QUIT, RECONNECTION, KEY_TOTAL};
 enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, WAITD, WAITI, BRAKED, BRAKEI, BALLD, BALLI, DMGD, DMGI, CROUCHD, CROUCHI, MOVE_TOTAL};
+enum message_type{PINGO, GAME_SET, GAME_START, PLAYER_UPDATE, PLAYER_SET, ROCK_SET, SPIKE_SET, COIN_UPDATE, BONUS_UPDATE, FISH_UPDATE, FLY_UPDATE, CRAB_UPDATE, MESSAGE_TOTAL};
 //IDLE es parado
 //JUMP es saltando
 //RUN es corriendo
 //WALK es caminando
 //WAIT es cuando te apura porque estuvo esperando (no es un caso particular de IDLE?)
 //BRAKE es cuando venia corriendo y frena
-//BALL es la bolita 
+//BALL es la bolita
 //DMG es cuando lo lastiman
 //CROUCH es agachado
 
 typedef struct out_message{
-	char ping; //En 1 indica que el mensaje es un ping del servidor
+	message_type ping; //En 1 indica que el mensaje es un ping del servidor
 	int id;
 	bool connection;
 	float posX;

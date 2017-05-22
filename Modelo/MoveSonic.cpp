@@ -10,6 +10,8 @@
 #define CONTROL_SALTO 0.0001
 #define FACTOR 12
 #define FACTOR_FRENADO 1	//que tan rapido frena (deberia ser 10, pero para que se note que frena)
+#define FACTOR_CHARGES 1
+#define LIM_CHARGE 3
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
@@ -142,14 +144,14 @@ void MoveSonic::moveRight(float vel_x){
     if(tiempoX <= 0.0){
 		if(tiempoX <= -CONTROL_CAMINATA){//estaba corriendo y tiene que frenar
 			//TODO
-			
+
 			tiempoX += CONTROL_MOVIMIENTO*FACTOR_FRENADO;
 			if (tiempoX > 0) tiempoX=0; 		//por las dudas
 			frenarIzquierda();
 			frameLeft++;
     		if( originX < 0 ){originX = 0;}
 			return;
-			
+
 		}
         jumping =false;
         direccion = true;
@@ -176,14 +178,14 @@ void MoveSonic::moveLeft(float vel_x){
     if(tiempoX >= 0.0){
 		if(tiempoX >= CONTROL_CAMINATA){//estaba corriendo y tiene que frenar
 			//TODO
-			
+
 			tiempoX -= CONTROL_MOVIMIENTO*FACTOR_FRENADO;
 			if (tiempoX < 0) tiempoX=0; 		//por las dudas
 			frenarDerecha();
 			frameRight++;
     		if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 			return;
-			
+
 		}
         jumping =false;
         direccion = false;
@@ -307,7 +309,7 @@ void MoveSonic::crouch(){
 
 void MoveSonic::release(){
 	noActionCounter=0;
-	//TODO para que esto ande tiene que estar andando otra funcion que si no hay nada 
+	//TODO para que esto ande tiene que estar andando otra funcion que si no hay nada
 	//apretado igual actualiza la posicion en base a tiempoX y lo va decrementando, en vez
 	//de resetear todo de una!
 	tiempoX = charges * FACTOR_CHARGES;
@@ -321,7 +323,7 @@ void MoveSonic::charge(){
 	noActionCounter=0;
 	if (charges > LIM_CHARGE){
 		charges = LIM_CHARGE;
-		return;	
+		return;
 	}
 	charges++;
 }
@@ -337,14 +339,14 @@ void MoveSonic::frenarDerecha(){
         frameActual=BRAKE_ANIMATION_FRAMES-2;//se queda en la anteultima
 		cambiarFrameActual = false;
     }
-    if (cambiarFrameActual){   
+    if (cambiarFrameActual){
 		frameActual = (frameRight/BRAKE_ANIMATION_FRAMES);
 	}
     moveActual = BRAKED;
 	if (frameActual == BRAKE_ANIMATION_FRAMES-1){//la de darse vuelta, no avanza
 			return;
 	}
-	float vel = (float) frameActual / -10.0;//NUMERO MAGICO PARA QUE DE 0,0.1,0.2 o 0.3 
+	float vel = (float) frameActual / -10.0;//NUMERO MAGICO PARA QUE DE 0,0.1,0.2 o 0.3
 	vel+=VELOCIDAD;
 	originX += vel;//originX += (VEL_CAMINAR - frameActual/10) ; esto es .35,.25,.15 y .05
 }
@@ -367,7 +369,7 @@ void MoveSonic::frenarIzquierda(){
 	if (frameActual == BRAKE_ANIMATION_FRAMES-1){//la de darse vuelta, no avanza
 			return;
 	}
-	float vel = (float) frameActual / 10.0;//NUMERO MAGICO PARA QUE DE 0,0.1,0.2 o 0.3 
+	float vel = (float) frameActual / 10.0;//NUMERO MAGICO PARA QUE DE 0,0.1,0.2 o 0.3
 	vel-=VELOCIDAD;
 	originX += vel;//originX += (-VEL_CAMINAR + frameActual/10) ; esto es -.35,-.25,-.15 y -.05
 }
