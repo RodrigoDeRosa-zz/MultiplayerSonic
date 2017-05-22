@@ -1,9 +1,9 @@
 #ifndef MONEDA_HPP
 #define MONEDA_HPP
 
-#include "../Graficos/Bloque.hpp"
+#include "MovingBloque.hpp"
 
-class Moneda: public Bloque{
+class Moneda: public MovingBloque{
     public:
         /*El alto y el ancho son siempre constantes, son defines del cpp*/
         Moneda(float x, float y);

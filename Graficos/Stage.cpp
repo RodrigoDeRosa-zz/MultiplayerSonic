@@ -116,13 +116,19 @@ SpriteGroup* Stage::getSpriteGroup(string groupKey){
 /*Nuevo*/
 void Stage::addSprite(string groupKey, Sprite* sprite){
     SpriteGroup* group = getSpriteGroup(groupKey);
-    if (!group) return;
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
     group->add(sprite); //Se añade el sprite
 }
 
 void Stage::updateSprite(string groupKey, int index, float x, float y){
     SpriteGroup* group = getSpriteGroup(groupKey);
-    if (!group) return;
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
     group->update(index, x, y); //Le pasa la tarea al grupo.
 }
 

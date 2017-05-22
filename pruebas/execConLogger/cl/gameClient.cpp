@@ -127,14 +127,13 @@ void* keyControl(void* arg){
 
 void* f_view(void* arg){
 	Client* self = (Client*) arg;
-
+    int k = 0;
 	while (self->gameOn()){
 		/*Limpiar pantalla*/
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
 
 		out_message_t* message = self->getEventReceived();
-
         if (!message){
         	//renderizar
         	self->updatePlayers();

@@ -24,7 +24,7 @@ void SpriteGroup::remove(Sprite sprite){
 }
 
 void SpriteGroup::update(int index,float new_x, float new_y){
-    if (index > sprites.size()){
+    if (index >= sprites.size()){
         printf("SpriteGroup::update | index %d fuera de rango!\n", index);
         return;
     }
