@@ -96,3 +96,17 @@ int ModelSonic::getFrame(){
 move_type ModelSonic::getMovement(){
     return bloque_pers->getMovement();
 }
+
+void ModelSonic::crouch(){
+	//if velocidadX!=0 o velocidadY!=0 return
+	this->bloque_pers->crouch();
+}
+
+void ModelSonic::release(){
+	//if charges==0 setPosicionInicio() y return
+	this->bloque_pers->release();
+}
+
+void ModelSonic::charge(){
+	this->bloque_pers->charge();
+}

@@ -42,6 +42,10 @@ class Player{
 
 		void cargarMapCollitionBoxes();
 
+		void crouch();
+		void charge();
+		void release();
+
 	/* ACA TENEMOS QUE DEFINIR UNA FUNCION QUE SEA:
 	 * void afectarseCon( entidad );
 	 * Lo que hace esta funcion es calcular la colision

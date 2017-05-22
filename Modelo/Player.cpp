@@ -173,3 +173,17 @@ void Player::afectarseCon(Entidad* entidad){
         entidad->afectarA(this);;
     }
 }
+
+void Player::crouch(){
+	this->sonic->crouch();
+}
+
+void Player::charge(){
+	this->sonic->charge();
+}
+
+void Player::release(){
+	this->sonic->release();
+}
+
+

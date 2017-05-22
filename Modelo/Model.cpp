@@ -134,3 +134,18 @@ void Model::colisionarTodos(){
 		}
 	}
 }
+
+void Model::playerCrouch(string playerName){
+	Player* player = this->getPlayer(playerName);
+	player->crouch();
+}
+
+void Model::playerCharge(string playerName){
+	Player* player = this->getPlayer(playerName);
+	player->charge();
+}
+
+void Model::playerRelease(string playerName){
+	Player* player = this->getPlayer(playerName);
+	player->release();
+}

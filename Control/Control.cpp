@@ -15,6 +15,7 @@ Control::Control(){
 	this->model = new Model();
 	this->cameraControl = new CameraControl(1200,3600); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
+	space_was_down=false;
 }
 
 void Control::addPlayer(string playerName){
@@ -103,6 +104,26 @@ void setOutMessage(out_message_t* message, message_type ping,int id,bool connect
 
 void Control::handleInMessage(in_message_t* ev){
 	string playerName = SSTR(ev->id);
+	move_type movement = this->model->getPlayerMovement(playerName);
+	if((movement == CROUCHD) || (movement == CROUCHI)){
+		if(ev->key == SPACE_DOWN && !this->space_was_down) {
+			this->model->playerCharge(playerName);
+			this->space_was_down = true;
+		}
+		else if(ev->key == SPACE_UP && this->space_was_down){
+			this->model->playerRelease(playerName);
+			this->space_was_down = false;
+		}
+		else if(ev->key == DOWN_UP) this->model->playerRelease(playerName);
+		return;
+	}
+	if((movement == IDLED) || (movement == IDLEI)){
+		if(ev->key == DOWN_DOWN) {
+			this->model->playerCrouch(playerName);
+			return;
+		}
+	}
+	
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 	//muevo el jugador y la camara con las direcciones obtenidas
