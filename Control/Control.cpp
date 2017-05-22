@@ -117,9 +117,9 @@ void Control::handleInMessage(in_message_t* ev){
 		else if(ev->key == DOWN_UP) this->model->playerRelease(playerName);
 		return;
 	}
-	if(((movement == IDLED) || (movement == IDLEI)){
+	if((movement == IDLED) || (movement == IDLEI)){
 		if(ev->key == DOWN_DOWN) {
-			this->model->playerCrouch();
+			this->model->playerCrouch(playerName);
 			return;
 		}
 	}

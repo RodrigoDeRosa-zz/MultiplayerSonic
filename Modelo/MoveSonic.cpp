@@ -10,11 +10,8 @@
 #define CONTROL_SALTO 0.0001
 #define FACTOR 12
 #define FACTOR_FRENADO 1	//que tan rapido frena (deberia ser 10, pero para que se note que frena)
-<<<<<<< HEAD
+
 #define FACTOR_CHARGES	1
-=======
-#define FACTOR_CHARGES 1
->>>>>>> d036a3025d2155763aecb0d1f841dd6bae328f41
 #define LIM_CHARGE 3
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
