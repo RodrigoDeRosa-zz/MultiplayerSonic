@@ -27,15 +27,36 @@ using namespace std;
 #define ACCEPT_TIMEOUT 1
 
 void avisarEmpiezaJuego(char* outState){
-	out_message_t* state = new out_message_t;
+    out_message_t* state = new out_message_t;
 
     memset(state, 0, sizeof(out_message_t));
-	state->ping=2;
-	state->id=CXM().actualConnections;
+    state->ping = GAME_SET;
+    memcpy(outState, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(outState);
+    usleep(5000);
+
+    memset(state, 0, sizeof(out_message_t));
+	state->ping = PLAYER_SET;
+	state->id = CXM().actualConnections;
 	//el resto de los atributos del estado no importan
     memcpy(outState, state, sizeof(out_message_t));
-    delete state;
 	SERVER().queueOutEvent(outState);
+    usleep(5000);
+
+    /*memset(state, 0, sizeof(out_message_t));
+    state->ping = ROCK_SET;
+    state->id = 0; //id de la piedra
+    state->posX = 400.0;
+    state->posY = 100.0;
+    memcpy(outState, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(outState);
+    sleep(5000);*/
+
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = GAME_START;
+    memcpy(outState, state, sizeof(out_message_t));
+    delete state;
+    SERVER().queueOutEvent(outState);
 }
 
 void* accept(void* arg){
@@ -64,16 +85,38 @@ void* accept(void* arg){
 		}
         /*Esto se da cuando se desconecta alguien y otra persona toma su lugar*/
         if (SERVER().is_running() && has_started){
-            out_message_t* connectMsg = new out_message_t;
-            memset(connectMsg, 0, sizeof(out_message_t));
-            connectMsg->ping = 2;
-            connectMsg->id = CXM().maxConnections; //Aca aunque en gris, estan todos!
-            //Se le avisa que arranque, y con cuantos jugadores
+            out_message_t* state = new out_message_t;
             char* message = new char[sizeof(out_message_t)];
-            memcpy(message, connectMsg, sizeof(out_message_t));
-            delete connectMsg; //Ya no se necesita
 
+            memset(state, 0, sizeof(out_message_t));
+            state->ping = GAME_SET;
+            memcpy(message, state, sizeof(out_message_t));
             connection->sendMessage(message, sizeof(out_message_t));
+            usleep(5000);
+
+            memset(state, 0, sizeof(out_message_t));
+        	state->ping = PLAYER_SET;
+        	state->id = CXM().actualConnections;
+        	//el resto de los atributos del estado no importan
+            memcpy(message, state, sizeof(out_message_t));
+            connection->sendMessage(message, sizeof(out_message_t));
+            usleep(5000);
+
+            /*memset(state, 0, sizeof(out_message_t));
+            state->ping = ROCK_SET;
+            state->id = 0; //id de la piedra
+            state->posX = 400.0;
+            state->posY = 100.0;
+            memcpy(outState, state, sizeof(out_message_t));
+            SERVER().queueOutEvent(outState);
+            sleep(5000);*/
+
+            memset(state, 0, sizeof(out_message_t));
+            state->ping = GAME_START;
+            memcpy(message, state, sizeof(out_message_t));
+            connection->sendMessage(message, sizeof(out_message_t));
+            delete state;
+
             //Ahora se le avisa al servidor que cierto jugador se reconecto
             control->setPlayerConnection(SSTR_(connection->id), true);
         }

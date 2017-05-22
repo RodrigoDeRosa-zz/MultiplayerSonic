@@ -1,9 +1,11 @@
 #include "Model.hpp"
-
+#include "Entidades/Piedra.hpp"
 
 Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
+	Piedra* piedra = new Piedra(500, 220, 200, 200);
+	entidades->push_back(piedra);
 }
 
 void Model::addPlayer(string playerName){
@@ -119,7 +121,12 @@ bool Model::playerIsConnected(string playerName){
 void Model::colisionarTodos(){
 	for(int i = 0; i < (players)->size(); i++){
 		for(int j = 0; j < (entidades)->size(); j++){
-			(*players)[i]->afectarseCon((*entidades)[j]);
+
+			if(((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0)) ){
+				(*players)[i]->afectarseCon((*entidades)[j]);
+			}
+
+
 		}
 	}
 }
