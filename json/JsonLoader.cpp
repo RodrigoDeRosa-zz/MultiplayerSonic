@@ -2,6 +2,11 @@
 #include <fstream>
 #include "../Graficos/Renderer.hpp"
 #include "../logger/current/Logger2.hpp"
+#include "../Juego/Moneda.hpp"
+#include "../Juego/Bonus.hpp"
+#include "../Juego/Cangrejo.hpp"
+#include "../Juego/Pez.hpp"
+#include "../Juego/Pajaro.hpp"
 
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
@@ -100,10 +105,44 @@ Stage* JsonLoader::getStage(){
 		}
 	}
 
-    SpriteGroup* activeSprites = this->getSprites((this->json));
-
+    //SpriteGroup* activeSprites = this->getSprites((this->json));
     //stage->setSpriteGroup(activeSprites);
-    stage->addSpriteGroup("active", activeSprites);
+    //stage->addSpriteGroup("active", activeSprites);
+
+    SpriteGroup* monedas = new SpriteGroup();
+    Moneda* m1 = new Moneda(10, 300);
+    m1->setBackgroundColor(200, 200, 0);
+    m1->setIndexZ(99);
+    monedas->add(m1);
+    stage->addSpriteGroup("monedas", monedas);
+
+    SpriteGroup* bonus = new SpriteGroup();
+    Bonus* b1 = new Bonus(200, 300);
+    b1->setBackgroundColor(80, 80, 80);
+    b1->setIndexZ(99);
+    bonus->add(b1);
+    stage->addSpriteGroup("bonus", bonus);
+
+    SpriteGroup* peces = new SpriteGroup();
+    Pez* p1 = new Pez(300, 500);
+    p1->setBackgroundColor(255, 0, 0);
+    p1->setIndexZ(99);
+    peces->add(p1);
+    stage->addSpriteGroup("peces", peces);
+
+    SpriteGroup* cangrejos = new SpriteGroup();
+    Cangrejo* c1 = new Cangrejo(240, 400);
+    c1->setBackgroundColor(180, 0, 180);
+    c1->setIndexZ(99);
+    cangrejos->add(c1);
+    stage->addSpriteGroup("cagrejos", cangrejos);
+
+    SpriteGroup* pajaros = new SpriteGroup();
+    Pajaro* pj1 = new Pajaro(70, 150);
+    pj1->setBackgroundColor(0, 0, 180);
+    pj1->setIndexZ(99);
+    pajaros->add(pj1);
+    stage->addSpriteGroup("pajaros", pajaros);
 
     return stage;
 }
