@@ -60,6 +60,7 @@ void Juego::nextStage(){
 }
 
 void Juego::updateStage(string groupKey, int index, float x, float y){
+    printf("Juego::updateStage\n");
     stageActual->updateSprite(groupKey, index, x, y);
 }
 
