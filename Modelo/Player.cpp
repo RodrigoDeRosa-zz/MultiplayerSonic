@@ -168,11 +168,9 @@ void Player::afectarseCon(Entidad* entidad){
 
     //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
     if (colisionX && contactoY){
-        printf("colision y\n");
         entidad->afectarA(this);
     }
     else if(colisionY && contactoX){
-        printf("colision x\n");
         entidad->afectarA(this);;
     }
 }

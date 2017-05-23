@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/cl/mainClient" afterPath="$PROJECT_DIR$/pruebas/execConLogger/cl/mainClient" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" afterPath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp" afterPath="$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Model.cpp" afterPath="$PROJECT_DIR$/Modelo/Model.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Model.hpp" afterPath="$PROJECT_DIR$/Modelo/Model.hpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Player.cpp" afterPath="$PROJECT_DIR$/Modelo/Player.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/sv/main.cpp" afterPath="$PROJECT_DIR$/pruebas/execConLogger/sv/main.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -93,8 +87,8 @@
       <file leaf-file-name="Player.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="170" column="26" lean-forward="false" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
+            <state relative-caret-position="569">
+              <caret line="172" column="36" lean-forward="false" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -655,7 +649,7 @@
       <workItem from="1495048196190" duration="5053000" />
       <workItem from="1495282410336" duration="7188000" />
       <workItem from="1495388061109" duration="4322000" />
-      <workItem from="1495544200285" duration="5532000" />
+      <workItem from="1495544200285" duration="5557000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -972,11 +966,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495293290539</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="cambio en colisiones">
+      <created>1495551631370</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1495551631370</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79948000" />
+    <option name="totallyTimeSpent" value="79973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1602" height="849" extended-state="6" />
@@ -1039,7 +1040,8 @@
     <MESSAGE value="personaje" />
     <MESSAGE value="MARTIN LA CONCHA DE TU MADRE" />
     <MESSAGE value="USEN ENDIF LA CONCHAS SUYAS" />
-    <option name="LAST_COMMIT_MESSAGE" value="USEN ENDIF LA CONCHAS SUYAS" />
+    <MESSAGE value="cambio en colisiones" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio en colisiones" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1368,8 +1370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="170" column="26" lean-forward="false" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
+        <state relative-caret-position="569">
+          <caret line="172" column="36" lean-forward="false" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
           <folding />
         </state>
       </provider>
