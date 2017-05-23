@@ -13,7 +13,6 @@ Player::Player(string name){
 	this->sonic = sonic;
 	this->setConnected(true);
     this->cargarMapCollitionBoxes();
-    printf("Y inicial: %f\n", this->getY());
 }
 
 string Player::getName(){
