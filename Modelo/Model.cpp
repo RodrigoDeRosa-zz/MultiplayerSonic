@@ -5,7 +5,7 @@
 Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
-	Piedra* piedra = new Piedra(500, 298, 200, 200);
+	Piedra* piedra = new Piedra(500, 298, 122, 122);
 	entidades->push_back(piedra);
 }
 
