@@ -10,6 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/cl/mainClient" afterPath="$PROJECT_DIR$/pruebas/execConLogger/cl/mainClient" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" afterPath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Player.cpp" afterPath="$PROJECT_DIR$/Modelo/Player.cpp" />
     </list>
@@ -38,8 +40,10 @@
         <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="2" selection-end-line="29" selection-end-column="5" />
-              <folding />
+              <caret line="14" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="5" />
+              <folding>
+                <marker date="1495556048304" expanded="true" signature="1353:1357" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +91,8 @@
       <file leaf-file-name="Player.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="172" column="36" lean-forward="false" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
+            <state relative-caret-position="363">
+              <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -295,35 +299,11 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Sprite.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/SpriteGroup.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Stage.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Stage.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Juego.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Juego.hpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Model.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Model.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/ModelSonic.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/ModelSonic.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/MoveSonic.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/MoveSonic.hpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/json/JsonLoader.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/message.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/Level1Front.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/clientCommunication.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/ejemplo.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/gameClient.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/mainClient</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/sv/connection.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/sv/main.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/sv/server.json</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -331,20 +311,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Bonus.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Bonus.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Cangrejo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Cangrejo.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Moneda.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Moneda.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Mosca.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Mosca.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Pez.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Pez.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Piedra.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Piedra.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Pinche.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Pinche.hpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -649,7 +615,7 @@
       <workItem from="1495048196190" duration="5053000" />
       <workItem from="1495282410336" duration="7188000" />
       <workItem from="1495388061109" duration="4322000" />
-      <workItem from="1495544200285" duration="5557000" />
+      <workItem from="1495544200285" duration="8196000" />
     </task>
     <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698857799</created>
@@ -973,11 +939,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495551631370</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="cambio en colisiones">
+      <created>1495551643224</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1495551643224</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79973000" />
+    <option name="totallyTimeSpent" value="82612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1602" height="849" extended-state="6" />
@@ -987,7 +960,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2588076" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50269026" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655826" sideWeight="0.49730977" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32655826" sideWeight="0.49730977" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1355,8 +1328,10 @@
     <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="2" selection-end-line="29" selection-end-column="5" />
-          <folding />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <marker date="1495556048304" expanded="true" signature="1353:1357" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1370,8 +1345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="172" column="36" lean-forward="false" selection-start-line="172" selection-start-column="36" selection-end-line="172" selection-end-column="36" />
+        <state relative-caret-position="363">
+          <caret line="95" column="0" lean-forward="true" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
       </provider>

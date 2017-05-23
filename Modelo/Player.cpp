@@ -79,7 +79,7 @@ void Player::setXY(float x, float y){
 
 float Player::getBordeDer(){
 
-    return this->getX() + (this->collitionBoxes[this->getMovement()][0]);
+    return this->getX() + (105);
 }
 
 float Player::getBordeIzq(){
