@@ -18,7 +18,7 @@ void Piedra::afectarA(Player* jugador){
 		float posicion = jugador->getX();
 		// el jugador venia de la izquierda y se choca con el costado izquierdo de la piedra
 		if(jugador->getDirX() > 0){
-			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq() );
+			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - 5;
 		}
 		// el jugador venia de la derecha sin saltar y se choca con el costado derecho de la piedra
 		else if(jugador->getDirX() < 0 ){
