@@ -5,7 +5,7 @@
 Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
-	Piedra* piedra = new Piedra(500, 220, 200, 200);
+	Piedra* piedra = new Piedra(500, 298, 200, 200);
 	entidades->push_back(piedra);
 }
 
@@ -125,7 +125,7 @@ void Model::colisionarTodos(){
 
 			if(((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0))
 				||
-				((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() + 118 <= ((*players)[i]->getX()))){
+				((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118))){
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
 

@@ -49,7 +49,7 @@ void Player::setX(float x){
 
 void Player::setY(float y){
     // si el jugador viene saltando hago que se detenga
-	if((this->getMovement() == JUMPI) || (this->getMovement() == JUMPD))this->sonic->update(0,0);
+	//if((this->getMovement() == JUMPI) || (this->getMovement() == JUMPD))this->sonic->update(0,0);
     this->sonic->setY(y);
 }
 
@@ -89,12 +89,12 @@ float Player::getBordeIzq(){
 
 float Player::getBordeArriba(){
 
-    return this->getY() + (this->collitionBoxes[this->getMovement()][1]);
+    return this->getY();
 }
 
 float Player::getBordeAbajo(){
 
-    return this->getY();
+    return this->getY()  + (this->collitionBoxes[this->getMovement()][1]);
 }
 
 void Player::cargarMapCollitionBoxes(){
