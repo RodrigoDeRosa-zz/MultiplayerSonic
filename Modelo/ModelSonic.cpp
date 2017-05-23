@@ -110,3 +110,9 @@ void ModelSonic::release(){
 void ModelSonic::charge(){
 	this->bloque_pers->charge();
 }
+
+void ModelSonic::stop(){
+    this->direccionY=0;
+    //this->direccionX=0;
+    this->bloque_pers->setPosicionInicio();
+}

@@ -4,7 +4,7 @@
 
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/
-#define FACTOR_DIFERENCIAL_H 10
+#define FACTOR_DIFERENCIAL_H 20
 
 using namespace std;
 
@@ -13,8 +13,7 @@ Piedra::Piedra(float x, float y, float w, float h) : Entidad(x,y,w,h){}
 void Piedra::afectarA(Player* jugador){
 
 	// el jugador no choca con el borde de arriba
-	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba())){
-		printf("seteo x\n");
+	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
 
 		float posicion = jugador->getX();
 		// el jugador venia de la izquierda y se choca con el costado izquierdo de la piedra
@@ -26,6 +25,7 @@ void Piedra::afectarA(Player* jugador){
 
 	//seteo la y del jugador al borde superior de la piedra(teniendo en cuenta el alto de la imagen)
 	else{
-		jugador->setY(this->getBordeArriba() - /* el alto del frame actual */(jugador->getBordeAbajo() - jugador->getBordeArriba()));
+		float posicion = this->Entidad::getBordeArriba() -  /*el alto del frame actual*/ (jugador->getBordeAbajo() - jugador->getBordeArriba());
+		jugador->setY(posicion);
 	}
 }

@@ -13,6 +13,7 @@ Player::Player(string name){
 	this->sonic = sonic;
 	this->setConnected(true);
     this->cargarMapCollitionBoxes();
+    printf("Y inicial: %f\n", this->getY());
 }
 
 string Player::getName(){
@@ -49,7 +50,7 @@ void Player::setX(float x){
 
 void Player::setY(float y){
     // si el jugador viene saltando hago que se detenga
-	//if((this->getMovement() == JUMPI) || (this->getMovement() == JUMPD))this->sonic->update(0,0);
+    //if((this->getMovement() == JUMPD) || (this->getMovement() == JUMPI)) this->sonic->stop();
     this->sonic->setY(y);
 }
 
@@ -162,8 +163,8 @@ void Player::afectarseCon(Entidad* entidad){
     bool colisionX = ((bordeDerP > bordeIzqE) || (bordeDerE > bordeIzqP));
     bool contactoX = ((bordeDerP >= bordeIzqE) || (bordeDerE >= bordeIzqP));
 
-    bool colisionY = ((bordeArribaP > bordeAbajoE) || (bordeArribaE > bordeAbajoP));
-    bool contactoY = ((bordeArribaP >= bordeAbajoE) || (bordeArribaE >= bordeAbajoP));
+    bool colisionY = ((bordeArribaP < bordeAbajoE) || (bordeArribaE < bordeAbajoP));
+    bool contactoY = ((bordeArribaP <= bordeAbajoE) || (bordeArribaE <= bordeAbajoP));
 
     //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
     if (colisionX && contactoY){

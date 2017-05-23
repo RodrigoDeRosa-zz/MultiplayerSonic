@@ -123,9 +123,11 @@ void Model::colisionarTodos(){
 	for(int i = 0; i < (players)->size(); i++){
 		for(int j = 0; j < (entidades)->size(); j++){
 
-			if(((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0))
+			if((((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0)))
 				||
-				((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118))){
+				(((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118))) 
+				/*||
+				(((*players)[i])->getBordeAbajo() >= (*entidades)[j]->getBordeArriba()) este ultimo chequeo rompe todo pero hay que hacerlo de alguna forma*/){
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
 

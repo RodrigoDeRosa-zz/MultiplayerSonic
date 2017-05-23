@@ -28,6 +28,8 @@ public:
     void update(float,float,float = -1.0, float = -1.0);
     void setX(float);
     void setY(float);
+    // setea direcciones en cero y llama a set posicion inicio
+    void stop();
 
 	void crouch();
 	void release();
