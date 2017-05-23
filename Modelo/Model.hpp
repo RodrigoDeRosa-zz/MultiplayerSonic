@@ -28,6 +28,7 @@ class Model{
 		void playerCharge(string playerName);
 		void playerRelease(string playerName);
 		void colisionarTodos();
+		bool enRango(Entidad* entidad, Player* player);
 };
 
 #endif /*MODEL_HPP*/

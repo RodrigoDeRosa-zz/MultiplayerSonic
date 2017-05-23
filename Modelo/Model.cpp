@@ -119,15 +119,32 @@ bool Model::playerIsConnected(string playerName){
 	return player->isConnected();
 }
 
+bool Model::enRango(Entidad* entidad, Player* player){
+
+//	float centroEnt = entidad->getCentroX();
+//	float centroPlay = player->getCentroX();
+
+	float bordeDerE = entidad->getBordeDer();
+	float bordeIzqE = entidad->getBordeIzq();
+
+	float bordeDerP = player->getBordeDer();
+	float bordeIzqP = player->getBordeIzq();
+
+	return ((bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP));
+
+//	if((((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0)))
+//	   ||
+//	   (((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118)))
+//		/*||
+//        (((*players)[i])->getBordeAbajo() >= (*entidades)[j]->getBordeArriba()) este ultimo chequeo rompe todo pero hay que hacerlo de alguna forma*/){
+//
+}
+
 void Model::colisionarTodos(){
 	for(int i = 0; i < (players)->size(); i++){
 		for(int j = 0; j < (entidades)->size(); j++){
 
-			if((((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0)))
-				||
-				(((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118))) 
-				/*||
-				(((*players)[i])->getBordeAbajo() >= (*entidades)[j]->getBordeArriba()) este ultimo chequeo rompe todo pero hay que hacerlo de alguna forma*/){
+			if (this->enRango((*entidades)[j], (*players)[i])){
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
 

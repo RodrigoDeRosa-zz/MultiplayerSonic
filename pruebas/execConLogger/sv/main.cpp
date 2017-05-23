@@ -326,7 +326,6 @@ void* outStatesHandle(void* arg){
     while(SERVER().is_running()){
         k++;
         if (k == 1000){
-            printf("K == 1000\n");
             out_message_t* state = new out_message_t;
             memset(state, 0, sizeof(out_message_t));
             state->ping = COIN_UPDATE;
