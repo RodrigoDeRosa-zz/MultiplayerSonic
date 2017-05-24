@@ -8,6 +8,7 @@ using namespace std;
 class Model{
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
+	int k;
 	public:
 		Model();
 		void addPlayer(string playerName);
@@ -29,6 +30,7 @@ class Model{
 		void playerRelease(string playerName);
 		void colisionarTodos();
 		bool enRango(Entidad* entidad, Player* player);
+		vector<out_message_t*> getStatus(float camPos);
 };
 
 #endif /*MODEL_HPP*/

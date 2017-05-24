@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ModelSonic.hpp"
 #include "Entidades/Entidad.hpp"
+#include "../message.hpp"
 #include <map>
 #include <vector>
 
@@ -40,26 +41,13 @@ class Player{
 		float getCentroX();
 		float getCentroY();
 
+		out_message_t* getStatus(float camPos);
+
 		void cargarMapCollitionBoxes();
 
 		void crouch();
 		void charge();
 		void release();
-
-	/* ACA TENEMOS QUE DEFINIR UNA FUNCION QUE SEA:
-	 * void afectarseCon( entidad );
-	 * Lo que hace esta funcion es calcular la colision
-	 * y si es necesario hacer que la entidad afecte
-	 * al personaje*/
-
-	/*ACA TENEMOS QUE DEFINIR OTRA FUNCION :
-	 * void aplicarEfecto( efecto );
-	 * Lo que hace esta funcion es modificar los
-	 * atributos del personaje de acuerdo al tipo
-	 * de efecto que recibe. Osea maneja el efecto,
-	 * y determina que atributo debe modificar, pero no
-	 * como debe modificarlo. Esto ultimo es responsabilidad
-	 * del efecto, este sabe si tiene que sumar o restar.*/
 };
 
 #endif /*PLAYER_HPP*/

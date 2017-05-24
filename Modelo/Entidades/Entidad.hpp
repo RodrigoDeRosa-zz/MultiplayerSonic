@@ -1,6 +1,8 @@
 #ifndef ENTIDAD_HPP
 #define ENTIDAD_HPP
 
+#include "../../message.hpp"
+
 class Player;
 
 class Entidad{
@@ -13,6 +15,7 @@ public:
 	Entidad(float x, float y, float w, float h);
 
 	virtual void afectarA(Player* jugador) = 0;
+	virtual out_message_t* getOutMessage() = 0;
 
 	/*Getters*/
 	float getX();

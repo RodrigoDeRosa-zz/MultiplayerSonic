@@ -1,11 +1,14 @@
 #include "Player.hpp"
 #include <stdio.h>
+#include <stdlib.h>
 #define RUNNNING_EVENTS 1000
 #define RUNNING_VELOCITY 0.7
 #define EVENT_UNIT 1
 #define JUMPING_EVENTS -12
 #define MOVEMENT_CONTROL 0.001
 #define GRAVITY 0.5
+
+using namespace std;
 
 Player::Player(string name){
 	this->name = name;
@@ -184,6 +187,19 @@ void Player::charge(){
 
 void Player::release(){
 	this->sonic->release();
+}
+
+out_message_t* Player::getStatus(float camPos){
+    out_message_t* status = new out_message_t;
+    status->ping = PLAYER_UPDATE;
+    status->id = atoi(this->getName().c_str());
+    status->connection = this->isConnected();
+    status->posX = this->getX();
+    status->posY = this->getY();
+    status->camPos = camPos;
+    status->move = this->getMovement();
+    status->frame = this->getFrame();
+    return status;
 }
 
 

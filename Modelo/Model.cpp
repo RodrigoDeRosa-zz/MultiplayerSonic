@@ -5,8 +5,9 @@
 Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
-	Piedra* piedra = new Piedra(500, 298, 122, 122);
+	Piedra* piedra = new Piedra(500, 298);
 	entidades->push_back(piedra);
+	this->k = 0;
 }
 
 void Model::addPlayer(string playerName){
@@ -131,13 +132,6 @@ bool Model::enRango(Entidad* entidad, Player* player){
 	float bordeIzqP = player->getBordeIzq();
 
 	return ((bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP));
-
-//	if((((*entidades)[j]->getX() >= (*players)[i]->getX()) && ((*entidades)[j]->getX() <= ((*players)[i]->getX() + 118.0)))
-//	   ||
-//	   (((*entidades)[j]->getBordeDer() >= (*players)[i]->getX()) && ((*entidades)[j]->getBordeDer() <= ((*players)[i]->getX() + 118)))
-//		/*||
-//        (((*players)[i])->getBordeAbajo() >= (*entidades)[j]->getBordeArriba()) este ultimo chequeo rompe todo pero hay que hacerlo de alguna forma*/){
-//
 }
 
 void Model::colisionarTodos(){
@@ -166,4 +160,17 @@ void Model::playerCharge(string playerName){
 void Model::playerRelease(string playerName){
 	Player* player = this->getPlayer(playerName);
 	player->release();
+}
+
+vector<out_message_t*> Model::getStatus(float camPos){
+	vector<out_message_t*> v;
+	for(int i=0; i < (this->players)->size(); i++){
+		if (this->k < 10){
+            this->k++;
+            continue;
+        }
+        this->k = 0;
+		v.push_back((*(this->players))[i]->getStatus(camPos));
+	}
+	return v;
 }
