@@ -244,6 +244,7 @@ int main(int argc, char** argv){
     }
 
 	Control* gameControl = new Control();
+    gameControl->crearEntidades();
 
     CXM().init(maxServerConns);
 

@@ -5,14 +5,16 @@
 Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
-	Piedra* piedra = new Piedra(500, 298);
-	entidades->push_back(piedra);
-	this->k = 0;
+	this->playerStatusControl = 0;
 }
 
 void Model::addPlayer(string playerName){
 	Player* player = new Player(playerName);
 	(this->players)->push_back(player);
+}
+
+void Model::addEntidad(Entidad* entidad){
+	(this->entidades)->push_back(entidad);
 }
 
 Player* Model::getPlayer(string nombre){
@@ -122,9 +124,6 @@ bool Model::playerIsConnected(string playerName){
 
 bool Model::enRango(Entidad* entidad, Player* player){
 
-//	float centroEnt = entidad->getCentroX();
-//	float centroPlay = player->getCentroX();
-
 	float bordeDerE = entidad->getBordeDer();
 	float bordeIzqE = entidad->getBordeIzq();
 
@@ -137,12 +136,9 @@ bool Model::enRango(Entidad* entidad, Player* player){
 void Model::colisionarTodos(){
 	for(int i = 0; i < (players)->size(); i++){
 		for(int j = 0; j < (entidades)->size(); j++){
-
-			if (this->enRango((*entidades)[j], (*players)[i])){
+			if ((*players)[i]->enRango((*entidades)[j])){
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
-
-
 		}
 	}
 }
@@ -165,11 +161,11 @@ void Model::playerRelease(string playerName){
 vector<out_message_t*> Model::getStatus(float camPos){
 	vector<out_message_t*> v;
 	for(int i=0; i < (this->players)->size(); i++){
-		if (this->k < 10){
-            this->k++;
+		if (this->playerStatusControl < 10){
+            this->playerStatusControl++;
             continue;
         }
-        this->k = 0;
+        this->playerStatusControl = 0;
 		v.push_back((*(this->players))[i]->getStatus(camPos));
 	}
 	return v;

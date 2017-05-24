@@ -8,10 +8,11 @@ using namespace std;
 class Model{
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
-	int k;
+	int playerStatusControl;
 	public:
 		Model();
 		void addPlayer(string playerName);
+		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
 		vector<string> getPlayerNames();
 		void movePlayer(string playerName, float dirX, float dirY);

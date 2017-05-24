@@ -15,6 +15,8 @@ class Player{
 	string name;
 	ModelSonic* sonic;
 	bool connected;
+	int monedas;
+	int vidas;
     map <move_type, vector<float> > collitionBoxes;
 	public:
 		Player(string name);
@@ -32,7 +34,11 @@ class Player{
 		void setConnected(bool connected);
 		move_type getMovement();
 		int getFrame();
+
+		bool enRango(Entidad* entidad);
 		void afectarseCon(Entidad* entidad);
+
+		void recibirGolpe();
 
 		float getBordeDer();
 		float getBordeIzq();

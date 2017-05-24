@@ -1,4 +1,5 @@
 #include "Control.hpp"
+#include "../Modelo/Entidades/Piedra.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -144,4 +145,9 @@ void Control::update(){
 
 vector<out_message_t*> Control::getStatus(){
 	return this->model->getStatus(this->getCameraPosition());
+}
+
+void Control::crearEntidades(){
+	Piedra* piedra = new Piedra(500, 298);
+	this->model->addEntidad(piedra);
 }

@@ -30,7 +30,7 @@ class Control{
 		void handleInMessage(in_message_t* ev);
 		vector<out_message_t*> getStatus();
 		void update();
-		bool enRango(Entidad*, Player*);
+		void crearEntidades(); //la idea es que esto reciba un .json y devuelva un vector de out_message_t*
 };
 
 #endif /*CONTROL_HPP*/

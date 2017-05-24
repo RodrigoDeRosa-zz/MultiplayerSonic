@@ -140,6 +140,17 @@ float Player::getCentroY(){
     return this->getY() + (this->collitionBoxes[this->getMovement()][1] / 2);
 }
 
+bool Player::enRango(Entidad* entidad){
+
+    float bordeDerE = entidad->getBordeDer();
+    float bordeIzqE = entidad->getBordeIzq();
+
+    float bordeDerP = this->getBordeDer();
+    float bordeIzqP = this->getBordeIzq();
+
+    return ((bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP));
+}
+
 void Player::afectarseCon(Entidad* entidad){
 
     //calculo de la colision mas meticuloso que el rango
@@ -200,6 +211,15 @@ out_message_t* Player::getStatus(float camPos){
     status->move = this->getMovement();
     status->frame = this->getFrame();
     return status;
+}
+
+void Player::recibirGolpe(){
+    if(!(this->monedas)){
+        if(!(this->vidas)){} // matar a sonic
+        else this->vidas--;
+    }
+    else this->monedas = 0; // despues desparramar monedas?
+    //llamar a movimiento de recibir golpe
 }
 
 
