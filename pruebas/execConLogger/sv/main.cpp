@@ -65,7 +65,7 @@ void avisarEmpiezaJuego(char* outState){
     memset(state, 0, sizeof(out_message_t));
     state->ping = SPIKE_SET;
     state->id = 0; //id del pinche
-    state->posX = 100;
+    state->posX = 1000;
     state->posY = 380;
     memcpy(spikeInfo, state, sizeof(out_message_t));
     SERVER().queueOutEvent(spikeInfo);

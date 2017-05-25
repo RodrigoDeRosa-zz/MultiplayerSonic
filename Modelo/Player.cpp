@@ -16,6 +16,8 @@ Player::Player(string name){
 	this->sonic = sonic;
 	this->setConnected(true);
     this->cargarMapCollitionBoxes();
+    this->monedas = 0;
+    this->vidas = 3;
 }
 
 string Player::getName(){
@@ -214,12 +216,31 @@ out_message_t* Player::getStatus(float camPos){
 }
 
 void Player::recibirGolpe(){
-    if(!(this->monedas)){
-        if(!(this->vidas)){} // matar a sonic
-        else this->vidas--;
+    if(!(this->getMonedas())){
+        if(!(this->getVidas())){} // matar a sonic
+        else this->quitarVida();
     }
-    else this->monedas = 0; // despues desparramar monedas?
+    else this->quitarMonedas(); // despues desparramar monedas?
     //llamar a movimiento de recibir golpe
 }
 
+int Player::getVidas(){
+    return this->vidas;
+}
+
+int Player::getMonedas(){
+    return this->monedas;
+}
+
+void Player::agregarMonedas(int n){
+    this->monedas += n;
+}
+
+void Player::quitarMonedas(){
+    this->monedas = 0;
+}
+
+void Player::quitarVida(){
+    this->vidas--;
+}
 

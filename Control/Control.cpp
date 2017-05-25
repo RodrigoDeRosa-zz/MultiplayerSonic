@@ -1,5 +1,6 @@
 #include "Control.hpp"
 #include "../Modelo/Entidades/Piedra.hpp"
+#include "../Modelo/Entidades/Pinche.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -150,4 +151,6 @@ vector<out_message_t*> Control::getStatus(){
 void Control::crearEntidades(){
 	Piedra* piedra = new Piedra(500, 298);
 	this->model->addEntidad(piedra);
+	Pinche* pinche = new Pinche(1000,380);
+	this->model->addEntidad(pinche);
 }

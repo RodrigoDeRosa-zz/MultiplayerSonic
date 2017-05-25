@@ -34,6 +34,13 @@ class Player{
 		void setConnected(bool connected);
 		move_type getMovement();
 		int getFrame();
+		int getVidas();
+		int getMonedas();
+
+		void agregarMonedas(int n);
+		void quitarMonedas();
+
+		void quitarVida();
 
 		bool enRango(Entidad* entidad);
 		void afectarseCon(Entidad* entidad);
