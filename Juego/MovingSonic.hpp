@@ -19,6 +19,10 @@ class MovingSonic: public MovingBloque{
     void correrIzquierda(int);
     void jumpDerecha(int);
     void jumpIzquierda(int);
+    void damageDerecha(int);
+    void damageIzquierda(int);
+    void esperandoDerecha(int);
+    void esperandoIzquierda(int);
 
 };
 

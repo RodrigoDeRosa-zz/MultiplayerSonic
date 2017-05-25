@@ -140,4 +140,55 @@ void SegaFactory::initClips(MovingSonic* sonic){
   sonic->setRectangulo("saltarIzq",276,1815,91,121);
   sonic->setRectangulo("saltarIzq",367,1815,91,121);
 
+  sonic->setClip("esperandoDer");
+  sonic->setRectangulo("esperandoDer",0,1452,92,121);
+
+  sonic->setClip("esperandoIzq");
+  sonic->setRectangulo("esperandoIzq",0,1573,92,121);
+
+  sonic->setClip("frenoDer");
+  sonic->setRectangulo("frenoDer",0,1210,108,121);
+  sonic->setRectangulo("frenoDer",108,1210,105,121);
+  sonic->setRectangulo("frenoDer",213,1210,95,121);
+  sonic->setRectangulo("frenoDer",308,1210,92,121);
+
+  sonic->setClip("frenoIzq");
+  sonic->setRectangulo("frenoIzq",0,1331,108,121);
+  sonic->setRectangulo("frenoIzq",108,1331,105,121);
+  sonic->setRectangulo("frenoIzq",213,1331,95,121);
+  sonic->setRectangulo("frenoIzq",308,1331,92,121);
+
+  sonic->setClip("bolaDer");
+  sonic->setRectangulo("bolaDer",0,484,90,121);
+  sonic->setRectangulo("bolaDer",90,484,85,121);
+  sonic->setRectangulo("bolaDer",175,484,86,121);
+  sonic->setRectangulo("bolaDer",261,484,86,121);
+  sonic->setRectangulo("bolaDer",347,484,85,121);
+  sonic->setRectangulo("bolaDer",432,484,87,121);
+
+  sonic->setClip("bolaIzq");
+  sonic->setRectangulo("bolaIzq",0,605,90,121);
+  sonic->setRectangulo("bolaIzq",90,605,85,121);
+  sonic->setRectangulo("bolaIzq",175,605,86,121);
+  sonic->setRectangulo("bolaIzq",261,605,86,121);
+  sonic->setRectangulo("bolaIzq",347,605,85,121);
+  sonic->setRectangulo("bolaIzq",432,605,87,121);
+
+  sonic->setClip("damageDer");
+  sonic->setRectangulo("damageDer",0,1210,108,121);
+  sonic->setRectangulo("damageDer",108,1210,105,121);
+  sonic->setRectangulo("damageDer",213,1210,95,121);
+
+  sonic->setClip("damageIzq");
+  sonic->setRectangulo("damageIzq",0,1331,108,121);
+  sonic->setRectangulo("damageIzq",108,1331,105,121);
+  sonic->setRectangulo("damageIzq",213,1331,95,121);
+
+  sonic->setClip("agachadoDer");
+  sonic->setRectangulo("agachadoDer",0,0,72,121);
+  sonic->setRectangulo("agachadoDer",72,0,93,121);
+
+  sonic->setClip("agachadoIzq");
+  sonic->setRectangulo("agachadoIzq",0,121,72,121);
+  sonic->setRectangulo("agachadoIzq",72,121,93,121);
 }

@@ -48,6 +48,18 @@ void Personaje::update(float posX, float posY, move_type movimiento, int frame){
     else if(movimiento == WALKD){
         bloque_pers->caminarDerecha(frame);
     }
+    else if(movimiento == WAITD){
+        bloque_pers->esperandoDerecha(frame);
+    }
+    else if(movimiento == WAITI){
+        bloque_pers->esperandoIzquierda(frame);
+    }
+    else if(movimiento == DMGD){
+        bloque_pers->damageDerecha(frame);
+    }
+    else if(movimiento == DMGI){
+        bloque_pers->damageIzquierda(frame);
+    }
 }
 
 void Personaje::grisearBolque(){

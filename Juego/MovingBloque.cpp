@@ -28,6 +28,10 @@ void MovingBloque::correrDerecha(int){};
 void MovingBloque::correrIzquierda(int){};
 void MovingBloque::jumpDerecha(int){};
 void MovingBloque::jumpIzquierda(int){};
+void MovingBloque::damageDerecha(int){};
+void MovingBloque::damageIzquierda(int){};
+void MovingBloque::esperandoDerecha(int){};
+void MovingBloque::esperandoIzquierda(int){};
 
 /*Setters*/
 

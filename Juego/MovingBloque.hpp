@@ -24,6 +24,10 @@ public:
   virtual void correrIzquierda(int);
   virtual void jumpDerecha(int);
   virtual void jumpIzquierda(int);
+  virtual void damageDerecha(int);
+  virtual void damageIzquierda(int);
+  virtual void esperandoDerecha(int);
+  virtual void esperandoIzquierda(int);
 
   MovingBloque(float x, float y, int w, int h);
   void render(Camara* camara);

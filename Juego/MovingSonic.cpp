@@ -27,6 +27,17 @@
 #define CORRERI "correrIzq"
 #define SALTARD "saltarDer"
 #define SALTARI "saltarIzq"
+#define WAITD "esperandoDer"
+#define WAITI "esperandoIzq"
+//#define BRAKED "frenoDer"
+//#define BRAKEI "frenoIzq"
+//#define BALLD "bolaDer"
+//#define BALLI "bolaIzq"
+#define DMGD "damageDer"
+#define DMGI "damageIzq"
+//#define CROUCHD "agachadoDer"
+//#define CROUCHI "agachadoIzq"
+
 
 MovingSonic::MovingSonic(float x, float y, int w, int h):
   MovingBloque(x,y,w,h){}
@@ -59,6 +70,22 @@ void MovingSonic::jumpDerecha(int frame){
   rectangle = clipsMovimientos->getRectangulo(SALTARD,frame);
 }
 
-void MovingSonic::jumpIzquierda(int frame) {
+void MovingSonic::jumpIzquierda(int frame){
   rectangle = clipsMovimientos->getRectangulo(SALTARI,frame);
+}
+
+void MovingSonic::damageDerecha(int frame) {
+  rectangle = clipsMovimientos->getRectangulo(DMGD,frame);
+}
+
+void MovingSonic::damageIzquierda(int frame) {
+  rectangle = clipsMovimientos->getRectangulo(DMGI,frame);
+}
+
+void MovingSonic::esperandoIzquierda(int frame) {
+  rectangle = clipsMovimientos->getRectangulo(WAITI,frame);
+}
+
+void MovingSonic::esperandoDerecha(int frame) {
+  rectangle = clipsMovimientos->getRectangulo(WAITD,frame);
 }
