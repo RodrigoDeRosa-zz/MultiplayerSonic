@@ -1,6 +1,7 @@
 #include "Control.hpp"
 #include "../Modelo/Entidades/Piedra.hpp"
 #include "../Modelo/Entidades/Pinche.hpp"
+#include "../Modelo/Entidades/Moneda.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -153,4 +154,8 @@ void Control::crearEntidades(){
 	this->model->addEntidad(piedra);
 	Pinche* pinche = new Pinche(1000,380);
 	this->model->addEntidad(pinche);
+	Moneda* moneda1 = new Moneda(550,180);
+	this->model->addEntidad(moneda1);
+	Moneda* moneda2 = new Moneda(200,180);
+	this->model->addEntidad(moneda2);
 }
