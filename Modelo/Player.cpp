@@ -244,3 +244,6 @@ void Player::quitarVida(){
     this->vidas--;
 }
 
+bool Player::estaAtacando(){
+    return true;
+}

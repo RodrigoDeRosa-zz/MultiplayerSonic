@@ -2,6 +2,7 @@
 #include "../Modelo/Entidades/Piedra.hpp"
 #include "../Modelo/Entidades/Pinche.hpp"
 #include "../Modelo/Entidades/Moneda.hpp"
+#include "../Modelo/Entidades/Cangrejo.hpp"
 #include <stdio.h>
 #include <sstream>
 

@@ -42,6 +42,8 @@ class Player{
 
 		void quitarVida();
 
+		bool estaAtacando();
+
 		bool enRango(Entidad* entidad);
 		void afectarseCon(Entidad* entidad);
 

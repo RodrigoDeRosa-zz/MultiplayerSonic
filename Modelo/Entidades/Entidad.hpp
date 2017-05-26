@@ -33,6 +33,7 @@ public:
 	float getBordeIzq();
 	float getBordeArriba();
 	float getBordeAbajo();
+	bool estaDestruida();
 
 	/*Setters*/
 	void setW(float);

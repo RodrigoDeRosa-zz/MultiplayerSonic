@@ -6,6 +6,7 @@ Model::Model(){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
 	this->playerStatusControl = 0;
+	this->entidadesStatusControl = 0;
 }
 
 void Model::addPlayer(string playerName){
@@ -136,6 +137,7 @@ bool Model::enRango(Entidad* entidad, Player* player){
 void Model::colisionarTodos(){
 	for(int i = 0; i < (players)->size(); i++){
 		for(int j = 0; j < (entidades)->size(); j++){
+			if((*entidades)[j]->estaDestruida()) continue;
 			if ((*players)[i]->enRango((*entidades)[j])){
 				(*players)[i]->afectarseCon((*entidades)[j]);
 			}
@@ -158,7 +160,7 @@ void Model::playerRelease(string playerName){
 	player->release();
 }
 
-vector<out_message_t*> Model::getStatus(float camPos){
+vector<out_message_t*> Model::getPlayerStatus(float camPos){
 	vector<out_message_t*> v;
 	for(int i=0; i < (this->players)->size(); i++){
 		if (this->playerStatusControl < 10){
@@ -169,6 +171,27 @@ vector<out_message_t*> Model::getStatus(float camPos){
 		v.push_back((*(this->players))[i]->getStatus(camPos));
 	}
 	return v;
+}
+
+vector<out_message_t*> Model::getEntidadesStatus(){
+	vector<out_message_t*> v;
+	for(int i=0; i < (this->entidades)->size(); i++){
+		if (this->entidadesStatusControl < 10){
+            this->entidadesStatusControl++;
+            continue;
+        }
+        this->entidadesStatusControl = 0;
+		v.push_back((*(this->entidades))[i]->getOutMessage());
+	}
+	return v;
+}
+
+
+vector<out_message_t*> Model::getStatus(float camPos){
+	vector<out_message_t*> playerVector = this->getPlayerStatus(camPos);
+	vector<out_message_t*> entidadesVector = this->getEntidadesStatus();
+	playerVector.insert(playerVector.end(),entidadesVector.begin(),entidadesVector.end());
+	return playerVector;
 }
 
 void Model::moverEntidades(){

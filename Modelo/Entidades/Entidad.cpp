@@ -6,6 +6,7 @@ Entidad::Entidad(int id,float x, float y, float w, float h){
 	this->y = y;
 	this->w = w;
 	this->h = h;
+	this->destruida = false;
 }
 
 int Entidad::getId(){
@@ -57,6 +58,10 @@ float Entidad::getBordeArriba(){
 float Entidad::getBordeAbajo(){
 
 	return this->getY() + (this->h);
+}
+
+bool Entidad::estaDestruida(){
+	return this->destruida;
 }
 
 out_message_t* Entidad::getOutMessage(message_type type){

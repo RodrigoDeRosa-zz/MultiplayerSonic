@@ -9,6 +9,7 @@ class Model{
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
 	int playerStatusControl;
+	int entidadesStatusControl;
 	public:
 		Model();
 		void addPlayer(string playerName);
@@ -31,6 +32,8 @@ class Model{
 		void playerRelease(string playerName);
 		void colisionarTodos();
 		bool enRango(Entidad* entidad, Player* player);
+		vector<out_message_t*> getPlayerStatus(float camPos);
+		vector<out_message_t*> getEntidadesStatus();
 		vector<out_message_t*> getStatus(float camPos);
 		void moverEntidades();
 };
