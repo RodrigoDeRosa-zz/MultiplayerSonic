@@ -9,7 +9,7 @@ sino una distacia considerable, de modo que se pueda diferenciar una colision de
 
 using namespace std;
 
-Piedra::Piedra(float x, float y) : Entidad(x,y,WIDTH,HEIGHT){}
+Piedra::Piedra(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 
 void Piedra::afectarA(Player* jugador){
 
@@ -36,6 +36,9 @@ void Piedra::afectarA(Player* jugador){
 }
 
 out_message_t* Piedra::getOutMessage(){
-	out_message_t* state = new out_message_t;
-	return state;
+	return this->Entidad::getOutMessage(ROCK_SET);
+}
+
+out_message_t* Piedra::getInitMessage(){
+	return this->Entidad::getOutMessage(ROCK_SET);
 }

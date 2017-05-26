@@ -7,9 +7,10 @@ using namespace std;
 
 class Piedra: public Entidad{
 public:
-	Piedra(float x, float y);
+	Piedra(int id,float x, float y);
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
+	out_message_t* getInitMessage();
 };
 
 #endif /*PIEDRA_HPP*/

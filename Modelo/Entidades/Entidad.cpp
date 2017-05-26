@@ -1,11 +1,17 @@
 #include "Entidad.hpp"
 
-Entidad::Entidad(float x, float y, float w, float h){
+Entidad::Entidad(int id,float x, float y, float w, float h){
+	this->id = id;
 	this->x = x;
 	this->y = y;
 	this->w = w;
 	this->h = h;
 }
+
+int Entidad::getId(){
+	return this->id;
+}
+
 
 float Entidad::getX(){
 	return this->x;
@@ -52,3 +58,18 @@ float Entidad::getBordeAbajo(){
 
 	return this->getY() + (this->h);
 }
+
+out_message_t* Entidad::getOutMessage(message_type type){
+	out_message_t* state = new out_message_t;
+	state->ping = type;
+	state->id = this->id;
+	state->connection = !(this->destruida);
+	state->posX = this->x;
+	state->posY = this->y;
+	state->camPos = 0; //seteo en cero porque no tiene sentido para la entidad
+	state->move = MOVE_TOTAL; //tampoco tiene sentido para la entidad
+	state->frame = 0;
+	return state;
+}
+
+void Entidad::mover(){}

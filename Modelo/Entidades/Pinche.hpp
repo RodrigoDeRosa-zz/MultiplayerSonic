@@ -7,9 +7,10 @@ using namespace std;
 
 class Pinche: public Entidad{
 public:
-	Pinche(float x, float y);
+	Pinche(int id, float x, float y);
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
+	out_message_t* getInitMessage();
 };
 
 #endif /*PINCHE_HPP*/

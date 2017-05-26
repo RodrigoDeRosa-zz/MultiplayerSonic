@@ -32,6 +32,7 @@ class Model{
 		void colisionarTodos();
 		bool enRango(Entidad* entidad, Player* player);
 		vector<out_message_t*> getStatus(float camPos);
+		void moverEntidades();
 };
 
 #endif /*MODEL_HPP*/

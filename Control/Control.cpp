@@ -142,6 +142,7 @@ void Control::update(){
 		vector<float> directions = this->model->getPlayerDirections(players[i]);
 		this->moveCameraAndPlayer(players[i],directions);
 	}
+	this->model->moverEntidades();
     this->model->colisionarTodos();
 }
 
@@ -150,12 +151,12 @@ vector<out_message_t*> Control::getStatus(){
 }
 
 void Control::crearEntidades(){
-	Piedra* piedra = new Piedra(500, 298);
+	Piedra* piedra = new Piedra(1,500, 298);
 	this->model->addEntidad(piedra);
-	Pinche* pinche = new Pinche(1000,380);
+	Pinche* pinche = new Pinche(2,1000,380);
 	this->model->addEntidad(pinche);
-	Moneda* moneda1 = new Moneda(550,180);
+	Moneda* moneda1 = new Moneda(3,550,180);
 	this->model->addEntidad(moneda1);
-	Moneda* moneda2 = new Moneda(200,180);
+	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
 }

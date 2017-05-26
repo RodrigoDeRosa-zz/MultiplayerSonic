@@ -6,16 +6,18 @@
 
 using namespace std;
 
-Moneda::Moneda(float x, float y) : Entidad(x,y,WIDTH,HEIGHT){}
+Moneda::Moneda(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 
 void Moneda::afectarA(Player* jugador){
-	printf("monedas antes: %d\n", jugador->getMonedas());
 	jugador->agregarMonedas(1);
-	printf("monedas antes: %d\n\n", jugador->getMonedas());
 	//destruir moneda
 }
 
 out_message_t* Moneda::getOutMessage(){
-	out_message_t* state = new out_message_t;
+	out_message_t* state = this->Entidad::getOutMessage(COIN_UPDATE);
 	return state;
+}
+
+out_message_t* Moneda::getInitMessage(){
+	return this->Entidad::getOutMessage(COIN_SET);
 }

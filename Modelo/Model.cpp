@@ -170,3 +170,9 @@ vector<out_message_t*> Model::getStatus(float camPos){
 	}
 	return v;
 }
+
+void Model::moverEntidades(){
+	for(int i = 0; i < this->entidades->size(); i++){
+		(*(this->entidades))[i]->mover();
+	}
+}
