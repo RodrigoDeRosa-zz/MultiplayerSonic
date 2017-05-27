@@ -30,10 +30,10 @@ void Personaje::update(float posX, float posY, move_type movimiento, int frame){
     else if(movimiento == IDLEI){
         bloque_pers->quietoIzquierda(frame);
     }
-    else if(movimiento == JUMPI){
+    else if(movimiento == JUMPI || movimiento == ROLLI){
         bloque_pers->jumpIzquierda(frame);
     }
-    else if(movimiento == JUMPD){
+    else if(movimiento == JUMPD || movimiento == ROLLD){
         bloque_pers->jumpDerecha(frame);
     }
     else if(movimiento == RUNI){

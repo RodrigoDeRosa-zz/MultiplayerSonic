@@ -48,7 +48,7 @@ class MoveSonic{
         void update(float, float);
         bool estaSaltando();
 		bool estaRodando();
-
+		bool estaMirandoADer();
         int getX();
         int getY();
 

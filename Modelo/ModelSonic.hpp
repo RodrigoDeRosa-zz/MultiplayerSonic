@@ -4,6 +4,10 @@
 #include "MoveSonic.hpp"
 #include <iostream>
 
+//ojo que tienen que ser todos negativos!
+#define NO_ARG -1.0
+#define ROLL_ARG -2.0
+
 using namespace std;
 
 class ModelSonic{
@@ -24,7 +28,7 @@ public:
     float getY();
     float getDirX();
     float getDirY();
-    void update(float,float,float = -1.0, float = -1.0);
+    void update(float,float,float = NO_ARG, float = NO_ARG);
     void setX(float);
     void setY(float);
     // setea direcciones en cero y llama a set posicion inicio

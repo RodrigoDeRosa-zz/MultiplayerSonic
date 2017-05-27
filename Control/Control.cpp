@@ -55,6 +55,7 @@ vector<float> Control::getDirections(key_event e, string playerName){
 	vector<float> directions = this->model->getPlayerDirections(playerName);
 	float dirX = directions[0];
 	float dirY = directions[1];
+	move_type movement = this->model->getPlayerMovement(playerName);//TRY1
 	switch( e ){
 		//case QUIT: this->model->setPlayerConnection(playerName, false); break;
 		case SPACE_DOWN: dirY -= 1; break;
@@ -63,6 +64,20 @@ vector<float> Control::getDirections(key_event e, string playerName){
 		case SPACE_UP: dirY += 1; break;
 		case LEFT_UP: dirX += 1; break;
 		case RIGHT_UP: dirX -= 1; break;
+/*		case DOWN_UP: 	//TRY1
+			switch(movement){
+				case ROLLD:
+				//case RUND:
+				//case WALKD:
+				//case DMGD:
+				dirX-=1; break;
+				case ROLLI:
+				//case RUNI:
+				case WALKI:
+				//case DMGD:
+				dirX+=1; break;
+			}
+*/
 	}
 	directions[0] = dirX;
 	directions[1] = dirY;
@@ -129,14 +144,16 @@ void Control::handleInMessage(in_message_t* ev){
 		}
 	}
 */	
+	//obtengo las direcciones en base al key event
+	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
+
 	//casos especiales, aca entran y debieran setear flag para que luego entren en update
 	if(ev->key == DOWN_DOWN){
 		this->model->playerRoll(playerName);
 		return;
 	}
 
-	//obtengo las direcciones en base al key event
-	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
+
 	//muevo el jugador y la camara con las direcciones obtenidas
 	this->model->movePlayer(playerName,directions[0], directions[1]);
 }

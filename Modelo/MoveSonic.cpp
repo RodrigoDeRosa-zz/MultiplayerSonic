@@ -155,7 +155,7 @@ void MoveSonic::roll(){
 
 	if (cont_roll > MAX_ROLL){
 		rolling=false;
-		//tiempoX=0;//resetea velocidad
+		//this->setPosicionInicio();//resetea 
 	}
 }
 void MoveSonic::jumpDerecha(float* velH){
@@ -390,6 +390,10 @@ void MoveSonic::agacharseIzquierda(){
 */
 bool MoveSonic::estaRodando(){
 	return rolling;
+}
+
+bool MoveSonic::estaMirandoADer(){
+	return direccion;
 }
 
 //ESTA FUNCION SOLO DEBE SER LLAMADA SI LA VELOCIDAD NO ES 0 Y NO SE APRETARON TECLAS
