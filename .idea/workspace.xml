@@ -1278,13 +1278,6 @@
       <workItem from="1495726641873" duration="2927000" />
       <workItem from="1495741915509" duration="1060000" />
     </task>
-    <task id="LOCAL-00001" summary="ACTUALIZACION UPDATE STAGE">
-      <created>1494698857799</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1494698857799</updated>
-    </task>
     <task id="LOCAL-00002" summary="ACTUALIZACION UPDATE STAGE">
       <created>1494698926628</created>
       <option name="number" value="00002" />
@@ -1621,11 +1614,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495918927772</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Tenemos que arreglar las colisiones">
+      <created>1495919000168</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1495919000169</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96903000" />
+    <option name="totallyTimeSpent" value="96957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
