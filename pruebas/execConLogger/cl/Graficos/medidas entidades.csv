@@ -1,9 +1,15 @@
-entidad,x,y,w,sprite h,real height
-piedra1,0,0,124,200,200
-piedra2,125,0,103,200,100
-piedra3,229,0,113,200,63
-pinches,0,0,100,47,47
-desaparecer1,0,0,108,120,120
-desaparecer2,--,--,--,--,--
-desaparecer3,--,--,--,--,--
-desaparecer4,--,--,--,--,--
+;x;y;w;sprite h;real height
+piedra1;0;0;124;200;200
+piedra2;125;0;103;200;100
+piedra3;229;0;113;200;63
+pinches;0;0;100;47;47
+desaparecer1;0;0;108;120;120
+desaparecer2;108;0;216;120;120
+desaparecer3;216;0;324;120;120
+desaparecer4;324;0;430;120;120
+desaparecer5;430;0;540;120;120
+moneda 1;0;0;40;40;40
+moneda 2;40;0;40;40;40
+moneda 3;80;0;40;40;40
+moneda 4;120;0;40;40;40
+moneda 5;160;0;40;40;40
