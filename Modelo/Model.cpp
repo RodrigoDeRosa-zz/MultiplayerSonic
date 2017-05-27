@@ -134,12 +134,22 @@ bool Model::enRango(Entidad* entidad, Player* player){
 	return ((bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP));
 }
 
-void Model::colisionarTodos(){
-	for(int i = 0; i < (players)->size(); i++){
-		for(int j = 0; j < (entidades)->size(); j++){
-			if((*entidades)[j]->estaDestruida()) continue;
-			if ((*players)[i]->enRango((*entidades)[j])){
-				(*players)[i]->afectarseCon((*entidades)[j]);
+void Model::colisionarTodos() {
+	for (int i = 0; i < (players)->size(); i++) {
+		for (int j = 0; j < (entidades)->size(); j++) {
+
+			if ((*entidades)[j]->estaDestruida()) continue;
+
+			if ((*players)[i]->enRangoX((*entidades)[j])) {
+				//if ((*players)[i]->enRangoY((*entidades)[j])) {
+					(*players)[i]->afectarseCon((*entidades)[j]);
+				//}
+			}
+
+			if ((*players)[i]->enRangoY((*entidades)[j])) {
+				//if ((*players)[i]->enRangoX((*entidades)[j])) {
+					(*players)[i]->afectarseCon((*entidades)[j]);
+				//}
 			}
 		}
 	}

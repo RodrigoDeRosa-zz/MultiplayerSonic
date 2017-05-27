@@ -31,6 +31,7 @@ void Piedra::afectarA(Player* jugador){
 	//seteo la y del jugador al borde superior de la piedra(teniendo en cuenta el alto de la imagen)
 	else{
 		//float posicion = this->Entidad::getBordeArriba() -  /*el alto del frame actual*/ (jugador->getBordeAbajo() - jugador->getBordeArriba());
+		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
 		//jugador->setY(posicion);
 	}
 }

@@ -153,7 +153,7 @@ float Player::getCentroY(){
     return this->getY() + (this->collitionBoxes[this->getMovement()][1] / 2);
 }
 
-bool Player::enRango(Entidad* entidad){
+bool Player::enRangoX(Entidad* entidad){
 
     float bordeDerE = entidad->getBordeDer();
     float bordeIzqE = entidad->getBordeIzq();
@@ -161,8 +161,21 @@ bool Player::enRango(Entidad* entidad){
     float bordeDerP = this->getBordeDer();
     float bordeIzqP = this->getBordeIzq();
 
-    return ((bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP));
+    return ( (bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP) );
 }
+
+bool Player::enRangoY(Entidad* entidad){
+
+    float bordeArribaE = entidad ->getBordeArriba();
+    float bordeAbajoE = entidad ->getBordeAbajo();
+
+    float bordeArribaP = this->getBordeArriba();
+    float bordeAbajoP = this->getBordeAbajo();
+
+    return ((bordeArribaE >= bordeAbajoP) || (bordeAbajoE <= bordeArribaP));
+}
+
+
 
 void Player::afectarseCon(Entidad* entidad){
 
@@ -189,16 +202,16 @@ void Player::afectarseCon(Entidad* entidad){
     bool colisionX = ((bordeDerP > bordeIzqE) || (bordeDerE > bordeIzqP));
     bool contactoX = ((bordeDerP >= bordeIzqE) || (bordeDerE >= bordeIzqP));
 
-    bool colisionY = ((bordeArribaP < bordeAbajoE) || (bordeArribaE < bordeAbajoP));
-    bool contactoY = ((bordeArribaP <= bordeAbajoE) || (bordeArribaE <= bordeAbajoP));
+    bool colisionY = ((bordeArribaP > bordeAbajoE) || (bordeArribaE < bordeAbajoP));
+    bool contactoY = ((bordeArribaP >= bordeAbajoE) || (bordeArribaE <= bordeAbajoP));
 
     //CALCULO DE COLISIONES BASICAS CON 2 SPRITES RECTANGULARES.
-    if (colisionX && contactoY){
+    if (contactoX && contactoY){
         entidad->afectarA(this);
     }
-    else if(colisionY && contactoX){
-        entidad->afectarA(this);;
-    }
+    /*else if(colisionY && contactoX){
+        entidad->afectarA(this);
+    }*/
 }
 /*
 void Player::crouch(){

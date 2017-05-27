@@ -44,7 +44,8 @@ class Player{
 
 		bool estaAtacando();
 
-		bool enRango(Entidad* entidad);
+		bool enRangoX(Entidad* entidad);
+		bool enRangoY(Entidad* entidad);
 		void afectarseCon(Entidad* entidad);
 
 		void recibirGolpe();
