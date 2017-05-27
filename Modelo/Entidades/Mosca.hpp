@@ -6,6 +6,8 @@
 using namespace std;
 
 class Mosca: public Entidad{
+	unsigned int contador_mov = 0;
+	float direccion = 1.0;
 public:
 	Mosca(int id, float x, float y);
 	void afectarA(Player* jugador);
