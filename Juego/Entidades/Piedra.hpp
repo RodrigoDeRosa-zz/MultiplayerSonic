@@ -2,11 +2,14 @@
 #define PIEDRA_HPP
 
 #include "../../Graficos/Bloque.hpp"
+#include "../Clip.hpp"
 
 class Piedra: public Bloque{
+    private:
+        int type; //Tipo de piedra
+        Clip* clip;
     public:
-        /*El alto y el ancho son siempre constantes, son defines del cpp*/
-        Piedra(float x, float y);
+        Piedra(float x, float y, float w, float h, int t);
 };
 
 #endif /*PIEDRA_HPP*/

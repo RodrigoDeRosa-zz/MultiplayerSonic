@@ -52,7 +52,7 @@ class Juego{
     void addSpriteGroup(string groupKey);
 
     /*Agrega una piedra en las posiciones dadas*/
-    void addPiedra(float x, float y);
+    void addPiedra(float x, float y, int t);
     /*Agrega pinches en las posiciones dadas*/
     void addPinche(float x, float y);
     /*Agrega una moneda en las posiciones dadas*/

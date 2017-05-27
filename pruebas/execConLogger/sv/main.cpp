@@ -56,7 +56,8 @@ void avisarEmpiezaJuego(char* outState){
     state->ping = ROCK_SET;
     state->id = 0; //id de la piedra
     state->posX = 500;
-    state->posY = 298;
+    state->posY = 220;
+    state->frame = 0;
     memcpy(rockInfo, state, sizeof(out_message_t));
     SERVER().queueOutEvent(rockInfo);
     usleep(1000);

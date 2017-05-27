@@ -80,7 +80,7 @@ void* initGame(void *arg){
                 client->getJuego()->addJugador(SSTR(i), "sonic");
             }
         } else if (message->ping == ROCK_SET){
-            client->getJuego()->addPiedra(message->posX, message->posY);
+            client->getJuego()->addPiedra(message->posX, message->posY, message->frame);
         } else if (message->ping == SPIKE_SET){
             client->getJuego()->addPinche(message->posX, message->posY);
         } else if (message->ping == COIN_SET){

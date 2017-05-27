@@ -1,0 +1,9 @@
+entidad,x,y,w,sprite h,real height
+piedra1,0,0,124,200,200
+piedra2,125,0,103,200,100
+piedra3,229,0,113,200,63
+pinches,0,0,100,47,47
+desaparecer1,0,0,108,120,120
+desaparecer2,--,--,--,--,--
+desaparecer3,--,--,--,--,--
+desaparecer4,--,--,--,--,--

@@ -9,20 +9,29 @@
 #include "Entidades/Mosca.hpp"
 #include "Entidades/Pez.hpp"
 
+#define PIEDRA1W 124
+#define PIEDRA1H 200
+#define PIEDRA2W 103
+#define PIEDRA2H 100
+#define PIEDRA3W 113
+#define PIEDRA3H 63
+
 /*get sonic privada
  en jugadores que se cree un personaje generico*/
 Juego::Juego(){
     jugadores = NULL;
     stageActual = NULL;
     camara = NULL;
+    setTexturas();
 }
 
 void Juego::setTexturas(){
     //TODO: Llenar el mapa texturas con lo que corresponda:
+    Texture* piedras = new Texture();
+    piedras->loadFromFile("Graficos/piedras.png");
+    texturas.insert(make_pair("piedras", piedras));
     /*
-    Texture* texturaMoneda = new Texture();
-    texturaMoneda->loadFromFile("pathTexturaMoneda");
-    texturas.insert(make_pair("monedas", texturaMoneda))
+    Moneda, Cangrejo, Pez, pinche..
     */
 }
 /*SERVER*/
@@ -87,15 +96,23 @@ void Juego::addSprite(string groupKey, Sprite* sprite){
     stageActual->addSprite(groupKey, sprite);
 }
 
-void Juego::addPiedra(float x, float y){
-    Piedra* piedra = new Piedra(x, y);
+void Juego::addPiedra(float x, float y, int type){
+    Piedra* piedra;
+    if (type == 0) {
+        piedra = new Piedra(x, y, PIEDRA1W, PIEDRA1H, type);
+    } else if (type == 1){
+        piedra = new Piedra(x, y, PIEDRA2W, PIEDRA2H, type);
+    } else {
+        piedra = new Piedra(x, y, PIEDRA3W, PIEDRA3H, type);
+    }
+    //Carga de textura
+    map<string, Texture*>::iterator it;
+    it = texturas.find("piedras");
+    Texture* tex = it->second;
+    piedra->setTexture(tex);
     /*Aca habria que cargar la textura de la piedra
-        map<string, Texture*>::iterator it;
-        it = textures.find("piedras");
-        Texture* tex = it->second;
-        piedra->setTexture(tex);
     */
-    piedra->setBackgroundColor(80, 80, 0);
+    //piedra->setBackgroundColor(80, 80, 0);
     piedra->setIndexZ(99);
     stageActual->addSprite("piedras", piedra);
 }

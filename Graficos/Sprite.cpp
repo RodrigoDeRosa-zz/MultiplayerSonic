@@ -60,7 +60,7 @@ void Sprite::render(Camara* cam){
             rectangle.x = aux1;
             rectangle.y = aux2;
         }
-    }
+}
 
 void Sprite::render(int x, int y, Camara* cam){
     //renderiza las texturas de fondo.
