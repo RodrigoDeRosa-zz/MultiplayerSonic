@@ -6,6 +6,8 @@
 using namespace std;
 
 class Cangrejo: public Entidad{
+	unsigned int contador_mov = 0;
+	float direccion = 1.0;
 public:
 	Cangrejo(int id, float x, float y);
 	void afectarA(Player* jugador);
