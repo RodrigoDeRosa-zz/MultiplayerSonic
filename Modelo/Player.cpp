@@ -132,6 +132,17 @@ void Player::cargarMapCollitionBoxes(){
     this->collitionBoxes[WALKD] = caminar;
 
     //en el futuro agregar el resto de los movimientos
+	vector<float> rodar;
+    rodar.push_back(97);//MARTIN: CHEQUEAR ESTOS VALORES!
+    rodar.push_back(121);//MARTIN: CHEQUEAR ESTOS VALORES!
+    this->collitionBoxes[ROLLI] = rodar;
+    this->collitionBoxes[ROLLD] = rodar;
+
+	vector<float> daniar;
+    daniar.push_back(97);//MARTIN: CHEQUEAR ESTOS VALORES!
+    daniar.push_back(121);//MARTIN: CHEQUEAR ESTOS VALORES!
+    this->collitionBoxes[DMGI] = daniar;
+    this->collitionBoxes[DMGD] = daniar;
 }
 
 float Player::getCentroX(){
@@ -189,7 +200,7 @@ void Player::afectarseCon(Entidad* entidad){
         entidad->afectarA(this);;
     }
 }
-
+/*
 void Player::crouch(){
 	this->sonic->crouch();
 }
@@ -200,6 +211,10 @@ void Player::charge(){
 
 void Player::release(){
 	this->sonic->release();
+}*/
+
+void Player::roll(){
+	this->sonic->roll();
 }
 
 out_message_t* Player::getStatus(float camPos){

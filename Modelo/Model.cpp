@@ -144,7 +144,7 @@ void Model::colisionarTodos(){
 		}
 	}
 }
-
+/*
 void Model::playerCrouch(string playerName){
 	Player* player = this->getPlayer(playerName);
 	player->crouch();
@@ -158,6 +158,12 @@ void Model::playerCharge(string playerName){
 void Model::playerRelease(string playerName){
 	Player* player = this->getPlayer(playerName);
 	player->release();
+}
+*/
+
+void Model::playerRoll(string playerName){
+	Player* player = this->getPlayer(playerName);
+	player->roll();
 }
 
 vector<out_message_t*> Model::getPlayerStatus(float camPos){

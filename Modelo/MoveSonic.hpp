@@ -19,11 +19,11 @@ class MoveSonic{
         int frameJumping;
 		unsigned int charges;
 		unsigned int noActionCounter;
+		unsigned int cont_roll;
         //La direccion se setea en true cuando esta para la derecha.
         bool direccion;
         bool jumping;
-		bool crouching;
-
+		bool rolling;
         int frameActual;
         move_type moveActual;
     public:
@@ -32,10 +32,7 @@ class MoveSonic{
         void moveLeft(float);
         void moveRight(float);
         void jump(float,float);
-		void crouch();
-		void release();
-		void charge();
-
+		void roll();
         void caminarDerecha();
         void caminarIzquierda();
         void correrDerecha();
@@ -50,7 +47,7 @@ class MoveSonic{
 
         void update(float, float);
         bool estaSaltando();
-		bool estaAgachado();
+		bool estaRodando();
 
         int getX();
         int getY();

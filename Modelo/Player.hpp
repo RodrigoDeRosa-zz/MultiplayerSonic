@@ -59,10 +59,11 @@ class Player{
 		out_message_t* getStatus(float camPos);
 
 		void cargarMapCollitionBoxes();
-
-		void crouch();
+		void roll();
+/*		void crouch();
 		void charge();
 		void release();
+*/
 };
 
 #endif /*PLAYER_HPP*/

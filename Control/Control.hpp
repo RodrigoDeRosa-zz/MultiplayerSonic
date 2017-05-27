@@ -12,7 +12,7 @@ using namespace std;
 
 class Control{
 	int k;
-	bool space_was_down;
+//	bool space_was_down;
 	Model* model;
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);

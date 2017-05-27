@@ -11,7 +11,6 @@ private:
 
     MoveSonic* bloque_pers;
     int frameRight, frameLeft;
-	int space_was_down;
     float direccionX, direccionY;
 
 public:
@@ -30,10 +29,13 @@ public:
     void setY(float);
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
-
+	void roll();
+/*
 	void crouch();
 	void release();
 	void charge();
+*/
+
 };
 
 #endif //TALLERSONIC_MODELSONIC_HPP

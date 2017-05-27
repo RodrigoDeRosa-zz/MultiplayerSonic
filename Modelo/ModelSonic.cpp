@@ -31,7 +31,10 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
         vel_y = 0.0;
     }
 
-    if(vel_y< 0.0 || bloque_pers->estaSaltando()){
+	if (bloque_pers->estaRodando()){
+		bloque_pers->roll();
+	}
+    else if(vel_y< 0.0 || bloque_pers->estaSaltando()){
         jump(vel_x,vel_y);
     }
     else if(vel_x> 0.0){
@@ -39,8 +42,8 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     else if(vel_x < 0.0){
         moveLeft(vel_x);}
 
-        //si no se movio para ningun seteamos las velocidades y frames a 0
-    else{//MARTIN: creo que por esta cosa nunca llega a frenar, soltas las teclas e impone el IDLE
+        
+    else{
         bloque_pers->setPosicionInicio();
     }
 
@@ -96,7 +99,7 @@ int ModelSonic::getFrame(){
 move_type ModelSonic::getMovement(){
     return bloque_pers->getMovement();
 }
-
+/*
 void ModelSonic::crouch(){
 	//if velocidadX!=0 o velocidadY!=0 return
 	this->bloque_pers->crouch();
@@ -109,6 +112,10 @@ void ModelSonic::release(){
 
 void ModelSonic::charge(){
 	this->bloque_pers->charge();
+}
+*/
+void ModelSonic::roll(){
+	bloque_pers->roll();
 }
 
 void ModelSonic::stop(){
