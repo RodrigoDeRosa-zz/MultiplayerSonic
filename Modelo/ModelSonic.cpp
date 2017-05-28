@@ -13,6 +13,10 @@ ModelSonic::ModelSonic(){
     direccionY = 0.0;
 }
 
+void ModelSonic::cortarSalto() {
+    bloque_pers->cortarSalto();
+}
+
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 

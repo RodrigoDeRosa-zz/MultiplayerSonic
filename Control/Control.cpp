@@ -176,7 +176,7 @@ vector<out_message_t*> Control::getStatus(){
 }
 
 void Control::crearEntidades(){
-	Piedra* piedra = new Piedra(1,500, 298);
+	Piedra* piedra = new Piedra(1,500, 220);
 	this->model->addEntidad(piedra);
 	Pinche* pinche = new Pinche(2,1000,380);
 	this->model->addEntidad(pinche);

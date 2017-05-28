@@ -54,7 +54,7 @@ void Player::setX(float x){
 
 void Player::setY(float y){
     // si el jugador viene saltando hago que se detenga
-    //if((this->getMovement() == JUMPD) || (this->getMovement() == JUMPI)) this->sonic->stop();
+    if((this->getMovement() == JUMPD) || (this->getMovement() == JUMPI)) this->sonic->cortarSalto();
     this->sonic->setY(y);
 }
 

@@ -1,8 +1,8 @@
 #include "Piedra.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 122
-#define HEIGHT 122
+#define WIDTH 103
+#define HEIGHT 200
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/
 #define FACTOR_DIFERENCIAL_H 5
@@ -30,9 +30,9 @@ void Piedra::afectarA(Player* jugador){
 
 	//seteo la y del jugador al borde superior de la piedra(teniendo en cuenta el alto de la imagen)
 	else{
-		//float posicion = this->Entidad::getBordeArriba() -  /*el alto del frame actual*/ (jugador->getBordeAbajo() - jugador->getBordeArriba());
+		float posicion = this->Entidad::getBordeArriba() -  /*el alto del frame actual*/ (jugador->getBordeAbajo() - jugador->getBordeArriba());
 		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
-		//jugador->setY(posicion);
+		jugador->setY(posicion);
 	}
 }
 

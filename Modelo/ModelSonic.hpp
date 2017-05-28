@@ -31,6 +31,7 @@ public:
     void update(float,float,float = NO_ARG, float = NO_ARG);
     void setX(float);
     void setY(float);
+    void cortarSalto();
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
 	void roll();

@@ -45,6 +45,8 @@ class MoveSonic{
 		void agacharseIzquierda();
 		void decrementarVelocidad();
 
+		void cortarSalto();
+
         void update(float, float);
         bool estaSaltando();
 		bool estaRodando();

@@ -77,6 +77,13 @@ void MoveSonic::setPosicionInicio(){
 	noActionCounter++;
 }
 
+void MoveSonic::cortarSalto() {
+
+    jumping = false;
+    frameJumping = 0.0;
+    tiempoY = 0.0;
+}
+
 void MoveSonic::jump(float vel_x,float vel_y){
 	noActionCounter=0;
 	rolling = false; //MARTIN: molestara para que cuando cae siga rodando?
