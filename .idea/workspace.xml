@@ -9,16 +9,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="Tenemos que arreglar las colisiones">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" afterPath="$PROJECT_DIR$/pruebas/execConLogger/sv/mainServer" />
+    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.cpp" afterPath="$PROJECT_DIR$/Control/Control.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp" afterPath="$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" afterPath="$PROJECT_DIR$/Modelo/ModelSonic.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/MoveSonic.cpp" afterPath="$PROJECT_DIR$/Modelo/MoveSonic.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/MoveSonic.hpp" afterPath="$PROJECT_DIR$/Modelo/MoveSonic.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Player.cpp" afterPath="$PROJECT_DIR$/Modelo/Player.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -553,14 +545,7 @@
       <workItem from="1495726641873" duration="2927000" />
       <workItem from="1495741915509" duration="1060000" />
       <workItem from="1495921201304" duration="36000" />
-      <workItem from="1495929279073" duration="1339000" />
-    </task>
-    <task id="LOCAL-00003" summary="ACTUALIZACION UPDATE STAGE">
-      <created>1494699137202</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1494699137202</updated>
+      <workItem from="1495929279073" duration="1356000" />
     </task>
     <task id="LOCAL-00004" summary="ACTUALIZACION UPDATE JUEGO">
       <created>1494700480750</created>
@@ -898,11 +883,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495919052800</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Tenemos que arreglar las colisiones">
+      <created>1495930624928</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1495930624929</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98797000" />
+    <option name="totallyTimeSpent" value="98814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
