@@ -7,6 +7,8 @@ Entidad::Entidad(int id,float x, float y, float w, float h){
 	this->w = w;
 	this->h = h;
 	this->destruida = false;
+	this->frame = 0;
+	this->moveActual = MOVE_TOTAL;
 }
 
 int Entidad::getId(){

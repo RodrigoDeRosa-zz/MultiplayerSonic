@@ -13,6 +13,8 @@ protected:
 	float w;
 	float h;
 	bool destruida;
+	int frame;
+	move_type moveActual;
 	out_message_t* getOutMessage(message_type type);
 
 public:

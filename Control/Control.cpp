@@ -176,12 +176,16 @@ vector<out_message_t*> Control::getStatus(){
 }
 
 void Control::crearEntidades(){
-	Piedra* piedra = new Piedra(1,500, 220);
+	Piedra* piedra = new Piedra(0,500, 220);
 	this->model->addEntidad(piedra);
+	Cangrejo* cangrejo = new Cangrejo(0,1000,350);
+	this->model->addEntidad(cangrejo);
+/*
 	Pinche* pinche = new Pinche(2,1000,380);
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3,550,180);
 	this->model->addEntidad(moneda1);
 	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
+*/
 }
