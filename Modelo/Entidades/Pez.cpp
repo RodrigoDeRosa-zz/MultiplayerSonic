@@ -36,8 +36,8 @@ void Pez::mover(){//draft, faltan frames
 		direccion = (-1)*direccion;
 		frame = 0;
 	}
-	if (direccion > 0.0) moveActual = FISHU;
-	else moveActual = FISHD;
+	if (direccion > 0.0) moveActual = FISHD;
+	else moveActual = FISHU;
 	frame = (contador_mov/FISH_FRAME_FACTOR) % FISH_CANT_FRAMES;
 	contador_mov++;
 	y+= direccion*FISH_MOV_SPEED;
