@@ -1,6 +1,6 @@
 #include "Pinche.hpp"
 
-#define WIDTH 200
-#define HEIGHT 40
+#define WIDTH 100
+#define HEIGHT 47
 
 Pinche::Pinche(float x, float y) : Bloque(x, y, WIDTH, HEIGHT){}

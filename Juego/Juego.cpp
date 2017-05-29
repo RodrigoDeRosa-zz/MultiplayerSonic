@@ -27,9 +27,14 @@ Juego::Juego(){
 
 void Juego::setTexturas(){
     //TODO: Llenar el mapa texturas con lo que corresponda:
+    /*Textura de piedras*/
     Texture* piedras = new Texture();
     piedras->loadFromFile("Graficos/piedras.png");
     texturas.insert(make_pair("piedras", piedras));
+    /*Textura de pinches*/
+    Texture* pinches = new Texture();
+    pinches->loadFromFile("Graficos/pinches.png");
+    texturas.insert(make_pair("pinches", pinches));
     /*
     Moneda, Cangrejo, Pez, pinche..
     */
@@ -110,8 +115,10 @@ void Juego::addPiedra(float x, float y, int type){
 /*Agrega pinches en las posiciones dadas*/
 void Juego::addPinche(float x, float y){
     Pinche* pinche = new Pinche(x, y);
-    /*Aca habria que cargarle la textura de pinche*/
-    pinche->setBackgroundColor(0, 0, 0);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("pinches");
+    Texture* tex = it->second;
+    pinche->setTexture(tex);
     pinche->setIndexZ(99);
     stageActual->addSprite("pinches", pinche);
 }
