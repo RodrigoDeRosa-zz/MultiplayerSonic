@@ -3,13 +3,13 @@
 
 #include "Sprite.hpp"
 #include "Camara.hpp"
-#include <vector>
+#include <map>
 #include <string>
 #include <iostream>
 using namespace std;
 
 class SpriteGroup{
-    vector <Sprite*> sprites; //Vector de punteros a Sprite
+    map<int, Sprite*> sprites; //Vector de punteros a Sprite
     int size;
     public:
         SpriteGroup();
@@ -18,20 +18,21 @@ class SpriteGroup{
         void add(Sprite*);
         /*Saca el sprite pedido de la lista*/
         void remove(Sprite);
+        void remove(int index);
         /*Renderiza todos los sprites del grupo*/
         void render(Camara*);
         /*Remueve todos los sprites del grupo*/
         void empty();
         /*Verrifica si el sprite indicado es parte del grupo*/
         bool has(Sprite);
-        SpriteGroup copy();
-        vector <Sprite*> getSprites();
+        map<int, Sprite*> getSprites();
 
         /*Este metodo es llamado desde el juego para actualizar
          * los sprites de el stage. recibe un int que es la posicion
          * en la lista, y los floats son las nuevas posiciones del
          * sprite.*/
         void update(int ,float, float);
+        void update(int ,float, float, int);
 };
 
 

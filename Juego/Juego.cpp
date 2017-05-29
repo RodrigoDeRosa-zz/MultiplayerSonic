@@ -97,8 +97,20 @@ void Juego::nextStage(){
     stageActual = stages[stageActualIndex];
 }
 
-void Juego::updateStage(string groupKey, int index, float x, float y){
-    stageActual->updateSprite(groupKey, index, x, y);
+void Juego::updateStage(string groupKey, out_message_t* message){
+    if (message->connection == false){
+        stageActual->removeSprite(groupKey, message->id);
+        return;
+    }
+    stageActual->updateSprite(groupKey, message->id, message->posX, message->posY);
+}
+
+void Juego::updateMoneda(out_message_t* message){
+    if (message->connection == false){
+        stageActual->removeSprite("monedas", message->id);
+        return;
+    }
+    stageActual->updateSprite("monedas", message->id, message->posX, message->posY, message->frame);
 }
 
 void Juego::addSpriteGroup(string groupKey){

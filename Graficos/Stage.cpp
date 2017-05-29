@@ -129,6 +129,24 @@ void Stage::updateSprite(string groupKey, int index, float x, float y){
     group->update(index, x, y); //Le pasa la tarea al grupo.
 }
 
+void Stage::updateSprite(string groupKey, int index, float x, float y, int frame){
+    SpriteGroup* group = getSpriteGroup(groupKey);
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
+    group->update(index, x, y, frame); //Le pasa la tarea al grupo.
+}
+
+void Stage::removeSprite(string groupKey, int index){
+    SpriteGroup* group = getSpriteGroup(groupKey);
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
+    group->remove(index); //Le pasa la tarea al grupo.
+}
+
 Stage& Stage::getInstance(){
     static Stage instance;
     return instance;

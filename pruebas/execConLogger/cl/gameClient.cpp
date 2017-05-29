@@ -173,15 +173,15 @@ void* f_view(void* arg){
         	self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
         } else if (message->ping == COIN_UPDATE){
-            self->getJuego()->updateStage("monedas", message->id, message->posX, message->posY);
+            self->getJuego()->updateMoneda(message);
         } else if (message->ping == CRAB_UPDATE){
-            self->getJuego()->updateStage("cangrejos", message->id, message->posX, message->posY);
+            self->getJuego()->updateStage("cangrejos", message);
         } else if (message->ping == FLY_UPDATE){
-            self->getJuego()->updateStage("moscas", message->id, message->posX, message->posY);
+            self->getJuego()->updateStage("moscas", message);
         } else if (message->ping == FISH_UPDATE){
-            self->getJuego()->updateStage("peces", message->id, message->posX, message->posY);
+            self->getJuego()->updateStage("peces", message);
         } else if (message->ping == BONUS_UPDATE){
-            self->getJuego()->updateStage("bonus", message->id, message->posX, message->posY);
+            self->getJuego()->updateStage("bonus", message);
         }
         //renderizar
 		self->updatePlayers();

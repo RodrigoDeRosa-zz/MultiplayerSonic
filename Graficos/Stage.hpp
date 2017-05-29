@@ -45,6 +45,8 @@ class Stage{
          *de spriteGroups.
         */
         void updateSprite(string groupKey, int index, float x, float y);
+        void updateSprite(string groupKey, int index, float x, float y, int frame);
+        void removeSprite(string groupKey, int index);
 
         int getHeight();
         int getWidth();

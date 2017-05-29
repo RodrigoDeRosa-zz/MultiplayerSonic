@@ -6,29 +6,51 @@ using namespace std;
 
 SpriteGroup::SpriteGroup(){}
 SpriteGroup::~SpriteGroup(){
-    for (int i = 0; i < (int)sprites.size(); i++) {
-        if(sprites[i]) delete sprites[i];
-	}
-}
-
-void SpriteGroup::add(Sprite* sprite){
-    sprites.push_back(sprite);
-}
-
-void SpriteGroup::remove(Sprite sprite){
-    for (int i = 0; i < (int)sprites.size(); i++) {
-        if (*sprites[i] == sprite) {
-            sprites.erase(sprites.begin() + i);
+    for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
+        if (it->second){
+            delete it->second;
         }
     }
 }
 
-void SpriteGroup::update(int index,float new_x, float new_y){
+void SpriteGroup::add(Sprite* sprite){
+    sprites.insert(make_pair(sprites.size(), sprite));
+}
+
+void SpriteGroup::remove(Sprite sprite){
+    for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
+        if ( *(it->second) == sprite){
+            sprites.erase(it);
+            return;
+        }
+    }
+}
+
+void SpriteGroup::remove(int index){
+    sprites.erase(index);
+}
+
+void SpriteGroup::update(int index, float new_x, float new_y){
     if (index >= sprites.size()){
         printf("SpriteGroup::update | index %d fuera de rango!\n", index);
         return;
     }
-    sprites[index]->update(new_x, new_y);
+    map<int, Sprite*>::iterator it;
+    it = sprites.find(index);
+    Sprite* sprite = it->second;
+    sprite->update(new_x, new_y);
+}
+
+void SpriteGroup::update(int index, float new_x, float new_y, int frame){
+    if (index >= sprites.size()){
+        printf("SpriteGroup::update | index %d fuera de rango!\n", index);
+        return;
+    }
+    map<int, Sprite*>::iterator it;
+    it = sprites.find(index);
+    Sprite* sprite = it->second;
+    sprite->setFrame(frame);
+    sprite->update(new_x, new_y);
 }
 
 
@@ -41,9 +63,13 @@ struct order{
 
 void SpriteGroup::render(Camara* camara){
     if (!sprites.empty()) {
-        std::sort(sprites.begin(), sprites.end(), order());
-        for (int i = 0; i < (int)sprites.size(); i++) {
-            sprites[i]->render(camara);
+        vector<Sprite*> s;
+        for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
+            s.push_back(it->second);
+        }
+        std::sort(s.begin(), s.end(), order());
+        for (int i = 0; i < (int)s.size(); i++) {
+            s[i]->render(camara);
         }
     }
 }
@@ -53,26 +79,14 @@ void SpriteGroup::empty() {
 }
 
 bool SpriteGroup::has(Sprite sprite) {
-
-	for (int i = 0; i < (int)sprites.size(); i++) {
-		if (*sprites[i] == sprite) {
-			return true;
-		}
-	}
-	return false;
+    for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
+        if ( *(it->second) == sprite){
+            return true;
+        }
+    }
+    return false;
 }
 
-SpriteGroup SpriteGroup::copy() {
-
-	SpriteGroup new_group;
-
-	for (int i = 0; i < (int)sprites.size(); i++) {
-		new_group.add(sprites[i]);
-	}
-
-	return new_group;
-}
-
-vector <Sprite*> SpriteGroup::getSprites(){
+map<int, Sprite*> SpriteGroup::getSprites(){
   return sprites;
 }

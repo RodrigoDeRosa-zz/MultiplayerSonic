@@ -15,8 +15,24 @@ Moneda::Moneda(float x, float y) : MovingBloque(x, y, WIDTH, HEIGHT){
     rectangle = clipsMovimientos->getRectangulo("rolling", frame);
 }
 
-void Moneda::incFrame(){
-    frame++;
-    if (frame > 3) frame = 0;
-    rectangle = clipsMovimientos->getRectangulo("rolling", frame);
+void Moneda::render(Camara* cam){
+  //Si no tiene textura cargada, pinta con el color de fondo.
+  float auxX = originX - cam->getX();
+  float auxY = originY - cam->getY();
+  Renderer::getInstance().setDrawColor(red, green, blue, 1);
+  rectangle = clipsMovimientos->getRectangulo("rolling", frame);
+
+  if(texture) texture->renderWithMovement(auxX, auxY, &rectangle);
+      else{
+        float aux1 = rectangle.x;
+        float aux2 = rectangle.y;
+
+          rectangle.x -= cam->getX();
+          rectangle.y -= cam->getY();
+
+          Renderer::getInstance().fillRect(&rectangle);
+
+          rectangle.x = aux1;
+          rectangle.y = aux2;
+      }
 }

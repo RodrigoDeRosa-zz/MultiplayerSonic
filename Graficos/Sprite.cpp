@@ -90,6 +90,10 @@ void Sprite::setIndexZ(int index){
         zIndex = index;
 }
 
+void Sprite::setFrame(int f){
+    frame = f;
+}
+
 int Sprite::getZIndex(){
     return zIndex;
 }

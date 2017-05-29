@@ -4,8 +4,6 @@
 #include "../MovingBloque.hpp"
 
 class Cangrejo: public MovingBloque{
-    private:
-        int frame;
     public:
         /*El alto y el ancho son siempre constantes, son defines del cpp*/
         Cangrejo(float x, float y);
