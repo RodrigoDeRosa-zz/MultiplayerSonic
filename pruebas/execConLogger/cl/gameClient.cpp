@@ -80,19 +80,19 @@ void* initGame(void *arg){
                 client->getJuego()->addJugador(SSTR(i), "sonic");
             }
         } else if (message->ping == ROCK_SET){
-            client->getJuego()->addPiedra(message->posX, message->posY, message->frame);
+            client->getJuego()->addPiedra(message->posX, message->posY, message->frame, message->id);
         } else if (message->ping == SPIKE_SET){
-            client->getJuego()->addPinche(message->posX, message->posY);
+            client->getJuego()->addPinche(message->posX, message->posY, message->id);
         } else if (message->ping == COIN_SET){
-            client->getJuego()->addMoneda(message->posX, message->posY);
+            client->getJuego()->addMoneda(message->posX, message->posY, message->id);
         } else if (message->ping == BONUS_SET){
-            client->getJuego()->addBonus(message->posX, message->posY);
+            client->getJuego()->addBonus(message->posX, message->posY, message->id);
         } else if (message->ping == CRAB_SET){
-            client->getJuego()->addCangrejo(message->posX, message->posY);
+            client->getJuego()->addCangrejo(message->posX, message->posY, message->id);
         } else if (message->ping == FLY_SET){
-            client->getJuego()->addMosca(message->posX, message->posY);
+            client->getJuego()->addMosca(message->posX, message->posY, message->id);
         } else if (message->ping == FISH_SET){
-            client->getJuego()->addPez(message->posX, message->posY);
+            client->getJuego()->addPez(message->posX, message->posY, message->id);
         }
 
         delete message;

@@ -17,6 +17,10 @@ void SpriteGroup::add(Sprite* sprite){
     sprites.insert(make_pair(sprites.size(), sprite));
 }
 
+void SpriteGroup::add(Sprite* sprite, int index){
+    sprites.insert(make_pair(index, sprite));
+}
+
 void SpriteGroup::remove(Sprite sprite){
     for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
         if ( *(it->second) == sprite){
@@ -31,10 +35,6 @@ void SpriteGroup::remove(int index){
 }
 
 void SpriteGroup::update(int index, float new_x, float new_y){
-    if (index >= sprites.size()){
-        printf("SpriteGroup::update | index %d fuera de rango!\n", index);
-        return;
-    }
     map<int, Sprite*>::iterator it;
     it = sprites.find(index);
     Sprite* sprite = it->second;

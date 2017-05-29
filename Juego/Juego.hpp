@@ -48,8 +48,9 @@ class Juego{
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);
     void updateStageEntity(string groupKey, out_message_t*);
+    void updateStageEntitySense(string groupKey, out_message_t*);
     /*Agrega un sprite al spriteGroup indicado, en el stage actua*/
-    void addSprite(string groupKey, Sprite* sprite);
+    void addSprite(string groupKey, Sprite* sprite, int);
     /*Agrega un spriteGroup en el stage actual*/
     void addSpriteGroup(string groupKey);
     void addEntityGroup(string groupKey);
@@ -61,19 +62,19 @@ class Juego{
     void updateBonus(out_message_t*);
 
     /*Agrega una piedra en las posiciones dadas*/
-    void addPiedra(float x, float y, int t);
+    void addPiedra(float x, float y, int t, int index);
     /*Agrega pinches en las posiciones dadas*/
-    void addPinche(float x, float y);
+    void addPinche(float x, float y, int index);
     /*Agrega una moneda en las posiciones dadas*/
-    void addMoneda(float x, float y);
+    void addMoneda(float x, float y, int index);
     /*Agrega un bonus en las posiciones dadas*/
-    void addBonus(float x, float y);
+    void addBonus(float x, float y, int index);
     /*Agrega un pez en las posiciones dadas*/
-    void addPez(float x, float y);
+    void addPez(float x, float y, int index);
     /*Agrega un cangrejo en las posiciones dadas*/
-    void addCangrejo(float x, float y);
+    void addCangrejo(float x, float y, int index);
     /*Agrega una mosca en las posiciones dadas*/
-    void addMosca(float x, float y);
+    void addMosca(float x, float y, int index);
 
     ~Juego();
 };

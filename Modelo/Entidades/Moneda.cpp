@@ -4,6 +4,8 @@
 #define WIDTH 50
 #define HEIGHT 50
 
+#define COIN_FRAME_FACTOR	6
+#define COIN_CANT_FRAMES	4
 using namespace std;
 
 Moneda::Moneda(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
@@ -21,4 +23,9 @@ out_message_t* Moneda::getOutMessage(){
 
 out_message_t* Moneda::getInitMessage(){
 	return this->Entidad::getOutMessage(COIN_SET);
+}
+
+void Moneda::mover(){//draft, faltan frames
+	frame = (contador_mov/COIN_FRAME_FACTOR) % COIN_CANT_FRAMES;
+	contador_mov++;
 }

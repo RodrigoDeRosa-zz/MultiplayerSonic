@@ -125,22 +125,22 @@ EntityGroup* Stage::getEntityGroup(string groupKey){
 }
 
 /*Nuevo*/
-void Stage::addSprite(string groupKey, Sprite* sprite){
+void Stage::addSprite(string groupKey, Sprite* sprite, int index){
     SpriteGroup* group = getSpriteGroup(groupKey);
     if (!group){
         printf("Grupo %s no encontrado!\n", groupKey);
         return;
     }
-    group->add(sprite); //Se añade el sprite
+    group->add(sprite, index); //Se añade el sprite
 }
 
-void Stage::addEntity(string groupKey, Entity* entity){
+void Stage::addEntity(string groupKey, Entity* entity, int index){
     EntityGroup* group = getEntityGroup(groupKey);
     if (!group){
         printf("Grupo %s no encontrado!\n", groupKey);
         return;
     }
-    group->add(entity); //Se añade el sprite
+    group->add(entity, index); //Se añade el sprite
 }
 
 void Stage::updateSprite(string groupKey, int index, float x, float y){
@@ -159,6 +159,15 @@ void Stage::updateEntity(string groupKey, int index, float x, float y, int frame
         return;
     }
     group->update(index, x, y, frame); //Le pasa la tarea al grupo.
+}
+
+void Stage::updateEntity(string groupKey, int index, float x, float y, int frame, move_type sense){
+    EntityGroup* group = getEntityGroup(groupKey);
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
+    group->update(index, x, y, frame, sense); //Le pasa la tarea al grupo.
 }
 
 void Stage::removeSprite(string groupKey, int index){

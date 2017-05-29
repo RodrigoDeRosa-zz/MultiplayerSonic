@@ -3,6 +3,8 @@
 #include "../Modelo/Entidades/Pinche.hpp"
 #include "../Modelo/Entidades/Moneda.hpp"
 #include "../Modelo/Entidades/Cangrejo.hpp"
+#include "../Modelo/Entidades/Pez.hpp"
+#include "../Modelo/Entidades/Mosca.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -143,7 +145,7 @@ void Control::handleInMessage(in_message_t* ev){
 			return;
 		}
 	}
-*/	
+*/
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 
@@ -180,11 +182,15 @@ void Control::crearEntidades(){
 	this->model->addEntidad(piedra);
 	Cangrejo* cangrejo = new Cangrejo(0,1000,350);
 	this->model->addEntidad(cangrejo);
-/*
-	Pinche* pinche = new Pinche(2,1000,380);
+    Pez* pez = new Pez(0, 800, 450);
+	this->model->addEntidad(pez);
+    Mosca* mosca = new Mosca(0,300,100);
+	this->model->addEntidad(cangrejo);
+	Pinche* pinche = new Pinche(2,1000,360);
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3,550,180);
 	this->model->addEntidad(moneda1);
+    /*
 	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
 */

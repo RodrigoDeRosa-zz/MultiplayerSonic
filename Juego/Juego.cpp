@@ -43,9 +43,14 @@ void Juego::setTexturas(){
     Texture* cangrejos = new Texture();
     cangrejos->loadFromFile("Graficos/cangrejos.png");
     texturas.insert(make_pair("cangrejos", cangrejos));
-    /*
-    Moneda, Cangrejo, Pez, pinche..
-    */
+    /*Textura de peces*/
+    Texture* peces = new Texture();
+    peces->loadFromFile("Graficos/pez.png");
+    texturas.insert(make_pair("peces", peces));
+    /*Textura de moscas*/
+    Texture* moscas = new Texture();
+    moscas->loadFromFile("Graficos/mosca.png");
+    texturas.insert(make_pair("moscas", moscas));
 }
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
@@ -113,6 +118,14 @@ void Juego::updateStageEntity(string groupKey, out_message_t* message){
     stageActual->updateEntity(groupKey, message->id, message->posX, message->posY, message->frame);
 }
 
+void Juego::updateStageEntitySense(string groupKey, out_message_t* message){
+    if (message->connection == false){
+        stageActual->removeEntity(groupKey, message->id);
+        return;
+    }
+    stageActual->updateEntity(groupKey, message->id, message->posX, message->posY, message->frame, message->move);
+}
+
 void Juego::updateMoneda(out_message_t* message){
     updateStageEntity("monedas", message);
 }
@@ -122,11 +135,11 @@ void Juego::updateCangrejo(out_message_t* message){
 }
 
 void Juego::updateMosca(out_message_t* message){
-    updateStageEntity("moscas", message);
+    updateStageEntitySense("moscas", message);
 }
 
 void Juego::updatePez(out_message_t* message){
-    updateStageEntity("peces", message);
+    updateStageEntitySense("peces", message);
 }
 
 void Juego::updateBonus(out_message_t* message){
@@ -141,11 +154,11 @@ void Juego::addEntityGroup(string groupKey){
     stageActual->addEntityGroup(groupKey);
 }
 
-void Juego::addSprite(string groupKey, Sprite* sprite){
-    stageActual->addSprite(groupKey, sprite);
+void Juego::addSprite(string groupKey, Sprite* sprite, int index){
+    stageActual->addSprite(groupKey, sprite, index);
 }
 
-void Juego::addPiedra(float x, float y, int type){
+void Juego::addPiedra(float x, float y, int type, int index){
     Piedra* piedra = new Piedra(x, y, type);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -153,11 +166,11 @@ void Juego::addPiedra(float x, float y, int type){
     Texture* tex = it->second;
     piedra->setTexture(tex);
     piedra->setIndexZ(99);
-    stageActual->addSprite("piedras", piedra);
+    stageActual->addSprite("piedras", piedra, index);
 }
 
 /*Agrega pinches en las posiciones dadas*/
-void Juego::addPinche(float x, float y){
+void Juego::addPinche(float x, float y, int index){
     Pinche* pinche = new Pinche(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -165,11 +178,11 @@ void Juego::addPinche(float x, float y){
     Texture* tex = it->second;
     pinche->setTexture(tex);
     pinche->setIndexZ(99);
-    stageActual->addSprite("pinches", pinche);
+    stageActual->addSprite("pinches", pinche, index);
 }
 
 /*Agrega una moneda en las posiciones dadas*/
-void Juego::addMoneda(float x, float y){
+void Juego::addMoneda(float x, float y, int index){
     Moneda* moneda = new Moneda(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -177,29 +190,31 @@ void Juego::addMoneda(float x, float y){
     Texture* tex = it->second;
     moneda->setTexture(tex);
     moneda->setIndexZ(99);
-    stageActual->addEntity("monedas", moneda);
+    stageActual->addEntity("monedas", moneda, index);
 }
 
 /*Agrega un bonus en las posiciones dadas*/
-void Juego::addBonus(float x, float y){
+void Juego::addBonus(float x, float y, int index){
     Bonus* bonus = new Bonus(x, y);
     /*Aca habria que cargarle la textura de pinche*/
     bonus->setBackgroundColor(80, 80, 80);
     bonus->setIndexZ(99);
-    stageActual->addEntity("bonus", bonus);
+    stageActual->addEntity("bonus", bonus, index);
 }
 
 /*Agrega un pez en las posiciones dadas*/
-void Juego::addPez(float x, float y){
+void Juego::addPez(float x, float y, int index){
     Pez* pez = new Pez(x, y);
-    /*Aca habria que cargarle la textura de pinche*/
-    pez->setBackgroundColor(255, 0, 0);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("peces");
+    Texture* tex = it->second;
+    pez->setTexture(tex);
     pez->setIndexZ(99);
-    stageActual->addEntity("peces", pez);
+    stageActual->addEntity("peces", pez, index);
 }
 
 /*Agrega un cangrejo en las posiciones dadas*/
-void Juego::addCangrejo(float x, float y){
+void Juego::addCangrejo(float x, float y, int index){
     Cangrejo* cangrejo = new Cangrejo(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -207,16 +222,18 @@ void Juego::addCangrejo(float x, float y){
     Texture* tex = it->second;
     cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
-    stageActual->addEntity("cangrejos", cangrejo);
+    stageActual->addEntity("cangrejos", cangrejo, index);
 }
 
 /*Agrega un pajaro en las posiciones dadas*/
-void Juego::addMosca(float x, float y){
+void Juego::addMosca(float x, float y, int index){
     Mosca* mosca = new Mosca(x, y);
-    /*Aca habria que cargarle la textura de pinche*/
-    mosca->setBackgroundColor(0, 0, 250);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("moscas");
+    Texture* tex = it->second;
+    mosca->setTexture(tex);
     mosca->setIndexZ(99);
-    stageActual->addEntity("moscas", mosca);
+    stageActual->addEntity("moscas", mosca, index);
 }
 
 void Juego::setJugadores(Jugadores* jugs){

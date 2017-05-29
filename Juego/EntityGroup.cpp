@@ -12,8 +12,8 @@ EntityGroup::~EntityGroup(){
     }
 }
 
-void EntityGroup::add(Entity* entity){
-    entities.insert(make_pair(entities.size(), entity));
+void EntityGroup::add(Entity* entity, int index){
+    entities.insert(make_pair(index, entity));
 }
 
 void EntityGroup::remove(int index){
@@ -21,10 +21,6 @@ void EntityGroup::remove(int index){
 }
 
 void EntityGroup::update(int index, float new_x, float new_y, int frame){
-    if (index >= entities.size()){
-        printf("EntityGroup::update | index %d fuera de rango!\n", index);
-        return;
-    }
     map<int, Entity*>::iterator it;
     it = entities.find(index);
     Entity* entity = it->second;
@@ -32,16 +28,11 @@ void EntityGroup::update(int index, float new_x, float new_y, int frame){
     entity->update(new_x, new_y);
 }
 
-void EntityGroup::update(int index, float new_x, float new_y, int frame, int sense){
-    if (index >= entities.size()){
-        printf("EntityGroup::update | index %d fuera de rango!\n", index);
-        return;
-    }
+void EntityGroup::update(int index, float new_x, float new_y, int frame, move_type sense){
     map<int, Entity*>::iterator it;
     it = entities.find(index);
     Entity* entity = it->second;
-    entity->setFrame(frame);
-    entity->setSense(sense);
+    entity->setFrame(frame, sense);
     entity->update(new_x, new_y);
 }
 

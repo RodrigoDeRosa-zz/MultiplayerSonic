@@ -7,6 +7,8 @@
 #define FLY_MOV_SPAN 250		//cuantas veces se mueve para un lado
 #define FLY_MOV_SPEED 0.4		//cuanto se mueve por vez
 
+#define FLY_FRAME_FACTOR 4
+#define FLY_CANT_FRAMES	16
 using namespace std;
 
 Mosca::Mosca(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
@@ -31,7 +33,11 @@ void Mosca::mover(){//draft, faltan frames
 	if (contador_mov > FLY_MOV_SPAN){
 		contador_mov = 0;
 		direccion = (-1)*direccion;
+		frame = 0;
 	}
+	if (direccion > 0.0) moveActual = FLYD;
+	else moveActual = FLYL;
+	frame = (contador_mov/FLY_FRAME_FACTOR) % FLY_CANT_FRAMES;
 	contador_mov++;
 	x+= direccion*FLY_MOV_SPEED;
 }

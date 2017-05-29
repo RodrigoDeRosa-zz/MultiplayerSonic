@@ -74,7 +74,7 @@ out_message_t* Entidad::getOutMessage(message_type type){
 	state->posX = this->x;
 	state->posY = this->y;
 	state->camPos = 0; //seteo en cero porque no tiene sentido para la entidad
-	state->move = MOVE_TOTAL; //tampoco tiene sentido para la entidad
+	state->move = moveActual; //El pez y la mosca cambian de sentido
 	state->frame = frame;
 	return state;
 }

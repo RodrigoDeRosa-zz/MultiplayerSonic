@@ -16,6 +16,7 @@ class SpriteGroup{
         ~SpriteGroup();
         /*Agrega un sprite a la lista de sprites.*/
         void add(Sprite*);
+        void add(Sprite*, int);
         /*Saca el sprite pedido de la lista*/
         void remove(Sprite);
         void remove(int index);

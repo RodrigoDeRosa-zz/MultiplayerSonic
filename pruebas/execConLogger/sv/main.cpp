@@ -61,59 +61,7 @@ void avisarEmpiezaJuego(char* outState){
     memcpy(rockInfo, state, sizeof(out_message_t));
     SERVER().queueOutEvent(rockInfo);
     usleep(1000);
-/*
-    char* rockInfo1 = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = ROCK_SET;
-    state->id = 0; //id de la piedra
-    state->posX = 700;
-    state->posY = 220;
-    state->frame = 1;
-    memcpy(rockInfo1, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(rockInfo1);
-    usleep(1000);
 
-    char* rockInfo2 = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = ROCK_SET;
-    state->id = 0; //id de la piedra
-    state->posX = 850;
-    state->posY = 220;
-    state->frame = 2;
-    memcpy(rockInfo2, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(rockInfo2);
-    usleep(1000);
-
-    char* spikeInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = SPIKE_SET;
-    state->id = 0; //id del pinche
-    state->posX = 1000;
-    state->posY = 380;
-    memcpy(spikeInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(spikeInfo);
-    usleep(1000);
-
-    char* coinInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = COIN_SET;
-    state->id = 0; //id del pinche
-    state->posX = 500;
-    state->posY = 180;
-    memcpy(coinInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(coinInfo);
-    usleep(1000);
-
-    char* coin2Info = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = COIN_SET;
-    state->id = 1; //id del pinche
-    state->posX = 200;
-    state->posY = 180;
-    memcpy(coin2Info, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(coin2Info);
-    usleep(1000);
-*/
     char* crabInfo = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = CRAB_SET;
@@ -122,6 +70,46 @@ void avisarEmpiezaJuego(char* outState){
     state->posY = 350;
     memcpy(crabInfo, state, sizeof(out_message_t));
     SERVER().queueOutEvent(crabInfo);
+    usleep(1000);
+
+    char* fishInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = FISH_SET;
+    state->id = 0; //id del pinche
+    state->posX = 800;
+    state->posY = 450;
+    memcpy(fishInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(fishInfo);
+    usleep(1000);
+
+    char* flyInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = FLY_SET;
+    state->id = 0; //id del pinche
+    state->posX = 300;
+    state->posY = 100;
+    memcpy(flyInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(flyInfo);
+    usleep(1000);
+
+    char* spikeInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = SPIKE_SET;
+    state->id = 2; //id del pinche
+    state->posX = 1000;
+    state->posY = 360;
+    memcpy(spikeInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(spikeInfo);
+    usleep(1000);
+
+    char* coinInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = COIN_SET;
+    state->id = 3; //id del pinche
+    state->posX = 550;
+    state->posY = 180;
+    memcpy(coinInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(coinInfo);
     usleep(1000);
 
     char* startMessage = new char[sizeof(out_message_t)];
@@ -181,15 +169,6 @@ void* accept(void* arg){
             for (int i = 0; i < control->cantidadRocas; i++){
             }
             */
-            char* rockInfo = new char[sizeof(out_message_t)];
-            memset(state, 0, sizeof(out_message_t));
-            state->ping = ROCK_SET;
-            state->id = 0; //id de la piedra
-            state->posX = 500;
-            state->posY = 220;
-            memcpy(rockInfo, state, sizeof(out_message_t));
-            connection->sendMessage(rockInfo, sizeof(out_message_t));
-            usleep(1000);
 
             char* startMessage = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
