@@ -62,6 +62,28 @@ void avisarEmpiezaJuego(char* outState){
     SERVER().queueOutEvent(rockInfo);
     usleep(1000);
 
+    char* rockInfo1 = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = ROCK_SET;
+    state->id = 0; //id de la piedra
+    state->posX = 700;
+    state->posY = 220;
+    state->frame = 1;
+    memcpy(rockInfo1, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(rockInfo1);
+    usleep(1000);
+
+    char* rockInfo2 = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = ROCK_SET;
+    state->id = 0; //id de la piedra
+    state->posX = 850;
+    state->posY = 220;
+    state->frame = 2;
+    memcpy(rockInfo2, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(rockInfo2);
+    usleep(1000);
+
     char* spikeInfo = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = SPIKE_SET;

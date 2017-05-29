@@ -97,22 +97,12 @@ void Juego::addSprite(string groupKey, Sprite* sprite){
 }
 
 void Juego::addPiedra(float x, float y, int type){
-    Piedra* piedra;
-    if (type == 0) {
-        piedra = new Piedra(x, y, PIEDRA1W, PIEDRA1H, type);
-    } else if (type == 1){
-        piedra = new Piedra(x, y, PIEDRA2W, PIEDRA2H, type);
-    } else {
-        piedra = new Piedra(x, y, PIEDRA3W, PIEDRA3H, type);
-    }
+    Piedra* piedra = new Piedra(x, y, type);
     //Carga de textura
     map<string, Texture*>::iterator it;
     it = texturas.find("piedras");
     Texture* tex = it->second;
     piedra->setTexture(tex);
-    /*Aca habria que cargar la textura de la piedra
-    */
-    //piedra->setBackgroundColor(80, 80, 0);
     piedra->setIndexZ(99);
     stageActual->addSprite("piedras", piedra);
 }

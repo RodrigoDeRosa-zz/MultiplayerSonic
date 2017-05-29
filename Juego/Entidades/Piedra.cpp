@@ -1,17 +1,25 @@
 #include "Piedra.hpp"
-#include <stdio.h>
 
-#define HEIGHT 200
+/*Para pasarlo al creador de bloque*/
+#define W 1000
+#define H 200
 
-Piedra::Piedra(float x, float y, float w, float h, int t) : Bloque(x, y, w, h){
+Piedra::Piedra(float x, float y, int t) : MovingBloque(x, y, W, H){
     type = t;
-    clip = new Clip();
-    if (type == 0){
-        clip->addRectangulo(0, 0, 124, HEIGHT);
-    } else if (type == 1){
-        clip->addRectangulo(125, 0, 103, HEIGHT);
-    } else {
-        clip->addRectangulo(229, 0, 113, HEIGHT);
+    /*Se agregan todos los SDL_Rects de los 3 tipos*/
+    setClip("piedra1");
+    setRectangulo("piedra1", 0, 0, 124, 200);
+    setClip("piedra2");
+    setRectangulo("piedra2", 125, 0, 103, 200);
+    setClip("piedra3");
+    setRectangulo("piedra3", 229, 0, 113, 200);
+    /*Se define el SDL_Rect segun el tipo*/
+    switch (type) {
+        case 0:
+            rectangle = clipsMovimientos->getRectangulo("piedra1", 0); break;
+        case 1:
+            rectangle = clipsMovimientos->getRectangulo("piedra2", 0); break;
+        case 2:
+            rectangle = clipsMovimientos->getRectangulo("piedra3", 0); break;
     }
-    rectangle = clip->getRectangulo(0);
 }

@@ -1,15 +1,16 @@
 #ifndef PIEDRA_HPP
 #define PIEDRA_HPP
 
-#include "../../Graficos/Bloque.hpp"
-#include "../Clip.hpp"
+#include "../MovingBloque.hpp"
+#include "../ClipGroup.hpp"
 
-class Piedra: public Bloque{
+class Piedra: public MovingBloque{
     private:
         int type; //Tipo de piedra
-        Clip* clip;
+        ClipGroup* clips;
     public:
-        Piedra(float x, float y, float w, float h, int t);
+        /*El W y H dependen del tipo, se sobreescriben en la creacion*/
+        Piedra(float x, float y, int t);
 };
 
 #endif /*PIEDRA_HPP*/
