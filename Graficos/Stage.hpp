@@ -3,6 +3,8 @@
 
 #include "Layer.hpp"
 #include "SpriteGroup.hpp"
+#include "../Juego/EntityGroup.hpp"
+#include "../Juego/Entity.hpp"
 #include "Camara.hpp"
 #include <vector>
 #include <map>
@@ -11,14 +13,15 @@ using namespace std;
 
 class Stage{
     private:
-        SpriteGroup* sprites; //Viejo
         map<string, SpriteGroup*> spriteGroups; //Nuevo
+        map<string, EntityGroup*> entityGroups; //Nuevo
 
         Layer* front;
         Layer* background;
         int width, height;
 
         SpriteGroup* getSpriteGroup(string key);
+        EntityGroup* getEntityGroup(string key);
     public:
         Stage();
         ~Stage();
@@ -31,22 +34,26 @@ class Stage{
         /*Agrega un grupo de sprites al stage.
          * @param: {string} key que representara el grupo en el mapa de sprites group.
         */
-        void addSpriteGroup(string, SpriteGroup*); //Nuevo
+        void addSpriteGroup(string, SpriteGroup*); //Viejo
         /*No hace falta recibir el spriteGroup, se crea adentro. SE DEJA LA VIEJA POR LAS DUDAS*/
         void addSpriteGroup(string);
+        void addEntityGroup(string);
 
         /*Agrega el sprite recibido al sprite group que corresponde a la clave
          *pasada en el string.
          */
         void addSprite(string, Sprite*); //Nuevo
+        void addEntity(string, Entity*); //Nuevo
 
         /*Actualiza la posicion del sprite cuyo indice se recibe, en el sprite
          *group guardado como valor de la clave recibida en el string en el mapa
          *de spriteGroups.
         */
         void updateSprite(string groupKey, int index, float x, float y);
-        void updateSprite(string groupKey, int index, float x, float y, int frame);
+        void updateEntity(string groupKey, int index, float x, float y, int frame);
+
         void removeSprite(string groupKey, int index);
+        void removeEntity(string groupKey, int index);
 
         int getHeight();
         int getWidth();

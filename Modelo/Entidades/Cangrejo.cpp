@@ -37,8 +37,8 @@ void Cangrejo::mover(){//draft, faltan frames
 		contador_mov = 0;
 		direccion = (-1)*direccion;
 		moveActual = (moveActual==CRABD ? CRABI : CRABD);
-		frame = (contador_mov/CRAB_FRAME_FACTOR) % CRAB_CANT_FRAMES;
 	}
+	frame = (contador_mov/CRAB_FRAME_FACTOR) % CRAB_CANT_FRAMES;
 	contador_mov++;
 	x+= direccion*CRAB_MOV_SPEED;
-} 
+}

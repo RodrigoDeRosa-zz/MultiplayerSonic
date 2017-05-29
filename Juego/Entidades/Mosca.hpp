@@ -1,9 +1,9 @@
 #ifndef PAJARO_HPP
 #define PAJARO_HPP
 
-#include "../MovingBloque.hpp"
+#include "../Entity.hpp"
 
-class Mosca: public MovingBloque{
+class Mosca: public Entity{
     public:
         /*El alto y el ancho son siempre constantes, son defines del cpp*/
         Mosca(float x, float y);

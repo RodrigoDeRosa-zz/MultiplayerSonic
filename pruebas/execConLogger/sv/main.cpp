@@ -356,41 +356,7 @@ void* inEventsHandle(void* arg){
 
 void* outStatesHandle(void* arg){
     Control* gameControl = (Control*) arg;
-    int k = 0;
-    int frame = 0;
     while(SERVER().is_running()){
-        k++;
-        /*Moneda girando*/
-        if (k%25 == 0){
-            out_message_t* state = new out_message_t;
-            memset(state, 0, sizeof(out_message_t));
-            state->ping = COIN_UPDATE;
-            state->id = 0;
-            state->posX = 102;
-            state->posY = 100;
-            state->frame = frame;
-            state->connection = true;
-            char* outMessage = new char[sizeof(out_message_t)];
-            memcpy(outMessage, state, sizeof(out_message_t));
-            SERVER().queueOutEvent(outMessage);
-            delete state;
-            frame++;
-            if (frame > 3) frame = 0;
-        }
-        /*Prueba de eliminar moneda*/
-        if (k == 1500){
-            out_message_t* state2 = new out_message_t;
-            memset(state2, 0, sizeof(out_message_t));
-            state2->ping = COIN_UPDATE;
-            state2->id = 1;
-            state2->posX = 102;
-            state2->posY = 100;
-            state2->connection = false;
-            char* outMessage2 = new char[sizeof(out_message_t)];
-            memcpy(outMessage2, state2, sizeof(out_message_t));
-            SERVER().queueOutEvent(outMessage2);
-            delete state2;
-        }
         /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/
         vector<out_message_t*> states = gameControl->getStatus();
         for(int i = 0; i < states.size(); i++){

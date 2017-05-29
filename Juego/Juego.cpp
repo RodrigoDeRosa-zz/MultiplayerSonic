@@ -97,7 +97,7 @@ void Juego::nextStage(){
     stageActual = stages[stageActualIndex];
 }
 
-void Juego::updateStage(string groupKey, out_message_t* message){
+void Juego::updateStageSprite(string groupKey, out_message_t* message){
     if (message->connection == false){
         stageActual->removeSprite(groupKey, message->id);
         return;
@@ -105,16 +105,40 @@ void Juego::updateStage(string groupKey, out_message_t* message){
     stageActual->updateSprite(groupKey, message->id, message->posX, message->posY);
 }
 
-void Juego::updateMoneda(out_message_t* message){
+void Juego::updateStageEntity(string groupKey, out_message_t* message){
     if (message->connection == false){
-        stageActual->removeSprite("monedas", message->id);
+        stageActual->removeEntity(groupKey, message->id);
         return;
     }
-    stageActual->updateSprite("monedas", message->id, message->posX, message->posY, message->frame);
+    stageActual->updateEntity(groupKey, message->id, message->posX, message->posY, message->frame);
+}
+
+void Juego::updateMoneda(out_message_t* message){
+    updateStageEntity("monedas", message);
+}
+
+void Juego::updateCangrejo(out_message_t* message){
+    updateStageEntity("cangrejos", message);
+}
+
+void Juego::updateMosca(out_message_t* message){
+    updateStageEntity("moscas", message);
+}
+
+void Juego::updatePez(out_message_t* message){
+    updateStageEntity("peces", message);
+}
+
+void Juego::updateBonus(out_message_t* message){
+    updateStageEntity("bonus", message);
 }
 
 void Juego::addSpriteGroup(string groupKey){
     stageActual->addSpriteGroup(groupKey);
+}
+
+void Juego::addEntityGroup(string groupKey){
+    stageActual->addEntityGroup(groupKey);
 }
 
 void Juego::addSprite(string groupKey, Sprite* sprite){
@@ -153,7 +177,7 @@ void Juego::addMoneda(float x, float y){
     Texture* tex = it->second;
     moneda->setTexture(tex);
     moneda->setIndexZ(99);
-    stageActual->addSprite("monedas", moneda);
+    stageActual->addEntity("monedas", moneda);
 }
 
 /*Agrega un bonus en las posiciones dadas*/
@@ -162,7 +186,7 @@ void Juego::addBonus(float x, float y){
     /*Aca habria que cargarle la textura de pinche*/
     bonus->setBackgroundColor(80, 80, 80);
     bonus->setIndexZ(99);
-    stageActual->addSprite("bonus", bonus);
+    stageActual->addEntity("bonus", bonus);
 }
 
 /*Agrega un pez en las posiciones dadas*/
@@ -171,7 +195,7 @@ void Juego::addPez(float x, float y){
     /*Aca habria que cargarle la textura de pinche*/
     pez->setBackgroundColor(255, 0, 0);
     pez->setIndexZ(99);
-    stageActual->addSprite("peces", pez);
+    stageActual->addEntity("peces", pez);
 }
 
 /*Agrega un cangrejo en las posiciones dadas*/
@@ -183,7 +207,7 @@ void Juego::addCangrejo(float x, float y){
     Texture* tex = it->second;
     cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
-    stageActual->addSprite("cangrejos", cangrejo);
+    stageActual->addEntity("cangrejos", cangrejo);
 }
 
 /*Agrega un pajaro en las posiciones dadas*/
@@ -192,7 +216,7 @@ void Juego::addMosca(float x, float y){
     /*Aca habria que cargarle la textura de pinche*/
     mosca->setBackgroundColor(0, 0, 250);
     mosca->setIndexZ(99);
-    stageActual->addSprite("moscas", mosca);
+    stageActual->addEntity("moscas", mosca);
 }
 
 void Juego::setJugadores(Jugadores* jugs){

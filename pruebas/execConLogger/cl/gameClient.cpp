@@ -62,12 +62,12 @@ void* initGame(void *arg){
             juego->setJugadores(jugs);
             juego->setFactory();
             juego->addSpriteGroup("piedras");
-            juego->addSpriteGroup("cangrejos");
-            juego->addSpriteGroup("monedas");
-            juego->addSpriteGroup("moscas");
-            juego->addSpriteGroup("peces");
             juego->addSpriteGroup("pinches");
-            juego->addSpriteGroup("bonus");
+            juego->addEntityGroup("cangrejos");
+            juego->addEntityGroup("monedas");
+            juego->addEntityGroup("moscas");
+            juego->addEntityGroup("peces");
+            juego->addEntityGroup("bonus");
 
             client->addJuego(juego);
         } else if (message->ping == GAME_START){
@@ -175,13 +175,13 @@ void* f_view(void* arg){
         } else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);
         } else if (message->ping == CRAB_UPDATE){
-            self->getJuego()->updateStage("cangrejos", message);
+            self->getJuego()->updateCangrejo(message);
         } else if (message->ping == FLY_UPDATE){
-            self->getJuego()->updateStage("moscas", message);
+            self->getJuego()->updateMosca(message);
         } else if (message->ping == FISH_UPDATE){
-            self->getJuego()->updateStage("peces", message);
+            self->getJuego()->updatePez(message);
         } else if (message->ping == BONUS_UPDATE){
-            self->getJuego()->updateStage("bonus", message);
+            self->getJuego()->updateBonus(message);
         }
         //renderizar
 		self->updatePlayers();

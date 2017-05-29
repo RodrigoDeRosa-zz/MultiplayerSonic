@@ -46,13 +46,19 @@ class Juego{
     void updateJugador(string, float, float, move_type, int, bool);
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
-    void updateStage(string groupKey, out_message_t*);
+    void updateStageSprite(string groupKey, out_message_t*);
+    void updateStageEntity(string groupKey, out_message_t*);
     /*Agrega un sprite al spriteGroup indicado, en el stage actua*/
     void addSprite(string groupKey, Sprite* sprite);
     /*Agrega un spriteGroup en el stage actual*/
     void addSpriteGroup(string groupKey);
+    void addEntityGroup(string groupKey);
 
     void updateMoneda(out_message_t*);
+    void updateCangrejo(out_message_t*);
+    void updateMosca(out_message_t*);
+    void updatePez(out_message_t*);
+    void updateBonus(out_message_t*);
 
     /*Agrega una piedra en las posiciones dadas*/
     void addPiedra(float x, float y, int t);

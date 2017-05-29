@@ -7,7 +7,6 @@
 using namespace std;
 
 Stage::Stage(){
-    sprites = NULL;
     front = NULL;
     background = NULL;
     width=0;
@@ -22,10 +21,6 @@ Stage::~Stage(){
     if (background){
         delete background;
         background = NULL;
-    }
-    if(sprites){
-        delete sprites;
-        sprites = NULL;
     }
 }
 
@@ -87,6 +82,9 @@ void Stage::render(Camara* camara){
     for (map<string, SpriteGroup*>::iterator it = spriteGroups.begin(); it != spriteGroups.end(); it++){
         it->second->render(camara); //it->second es el valor, es decir, el spriteGroup
     }
+    for (map<string, EntityGroup*>::iterator it = entityGroups.begin(); it != entityGroups.end(); it++){
+        it->second->render(camara); //it->second es el valor, es decir, el entityGroup
+    }
 }
 
 /*Nuevo*/
@@ -99,12 +97,28 @@ void Stage::addSpriteGroup(string key){
     spriteGroups.insert(make_pair(key, group));
 }
 
+void Stage::addEntityGroup(string key){
+    EntityGroup* group = new EntityGroup();
+    entityGroups.insert(make_pair(key, group));
+}
+
 SpriteGroup* Stage::getSpriteGroup(string groupKey){
     map<string, SpriteGroup*>::iterator it;
     it = spriteGroups.find(groupKey);
     if (it == spriteGroups.end()){
         //Si no existe el grupo, no hace nada
         printf("Sprite group %s no existe!\n", groupKey);
+        return NULL;
+    }
+    return it->second; //Se agarra el valor de la clave.
+}
+
+EntityGroup* Stage::getEntityGroup(string groupKey){
+    map<string, EntityGroup*>::iterator it;
+    it = entityGroups.find(groupKey);
+    if (it == entityGroups.end()){
+        //Si no existe el grupo, no hace nada
+        printf("EntityGroup %s no existe!\n", groupKey);
         return NULL;
     }
     return it->second; //Se agarra el valor de la clave.
@@ -120,6 +134,15 @@ void Stage::addSprite(string groupKey, Sprite* sprite){
     group->add(sprite); //Se añade el sprite
 }
 
+void Stage::addEntity(string groupKey, Entity* entity){
+    EntityGroup* group = getEntityGroup(groupKey);
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
+    group->add(entity); //Se añade el sprite
+}
+
 void Stage::updateSprite(string groupKey, int index, float x, float y){
     SpriteGroup* group = getSpriteGroup(groupKey);
     if (!group){
@@ -129,8 +152,8 @@ void Stage::updateSprite(string groupKey, int index, float x, float y){
     group->update(index, x, y); //Le pasa la tarea al grupo.
 }
 
-void Stage::updateSprite(string groupKey, int index, float x, float y, int frame){
-    SpriteGroup* group = getSpriteGroup(groupKey);
+void Stage::updateEntity(string groupKey, int index, float x, float y, int frame){
+    EntityGroup* group = getEntityGroup(groupKey);
     if (!group){
         printf("Grupo %s no encontrado!\n", groupKey);
         return;
@@ -140,6 +163,15 @@ void Stage::updateSprite(string groupKey, int index, float x, float y, int frame
 
 void Stage::removeSprite(string groupKey, int index){
     SpriteGroup* group = getSpriteGroup(groupKey);
+    if (!group){
+        printf("Grupo %s no encontrado!\n", groupKey);
+        return;
+    }
+    group->remove(index); //Le pasa la tarea al grupo.
+}
+
+void Stage::removeEntity(string groupKey, int index){
+    EntityGroup* group = getEntityGroup(groupKey);
     if (!group){
         printf("Grupo %s no encontrado!\n", groupKey);
         return;

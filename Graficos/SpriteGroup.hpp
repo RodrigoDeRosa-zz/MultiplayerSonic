@@ -32,7 +32,6 @@ class SpriteGroup{
          * en la lista, y los floats son las nuevas posiciones del
          * sprite.*/
         void update(int ,float, float);
-        void update(int ,float, float, int);
 };
 
 

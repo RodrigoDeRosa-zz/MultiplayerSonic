@@ -41,19 +41,6 @@ void SpriteGroup::update(int index, float new_x, float new_y){
     sprite->update(new_x, new_y);
 }
 
-void SpriteGroup::update(int index, float new_x, float new_y, int frame){
-    if (index >= sprites.size()){
-        printf("SpriteGroup::update | index %d fuera de rango!\n", index);
-        return;
-    }
-    map<int, Sprite*>::iterator it;
-    it = sprites.find(index);
-    Sprite* sprite = it->second;
-    sprite->setFrame(frame);
-    sprite->update(new_x, new_y);
-}
-
-
 /*Funcion de ordenamiento del array de sprites*/
 struct order{
     inline bool operator() (Sprite* sprite1, Sprite* sprite2){

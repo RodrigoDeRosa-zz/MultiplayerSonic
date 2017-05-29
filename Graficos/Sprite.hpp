@@ -15,7 +15,7 @@ class Sprite{
         Texture* texture;
         SDL_Rect rectangle;
         float originX, originY;
-        int width, height, zIndex, frame;
+        int width, height, zIndex;
         Uint8 red, green, blue;
 
     public:
@@ -40,8 +40,6 @@ class Sprite{
         /*getters*/
         float getX();
         float getY();
-
-        void setFrame(int);
 
         int getWidth();
         int getHeight();
