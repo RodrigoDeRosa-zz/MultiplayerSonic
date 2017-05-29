@@ -360,6 +360,7 @@ void* outStatesHandle(void* arg){
     int frame = 0;
     while(SERVER().is_running()){
         k++;
+        /*Moneda girando*/
         if (k%25 == 0){
             out_message_t* state = new out_message_t;
             memset(state, 0, sizeof(out_message_t));
@@ -376,6 +377,7 @@ void* outStatesHandle(void* arg){
             frame++;
             if (frame > 3) frame = 0;
         }
+        /*Prueba de eliminar moneda*/
         if (k == 1500){
             out_message_t* state2 = new out_message_t;
             memset(state2, 0, sizeof(out_message_t));
