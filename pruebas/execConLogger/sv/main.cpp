@@ -114,6 +114,16 @@ void avisarEmpiezaJuego(char* outState){
     SERVER().queueOutEvent(coin2Info);
     usleep(1000);
 
+    char* crabInfo = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = CRAB_SET;
+    state->id = 0; //id del pinche
+    state->posX = 200;
+    state->posY = 180;
+    memcpy(crabInfo, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(crabInfo);
+    usleep(1000);
+
     char* startMessage = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_START;

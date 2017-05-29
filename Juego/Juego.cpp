@@ -35,6 +35,14 @@ void Juego::setTexturas(){
     Texture* pinches = new Texture();
     pinches->loadFromFile("Graficos/pinches.png");
     texturas.insert(make_pair("pinches", pinches));
+    /*Textura de monedas*/
+    Texture* monedas = new Texture();
+    monedas->loadFromFile("Graficos/monedas.png");
+    texturas.insert(make_pair("monedas", monedas));
+    /*Textura de cangrejos*/
+    Texture* cangrejos = new Texture();
+    cangrejos->loadFromFile("Graficos/cangrejos.png");
+    texturas.insert(make_pair("cangrejos", cangrejos));
     /*
     Moneda, Cangrejo, Pez, pinche..
     */
@@ -115,6 +123,7 @@ void Juego::addPiedra(float x, float y, int type){
 /*Agrega pinches en las posiciones dadas*/
 void Juego::addPinche(float x, float y){
     Pinche* pinche = new Pinche(x, y);
+    //Carga de textura
     map<string, Texture*>::iterator it;
     it = texturas.find("pinches");
     Texture* tex = it->second;
@@ -126,8 +135,11 @@ void Juego::addPinche(float x, float y){
 /*Agrega una moneda en las posiciones dadas*/
 void Juego::addMoneda(float x, float y){
     Moneda* moneda = new Moneda(x, y);
-    /*Aca habria que cargarle la textura de pinche*/
-    moneda->setBackgroundColor(200, 200, 0);
+    //Carga de textura
+    map<string, Texture*>::iterator it;
+    it = texturas.find("monedas");
+    Texture* tex = it->second;
+    moneda->setTexture(tex);
     moneda->setIndexZ(99);
     stageActual->addSprite("monedas", moneda);
 }
@@ -153,8 +165,11 @@ void Juego::addPez(float x, float y){
 /*Agrega un cangrejo en las posiciones dadas*/
 void Juego::addCangrejo(float x, float y){
     Cangrejo* cangrejo = new Cangrejo(x, y);
-    /*Aca habria que cargarle la textura de pinche*/
-    cangrejo->setBackgroundColor(0, 250, 0);
+    //Carga de textura
+    map<string, Texture*>::iterator it;
+    it = texturas.find("cangrejos");
+    Texture* tex = it->second;
+    cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
     stageActual->addSprite("cangrejos", cangrejo);
 }
