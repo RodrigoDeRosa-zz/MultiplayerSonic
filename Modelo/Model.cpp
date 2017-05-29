@@ -147,9 +147,9 @@ void Model::colisionarTodos() {
 			}
 
 			if ((*players)[i]->enRangoY((*entidades)[j])) {
-				//if ((*players)[i]->enRangoX((*entidades)[j])) {
+				if ((*players)[i]->enRangoX((*entidades)[j])) {
 					(*players)[i]->afectarseCon((*entidades)[j]);
-				//}
+				}
 			}
 		}
 	}
