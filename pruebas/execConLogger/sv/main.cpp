@@ -26,7 +26,7 @@ using namespace std;
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
-void avisarEmpiezaJuego(char* outState){
+void avisarEmpiezaJuego(Control* gameControl){
     out_message_t* state = new out_message_t;
 
     char* message = new char[sizeof(out_message_t)];
@@ -44,74 +44,15 @@ void avisarEmpiezaJuego(char* outState){
     memcpy(playerSetting, state, sizeof(out_message_t));
     SERVER().queueOutEvent(playerSetting);
     usleep(1000);
-
-    /*Para cada roca del nivel, se envia un mensaje con su informacion.
-    Falta hacer lo mismo para todas las entidades de todo tipo*/
-    /*
-    for (int i = 0; i < control->cantidadRocas; i++){
+    
+    vector<out_message_t*> states = gameControl->getEntidadesInitStatus();
+    for(int i = 0; i < states.size(); i++){
+        char* outState = new char[sizeof(out_message_t)];
+        memcpy(outState, states[i], sizeof(out_message_t));
+        SERVER().queueOutEvent(outState);
     }
-    */
-    char* rockInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = ROCK_SET;
-    state->id = 0; //id de la piedra
-    state->posX = 500;
-    state->posY = 220;
-    state->frame = 0;
-    memcpy(rockInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(rockInfo);
-    usleep(1000);
-
-    char* crabInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = CRAB_SET;
-    state->id = 0; //id del pinche
-    state->posX = 1000;
-    state->posY = 350;
-    memcpy(crabInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(crabInfo);
-    usleep(1000);
-
-    char* fishInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = FISH_SET;
-    state->id = 0; //id del pinche
-    state->posX = 800;
-    state->posY = 450;
-    memcpy(fishInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(fishInfo);
-    usleep(1000);
-
-    char* flyInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = FLY_SET;
-    state->id = 0; //id del pinche
-    state->posX = 300;
-    state->posY = 100;
-    memcpy(flyInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(flyInfo);
-    usleep(1000);
-
-    char* spikeInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = SPIKE_SET;
-    state->id = 2; //id del pinche
-    state->posX = 1000;
-    state->posY = 360;
-    memcpy(spikeInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(spikeInfo);
-    usleep(1000);
-
-    char* coinInfo = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = COIN_SET;
-    state->id = 3; //id del pinche
-    state->posX = 550;
-    state->posY = 180;
-    memcpy(coinInfo, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(coinInfo);
-    usleep(1000);
-
+    usleep(5000);
+    
     char* startMessage = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_START;
@@ -274,8 +215,8 @@ int main(int argc, char** argv){
 		usleep(30000);
 	}
 
-    char* outState = new char[sizeof(out_message_t)];
-	avisarEmpiezaJuego(outState);
+    
+	avisarEmpiezaJuego(gameControl);
 
 	for (int i = 0; i < CXM().actualConnections ; i++){
 		gameControl->addPlayer(SSTR_(i));

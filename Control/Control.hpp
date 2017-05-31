@@ -31,6 +31,7 @@ class Control{
 		vector<out_message_t*> getStatus();
 		void update();
 		void crearEntidades(); //la idea es que esto reciba un .json y devuelva un vector de out_message_t*
+		vector<out_message_t*> getEntidadesInitStatus();
 };
 
 #endif /*CONTROL_HPP*/

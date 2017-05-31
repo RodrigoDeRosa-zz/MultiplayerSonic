@@ -154,22 +154,6 @@ void Model::colisionarTodos() {
 		}
 	}
 }
-/*
-void Model::playerCrouch(string playerName){
-	Player* player = this->getPlayer(playerName);
-	player->crouch();
-}
-
-void Model::playerCharge(string playerName){
-	Player* player = this->getPlayer(playerName);
-	player->charge();
-}
-
-void Model::playerRelease(string playerName){
-	Player* player = this->getPlayer(playerName);
-	player->release();
-}
-*/
 
 void Model::playerRoll(string playerName){
 	Player* player = this->getPlayer(playerName);
@@ -198,6 +182,10 @@ vector<out_message_t*> Model::getEntidadesStatus(){
         }
         this->entidadesStatusControl = 0;
 		v.push_back((*(this->entidades))[i]->getOutMessage());
+		if((*(this->entidades))[i]->estaDestruida()) {
+			// una vez que se mando el mensaje de que esta destruida, se borra la entidad
+			this->entidades->erase(this->entidades->begin() + i);
+		}
 	}
 	return v;
 }
@@ -214,4 +202,12 @@ void Model::moverEntidades(){
 	for(int i = 0; i < this->entidades->size(); i++){
 		(*(this->entidades))[i]->mover();
 	}
+}
+
+vector<out_message_t*> Model::getEntidadesInitStatus(){
+	vector<out_message_t*> v;
+	for(int i=0; i < (this->entidades)->size(); i++){
+		v.push_back((*(this->entidades))[i]->getInitMessage());
+	}
+	return v;
 }

@@ -4,7 +4,7 @@
 *.a
 *.o
 main
-pruebas/exec/cl/mainClient
-pruebas/exec/sv/mainServer
-pruebas/execConLogger/cl/mainClient
-pruebas/execConLogger/sv/mainServer
+/pruebas/exec/cl/mainClient
+/pruebas/exec/sv/mainServer
+/pruebas/execConLogger/cl/mainClient
+/pruebas/execConLogger/sv/mainServer

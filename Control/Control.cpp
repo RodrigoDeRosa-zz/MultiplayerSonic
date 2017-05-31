@@ -127,25 +127,6 @@ void Control::handleInMessage(in_message_t* ev){
 	string playerName = SSTR(ev->id);
 	move_type movement = this->model->getPlayerMovement(playerName);
 
-/*	if((movement == CROUCHD) || (movement == CROUCHI)){
-		if(ev->key == SPACE_DOWN && !this->space_was_down) {
-			this->model->playerCharge(playerName);
-			this->space_was_down = true;
-		}
-		else if(ev->key == SPACE_UP && this->space_was_down){
-			this->model->playerRelease(playerName);
-			this->space_was_down = false;
-		}
-		else if(ev->key == DOWN_UP) this->model->playerRelease(playerName);
-		return;
-	}
-	if((movement == IDLED) || (movement == IDLEI)){
-		if(ev->key == DOWN_DOWN) {
-			this->model->playerCrouch(playerName);
-			return;
-		}
-	}
-*/
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 
@@ -194,4 +175,8 @@ void Control::crearEntidades(){
 	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
 */
+}
+
+vector<out_message_t*> Control::getEntidadesInitStatus(){
+	return this->model->getEntidadesInitStatus();
 }
