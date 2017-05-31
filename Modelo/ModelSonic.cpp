@@ -34,8 +34,11 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     else if(vel_y > 0.0){
         vel_y = 0.0;
     }
-
-	if (bloque_pers->estaRodando() || (posX==ROLL_ARG && posY==ROLL_ARG)){
+	
+	if (bloque_pers->estaDaniado() || (posX==DMG_ARG && posY==DMG_ARG)){
+		bloque_pers->damage();
+	}
+	else if (bloque_pers->estaRodando() || (posX==ROLL_ARG && posY==ROLL_ARG)){
 		bloque_pers->roll();
 	}
     else if(vel_y< 0.0 || bloque_pers->estaSaltando()){
@@ -122,6 +125,10 @@ void ModelSonic::roll(){
 	//bloque_pers->roll();
 	//cambiamos por fruta magica para que llame a update
 	this->update((bloque_pers->estaMirandoADer() ? 1.0 : -1.0),0.0,ROLL_ARG,ROLL_ARG);
+}
+
+void ModelSonic::lastimar(){
+	this->update((bloque_pers->estaMirandoADer() ? 1.0 : -1.0),0.0,DMG_ARG,DMG_ARG);
 }
 
 void ModelSonic::stop(){

@@ -15,12 +15,16 @@
 #define FACTOR_CHARGES	1
 #define LIM_CHARGE 3
 #define MAX_ROLL	100 	//numero a medir para limitar la cantidad de tiempo que rueda
+#define MAX_DMG		75		//idem roll, para daño
+#define THRESHOLD_IDLE	1500	//TODO: ajustar
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
 #define VELOCIDAD 0.35
 #define RUN 0.7
 #define VELOCIDAD_ROLL	3
+#define VELOCIDAD_X_DMG	0.35
+#define VELOCIDAD_Y_DMG	1
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
@@ -29,6 +33,7 @@
 //#define BALL_ANIMATION_FRAMES	6
 //#define CROUCH_ANIMATION_FRAMES 2
 #define BRAKE_ANIMATION_FRAMES	5
+#define DMG_ANIMATION_FRAMES	5		//TODO: chequear este número
 
 MoveSonic::MoveSonic(float x, float y){
     originX = x;
@@ -48,7 +53,10 @@ MoveSonic::MoveSonic(float x, float y){
     direccion = true;
     jumping = false;
 	rolling = false;
+	in_dmg = false;
+	cont_dmg=0;
 	cont_roll=0;
+	oldY=0.0;
 }
 
 void MoveSonic::setPosicionInicio(){
@@ -60,6 +68,7 @@ void MoveSonic::setPosicionInicio(){
     frameJumping=0;
     jumping = false;
 	rolling = false;
+	in_dmg = false;
 	charges = 0;
     if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
         frameQuiet=0;
@@ -72,9 +81,13 @@ void MoveSonic::setPosicionInicio(){
     else{
         moveActual = IDLEI;
     }
-	//TODO si el noActionCounter no llego a cierto threshold que se freezee en la primer frame
-    frameQuiet++;
-	noActionCounter++;
+	//Si no paso el threshold que aumente el contador, si lo paso entonces no lo aumenta y aumenta los frames
+	if (noActionCounter++ > THRESHOLD_IDLE){
+    	frameQuiet++;
+	}
+	else{
+		noActionCounter++;
+	}
 }
 
 void MoveSonic::cortarSalto() {
@@ -125,6 +138,51 @@ void MoveSonic::jump(float vel_x,float vel_y){
     }
 
 }
+
+void MoveSonic::damage(){
+	noActionCounter=0;
+	if (!in_dmg){
+		in_dmg=true;
+		cont_dmg=0;
+		oldY = originY;
+	}
+	cont_dmg++;
+	//if(direccion)-else PARA MOV HORIZONTAL
+	if (direccion){//estaba hacia la derecha, tiene que saltar a la izquierda
+		moveActual=JUMPI;//TODO: cambiar a DMGI
+		frameLeft++;
+		if (frameLeft / (4*DMG_ANIMATION_FRAMES) >= DMG_ANIMATION_FRAMES){
+			frameLeft=0;
+		}
+		frameActual =  frameLeft / (4*DMG_ANIMATION_FRAMES); 
+		originX-= VELOCIDAD_X_DMG;
+	    if( originX < 0 ){originX = 0;}
+	}
+	else{//estaba yendo a la izquierda, debe saltar a la derecha
+		moveActual=JUMPD;	//TODO: cambiar a DMGD
+		frameRight++;
+		if (frameRight / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+			frameRight=0;
+		}
+		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
+		
+		if( originX + (width + VELOCIDAD_X_DMG) > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+		else {
+			originX += VELOCIDAD_X_DMG;
+		}
+	}
+	//MOV VERTICAL ES INDEPTE DEL SENTIDO
+	float deltaY = (float) cont_dmg;//recordar cont_dmg € [0,MAX_DMG]
+	deltaY= (deltaY * deltaY) - (deltaY * MAX_DMG);//x²-MAX_DMGx.
+	deltaY*=VELOCIDAD_Y_DMG;//todo * (-a) (en realidad a porque el eje Y esta invertido)
+	originY = oldY + deltaY;
+	//si termino la animacion
+	if (cont_dmg > MAX_DMG){
+		in_dmg=false;
+		//TODO y ponerlo que resetee a 0 o que?
+	}
+}
+
 void MoveSonic::roll(){
 	if (jumping || false){//si esta saltando (u otros casos limitantes) ignorar
 		return;
@@ -310,6 +368,10 @@ void MoveSonic::update(float new_x, float new_y){
 
 bool MoveSonic::estaSaltando(){
     return jumping;
+}
+
+bool MoveSonic::estaDaniado(){
+	return in_dmg;
 }
 
 int MoveSonic::getX(){

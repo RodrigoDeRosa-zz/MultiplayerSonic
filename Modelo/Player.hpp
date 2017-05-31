@@ -61,6 +61,7 @@ class Player{
 
 		void cargarMapCollitionBoxes();
 		void roll();
+		void lastimar();
 /*		void crouch();
 		void charge();
 		void release();

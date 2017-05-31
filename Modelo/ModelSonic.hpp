@@ -7,6 +7,7 @@
 //ojo que tienen que ser todos negativos!
 #define NO_ARG -1.0
 #define ROLL_ARG -2.0
+#define DMG_ARG -3.0
 
 using namespace std;
 
@@ -34,7 +35,8 @@ public:
     void cortarSalto();
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
-	void roll();
+	void roll();	
+	void lastimar();
 /*
 	void crouch();
 	void release();

@@ -230,6 +230,10 @@ void Player::roll(){
 	this->sonic->roll();
 }
 
+void Player::lastimar(){
+	this->sonic->lastimar();
+}
+
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
     status->ping = PLAYER_UPDATE;
