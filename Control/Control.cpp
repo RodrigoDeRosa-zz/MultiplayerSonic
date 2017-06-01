@@ -58,28 +58,15 @@ vector<float> Control::getDirections(key_event e, string playerName){
 	float dirX = directions[0];
 	float dirY = directions[1];
 	move_type movement = this->model->getPlayerMovement(playerName);//TRY1
+	
 	switch( e ){
 		//case QUIT: this->model->setPlayerConnection(playerName, false); break;
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
 		case RIGHT_DOWN: dirX += 1; break;
 		case SPACE_UP: dirY += 1; break;
-		case LEFT_UP: dirX += 1; break;
-		case RIGHT_UP: dirX -= 1; break;
-/*		case DOWN_UP: 	//TRY1
-			switch(movement){
-				case ROLLD:
-				//case RUND:
-				//case WALKD:
-				//case DMGD:
-				dirX-=1; break;
-				case ROLLI:
-				//case RUNI:
-				case WALKI:
-				//case DMGD:
-				dirX+=1; break;
-			}
-*/
+		case LEFT_UP:  if (dirX) dirX += 1; break;
+		case RIGHT_UP: if (dirX) dirX -= 1; break;
 	}
 	directions[0] = dirX;
 	directions[1] = dirY;
@@ -166,7 +153,7 @@ void Control::crearEntidades(){
     Pez* pez = new Pez(0, 800, 450);
 	this->model->addEntidad(pez);
     Mosca* mosca = new Mosca(0,300,100);
-	this->model->addEntidad(cangrejo);
+	this->model->addEntidad(mosca);
 	Pinche* pinche = new Pinche(2,1000,360);
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3,550,180);

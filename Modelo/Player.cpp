@@ -254,6 +254,7 @@ void Player::recibirGolpe(){
     }
     else this->quitarMonedas(); // despues desparramar monedas?
     //llamar a movimiento de recibir golpe
+	sonic->lastimar();
 }
 
 int Player::getVidas(){

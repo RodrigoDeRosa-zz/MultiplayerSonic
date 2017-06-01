@@ -1,4 +1,5 @@
 #include "ModelSonic.hpp"
+#include <stdio.h>
 using namespace std;
 
 #define WALKING_ANIMATION_FRAMES 6
@@ -20,6 +21,8 @@ void ModelSonic::cortarSalto() {
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 
+
+
     if(vel_x >= 1.0){
         vel_x = 1.0;
     }
@@ -34,12 +37,17 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     else if(vel_y > 0.0){
         vel_y = 0.0;
     }
+
+	//printf("vel_x es %f \n",vel_x);
 	
 	if (bloque_pers->estaDaniado() || (posX==DMG_ARG && posY==DMG_ARG)){
 		bloque_pers->damage();
 	}
 	else if (bloque_pers->estaRodando() || (posX==ROLL_ARG && posY==ROLL_ARG)){
 		bloque_pers->roll();
+		if (!bloque_pers->estaRodando()){//si termino de rodar
+			vel_x = 0.0;
+		}
 	}
     else if(vel_y< 0.0 || bloque_pers->estaSaltando()){
         jump(vel_x,vel_y);
@@ -61,6 +69,7 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 
     direccionX = vel_x;
     direccionY = vel_y;
+
 }
 
 void ModelSonic::setX(float new_x){
