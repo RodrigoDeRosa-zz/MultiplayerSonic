@@ -1,14 +1,14 @@
 #include "Mosca.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 70
-#define HEIGHT 50
+#define WIDTH 56
+#define HEIGHT 60
 
 #define FLY_MOV_SPAN 250		//cuantas veces se mueve para un lado
 #define FLY_MOV_SPEED 0.4		//cuanto se mueve por vez
 
 #define FLY_FRAME_FACTOR 4
-#define FLY_CANT_FRAMES	16
+#define FLY_CANT_FRAMES	4
 using namespace std;
 
 Mosca::Mosca(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}

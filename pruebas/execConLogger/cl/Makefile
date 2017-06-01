@@ -4,7 +4,7 @@ OBJS = ../../../logger/current/Logger2.cpp ../../../Graficos/*.cpp ../../../Jueg
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -w -g
+COMPILER_FLAGS = -w -g -std=c++0x
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -opencv2 -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
 #OBJ_NAME specifies the name of our exectuable

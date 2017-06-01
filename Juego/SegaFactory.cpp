@@ -18,7 +18,7 @@ SegaFactory::SegaFactory(){
     texturas.push_back(tex3);
 
     Texture* tex4 = new Texture();
-    tex4->loadFromFile("../../../Graficos/sonicSpritesDorado.png");
+    tex4->loadFromFile("../../../Graficos/sonicSpritesCian.png");
     texturas.push_back(tex4);
 
     Texture* tex5 = new Texture();
@@ -26,7 +26,7 @@ SegaFactory::SegaFactory(){
     texturas.push_back(tex5);
 
     Texture* tex6 = new Texture();
-    tex6->loadFromFile("../../../Graficos/sonicSpritesCian.png");
+    tex6->loadFromFile("../../../Graficos/sonicSpritesDorado.png");
     texturas.push_back(tex6);
 
     Texture* tex7 = new Texture();
