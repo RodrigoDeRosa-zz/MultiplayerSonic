@@ -4,10 +4,10 @@
 #define WIDTH 56
 #define HEIGHT 60
 
-#define FLY_MOV_SPAN 250		//cuantas veces se mueve para un lado
-#define FLY_MOV_SPEED 0.4		//cuanto se mueve por vez
+#define FLY_MOV_SPAN 1000		//cuantas veces se mueve para un lado
+#define FLY_MOV_SPEED 0.2		//cuanto se mueve por vez
 
-#define FLY_FRAME_FACTOR 4
+#define FLY_FRAME_FACTOR 8
 #define FLY_CANT_FRAMES	4
 using namespace std;
 

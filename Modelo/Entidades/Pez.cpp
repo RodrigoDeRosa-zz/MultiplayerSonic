@@ -5,14 +5,20 @@
 #define HEIGHT 100
 
 
-#define FISH_MOV_SPAN 200		//cuantas veces se mueve para un lado
+#define FISH_MOV_SPAN 1500		//cuantas veces se mueve para un lado
 #define FISH_MOV_SPEED 0.3		//cuanto se mueve por vez
 
-#define FISH_FRAME_FACTOR	4
+#define FISH_FRAME_FACTOR	8
 #define FISH_CANT_FRAMES	4
+
+#define NO_DRAW_Y	2000
+#define FISH_ADJUST 200
+
 using namespace std;
 
-Pez::Pez(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
+Pez::Pez(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
+	oldY=y;
+}
 
 void Pez::afectarA(Player* jugador){
 	if(jugador->estaAtacando()){
@@ -40,5 +46,12 @@ void Pez::mover(){//draft, faltan frames
 	else moveActual = FISHU;
 	frame = (contador_mov/FISH_FRAME_FACTOR) % FISH_CANT_FRAMES;
 	contador_mov++;
-	y+= direccion*FISH_MOV_SPEED;
+	if ((contador_mov < (CONT_INICIAL-FISH_ADJUST) && direccion < 0) || (contador_mov > (FISH_MOV_SPAN - CONT_INICIAL+FISH_ADJUST) && direccion > 0)){//ajustar este numero para que llegue al borde de la pantalla
+		y = NO_DRAW_Y;
+	}
+	else{
+		y = oldY;
+		y+= direccion*FISH_MOV_SPEED;
+		oldY=y;
+	}
 }

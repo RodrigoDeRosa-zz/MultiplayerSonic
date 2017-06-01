@@ -15,7 +15,7 @@
 #define FACTOR_CHARGES	1
 #define LIM_CHARGE 3
 #define MAX_ROLL	100 	//numero a medir para limitar la cantidad de tiempo que rueda
-#define MAX_DMG		75		//idem roll, para daño
+#define MAX_DMG		50		//idem roll, para daño
 #define THRESHOLD_IDLE	1500	//TODO: ajustar
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
@@ -24,7 +24,7 @@
 #define RUN 0.7
 #define VELOCIDAD_ROLL	3
 #define VELOCIDAD_X_DMG	0.35
-#define VELOCIDAD_Y_DMG	1
+#define VELOCIDAD_Y_DMG	0.15
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
@@ -172,10 +172,22 @@ void MoveSonic::damage(){
 		}
 	}
 	//MOV VERTICAL ES INDEPTE DEL SENTIDO
+	
 	float deltaY = (float) cont_dmg;//recordar cont_dmg € [0,MAX_DMG]
+	
+	
+/*	FORMULA ORIGINAL
 	deltaY= (deltaY * deltaY) - (deltaY * MAX_DMG);//x²-MAX_DMGx.
 	deltaY*=VELOCIDAD_Y_DMG;//todo * (-a) (en realidad a porque el eje Y esta invertido)
 	originY = oldY + deltaY;
+*/
+	//FORMULA PASADO A INCREMENTO
+/*
+	si delta_n = (x²-MAX_DMGx)*VEL_Y, delta_n-1 = ((x-1)² - MAX_DMGx + MAX_DMG)*VEL_Y
+	entonces delta_n - delta_n-1 = [2x-1-MAX_DMG]*VEL_Y
+	y eso sigue la parábola x² - MAX_DMGx
+*/
+	originY+= ((2*deltaY - 1) - MAX_DMG) * VELOCIDAD_Y_DMG;
 	//si termino la animacion
 	if (cont_dmg > MAX_DMG){
 		in_dmg=false;

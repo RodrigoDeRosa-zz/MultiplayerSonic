@@ -150,7 +150,7 @@ void Control::crearEntidades(){
 	this->model->addEntidad(piedra);
 	Cangrejo* cangrejo = new Cangrejo(0,1000,350);
 	this->model->addEntidad(cangrejo);
-    Pez* pez = new Pez(0, 800, 450);
+    Pez* pez = new Pez(0, 800, 550);
 	this->model->addEntidad(pez);
     Mosca* mosca = new Mosca(0,300,100);
 	this->model->addEntidad(mosca);

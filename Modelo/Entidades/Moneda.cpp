@@ -4,7 +4,7 @@
 #define WIDTH 50
 #define HEIGHT 50
 
-#define COIN_FRAME_FACTOR	6
+#define COIN_FRAME_FACTOR	60
 #define COIN_CANT_FRAMES	4
 using namespace std;
 
