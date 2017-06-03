@@ -8,6 +8,7 @@ using namespace std;
 
 Stage::Stage(){
     front = NULL;
+    score = NULL;
     background = NULL;
     width=0;
     height=0;
@@ -21,6 +22,10 @@ Stage::~Stage(){
     if (background){
         delete background;
         background = NULL;
+    }
+    if (score){
+        delete score;
+        score = NULL;
     }
 }
 
@@ -85,6 +90,7 @@ void Stage::render(Camara* camara){
     for (map<string, EntityGroup*>::iterator it = entityGroups.begin(); it != entityGroups.end(); it++){
         it->second->render(camara); //it->second es el valor, es decir, el entityGroup
     }
+    score->render();
 }
 
 /*Nuevo*/
@@ -125,6 +131,10 @@ EntityGroup* Stage::getEntityGroup(string groupKey){
 }
 
 /*Nuevo*/
+void Stage::initScore(){
+    score = new ScoreController();
+}
+
 void Stage::addSprite(string groupKey, Sprite* sprite, int index){
     SpriteGroup* group = getSpriteGroup(groupKey);
     if (!group){
@@ -168,6 +178,10 @@ void Stage::updateEntity(string groupKey, int index, float x, float y, int frame
         return;
     }
     group->update(index, x, y, frame, sense); //Le pasa la tarea al grupo.
+}
+
+void Stage::updateScore(int index, int rings, int lives, int points, bool state){
+    score->update(index, rings, lives, points, state);
 }
 
 void Stage::removeSprite(string groupKey, int index){

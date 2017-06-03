@@ -5,6 +5,7 @@
 #include "SpriteGroup.hpp"
 #include "../Juego/EntityGroup.hpp"
 #include "../Juego/Entity.hpp"
+#include "../Juego/Scoring/ScoreController.hpp"
 #include "../message.hpp"
 #include "Camara.hpp"
 #include <vector>
@@ -17,6 +18,7 @@ class Stage{
         map<string, SpriteGroup*> spriteGroups; //Nuevo
         map<string, EntityGroup*> entityGroups; //Nuevo
 
+        ScoreController* score;
         Layer* front;
         Layer* background;
         int width, height;
@@ -53,6 +55,9 @@ class Stage{
         void updateSprite(string groupKey, int index, float x, float y);
         void updateEntity(string groupKey, int index, float x, float y, int frame);
         void updateEntity(string groupKey, int index, float x, float y, int frame, move_type sense);
+
+        void initScore();
+        void updateScore(int index, int rings, int lives, int points, bool state);
 
         void removeSprite(string groupKey, int index);
         void removeEntity(string groupKey, int index);

@@ -26,6 +26,8 @@ class Sprite{
         virtual void render(Camara*);
         /*Dibuja las imagenes de fondo*/
         void render(int x, int y, Camara* cam);
+        /*Renderiza independiente de la camara (PARA SCORES)*/
+        void render();
         /*Define la textura del sprite*/
         void setTexture(Texture*);
         /*Define el color predeterminado del sprite en caso de falta de textura*/
@@ -36,7 +38,7 @@ class Sprite{
         int getZIndex();
 
         void setIndexZ(int);
-
+        void setColorMod(Uint8 r, Uint8 g, Uint8 b);
         /*getters*/
         float getX();
         float getY();

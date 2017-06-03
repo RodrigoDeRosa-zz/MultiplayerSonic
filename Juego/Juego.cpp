@@ -8,6 +8,14 @@
 #include "Entidades/Cangrejo.hpp"
 #include "Entidades/Mosca.hpp"
 #include "Entidades/Pez.hpp"
+#include <sstream>
+#include <string>
+#include <fstream>
+#include <string>
+using namespace std;
+
+#define SSTR( x ) static_cast< ostringstream & >( \
+        ( ostringstream() << dec << x ) ).str()
 
 #define PIEDRA1W 124
 #define PIEDRA1H 200
@@ -67,9 +75,14 @@ void Juego::setTexturas(){
 ////  }
 //}
 
-void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado){
+void Juego::setStageScore(){
+    stageActual->initScore();
+}
 
-  jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado);
+void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
+    int rings, int lives, int points){
+    stageActual->updateScore(stoi(id), rings, lives, points, conectado);
+    jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado);
 }
 
 void Juego::updateCamara(int posx, int posy){

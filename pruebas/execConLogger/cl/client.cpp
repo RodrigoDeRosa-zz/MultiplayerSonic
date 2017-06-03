@@ -41,6 +41,9 @@ void Client::addPlayer(){
     player->move = IDLED;
     player->frame = 0;
 	player->connection = true;
+    player->rings = 0;
+    player->lives = 0;
+    player->points = 0;
 	players.push_back(player);
 }
 
@@ -59,6 +62,9 @@ void Client::updatePlayer(out_message_t* message){
     player->move = message->move;
     player->frame = message->frame;
     player->connection = message->connection;
+    player->rings = message->rings;
+    player->lives = message->lives;
+    player->points = message->points;
     players[message->id] = player;
 }
 
@@ -66,7 +72,8 @@ void Client::updatePlayers(){
 	for(int i = 0; i < (this->players).size(); i++){
 		out_message_t* player = players[i];
 
-		this->juego->updateJugador(SSTR(i), player->posX, player->posY, player->move, player->frame, player->connection);
+		this->juego->updateJugador(SSTR(i), player->posX, player->posY, player->move, player->frame, player->connection,
+            player->rings, player->lives, player->points);
 	}
 }
 

@@ -41,9 +41,11 @@ class Juego{
     void render();
     void setFactory();
     void setCamara(Camara* cam);
+    void setStageScore();
 
     //void updateJugadores(map <string, vector <float> >);
-    void updateJugador(string, float, float, move_type, int, bool);
+    void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
+        int rings, int lives, int points);
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);
@@ -55,6 +57,7 @@ class Juego{
     void addSpriteGroup(string groupKey);
     void addEntityGroup(string groupKey);
 
+    /*Actualizacion de entidades*/
     void updateMoneda(out_message_t*);
     void updateCangrejo(out_message_t*);
     void updateMosca(out_message_t*);

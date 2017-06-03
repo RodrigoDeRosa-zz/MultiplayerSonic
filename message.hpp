@@ -17,7 +17,7 @@ enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, WAITD, WAIT
 //CROUCH es agachado **NO SE USA**
 //ROLL es cuando rueda
 typedef struct out_message{
-	message_type ping; //En 1 indica que el mensaje es un ping del servidor
+	message_type ping; //En 0 indica que el mensaje es un ping del servidor
 	int id;
 	bool connection;
 	float posX;
@@ -25,6 +25,9 @@ typedef struct out_message{
 	float camPos;
 	move_type move;
 	int frame;
+	int rings;
+	int lives;
+	int points;
 } out_message_t;
 
 typedef struct in_message{

@@ -41,6 +41,19 @@ void Sprite::setTexture(Texture* newTex){
     texture = newTex;
 }
 
+void Sprite::render(){
+    //Si no tiene textura cargada, pinta con el color de fondo.
+    float auxX = originX;
+    float auxY = originY;
+    Renderer::getInstance().setDrawColor(red, green, blue, 1.0);
+
+    texture->renderNoFill(auxX, auxY, &rectangle);
+}
+
+void Sprite::setColorMod(Uint8 r, Uint8 g, Uint8 b){
+    texture->setColorMod(r, g, b);
+}
+
 void Sprite::render(Camara* cam){
     //Si no tiene textura cargada, pinta con el color de fondo.
     float auxX = originX - cam->getX();

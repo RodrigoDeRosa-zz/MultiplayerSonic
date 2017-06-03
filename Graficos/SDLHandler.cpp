@@ -1,6 +1,7 @@
 #include "SDLHandler.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "../logger/current/Logger2.hpp"
 
 #define SDLHANDLER_NONINITSDL_MSG "In SDLHandler::init(): SDL could not initialize! SDL Error: "
@@ -24,10 +25,12 @@ bool SDLHandler::init(){
         SDL_Quit();//Se cierra el SDL originalmente inicializado
         return false;
     }
+    TTF_Init();
     return true;
 }
 
 void SDLHandler::close(){
     SDL_Quit();
     IMG_Quit();
+    TTF_Quit();
 }

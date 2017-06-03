@@ -1,4 +1,5 @@
 #include "Entidad.hpp"
+#include <string.h>
 
 Entidad::Entidad(int id,float x, float y, float w, float h){
 	this->id = id;
@@ -68,6 +69,7 @@ bool Entidad::estaDestruida(){
 
 out_message_t* Entidad::getOutMessage(message_type type){
 	out_message_t* state = new out_message_t;
+	memset(state, 0, sizeof(out_message_t));
 	state->ping = type;
 	state->id = this->id;
 	state->connection = !(this->destruida);
@@ -76,6 +78,9 @@ out_message_t* Entidad::getOutMessage(message_type type){
 	state->camPos = 0; //seteo en cero porque no tiene sentido para la entidad
 	state->move = moveActual; //El pez y la mosca cambian de sentido
 	state->frame = frame;
+	state->rings = 0;
+	state->lives = 0;
+	state->points = 0;
 	return state;
 }
 

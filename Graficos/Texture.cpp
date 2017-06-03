@@ -3,6 +3,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "../logger/current/Logger2.hpp"
 using namespace std;
 
@@ -75,6 +76,29 @@ bool Texture::loadFromFile(string path){
     return texture != NULL;
 }
 
+/*Creador de textura a partir de texto*/
+bool Texture::loadFromRenderedText(TTF_Font* font, string textureText, SDL_Color textColor){
+    //Libera la textura anterior
+    free();
+    //Renderiza el texto
+    SDL_Color color = {0x0, 0x0, 0x0};
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), color);
+    if (!textSurface){
+        printf("Surface is NULL, TTF_ERROR: %s\n", TTF_GetError());
+        return false;
+    }
+    //Crea la textura a partir de los pixeles de la superficie
+    SDL_Texture* newTex = Renderer::getInstance().getTextureFromSurface(textSurface);
+    //Setea las dimensiones a partir de la superficie
+    width = textSurface->w;
+    height = textSurface->h;
+    texture = newTex;
+    //Libera la superficie
+    SDL_FreeSurface(textSurface);
+
+    return texture != NULL;
+}
+
 /*Renderiza en la posicion dada por (x,y), usando el SDL_Rect como clipper*/
 void Texture::render(int x, int y, SDL_Rect* clip){
     SDL_Rect renderQuad = {x, y, width, height};
@@ -88,6 +112,17 @@ void Texture::render(int x, int y, SDL_Rect* clip){
             Renderer::getInstance().fillRect(&fillRect);
         } else renderQuad.h = clip->h;
     }
+    int auxX = clip->x;
+    int auxY = clip->y;
+    clip->x = 0;
+    clip->y = 0;
+    Renderer::getInstance().renderTexture(texture, clip, &renderQuad);
+    clip->x = auxX;
+    clip->y = auxY;
+}
+
+void Texture::renderNoFill(int x, int y, SDL_Rect* clip){
+    SDL_Rect renderQuad = {x, y, width, height};
     int auxX = clip->x;
     int auxY = clip->y;
     clip->x = 0;

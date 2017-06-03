@@ -68,6 +68,7 @@ void* initGame(void *arg){
             juego->addEntityGroup("moscas");
             juego->addEntityGroup("peces");
             juego->addEntityGroup("bonus");
+            juego->setStageScore();
 
             client->addJuego(juego);
         } else if (message->ping == GAME_START){
@@ -159,7 +160,7 @@ void* f_view(void* arg){
 		/*Limpiar pantalla*/
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
-
+        k++;
 		out_message_t* message = self->getEventReceived();
         if (!message){
         	//renderizar
@@ -170,7 +171,7 @@ void* f_view(void* arg){
             continue;
         }
         if(message->ping == PLAYER_UPDATE){
-        	self->updatePlayer(message);
+            self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
         } else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);

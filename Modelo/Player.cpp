@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define RUNNNING_EVENTS 1000
 #define RUNNING_VELOCITY 0.7
 #define EVENT_UNIT 1
@@ -236,6 +237,7 @@ void Player::lastimar(){
 
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
+	memset(status, 0, sizeof(out_message_t));
     status->ping = PLAYER_UPDATE;
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();
@@ -244,6 +246,9 @@ out_message_t* Player::getStatus(float camPos){
     status->camPos = camPos;
     status->move = this->getMovement();
     status->frame = this->getFrame();
+	status->rings = 0;
+	status->lives = 0;
+	status->points = 0;
     return status;
 }
 
