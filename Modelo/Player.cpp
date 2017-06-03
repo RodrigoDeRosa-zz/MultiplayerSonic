@@ -163,7 +163,8 @@ bool Player::enRangoX(Entidad* entidad){
     float bordeDerP = this->getBordeDer();
     float bordeIzqP = this->getBordeIzq();
 
-    return ( (bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP) );
+    //return ( (bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP) );
+	return !(bordeDerP < bordeIzqE || bordeDerE < bordeIzqP);//NO colisiona si bordeDer de personaje esta atras del bordeIzq de la entidad o bordeIzq de personaje esta mas adelante de bordeDer de entidad
 }
 
 bool Player::enRangoY(Entidad* entidad){
@@ -174,7 +175,8 @@ bool Player::enRangoY(Entidad* entidad){
     float bordeArribaP = this->getBordeArriba();
     float bordeAbajoP = this->getBordeAbajo();
 
-    return ((bordeArribaE >= bordeAbajoP) || (bordeAbajoE <= bordeArribaP));
+    //return ((bordeArribaE >= bordeAbajoP) || (bordeAbajoE <= bordeArribaP));
+	return !(bordeAbajoP < bordeArribaE || bordeAbajoE < bordeArribaP);//TODO revisar orden correcto
 }
 
 
