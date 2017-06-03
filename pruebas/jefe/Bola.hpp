@@ -16,6 +16,7 @@ public:
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();
 	void mover();
+	void destruir();
 };
 
 #endif /*BOLA_HPP*/

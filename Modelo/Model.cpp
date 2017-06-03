@@ -2,15 +2,47 @@
 #include "Entidades/Piedra.hpp"
 #include <stdio.h>
 
-Model::Model(){
+Model::Model(gameMode game_mode){
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
+	puntajes = new vector<Puntaje*>();
 	this->playerStatusControl = 0;
 	this->entidadesStatusControl = 0;
+	this->modo_juego = game_mode;
+
+	int cant_puntajes = 0;
+	switch(this->modo_juego){
+		case INDIVIDUAL:
+			cant_puntajes = 4;break;
+		case COOP:
+			cant_puntajes = 1;break;
+		case EQUIPOS:
+			cant_puntajes = 2;break;
+	}
+	for (int i = 0; i < cant_puntajes; i++){
+		Puntaje* p = new Puntaje();
+		puntajes->push_back(p);
+	}
 }
 
 void Model::addPlayer(string playerName){
-	Player* player = new Player(playerName);
+	Puntaje* p;
+	switch(this->modo_juego){
+		case INDIVIDUAL:
+			p = puntajes->at(players->size());break;
+		case COOP:
+			p = puntajes->front();break;
+		case EQUIPOS:
+			if (players->size() < 2){	//si es el primer o segundo jugador
+				p = puntajes->front();
+			}
+			else{						//sino es el tercer o cuarto
+				p = puntajes->back();
+			}
+			break;
+	}
+	Player* player = new Player(playerName, p);
+	//TODO CAMBIAR CONSTRUCTOR DE PLAYER PARA QUE RECIBA PUNTAJE
 	(this->players)->push_back(player);
 }
 

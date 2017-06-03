@@ -8,6 +8,7 @@
 #include "../message.hpp"
 #include <map>
 #include <vector>
+#include "Puntaje.hpp"
 
 using namespace std;
 
@@ -18,8 +19,9 @@ class Player{
 	int monedas;
 	int vidas;
     map <move_type, vector<float> > collitionBoxes;
+	Puntaje* puntaje;
 	public:
-		Player(string name);
+		Player(string name, Puntaje* p);
 		string getName();
 		float getX();
 		float getY();
@@ -62,6 +64,9 @@ class Player{
 		void cargarMapCollitionBoxes();
 		void roll();
 		void lastimar();
+
+		void sumarPuntos(int puntos);
+		long getPuntos();
 /*		void crouch();
 		void charge();
 		void release();

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Player::Player(string name){
+Player::Player(string name, Puntaje* p){
 	this->name = name;
 	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
@@ -19,6 +19,7 @@ Player::Player(string name){
     this->cargarMapCollitionBoxes();
     this->monedas = 0;
     this->vidas = 3;
+	this->puntaje = p;
 }
 
 string Player::getName(){
@@ -284,4 +285,11 @@ void Player::quitarVida(){
 
 bool Player::estaAtacando(){
     return true;
+}
+
+void Player::sumarPuntos(int puntos){
+	this->puntaje->sumarPuntos(puntos);
+}
+long Player::getPuntos(){
+	return this->puntaje->getPuntos();
 }
