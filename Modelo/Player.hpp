@@ -9,6 +9,7 @@
 #include <map>
 #include <vector>
 #include "Puntaje.hpp"
+#include "Estado/Estado.hpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class Player{
 	int vidas;
     map <move_type, vector<float> > collitionBoxes;
 	Puntaje* puntaje;
+	Estado* estado;
 	public:
 		Player(string name, Puntaje* p);
 		string getName();
@@ -38,6 +40,9 @@ class Player{
 		int getFrame();
 		int getVidas();
 		int getMonedas();
+
+		void setEstado(state_type estado);
+		state_type getEstado();
 
 		void agregarMonedas(int n);
 		void quitarMonedas();

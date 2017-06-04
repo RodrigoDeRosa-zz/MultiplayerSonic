@@ -20,6 +20,7 @@ Player::Player(string name, Puntaje* p){
     this->monedas = 0;
     this->vidas = 3;
 	this->puntaje = p;
+    this->estado = new Estado();
 }
 
 string Player::getName(){
@@ -217,18 +218,6 @@ void Player::afectarseCon(Entidad* entidad){
         entidad->afectarA(this);
     }*/
 }
-/*
-void Player::crouch(){
-	this->sonic->crouch();
-}
-
-void Player::charge(){
-	this->sonic->charge();
-}
-
-void Player::release(){
-	this->sonic->release();
-}*/
 
 void Player::roll(){
 	this->sonic->roll();
@@ -292,6 +281,15 @@ bool Player::estaAtacando(){
 void Player::sumarPuntos(int puntos){
 	this->puntaje->sumarPuntos(puntos);
 }
+
 long Player::getPuntos(){
 	return this->puntaje->getPuntos();
+}
+
+void Player::setEstado(state_type estado){
+    this->estado->set(estado);
+}
+
+state_type Player::getEstado(){
+    return this->estado->get();
 }

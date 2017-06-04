@@ -1,7 +1,7 @@
 #ifndef ESTADO_HPP
 #define ESTADO_HPP
 
-#include "message.hpp"
+#include "../../message.hpp"
 
 class Estado{
 	state_type estado;
