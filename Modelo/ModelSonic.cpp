@@ -151,3 +151,11 @@ void ModelSonic::stop(){
 void ModelSonic::caer(){
 	this->bloque_pers->caer();
 }
+
+bool ModelSonic::estaSaltando(){
+    return this->bloque_pers->estaSaltando();
+}
+
+bool ModelSonic::estaRodando(){
+    return this->bloque_pers->estaRodando();
+}

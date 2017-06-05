@@ -285,7 +285,7 @@ void Player::quitarVida(){
 }
 
 bool Player::estaAtacando(){
-    return true;
+    return ((this->sonic->estaRodando()) || (this->sonic->estaSaltando()));
 }
 
 void Player::sumarPuntos(int puntos){
