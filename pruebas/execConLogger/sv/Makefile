@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = ../../../logger/current/Logger2.cpp ../../../Modelo/*.cpp ../../../Modelo/Entidades/*.cpp ../../../Modelo/Estado/*.cpp ../../../json/jsoncpp.cpp ../../../Control/*.cpp *.cpp
+OBJS = ../../../logger/current/Logger2.cpp ../../../Modelo/*.cpp ../../../Modelo/Entidades/*.cpp ../../../Modelo/Entidades/Piedras/*.cpp ../../../Modelo/Estado/*.cpp ../../../json/jsoncpp.cpp ../../../Control/*.cpp *.cpp
 #CC specifies which compiler we're using
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using

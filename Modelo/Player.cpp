@@ -264,6 +264,7 @@ bool Player::recibirGolpe(){
     }
     return false;
 }
+
 int Player::getVidas(){
     return this->vidas;
 }

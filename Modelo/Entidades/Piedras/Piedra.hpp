@@ -1,7 +1,7 @@
 #ifndef PIEDRA_HPP
 #define PIEDRA_HPP
 
-#include "Entidad.hpp"
+#include "../Entidad.hpp"
 
 using namespace std;
 
