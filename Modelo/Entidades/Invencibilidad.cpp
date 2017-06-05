@@ -1,8 +1,8 @@
 #include "Invencibilidad.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 50
-#define HEIGHT 50
+#define WIDTH 100
+#define HEIGHT 120
 
 using namespace std;
 
