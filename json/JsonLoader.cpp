@@ -19,8 +19,8 @@
 #define DEFAULT_PATH "json/ejemplo2.json"
 #define DEFAULT_WIDTH 1200
 #define DEFAULT_HEIGHT 640
-#define DEFAULT_STAGE_WIDHT 3600
-#define DEFAULT_STAGE_HEIGHT 640
+#define DEFAULT_STAGE_WIDHT 4000
+#define DEFAULT_STAGE_HEIGHT 720
 #define DEFAULT_IMAGE "../Graficos/question.png"
 
 using namespace std;

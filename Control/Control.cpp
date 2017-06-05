@@ -154,9 +154,9 @@ void Control::crearEntidades(){
 	this->model->addEntidad(pez);
     Mosca* mosca = new Mosca(0,300, 225);
 	this->model->addEntidad(mosca);
-	Pinche* pinche = new Pinche(2,1000, 485);
+	Pinche* pinche = new Pinche(2, 1000, 495);
 	this->model->addEntidad(pinche);
-	Moneda* moneda1 = new Moneda(3,550, 305);
+	Moneda* moneda1 = new Moneda(3, 550, 305);
 	this->model->addEntidad(moneda1);
     /*
 	Moneda* moneda2 = new Moneda(4,200,180);
