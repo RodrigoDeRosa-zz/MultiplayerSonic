@@ -6,7 +6,7 @@
 class Bonus: public Entity{
     public:
         /*El alto y el ancho son siempre constantes, son defines del cpp*/
-        Bonus(float x, float y);
+        Bonus(float x, float y, int t);
 };
 
 #endif /*BONUS_HPP*/

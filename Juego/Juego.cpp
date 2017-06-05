@@ -59,6 +59,10 @@ void Juego::setTexturas(){
     Texture* moscas = new Texture();
     moscas->loadFromFile("Graficos/mosca.png");
     texturas.insert(make_pair("moscas", moscas));
+    /*Textura de bonus*/
+    Texture* bonus = new Texture();
+    bonus->loadFromFile("Graficos/bonus.png");
+    texturas.insert(make_pair("bonus", bonus));
 }
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
@@ -207,10 +211,13 @@ void Juego::addMoneda(float x, float y, int index){
 }
 
 /*Agrega un bonus en las posiciones dadas*/
-void Juego::addBonus(float x, float y, int index){
-    Bonus* bonus = new Bonus(x, y);
+void Juego::addBonus(float x, float y, int t, int index){
+    Bonus* bonus = new Bonus(x, y, t);
     /*Aca habria que cargarle la textura de pinche*/
-    bonus->setBackgroundColor(80, 80, 80);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("bonus");
+    Texture* tex = it->second;
+    bonus->setTexture(tex);
     bonus->setIndexZ(99);
     stageActual->addEntity("bonus", bonus, index);
 }
