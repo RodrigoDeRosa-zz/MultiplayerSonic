@@ -1,8 +1,8 @@
 #include "Cangrejo.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 70
-#define HEIGHT 50
+#define WIDTH 87
+#define HEIGHT 55
 
 
 #define CRAB_MOV_SPAN 1000		//cuantas veces se mueve para un lado

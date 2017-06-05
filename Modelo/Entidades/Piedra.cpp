@@ -1,7 +1,7 @@
 #include "Piedra.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 103
+#define WIDTH 124
 #define HEIGHT 200
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/

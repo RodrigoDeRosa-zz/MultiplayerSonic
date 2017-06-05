@@ -9,6 +9,7 @@ class Estado{
 public:
 	Estado();
 	state_type get();
+	void setInvencible();
 	void set(state_type estado);
 	void updateFrame();
 	int getFrame();

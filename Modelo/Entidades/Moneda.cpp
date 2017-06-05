@@ -1,8 +1,8 @@
 #include "Moneda.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 50
-#define HEIGHT 50
+#define WIDTH 40
+#define HEIGHT 40
 
 #define COIN_FRAME_FACTOR	60
 #define COIN_CANT_FRAMES	4
