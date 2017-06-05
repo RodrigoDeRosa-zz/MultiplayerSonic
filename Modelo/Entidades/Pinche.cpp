@@ -1,8 +1,8 @@
 #include "Pinche.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 200
-#define HEIGHT 40
+#define WIDTH 100
+#define HEIGHT 47
 
 using namespace std;
 

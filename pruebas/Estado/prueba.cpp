@@ -9,6 +9,7 @@ int main(){
 	estado->set(INVENCIBLE);
 	for(int i = 0; i<15; i++){
 		print(estado->get());
+		if(i == 5) estado->set(ESCUDO);
 		sleep(1);
 	}
 	return 0;

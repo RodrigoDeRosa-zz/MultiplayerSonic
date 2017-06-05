@@ -1,8 +1,8 @@
 #include "Pez.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 50
-#define HEIGHT 100
+#define WIDTH 39
+#define HEIGHT 60
 
 
 #define FISH_MOV_SPAN 1500		//cuantas veces se mueve para un lado
