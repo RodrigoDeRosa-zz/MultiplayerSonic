@@ -8,6 +8,8 @@
 #include "Entidades/Cangrejo.hpp"
 #include "Entidades/Mosca.hpp"
 #include "Entidades/Pez.hpp"
+#include "Entidades/Escudo.hpp"
+#include "Entidades/Invencibilidad.hpp"
 #include <sstream>
 #include <string>
 #include <fstream>
@@ -63,6 +65,10 @@ void Juego::setTexturas(){
     Texture* bonus = new Texture();
     bonus->loadFromFile("Graficos/bonus.png");
     texturas.insert(make_pair("bonus", bonus));
+    /*Textura de escudo e Invencibilidad*/
+    Texture* bolas = new Texture();
+    bolas->loadFromFile("Graficos/efectos_bolas_bonus.png");
+    texturas.insert(make_pair("bolas", bolas));
 }
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
@@ -84,9 +90,9 @@ void Juego::setStageScore(){
 }
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
-    int rings, int lives, int points){
+    int rings, int lives, int points, state_type state, int state_frame){
     stageActual->updateScore(stoi(id), rings, lives, points, conectado);
-    jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado);
+    jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado, state, state_frame);
 }
 
 void Juego::updateCamara(int posx, int posy){
@@ -94,7 +100,7 @@ void Juego::updateCamara(int posx, int posy){
 }
 
 bool Juego::addJugador(string nombreJugador, string nombrePersonaje){
-  return jugadores->addJugador(nombreJugador,nombrePersonaje);
+  return jugadores->addJugador(nombreJugador, nombrePersonaje, texturas.at("bolas"));
 }
 
 /*VISTA*/

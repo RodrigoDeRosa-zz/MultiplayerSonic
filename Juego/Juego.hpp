@@ -45,7 +45,7 @@ class Juego{
 
     //void updateJugadores(map <string, vector <float> >);
     void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
-        int rings, int lives, int points);
+        int rings, int lives, int points, state_type state, int state_frame);
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);

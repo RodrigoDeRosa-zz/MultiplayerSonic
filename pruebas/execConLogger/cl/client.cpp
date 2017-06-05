@@ -65,6 +65,8 @@ void Client::updatePlayer(out_message_t* message){
     player->rings = message->rings;
     player->lives = message->lives;
     player->points = message->points;
+    player->state = message->state;
+    player->state_frame = message->state_frame;
     players[message->id] = player;
 }
 
@@ -73,7 +75,7 @@ void Client::updatePlayers(){
 		out_message_t* player = players[i];
 
 		this->juego->updateJugador(SSTR(i), player->posX, player->posY, player->move, player->frame, player->connection,
-            player->rings, player->lives, player->points);
+            player->rings, player->lives, player->points, player->state, player->state_frame);
 	}
 }
 

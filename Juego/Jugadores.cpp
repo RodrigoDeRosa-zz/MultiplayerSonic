@@ -26,8 +26,8 @@ bool Jugadores::addSonic(string nombreJugador, string nombrePersonaje, Jugador* 
 
 }
 
-bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
-    Jugador* jug = new Jugador(nombreJugador, nombrePersonaje);
+bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje, Texture* bolas){
+    Jugador* jug = new Jugador(nombreJugador, nombrePersonaje, bolas);
     bool exito = false;
     //como c++ no deja hacer switch con strings hacemos ifs.
     if( (nombrePersonaje == SONIC1) || (nombrePersonaje == SONIC2) || (nombrePersonaje == SONIC3)){
@@ -36,13 +36,14 @@ bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje){
     return exito;
 }
 
-void Jugadores::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado){
+void Jugadores::updateJugador(string id, float posx, float posy, move_type movimiento, int frame,
+    bool conectado, state_type state, int state_frame){
 
   if(not has(id)){
     //logger
   }
   Jugador* actual = jugadores[id];
-  actual->updatePersonaje(posx,posy, movimiento, frame, conectado);
+  actual->updatePersonaje(posx,posy, movimiento, frame, conectado, state, state_frame);
 
 }
 
