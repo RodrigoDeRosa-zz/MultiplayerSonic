@@ -227,6 +227,10 @@ void Player::lastimar(){
 	this->sonic->lastimar();
 }
 
+void Player::caer(){
+	this->sonic->caer();
+}
+
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
 	memset(status, 0, sizeof(out_message_t));

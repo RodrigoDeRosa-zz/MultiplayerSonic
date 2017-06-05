@@ -35,7 +35,8 @@ public:
     void cortarSalto();
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
-	void roll();	
+	void roll();
+	void caer();	
 	void lastimar();
 /*
 	void crouch();

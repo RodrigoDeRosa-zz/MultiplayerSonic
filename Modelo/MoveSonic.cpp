@@ -14,17 +14,19 @@
 
 #define FACTOR_CHARGES	1
 #define LIM_CHARGE 3
-#define MAX_ROLL	100 	//numero a medir para limitar la cantidad de tiempo que rueda
+#define MAX_ROLL	150 	//numero a medir para limitar la cantidad de tiempo que rueda
 #define MAX_DMG		50		//idem roll, para daño
-#define THRESHOLD_IDLE	1500	//TODO: ajustar
+#define THRESHOLD_IDLE	1500	
+#define Y_PISO	300		//TODO: CHEQUEAR LO ANTES POSIBLE! ModelSonic parece indicar esto
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
 #define VELOCIDAD 0.35
 #define RUN 0.7
-#define VELOCIDAD_ROLL	3
+#define VELOCIDAD_ROLL	2
 #define VELOCIDAD_X_DMG	0.35
 #define VELOCIDAD_Y_DMG	0.15
+#define VELOCIDAD_CAIDA	1.2
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
 #define RUNNING_ANIMATION_FRAMES 8
@@ -54,6 +56,7 @@ MoveSonic::MoveSonic(float x, float y){
     jumping = false;
 	rolling = false;
 	in_dmg = false;
+	cayendo = false;
 	cont_dmg=0;
 	cont_roll=0;
 	oldY=0.0;
@@ -69,6 +72,7 @@ void MoveSonic::setPosicionInicio(){
     jumping = false;
 	rolling = false;
 	in_dmg = false;
+	cayendo = false;
 	charges = 0;
     if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
         frameQuiet=0;
@@ -264,7 +268,7 @@ void MoveSonic::moveRight(float vel_x){
     //Si la VELOCIDAD era menor a 0, se movia para la izquierda.
     if(tiempoX <= 0.0){
 		if(tiempoX <= -CONTROL_CAMINATA){//estaba corriendo y tiene que frenar
-			//TODO
+			//asd?
 
 			tiempoX += CONTROL_MOVIMIENTO*FACTOR_FRENADO;
 			if (tiempoX > 0) tiempoX=0; 		//por las dudas
@@ -298,7 +302,7 @@ void MoveSonic::moveLeft(float vel_x){
     //Si la VELOCIDAD era mayor a 0, se movia para la derecha
     if(tiempoX >= 0.0){
 		if(tiempoX >= CONTROL_CAMINATA){//estaba corriendo y tiene que frenar
-			//TODO
+			//asd?
 
 			tiempoX -= CONTROL_MOVIMIENTO*FACTOR_FRENADO;
 			if (tiempoX < 0) tiempoX=0; 		//por las dudas
@@ -365,6 +369,34 @@ void MoveSonic::correrIzquierda(){
     originX += vel;
 }
 
+void MoveSonic::caer(){
+	if(!cayendo){	//la primera vez que se llama solo setea en true y se va
+		cayendo=true;
+	//TODO CHEQUEAR SI HAY QUE RESETEAR frameLeft Y/O frameRight
+		return;
+	}
+	//esta cayendo
+	
+	if (direccion) {
+		caminarDerecha();
+		frameRight++;
+	}
+	else {
+		caminarIzquierda();
+		frameLeft++;
+	}
+	originY+=VELOCIDAD_CAIDA;
+		
+	if(originY >= Y_PISO){//si ya esta a la altura del piso
+		cayendo=false;	//este es el unico lugar donde se setea cayendo en false
+		originY = Y_PISO;	//por las dudas
+		this->setPosicionInicio();
+		return;
+	}
+}
+
+
+
 int MoveSonic::getFrame(){
     return frameActual;
 }
@@ -384,6 +416,10 @@ bool MoveSonic::estaSaltando(){
 
 bool MoveSonic::estaDaniado(){
 	return in_dmg;
+}
+
+bool MoveSonic::estaCayendo(){
+	return cayendo;
 }
 
 int MoveSonic::getX(){
@@ -482,11 +518,11 @@ void MoveSonic::decrementarVelocidad(){
 	noActionCounter++;//esto solo se llama si no se realizo accion, y garantizo noActionCounter>0
 	float X_viejo = originX;
 	switch(moveActual){
-		//TODO para cada caso mantener la animacion y lo que ello implique
+		//asd? para cada caso mantener la animacion y lo que ello implique
 	}
 	float X_nuevo = originX;
 	X_nuevo -= X_viejo;
 	X_nuevo /= (float)noActionCounter;//no hay div0 error por el ++ de arriba
 	originX += X_nuevo;//independiente de la direccion
-	//TODO cambiar la velocidad para que en algun momento se detenga y llegue a setPosicionInicio()
+	//asd? cambiar la velocidad para que en algun momento se detenga y llegue a setPosicionInicio()
 }

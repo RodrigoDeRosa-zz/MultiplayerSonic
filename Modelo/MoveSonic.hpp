@@ -27,6 +27,7 @@ class MoveSonic{
         bool jumping;
 		bool rolling;
 		bool in_dmg;
+		bool cayendo;
         int frameActual;
         move_type moveActual;
     public:
@@ -48,7 +49,7 @@ class MoveSonic{
 		void agacharseDerecha();
 		void agacharseIzquierda();
 		void decrementarVelocidad();
-
+		void caer();
 		void cortarSalto();
 
         void update(float, float);
@@ -56,6 +57,7 @@ class MoveSonic{
 		bool estaRodando();
 		bool estaMirandoADer();
 		bool estaDaniado();
+		bool estaCayendo();
         int getX();
         int getY();
 

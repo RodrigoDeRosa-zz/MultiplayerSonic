@@ -173,9 +173,9 @@ void Model::colisionarTodos() {
 			if ((*entidades)[j]->estaDestruida()) continue;
 
 			if ((*players)[i]->enRangoX((*entidades)[j])) {
-				//if ((*players)[i]->enRangoY((*entidades)[j])) {
+				if ((*players)[i]->enRangoY((*entidades)[j])) {
 					(*players)[i]->afectarseCon((*entidades)[j]);
-				//}
+				}
 			}
 
 			if ((*players)[i]->enRangoY((*entidades)[j])) {

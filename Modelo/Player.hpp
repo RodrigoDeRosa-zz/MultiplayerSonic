@@ -69,6 +69,7 @@ class Player{
 		void cargarMapCollitionBoxes();
 		void roll();
 		void lastimar();
+		void caer();
 
 		void sumarPuntos(int puntos);
 		long getPuntos();

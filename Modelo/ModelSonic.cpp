@@ -38,9 +38,11 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
         vel_y = 0.0;
     }
 
-	//printf("vel_x es %f \n",vel_x);
-	
-	if (bloque_pers->estaDaniado() || (posX==DMG_ARG && posY==DMG_ARG)){
+	if (bloque_pers->estaCayendo()){
+		bloque_pers->caer();
+		//TODO que hacemos con vel_x y vel_y?
+	}
+	else if (bloque_pers->estaDaniado() || (posX==DMG_ARG && posY==DMG_ARG)){
 		bloque_pers->damage();
 	}
 	else if (bloque_pers->estaRodando() || (posX==ROLL_ARG && posY==ROLL_ARG)){
@@ -144,4 +146,8 @@ void ModelSonic::stop(){
     this->direccionY=0;
     //this->direccionX=0;
     this->bloque_pers->setPosicionInicio();
+}
+
+void ModelSonic::caer(){
+	this->bloque_pers->caer();
 }
