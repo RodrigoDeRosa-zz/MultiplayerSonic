@@ -17,8 +17,8 @@
 
 using namespace std;
 
-Control::Control(){
-	this->model = new Model();
+Control::Control(gameMode game_mode){
+	this->model = new Model(game_mode);
 	this->cameraControl = new CameraControl(1200,3600); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	//space_was_down=false;

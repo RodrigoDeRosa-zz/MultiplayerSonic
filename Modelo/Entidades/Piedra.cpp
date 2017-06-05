@@ -32,6 +32,7 @@ void Piedra::afectarA(Player* jugador){
 	else{
 		float posicion = this->Entidad::getBordeArriba() -  /*el alto del frame actual*/ (jugador->getBordeAbajo() - jugador->getBordeArriba());
 		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
+		jugador->caer();
 		jugador->setY(posicion);
 	}
 }

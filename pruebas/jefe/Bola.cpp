@@ -53,3 +53,17 @@ void Bola::mover(){
 		}
 	}
 }
+
+Bola::Bola(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
+
+void Bola::destruir(){
+	this->destruida = true;
+}
+
+void Bola::afectarA(Player* jugador){
+	//no importa si esta atacando esto lo lastima
+	jugador->recibirGolpe();
+}
+
+out_message_t* Bola::getOutMessage(){}//TODO
+out_message_t* Bola::getInitMessage(){}//TODO

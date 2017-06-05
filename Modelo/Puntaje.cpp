@@ -2,14 +2,14 @@
 
 
 Puntaje::Puntaje(){
-	pthtead_mutex_init(&puntaje_mux);
+	pthread_mutex_init(&puntaje_mux, NULL);
 	contador=0;
 }
-
+/*
 Puntaje::~Puntaje(){
 }
-
-unsigned long Puntaje::getPuntos(){
+*/
+long Puntaje::getPuntos(){
 	return contador;
 }
 

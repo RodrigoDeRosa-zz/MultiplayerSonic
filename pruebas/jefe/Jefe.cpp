@@ -18,3 +18,27 @@ void Jefe::mover(){//draft, faltan frames
 	contador_mov++;
 	x+= direccion*BOSS_MOV_SPEED;
 }
+
+void Jefe::afectarA(Player* jugador){
+	//como esto vuela, puedo asumir que si lo toca esta atacando
+	this->recibirDanio();
+}
+
+void Jefe::recibirDanio(){
+	this->vidas-=1;
+	if (this->vidas > 0){
+		//efecto de danio?
+		return;
+	}
+	else{
+		//efecto de morir?
+		this->destruida = true;
+	}
+}
+
+Jefe::Jefe(int id, float x, float y): Entidad(id,x,y,WIDTH,HEIGHT){}
+
+out_message_t* Jefe::getOutMessage(){}//TODO
+
+out_message_t* Jefe::getInitMessage(){}//TODO
+

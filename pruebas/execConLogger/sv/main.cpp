@@ -26,6 +26,9 @@ using namespace std;
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
+
+#define DEFAULT_GAME_MODE	INDIVIDUAL
+
 void avisarEmpiezaJuego(Control* gameControl){
     out_message_t* state = new out_message_t;
 
@@ -196,7 +199,7 @@ int main(int argc, char** argv){
         return 1;
     }
 
-	Control* gameControl = new Control();
+	Control* gameControl = new Control(DEFAULT_GAME_MODE);
     gameControl->crearEntidades();
 
     CXM().init(maxServerConns);

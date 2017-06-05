@@ -35,3 +35,24 @@ cangrejo 3;174;0;86;55;55
 cangrejo 4;260;0;87;55;55
 cangrejo 5;347;0;87;55;55
 cangrejo 6;434;0;86;55;55
+bonus monedas;0;0;100;120;120
+bonus invensibilidad;100;0;100;120;120
+bonus escudo;200;0;100;120;120
+bola escudo 1;0;0;116;121;121
+bola escudo 2;116;0;115;121;121
+bola escudo 3;231;0;114;121;121
+bola escudo 4;345;0;114;121;121
+bola escudo 5;459;0;114;121;121
+bola escudo 6;573;0;114;121;121
+bola escudo 7;687;0;114;121;121
+bola escudo 8;801;0;114;121;121
+bola escudo 9;915;0;115;121;121
+bola invensible 1;0;121;116;121;121
+bola invensible 2;116;121;115;121;121
+bola invensible 3;231;121;114;121;121
+bola invensible 4;345;121;114;121;121
+bola invensible 5;459;121;114;121;121
+bola invensible 6;573;121;114;121;121
+bola invensible 7;687;121;114;121;121
+bola invensible 8;801;121;114;121;121
+bola invensible 9;915;121;115;121;121

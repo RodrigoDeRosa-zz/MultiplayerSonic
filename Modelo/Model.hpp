@@ -5,13 +5,17 @@
 #include "Player.hpp"
 using namespace std;
 
+enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
+
 class Model{
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
 	int playerStatusControl;
 	int entidadesStatusControl;
+	gameMode modo_juego;
+	vector<Puntaje*>* puntajes;
 	public:
-		Model();
+		Model(gameMode game_mode);
 		void addPlayer(string playerName);
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);

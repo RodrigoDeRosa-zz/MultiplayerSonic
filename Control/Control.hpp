@@ -19,7 +19,7 @@ class Control{
 	void setDisconnectedPlayersPosition(float dirX);
 	bool moveCamera(float newPlayerX, string playerName, float dirX);
 	public:
-		Control();
+		Control(gameMode game_mode);
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
 		vector<float> getDirections(key_event e, string playerName);
 		void addPlayer(string playerName);

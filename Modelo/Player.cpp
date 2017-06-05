@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Player::Player(string name){
+Player::Player(string name, Puntaje* p){
 	this->name = name;
 	ModelSonic* sonic = new ModelSonic();
 	this->sonic = sonic;
@@ -19,6 +19,8 @@ Player::Player(string name){
     this->cargarMapCollitionBoxes();
     this->monedas = 0;
     this->vidas = 3;
+	this->puntaje = p;
+    this->estado = new Estado();
 }
 
 string Player::getName(){
@@ -162,7 +164,8 @@ bool Player::enRangoX(Entidad* entidad){
     float bordeDerP = this->getBordeDer();
     float bordeIzqP = this->getBordeIzq();
 
-    return ( (bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP) );
+    //return ( (bordeDerP == bordeIzqE) || (bordeDerE == bordeIzqP) );
+	return !(bordeDerP < bordeIzqE || bordeDerE < bordeIzqP);//NO colisiona si bordeDer de personaje esta atras del bordeIzq de la entidad o bordeIzq de personaje esta mas adelante de bordeDer de entidad
 }
 
 bool Player::enRangoY(Entidad* entidad){
@@ -173,7 +176,8 @@ bool Player::enRangoY(Entidad* entidad){
     float bordeArribaP = this->getBordeArriba();
     float bordeAbajoP = this->getBordeAbajo();
 
-    return ((bordeArribaE >= bordeAbajoP) || (bordeAbajoE <= bordeArribaP));
+    //return ((bordeArribaE >= bordeAbajoP) || (bordeAbajoE <= bordeArribaP));
+	return !(bordeAbajoP < bordeArribaE || bordeAbajoE < bordeArribaP);//TODO revisar orden correcto
 }
 
 
@@ -214,18 +218,6 @@ void Player::afectarseCon(Entidad* entidad){
         entidad->afectarA(this);
     }*/
 }
-/*
-void Player::crouch(){
-	this->sonic->crouch();
-}
-
-void Player::charge(){
-	this->sonic->charge();
-}
-
-void Player::release(){
-	this->sonic->release();
-}*/
 
 void Player::roll(){
 	this->sonic->roll();
@@ -233,6 +225,10 @@ void Player::roll(){
 
 void Player::lastimar(){
 	this->sonic->lastimar();
+}
+
+void Player::caer(){
+	this->sonic->caer();
 }
 
 out_message_t* Player::getStatus(float camPos){
@@ -249,6 +245,7 @@ out_message_t* Player::getStatus(float camPos){
 	status->rings = 0;
 	status->lives = 0;
 	status->points = 0;
+    status->state = this->getEstado();
     return status;
 }
 
@@ -284,4 +281,20 @@ void Player::quitarVida(){
 
 bool Player::estaAtacando(){
     return true;
+}
+
+void Player::sumarPuntos(int puntos){
+	this->puntaje->sumarPuntos(puntos);
+}
+
+long Player::getPuntos(){
+	return this->puntaje->getPuntos();
+}
+
+void Player::setEstado(state_type estado){
+    this->estado->set(estado);
+}
+
+state_type Player::getEstado(){
+    return this->estado->get();
 }
