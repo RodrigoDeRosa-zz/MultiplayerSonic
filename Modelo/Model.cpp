@@ -1,5 +1,4 @@
 #include "Model.hpp"
-#include "Entidades/Piedra.hpp"
 #include <stdio.h>
 
 Model::Model(gameMode game_mode){

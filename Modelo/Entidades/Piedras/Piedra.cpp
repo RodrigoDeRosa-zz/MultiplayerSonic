@@ -1,5 +1,5 @@
 #include "Piedra.hpp"
-#include "../Player.hpp"
+#include "../../Player.hpp"
 #include <stdio.h>
 #define WIDTH 124
 #define HEIGHT 200
