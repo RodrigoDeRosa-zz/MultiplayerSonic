@@ -6,6 +6,7 @@
 #include "../Modelo/Entidades/Pez.hpp"
 #include "../Modelo/Entidades/Mosca.hpp"
 #include "../Modelo/Entidades/Invencibilidad.hpp"
+#include "../Modelo/Entidades/BonusMoneda.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -162,8 +163,10 @@ void Control::crearEntidades(){
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
 	this->model->addEntidad(moneda1);
-    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 424);
+    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 426);
     this->model->addEntidad(bonus1);
+    BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
+    this->model->addEntidad(bonus2);
     /*
 	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
