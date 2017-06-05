@@ -29,6 +29,7 @@ typedef struct out_message{
 	int rings;
 	int lives;
 	int points;
+	state_type state;
 } out_message_t;
 
 typedef struct in_message{

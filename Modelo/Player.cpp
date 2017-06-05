@@ -245,6 +245,7 @@ out_message_t* Player::getStatus(float camPos){
 	status->rings = 0;
 	status->lives = 0;
 	status->points = 0;
+    status->state = this->getEstado();
     return status;
 }
 
