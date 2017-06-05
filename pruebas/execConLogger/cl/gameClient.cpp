@@ -87,7 +87,7 @@ void* initGame(void *arg){
         } else if (message->ping == COIN_SET){
             client->getJuego()->addMoneda(message->posX, message->posY, message->id);
         } else if (message->ping == BONUS_SET){
-            client->getJuego()->addBonus(message->posX, message->posY, message->id);
+            client->getJuego()->addBonus(message->posX, message->posY, message->frame, message->id);
         } else if (message->ping == CRAB_SET){
             client->getJuego()->addCangrejo(message->posX, message->posY, message->id);
         } else if (message->ping == FLY_SET){
