@@ -6,7 +6,9 @@
 
 using namespace std;
 
-BonusMoneda::BonusMoneda(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
+BonusMoneda::BonusMoneda(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
+	frame = 0;
+}
 
 void BonusMoneda::afectarA(Player* jugador){
 	jugador->agregarMonedas(10);
@@ -14,12 +16,12 @@ void BonusMoneda::afectarA(Player* jugador){
 }
 
 out_message_t* BonusMoneda::getOutMessage(){
-	out_message_t* state = this->Entidad::getOutMessage(COINBONUS_UPDATE);
+	out_message_t* state = this->Entidad::getOutMessage(BONUS_UPDATE);
 	return state;
 }
 
 out_message_t* BonusMoneda::getInitMessage(){
-	return this->Entidad::getOutMessage(COINBONUS_SET);
+	return this->Entidad::getOutMessage(BONUS_SET);
 }
 
 void BonusMoneda::mover(){}
