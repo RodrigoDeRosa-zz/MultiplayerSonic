@@ -201,7 +201,7 @@ void Player::afectarseCon(Entidad* entidad){
     float bordeArribaP = this -> getBordeArriba();
 
     float bordeAbajoE = entidad -> getBordeAbajo();
-    float bordeAbajoP = entidad-> getBordeAbajo();
+    float bordeAbajoP = entidad -> getBordeAbajo();
 
     //agregar factores para retocar con mas presicion
     bool colisionX = ((bordeDerP > bordeIzqE) || (bordeDerE > bordeIzqP));
@@ -246,6 +246,7 @@ out_message_t* Player::getStatus(float camPos){
 	status->lives = 0;
 	status->points = 0;
     status->state = this->getEstado();
+    status->state_frame = this->estado->getFrame();
     return status;
 }
 

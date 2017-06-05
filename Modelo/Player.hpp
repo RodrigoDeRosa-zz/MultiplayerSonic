@@ -73,10 +73,6 @@ class Player{
 
 		void sumarPuntos(int puntos);
 		long getPuntos();
-/*		void crouch();
-		void charge();
-		void release();
-*/
 };
 
 #endif /*PLAYER_HPP*/
