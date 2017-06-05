@@ -7,7 +7,7 @@ using namespace std;
 
 
 ModelSonic::ModelSonic(){
-    bloque_pers = new MoveSonic(100.0, 300.0);
+    bloque_pers = new MoveSonic(100.0, 425.0);
     frameRight = 0;
     frameLeft = 0;
     direccionX = 0.0;
@@ -59,7 +59,7 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
     else if(vel_x < 0.0){
         moveLeft(vel_x);}
 
-        
+
     else{
         bloque_pers->setPosicionInicio();
     }

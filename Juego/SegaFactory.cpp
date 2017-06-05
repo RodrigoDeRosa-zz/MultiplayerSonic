@@ -39,7 +39,7 @@ Sonic* SegaFactory::getSonic(string nomJugador){
       Sonic* sonic = new Sonic(nomJugador);
       //todos los sprites con sus texturas se tendrian que crear en el json loader
       /*creacion de el bloque */
-      MovingSonic* bloque = new MovingSonic(100, 300, 1500, 3000);
+      MovingSonic* bloque = new MovingSonic(100, 425, 1500, 3000);
       int idJugador = atoi(nomJugador.c_str());
       if(idJugador >= MAX_SPRITES){
           //llamada al log, "nombre del jugador invalido"
