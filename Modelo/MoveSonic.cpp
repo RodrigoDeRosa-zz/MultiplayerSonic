@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 /*DIMENSIONES ESCENARIO*/
-#define ANCHO_ESCENARIO 3600
-#define ALTO_ESCENARIO 640
+#define ANCHO_ESCENARIO 4000
+#define ALTO_ESCENARIO 720
 /*CONSTANTES*/
 #define CONTROL_MOVIMIENTO 0.001
 #define CONTROL_CAMINATA 1.0
@@ -16,8 +16,8 @@
 #define LIM_CHARGE 3
 #define MAX_ROLL	150 	//numero a medir para limitar la cantidad de tiempo que rueda
 #define MAX_DMG		50		//idem roll, para daño
-#define THRESHOLD_IDLE	1500	
-#define Y_PISO	300		//TODO: CHEQUEAR LO ANTES POSIBLE! ModelSonic parece indicar esto
+#define THRESHOLD_IDLE	1500
+#define Y_PISO	425		//TODO: CHEQUEAR LO ANTES POSIBLE! ModelSonic parece indicar esto
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
@@ -158,7 +158,7 @@ void MoveSonic::damage(){
 		if (frameLeft / (4*DMG_ANIMATION_FRAMES) >= DMG_ANIMATION_FRAMES){
 			frameLeft=0;
 		}
-		frameActual =  frameLeft / (4*DMG_ANIMATION_FRAMES); 
+		frameActual =  frameLeft / (4*DMG_ANIMATION_FRAMES);
 		originX-= VELOCIDAD_X_DMG;
 	    if( originX < 0 ){originX = 0;}
 	}
@@ -169,17 +169,17 @@ void MoveSonic::damage(){
 			frameRight=0;
 		}
 		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
-		
+
 		if( originX + (width + VELOCIDAD_X_DMG) > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 		else {
 			originX += VELOCIDAD_X_DMG;
 		}
 	}
 	//MOV VERTICAL ES INDEPTE DEL SENTIDO
-	
+
 	float deltaY = (float) cont_dmg;//recordar cont_dmg € [0,MAX_DMG]
-	
-	
+
+
 /*	FORMULA ORIGINAL
 	deltaY= (deltaY * deltaY) - (deltaY * MAX_DMG);//x²-MAX_DMGx.
 	deltaY*=VELOCIDAD_Y_DMG;//todo * (-a) (en realidad a porque el eje Y esta invertido)
@@ -217,7 +217,7 @@ void MoveSonic::roll(){
 			frameRight=0;
 		}
 		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
-		
+
 		if( originX + (width + VELOCIDAD_ROLL)> ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
 		else {
 			originX += VELOCIDAD_ROLL;
@@ -229,14 +229,14 @@ void MoveSonic::roll(){
 		if (frameLeft / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
 			frameLeft=0;
 		}
-		frameActual =  frameLeft / (4*JUMPING_ANIMATION_FRAMES); 
+		frameActual =  frameLeft / (4*JUMPING_ANIMATION_FRAMES);
 		originX-= VELOCIDAD_ROLL;
 	    if( originX < 0 ){originX = 0;}
 	}
 
 	if (cont_roll > MAX_ROLL){
 		rolling=false;
-		//this->setPosicionInicio();//resetea 
+		//this->setPosicionInicio();//resetea
 	}
 }
 void MoveSonic::jumpDerecha(float* velH){
@@ -376,7 +376,7 @@ void MoveSonic::caer(){
 		return;
 	}
 	//esta cayendo
-	
+
 	if (direccion) {
 		caminarDerecha();
 		frameRight++;
@@ -386,7 +386,7 @@ void MoveSonic::caer(){
 		frameLeft++;
 	}
 	originY+=VELOCIDAD_CAIDA;
-		
+
 	if(originY >= Y_PISO){//si ya esta a la altura del piso
 		cayendo=false;	//este es el unico lugar donde se setea cayendo en false
 		originY = Y_PISO;	//por las dudas
