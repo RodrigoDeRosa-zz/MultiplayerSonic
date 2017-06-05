@@ -5,11 +5,15 @@
 #include "../Modelo/Entidades/Cangrejo.hpp"
 #include "../Modelo/Entidades/Pez.hpp"
 #include "../Modelo/Entidades/Mosca.hpp"
+#include "../Modelo/Entidades/Invencibilidad.hpp"
 #include <stdio.h>
 #include <sstream>
 
 #define VELOCITY 0.35 //definidos como constantes pero lo mejor es pasarlos como parametro para que sea consistente con la vista
 #define VEL -0.8
+#define LVL1_END 4000
+#define LVL2_END 5000
+#define LVL3_END 6000
 
 //int to string
 #define SSTR( x ) static_cast< std::ostringstream & >( \
@@ -19,7 +23,7 @@ using namespace std;
 
 Control::Control(gameMode game_mode){
 	this->model = new Model(game_mode);
-	this->cameraControl = new CameraControl(1200,3600); //el ancho de la camara tambien tiene que venir por parametro
+	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	//space_was_down=false;
 }
@@ -158,6 +162,8 @@ void Control::crearEntidades(){
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
 	this->model->addEntidad(moneda1);
+    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 400);
+    this->model->addEntidad(bonus1);
     /*
 	Moneda* moneda2 = new Moneda(4,200,180);
 	this->model->addEntidad(moneda2);
