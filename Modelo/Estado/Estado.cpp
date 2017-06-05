@@ -24,3 +24,13 @@ void Estado::set(state_type estado){
 	pthread_create(&timeThreadID, NULL, state_change, this);
 	pthread_join(timeThreadID, &timeThread_exit);
 }
+
+void Estado::updateFrame(){
+	this->frame++;
+	if(this->frame == 9) this->frame = 0;
+}
+
+int Estado::getFrame(){
+	this->updateFrame();
+	return this->frame;
+}

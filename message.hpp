@@ -30,6 +30,7 @@ typedef struct out_message{
 	int lives;
 	int points;
 	state_type state;
+	int state_frame;
 } out_message_t;
 
 typedef struct in_message{
