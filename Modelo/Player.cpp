@@ -250,7 +250,7 @@ out_message_t* Player::getStatus(float camPos){
     return status;
 }
 
-void Player::recibirGolpe(){
+bool Player::recibirGolpe(){
 
     if(this->estado->recibirGolpe()){
         if(!(this->getMonedas())){
@@ -260,7 +260,9 @@ void Player::recibirGolpe(){
         else this->quitarMonedas();
         //llamar a movimiento de recibir golpe
     	//sonic->lastimar();
+        return true;
     }
+    return false;
 }
 int Player::getVidas(){
     return this->vidas;

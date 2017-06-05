@@ -55,7 +55,7 @@ class Player{
 		bool enRangoY(Entidad* entidad);
 		void afectarseCon(Entidad* entidad);
 
-		void recibirGolpe();
+		bool recibirGolpe();
 
 		float getBordeDer();
 		float getBordeIzq();

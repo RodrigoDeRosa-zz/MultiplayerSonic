@@ -21,11 +21,10 @@ Pez::Pez(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
 }
 
 void Pez::afectarA(Player* jugador){
-	if(jugador->estaAtacando()){
+	if(jugador->estaAtacando() || !(jugador->recibirGolpe())){
 		this->destruida = true;
 		//sumar puntos a jugador
 	}
-	else jugador->recibirGolpe();
 }
 
 out_message_t* Pez::getOutMessage(){
