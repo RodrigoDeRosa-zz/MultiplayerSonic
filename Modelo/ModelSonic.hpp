@@ -38,6 +38,8 @@ public:
 	void roll();
 	void caer();	
 	void lastimar();
+    bool estaSaltando();
+    bool estaRodando();
 /*
 	void crouch();
 	void release();
