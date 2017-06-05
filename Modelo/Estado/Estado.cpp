@@ -39,3 +39,15 @@ int Estado::getFrame(){
 	this->updateFrame();
 	return this->frame;
 }
+
+bool Estado::recibirGolpe(){
+	switch(this->estado){
+		case INVENCIBLE:
+			return false;
+		case ESCUDO:
+			this->set(NORMAL);
+			return false;
+		case NORMAL:
+			return true;
+	}
+}

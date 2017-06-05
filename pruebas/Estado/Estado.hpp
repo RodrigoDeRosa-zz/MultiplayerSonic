@@ -13,6 +13,7 @@ public:
 	void set(state_type estado);
 	void updateFrame();
 	int getFrame();
+	bool recibirGolpe();
 };
 
 #endif /*ESTADO_HPP*/

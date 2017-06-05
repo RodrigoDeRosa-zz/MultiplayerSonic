@@ -250,16 +250,20 @@ out_message_t* Player::getStatus(float camPos){
     return status;
 }
 
-void Player::recibirGolpe(){
-    if(!(this->getMonedas())){
-        if(!(this->getVidas())){} // matar a sonic
-        else this->quitarVida();
-    }
-    else this->quitarMonedas(); // despues desparramar monedas?
-    //llamar a movimiento de recibir golpe
-	//sonic->lastimar();
-}
+bool Player::recibirGolpe(){
 
+    if(this->estado->recibirGolpe()){
+        if(!(this->getMonedas())){
+            if(!(this->getVidas())){} // matar a sonic
+            else this->quitarVida();
+        }
+        else this->quitarMonedas();
+        //llamar a movimiento de recibir golpe
+    	//sonic->lastimar();
+        return true;
+    }
+    return false;
+}
 int Player::getVidas(){
     return this->vidas;
 }
