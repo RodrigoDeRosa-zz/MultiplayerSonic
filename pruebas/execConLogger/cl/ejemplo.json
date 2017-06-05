@@ -1,13 +1,13 @@
 {
-	"ventana": {"dimensiones": {"ancho": 1200, "alto": 640}},
+	"ventana": {"dimensiones": {"ancho": 1200, "alto": 720}},
 	"vel_scroll": 10,
 	"log_lvl": "bajo",
 	"escenario": {
-		"dimensiones": {"ancho": 3600, "alto": 640},
+		"dimensiones": {"ancho": 4000, "alto": 720},
 		"capas": [{
 				"id": 1,
 				"index_z": 99,
-				"ruta_imagen":"Graficos/Level1Front.png"
+				"ruta_imagen":"Graficos/fondo 2.png"
 			},
 			{
 				"id": 2,

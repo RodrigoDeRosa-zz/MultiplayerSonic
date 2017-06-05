@@ -71,7 +71,7 @@ class Juego{
     /*Agrega una moneda en las posiciones dadas*/
     void addMoneda(float x, float y, int index);
     /*Agrega un bonus en las posiciones dadas*/
-    void addBonus(float x, float y, int index);
+    void addBonus(float x, float y, int t, int index);
     /*Agrega un pez en las posiciones dadas*/
     void addPez(float x, float y, int index);
     /*Agrega un cangrejo en las posiciones dadas*/
