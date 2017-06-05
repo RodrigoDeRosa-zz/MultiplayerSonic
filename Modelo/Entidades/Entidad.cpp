@@ -81,6 +81,8 @@ out_message_t* Entidad::getOutMessage(message_type type){
 	state->rings = 0;
 	state->lives = 0;
 	state->points = 0;
+	state->state = NORMAL;
+	state->state_frame = 0;
 	return state;
 }
 
