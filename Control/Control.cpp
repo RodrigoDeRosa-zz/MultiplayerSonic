@@ -162,7 +162,7 @@ void Control::crearEntidades(){
 	this->model->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
 	this->model->addEntidad(moneda1);
-    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 400);
+    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 424);
     this->model->addEntidad(bonus1);
     /*
 	Moneda* moneda2 = new Moneda(4,200,180);

@@ -24,3 +24,14 @@ Bonus::Bonus(float x, float y, int t) : Entity(x, y, WIDTH, HEIGHT){
             rectangle = clipsMovimientos->getRectangulo("escudo", 0); break;
     }
 }
+
+void Bonus::setFrame(int frame){
+    switch (type){
+        case 0:
+            rectangle = clipsMovimientos->getRectangulo("moneda", 0); break;
+        case 1:
+            rectangle = clipsMovimientos->getRectangulo("invencib", 0); break;
+        case 2:
+            rectangle = clipsMovimientos->getRectangulo("escudo", 0); break;
+    }
+}

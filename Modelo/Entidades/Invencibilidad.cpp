@@ -6,7 +6,9 @@
 
 using namespace std;
 
-Invencibilidad::Invencibilidad(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
+Invencibilidad::Invencibilidad(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
+	frame = 1;
+}
 
 void Invencibilidad::afectarA(Player* jugador){
 	jugador->setEstado(INVENCIBLE);
@@ -14,12 +16,12 @@ void Invencibilidad::afectarA(Player* jugador){
 }
 
 out_message_t* Invencibilidad::getOutMessage(){
-	out_message_t* state = this->Entidad::getOutMessage(INVENCIBILITY_UPDATE);
+	out_message_t* state = this->Entidad::getOutMessage(BONUS_UPDATE);
 	return state;
 }
 
 out_message_t* Invencibilidad::getInitMessage(){
-	return this->Entidad::getOutMessage(INVENCIBILITY_SET);
+	return this->Entidad::getOutMessage(BONUS_SET);
 }
 
 void Invencibilidad::mover(){}
