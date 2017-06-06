@@ -3,9 +3,10 @@
 
 #include <vector>
 #include "Player.hpp"
+#include "Modelo.hpp"
 using namespace std;
 
-enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
+//enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
 
 class Nivel{
 	vector<Player*>* players;
@@ -13,6 +14,7 @@ class Nivel{
 	int playerStatusControl;
 	int entidadesStatusControl;
 	gameMode modo_juego;
+
 	vector<Puntaje*>* puntajes;
 	bool es_transicion;
 	bool termino;
