@@ -8,6 +8,8 @@ Model::Model(gameMode game_mode){
 	this->playerStatusControl = 0;
 	this->entidadesStatusControl = 0;
 	this->modo_juego = game_mode;
+	termino = false;
+	es_transicion = false;
 
 	vector<string>* nombresPuntajes	= new vector<string>();
 	int cant_puntajes = 0;
@@ -252,4 +254,12 @@ vector<out_message_t*> Model::getEntidadesInitStatus(){
 		v.push_back((*(this->entidades))[i]->getInitMessage());
 	}
 	return v;
+}
+
+bool Model::esTransicion(){
+	return es_transicion;
+}
+
+bool Model::yaTermino(){
+	return termino;
 }

@@ -134,6 +134,10 @@ void Control::handleInMessage(in_message_t* ev){
 }
 
 void Control::update(){
+	if(this->model->yaTermino()){
+		//pasar a proximo "model/nivel" y meterselo a this->model;
+	}
+	if(!this->model->esTransicion()){
 	// en lugar de hacer los dos for llamar a:
 	// this->model->colisionarTodos()  (afuera del for)
 	vector<string> players = this->model->getPlayerNames();
@@ -144,6 +148,7 @@ void Control::update(){
 	}
 	this->model->moverEntidades();
     this->model->colisionarTodos();
+	}
 }
 
 vector<out_message_t*> Control::getStatus(){

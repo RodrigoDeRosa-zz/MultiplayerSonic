@@ -14,6 +14,8 @@ class Model{
 	int entidadesStatusControl;
 	gameMode modo_juego;
 	vector<Puntaje*>* puntajes;
+	bool es_transicion;
+	bool termino;
 	public:
 		Model(gameMode game_mode);
 		void addPlayer(string playerName);
@@ -39,6 +41,9 @@ class Model{
 		vector<out_message_t*> getEntidadesStatus();
 		vector<out_message_t*> getStatus(float camPos);
 		void moverEntidades();
+		bool esTransicion();
+		bool yaTermino();
+
 };
 
 #endif /*MODEL_HPP*/
