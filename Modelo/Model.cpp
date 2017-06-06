@@ -9,17 +9,28 @@ Model::Model(gameMode game_mode){
 	this->entidadesStatusControl = 0;
 	this->modo_juego = game_mode;
 
+	vector<string>* nombresPuntajes	= new vector<string>();
 	int cant_puntajes = 0;
 	switch(this->modo_juego){
 		case INDIVIDUAL:
-			cant_puntajes = 4;break;
+			cant_puntajes = 4;
+			nombresPuntajes->push_back(string("Jugador 1"));
+			nombresPuntajes->push_back(string("Jugador 2"));
+			nombresPuntajes->push_back(string("Jugador 3"));
+			nombresPuntajes->push_back(string("Jugador 4"));
+			break;
 		case COOP:
-			cant_puntajes = 1;break;
+			cant_puntajes = 1;
+			nombresPuntajes->push_back(string("Jugadores"));
+			break;
 		case EQUIPOS:
-			cant_puntajes = 2;break;
+			cant_puntajes = 2;
+			nombresPuntajes->push_back(string("Equipo 1"));
+			nombresPuntajes->push_back(string("Equipo 2"));
+			break;	
 	}
 	for (int i = 0; i < cant_puntajes; i++){
-		Puntaje* p = new Puntaje();
+		Puntaje* p = new Puntaje(nombresPuntajes->at(i));
 		puntajes->push_back(p);
 	}
 }

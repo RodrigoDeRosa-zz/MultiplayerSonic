@@ -294,7 +294,7 @@ void Player::sumarPuntos(int puntos){
 }
 
 long Player::getPuntos(){
-	return this->puntaje->getPuntos();
+	return this->puntaje->getParcial();
 }
 
 void Player::setEstado(state_type estado){
