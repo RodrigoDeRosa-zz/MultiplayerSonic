@@ -8,12 +8,12 @@ using namespace std;
 PlayerScore::PlayerScore(Texture* tex, TTF_Font* ttf, int offset){
     online = false;
     coins = 0; hearts = 0; points = 0;
-    position = offset + 5;
+    position = offset + 3;
     font = ttf;
 
     Uint8 keyColor[3] = {0x0, 0xFF, 0xFF};
     //Graficos
-    sprites.insert(make_pair("main", new Sprite(position, 10, 195, 40)));
+    sprites.insert(make_pair("main", new Sprite(position, 10, 295, 40)));
     sprites.at("main")->setTexture(tex);
     sprites.at("main")->setColorMod(0x80, 0x80, 0x80);
     //Texto
