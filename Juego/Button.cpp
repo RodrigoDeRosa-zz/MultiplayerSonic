@@ -11,22 +11,22 @@ Button::Button(int x, int y, int w, int h) : MovingBloque(x, y, w, h){
 }
 
 bool Button::mouseOver(int x, int y){
-    return ((x > box.x) && (x < box.x + box.w) && (y > box.y) && (y < box.y + box.h))
+    return ((x > box.x) && (x < box.x + box.w) && (y > box.y) && (y < box.y + box.h));
 }
 
 void Button::handleEvent(SDL_Event event){
     int x = event.motion.x;
     int y = event.motion.y;
-    bool mouseOver = mouseOver(x, y);
+    bool bMouseOver = mouseOver(x, y);
 
     if(event.type == SDL_MOUSEMOTION){
-        if(mouseOver) rectangle = clipsMovimientos->getRectangulo("mouseover", 0);
+        if(bMouseOver) rectangle = clipsMovimientos->getRectangulo("mouseover", 0);
         else rectangle = clipsMovimientos->getRectangulo("mouseout", 0);
     } else if( event.type == SDL_MOUSEBUTTONDOWN ) {
-        if(event.button.button == SDL_BUTTON_LEFT && mouseOver)
+        if(event.button.button == SDL_BUTTON_LEFT && bMouseOver)
             rectangle = clipsMovimientos->getRectangulo("mousedown", 0);
     } else if( event.type == SDL_MOUSEBUTTONUP ){
-        if(event.button.button == SDL_BUTTON_LEFT && mouseOver)
+        if(event.button.button == SDL_BUTTON_LEFT && bMouseOver)
             rectangle = clipsMovimientos->getRectangulo("mouseup", 0);
     }
 }
