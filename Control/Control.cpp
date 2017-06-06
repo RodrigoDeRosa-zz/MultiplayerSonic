@@ -136,18 +136,22 @@ void Control::handleInMessage(in_message_t* ev){
 void Control::update(){
 	if(this->model->yaTermino()){
 		//pasar a proximo "model/nivel" y meterselo a this->model;
+        //e inicializar el nuevo nivel o transicion.
 	}
 	if(!this->model->esTransicion()){
-	// en lugar de hacer los dos for llamar a:
-	// this->model->colisionarTodos()  (afuera del for)
-	vector<string> players = this->model->getPlayerNames();
-	for(int i=0; i < players.size(); i++){
+        // en lugar de hacer los dos for llamar a:
+        // this->model->colisionarTodos()  (afuera del for)
+        vector<string> players = this->model->getPlayerNames();
+        for(int i=0; i < players.size(); i++){
 
-		vector<float> directions = this->model->getPlayerDirections(players[i]);
-		this->moveCameraAndPlayer(players[i],directions);
+            vector<float> directions = this->model->getPlayerDirections(players[i]);
+            this->moveCameraAndPlayer(players[i],directions);
+        }
+        this->model->moverEntidades();
+        this->model->colisionarTodos();
 	}
-	this->model->moverEntidades();
-    this->model->colisionarTodos();
+	else{
+		//Es pantalla de transicion.
 	}
 }
 
