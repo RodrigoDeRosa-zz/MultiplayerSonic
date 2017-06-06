@@ -21,7 +21,7 @@ float CameraControl::getPosition(){
 	return this->position;
 }
 
-bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerName){
+bool CameraControl::moveCameraLeft(float newPosition,Nivel* model,string playerName){
 	if(model->otherPlayerInPosition(playerName,this->getRightEdge(),false)){
 		return false;
 	}
@@ -30,7 +30,7 @@ bool CameraControl::moveCameraLeft(float newPosition,Model* model,string playerN
 	return true;
 }
 
-bool CameraControl::moveCameraRight(float newPosition,Model* model, string playerName){
+bool CameraControl::moveCameraRight(float newPosition,Nivel* model, string playerName){
 	if(model->otherPlayerInPosition(playerName,this->getLeftEdge(),true)){
 		return false;
 	}
@@ -47,7 +47,7 @@ bool CameraControl::playerInCameraRange(float playerPosition){
 	return false;
 }
 
-bool CameraControl::moveCamera(float newPosition,Model* model, string playerName, float dirX){
+bool CameraControl::moveCamera(float newPosition,Nivel* model, string playerName, float dirX){
 	if(this->playerInCameraRange(newPosition)){
 		return true;
 	}

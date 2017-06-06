@@ -1,5 +1,5 @@
-#ifndef MODEL_HPP
-#define MODEL_HPP
+#ifndef NIVEL_HPP
+#define NIVEL_HPP
 
 #include <vector>
 #include "Player.hpp"
@@ -7,7 +7,7 @@ using namespace std;
 
 enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
 
-class Model{
+class Nivel{
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
 	int playerStatusControl;
@@ -17,7 +17,7 @@ class Model{
 	bool es_transicion;
 	bool termino;
 	public:
-		Model(gameMode game_mode);
+		Nivel(gameMode game_mode);
 		void addPlayer(string playerName);
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
@@ -46,4 +46,4 @@ class Model{
 
 };
 
-#endif /*MODEL_HPP*/
+#endif /*NIVEL_HPP*/
