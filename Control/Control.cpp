@@ -23,7 +23,7 @@
 using namespace std;
 
 Control::Control(gameMode game_mode){
-	this->model = new Model(game_mode);
+	this->model = new Nivel(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	//space_was_down=false;
