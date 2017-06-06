@@ -6,20 +6,29 @@
 #include "CameraControl.hpp"
 #include "../message.hpp"
 #include "../Modelo/Player.hpp"
+//#include "../Modelo/Modelo.hpp"
 #include "../Modelo/Entidades/Entidad.hpp"
 
 using namespace std;
 
 class Control{
 	int k;
-//	bool space_was_down;
-	Nivel* model;
+
+	/*Modelo*/
+	Modelo* modelo;
+	/*Niveles*/
+	int nivelActual;
+	vector <Nivel*> niveles;
+
+	/*Camara*/
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);
-	void setDisconnectedPlayersPosition(float dirX);
 	bool moveCamera(float newPlayerX, string playerName, float dirX);
+
+	void setDisconnectedPlayersPosition(float dirX);
 	public:
 		Control(gameMode game_mode);
+		void initNiveles(gameMode);
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
 		vector<float> getDirections(key_event e, string playerName);
 		void addPlayer(string playerName);

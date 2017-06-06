@@ -1,3 +1,6 @@
+#ifndef CAMERACONTROL_HPP
+#define CAMERACONTROL_HPP
+
 #include "../Modelo/Nivel.hpp"
 
 class CameraControl{
@@ -14,3 +17,5 @@ class CameraControl{
 		float getLeftEdge();
 		float getRightEdge();
 };
+
+#endif /*CAMERACONTROL_HPP*/

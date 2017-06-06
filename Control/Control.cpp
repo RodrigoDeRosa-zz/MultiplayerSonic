@@ -23,14 +23,27 @@
 using namespace std;
 
 Control::Control(gameMode game_mode){
-	this->model = new Nivel(game_mode);
+
+	Modelo* modelo = new Modelo(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
-	//space_was_down=false;
+	this->initNiveles(game_mode);
+	this-> nivelActual = 0;
 }
 
+
+void Control::initNiveles(gameMode game_mode){
+	/*Aca se deberian terminar de inicializa los niveles,
+	 * y si es necesario las pantallas de transicion.*/
+
+	Nivel* nivel1 = new Nivel(game_mode);
+	this->niveles.push_back(nivel1);
+
+}
+
+
 void Control::addPlayer(string playerName){
-	this->model->addPlayer(playerName);
+	this->niveles[this->nivelActual]->addPlayer(playerName);
 }
 
 float Control::getCameraPosition(){
@@ -59,13 +72,13 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 }
 
 vector<float> Control::getDirections(key_event e, string playerName){
-	vector<float> directions = this->model->getPlayerDirections(playerName);
+	vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(playerName);
 	float dirX = directions[0];
 	float dirY = directions[1];
-	move_type movement = this->model->getPlayerMovement(playerName);//TRY1
+	move_type movement = this->niveles[this->nivelActual]->getPlayerMovement(playerName);//TRY1
 
 	switch( e ){
-		//case QUIT: this->model->setPlayerConnection(playerName, false); break;
+		//case QUIT: this->niveles[this->nivelActual]->setPlayerConnection(playerName, false); break;
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
 		case RIGHT_DOWN: dirX += 1; break;
@@ -79,29 +92,29 @@ vector<float> Control::getDirections(key_event e, string playerName){
 }
 
 bool Control::moveCamera(float newPlayerX,string playerName,float dirX){
-	return 	(this->cameraControl->moveCamera(newPlayerX,this->model,playerName,dirX));
+	return 	(this->cameraControl->moveCamera(newPlayerX,this->niveles[this->nivelActual],playerName,dirX));
 }
 
 bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
-	vector<float> previousPlayerPosition = this->model->getPlayerPosition(playerName);
-	this->model->movePlayer(playerName,directions[0],directions[1]);
-	vector<float> newPlayerPosition = this->model->getPlayerPosition(playerName);
+	vector<float> previousPlayerPosition = this->niveles[this->nivelActual]->getPlayerPosition(playerName);
+	this->niveles[this->nivelActual]->movePlayer(playerName,directions[0],directions[1]);
+	vector<float> newPlayerPosition = this->niveles[this->nivelActual]->getPlayerPosition(playerName);
 	float previousCameraPosition = this->getCameraPosition();
 	if(!(this->moveCamera(newPlayerPosition[0],playerName,directions[0]))){
 	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
-	 	this->model->setPlayerPosition(playerName,previousPlayerPosition[0]);
+	 	this->niveles[this->nivelActual]->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
 	}
-	if(this->getCameraPosition() != previousCameraPosition) this->model->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
+	if(this->getCameraPosition() != previousCameraPosition) this->niveles[this->nivelActual]->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
 	return true;
 }
 
 void Control::setPlayerConnection(string playerName, bool connection){
-	this->model->setPlayerConnection(playerName,connection);
+	this->niveles[this->nivelActual]->setPlayerConnection(playerName,connection);
 }
 
 vector<float> Control::getPlayerPosition(string playerName){
-	return this->model->getPlayerPosition(playerName);
+	return this->niveles[this->nivelActual]->getPlayerPosition(playerName);
 }
 
 void setOutMessage(out_message_t* message, message_type ping,int id,bool connection,int frame,move_type move,float posX,float posY,float camPos){
@@ -117,38 +130,38 @@ void setOutMessage(out_message_t* message, message_type ping,int id,bool connect
 
 void Control::handleInMessage(in_message_t* ev){
 	string playerName = SSTR(ev->id);
-	move_type movement = this->model->getPlayerMovement(playerName);
+	move_type movement = this->niveles[this->nivelActual]->getPlayerMovement(playerName);
 
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 
 	//casos especiales, aca entran y debieran setear flag para que luego entren en update
 	if(ev->key == DOWN_DOWN){
-		this->model->playerRoll(playerName);
+		this->niveles[this->nivelActual]->playerRoll(playerName);
 		return;
 	}
 
 
 	//muevo el jugador y la camara con las direcciones obtenidas
-	this->model->movePlayer(playerName,directions[0], directions[1]);
+	this->niveles[this->nivelActual]->movePlayer(playerName,directions[0], directions[1]);
 }
 
 void Control::update(){
-	if(this->model->yaTermino()){
-		//pasar a proximo "model/nivel" y meterselo a this->model;
+	if(this->niveles[this->nivelActual]->yaTermino()){
+		//pasar a proximo "niveles[this->nivelActual]/nivel" y meterselo a this->niveles[this->nivelActual];
         //e inicializar el nuevo nivel o transicion.
 	}
-	if(!this->model->esTransicion()){
+	if(!this->niveles[this->nivelActual]->esTransicion()){
         // en lugar de hacer los dos for llamar a:
-        // this->model->colisionarTodos()  (afuera del for)
-        vector<string> players = this->model->getPlayerNames();
+        // this->niveles[this->nivelActual]->colisionarTodos()  (afuera del for)
+        vector<string> players = this->niveles[this->nivelActual]->getPlayerNames();
         for(int i=0; i < players.size(); i++){
 
-            vector<float> directions = this->model->getPlayerDirections(players[i]);
+            vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(players[i]);
             this->moveCameraAndPlayer(players[i],directions);
         }
-        this->model->moverEntidades();
-        this->model->colisionarTodos();
+        this->niveles[this->nivelActual]->moverEntidades();
+        this->niveles[this->nivelActual]->colisionarTodos();
 	}
 	else{
 		//Es pantalla de transicion.
@@ -156,32 +169,32 @@ void Control::update(){
 }
 
 vector<out_message_t*> Control::getStatus(){
-	return this->model->getStatus(this->getCameraPosition());
+	return this->niveles[this->nivelActual]->getStatus(this->getCameraPosition());
 }
 
 void Control::crearEntidades(){
 	Piedra* piedra = new Piedra(0,500, 345);
-	this->model->addEntidad(piedra);
+	this->niveles[this->nivelActual]->addEntidad(piedra);
 	Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
-	this->model->addEntidad(cangrejo);
+	this->niveles[this->nivelActual]->addEntidad(cangrejo);
     Pez* pez = new Pez(0, 800, 675);
-	this->model->addEntidad(pez);
+	this->niveles[this->nivelActual]->addEntidad(pez);
     Mosca* mosca = new Mosca(0,300, 225);
-	this->model->addEntidad(mosca);
+	this->niveles[this->nivelActual]->addEntidad(mosca);
 	Pinche* pinche = new Pinche(2, 1000, 495);
-	this->model->addEntidad(pinche);
+	this->niveles[this->nivelActual]->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
-	this->model->addEntidad(moneda1);
+	this->niveles[this->nivelActual]->addEntidad(moneda1);
     Invencibilidad* bonus1 = new Invencibilidad(0, 750, 426);
-    this->model->addEntidad(bonus1);
+    this->niveles[this->nivelActual]->addEntidad(bonus1);
     BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
-    this->model->addEntidad(bonus2);
+    this->niveles[this->nivelActual]->addEntidad(bonus2);
     /*
 	Moneda* moneda2 = new Moneda(4,200,180);
-	this->model->addEntidad(moneda2);
+	this->niveles[this->nivelActual]->addEntidad(moneda2);
 */
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
-	return this->model->getEntidadesInitStatus();
+	return this->niveles[this->nivelActual]->getEntidadesInitStatus();
 }
