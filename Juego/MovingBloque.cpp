@@ -53,6 +53,15 @@ void MovingBloque::desGrisearTexture(){
   texture->setColorMod();
 }
 
+void MovingBloque::render(){
+    //Si no tiene textura cargada, pinta con el color de fondo.
+    float auxX = originX;
+    float auxY = originY;
+    Renderer::getInstance().setDrawColor(red, green, blue, 1.0);
+
+    texture->renderNoFill(auxX, auxY, &rectangle);
+}
+
 void MovingBloque::render(Camara* cam){
   //Si no tiene textura cargada, pinta con el color de fondo.
   float auxX = originX - cam->getX();

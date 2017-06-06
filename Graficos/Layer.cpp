@@ -68,6 +68,11 @@ bool Layer::loadImage(){
 void Layer::render(Camara* camara){
     if(image) image->render(0,0,camara);
 }
+
+void Layer::render(){
+    if (image) image->render();
+}
+
 Texture* Layer::getTexture(){
     return texture;
 }

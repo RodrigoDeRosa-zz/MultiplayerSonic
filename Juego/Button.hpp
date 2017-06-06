@@ -5,6 +5,8 @@
 #include <SDL2/SDL.h>
 
 class Button : public MovingBloque{
+    protected:
+        virtual void handleOnClick();
     private:
         SDL_Rect box;
         bool mouseOver(int x, int y);

@@ -14,7 +14,7 @@
 using namespace std;
 
 class Stage{
-    private:
+    protected:
         map<string, SpriteGroup*> spriteGroups; //Nuevo
         map<string, EntityGroup*> entityGroups; //Nuevo
 

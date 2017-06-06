@@ -31,6 +31,7 @@ public:
 
   MovingBloque(float x, float y, int w, int h);
   void render(Camara* camara);
+  void render();
 
   void setClip(string);
   void setRectangulo(string, float, float, int, int);

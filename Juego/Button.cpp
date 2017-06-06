@@ -14,6 +14,11 @@ bool Button::mouseOver(int x, int y){
     return ((x > box.x) && (x < box.x + box.w) && (y > box.y) && (y < box.y + box.h));
 }
 
+void Button::handleOnClick(){
+    //Subclass
+    return;
+}
+
 void Button::handleEvent(SDL_Event event){
     int x = event.motion.x;
     int y = event.motion.y;
@@ -23,8 +28,10 @@ void Button::handleEvent(SDL_Event event){
         if(bMouseOver) rectangle = clipsMovimientos->getRectangulo("mouseover", 0);
         else rectangle = clipsMovimientos->getRectangulo("mouseout", 0);
     } else if( event.type == SDL_MOUSEBUTTONDOWN ) {
-        if(event.button.button == SDL_BUTTON_LEFT && bMouseOver)
+        if(event.button.button == SDL_BUTTON_LEFT && bMouseOver){
             rectangle = clipsMovimientos->getRectangulo("mousedown", 0);
+            handleOnClick();
+        }
     } else if( event.type == SDL_MOUSEBUTTONUP ){
         if(event.button.button == SDL_BUTTON_LEFT && bMouseOver)
             rectangle = clipsMovimientos->getRectangulo("mouseup", 0);

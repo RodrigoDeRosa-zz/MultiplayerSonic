@@ -24,6 +24,7 @@ class Layer{
         bool loadImage();
         /*Presenta la imagen en pantalla*/
         void render(Camara*);
+        void render();
         Texture* getTexture();
 
         bool operator<=(Layer&) const;
