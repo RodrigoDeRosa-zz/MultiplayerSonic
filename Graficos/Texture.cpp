@@ -81,8 +81,7 @@ bool Texture::loadFromRenderedText(TTF_Font* font, string textureText, SDL_Color
     //Libera la textura anterior
     free();
     //Renderiza el texto
-    SDL_Color color = {0x0, 0x0, 0x0};
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), color);
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
     if (!textSurface){
         printf("Surface is NULL, TTF_ERROR: %s\n", TTF_GetError());
         return false;

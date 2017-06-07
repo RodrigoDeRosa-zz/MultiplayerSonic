@@ -17,7 +17,7 @@ PlayerScore::PlayerScore(Texture* tex, TTF_Font* ttf, int offset){
     sprites.at("main")->setTexture(tex);
     sprites.at("main")->setColorMod(0x80, 0x80, 0x80);
     //Texto
-    SDL_Color color = {0x00, 0x00, 0x00};
+    SDL_Color color = {0xFF, 0xFF, 0xFF};
     Texture* texture;
     /*Coins*/
     texture = new Texture();
@@ -43,7 +43,7 @@ PlayerScore::~PlayerScore(){
 }
 
 void PlayerScore::updateText(string mode){
-    SDL_Color color = {0x0, 0x0, 0x0};
+    SDL_Color color = {0xFF, 0xFF, 0xFF};
     Texture* tex = new Texture();
     /*Se agarra la textura, se la actualiza, y se la devuelve*/
     if (!mode.compare(string("coins"))){
