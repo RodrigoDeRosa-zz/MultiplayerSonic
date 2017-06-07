@@ -1,6 +1,10 @@
 Login;x;y;w;h
-Bonton Sin Apretar;0;0;260;150
-Bonton Apretado;260;0;260;150
+Bonton GENERAL Sin Apretar;0;0;218;155
+Bonton GENERAL Apretado;218;0;218;150
+Bonton TEAMS Sin Apretar;0;0;170;155
+Bonton TEAMS Apretado;170;0;170;155
+;;;;
+;;;;
 logoSonic 1;0;0;514;420
 logoSonic 2;514;0;514;420
 logoSonic 3;1028;0;514;420
