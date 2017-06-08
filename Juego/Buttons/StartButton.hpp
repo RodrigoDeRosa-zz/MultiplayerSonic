@@ -8,6 +8,7 @@ class StartButton : public Button{
         void handleOnClick();
     public:
         StartButton(int x, int y);
+        void render();
 };
 
 #endif /*STARTBUTTON_HPP*/

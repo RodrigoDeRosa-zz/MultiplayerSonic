@@ -39,6 +39,7 @@ class Juego{
     bool addJugador(string nombreJugador, string nombrePersonaje);
     //por ahora renderiza al recibiendo una camara, luego lo hace con la camara de cada jugador
     void render();
+    void renderNoCam();
     void setFactory();
     void setCamara(Camara* cam);
     void setStageScore();

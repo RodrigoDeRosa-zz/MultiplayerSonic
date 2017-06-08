@@ -1,10 +1,17 @@
 #include "InitStage.hpp"
+#include <stdio.h>
+#include <math.h>
+
+#define LOGO_MAX_FRAME 10
+#define LOGO_FRAME_RATE 40
 
 InitStage::InitStage(int w, int h) : Stage(){
     setDimensions(w, h);
 
-    button = new StartButton(w/2, h - (4*h)/5);
-    logo = new SonicLogo(w/2, h - h/4);
+    logoFrame = 0;
+
+    button = new StartButton(w/2, (3*h)/4 - 50);
+    logo = new SonicLogo(w/2, h/10);
     background = new Layer();
     background->setDimensions(w, h);
 
@@ -41,7 +48,12 @@ InitStage::~InitStage(){
 }
 
 void InitStage::render(){
-    button->render();
-    logo->render();
     background->render();
+
+    logoFrame++;
+    unsigned int frame = (logoFrame/LOGO_FRAME_RATE) % LOGO_MAX_FRAME;
+    logo->setFrame(frame);
+    logo->render();
+
+    button->render();
 }

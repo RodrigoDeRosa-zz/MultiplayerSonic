@@ -6,7 +6,7 @@ Button::Button(int x, int y, int w, int h) : MovingBloque(x, y, w, h){
     con las dimensiones correspondientes en cada uno*/
     setClip("mouseover");
     setClip("mousedown");
-    setClip("mouseou");
+    setClip("mouseout");
     setClip("mouseup");
 }
 

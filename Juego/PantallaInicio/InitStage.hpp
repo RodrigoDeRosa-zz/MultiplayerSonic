@@ -13,6 +13,7 @@ class InitStage : public Stage{
         map<string, Texture*> textures;
         StartButton* button;
         SonicLogo* logo;
+        unsigned int logoFrame;
     public:
         InitStage(int w, int h);
         ~InitStage();

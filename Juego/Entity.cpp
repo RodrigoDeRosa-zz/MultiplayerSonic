@@ -1,5 +1,6 @@
 #include "Entity.hpp"
 #include "../message.hpp"
+#include <stdio.h>
 
 Entity::Entity(float x, float y, float w, float h) : MovingBloque(x, y, w, h){
 }

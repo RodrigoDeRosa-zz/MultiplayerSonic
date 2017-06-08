@@ -29,6 +29,10 @@ Stage::~Stage(){
     }
 }
 
+void Stage::render(){
+    //virtual
+}
+
 void Stage::setDimensions(int w, int h){
     width = w;
     height = h;

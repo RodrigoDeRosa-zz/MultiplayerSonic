@@ -13,6 +13,7 @@
 #include "../../../message.hpp"
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
+#include "../../../Juego/PantallaInicio/InitStage.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
 #include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -22,6 +23,8 @@ using namespace std;
 #define SSTR( x ) static_cast< ostringstream & >( \
         ( ostringstream() << dec << x ) ).str()
 
+#define WINDOW_W 1200
+#define WINDOW_H 720
 #define COMMAND_LENGTH 15
 #define CONNECT "connect"
 #define DISCONNECT "disconnect"
@@ -53,24 +56,24 @@ void* initGame(void *arg){
 
             JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
             gameJson->setGame();
-            Stage* stage = gameJson->getStage();
             Juego* juego = new Juego();
-            juego->addStage(stage);
-            Camara* camara_pantalla = gameJson->getCamara(stage);
-            juego->setCamara(camara_pantalla);
-            Jugadores* jugs = new Jugadores();
-            juego->setJugadores(jugs);
-            juego->setFactory();
-            juego->addSpriteGroup("piedras");
-            juego->addSpriteGroup("pinches");
-            juego->addEntityGroup("cangrejos");
-            juego->addEntityGroup("monedas");
-            juego->addEntityGroup("moscas");
-            juego->addEntityGroup("peces");
-            juego->addEntityGroup("bonus");
-            juego->setStageScore();
-
             client->addJuego(juego);
+            Stage* stage = gameJson->getStage();
+            client->getJuego()->addStage(stage);
+            Camara* camara_pantalla = gameJson->getCamara(stage);
+            client->getJuego()->setCamara(camara_pantalla);
+            Jugadores* jugs = new Jugadores();
+            client->getJuego()->setJugadores(jugs);
+            client->getJuego()->setFactory();
+            client->getJuego()->addSpriteGroup("piedras");
+            client->getJuego()->addSpriteGroup("pinches");
+            client->getJuego()->addEntityGroup("cangrejos");
+            client->getJuego()->addEntityGroup("monedas");
+            client->getJuego()->addEntityGroup("moscas");
+            client->getJuego()->addEntityGroup("peces");
+            client->getJuego()->addEntityGroup("bonus");
+            client->getJuego()->setStageScore();
+
         } else if (message->ping == GAME_START){
             client->startGame();
             delete message;
@@ -227,14 +230,21 @@ void* consoleChat(void* arg){
 	pthread_t game;
 	void* exit_status;
 	bool running = true;
-
-	printf("If the game is running, type the command you want whenever you need\n");
-	printf("Insert a command: ");
+    SDL_Event e;
+    printf("Insert a command: ");
 	while(running){
+        /*
+        while(SDL_PollEvent(&e)){
+			if (e.type == SDL_QUIT){
+                running = false;
+                break;
+	        }
+        }
+        self->getJuego()->renderNoCam();
+        Renderer::getInstance().draw();*/
 		char command[COMMAND_LENGTH];
 		fgets(command, COMMAND_LENGTH, stdin);
 		strtok(command, "\n");
-
 		if (strcmp(command, CONNECT) == 0 && !self->connected()){
 			pthread_create(&game, NULL, runGame, self);
 		} else if (strcmp(command, DISCONNECT) == 0 && self->connected()){
@@ -252,6 +262,7 @@ void* consoleChat(void* arg){
 			running = false;
 		}
 	}
+    SDLHandler::getInstance().close();
 	return NULL;
 }
 
@@ -287,6 +298,22 @@ int main(int argc, char** argv){
 
     /*Objeto cliente a travÃ©s del cual se realizan las comunicaciones con el server*/
     Client* self = new Client(port, hostname);
+    /*
+    /*Incializacion de SDL/
+    SDLHandler::getInstance().init();
+    /*Incializacion de ventana/
+    Window::getInstance().setDimensions(WINDOW_W, WINDOW_H);
+    Window::getInstance().init();
+    /*Incializacion de rendere/
+    Renderer::getInstance().init();
+    Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
+    /*Creacion de la vista/
+    Juego* juego = new Juego();
+    /*Pantalla inicio/
+    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H);
+    juego->addStage(initStage);
+    /*Se guarda el juego en el cliente/
+    self->addJuego(juego);*/
 
 	/*Thread que procesa las ordenes de consola*/
 	pthread_t console;

@@ -6,6 +6,7 @@
 class SonicLogo : public Entity{
     public:
         SonicLogo(int x, int y);
+        void render();
 };
 
 #endif /*SONICLOGO_HPP*/

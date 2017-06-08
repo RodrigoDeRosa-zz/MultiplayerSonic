@@ -270,6 +270,10 @@ void Juego::setJugadores(Jugadores* jugs){
 //     //tendria que recibir datos del servidor para actualizar la posicion de todos los jugadores
 // }
 
+void Juego::renderNoCam(){
+    stageActual->render();
+}
+
 void Juego::render(){
     //this.actualizarJugadores();
     stageActual->render(camara);

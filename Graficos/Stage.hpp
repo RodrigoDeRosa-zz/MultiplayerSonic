@@ -30,7 +30,7 @@ class Stage{
         ~Stage();
         /*Renderiza todos los elementos del escenario*/
         void render(Camara*);
-
+        virtual void render();
         /*Agrega una capa y la define como front o background segun su z-index*/
         void addLayer(Layer*);
 

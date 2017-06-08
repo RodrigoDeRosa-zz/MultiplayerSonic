@@ -27,7 +27,7 @@ class Sprite{
         /*Dibuja las imagenes de fondo*/
         void render(int x, int y, Camara* cam);
         /*Renderiza independiente de la camara (PARA SCORES)*/
-        void render();
+        virtual void render();
         /*Define la textura del sprite*/
         void setTexture(Texture*);
         /*Define el color predeterminado del sprite en caso de falta de textura*/
