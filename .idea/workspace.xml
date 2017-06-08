@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.cpp" afterPath="$PROJECT_DIR$/Control/Control.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Transicion.cpp" afterPath="$PROJECT_DIR$/Modelo/Transicion.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Transicion.hpp" afterPath="$PROJECT_DIR$/Modelo/Transicion.hpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -261,7 +258,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/logoSonic2.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/logoSonic2.bmp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -602,13 +599,6 @@
       <workItem from="1496868973895" duration="6694000" />
       <workItem from="1496887003127" duration="43000" />
     </task>
-    <task id="LOCAL-00017" summary="personaje">
-      <created>1494980718516</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1494980718516</updated>
-    </task>
     <task id="LOCAL-00018" summary="personaje">
       <created>1494981399743</created>
       <option name="number" value="00018" />
@@ -945,11 +935,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496952387869</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Clase Transicion">
+      <created>1496953036923</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1496953036923</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126066000" />
+    <option name="totallyTimeSpent" value="126106000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
