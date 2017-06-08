@@ -15,31 +15,6 @@ Nivel::Nivel(gameMode game_mode){
 
 	termino = false;
 	es_transicion = false;
-
-	/*vector<string>* nombresPuntajes	= new vector<string>();
-	int cant_puntajes = 0;
-	switch(this->modo_juego){
-		case INDIVIDUAL:
-			cant_puntajes = 4;
-			nombresPuntajes->push_back(string("Jugador 1"));
-			nombresPuntajes->push_back(string("Jugador 2"));
-			nombresPuntajes->push_back(string("Jugador 3"));
-			nombresPuntajes->push_back(string("Jugador 4"));
-			break;
-		case COOP:
-			cant_puntajes = 1;
-			nombresPuntajes->push_back(string("Jugadores"));
-			break;
-		case EQUIPOS:
-			cant_puntajes = 2;
-			nombresPuntajes->push_back(string("Equipo 1"));
-			nombresPuntajes->push_back(string("Equipo 2"));
-			break;
-	}
-	for (int i = 0; i < cant_puntajes; i++){
-		Puntaje* p = new Puntaje(nombresPuntajes->at(i));
-		puntajes->push_back(p);
-	}*/
 }
 
 void Nivel::addPlayers( vector<Player*>* vec){
@@ -225,7 +200,6 @@ vector<out_message_t*> Nivel::getEntidadesStatus(){
 	}
 	return v;
 }
-
 
 vector<out_message_t*> Nivel::getStatus(float camPos){
 	vector<out_message_t*> playerVector = this->getPlayerStatus(camPos);
