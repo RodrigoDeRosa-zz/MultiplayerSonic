@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Nivel.cpp" afterPath="$PROJECT_DIR$/Modelo/Nivel.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Nivel.hpp" afterPath="$PROJECT_DIR$/Modelo/Nivel.hpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,21 +25,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Nivel.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Nivel.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modelo/Nivel.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="52" column="2" lean-forward="false" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+            <state relative-caret-position="492">
+              <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Nivel.hpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Nivel.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modelo/Nivel.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+            <state relative-caret-position="400">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,8 +140,8 @@
         <option value="$PROJECT_DIR$/Control/Control.cpp" />
         <option value="$PROJECT_DIR$/Modelo/Modelo.hpp" />
         <option value="$PROJECT_DIR$/Modelo/Modelo.cpp" />
-        <option value="$PROJECT_DIR$/Modelo/Nivel.cpp" />
         <option value="$PROJECT_DIR$/Modelo/Nivel.hpp" />
+        <option value="$PROJECT_DIR$/Modelo/Nivel.cpp" />
       </list>
     </option>
   </component>
@@ -370,6 +372,28 @@
     <configuration default="true" type="FirefoxRemoteDebugType" factoryName="Firefox Remote">
       <method />
     </configuration>
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <filePath value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoRunFileConfiguration" factoryName="Go Single File">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <method />
+    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
       <node-interpreter value="project" />
       <working-dir value="" />
@@ -562,13 +586,6 @@
       <workItem from="1496860874523" duration="243000" />
       <workItem from="1496868973895" duration="6694000" />
       <workItem from="1496887003127" duration="43000" />
-    </task>
-    <task id="LOCAL-00013" summary="model y move sonic">
-      <created>1494978052680</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1494978052680</updated>
     </task>
     <task id="LOCAL-00014" summary="model y move sonic">
       <created>1494978077516</created>
@@ -906,11 +923,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496948167038</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Terminado los niveles">
+      <created>1496948213445</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1496948213445</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121361000" />
+    <option name="totallyTimeSpent" value="121550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -990,7 +1014,8 @@
     <MESSAGE value="Model ahora es Nivel" />
     <MESSAGE value="cambio de dimensiones de la bola" />
     <MESSAGE value="arreglado frame de la bola" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglado frame de la bola" />
+    <MESSAGE value="Terminado los niveles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terminado los niveles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1338,18 +1363,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Nivel.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Nivel.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="52" column="2" lean-forward="false" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+        <state relative-caret-position="400">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Nivel.hpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Nivel.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+        <state relative-caret-position="492">
+          <caret line="248" column="1" lean-forward="true" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="1" />
           <folding />
         </state>
       </provider>

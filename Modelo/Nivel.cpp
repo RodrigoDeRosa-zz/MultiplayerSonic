@@ -50,27 +50,6 @@ void Nivel::addPuntajes( vector<Puntaje*>* vec){
 	this->puntajes = vec;
 }
 
-/*void Nivel::addPlayer(string playerName){
-	Puntaje* p;
-	switch(this->modo_juego){
-		case INDIVIDUAL:
-			p = puntajes->at(players->size());break;
-		case COOP:
-			p = puntajes->front();break;
-		case EQUIPOS:
-			if (players->size() < 2){	//si es el primer o segundo jugador
-				p = puntajes->front();
-			}
-			else{						//sino es el tercer o cuarto
-				p = puntajes->back();
-			}
-			break;
-	}
-	Player* player = new Player(playerName, p);
-	//TODO CAMBIAR CONSTRUCTOR DE PLAYER PARA QUE RECIBA PUNTAJE
-	(this->players)->push_back(player);
-}*/
-
 void Nivel::addEntidad(Entidad* entidad){
 	(this->entidades)->push_back(entidad);
 }

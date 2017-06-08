@@ -24,7 +24,6 @@ class Nivel{
 		void addPlayers( vector<Player*>* );
 		void addPuntajes( vector<Puntaje*>* );
 
-		//void addPlayer(string playerName);
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
 		vector<string> getPlayerNames();
