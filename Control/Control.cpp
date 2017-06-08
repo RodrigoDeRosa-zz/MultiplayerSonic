@@ -31,23 +31,24 @@ Control::Control(gameMode game_mode){
 	this-> nivelActual = 0;
 }
 
-
 void Control::initNiveles(gameMode game_mode){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/
 
 	Nivel* nivel1 = new Nivel(game_mode);
 	this->niveles.push_back(nivel1);
-
 }
 
-
 void Control::addPlayer(string playerName){
-	this->niveles[this->nivelActual]->addPlayer(playerName);
+	//this->niveles[this->nivelActual]->addPlayer(playerName);
 
-	//this->modelo->createPersonaje(playerName);
-	//vector<Player*>* vec = this->modelo->getPersonajes();
-	//this->niveles[this->nivelActual]->addPlayers( vec );
+	this->modelo->createPersonaje(playerName);
+
+    vector<Player*>* vec = this->modelo->getPersonajes();
+    vector<Puntaje*>* vec2 = this->modelo->getPuntajes();
+
+    this->niveles[this->nivelActual]->addPlayers( vec );
+    this->niveles[this->nivelActual]->addPuntajes( vec2 );
 }
 
 float Control::getCameraPosition(){
@@ -144,7 +145,6 @@ void Control::handleInMessage(in_message_t* ev){
 		this->niveles[this->nivelActual]->playerRoll(playerName);
 		return;
 	}
-
 
 	//muevo el jugador y la camara con las direcciones obtenidas
 	this->niveles[this->nivelActual]->movePlayer(playerName,directions[0], directions[1]);

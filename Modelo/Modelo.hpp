@@ -22,6 +22,7 @@ class Modelo {
 		void createPersonaje(string);
 
 		vector<Player*>* getPersonajes();
+		vector<Puntaje*>* getPuntajes();
 };
 
 #endif /*MODELO_HPP*/

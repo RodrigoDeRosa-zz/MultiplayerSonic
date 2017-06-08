@@ -22,7 +22,9 @@ class Nivel{
 		Nivel(gameMode game_mode);
 
 		void addPlayers( vector<Player*>* );
-		void addPlayer(string playerName);
+		void addPuntajes( vector<Puntaje*>* );
+
+		//void addPlayer(string playerName);
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
 		vector<string> getPlayerNames();

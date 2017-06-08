@@ -2,16 +2,21 @@
 #include <stdio.h>
 
 Nivel::Nivel(gameMode game_mode){
+
+	/*Vectores inicializados*/
 	players = new vector<Player*>();
 	entidades = new vector<Entidad*>();
 	puntajes = new vector<Puntaje*>();
+
+	/*Variables que ni idea*/
 	this->playerStatusControl = 0;
 	this->entidadesStatusControl = 0;
 	this->modo_juego = game_mode;
+
 	termino = false;
 	es_transicion = false;
 
-	vector<string>* nombresPuntajes	= new vector<string>();
+	/*vector<string>* nombresPuntajes	= new vector<string>();
 	int cant_puntajes = 0;
 	switch(this->modo_juego){
 		case INDIVIDUAL:
@@ -34,14 +39,18 @@ Nivel::Nivel(gameMode game_mode){
 	for (int i = 0; i < cant_puntajes; i++){
 		Puntaje* p = new Puntaje(nombresPuntajes->at(i));
 		puntajes->push_back(p);
-	}
+	}*/
 }
 
 void Nivel::addPlayers( vector<Player*>* vec){
 	this->players = vec;
 }
 
-void Nivel::addPlayer(string playerName){
+void Nivel::addPuntajes( vector<Puntaje*>* vec){
+	this->puntajes = vec;
+}
+
+/*void Nivel::addPlayer(string playerName){
 	Puntaje* p;
 	switch(this->modo_juego){
 		case INDIVIDUAL:
@@ -60,7 +69,7 @@ void Nivel::addPlayer(string playerName){
 	Player* player = new Player(playerName, p);
 	//TODO CAMBIAR CONSTRUCTOR DE PLAYER PARA QUE RECIBA PUNTAJE
 	(this->players)->push_back(player);
-}
+}*/
 
 void Nivel::addEntidad(Entidad* entidad){
 	(this->entidades)->push_back(entidad);

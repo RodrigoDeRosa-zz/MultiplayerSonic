@@ -4,8 +4,6 @@
 Modelo::Modelo(gameMode mode){
     this->modoJuego = mode;
 
-    printf("modo: %d \n",this->modoJuego);
-
     /*Inicializaciones */
     players = new vector<Player*>();
     puntajes = new vector<Puntaje*>();
@@ -39,8 +37,6 @@ Modelo::Modelo(gameMode mode){
 }
 
 void Modelo::createPersonaje(string playerName){
-    printf("modo: %p \n",this->players);
-
     Puntaje* p;
     switch(this->modoJuego){
         case INDIVIDUAL:
@@ -62,7 +58,10 @@ void Modelo::createPersonaje(string playerName){
 
 }
 
-
 vector<Player*>* Modelo::getPersonajes(){
     return this->players;
+}
+
+vector<Puntaje*>* Modelo::getPuntajes(){
+    return this->puntajes;
 }
