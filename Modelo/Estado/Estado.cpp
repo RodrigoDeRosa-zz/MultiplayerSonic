@@ -38,7 +38,6 @@ void Estado::updateFrame(){
 
 int Estado::getFrame(){
 	this->updateFrame();
-	printf("frame: %d \n", frame);
 	return this->frame;
 }
 
