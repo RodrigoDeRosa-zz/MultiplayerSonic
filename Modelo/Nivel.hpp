@@ -20,6 +20,8 @@ class Nivel{
 	bool termino;
 	public:
 		Nivel(gameMode game_mode);
+
+		void addPlayers( vector<Player*>* );
 		void addPlayer(string playerName);
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);

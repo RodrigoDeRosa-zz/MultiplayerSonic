@@ -29,12 +29,16 @@ Nivel::Nivel(gameMode game_mode){
 			cant_puntajes = 2;
 			nombresPuntajes->push_back(string("Equipo 1"));
 			nombresPuntajes->push_back(string("Equipo 2"));
-			break;	
+			break;
 	}
 	for (int i = 0; i < cant_puntajes; i++){
 		Puntaje* p = new Puntaje(nombresPuntajes->at(i));
 		puntajes->push_back(p);
 	}
+}
+
+void Nivel::addPlayers( vector<Player*>* vec){
+	this->players = vec;
 }
 
 void Nivel::addPlayer(string playerName){
