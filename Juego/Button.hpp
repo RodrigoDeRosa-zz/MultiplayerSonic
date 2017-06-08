@@ -2,17 +2,17 @@
 #define BUTTON_HPP
 
 #include "MovingBloque.hpp"
+#include "../message.hpp"
 #include <SDL2/SDL.h>
 
 class Button : public MovingBloque{
     protected:
-        virtual void handleOnClick();
-    private:
+        virtual key_event handleOnClick();
         SDL_Rect box;
         bool mouseOver(int x, int y);
     public:
         Button(int x, int y, int w, int h);
-        void handleEvent(SDL_Event);
+        key_event handleEvent(SDL_Event);
 };
 
 #endif /*BUTTON_HPP*/

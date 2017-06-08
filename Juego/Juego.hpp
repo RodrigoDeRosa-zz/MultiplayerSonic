@@ -5,6 +5,7 @@
 #include "../Graficos/Camara.hpp"
 #include "../message.hpp"
 #include "Jugadores.hpp"
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
 #include <map>
@@ -43,6 +44,7 @@ class Juego{
     void setFactory();
     void setCamara(Camara* cam);
     void setStageScore();
+    key_event processEvent(SDL_Event);
 
     //void updateJugadores(map <string, vector <float> >);
     void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,

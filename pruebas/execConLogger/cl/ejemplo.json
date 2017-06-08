@@ -1,7 +1,7 @@
 {
 	"ventana": {"dimensiones": {"ancho": 1200, "alto": 700}},
 	"vel_scroll": 10,
-	"log_lvl": "bajo",
+	"log_lvl": "alto",
 	"escenario": {
 		"dimensiones": {"ancho": 4000, "alto": 720},
 		"capas": [{

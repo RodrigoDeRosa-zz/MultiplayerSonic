@@ -8,6 +8,7 @@
 #include "../Juego/Scoring/ScoreController.hpp"
 #include "../message.hpp"
 #include "Camara.hpp"
+#include <SDL2/SDL.h>
 #include <vector>
 #include <map>
 #include <string>
@@ -61,6 +62,8 @@ class Stage{
 
         void removeSprite(string groupKey, int index);
         void removeEntity(string groupKey, int index);
+
+        virtual key_event processEvent(SDL_Event);
 
         int getHeight();
         int getWidth();

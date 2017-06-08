@@ -2,12 +2,15 @@
 #define STARTBUTTON_HPP
 
 #include "../Button.hpp"
+#include "../../message.hpp"
+#define W 436
+#define H 208
 
 class StartButton : public Button{
     protected:
-        void handleOnClick();
+        virtual key_event handleOnClick();
     public:
-        StartButton(int x, int y);
+        StartButton(int x, int y, int w = W, int h = H);
         void render();
 };
 

@@ -6,7 +6,7 @@ CC = g++
 # -w suppresses all warnings
 COMPILER_FLAGS = -w -g
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -opencv2 -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
+LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lpthread
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = mainServer
 #This is the target that compiles our executable

@@ -50,16 +50,20 @@ void* initGame(void *arg){
             usleep(1000);
             continue;
         }
+        /*if (message->ping == GAME_TYPE){
+            //TODO: Setear pantalla de inicio dependiendo el tipo de juego
+        }*/
         if (message->ping == GAME_SET) {
             printf("Iniciando juego.\n"); //NO LOGGEAR
-            SDLHandler::getInstance().init();
+            //SDLHandler::getInstance().init();
 
             JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
-            gameJson->setGame();
-            Juego* juego = new Juego();
-            client->addJuego(juego);
+            //gameJson->setGame();
+            //Juego* juego = new Juego();
+            //client->addJuego(juego);
             Stage* stage = gameJson->getStage();
             client->getJuego()->addStage(stage);
+            client->getJuego()->nextStage();
             Camara* camara_pantalla = gameJson->getCamara(stage);
             client->getJuego()->setCamara(camara_pantalla);
             Jugadores* jugs = new Jugadores();
@@ -230,19 +234,30 @@ void* consoleChat(void* arg){
 	pthread_t game;
 	void* exit_status;
 	bool running = true;
+    bool showScreen = true;
     SDL_Event e;
-    printf("Insert a command: ");
+
+    key_event key;
+    //printf("Insert a command: ");
 	while(running){
-        /*
-        while(SDL_PollEvent(&e)){
-			if (e.type == SDL_QUIT){
-                running = false;
-                break;
-	        }
+        if (showScreen){
+            while(SDL_PollEvent(&e)){
+    			if (e.type == SDL_QUIT){
+                    running = false;
+                    break;
+    	        }
+                key = self->getJuego()->processEvent(e);
+                if (key == START_GAME){
+                    pthread_create(&game, NULL, runGame, self);
+                    showScreen = false;
+                }
+                if (key == START_TEAM_1) printf("Team 1!\n");
+                if (key == START_TEAM_2) printf("Team 2!\n");
+            }
+            self->getJuego()->renderNoCam();
+            Renderer::getInstance().draw();
         }
-        self->getJuego()->renderNoCam();
-        Renderer::getInstance().draw();*/
-		char command[COMMAND_LENGTH];
+		/*char command[COMMAND_LENGTH];
 		fgets(command, COMMAND_LENGTH, stdin);
 		strtok(command, "\n");
 		if (strcmp(command, CONNECT) == 0 && !self->connected()){
@@ -260,14 +275,13 @@ void* consoleChat(void* arg){
 			self->disconnect(0);
 			pthread_join(game, &exit_status);
 			running = false;
-		}
+		}*/
 	}
-    SDLHandler::getInstance().close();
 	return NULL;
 }
 
 int main(int argc, char** argv){
-    if (argc != 2){
+    if (argc < 2){
         printf("Usage: ./clientGame <JSONfile>\n");
         return 1;
     }
@@ -298,22 +312,22 @@ int main(int argc, char** argv){
 
     /*Objeto cliente a travÃ©s del cual se realizan las comunicaciones con el server*/
     Client* self = new Client(port, hostname);
-    /*
-    /*Incializacion de SDL/
+
+    /*Incializacion de SDL*/
     SDLHandler::getInstance().init();
-    /*Incializacion de ventana/
+    /*Incializacion de ventana*/
     Window::getInstance().setDimensions(WINDOW_W, WINDOW_H);
     Window::getInstance().init();
-    /*Incializacion de rendere/
+    /*Incializacion de renderer*/
     Renderer::getInstance().init();
     Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
-    /*Creacion de la vista/
+    /*Creacion de la vista*/
     Juego* juego = new Juego();
-    /*Pantalla inicio/
-    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H);
+    /*Pantalla inicio*/
+    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H, 0);
     juego->addStage(initStage);
-    /*Se guarda el juego en el cliente/
-    self->addJuego(juego);*/
+    /*Se guarda el juego en el cliente*/
+    self->addJuego(juego);
 
 	/*Thread que procesa las ordenes de consola*/
 	pthread_t console;

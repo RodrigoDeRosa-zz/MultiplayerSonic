@@ -274,6 +274,10 @@ void Juego::renderNoCam(){
     stageActual->render();
 }
 
+key_event Juego::processEvent(SDL_Event e){
+    return stageActual->processEvent(e);
+}
+
 void Juego::render(){
     //this.actualizarJugadores();
     stageActual->render(camara);

@@ -6,7 +6,7 @@ CC = g++
 # -w suppresses all warnings
 COMPILER_FLAGS = -w -g -std=c++0x
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lSDL2_ttf -opencv2 -lopencv_highgui -lopencv_imgproc -lopencv_core -lpthread
+LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lSDL2_ttf -lpthread
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = mainClient
 #This is the target that compiles our executable

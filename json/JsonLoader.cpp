@@ -153,10 +153,7 @@ Sprite* JsonLoader::getSprite(Json::Value json, string contador, map<string,Text
 		bool binarioCirculo = validateValue(json["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"))
 			 && isBool(json["circulo"],string("[escenario][entidades][") + contador + string("][circulo]"));
 
-		if(binarioCirculo && json["circulo"].asBool()){
-			return this->getCirculo(json,contador,x,y,imagen,texturas,color);
-		}
-		else if(binarioCirculo){
+        if(binarioCirculo){
 			return this->getBloque(json,contador,x,y,imagen,texturas,color);
 		}
         return NULL;
@@ -183,23 +180,6 @@ Bloque* JsonLoader::getBloque(Json::Value json, string contador, int x, int y, s
                 }
             }
             return bloque;
-}
-
-Circulo* JsonLoader::getCirculo(Json::Value json, string contador, int x, int y, string imagen, map<string,Texture*> texturas, vector<int> color){
-            int r = this->getPositiveInt(json["radio"],string("[escenario][entidades][") + contador + string("][radio]"),-1);
-			if(r < 0){
-				Logger::getInstance().log(JSONLOADER_SPRITE_NOCREAT_MSG,MEDIO);
-				return NULL;
-			}
-			Circulo* circulo = new Circulo(x, y, r);
-			circulo->setBackgroundColor(color[0],color[1],color[2]);
-			circulo->setIndexZ(this->getPositiveInt(json["index_z"],string("[escenario][entidades][") + contador + string("][index_z]"), 0));
-            //la ruta no es valida
-			if(imagen == string("") || texturas.find(imagen) == texturas.end() || !(circulo->setTexture(imagen))){
-                circulo->setTexture(DEFAULT_IMAGE);
-		        Logger::getInstance().log(MISSING_TEX_ERR + imagen + string(" en la entidad ") + contador, MEDIO);
-		    }
-			return circulo;
 }
 
 map<string,Texture*> JsonLoader::getTextures(Json::Value json){

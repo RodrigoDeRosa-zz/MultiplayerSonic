@@ -33,6 +33,10 @@ void Stage::render(){
     //virtual
 }
 
+key_event Stage::processEvent(SDL_Event e){
+    //Virtual
+}
+
 void Stage::setDimensions(int w, int h){
     width = w;
     height = h;
