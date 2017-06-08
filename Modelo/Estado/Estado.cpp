@@ -5,6 +5,7 @@
 
 Estado::Estado(){
 	this->estado = NORMAL;
+	this->frame = 0;
 }
 
 state_type Estado::get(){

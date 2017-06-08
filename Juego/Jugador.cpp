@@ -32,11 +32,11 @@ void Jugador::updatePersonaje(float posx, float posy, move_type movimiento, int 
         if (state == INVENCIBLE){
             efectoActual = INVENCIBLE;
             invencibilidad->setFrame(state_frame);
-            invencibilidad->update(posx-10, posy-10);
+            invencibilidad->update(posx-30, posy-30);
         } else {
             efectoActual = ESCUDO;
             escudo->setFrame(state_frame);
-            escudo->update(posx-10, posy);
+            escudo->update(posx-30, posy-30);
         }
     } else efectoActual = NORMAL;
 
