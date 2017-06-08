@@ -6,7 +6,8 @@
 #include "CameraControl.hpp"
 #include "../message.hpp"
 #include "../Modelo/Player.hpp"
-//#include "../Modelo/Modelo.hpp"
+#include "../Modelo/Modelo.hpp"
+#include "../Modelo/Transicion.hpp"
 #include "../Modelo/Entidades/Entidad.hpp"
 
 using namespace std;
@@ -16,9 +17,11 @@ class Control{
 
 	/*Modelo*/
 	Modelo* modelo;
+
 	/*Niveles*/
 	int nivelActual;
 	vector <Nivel*> niveles;
+	Transicion* transicion;
 
 	/*Camara*/
 	CameraControl* cameraControl;
@@ -28,7 +31,7 @@ class Control{
 	void setDisconnectedPlayersPosition(float dirX);
 	public:
 		Control(gameMode game_mode);
-		void initNiveles(gameMode);
+		void initNiveles();
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
 		vector<float> getDirections(key_event e, string playerName);
 		void addPlayer(string playerName);

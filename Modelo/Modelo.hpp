@@ -4,7 +4,6 @@
 #include <vector>
 #include "Player.hpp"
 
-enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
 using namespace std;
 
 class Modelo {

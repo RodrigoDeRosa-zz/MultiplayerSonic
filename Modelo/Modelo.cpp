@@ -1,6 +1,7 @@
 #include "Modelo.hpp"
 #include <stdio.h>
 
+
 Modelo::Modelo(gameMode mode){
     this->modoJuego = mode;
 

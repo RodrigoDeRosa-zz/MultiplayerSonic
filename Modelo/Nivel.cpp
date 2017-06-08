@@ -1,7 +1,7 @@
 #include "Nivel.hpp"
 #include <stdio.h>
 
-Nivel::Nivel(gameMode game_mode){
+Nivel::Nivel(){
 
 	/*Vectores inicializados*/
 	players = new vector<Player*>();
@@ -11,7 +11,6 @@ Nivel::Nivel(gameMode game_mode){
 	/*Variables que ni idea*/
 	this->playerStatusControl = 0;
 	this->entidadesStatusControl = 0;
-	this->modo_juego = game_mode;
 
 	termino = false;
 	es_transicion = false;

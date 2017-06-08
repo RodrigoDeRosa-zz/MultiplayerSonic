@@ -25,22 +25,22 @@ using namespace std;
 Control::Control(gameMode game_mode){
 
 	this->modelo = new Modelo(game_mode);
+	this->transicion = new Transicion();
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
-	this->initNiveles(game_mode);
+	this->initNiveles();
 	this-> nivelActual = 0;
 }
 
-void Control::initNiveles(gameMode game_mode){
+void Control::initNiveles(){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/
 
-	Nivel* nivel1 = new Nivel(game_mode);
+	Nivel* nivel1 = new Nivel();
 	this->niveles.push_back(nivel1);
 }
 
 void Control::addPlayer(string playerName){
-	//this->niveles[this->nivelActual]->addPlayer(playerName);
 
 	this->modelo->createPersonaje(playerName);
 
