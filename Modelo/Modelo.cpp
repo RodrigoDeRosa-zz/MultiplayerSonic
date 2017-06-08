@@ -3,13 +3,48 @@
 
 Modelo::Modelo(gameMode mode){
     this->modoJuego = mode;
+
+    printf("modo: %d \n",this->modoJuego);
+
+    /*Inicializaciones */
+    players = new vector<Player*>();
+    puntajes = new vector<Puntaje*>();
+    vector<string>* nombresPuntajes	= new vector<string>();
+
+
+    int cant_puntajes = 0;
+    switch(this->modoJuego){
+        case INDIVIDUAL:
+            cant_puntajes = 4;
+            nombresPuntajes->push_back(string("Jugador 1"));
+            nombresPuntajes->push_back(string("Jugador 2"));
+            nombresPuntajes->push_back(string("Jugador 3"));
+            nombresPuntajes->push_back(string("Jugador 4"));
+            break;
+        case COOP:
+            cant_puntajes = 1;
+            nombresPuntajes->push_back(string("Jugadores"));
+            break;
+        case EQUIPOS:
+            cant_puntajes = 2;
+            nombresPuntajes->push_back(string("Equipo 1"));
+            nombresPuntajes->push_back(string("Equipo 2"));
+            break;
+    }
+    for (int i = 0; i < cant_puntajes; i++){
+        Puntaje* p = new Puntaje(nombresPuntajes->at(i));
+        puntajes->push_back(p);
+    }
+
 }
 
 void Modelo::createPersonaje(string playerName){
+    printf("modo: %p \n",this->players);
+
     Puntaje* p;
     switch(this->modoJuego){
         case INDIVIDUAL:
-            p = puntajes->at(players->size());break;
+            p = puntajes->at(players->size() );break;
         case COOP:
             p = puntajes->front();break;
         case EQUIPOS:
@@ -24,6 +59,7 @@ void Modelo::createPersonaje(string playerName){
     Player* player = new Player(playerName, p);
     //TODO CAMBIAR CONSTRUCTOR DE PLAYER PARA QUE RECIBA PUNTAJE
     (this->players)->push_back(player);
+
 }
 
 

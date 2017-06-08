@@ -24,7 +24,7 @@ using namespace std;
 
 Control::Control(gameMode game_mode){
 
-	Modelo* modelo = new Modelo(game_mode);
+	this->modelo = new Modelo(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	this->initNiveles(game_mode);
@@ -44,6 +44,10 @@ void Control::initNiveles(gameMode game_mode){
 
 void Control::addPlayer(string playerName){
 	this->niveles[this->nivelActual]->addPlayer(playerName);
+
+	//this->modelo->createPersonaje(playerName);
+	//vector<Player*>* vec = this->modelo->getPersonajes();
+	//this->niveles[this->nivelActual]->addPlayers( vec );
 }
 
 float Control::getCameraPosition(){
