@@ -25,7 +25,7 @@ using namespace std;
 Control::Control(gameMode game_mode){
 
 	this->modelo = new Modelo(game_mode);
-	this->transicion = new Transicion();
+	this->transicion = new Transicion(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	this->initNiveles();
