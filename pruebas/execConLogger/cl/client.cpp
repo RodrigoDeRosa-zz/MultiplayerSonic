@@ -73,7 +73,6 @@ void Client::updatePlayer(out_message_t* message){
 void Client::updatePlayers(){
 	for(int i = 0; i < (this->players).size(); i++){
 		out_message_t* player = players[i];
-
 		this->juego->updateJugador(SSTR(i), player->posX, player->posY, player->move, player->frame, player->connection,
             player->rings, player->lives, player->points, player->state, player->state_frame);
 	}

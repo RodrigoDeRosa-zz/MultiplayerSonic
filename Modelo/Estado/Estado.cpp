@@ -1,6 +1,7 @@
 #include "Estado.hpp"
 #include <pthread.h>
 #include <unistd.h>
+#include <stdio.h>
 
 Estado::Estado(){
 	this->estado = NORMAL;
@@ -32,11 +33,12 @@ void Estado::setInvencible(){
 
 void Estado::updateFrame(){
 	this->frame++;
-	if(this->frame == 9) this->frame = 0;
+	if(this->frame >= 9) this->frame = 0;
 }
 
 int Estado::getFrame(){
 	this->updateFrame();
+	printf("frame: %d \n", frame);
 	return this->frame;
 }
 

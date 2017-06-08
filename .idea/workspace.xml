@@ -11,9 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego/Entidades/Escudo.cpp" afterPath="$PROJECT_DIR$/Juego/Entidades/Escudo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp" afterPath="$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Juego/Jugador.cpp" afterPath="$PROJECT_DIR$/Juego/Jugador.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Estado/Estado.cpp" afterPath="$PROJECT_DIR$/Modelo/Estado/Estado.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp" afterPath="$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,21 +26,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Invencibilidad.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Jugador.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Jugador.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Juego/Jugador.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            <state relative-caret-position="423">
+              <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -49,28 +39,48 @@
       <file leaf-file-name="Juego.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Juego/Juego.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+            <state relative-caret-position="227">
+              <caret line="91" column="19" lean-forward="false" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Texture.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Graficos/Texture.cpp">
+      <file leaf-file-name="client.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2420">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="294">
+              <caret line="74" column="43" lean-forward="false" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Escudo.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Juego/Entidades/Escudo.cpp">
+      <file leaf-file-name="Player.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="5" selection-end-column="15" />
+            <state relative-caret-position="-4401">
+              <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estado.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modelo/Estado/Estado.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estado.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Modelo/Estado/Estado.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -80,7 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>imagenes</find>
       <find>quiet</find>
       <find>MovingSonic</find>
       <find>width</find>
@@ -108,6 +117,9 @@
       <find>nombresPuntajes</find>
       <find>game</find>
       <find>modoJ</find>
+      <find>updatePer</find>
+      <find>update</find>
+      <find>updateJ</find>
     </findStrings>
     <replaceStrings>
       <replace>ModelSonic</replace>
@@ -169,6 +181,8 @@
         <option value="$PROJECT_DIR$/Juego/Entidades/Escudo.cpp" />
         <option value="$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp" />
         <option value="$PROJECT_DIR$/Juego/Jugador.cpp" />
+        <option value="$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp" />
+        <option value="$PROJECT_DIR$/Modelo/Estado/Estado.cpp" />
       </list>
     </option>
   </component>
@@ -223,7 +237,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Graficos" />
+              <option name="myItemId" value="Modelo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TallerSonic" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TallerSonic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Modelo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Estado" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -251,59 +283,20 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/CameraControl.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/CameraControl.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Layer.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Layer.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Sprite.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Stage.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Stage.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Graficos/Texture.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Bonus.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Bonus.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entity.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Button.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Buttons/StartButton.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Buttons/StartButton.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entity.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Juego.cpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Juego.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Jugador.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Jugador.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Jugadores.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Jugadores.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/MovingBloque.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Scoring/PlayerScore.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/SegaFactory.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Cangrejo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Entidad.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Moneda.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Mosca.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Pez.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Pinche.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/ModelSonic.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/ModelSonic.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/MoveSonic.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/MoveSonic.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Puntaje.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Puntaje.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/json/JsonLoader.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/message.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo 1.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo 2.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo 3.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/medidas entidades.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/score1.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/score2.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/score3.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/score4.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/ejemplo.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/ejemplo2.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/InitStage.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/InitStage.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/SonicLogo.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/SonicLogo.hpp</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/gameClient.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/sv/Makefile</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -311,58 +304,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Button.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Button.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Buttons/StartButton.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Buttons/StartButton.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Escudo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Escudo.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Entidades/Invencibilidad.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/InitStage.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/InitStage.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/SonicLogo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/PantallaInicio/SonicLogo.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/BonusMoneda.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/BonusMoneda.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Escudo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Escudo.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Invencibilidad.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Invencibilidad.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra1.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra1.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra2.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedras/Piedra2.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Estado/Estado.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Estado/Estado.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Modelo.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Modelo.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Nivel.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Nivel.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/Estado/Estado.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/Estado/Estado.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/Estado/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/Estado/message.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/Estado/prueba.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/bola_malo.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/bonus.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/boton_inicio.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/boton_team1.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/boton_team2.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/efectos_bolas_bonus.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo_Tras.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo_Tras_Colaborativo.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo_Tras_Equipos.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo_login.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/fondo_login_equipos.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/logoSonic.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/logoSonicChico.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/malo.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/Graficos/medidasLogin.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/ubicador/Ubicador.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/ubicador/Ubicador.hpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -370,11 +311,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Entidades/Piedra.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Makefile</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Model.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Model.hpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -685,13 +621,6 @@
       <workItem from="1496860874523" duration="243000" />
       <workItem from="1496868973895" duration="6694000" />
       <workItem from="1496887003127" duration="43000" />
-    </task>
-    <task id="LOCAL-00008" summary="Carga reducida">
-      <created>1494861918789</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1494861918789</updated>
     </task>
     <task id="LOCAL-00009" summary="Carga reducida">
       <created>1494967227487</created>
@@ -1029,17 +958,24 @@
       <option name="project" value="LOCAL" />
       <updated>1496777806469</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="cambio de dimensiones de la bola">
+      <created>1496933889282</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1496933889282</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115597000" />
+    <option name="totallyTimeSpent" value="118782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1602" height="849" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.185625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25745258" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50269026" order="7" side_tool="true" content_ui="tabs" />
@@ -1111,7 +1047,8 @@
     <MESSAGE value="Tenemos que arreglar las colisiones" />
     <MESSAGE value="Boludeces" />
     <MESSAGE value="Model ahora es Nivel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Model ahora es Nivel" />
+    <MESSAGE value="cambio de dimensiones de la bola" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio de dimensiones de la bola" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1120,44 +1057,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pruebas/exec/sv/server.json" />
-    <entry file="file://$PROJECT_DIR$/pruebas/exec/sv/main.cpp" />
-    <entry file="file://$PROJECT_DIR$/Juego/Jugadores.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Juego/Jugador.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Juego/Sonic.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Efecto.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Piedra.hpp" />
-    <entry file="file://$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="156" column="32" lean-forward="false" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pruebas/execConLogger/cl/gameClient.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -1235,13 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modelo/Efecto.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Entidad.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
@@ -1286,13 +1179,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Piedra.cpp" />
-    <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3100">
-          <caret line="155" column="18" lean-forward="false" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modelo/Model.cpp" />
     <entry file="file://$PROJECT_DIR$/Modelo/Model.hpp" />
     <entry file="file://$PROJECT_DIR$/Juego/ClipGroup.cpp">
@@ -1421,6 +1307,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Juego/Entity.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Juego/Jugadores.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Graficos/Texture.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2420">
@@ -1429,26 +1333,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Entidades/Invencibilidad.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Juego/Juego.cpp">
+    <entry file="file://$PROJECT_DIR$/Modelo/Efecto.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+        <state relative-caret-position="300">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Juego/Entidades/Invencibilidad.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Juego/Jugador.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="32" column="14" lean-forward="false" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        <state relative-caret-position="423">
+          <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Juego/Juego.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="91" column="19" lean-forward="false" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pruebas/execConLogger/cl/client.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="74" column="43" lean-forward="false" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modelo/Player.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4401">
+          <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modelo/Estado/Estado.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modelo/Estado/Estado.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
           <folding />
         </state>
       </provider>
