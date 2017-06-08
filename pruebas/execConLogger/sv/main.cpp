@@ -47,7 +47,7 @@ void avisarEmpiezaJuego(Control* gameControl){
     memcpy(playerSetting, state, sizeof(out_message_t));
     SERVER().queueOutEvent(playerSetting);
     usleep(1000);
-    
+
     vector<out_message_t*> states = gameControl->getEntidadesInitStatus();
     for(int i = 0; i < states.size(); i++){
         char* outState = new char[sizeof(out_message_t)];
@@ -55,7 +55,7 @@ void avisarEmpiezaJuego(Control* gameControl){
         SERVER().queueOutEvent(outState);
     }
     usleep(5000);
-    
+
     char* startMessage = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_START;
@@ -218,7 +218,7 @@ int main(int argc, char** argv){
 		usleep(30000);
 	}
 
-    
+
 	avisarEmpiezaJuego(gameControl);
 
 	for (int i = 0; i < CXM().actualConnections ; i++){
