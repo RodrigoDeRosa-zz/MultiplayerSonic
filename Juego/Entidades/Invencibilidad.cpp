@@ -1,20 +1,20 @@
 #include "Invencibilidad.hpp"
 
-#define WIDTH 1035
-#define HEIGHT 242
-#define W 114
-#define H 121
+#define WIDTH 1553
+#define HEIGHT 363
+#define W 171
+#define H 181.5
 
 Invencibilidad::Invencibilidad(float x, float y) : Entity(x, y, WIDTH, HEIGHT){
     setClip("move");
-    setRectangulo("move", 0, H, W + 1, H);
-    setRectangulo("move", 116, H, W, H);
-    setRectangulo("move", 231, H, W, H);
-    setRectangulo("move", 345, H, W, H);
-    setRectangulo("move", 459, H, W, H);
-    setRectangulo("move", 573, H, W, H);
-    setRectangulo("move", 687, H, W, H);
-    setRectangulo("move", 801, H, W, H);
-    setRectangulo("move", 915, H, W+1, H);
+    setRectangulo("move", 0, H, W + 4, H);
+    setRectangulo("move", 174, H, W+1.5, H);
+    setRectangulo("move", 246.5, H, W, H);
+    setRectangulo("move", 517.5, H, W, H);
+    setRectangulo("move", 688.5, H, W, H);
+    setRectangulo("move", 859.5, H, W, H);
+    setRectangulo("move", 1030.5, H, W, H);
+    setRectangulo("move", 1201.5, H, W, H);
+    setRectangulo("move", 1372.5, H, W+1.5, H);
     rectangle = clipsMovimientos->getRectangulo("move", 0);
 }
