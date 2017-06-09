@@ -1,24 +1,30 @@
-#OBJS specifies which files to compile as part of the project
-OBJS = ../../../logger/current/Logger2.cpp ../../../Graficos/*.cpp ../../../Juego/*.cpp ../../../json/*.cpp ../../../Juego/Entidades/*.cpp ../../../Juego/Scoring/*.cpp ../../../Juego/Buttons/*.cpp ../../../Juego/PantallaInicio/*.cpp *.cpp
-#CC specifies which compiler we're using
+#Source files
+SRCS =  $(wildcard ../../../logger/current/Logger2.cpp \
+../../../Graficos/*.cpp \
+../../../Juego/*.cpp \
+../../../json/*.cpp \
+../../../Juego/Entidades/*.cpp \
+../../../Juego/Scoring/*.cpp \
+../../../Juego/Buttons/*.cpp \
+../../../Juego/PantallaInicio/*.cpp \
+../../../Juego/PantallaTransicion/*.cpp \
+*.cpp)
+OBJS = $(SRCS:.cpp=.o)
+FILE = gameClient
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -w -g -std=c++0x
+CPPFLAGS = -w -g -std=c++0x
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lSDL2_ttf -lpthread
-#OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = mainClient
-#This is the target that compiles our executable
-all : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+LDFLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lSDL2_ttf -lpthread
 
-nolink : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) -c $(LINKER_FLAGS)
-run:
-	./$(OBJ_NAME)
+all: main
 
-.PHONY: clean
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
+
+main: $(OBJS)
+	$(CC) $(OBJS) $(CPPFLAGS) $(LDFLAGS) -o mainClient
 
 clean:
-	rm *.o
+	rm -f $(wildcard *.o) $(OBJS) mainClient

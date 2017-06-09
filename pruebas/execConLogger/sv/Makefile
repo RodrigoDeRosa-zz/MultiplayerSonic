@@ -1,24 +1,27 @@
-#OBJS specifies which files to compile as part of the project
-OBJS = ../../../logger/current/Logger2.cpp ../../../Modelo/*.cpp ../../../Modelo/Entidades/*.cpp ../../../Modelo/Entidades/Piedras/*.cpp ../../../Modelo/Estado/*.cpp ../../../json/jsoncpp.cpp ../../../Control/*.cpp *.cpp
-#CC specifies which compiler we're using
+#Source files
+SRCS =  $(wildcard ../../../logger/current/Logger2.cpp \
+../../../Modelo/*.cpp \
+../../../Modelo/Entidades/*.cpp \
+../../../Modelo/Entidades/Piedras/*.cpp \
+../../../Modelo/Estado/*.cpp \
+../../../json/jsoncpp.cpp \
+../../../Control/*.cpp \
+*.cpp)
+OBJS = $(SRCS:.cpp=.o)
 CC = g++
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -w -g
+CPPFLAGS = -w -g -std=c++0x
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lpthread
-#OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = mainServer
-#This is the target that compiles our executable
-all : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+LDFLAGS = -I ./logger/current -lSDL2 -lSDL2_image -lSDL2_ttf -lpthread
 
-nolink : $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) -c $(LINKER_FLAGS)
-run:
-	./$(OBJ_NAME)
+all: main
 
-.PHONY: clean
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
+
+main: $(OBJS)
+	$(CC) $(OBJS) $(CPPFLAGS) $(LDFLAGS) -o mainServer
 
 clean:
-	rm *.o
+	rm -f $(wildcard *.o) $(OBJS) mainServer
