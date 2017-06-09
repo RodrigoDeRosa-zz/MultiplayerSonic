@@ -1,5 +1,5 @@
-#ifndef PLAYERSCORE_HPP
-#define PLAYERSCORE_HPP
+#ifndef TEAMSCORE_HPP
+#define TEAMSCORE_HPP
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -10,28 +10,21 @@
 #include <map>
 using namespace std;
 
-class PlayerScore : public Score{
+class TeamScore : public Score{
     private:
         map<string, Sprite*> sprites;
-        bool online;
-        int coins, hearts, points, position;
+        int coins, points, position;
         TTF_Font* font;
         void updateText(string);
-        void connect();
-        void disconnect();
     public:
-        PlayerScore(Texture*, TTF_Font* font, int offset);
-        ~PlayerScore();
+        TeamScore(Texture*, TTF_Font* font, int team);
+        ~TeamScore();
         /*Score methods*/
         void setScore(int);
-        /*Life methods*/
-        void setLives(int);
         /*Coins methods*/
         void setRings(int);
-        /*Connection methods*/
-        void toggleOnline(bool);
         /*Rendering*/
         void render();
 };
 
-#endif /*PLAYERSCORE_HPP*/
+#endif /*TEAMSCORE_HPP*/

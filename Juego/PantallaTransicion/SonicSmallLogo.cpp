@@ -1,11 +1,11 @@
-#include "SonicLogo.hpp"
+#include "SonicSmallLogo.hpp"
 
-#define WIDTH 7224
-#define HEIGHT 420
-#define W 514
-#define H 420
+#define WIDTH 3696
+#define HEIGHT 252
+#define W 257
+#define H 210
 
-SonicLogo::SonicLogo(int x, int y) : Entity(x-W/2, y, WIDTH, HEIGHT){
+SonicSmallLogo::SonicSmallLogo(int x, int y) : Entity(x, y, WIDTH, HEIGHT){
     setClip("move");
 
     for (int i = 0; i < 14; i++){
@@ -14,7 +14,7 @@ SonicLogo::SonicLogo(int x, int y) : Entity(x-W/2, y, WIDTH, HEIGHT){
     rectangle = clipsMovimientos->getRectangulo("move", 0);
 }
 
-void SonicLogo::render(){
+void SonicSmallLogo::render(){
     Renderer::getInstance().setDrawColor(red, green, blue, 1);
 
     texture->renderWithMovement(originX, originY, &rectangle);

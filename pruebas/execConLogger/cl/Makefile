@@ -26,5 +26,8 @@ all: main
 main: $(OBJS)
 	$(CC) $(OBJS) $(CPPFLAGS) $(LDFLAGS) -o mainClient
 
+run:
+	./mainClient asd
+
 clean:
 	rm -f $(wildcard *.o) $(OBJS) mainClient

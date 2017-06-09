@@ -139,8 +139,8 @@ EntityGroup* Stage::getEntityGroup(string groupKey){
 }
 
 /*Nuevo*/
-void Stage::initScore(){
-    score = new ScoreController();
+void Stage::initScore(int mode){
+    score = new ScoreController(mode);
 }
 
 void Stage::addSprite(string groupKey, Sprite* sprite, int index){

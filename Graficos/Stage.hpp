@@ -57,7 +57,7 @@ class Stage{
         void updateEntity(string groupKey, int index, float x, float y, int frame);
         void updateEntity(string groupKey, int index, float x, float y, int frame, move_type sense);
 
-        void initScore();
+        void initScore(int mode);
         void updateScore(int index, int rings, int lives, int points, bool state);
 
         void removeSprite(string groupKey, int index);

@@ -2,10 +2,9 @@
 #include <SDL2/SDL_image.h>
 #include <sstream>
 #include <string>
-#include <stdio.h>
 using namespace std;
 
-PlayerScore::PlayerScore(Texture* tex, TTF_Font* ttf, int offset){
+PlayerScore::PlayerScore(Texture* tex, TTF_Font* ttf, int offset) : Score(){
     online = false;
     coins = 0; hearts = 0; points = 0;
     position = offset + 3;

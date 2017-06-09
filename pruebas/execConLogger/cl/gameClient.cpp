@@ -14,6 +14,9 @@
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
 #include "../../../Juego/PantallaInicio/InitStage.hpp"
+#include "../../../Juego/PantallaTransicion/TransitionStageSingle.hpp"
+#include "../../../Juego/PantallaTransicion/TransitionStageCoop.hpp"
+#include "../../../Juego/PantallaTransicion/TransitionStageTeams.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
 #include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -76,7 +79,7 @@ void* initGame(void *arg){
             client->getJuego()->addEntityGroup("moscas");
             client->getJuego()->addEntityGroup("peces");
             client->getJuego()->addEntityGroup("bonus");
-            client->getJuego()->setStageScore();
+            client->getJuego()->setStageScore(2);
 
         } else if (message->ping == GAME_START){
             client->startGame();
@@ -324,7 +327,7 @@ int main(int argc, char** argv){
     /*Creacion de la vista*/
     Juego* juego = new Juego();
     /*Pantalla inicio*/
-    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H, 0);
+    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H, atoi(argv[2]));
     juego->addStage(initStage);
     /*Se guarda el juego en el cliente*/
     self->addJuego(juego);

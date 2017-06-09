@@ -13,7 +13,6 @@
 #include <sstream>
 #include <string>
 #include <fstream>
-#include <string>
 using namespace std;
 
 #define SSTR( x ) static_cast< ostringstream & >( \
@@ -85,13 +84,13 @@ void Juego::setTexturas(){
 ////  }
 //}
 
-void Juego::setStageScore(){
-    stageActual->initScore();
+void Juego::setStageScore(int mode){
+    stageActual->initScore(mode);
 }
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
     int rings, int lives, int points, state_type state, int state_frame){
-    stageActual->updateScore(stoi(id), rings, lives, points, conectado);
+    stageActual->updateScore(atoi(id.c_str()), rings, lives, points, conectado);
     jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado, state, state_frame);
 }
 

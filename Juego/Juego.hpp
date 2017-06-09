@@ -43,7 +43,7 @@ class Juego{
     void renderNoCam();
     void setFactory();
     void setCamara(Camara* cam);
-    void setStageScore();
+    void setStageScore(int mode);
     key_event processEvent(SDL_Event);
 
     //void updateJugadores(map <string, vector <float> >);
