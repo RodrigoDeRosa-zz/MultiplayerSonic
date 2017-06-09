@@ -79,7 +79,7 @@ void* initGame(void *arg){
             client->getJuego()->addEntityGroup("moscas");
             client->getJuego()->addEntityGroup("peces");
             client->getJuego()->addEntityGroup("bonus");
-            client->getJuego()->setStageScore(2);
+            client->getJuego()->setStageScore(0);
 
         } else if (message->ping == GAME_START){
             client->startGame();

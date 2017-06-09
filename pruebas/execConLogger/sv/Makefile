@@ -22,6 +22,8 @@ all: main
 
 main: $(OBJS)
 	$(CC) $(OBJS) $(CPPFLAGS) $(LDFLAGS) -o mainServer
+run:
+	./mainServer asd
 
 clean:
 	rm -f $(wildcard *.o) $(OBJS) mainServer

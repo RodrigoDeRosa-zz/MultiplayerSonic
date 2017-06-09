@@ -7,6 +7,7 @@
 #include "../Modelo/Entidades/Mosca.hpp"
 #include "../Modelo/Entidades/Invencibilidad.hpp"
 #include "../Modelo/Entidades/BonusMoneda.hpp"
+#include "../Modelo/Entidades/Escudo.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -189,7 +190,7 @@ void Control::crearEntidades(){
 	this->niveles[this->nivelActual]->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
 	this->niveles[this->nivelActual]->addEntidad(moneda1);
-    Invencibilidad* bonus1 = new Invencibilidad(0, 750, 426);
+    Escudo* bonus1 = new Escudo(0, 750, 426);
     this->niveles[this->nivelActual]->addEntidad(bonus1);
     BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
     this->niveles[this->nivelActual]->addEntidad(bonus2);
