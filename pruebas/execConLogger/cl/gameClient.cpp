@@ -327,7 +327,7 @@ int main(int argc, char** argv){
     /*Creacion de la vista*/
     Juego* juego = new Juego();
     /*Pantalla inicio*/
-    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H, atoi(argv[2]));
+    InitStage* initStage = new InitStage(WINDOW_W, WINDOW_H, 0);
     juego->addStage(initStage);
     /*Se guarda el juego en el cliente*/
     self->addJuego(juego);
