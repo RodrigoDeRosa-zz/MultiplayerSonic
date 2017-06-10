@@ -18,6 +18,7 @@ Client::Client(const char* p, const char* h){
     socket = NULL;
     online = false;
     gameStarted = false;
+    gameSet = false;
     juego = NULL;
     pings = 0;
     port = p;
@@ -158,6 +159,14 @@ Juego* Client::getJuego(){
 
 void Client::addJuego(Juego* j){
     juego = j;
+}
+
+void Client::toggleGameSet(){
+    gameSet = true;
+}
+
+bool Client::gameIsSet(){
+    return gameSet;
 }
 
 void Client::disconnect(int how){

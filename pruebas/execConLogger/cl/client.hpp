@@ -15,6 +15,7 @@ class Client{
         struct addrinfo *serverInfo;
         bool online;
         bool gameStarted;
+        bool gameSet;
         deque<out_message_t*> received;
         deque<key_event> toSend;
         Juego* juego;
@@ -58,6 +59,8 @@ class Client{
         out_message_t* getPlayer(int id);
         void updatePlayer(out_message_t*);
         void updatePlayers();
+        void toggleGameSet();
+        bool gameIsSet();
 };
 
 #endif /*CLIENT_HPP*/
