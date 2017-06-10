@@ -116,6 +116,13 @@ void* accept(void* arg){
             connection->sendMessage(playerSetting, sizeof(out_message_t));
             usleep(1000);
 
+            vector<out_message_t*> states = gameControl->getEntidadesInitStatus();
+            for(int i = 0; i < states.size(); i++){
+                char* outState = new char[sizeof(out_message_t)];
+                memcpy(outState, states[i], sizeof(out_message_t));
+                SERVER().queueOutEvent(outState);
+            }
+
             char* startMessage = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_START;
