@@ -41,6 +41,7 @@ void avisarEmpiezaJuego(Control* gameControl){
 
     return NULL;
 }
+
 void enviarInformacionJuego(Control* gameControl){
     out_message_t* state = new out_message_t;
 
