@@ -203,5 +203,13 @@ void Control::crearEntidades(){
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
-	return this->niveles[this->nivelActual]->getEntidadesInitStatus();
+	vector<out_message_t*> v;
+	for(int i = 0; i < this->niveles.size(); i++){
+		vector<out_message_t*> entidades_v = this->niveles[this->nivelActual]->getEntidadesInitStatus();
+		for(int j = 0; j < entidades_v.size(); j++){
+			entidades_v[j]->camPos = i;
+		}
+		v.insert(v.end(),entidades_v.begin(),entidades_v.end());
+	}
+	return v;
 }
