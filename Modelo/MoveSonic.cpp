@@ -378,11 +378,25 @@ void MoveSonic::caer(){
 	//esta cayendo
 
 	if (direccion) {
-		caminarDerecha();
+		//caminarDerecha() pero con JUMPD
+		if( frameRight / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
+        	frameRight=0;
+    	}
+		frameActual = (frameRight/WALKING_ANIMATION_FRAMES);
+		moveActual = JUMPD;
+		originX += VELOCIDAD;
+		//end:caminarDerecha
 		frameRight++;
 	}
 	else {
-		caminarIzquierda();
+		//caminarIzquierda() pero con JUMPI
+		if( frameLeft / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
+        	frameLeft=0;
+    	}
+    	frameActual = (frameLeft/WALKING_ANIMATION_FRAMES);
+    	moveActual = JUMPI;
+    	originX -= VELOCIDAD;
+		//end:caminarIzquierda
 		frameLeft++;
 	}
 	originY+=VELOCIDAD_CAIDA;

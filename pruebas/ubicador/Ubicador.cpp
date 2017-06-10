@@ -33,20 +33,20 @@ Ubicador::Ubicador(){
 }
 
 //defines para asegurar minimos y maximos (puede que este más acotado)
-#define MIN_COINS	2	//por ejemplo esto asegura que nunca se va a generar un nivel en el que haya menos de MIN_COINS monedas, no importa el parametro que se pase
+#define MIN_COINS	50	//por ejemplo esto asegura que nunca se va a generar un nivel en el que haya menos de MIN_COINS monedas, no importa el parametro que se pase
 #define MAX_COINS	100	//y este dice que si le pasas 120 como max_coins igual el maximo es 100
 
 #define MIN_CRABS	0
-#define MAX_CRABS	20
+#define MAX_CRABS	15
 
 #define MIN_FISHES	0
 #define MAX_FISHES	20
 
 #define MIN_FLIES	0
-#define MAX_FLIES 	20
+#define MAX_FLIES 	10
 
 #define MIN_SPIKES	0
-#define MAX_SPIKES	10
+#define MAX_SPIKES	5
 
 #define MIN_ROCKS	0
 #define MAX_ROCKS	10
