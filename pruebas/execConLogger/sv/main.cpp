@@ -92,7 +92,7 @@ void* accept(void* arg){
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
 
-        if (!SERVER().is_running && (CXM().actualConnections == CXM().maxConnections)){
+        if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
             SERVER().startInitializing();
         }
 
@@ -281,14 +281,13 @@ void* inEventsHandle(void* arg){
             CXM().playersReady++;
         } else if (ev->key == START_TEAM_1){
             CXM().playersReady++;
-            //gameControl->addPlayerToTeam(ev->id, 1);
+            //gameControl->addPlayer(ev->id, 1);
         } else if (ev->key == START_TEAM_2){
             CXM().playersReady++;
-            //gameControl->addPlayerToTeam(ev->id, 2);
+            //gameControl->addPlayer(ev->id, 2);
         } else gameControl->handleInMessage(ev);
         if (CXM().playersReady == CXM().actualConnections && !SERVER().is_running()){
             SERVER().start_game();
-            continue;
         }
 	}
 
