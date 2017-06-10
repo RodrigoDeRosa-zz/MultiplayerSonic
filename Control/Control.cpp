@@ -198,10 +198,8 @@ void Control::crearEntidades(){
     this->niveles[this->nivelActual]->addEntidad(bonus1);
     BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
     this->niveles[this->nivelActual]->addEntidad(bonus2);
-    /*
-	Moneda* moneda2 = new Moneda(4,200,180);
-	this->niveles[this->nivelActual]->addEntidad(moneda2);
-*/
+    
+    
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

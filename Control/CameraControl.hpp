@@ -16,6 +16,7 @@ class CameraControl{
 		float getPosition();
 		float getLeftEdge();
 		float getRightEdge();
+		void reset(float stageEnd);
 };
 
 #endif /*CAMERACONTROL_HPP*/
