@@ -27,7 +27,7 @@ using namespace std;
 #define ACCEPT_TIMEOUT 1
 
 
-#define DEFAULT_GAME_MODE	INDIVIDUAL
+#define DEFAULT_GAME_MODE INDIVIDUAL
 
 void avisarEmpiezaJuego(Control* gameControl){
     out_message_t* state = new out_message_t;
