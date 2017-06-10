@@ -32,6 +32,18 @@ using namespace std;
 void avisarEmpiezaJuego(Control* gameControl){
     out_message_t* state = new out_message_t;
 
+    char* startMessage = new char[sizeof(out_message_t)];
+    memset(state, 0, sizeof(out_message_t));
+    state->ping = GAME_START;
+    memcpy(startMessage, state, sizeof(out_message_t));
+    SERVER().queueOutEvent(startMessage);
+    delete state;
+
+    return NULL;
+}
+void enviarInformacionJuego(Control* gameControl){
+    out_message_t* state = new out_message_t;
+
     char* message = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_SET;
@@ -55,13 +67,6 @@ void avisarEmpiezaJuego(Control* gameControl){
         SERVER().queueOutEvent(outState);
     }
     usleep(5000);
-
-    char* startMessage = new char[sizeof(out_message_t)];
-    memset(state, 0, sizeof(out_message_t));
-    state->ping = GAME_START;
-    memcpy(startMessage, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(startMessage);
-    delete state;
 }
 
 void* accept(void* arg){
@@ -85,9 +90,10 @@ void* accept(void* arg){
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
 
-        if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
-			SERVER().start_game();
-		}
+        if (!SERVER().is_running && (CXM().actualConnections == CXM().maxConnections)){
+            SERVER().startInitializing();
+        }
+
         /*Esto se da cuando se desconecta alguien y otra persona toma su lugar*/
         if (SERVER().is_running() && has_started){
             out_message_t* state = new out_message_t;
@@ -106,13 +112,6 @@ void* accept(void* arg){
             memcpy(playerSetting, state, sizeof(out_message_t));
             connection->sendMessage(playerSetting, sizeof(out_message_t));
             usleep(1000);
-
-            /*Para cada roca del nivel, se envia un mensaje con su informacion.
-            Falta hacer lo mismo para todas las entidades de todo tipo*/
-            /*
-            for (int i = 0; i < control->cantidadRocas; i++){
-            }
-            */
 
             char* startMessage = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
@@ -214,10 +213,15 @@ int main(int argc, char** argv){
 	}
 
 	//PARTE DE INICIALIZACION
-	while(!SERVER().is_running()){
-		usleep(30000);
-	}
+    while(!SERVER().initializing()){
+        usleep(3000);
+    }
 
+    enviarInformacionJuego(gameControl);
+
+	while(!SERVER().is_running()){
+		usleep(3000);
+	}
 
 	avisarEmpiezaJuego(gameControl);
 
