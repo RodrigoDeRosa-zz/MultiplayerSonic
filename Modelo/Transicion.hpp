@@ -7,6 +7,8 @@
 using namespace std;
 
 class Transicion: public Nivel{
+	int frame;
+	int update_counter;
 	public:
 		Transicion();
 		vector<string> getPlayerNames();

@@ -5,7 +5,7 @@
 
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;
-	sleep(30);
+	sleep(10);
 	trancision->terminar();
 	return NULL;
 }
@@ -27,9 +27,33 @@ void Transicion::moverEntidades(){}
 
 vector<out_message_t*> Transicion::getStatus(float camPos){
 	vector<out_message_t*> v;
-	for(int i=0; i < (this->players)->size(); i++){
-		v.push_back((*(this->players))[i]->getStatus(camPos));
+	//mando 5 veces el mensaje de jugadores por las dudas de que una vez no llegue, despues solo frame updates
+	if(this->update_counter < 5){
+		for(int i=0; i < (this->players)->size(); i++){
+			v.push_back((*(this->players))[i]->getStatus(camPos));
+		}
+		this->update_counter++;
 	}
-	// hacer algo con los frames
+
+	//mensaje de actualizar frame
+	out_message_t* state = new out_message_t;
+	memset(state, 0, sizeof(out_message_t));
+	state->ping = TRANSITION_UPDATE;
+	state->id = 0;
+	state->connection = true;
+	state->posX = 0;
+	state->posY = 0;
+	state->camPos = 0;
+	state->move = MOVE_TOTAL;
+	state->frame = this->frame;
+	state->rings = 0;
+	state->lives = 0;
+	state->points = 0;
+	state->state = NORMAL;
+	state->state_frame = 0;
+	v.push_back(state);
+	//
+
+	this->frame++;	
 	return v;
 }

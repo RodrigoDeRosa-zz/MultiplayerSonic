@@ -26,6 +26,7 @@ class Control{
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);
 	bool moveCamera(float newPlayerX, string playerName, float dirX);
+	Nivel* getNivelActual();
 
 	void setDisconnectedPlayersPosition(float dirX);
 	public:

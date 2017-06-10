@@ -62,8 +62,8 @@ void Control::addPlayer(string playerName, int equipo){
     vector<Player*>* vec = this->modelo->getPersonajes();
     vector<Puntaje*>* vec2 = this->modelo->getPuntajes();
 
-    this->niveles[this->nivelActual]->addPlayers( vec );
-    this->niveles[this->nivelActual]->addPuntajes( vec2 );
+    this->getNivelActual()->addPlayers( vec );
+    this->getNivelActual()->addPuntajes( vec2 );
 }
 
 float Control::getCameraPosition(){
@@ -92,13 +92,13 @@ vector<float> Control::getDirections(SDL_Event e, float dirX, float dirY){
 }
 
 vector<float> Control::getDirections(key_event e, string playerName){
-	vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(playerName);
+	vector<float> directions = this->getNivelActual()->getPlayerDirections(playerName);
 	float dirX = directions[0];
 	float dirY = directions[1];
-	move_type movement = this->niveles[this->nivelActual]->getPlayerMovement(playerName);//TRY1
+	move_type movement = this->getNivelActual()->getPlayerMovement(playerName);//TRY1
 
 	switch( e ){
-		//case QUIT: this->niveles[this->nivelActual]->setPlayerConnection(playerName, false); break;
+		//case QUIT: this->getNivelActual()->setPlayerConnection(playerName, false); break;
 		case SPACE_DOWN: dirY -= 1; break;
 		case LEFT_DOWN: dirX -= 1; break;
 		case RIGHT_DOWN: dirX += 1; break;
@@ -112,29 +112,29 @@ vector<float> Control::getDirections(key_event e, string playerName){
 }
 
 bool Control::moveCamera(float newPlayerX,string playerName,float dirX){
-	return 	(this->cameraControl->moveCamera(newPlayerX,this->niveles[this->nivelActual],playerName,dirX));
+	return 	(this->cameraControl->moveCamera(newPlayerX,this->getNivelActual(),playerName,dirX));
 }
 
 bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
-	vector<float> previousPlayerPosition = this->niveles[this->nivelActual]->getPlayerPosition(playerName);
-	this->niveles[this->nivelActual]->movePlayer(playerName,directions[0],directions[1]);
-	vector<float> newPlayerPosition = this->niveles[this->nivelActual]->getPlayerPosition(playerName);
+	vector<float> previousPlayerPosition = this->getNivelActual()->getPlayerPosition(playerName);
+	this->getNivelActual()->movePlayer(playerName,directions[0],directions[1]);
+	vector<float> newPlayerPosition = this->getNivelActual()->getPlayerPosition(playerName);
 	float previousCameraPosition = this->getCameraPosition();
 	if(!(this->moveCamera(newPlayerPosition[0],playerName,directions[0]))){
 	 	//si no puedo mover la camara vuelvo a setear la posicion anterior del jugador
-	 	this->niveles[this->nivelActual]->setPlayerPosition(playerName,previousPlayerPosition[0]);
+	 	this->getNivelActual()->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
 	}
-	if(this->getCameraPosition() != previousCameraPosition) this->niveles[this->nivelActual]->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
+	if(this->getCameraPosition() != previousCameraPosition) this->getNivelActual()->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
 	return true;
 }
 
 void Control::setPlayerConnection(string playerName, bool connection){
-	this->niveles[this->nivelActual]->setPlayerConnection(playerName,connection);
+	this->getNivelActual()->setPlayerConnection(playerName,connection);
 }
 
 vector<float> Control::getPlayerPosition(string playerName){
-	return this->niveles[this->nivelActual]->getPlayerPosition(playerName);
+	return this->getNivelActual()->getPlayerPosition(playerName);
 }
 
 void setOutMessage(out_message_t* message, message_type ping,int id,bool connection,int frame,move_type move,float posX,float posY,float camPos){
@@ -150,37 +150,39 @@ void setOutMessage(out_message_t* message, message_type ping,int id,bool connect
 
 void Control::handleInMessage(in_message_t* ev){
 	string playerName = SSTR(ev->id);
-	move_type movement = this->niveles[this->nivelActual]->getPlayerMovement(playerName);
+	move_type movement = this->getNivelActual()->getPlayerMovement(playerName);
 
 	//obtengo las direcciones en base al key event
 	vector<float> directions = this->getDirections(ev->key,SSTR(ev->id));
 
 	//casos especiales, aca entran y debieran setear flag para que luego entren en update
 	if(ev->key == DOWN_DOWN){
-		this->niveles[this->nivelActual]->playerRoll(playerName);
+		this->getNivelActual()->playerRoll(playerName);
 		return;
 	}
 
 	//muevo el jugador y la camara con las direcciones obtenidas
-	this->niveles[this->nivelActual]->movePlayer(playerName,directions[0], directions[1]);
+	this->getNivelActual()->movePlayer(playerName,directions[0], directions[1]);
 }
 
 void Control::update(){
-	if(this->niveles[this->nivelActual]->yaTermino()){
-		//pasar a proximo "niveles[this->nivelActual]/nivel" y meterselo a this->niveles[this->nivelActual];
-        //e inicializar el nuevo nivel o transicion.
+	if(this->getNivelActual()->yaTermino()){
+		this->nivelActual++;
+		if(this->nivelActual == this->niveles.size()){}//termino el juego, hacer algo
+		this->getNivelActual()->addPlayers(this->modelo->getPersonajes());
+		this->getNivelActual()->addPuntajes(this->modelo->getPuntajes());
 	}
-	vector<string> players = this->niveles[this->nivelActual]->getPlayerNames();
+	vector<string> players = this->getNivelActual()->getPlayerNames();
     for(int i=0; i < players.size(); i++){
-        vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(players[i]);
+        vector<float> directions = this->getNivelActual()->getPlayerDirections(players[i]);
         this->moveCameraAndPlayer(players[i],directions);
     }
-    this->niveles[this->nivelActual]->moverEntidades();
-    this->niveles[this->nivelActual]->colisionarTodos();
+    this->getNivelActual()->moverEntidades();
+    this->getNivelActual()->colisionarTodos();
 }
 
 vector<out_message_t*> Control::getStatus(){
-	return this->niveles[this->nivelActual]->getStatus(this->getCameraPosition());
+	return this->getNivelActual()->getStatus(this->getCameraPosition());
 }
 
 void Control::cambiarEquipo(string playerName, int equipo){
@@ -230,11 +232,15 @@ void Control::crearEntidades(){
 vector<out_message_t*> Control::getEntidadesInitStatus(){
 	vector<out_message_t*> v;
 	for(int i = 0; i < this->niveles.size(); i++){
-		vector<out_message_t*> entidades_v = this->niveles[this->nivelActual]->getEntidadesInitStatus();
+		vector<out_message_t*> entidades_v = this->getNivelActual()->getEntidadesInitStatus();
 		for(int j = 0; j < entidades_v.size(); j++){
 			entidades_v[j]->camPos = i;
 		}
 		v.insert(v.end(),entidades_v.begin(),entidades_v.end());
 	}
 	return v;
+}
+
+Nivel* Control::getNivelActual(){
+	return this->niveles[this->nivelActual];
 }
