@@ -30,6 +30,7 @@ class CXManager{
         /*Maxima cantidad de conexiones aceptadas y conexiones actuales*/
         int maxConnections;
         int actualConnections;
+        int playersReady;
         /*Agrega la conexion recibida.*/
         void addConnection(Connection*);
         /*Borra la conexion con dado id*/

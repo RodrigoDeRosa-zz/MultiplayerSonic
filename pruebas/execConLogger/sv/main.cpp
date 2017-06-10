@@ -219,22 +219,22 @@ int main(int argc, char** argv){
     while(!SERVER().initializing()){
         usleep(3000);
     }
-
+    /*Se envia la info para iniciar el juego*/
     enviarInformacionJuego(gameControl);
-
+    /*Se agregan los jugadores*/
+    for (int i = 0; i < CXM().actualConnections ; i++){
+        gameControl->addPlayer(SSTR_(i));
+    }
+    /*Se empiezan a recibir mensajes del cliente*/
     pthread_t inEventT;
     pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
 
 	while(!SERVER().is_running()){
 		usleep(3000);
 	}
-
+    /*Inicia el juego*/
 	avisarEmpiezaJuego(gameControl);
-
-	for (int i = 0; i < CXM().actualConnections ; i++){
-		gameControl->addPlayer(SSTR_(i));
-	}
-
+    /*Se inicia la comunacion hacia afuera*/
     pthread_t outStateT;
     pthread_create(&outStateT, NULL, outStatesHandle, gameControl);
     pthread_t updateT;
@@ -259,14 +259,13 @@ void* updateControl(void* arg){
         usleep(2500);
     }
 
-
     return NULL;
 }
 
 void* inEventsHandle(void* arg){
     Control* gameControl = (Control*) arg;
 
-    while(SERVER().is_running()){
+    while(SERVER().is_running() || SERVER().initializing()){
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
@@ -278,8 +277,19 @@ void* inEventsHandle(void* arg){
         if (ev->key == QUIT){
             gameControl->setPlayerConnection(SSTR_(ev->id), false);
             continue;
+        } else if (ev->key == START_GAME){
+            CXM().playersReady++;
+        } else if (ev->key == START_TEAM_1){
+            CXM().playersReady++;
+            //gameControl->addPlayerToTeam(ev->id, 1);
+        } else if (ev->key == START_TEAM_2){
+            CXM().playersReady++;
+            //gameControl->addPlayerToTeam(ev->id, 2);
+        } else gameControl->handleInMessage(ev);
+        if (CXM().playersReady == CXM().actualConnections && !SERVER().is_running()){
+            SERVER().start_game();
+            continue;
         }
-        gameControl->handleInMessage(ev);
 	}
 
     return NULL;
