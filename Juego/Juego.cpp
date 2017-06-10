@@ -77,11 +77,11 @@ void Juego::setTexturas(){
     texturas.insert(make_pair("bolas", bolas));
     /*Textura del Jefe derecha e izquierda*/
     Texture* boss = new Texture();
-    bolas->loadFromFile("Graficos/malo.png");
+    boss->loadFromFile("Graficos/malo.png");
     texturas.insert(make_pair("boss", boss));
     /*Textura de la bola del jefe*/
     Texture* bossBall = new Texture();
-    bolas->loadFromFile("Graficos/bola_malo.png");
+    bossBall->loadFromFile("Graficos/bola_malo.png");
     texturas.insert(make_pair("bossBall", bossBall));
 }
 /*SERVER*/
