@@ -35,7 +35,7 @@ class Control{
 		gameMode getGameMode();
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
 		vector<float> getDirections(key_event e, string playerName);
-		void addPlayer(string playerName);
+		void addPlayer(string playerName, int equipo);
 		bool moveCameraAndPlayer(string playerName, vector<float> directions);
 		vector<float> getPlayerPosition(string playerName);
 		float getCameraPosition();

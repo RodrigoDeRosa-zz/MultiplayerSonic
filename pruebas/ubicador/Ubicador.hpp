@@ -1,4 +1,5 @@
 #include "Model.hpp"
+#include "Logger.hpp"//ojo si no hace falta ../ n cantidad de veces
 //includes
 
 using namespace std;
