@@ -41,6 +41,7 @@ Server::Server(){
     serverInfo = NULL;
     accSocket = NULL;
     online = false;
+    initializing = false;
 	pthread_mutex_init(&inEventsMux,NULL);
 	pthread_mutex_init(&outEventsMux,NULL);
 }
@@ -156,6 +157,14 @@ in_message_t* Server::getInEvent(){
     inEvents.pop_front();
 	pthread_mutex_unlock(&inEventsMux);
     return event;
+}
+
+void Server::startInitializing(){
+    initialize = true;
+}
+
+bool Server::initializing(){
+    return initialize;
 }
 
 bool Server::is_running(){

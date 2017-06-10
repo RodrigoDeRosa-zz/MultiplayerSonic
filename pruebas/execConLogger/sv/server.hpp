@@ -19,7 +19,7 @@ class Server{
 
         bool online;
 		bool game_is_on;
-        bool initializing;
+        bool initialize;
         pthread_t eventThread;
 
 		pthread_mutex_t inEventsMux;
