@@ -221,10 +221,7 @@ int main(int argc, char** argv){
     }
     /*Se envia la info para iniciar el juego*/
     enviarInformacionJuego(gameControl);
-    /*Se agregan los jugadores*/
-    for (int i = 0; i < CXM().actualConnections ; i++){
-        gameControl->addPlayer(SSTR_(i));
-    }
+
     /*Se empiezan a recibir mensajes del cliente*/
     pthread_t inEventT;
     pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
@@ -279,12 +276,13 @@ void* inEventsHandle(void* arg){
             continue;
         } else if (ev->key == START_GAME){
             CXM().playersReady++;
+            gameControl->addPlayer(SSTR_(ev->id));
         } else if (ev->key == START_TEAM_1){
             CXM().playersReady++;
-            //gameControl->addPlayer(ev->id, 1);
+            //gameControl->addPlayer(SSTR_(ev->id), 1);
         } else if (ev->key == START_TEAM_2){
             CXM().playersReady++;
-            //gameControl->addPlayer(ev->id, 2);
+            //gameControl->addPlayer(SSTR_(ev->id), 2);
         } else gameControl->handleInMessage(ev);
         if (CXM().playersReady == CXM().actualConnections && !SERVER().is_running()){
             SERVER().start_game();
