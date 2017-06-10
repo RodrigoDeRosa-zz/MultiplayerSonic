@@ -372,17 +372,16 @@ void MoveSonic::correrIzquierda(){
 void MoveSonic::caer(){
 	if(!cayendo){	//la primera vez que se llama solo setea en true y se va
 		cayendo=true;
-	//TODO CHEQUEAR SI HAY QUE RESETEAR frameLeft Y/O frameRight
 		return;
 	}
 	//esta cayendo
 
 	if (direccion) {
 		//caminarDerecha() pero con JUMPD
-		if( frameRight / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
+		if( frameRight / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
         	frameRight=0;
     	}
-		frameActual = (frameRight/WALKING_ANIMATION_FRAMES);
+		frameActual = (frameRight/JUMPING_ANIMATION_FRAMES);
 		moveActual = JUMPD;
 		originX += VELOCIDAD;
 		//end:caminarDerecha
@@ -390,10 +389,10 @@ void MoveSonic::caer(){
 	}
 	else {
 		//caminarIzquierda() pero con JUMPI
-		if( frameLeft / (WALKING_ANIMATION_FRAMES) >= WALKING_ANIMATION_FRAMES){
+		if( frameLeft / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
         	frameLeft=0;
     	}
-    	frameActual = (frameLeft/WALKING_ANIMATION_FRAMES);
+    	frameActual = (frameLeft/JUMPING_ANIMATION_FRAMES);
     	moveActual = JUMPI;
     	originX -= VELOCIDAD;
 		//end:caminarIzquierda
