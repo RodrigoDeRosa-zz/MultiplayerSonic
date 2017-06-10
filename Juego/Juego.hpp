@@ -66,6 +66,8 @@ class Juego{
     void updateMosca(out_message_t*);
     void updatePez(out_message_t*);
     void updateBonus(out_message_t*);
+    void updateBoss(out_message_t*);
+    void updateBossBall(out_message_t*);
 
     /*Agrega una piedra en las posiciones dadas*/
     void addPiedra(float x, float y, int t, int index);
@@ -81,6 +83,10 @@ class Juego{
     void addCangrejo(float x, float y, int index);
     /*Agrega una mosca en las posiciones dadas*/
     void addMosca(float x, float y, int index);
+    /*Agrega un Jefe en las posiciones dadas*/
+    void addBoss(float x, float y, int index);
+    /*Agrega la bola del Jefe en las posiciones dadas*/
+    void addBossBall(float x, float y, int index);
 
     ~Juego();
 };
