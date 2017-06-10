@@ -55,3 +55,8 @@ bool CameraControl::moveCamera(float newPosition,Nivel* model, string playerName
 	else if((dirX > 0) && (newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
 	return true;
 }
+
+void CameraControl::reset(float stageEnd){
+	this->position = 0;
+	this->stageEnd = stageEnd;
+}
