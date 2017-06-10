@@ -297,6 +297,10 @@ long Player::getPuntos(){
 	return this->puntaje->getParcial();
 }
 
+void Player::cambiarEquipo(Puntaje* newp){
+	this->puntaje = newp;
+}
+
 void Player::setEstado(state_type estado){
     this->estado->set(estado);
 }

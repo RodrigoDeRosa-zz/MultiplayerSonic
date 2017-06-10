@@ -43,6 +43,12 @@ void Control::initNiveles(){
 
 	Nivel* nivel1 = new Nivel();
 	this->niveles.push_back(nivel1);
+
+    Nivel* nivel2 = new Nivel();
+    this->niveles.push_back(nivel2);
+
+    Nivel* nivel3 = new Nivel();
+    this->niveles.push_back(nivel3);
 }
 
 void Control::addPlayer(string playerName, int equipo){
@@ -181,25 +187,48 @@ vector<out_message_t*> Control::getStatus(){
 	return this->niveles[this->nivelActual]->getStatus(this->getCameraPosition());
 }
 
+void Control::cambiarEquipo(string playerName, int equipo){
+	this->modelo->cambiarEquipo(playerName, equipo);
+}
+
 void Control::crearEntidades(){
 	Piedra* piedra = new Piedra(0,500, 345);
-	this->niveles[this->nivelActual]->addEntidad(piedra);
+	this->niveles[0]->addEntidad(piedra);
 	Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
-	this->niveles[this->nivelActual]->addEntidad(cangrejo);
+	this->niveles[0]->addEntidad(cangrejo);
     Pez* pez = new Pez(0, 800, 675);
-	this->niveles[this->nivelActual]->addEntidad(pez);
+	this->niveles[0]->addEntidad(pez);
     Mosca* mosca = new Mosca(0,300, 225);
-	this->niveles[this->nivelActual]->addEntidad(mosca);
+	this->niveles[0]->addEntidad(mosca);
 	Pinche* pinche = new Pinche(2, 1000, 495);
-	this->niveles[this->nivelActual]->addEntidad(pinche);
+	this->niveles[0]->addEntidad(pinche);
 	Moneda* moneda1 = new Moneda(3, 550, 305);
-	this->niveles[this->nivelActual]->addEntidad(moneda1);
+	this->niveles[0]->addEntidad(moneda1);
     Escudo* bonus1 = new Escudo(0, 750, 426);
-    this->niveles[this->nivelActual]->addEntidad(bonus1);
+    this->niveles[0]->addEntidad(bonus1);
     BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
-    this->niveles[this->nivelActual]->addEntidad(bonus2);
-    
-    
+    this->niveles[0]->addEntidad(bonus2);
+
+
+    Piedra* piedra = new Piedra(0,500, 345);
+    this->niveles[1]->addEntidad(piedra);
+    Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
+    this->niveles[1]->addEntidad(cangrejo);
+    Pez* pez = new Pez(0, 800, 675);
+    this->niveles[1]->addEntidad(pez);
+    Mosca* mosca = new Mosca(0,300, 225);
+    this->niveles[1]->addEntidad(mosca);
+    Pinche* pinche = new Pinche(2, 1000, 495);
+    this->niveles[1]->addEntidad(pinche);
+    Moneda* moneda1 = new Moneda(3, 550, 305);
+    this->niveles[1]->addEntidad(moneda1);
+    Escudo* bonus1 = new Escudo(0, 750, 426);
+    this->niveles[1]->addEntidad(bonus1);
+    BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
+    this->niveles[1]->addEntidad(bonus2);
+
+
+
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

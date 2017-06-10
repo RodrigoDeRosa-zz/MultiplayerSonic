@@ -31,5 +31,5 @@ class Ubicador{
 				int rock_min, int rock_max,
 				int bonus_min, int bonus_max);
 		
-		vector<terna_t*>* generarTernas();
+		vector<terna_t*>* generarTernas(int LvLen);
 };
