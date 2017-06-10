@@ -95,5 +95,10 @@ void Ubicador::setParams(int coin_min, int coin_max, int crab_min, int crab_max,
 
 //Resuelve con los parametros dados lo que tiene que hacer		
 vector<terna_t*>* Ubicador::generarTernas(int LvLen){
+	vector<int>* ocupado = new vector<int>();
+	int cantidad;
+	//primero piedras
 	
+	
+
 }
