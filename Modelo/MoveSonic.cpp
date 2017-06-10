@@ -139,8 +139,8 @@ void MoveSonic::jump(float vel_x,float vel_y){
         tiempoSalto = 0.0;
         jumping = false;
         tiempoY = 0.0;
-		//si termino de caer y sigue arriba que caiga
-		if(originY > Y_PISO + 140){//numero supermagico 
+		//si termino de caer y sigue flotando que caiga
+		if(originY + 5 < Y_PISO){//5 es un numero supermagico 
 			this->caer();
 		} 
     }

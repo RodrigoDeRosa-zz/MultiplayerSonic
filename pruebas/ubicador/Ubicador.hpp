@@ -1,5 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <vector>
 #include "Model.hpp"
-#include "Logger.hpp"//ojo si no hace falta ../ n cantidad de veces
+//#include "Logger.hpp"//ojo si no hace falta ../ n cantidad de veces
 //includes
 
 using namespace std;
