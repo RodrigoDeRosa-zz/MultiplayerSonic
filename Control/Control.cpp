@@ -26,7 +26,6 @@ using namespace std;
 Control::Control(gameMode game_mode){
 
 	this->modelo = new Modelo(game_mode);
-	this->transicion = new Transicion(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	this->initNiveles();
@@ -44,8 +43,13 @@ void Control::initNiveles(){
 	Nivel* nivel1 = new Nivel();
 	this->niveles.push_back(nivel1);
 
+	Transicion* transicion = new Transicion();
+	this->niveles.push_back(transicion);
+
     Nivel* nivel2 = new Nivel();
     this->niveles.push_back(nivel2);
+
+    this->niveles.push_back(transicion);
 
     Nivel* nivel3 = new Nivel();
     this->niveles.push_back(nivel3);
@@ -166,21 +170,13 @@ void Control::update(){
 		//pasar a proximo "niveles[this->nivelActual]/nivel" y meterselo a this->niveles[this->nivelActual];
         //e inicializar el nuevo nivel o transicion.
 	}
-	if(!this->niveles[this->nivelActual]->esTransicion()){
-        // en lugar de hacer los dos for llamar a:
-        // this->niveles[this->nivelActual]->colisionarTodos()  (afuera del for)
-        vector<string> players = this->niveles[this->nivelActual]->getPlayerNames();
-        for(int i=0; i < players.size(); i++){
-
-            vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(players[i]);
-            this->moveCameraAndPlayer(players[i],directions);
-        }
-        this->niveles[this->nivelActual]->moverEntidades();
-        this->niveles[this->nivelActual]->colisionarTodos();
-	}
-	else{
-		//Es pantalla de transicion.
-	}
+	vector<string> players = this->niveles[this->nivelActual]->getPlayerNames();
+    for(int i=0; i < players.size(); i++){
+        vector<float> directions = this->niveles[this->nivelActual]->getPlayerDirections(players[i]);
+        this->moveCameraAndPlayer(players[i],directions);
+    }
+    this->niveles[this->nivelActual]->moverEntidades();
+    this->niveles[this->nivelActual]->colisionarTodos();
 }
 
 vector<out_message_t*> Control::getStatus(){

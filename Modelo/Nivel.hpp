@@ -7,6 +7,7 @@
 using namespace std;
 
 class Nivel{
+protected:
 	vector<Player*>* players;
 	vector<Entidad*>* entidades;
 	int playerStatusControl;
@@ -16,7 +17,7 @@ class Nivel{
 	vector<Puntaje*>* puntajes;
 	bool es_transicion;
 	bool termino;
-	public:
+public:
 		Nivel();
 
 		void addPlayers( vector<Player*>* );
@@ -25,7 +26,7 @@ class Nivel{
 
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
-		vector<string> getPlayerNames();
+		virtual vector<string> getPlayerNames();
 		void movePlayer(string playerName, float dirX, float dirY);
 		void setPlayerPosition(string playerName, float x);
 		vector<float> getPlayerPosition(string playerName);
@@ -39,12 +40,13 @@ class Nivel{
 		bool playerIsConnected(string playerName);
 		vector<out_message_t*> getEntidadesInitStatus();
 		void playerRoll(string playerName);
-		void colisionarTodos();
+		virtual void colisionarTodos();
 		bool enRango(Entidad* entidad, Player* player);
 		vector<out_message_t*> getPlayerStatus(float camPos);
 		vector<out_message_t*> getEntidadesStatus();
-		vector<out_message_t*> getStatus(float camPos);
-		void moverEntidades();
+		virtual vector<out_message_t*> getStatus(float camPos);
+		virtual void moverEntidades();
+		void terminar();
 		bool esTransicion();
 		bool yaTermino();
 

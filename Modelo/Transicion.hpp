@@ -1,22 +1,18 @@
 #ifndef TRANSICION_HPP
 #define TRANSICION_HPP
 
-#include <vector>
-#include "../message.hpp"
-#include "Puntaje.hpp"
+#include "Nivel.hpp"
 
 
 using namespace std;
 
-class Transicion{
-
-    gameMode modoJuego;
-    vector<Puntaje*>* puntajes;
+class Transicion: public Nivel{
 	public:
-		Transicion(gameMode);
-
-        void setPuntajes( vector<Puntaje*>* );
-
+		Transicion();
+		vector<string> getPlayerNames();
+		void colisionarTodos();
+		vector<out_message_t*> getStatus(float camPos);
+		void moverEntidades();
 };
 
 #endif /*TRANSICION_HPP*/

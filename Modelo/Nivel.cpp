@@ -16,6 +16,10 @@ Nivel::Nivel(){
 	es_transicion = false;
 }
 
+void Nivel::terminar(){
+	this->termino = true;
+}
+
 void Nivel::addPlayers( vector<Player*>* vec){
 	this->players = vec;
 }

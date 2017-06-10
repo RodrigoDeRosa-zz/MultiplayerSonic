@@ -21,8 +21,7 @@ class Control{
 	/*Niveles*/
 	int nivelActual;
 	vector <Nivel*> niveles;
-	Transicion* transicion;
-
+	
 	/*Camara*/
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);
