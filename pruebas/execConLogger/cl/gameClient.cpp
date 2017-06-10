@@ -80,7 +80,6 @@ void* initGame(void *arg){
             client->getJuego()->addEntityGroup("peces");
             client->getJuego()->addEntityGroup("bonus");
             client->getJuego()->setStageScore(0);
-
         } else if (message->ping == GAME_START){
             client->startGame();
             delete message;

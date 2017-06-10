@@ -20,17 +20,17 @@ PlayerScore::PlayerScore(Texture* tex, TTF_Font* ttf, int offset) : Score(){
     Texture* texture;
     /*Coins*/
     texture = new Texture();
-    texture->loadFromRenderedText(font, to_string(coins), color);
+    texture->loadFromRenderedText(font, "-", color);
     sprites.insert(make_pair("coinText", new Sprite(position + 80, 12, 45, 30)));
     sprites.at("coinText")->setTexture(texture);
     /*Hearts*/
     texture = new Texture();
-    texture->loadFromRenderedText(font, to_string(hearts), color);
+    texture->loadFromRenderedText(font, "-", color);
     sprites.insert(make_pair("heartText", new Sprite(position + 155, 12, 20, 30)));
     sprites.at("heartText")->setTexture(texture);
     /*Points*/
     texture = new Texture();
-    texture->loadFromRenderedText(font, to_string(points), color);
+    texture->loadFromRenderedText(font, "-", color);
     sprites.insert(make_pair("scoreText", new Sprite(position + 200, 12, 100, 30)));
     sprites.at("scoreText")->setTexture(texture);
 }
@@ -90,6 +90,9 @@ void PlayerScore::toggleOnline(bool state){
 /*Connection methods*/
 void PlayerScore::connect(){
     sprites.at("main")->setColorMod(0xFF, 0xFF, 0xFF);
+    updateText(string("points"));
+    updateText(string("coins"));
+    updateText(string("hearts"));
 }
 void PlayerScore::disconnect(){
     sprites.at("main")->setColorMod(0x80, 0x80, 0x80);
