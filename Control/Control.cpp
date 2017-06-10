@@ -187,6 +187,10 @@ vector<out_message_t*> Control::getStatus(){
 	return this->niveles[this->nivelActual]->getStatus(this->getCameraPosition());
 }
 
+void Control::cambiarEquipo(string playerName, int equipo){
+	this->modelo->cambiarEquipo(playerName, equipo);
+}
+
 void Control::crearEntidades(){
 	Piedra* piedra = new Piedra(0,500, 345);
 	this->niveles[0]->addEntidad(piedra);

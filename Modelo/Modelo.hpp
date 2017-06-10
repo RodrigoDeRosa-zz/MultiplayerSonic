@@ -21,6 +21,8 @@ class Modelo {
 		void createPersonaje(string playerName, int equipo);
 
 		gameMode getGameMode();
+		Player* getPlayer(string nombre);
+		void cambiarEquipo(string playerName, int equipo);
 
 		vector<Player*>* getPersonajes();
 		vector<Puntaje*>* getPuntajes();

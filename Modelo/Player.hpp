@@ -73,6 +73,8 @@ class Player{
 
 		void sumarPuntos(int puntos);
 		long getPuntos();
+
+		void cambiarEquipo(Puntaje* newp);
 };
 
 #endif /*PLAYER_HPP*/

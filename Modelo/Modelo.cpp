@@ -37,7 +37,16 @@ Modelo::Modelo(gameMode mode){
 
 }
 
-void Modelo::createPersonaje(string playerName, int equipo){//equipo puede ser 0 a 1
+Player* Modelo::getPlayer(string nombre){
+	for(int i = 0; i < players->size(); i++){
+		if(((*players)[i])->getName() == nombre){
+			return (*players)[i];
+		}
+	}
+	return NULL;
+}
+
+void Modelo::createPersonaje(string playerName, int equipo){//equipo puede ser 1 o 2
     Puntaje* p;
     switch(this->modoJuego){
         case INDIVIDUAL:
@@ -45,18 +54,31 @@ void Modelo::createPersonaje(string playerName, int equipo){//equipo puede ser 0
         case COOP:
             p = puntajes->front();break;
         case EQUIPOS:
-            if (equipo==0){	//si es el primer o segundo jugador
+            if (equipo==1){	//equipo 1
                 p = puntajes->front();
             }
-            else{						//sino es el tercer o cuarto
+            else{						//equipo 2
                 p = puntajes->back();
             }
             break;
     }
     Player* player = new Player(playerName, p);
-    //TODO CAMBIAR CONSTRUCTOR DE PLAYER PARA QUE RECIBA PUNTAJE
     (this->players)->push_back(player);
 
+}
+
+void Modelo::cambiarEquipo(string playerName, int equipo){//TODO REVISAR QUE ANDE
+	Player* player;
+	Puntaje* p;
+
+	player = this->getPlayer(playerName);
+	if (equipo==1){	//equipo 1
+		p = puntajes->front();
+	}
+	else{			//equipo 2
+		p = puntajes->back();
+	}
+	player->cambiarEquipo(p);
 }
 
 gameMode Modelo::getGameMode(){
