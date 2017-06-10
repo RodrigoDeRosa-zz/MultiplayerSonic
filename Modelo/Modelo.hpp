@@ -20,6 +20,8 @@ class Modelo {
 		Modelo(gameMode);
 		void createPersonaje(string);
 
+		gameMode getGameMode();
+
 		vector<Player*>* getPersonajes();
 		vector<Puntaje*>* getPuntajes();
 };

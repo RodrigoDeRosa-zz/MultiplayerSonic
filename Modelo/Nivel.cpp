@@ -24,6 +24,10 @@ void Nivel::addPuntajes( vector<Puntaje*>* vec){
 	this->puntajes = vec;
 }
 
+void Nivel::addEntidades( vector<Entidad*>* vec){
+	this->entidades = vec;
+}
+
 void Nivel::addEntidad(Entidad* entidad){
 	(this->entidades)->push_back(entidad);
 }
