@@ -11,10 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.cpp" afterPath="$PROJECT_DIR$/Control/Control.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.hpp" afterPath="$PROJECT_DIR$/Control/Control.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Modelo.cpp" afterPath="$PROJECT_DIR$/Modelo/Modelo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Modelo/Modelo.hpp" afterPath="$PROJECT_DIR$/Modelo/Modelo.hpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +28,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-              <folding />
+              <folding>
+                <marker date="1497095192213" expanded="true" signature="6569:7387" ph="{...}" />
+                <marker date="1497095192213" expanded="true" signature="7380:7385" ph="/.../" />
+                <marker date="1497095192213" expanded="true" signature="7445:7516" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -671,14 +671,7 @@
       <workItem from="1496887003127" duration="43000" />
       <workItem from="1497034207423" duration="50000" />
       <workItem from="1497093758272" duration="37000" />
-      <workItem from="1497093829346" duration="1031000" />
-    </task>
-    <task id="LOCAL-00019" summary="personaje">
-      <created>1494981898069</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1494981898069</updated>
+      <workItem from="1497093829346" duration="1071000" />
     </task>
     <task id="LOCAL-00020" summary="personaje">
       <created>1494982631361</created>
@@ -1016,11 +1009,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496953959254</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="getGameMode">
+      <created>1497095179094</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1497095179095</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127237000" />
+    <option name="totallyTimeSpent" value="127277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -1092,7 +1092,8 @@
     <MESSAGE value="Terminado los niveles" />
     <MESSAGE value="Niveles OK" />
     <MESSAGE value="Clase Transicion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clase Transicion" />
+    <MESSAGE value="getGameMode" />
+    <option name="LAST_COMMIT_MESSAGE" value="getGameMode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1417,7 +1418,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-          <folding />
+          <folding>
+            <marker date="1497095192213" expanded="true" signature="6569:7387" ph="{...}" />
+            <marker date="1497095192213" expanded="true" signature="7380:7385" ph="/.../" />
+            <marker date="1497095192213" expanded="true" signature="7445:7516" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
