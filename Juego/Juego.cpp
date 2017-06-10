@@ -10,6 +10,8 @@
 #include "Entidades/Pez.hpp"
 #include "Entidades/Escudo.hpp"
 #include "Entidades/Invencibilidad.hpp"
+#include "Entidades/Boss.hpp"
+#include "Entidades/BossBall.hpp"
 #include <sstream>
 #include <string>
 #include <fstream>
@@ -73,6 +75,14 @@ void Juego::setTexturas(){
     Texture* bolas = new Texture();
     bolas->loadFromFile("Graficos/efectos_bolas_bonus.png");
     texturas.insert(make_pair("bolas", bolas));
+    /*Textura del Jefe derecha e izquierda*/
+    Texture* boss = new Texture();
+    bolas->loadFromFile("Graficos/malo.png");
+    texturas.insert(make_pair("boss", boss));
+    /*Textura de la bola del jefe*/
+    Texture* bossBall = new Texture();
+    bolas->loadFromFile("Graficos/bola_malo.png");
+    texturas.insert(make_pair("bossBall", bossBall));
 }
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
@@ -173,6 +183,14 @@ void Juego::updateBonus(out_message_t* message){
     updateStageEntity("bonus", message);
 }
 
+void Juego::updateBoss(out_message_t* message){
+    updateStageEntity("boss", message);
+}
+
+void Juego::updateBossBall(out_message_t* message){
+    updateStageEntity("bossBall", message);
+}
+
 void Juego::addSpriteGroup(string groupKey){
     stageActual->addSpriteGroup(groupKey);
 }
@@ -264,6 +282,28 @@ void Juego::addMosca(float x, float y, int index){
     mosca->setTexture(tex);
     mosca->setIndexZ(99);
     stageActual->addEntity("moscas", mosca, index);
+}
+
+/*Agrega un Jefe en las posiciones dadas*/
+void Juego::addBoss(float x, float y, int index){
+    Boss* boss = new Boss(x, y);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("boss");
+    Texture* tex = it->second;
+    boss->setTexture(tex);
+    boss->setIndexZ(99);
+    stageActual->addEntity("boss", boss, index);
+}
+
+/*Agrega la bola del Jefe en las posiciones dadas*/
+void Juego::addBossBall(float x, float y, int index){
+    BossBall* bossBall = new BossBall(x, y);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("bossBall");
+    Texture* tex = it->second;
+    bossBall->setTexture(tex);
+    bossBall->setIndexZ(99);
+    stageActual->addSprite("bossBall", bossBall, index);
 }
 
 void Juego::setJugadores(Jugadores* jugs){
