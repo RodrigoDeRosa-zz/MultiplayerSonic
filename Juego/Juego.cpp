@@ -30,9 +30,9 @@ using namespace std;
 Juego::Juego(){
     //Se inicializa el vector con 8 stages para luego poder guardar
     //todos y acceder directamente. (Inicio, 3 niveles, 3 transiciones, endgame)
-    for (int i = 0; i < 8; i++){
+    /*for (int i = 0; i < 8; i++){
         stages.push_back(NULL);
-    }
+    }*/
     jugadores = NULL;
     stageActual = NULL;
     camara = NULL;
