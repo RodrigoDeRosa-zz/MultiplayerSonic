@@ -222,6 +222,9 @@ int main(int argc, char** argv){
 
     enviarInformacionJuego(gameControl);
 
+    pthread_t inEventT;
+    pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
+
 	while(!SERVER().is_running()){
 		usleep(3000);
 	}
@@ -232,8 +235,6 @@ int main(int argc, char** argv){
 		gameControl->addPlayer(SSTR_(i));
 	}
 
-    pthread_t inEventT;
-    pthread_create(&inEventT, NULL, inEventsHandle, gameControl);
     pthread_t outStateT;
     pthread_create(&outStateT, NULL, outStatesHandle, gameControl);
     pthread_t updateT;
