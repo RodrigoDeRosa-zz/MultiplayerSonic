@@ -279,10 +279,10 @@ void* inEventsHandle(void* arg){
             gameControl->addPlayer(SSTR_(ev->id));
         } else if (ev->key == START_TEAM_1){
             CXM().playersReady++;
-            //gameControl->addPlayer(SSTR_(ev->id), 1);
+            gameControl->addPlayer(SSTR_(ev->id), 1);
         } else if (ev->key == START_TEAM_2){
             CXM().playersReady++;
-            //gameControl->addPlayer(SSTR_(ev->id), 2);
+            gameControl->addPlayer(SSTR_(ev->id), 2);
         } else gameControl->handleInMessage(ev);
         if (CXM().playersReady == CXM().actualConnections && !SERVER().is_running()){
             SERVER().start_game();
