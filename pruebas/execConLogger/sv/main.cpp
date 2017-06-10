@@ -38,8 +38,6 @@ void avisarEmpiezaJuego(Control* gameControl){
     memcpy(startMessage, state, sizeof(out_message_t));
     SERVER().queueOutEvent(startMessage);
     delete state;
-
-    return NULL;
 }
 
 void enviarInformacionJuego(Control* gameControl){
@@ -102,7 +100,7 @@ void* accept(void* arg){
             char* message = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_SET;
-            state->id = (int) gameControl->getGameMode();
+            state->id = (int) control->getGameMode();
             memcpy(message, state, sizeof(out_message_t));
             connection->sendMessage(message, sizeof(out_message_t));
             usleep(1000);
@@ -116,7 +114,7 @@ void* accept(void* arg){
             connection->sendMessage(playerSetting, sizeof(out_message_t));
             usleep(1000);
 
-            vector<out_message_t*> states = gameControl->getEntidadesInitStatus();
+            vector<out_message_t*> states = control->getEntidadesInitStatus();
             for(int i = 0; i < states.size(); i++){
                 char* outState = new char[sizeof(out_message_t)];
                 memcpy(outState, states[i], sizeof(out_message_t));
@@ -283,7 +281,7 @@ void* inEventsHandle(void* arg){
             continue;
         } else if (ev->key == START_GAME){
             CXM().playersReady++;
-            gameControl->addPlayer(SSTR_(ev->id));
+            gameControl->addPlayer(SSTR_(ev->id), 0);
         } else if (ev->key == START_TEAM_1){
             CXM().playersReady++;
             gameControl->addPlayer(SSTR_(ev->id), 1);
