@@ -9,7 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="">
+    <list default="true" id="374a3781-77fd-4e39-ab9d-6f77c610166f" name="Default" comment="Niveles">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Control/Control.cpp" afterPath="$PROJECT_DIR$/Control/Control.cpp" />
     </list>
@@ -27,8 +27,8 @@
       <file leaf-file-name="Control.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4500">
-              <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+            <state relative-caret-position="437">
+              <caret line="227" column="39" lean-forward="false" selection-start-line="227" selection-start-column="39" selection-end-line="227" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -60,7 +60,7 @@
             <state relative-caret-position="320">
               <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
-                <marker date="1497102966563" expanded="true" signature="315:1386" ph="{...}" />
+                <marker date="1497103985342" expanded="true" signature="315:1439" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -72,7 +72,7 @@
             <state relative-caret-position="460">
               <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
-                <marker date="1497102966583" expanded="true" signature="115:525" ph="{...}" />
+                <marker date="1497103985342" expanded="true" signature="115:525" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -82,8 +82,10 @@
         <entry file="file://$PROJECT_DIR$/Modelo/Modelo.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-              <folding />
+              <caret line="84" column="27" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+              <folding>
+                <marker date="1497103985342" expanded="true" signature="2160:2162" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -308,9 +310,15 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/client.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/client.hpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/execConLogger/cl/gameClient.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Control/Control.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Juego/Juego.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Modelo.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Modelo.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Modelo/Player.hpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/ubicador/Ubicador.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pruebas/ubicador/Ubicador.hpp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -667,14 +675,7 @@
       <workItem from="1496887003127" duration="43000" />
       <workItem from="1497034207423" duration="50000" />
       <workItem from="1497093758272" duration="37000" />
-      <workItem from="1497093829346" duration="3291000" />
-    </task>
-    <task id="LOCAL-00021" summary="personaje">
-      <created>1494982648271</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1494982648271</updated>
+      <workItem from="1497093829346" duration="4174000" />
     </task>
     <task id="LOCAL-00022" summary="personaje">
       <created>1494982672610</created>
@@ -1012,20 +1013,28 @@
       <option name="project" value="LOCAL" />
       <updated>1497095209041</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Niveles">
+      <created>1497103306610</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1497103306610</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129497000" />
+    <option name="totallyTimeSpent" value="130380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21445042" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25560537" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50269026" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31838566" sideWeight="0.49730977" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31838566" sideWeight="0.49730977" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1088,7 +1097,8 @@
     <MESSAGE value="Niveles OK" />
     <MESSAGE value="Clase Transicion" />
     <MESSAGE value="getGameMode" />
-    <option name="LAST_COMMIT_MESSAGE" value="getGameMode" />
+    <MESSAGE value="Niveles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Niveles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1400,7 +1410,7 @@
         <state relative-caret-position="320">
           <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <marker date="1497102966563" expanded="true" signature="315:1386" ph="{...}" />
+            <marker date="1497103985342" expanded="true" signature="315:1439" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1410,7 +1420,7 @@
         <state relative-caret-position="460">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <marker date="1497102966583" expanded="true" signature="115:525" ph="{...}" />
+            <marker date="1497103985342" expanded="true" signature="115:525" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1418,8 +1428,10 @@
     <entry file="file://$PROJECT_DIR$/Modelo/Modelo.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-          <folding />
+          <caret line="84" column="27" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+          <folding>
+            <marker date="1497103985342" expanded="true" signature="2160:2162" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1441,8 +1453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Control/Control.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4500">
-          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+        <state relative-caret-position="437">
+          <caret line="227" column="39" lean-forward="false" selection-start-line="227" selection-start-column="39" selection-end-line="227" selection-end-column="39" />
           <folding />
         </state>
       </provider>

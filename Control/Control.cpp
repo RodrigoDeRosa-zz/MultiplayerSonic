@@ -202,30 +202,30 @@ void Control::crearEntidades(){
 	this->niveles[0]->addEntidad(mosca);
 	Pinche* pinche = new Pinche(2, 1000, 495);
 	this->niveles[0]->addEntidad(pinche);
-	Moneda* moneda1 = new Moneda(3, 550, 305);
-	this->niveles[0]->addEntidad(moneda1);
+	Moneda* moneda = new Moneda(3, 550, 305);
+	this->niveles[0]->addEntidad(moneda);
     Escudo* bonus1 = new Escudo(0, 750, 426);
     this->niveles[0]->addEntidad(bonus1);
     BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
     this->niveles[0]->addEntidad(bonus2);
 
 
-    Piedra* piedra = new Piedra(0,500, 345);
-    this->niveles[1]->addEntidad(piedra);
-    Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
-    this->niveles[1]->addEntidad(cangrejo);
-    Pez* pez = new Pez(0, 800, 675);
-    this->niveles[1]->addEntidad(pez);
-    Mosca* mosca = new Mosca(0,300, 225);
-    this->niveles[1]->addEntidad(mosca);
-    Pinche* pinche = new Pinche(2, 1000, 495);
-    this->niveles[1]->addEntidad(pinche);
+    Piedra* piedra1 = new Piedra(0,500, 345);
+    this->niveles[1]->addEntidad(piedra1);
+    Cangrejo* cangrejo1 = new Cangrejo(0,1000, 475);
+    this->niveles[1]->addEntidad(cangrejo1);
+    Pez* pez1 = new Pez(0, 800, 675);
+    this->niveles[1]->addEntidad(pez1);
+    Mosca* mosca1 = new Mosca(0,300, 225);
+    this->niveles[1]->addEntidad(mosca1);
+    Pinche* pinche1 = new Pinche(2, 1000, 495);
+    this->niveles[1]->addEntidad(pinche1);
     Moneda* moneda1 = new Moneda(3, 550, 305);
     this->niveles[1]->addEntidad(moneda1);
-    Escudo* bonus1 = new Escudo(0, 750, 426);
-    this->niveles[1]->addEntidad(bonus1);
-    BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
-    this->niveles[1]->addEntidad(bonus2);
+    Escudo* bonus3 = new Escudo(0, 750, 426);
+    this->niveles[1]->addEntidad(bonus3);
+    BonusMoneda* bonus4 = new BonusMoneda(1, 900, 426);
+    this->niveles[1]->addEntidad(bonus4);
 
 
 
