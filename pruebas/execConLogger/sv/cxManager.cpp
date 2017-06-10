@@ -17,6 +17,7 @@ CXManager& CXManager::getInstance(){
 void CXManager::init(int maxConn){
     maxConnections = maxConn;
     actualConnections = 0;
+    playersReady = 0;
     /*Esta cola tiene los ids de las conexiones. A medida que se agregan, se
     asignan ids. Si alguna conexion se va, se vuelve a encolar ese id y se le
     da a la proxima conexion que llegue.*/
