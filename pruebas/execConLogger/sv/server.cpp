@@ -41,7 +41,7 @@ Server::Server(){
     serverInfo = NULL;
     accSocket = NULL;
     online = false;
-    initializing = false;
+    initialize = false;
 	pthread_mutex_init(&inEventsMux,NULL);
 	pthread_mutex_init(&outEventsMux,NULL);
 }
