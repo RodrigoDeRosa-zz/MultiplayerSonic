@@ -33,6 +33,10 @@ Control::Control(gameMode game_mode){
 	this-> nivelActual = 0;
 }
 
+gameMode Control::getGameMode(){
+	return this->modelo->getGameMode();
+}
+
 void Control::initNiveles(){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/

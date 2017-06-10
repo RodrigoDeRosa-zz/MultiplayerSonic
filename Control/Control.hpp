@@ -32,6 +32,7 @@ class Control{
 	public:
 		Control(gameMode game_mode);
 		void initNiveles();
+		gameMode getGameMode();
 		vector<float> getDirections(SDL_Event e, float dirX, float dirY);
 		vector<float> getDirections(key_event e, string playerName);
 		void addPlayer(string playerName);

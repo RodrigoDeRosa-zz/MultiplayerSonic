@@ -59,6 +59,11 @@ void Modelo::createPersonaje(string playerName){
 
 }
 
+gameMode Modelo::getGameMode(){
+    return this->modoJuego;
+}
+
+
 vector<Player*>* Modelo::getPersonajes(){
     return this->players;
 }
