@@ -242,9 +242,9 @@ out_message_t* Player::getStatus(float camPos){
     status->camPos = camPos;
     status->move = this->getMovement();
     status->frame = this->getFrame();
-	status->rings = 0;
-	status->lives = 0;
-	status->points = 0;
+	status->rings = this->getMonedas();
+	status->lives = this->getVidas();
+	status->points = this->getPuntos();
     status->state = this->getEstado();
     status->state_frame = this->estado->getFrame();
     return status;
