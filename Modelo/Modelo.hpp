@@ -18,7 +18,7 @@ class Modelo {
 
 	public:
 		Modelo(gameMode);
-		void createPersonaje(string);
+		void createPersonaje(string playerName, int equipo);
 
 		gameMode getGameMode();
 

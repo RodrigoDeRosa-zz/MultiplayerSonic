@@ -37,7 +37,7 @@ Modelo::Modelo(gameMode mode){
 
 }
 
-void Modelo::createPersonaje(string playerName){
+void Modelo::createPersonaje(string playerName, int equipo){//equipo puede ser 0 a 1
     Puntaje* p;
     switch(this->modoJuego){
         case INDIVIDUAL:
@@ -45,7 +45,7 @@ void Modelo::createPersonaje(string playerName){
         case COOP:
             p = puntajes->front();break;
         case EQUIPOS:
-            if (players->size() < 2){	//si es el primer o segundo jugador
+            if (equipo==0){	//si es el primer o segundo jugador
                 p = puntajes->front();
             }
             else{						//sino es el tercer o cuarto

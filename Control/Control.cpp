@@ -45,9 +45,9 @@ void Control::initNiveles(){
 	this->niveles.push_back(nivel1);
 }
 
-void Control::addPlayer(string playerName){
+void Control::addPlayer(string playerName, int equipo){
 
-	this->modelo->createPersonaje(playerName);
+	this->modelo->createPersonaje(playerName,equipo);
 
     vector<Player*>* vec = this->modelo->getPersonajes();
     vector<Puntaje*>* vec2 = this->modelo->getPuntajes();
