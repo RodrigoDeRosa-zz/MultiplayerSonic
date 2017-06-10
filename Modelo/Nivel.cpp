@@ -149,6 +149,9 @@ bool Nivel::enRango(Entidad* entidad, Player* player){
 }
 
 void Nivel::colisionarTodos() {
+
+	bool colisionoPiedra = false;
+
 	for (int i = 0; i < (players)->size(); i++) {
 		for (int j = 0; j < (entidades)->size(); j++) {
 
@@ -156,16 +159,26 @@ void Nivel::colisionarTodos() {
 
 			if ((*players)[i]->enRangoX((*entidades)[j])) {
 				if ((*players)[i]->enRangoY((*entidades)[j])) {
+
+					if(((*entidades)[j])->esPiedra()) colisionoPiedra = true;
+
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
 
 			if ((*players)[i]->enRangoY((*entidades)[j])) {
 				if ((*players)[i]->enRangoX((*entidades)[j])) {
+
+					if(((*entidades)[j])->esPiedra()) colisionoPiedra = true;
+
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
 		}
+        if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() > 425){
+            (*players)[i]->caer();
+        colisionoPiedra = false;
+        }
 	}
 }
 

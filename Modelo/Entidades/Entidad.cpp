@@ -7,6 +7,7 @@ Entidad::Entidad(int id,float x, float y, float w, float h){
 	this->y = y;
 	this->w = w;
 	this->h = h;
+	this->piedra = false;
 	this->destruida = false;
 	this->frame = 0;
 	this->moveActual = MOVE_TOTAL;
@@ -65,6 +66,14 @@ float Entidad::getBordeAbajo(){
 
 bool Entidad::estaDestruida(){
 	return this->destruida;
+}
+
+bool Entidad::esPiedra(){
+	return this->piedra;
+}
+
+void Entidad::setPiedra(){
+	this->piedra = true;
 }
 
 out_message_t* Entidad::getOutMessage(message_type type){

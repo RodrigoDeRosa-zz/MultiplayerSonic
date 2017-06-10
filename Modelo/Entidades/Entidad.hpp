@@ -13,6 +13,7 @@ protected:
 	float w;
 	float h;
 	bool destruida;
+	bool piedra;
 	int frame;
 	move_type moveActual;
 	out_message_t* getOutMessage(message_type type);
@@ -36,9 +37,11 @@ public:
 	float getBordeArriba();
 	float getBordeAbajo();
 	bool estaDestruida();
+	bool esPiedra();
 
 	/*Setters*/
 	void setW(float);
 	void setH(float);
+	void setPiedra();
 };
 #endif /*ENTIDAD_HPP*/

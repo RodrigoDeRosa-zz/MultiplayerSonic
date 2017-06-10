@@ -289,6 +289,10 @@ bool Player::estaAtacando(){
     return ((this->sonic->estaRodando()) || (this->sonic->estaSaltando()));
 }
 
+bool Player::estaSaltando(){
+    return this->sonic->estaSaltando();
+}
+
 void Player::sumarPuntos(int puntos){
 	this->puntaje->sumarPuntos(puntos);
 }

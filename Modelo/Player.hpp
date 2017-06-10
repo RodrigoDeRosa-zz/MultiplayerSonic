@@ -50,6 +50,7 @@ class Player{
 		void quitarVida();
 
 		bool estaAtacando();
+		bool estaSaltando();
 
 		bool enRangoX(Entidad* entidad);
 		bool enRangoY(Entidad* entidad);
