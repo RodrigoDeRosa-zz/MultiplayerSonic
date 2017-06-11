@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
+
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;
 	sleep(10);
