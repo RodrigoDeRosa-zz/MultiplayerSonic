@@ -13,10 +13,6 @@
 #include "../../../message.hpp"
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
-#include "../../../Juego/PantallaInicio/InitStage.hpp"
-#include "../../../Juego/PantallaTransicion/TransitionStageSingle.hpp"
-#include "../../../Juego/PantallaTransicion/TransitionStageCoop.hpp"
-#include "../../../Juego/PantallaTransicion/TransitionStageTeams.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
 #include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -46,7 +42,6 @@ void* initGame(void *arg){
     while(client->connected()){
         out_message_t* message = client->getEventReceived();
         if (!printed){
-            printf("Esperando al resto de los jugadores.\n"); //NO LOGGEAR
             printed = true;
         }
         if (!message){
@@ -54,47 +49,10 @@ void* initGame(void *arg){
             continue;
         }
         if (message->ping == GAME_SET) {
-            printf("Iniciando juego.\n"); //NO LOGGEAR
-
-            /*Incializacion de SDL*/
-            SDLHandler::getInstance().init();
-            /*Incializacion de ventana*/
-            Window::getInstance().setDimensions(WINDOW_W, WINDOW_H);
-            Window::getInstance().init();
-            /*Incializacion de renderer*/
-            Renderer::getInstance().init();
-            Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
-
-            JsonLoader* gameJson = new JsonLoader("ejemplo.json","ejemplo2.json");
-            //gameJson->setGame();
-            Juego* juego = new Juego();
+            Juego* juego = new Juego( (gameMode)message->id );
             client->addJuego(juego);
-            Stage* stage = gameJson->getStage();
-            client->getJuego()->addStage(stage);
-            Camara* camara_pantalla = gameJson->getCamara(stage);
-            client->getJuego()->setCamara(camara_pantalla);
-            Jugadores* jugs = new Jugadores();
-            client->getJuego()->setJugadores(jugs);
-            client->getJuego()->setFactory();
-            client->getJuego()->addSpriteGroup("piedras");
-            client->getJuego()->addSpriteGroup("pinches");
-            client->getJuego()->addEntityGroup("cangrejos");
-            client->getJuego()->addEntityGroup("monedas");
-            client->getJuego()->addEntityGroup("moscas");
-            client->getJuego()->addEntityGroup("peces");
-            client->getJuego()->addEntityGroup("bonus");
-            client->getJuego()->setStageScore(0);
-
-            usleep(1000);
-            key_event key = KEY_TOTAL;
-            if ((gameMode) message->id == INDIVIDUAL || (gameMode) message->id == INDIVIDUAL){
-                key = START_GAME;
-                client->queueToSend(key);
-            } else if ((gameMode) message->id == EQUIPOS){
-                key = START_TEAM_1;
-                client->queueToSend(key);
-            }
         } else if (message->ping == GAME_START){
+            client->getJuego()->nextStage(); //estaba en pantalla de inicio
             client->startGame();
             delete message;
             break;
@@ -178,12 +136,12 @@ void* keyControl(void* arg){
 
 void* f_view(void* arg){
 	Client* self = (Client*) arg;
-    int k = 0;
+
 	while (self->gameOn()){
 		/*Limpiar pantalla*/
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
         Renderer::getInstance().clear();
-        k++;
+
 		out_message_t* message = self->getEventReceived();
         if (!message){
         	//renderizar
@@ -244,38 +202,57 @@ void* runGame(void* arg){
     return NULL;
 }
 
-void* consoleChat(void* arg){
-	Client* self = (Client*) arg;
+void* viewControl(void* arg){
+    Client* self = (Client*) arg;
 
-	pthread_t game;
-	void* exit_status;
-	bool running = true;
     SDL_Event e;
+    pthread_t game;
+	void* exit_status;
+    //Pantalla de conexion
+    while(!self->connected()){
+        Renderer::getInstance().clear();
 
+        while(SDL_PollEvent(&e)){
+            if (e.type == SDL_QUIT){
+                return NULL; //Se termina la ejecucion
+            }
+            if (self->initProcessEvent(e) != KEY_TOTAL){
+                pthread_create(&game, NULL, runGame, self);
+                break;
+            }
+        }
+        self->renderInit();
+        Renderer::getInstance().draw();
+    }
+    while(!self->getJuego() || !self->getJuego()->stageReady()){
+        Renderer::getInstance().clear();
+        self->renderInit();
+        Renderer::getInstance().draw();
+        usleep(5000);
+    }
+    //Pantalla de inicio de juego
     key_event key;
-    //printf("Insert a command: ");
-	while(running){
-		char command[COMMAND_LENGTH];
-		fgets(command, COMMAND_LENGTH, stdin);
-		strtok(command, "\n");
-		if (strcmp(command, CONNECT) == 0 && !self->connected()){
-			pthread_create(&game, NULL, runGame, self);
-		} else if (strcmp(command, DISCONNECT) == 0 && self->connected()){
-            self->endGame();
-            usleep(500);
-            self->disconnect(0);
-			pthread_join(game, &exit_status);
-			printf("Disconnected.\n"); //LOGGEAR
-			LOGGER().log("Disconnected.",BAJO);
-		} else if (strcmp(command, EXIT) == 0){
-            self->endGame();
-            usleep(500);
-			self->disconnect(0);
-			pthread_join(game, &exit_status);
-			running = false;
-		}
-	}
-	return NULL;
+    while(!self->gameOn()){
+        Renderer::getInstance().clear();
+        //Ahora es otro el thread que renderiza
+        while(SDL_PollEvent(&e)){
+            if (e.type == SDL_QUIT){
+                self->disconnect(0);
+                pthread_join(game, &exit_status);
+                return NULL; //Se termina la ejecucion
+            }
+            key = KEY_TOTAL;
+            key = self->getJuego()->processEvent(e);
+            if (key != KEY_TOTAL) self->queueToSend(key);
+        }
+        self->getJuego()->render();
+        Renderer::getInstance().draw();
+    }
+    //Juego
+    pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
+    self->disconnect(0);
+
+    return NULL;
 }
 
 int main(int argc, char** argv){
@@ -307,16 +284,24 @@ int main(int argc, char** argv){
     const char* port = json["port"].asString().c_str();
     const char* hostname = json["hostname"].asString().c_str();
 	/************************************************FIN CARGA DE JSON*************************************************************/
+    /*Incializacion de SDL*/
+    SDLHandler::getInstance().init();
+    /*Incializacion de ventana*/
+    Window::getInstance().setDimensions(WINDOW_W, WINDOW_H);
+    Window::getInstance().init();
+    /*Incializacion de renderer*/
+    Renderer::getInstance().init();
+    Renderer::getInstance().setDrawColor(0xFF, 0xFF, 0xFF, 0x01);
 
     /*Objeto cliente a travÃ©s del cual se realizan las comunicaciones con el server*/
     Client* self = new Client(port, hostname);
 
-	/*Thread que procesa las ordenes de consola*/
-	pthread_t console;
+	/*Thread que controla la vista*/
+    pthread_t start;
     void* exit_status;
-	pthread_create(&console, NULL, consoleChat, self);
+    pthread_create(&start, NULL, viewControl, self);
 
-	pthread_join(console, &exit_status);
+    pthread_join(start, &exit_status);
     /*Destruye el objeto cliente*/
     delete self;
 

@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <vector>
 #include <sstream>
+#include "../../../Graficos/Layer.hpp"
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
@@ -25,6 +26,7 @@ Client::Client(const char* p, const char* h){
     hostname = h;
     received = deque<out_message_t*>();
     toSend = deque<key_event>();
+    initialStage = new ConnectionStage(1200, 720);
 }
 
 Client::~Client(){
@@ -33,6 +35,14 @@ Client::~Client(){
     pings = 0;
     online = false;
     gameStarted = false;
+}
+
+void Client::renderInit(){
+    initialStage->render();
+}
+
+key_event Client::initProcessEvent(SDL_Event e){
+    return initialStage->processEvent(e);
 }
 
 void Client::addPlayer(){

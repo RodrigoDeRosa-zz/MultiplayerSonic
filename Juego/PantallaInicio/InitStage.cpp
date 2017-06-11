@@ -81,13 +81,15 @@ void InitStage::render(){
 
     logoFrame++;
     unsigned int frame = (logoFrame/LOGO_FRAME_RATE);
-    if (logoFrame/LOGO_FRAME_RATE > 13){
-        frame = frame%4 + 10;
-    }
+    frame = frame%4 + 10;
     logo->setFrame(frame);
     logo->render();
 
     for (int i = 0; i < buttons.size(); i++){
         buttons.at(i)->render();
     }
+}
+
+void InitStage::render(Camara* cam){
+    render();
 }

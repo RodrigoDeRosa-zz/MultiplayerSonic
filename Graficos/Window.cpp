@@ -11,7 +11,7 @@ using namespace std;
 Window::Window(){
     width = 0;
     height = 0;
-    title = "";
+    title = "Sonic the Hedgehog - Fernanteam";
     window = NULL;
 }
 

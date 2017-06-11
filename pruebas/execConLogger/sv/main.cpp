@@ -26,7 +26,6 @@ using namespace std;
 #define ONLINE_TIMEOUT 1
 #define ACCEPT_TIMEOUT 1
 
-
 #define DEFAULT_GAME_MODE INDIVIDUAL
 
 void avisarEmpiezaJuego(Control* gameControl){

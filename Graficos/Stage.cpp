@@ -71,26 +71,8 @@ void Stage::addLayer(Layer* layer){
 }
 
 void Stage::render(Camara* camara){
-    if(!front->getTexture()){
-        delete front;
-        front = NULL;
-        Layer* defaultFront = new Layer();
-        defaultFront->setTexPath("Graficos/defaultFront.png");
-        defaultFront->setDimensions(width, height);
-        defaultFront->loadImage();
-        front = defaultFront;
-    }
-    if(!background->getTexture()){
-        delete background;
-        background = NULL;
-        Layer* defaultBackground = new Layer();
-        defaultBackground->setTexPath("Graficos/defaultBackground.png");
-        defaultBackground->setDimensions(width, height);
-        defaultBackground->loadImage();
-        background = defaultBackground;
-    }
-    background->render(camara);
-    front->render(camara);
+    if (background) background->render(camara);
+    if (front) front->render(camara);
     /*Recorre todos los SpriteGroups y los renderiza*/
     for (map<string, SpriteGroup*>::iterator it = spriteGroups.begin(); it != spriteGroups.end(); it++){
         it->second->render(camara); //it->second es el valor, es decir, el spriteGroup
@@ -98,7 +80,7 @@ void Stage::render(Camara* camara){
     for (map<string, EntityGroup*>::iterator it = entityGroups.begin(); it != entityGroups.end(); it++){
         it->second->render(camara); //it->second es el valor, es decir, el entityGroup
     }
-    score->render();
+    if (score) score->render();
 }
 
 /*Nuevo*/

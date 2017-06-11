@@ -24,8 +24,9 @@ class Juego{
     Stage* stageActual;
     int stageActualIndex; //Se agrega esto para hacer mas rapido el avance de stages
     Camara* camara;
+    Stage* createLevel(int, gameMode);
   public:
-    Juego();
+    Juego(gameMode);
 
     void setJugadores(Jugadores*);
 
@@ -45,6 +46,7 @@ class Juego{
     void setCamara(Camara* cam);
     void setStageScore(int mode);
     key_event processEvent(SDL_Event);
+    bool stageReady();
 
     //void updateJugadores(map <string, vector <float> >);
     void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,

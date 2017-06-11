@@ -1,29 +1,26 @@
-#ifndef INITSTAGE_HPP
-#define INITSTAGE_HPP
+#ifndef CONNECTSTAGE_HPP
+#define CONNECTSTAGE_HPP
 
-#include "../Buttons/StartButton.hpp"
 #include "SonicLogo.hpp"
 #include "../../Graficos/Stage.hpp"
-#include "../../Graficos/Camara.hpp"
 #include "../../Graficos/Texture.hpp"
+#include "../Buttons/StartButton.hpp"
 #include <SDL2/SDL.h>
 #include "../../message.hpp"
 #include <string>
-#include <vector>
 using namespace std;
 
-class InitStage : public Stage{
+class ConnectionStage : public Stage{
     private:
         map<string, Texture*> textures;
-        vector<StartButton*> buttons;
+        StartButton* button;
         SonicLogo* logo;
         unsigned int logoFrame;
     public:
-        InitStage(int w, int h, int type);
-        ~InitStage();
+        ConnectionStage(int w, int h);
+        ~ConnectionStage();
         void render();
-        void render(Camara*);
         key_event processEvent(SDL_Event);
 };
 
-#endif /*INITSTAGE_HPP*/
+#endif /*CONNECTSTAGE_HPP*/

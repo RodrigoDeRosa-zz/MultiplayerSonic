@@ -5,6 +5,7 @@
 #include "../../Graficos/Stage.hpp"
 #include "../../Graficos/Texture.hpp"
 #include "../../Graficos/Sprite.hpp"
+#include "../../Graficos/Camara.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -24,6 +25,7 @@ class TransitionStage : public Stage{
         void setPlayerInfo(int player, int rings, int points, int total);
         virtual void setValues();
         void render();
+        void render(Camara*);
 };
 
 #endif /*TRANSITIONSTAGE_HPP*/

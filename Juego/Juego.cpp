@@ -12,6 +12,10 @@
 #include "Entidades/Invencibilidad.hpp"
 #include "Entidades/Boss.hpp"
 #include "Entidades/BossBall.hpp"
+#include "PantallaInicio/InitStage.hpp"
+#include "PantallaTransicion/TransitionStageSingle.hpp"
+#include "PantallaTransicion/TransitionStageCoop.hpp"
+#include "PantallaTransicion/TransitionStageTeams.hpp"
 #include <sstream>
 #include <string>
 #include <fstream>
@@ -27,18 +31,75 @@ using namespace std;
 #define PIEDRA3W 113
 #define PIEDRA3H 63
 
+#define SCREEN_W 1200
+#define INIT_W 4000
+#define SCREEN_H 720
+#define SCROLL 10
+
 /*get sonic privada
  en jugadores que se cree un personaje generico*/
-Juego::Juego(){
-    //Se inicializa el vector con 8 stages para luego poder guardar
-    //todos y acceder directamente. (Inicio, 3 niveles, 3 transiciones, endgame)
-    /*for (int i = 0; i < 8; i++){
-        stages.push_back(NULL);
-    }*/
-    jugadores = NULL;
-    stageActual = NULL;
-    camara = NULL;
+Juego::Juego(gameMode mode){
+    Jugadores* jugs = new Jugadores();
+    setJugadores(jugs);
+    setFactory();
+    //Pantalla de inicio
+    InitStage* initStage = new InitStage(SCREEN_W, SCREEN_H, (int) mode);
+    //Pantalla de transicion de nivel
+    TransitionStage* transition;
+    switch (mode) {
+        case INDIVIDUAL:
+            transition = new TransitionStageSingle(SCREEN_W, SCREEN_H); break;
+        case COOP:
+            transition = new TransitionStageCoop(SCREEN_W, SCREEN_H); break;
+        case EQUIPOS:
+            transition = new TransitionStageTeams(SCREEN_W, SCREEN_H); break;
+    }
+    /*Se agregan todos los escenarios*/
+    addStage(initStage);
+    for (int i = 0; i < 3; i++){
+        Stage* level = createLevel(i, mode);
+        addStage(level);
+        addStage(transition);
+    }
+    camara = new Camara(0, 0, SCROLL, SCREEN_W, SCREEN_H, INIT_W, SCREEN_H);
     setTexturas();
+}
+
+Stage* Juego::createLevel(int n, gameMode mode){
+    Stage* level = new Stage();
+    //Dimesiones del nivel
+    level->setDimensions(4000 + 1000*n, 720);
+    //Inicializacion de spritegroups
+    level->addSpriteGroup("piedras");
+    level->addSpriteGroup("pinches");
+    level->addSpriteGroup("bossBall");
+    level->addEntityGroup("cangrejos");
+    level->addEntityGroup("monedas");
+    level->addEntityGroup("moscas");
+    level->addEntityGroup("peces");
+    level->addEntityGroup("bonus");
+    level->addEntityGroup("boss");
+    //Definicion de tipo de puntaje
+    level->initScore((int) mode);
+    //Fondo del nivel
+    Layer* layer = new Layer();
+    switch (n) {
+        case 0:
+            layer->setTexPath("Graficos/fondo 1.png"); break;
+        case 1:
+            layer->setTexPath("Graficos/fondo 2.png"); break;
+        case 2:
+            layer->setTexPath("Graficos/fondo 3.png"); break;
+    }
+    layer->setDimensions(4000 + 1000*n, SCREEN_H);
+    layer->loadImage();
+    layer->setIndexZ(98);
+    level->addLayer(layer);
+    return level;
+}
+
+bool Juego::stageReady(){
+    return stageActual != NULL;
 }
 
 void Juego::setTexturas(){
@@ -211,7 +272,11 @@ void Juego::addPiedra(float x, float y, int type, int index){
     Texture* tex = it->second;
     piedra->setTexture(tex);
     piedra->setIndexZ(99);
-    stageActual->addSprite("piedras", piedra, index);
+    //Debe recibirse la información sobre a que nivel se le agrega.
+    //ahora se hardcodea lvl1
+    stages[1]->addSprite("piedras", piedra, index);
+    //stageActual->addSprite("piedras", piedra, index);
+
 }
 
 /*Agrega pinches en las posiciones dadas*/
@@ -223,7 +288,8 @@ void Juego::addPinche(float x, float y, int index){
     Texture* tex = it->second;
     pinche->setTexture(tex);
     pinche->setIndexZ(99);
-    stageActual->addSprite("pinches", pinche, index);
+    stages[1]->addSprite("pinches", pinche, index);
+    //stageActual->addSprite("pinches", pinche, index);
 }
 
 /*Agrega una moneda en las posiciones dadas*/
@@ -235,7 +301,8 @@ void Juego::addMoneda(float x, float y, int index){
     Texture* tex = it->second;
     moneda->setTexture(tex);
     moneda->setIndexZ(99);
-    stageActual->addEntity("monedas", moneda, index);
+    stages[1]->addEntity("monedas", moneda, index);
+    //stageActual->addEntity("monedas", moneda, index);
 }
 
 /*Agrega un bonus en las posiciones dadas*/
@@ -247,7 +314,8 @@ void Juego::addBonus(float x, float y, int t, int index){
     Texture* tex = it->second;
     bonus->setTexture(tex);
     bonus->setIndexZ(99);
-    stageActual->addEntity("bonus", bonus, index);
+    stages[1]->addEntity("bonus", bonus, index);
+    //stageActual->addEntity("bonus", bonus, index);
 }
 
 /*Agrega un pez en las posiciones dadas*/
@@ -258,7 +326,8 @@ void Juego::addPez(float x, float y, int index){
     Texture* tex = it->second;
     pez->setTexture(tex);
     pez->setIndexZ(99);
-    stageActual->addEntity("peces", pez, index);
+    stages[1]->addEntity("peces", pez, index);
+    //stageActual->addEntity("peces", pez, index);
 }
 
 /*Agrega un cangrejo en las posiciones dadas*/
@@ -270,7 +339,8 @@ void Juego::addCangrejo(float x, float y, int index){
     Texture* tex = it->second;
     cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
-    stageActual->addEntity("cangrejos", cangrejo, index);
+    stages[1]->addEntity("cangrejos", cangrejo, index);
+    //stageActual->addEntity("cangrejos", cangrejo, index);
 }
 
 /*Agrega un pajaro en las posiciones dadas*/
@@ -281,7 +351,8 @@ void Juego::addMosca(float x, float y, int index){
     Texture* tex = it->second;
     mosca->setTexture(tex);
     mosca->setIndexZ(99);
-    stageActual->addEntity("moscas", mosca, index);
+    stages[1]->addEntity("moscas", mosca, index);
+    //stageActual->addEntity("moscas", mosca, index);
 }
 
 /*Agrega un Jefe en las posiciones dadas*/
@@ -292,7 +363,8 @@ void Juego::addBoss(float x, float y, int index){
     Texture* tex = it->second;
     boss->setTexture(tex);
     boss->setIndexZ(99);
-    stageActual->addEntity("boss", boss, index);
+    stages[1]->addEntity("boss", boss, index);
+    //stageActual->addEntity("boss", boss, index);
 }
 
 /*Agrega la bola del Jefe en las posiciones dadas*/
@@ -303,7 +375,8 @@ void Juego::addBossBall(float x, float y, int index){
     Texture* tex = it->second;
     bossBall->setTexture(tex);
     bossBall->setIndexZ(99);
-    stageActual->addSprite("bossBall", bossBall, index);
+    stages[1]->addSprite("bossBall", bossBall, index);
+    //stageActual->addSprite("bossBall", bossBall, index);
 }
 
 void Juego::setJugadores(Jugadores* jugs){
@@ -323,10 +396,8 @@ key_event Juego::processEvent(SDL_Event e){
 }
 
 void Juego::render(){
-    //this.actualizarJugadores();
     stageActual->render(camara);
-    //camara->render();
-    jugadores->render(camara);
+    if (stageActualIndex%2 != 0) jugadores->render(camara);
 }
 
 void Juego::setFactory(){
