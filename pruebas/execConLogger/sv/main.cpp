@@ -45,8 +45,7 @@ void enviarInformacionJuego(Control* gameControl){
     char* message = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = GAME_SET;
-    //state->id = (int) gameControl->getGameMode();
-    state->id = 1;
+    state->id = (int) gameControl->getGameMode();
     memcpy(message, state, sizeof(out_message_t));
     SERVER().queueOutEvent(message);
     usleep(1000);
