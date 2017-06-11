@@ -13,7 +13,7 @@ Nivel::Nivel(){
 	this->entidadesStatusControl = 0;
 
 	termino = false;
-	es_transicion = false;
+	changeLevelMessageSent = false;
 }
 
 void Nivel::terminar(){
@@ -222,10 +222,30 @@ vector<out_message_t*> Nivel::getEntidadesStatus(){
 }
 
 vector<out_message_t*> Nivel::getStatus(float camPos){
+	vector<out_message_t*> v;
+	if(!(this->changeLevelMessageSent)){
+		out_message_t* state = new out_message_t;
+		state->ping = CHANGE_LEVEL;
+		state->id = 0;
+		state->connection = true;
+		state->posX = 0;
+		state->posY = 0;
+		state->camPos = 0; 
+		state->move = MOVE_TOTAL;
+		state->frame = 0;
+		state->rings = 0;
+		state->lives = 0;
+		state->points = 0;
+		state->state = NORMAL;
+		state->state_frame = 0;
+		this->changeLevelMessageSent = true;
+		v.push_back(state);
+	}
 	vector<out_message_t*> playerVector = this->getPlayerStatus(camPos);
+	v.insert(v.end(),playerVector.begin(),playerVector.end());
 	vector<out_message_t*> entidadesVector = this->getEntidadesStatus();
-	playerVector.insert(playerVector.end(),entidadesVector.begin(),entidadesVector.end());
-	return playerVector;
+	v.insert(v.end(),entidadesVector.begin(),entidadesVector.end());
+	return v;
 }
 
 void Nivel::moverEntidades(){
@@ -240,10 +260,6 @@ vector<out_message_t*> Nivel::getEntidadesInitStatus(){
 		v.push_back((*(this->entidades))[i]->getInitMessage());
 	}
 	return v;
-}
-
-bool Nivel::esTransicion(){
-	return es_transicion;
 }
 
 bool Nivel::yaTermino(){

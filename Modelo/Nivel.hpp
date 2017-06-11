@@ -13,9 +13,8 @@ protected:
 	int playerStatusControl;
 	int entidadesStatusControl;
 	gameMode modo_juego;
-
 	vector<Puntaje*>* puntajes;
-	bool es_transicion;
+	bool changeLevelMessageSent;
 	bool termino;
 public:
 		Nivel();
@@ -47,7 +46,6 @@ public:
 		virtual vector<out_message_t*> getStatus(float camPos);
 		virtual void moverEntidades();
 		void terminar();
-		bool esTransicion();
 		bool yaTermino();
 
 };

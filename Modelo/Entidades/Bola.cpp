@@ -19,7 +19,7 @@ static float Xs[]={
 	100.0
 };
 //Por ahora estamos trabajando con len(Xs)=len(Ys)=15
-#define LARGO_X_Y=15
+#define LARGO_X_Y 15
 //Los extra del principio y final están ahi para que parezca que frena un toque, lo va a hacer..
 //.. como 4 veces porque va y viene
 static float Ys[]={
