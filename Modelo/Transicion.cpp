@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <string.h>
+
+using namespace std;
 
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;

@@ -11,7 +11,7 @@ Pinche::Pinche(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 void Pinche::afectarA(Player* jugador){
 
 	jugador->recibirGolpe();
-	//jugador->lastimar();
+	jugador->lastimar();
 	
 }
 

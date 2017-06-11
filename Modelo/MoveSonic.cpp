@@ -15,17 +15,17 @@
 #define FACTOR_CHARGES	1
 #define LIM_CHARGE 3
 #define MAX_ROLL	150 	//numero a medir para limitar la cantidad de tiempo que rueda
-#define MAX_DMG		50		//idem roll, para daño
+#define MAX_DMG		150		//idem roll, para daño
 #define THRESHOLD_IDLE	1500
-#define Y_PISO	425		//TODO: CHEQUEAR LO ANTES POSIBLE! ModelSonic parece indicar esto
+#define Y_PISO	425		
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
 #define VELOCIDAD 0.35
 #define RUN 0.7
 #define VELOCIDAD_ROLL	2
-#define VELOCIDAD_X_DMG	0.35
-#define VELOCIDAD_Y_DMG	0.15
+#define VELOCIDAD_X_DMG	0.65
+#define VELOCIDAD_Y_DMG	0.05
 #define VELOCIDAD_CAIDA	1.2
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
@@ -35,7 +35,7 @@
 //#define BALL_ANIMATION_FRAMES	6
 //#define CROUCH_ANIMATION_FRAMES 2
 #define BRAKE_ANIMATION_FRAMES	5
-#define DMG_ANIMATION_FRAMES	5		//TODO: chequear este número
+#define DMG_ANIMATION_FRAMES	5		
 
 MoveSonic::MoveSonic(float x, float y){
     originX = x;
@@ -147,61 +147,6 @@ void MoveSonic::jump(float vel_x,float vel_y){
 
 }
 
-void MoveSonic::damage(){
-	noActionCounter=0;
-	if (!in_dmg){
-		in_dmg=true;
-		cont_dmg=0;
-		oldY = originY;
-	}
-	cont_dmg++;
-	//if(direccion)-else PARA MOV HORIZONTAL
-	if (direccion){//estaba hacia la derecha, tiene que saltar a la izquierda
-		moveActual=JUMPI;//TODO: cambiar a DMGI
-		frameLeft++;
-		if (frameLeft / (4*DMG_ANIMATION_FRAMES) >= DMG_ANIMATION_FRAMES){
-			frameLeft=0;
-		}
-		frameActual =  frameLeft / (4*DMG_ANIMATION_FRAMES);
-		originX-= VELOCIDAD_X_DMG;
-	    if( originX < 0 ){originX = 0;}
-	}
-	else{//estaba yendo a la izquierda, debe saltar a la derecha
-		moveActual=JUMPD;	//TODO: cambiar a DMGD
-		frameRight++;
-		if (frameRight / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
-			frameRight=0;
-		}
-		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
-
-		if( originX + (width + VELOCIDAD_X_DMG) > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
-		else {
-			originX += VELOCIDAD_X_DMG;
-		}
-	}
-	//MOV VERTICAL ES INDEPTE DEL SENTIDO
-
-	float deltaY = (float) cont_dmg;//recordar cont_dmg € [0,MAX_DMG]
-
-
-/*	FORMULA ORIGINAL
-	deltaY= (deltaY * deltaY) - (deltaY * MAX_DMG);//x²-MAX_DMGx.
-	deltaY*=VELOCIDAD_Y_DMG;//todo * (-a) (en realidad a porque el eje Y esta invertido)
-	originY = oldY + deltaY;
-*/
-	//FORMULA PASADO A INCREMENTO
-/*
-	si delta_n = (x²-MAX_DMGx)*VEL_Y, delta_n-1 = ((x-1)² - MAX_DMGx + MAX_DMG)*VEL_Y
-	entonces delta_n - delta_n-1 = [2x-1-MAX_DMG]*VEL_Y
-	y eso sigue la parábola x² - MAX_DMGx
-*/
-	originY+= ((2*deltaY - 1) - MAX_DMG) * VELOCIDAD_Y_DMG;
-	//si termino la animacion
-	if (cont_dmg > MAX_DMG){
-		in_dmg=false;
-		//TODO y ponerlo que resetee a 0 o que?
-	}
-}
 
 void MoveSonic::roll(){
 	if (jumping || false){//si esta saltando (u otros casos limitantes) ignorar
@@ -543,3 +488,63 @@ void MoveSonic::decrementarVelocidad(){
 	originX += X_nuevo;//independiente de la direccion
 	//asd? cambiar la velocidad para que en algun momento se detenga y llegue a setPosicionInicio()
 }
+
+void MoveSonic::damage(){
+	noActionCounter=0;
+	if (!in_dmg){
+		rolling = false;
+		cayendo = false;
+		jumping = false;
+		in_dmg=true;
+		cont_dmg=0;
+		oldY = originY;
+	}
+	cont_dmg++;
+	//if(direccion)-else PARA MOV HORIZONTAL
+	if (direccion){//estaba hacia la derecha, tiene que saltar a la izquierda
+		moveActual=JUMPI;//TODO: cambiar a DMGI
+		frameLeft++;
+		if (frameLeft / (4*DMG_ANIMATION_FRAMES) >= DMG_ANIMATION_FRAMES){
+			frameLeft=0;
+		}
+		frameActual =  frameLeft / (4*DMG_ANIMATION_FRAMES);
+		originX-= VELOCIDAD_X_DMG;
+	    if( originX < 0 ){originX = 0;}
+	}
+	else{//estaba yendo a la izquierda, debe saltar a la derecha
+		moveActual=JUMPD;	//TODO: cambiar a DMGD
+		frameRight++;
+		if (frameRight / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+			frameRight=0;
+		}
+		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
+
+		if( originX + (width + VELOCIDAD_X_DMG) > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+		else {
+			originX += VELOCIDAD_X_DMG;
+		}
+	}
+	//MOV VERTICAL ES INDEPTE DEL SENTIDO
+
+	float deltaY = (float) cont_dmg;//recordar cont_dmg € [0,MAX_DMG]
+
+
+/*	FORMULA ORIGINAL
+	deltaY= (deltaY * deltaY) - (deltaY * MAX_DMG);//x²-MAX_DMGx.
+	deltaY*=VELOCIDAD_Y_DMG;//todo * (-a) (en realidad a porque el eje Y esta invertido)
+	originY = oldY + deltaY;
+*/
+	//FORMULA PASADO A INCREMENTO
+/*
+	si delta_n = (x²-MAX_DMGx)*VEL_Y, delta_n-1 = ((x-1)² - MAX_DMGx + MAX_DMG)*VEL_Y
+	entonces delta_n - delta_n-1 = [2x-1-MAX_DMG]*VEL_Y
+	y eso sigue la parábola x² - MAX_DMGx
+*/
+	originY+= ((2*deltaY - 1) - MAX_DMG) * VELOCIDAD_Y_DMG;
+	//si termino la animacion
+	if (cont_dmg > MAX_DMG && originY == Y_PISO){
+		in_dmg=false;
+		this->setPosicionInicio();
+	}
+}
+
