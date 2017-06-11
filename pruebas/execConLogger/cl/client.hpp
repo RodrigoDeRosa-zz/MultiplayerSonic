@@ -4,8 +4,10 @@
 #include "socket.hpp"
 #include "../../../message.hpp"
 #include "../../../Juego/Juego.hpp"
+#include "../../../Juego/PantallaInicio/ConnectionStage.hpp"
 #include <sys/socket.h>
 #include <deque>
+#include <SDL2/SDL.h>
 #include <vector>
 using namespace std;
 
@@ -20,6 +22,7 @@ class Client{
         deque<key_event> toSend;
         Juego* juego;
         vector<out_message_t*> players; //Guarda la informacion previa de cada uno
+        ConnectionStage* initialStage;
     public:
         const char* port;
         const char* hostname;
@@ -61,6 +64,8 @@ class Client{
         void updatePlayers();
         void toggleGameSet();
         bool gameIsSet();
+        void renderInit();
+        key_event initProcessEvent(SDL_Event);
 };
 
 #endif /*CLIENT_HPP*/

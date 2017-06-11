@@ -43,11 +43,11 @@ addrinfo* resolveServerInfo(Client* client){
     /*Se guarda la informacion del host*/
     status = getaddrinfo(client->hostname, client->port, &hints, &serverInfo);
     if (status != 0) {
-		//fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
+		fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
 		LOGGER().log(string("Failed to connect! Error: ")+string(gai_strerror(status)),BAJO);
-	}	
+	}
     printHostIP("Hostname resolved to:", serverInfo, true); //LOGGEAR
-	
+
 
     return serverInfo;
 }

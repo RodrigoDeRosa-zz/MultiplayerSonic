@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <string.h>
 
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;
@@ -54,6 +55,6 @@ vector<out_message_t*> Transicion::getStatus(float camPos){
 	v.push_back(state);
 	//
 
-	this->frame++;	
+	this->frame++;
 	return v;
 }

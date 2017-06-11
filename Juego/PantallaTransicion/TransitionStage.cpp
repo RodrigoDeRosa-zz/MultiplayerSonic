@@ -69,3 +69,7 @@ void TransitionStage::render(){
         text.at(i)->render();
     }
 }
+
+void TransitionStage::render(Camara* cam){
+    render();
+}
