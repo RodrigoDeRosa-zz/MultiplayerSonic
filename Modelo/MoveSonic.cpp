@@ -14,7 +14,7 @@
 #define FACTOR_CHARGES	1
 #define LIM_CHARGE 3
 #define MAX_ROLL	150 	//numero a medir para limitar la cantidad de tiempo que rueda
-#define MAX_DMG		150		//idem roll, para daño
+#define MAX_DMG		250		//idem roll, para daño
 #define THRESHOLD_IDLE	1500
 #define Y_PISO	425
 /*MOVIMIENTOS*/
@@ -23,8 +23,8 @@
 #define VELOCIDAD 0.35
 #define RUN 0.7
 #define VELOCIDAD_ROLL	2
-#define VELOCIDAD_X_DMG	0.85
-#define VELOCIDAD_Y_DMG	0.02
+#define VELOCIDAD_X_DMG	0.98
+#define VELOCIDAD_Y_DMG	0.01
 #define VELOCIDAD_CAIDA	1.2
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
@@ -598,6 +598,7 @@ void MoveSonic::damage(){
 		in_dmg=true;
 		cont_dmg=0;
 		oldY = originY;
+		baseY = Y_PISO;
 	}
 	cont_dmg++;
 	//if(direccion)-else PARA MOV HORIZONTAL
@@ -614,10 +615,10 @@ void MoveSonic::damage(){
 	else{//estaba yendo a la izquierda, debe saltar a la derecha
 		moveActual=JUMPD;	//TODO: cambiar a DMGD
 		frameRight++;
-		if (frameRight / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+		if (frameRight / (4*DMG_ANIMATION_FRAMES) >= DMG_ANIMATION_FRAMES){
 			frameRight=0;
 		}
-		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
+		frameActual =  frameRight / (4*DMG_ANIMATION_FRAMES);
 
 		if( originX + (width + VELOCIDAD_X_DMG) > this->ancho_escenario ){originX = this->ancho_escenario - width;}
 		else {
@@ -642,8 +643,9 @@ void MoveSonic::damage(){
 */
 	originY+= ((2*deltaY - 1) - MAX_DMG) * VELOCIDAD_Y_DMG;
 	//si termino la animacion
-	if (cont_dmg > MAX_DMG && originY == Y_PISO){
+	if (cont_dmg > MAX_DMG && originY >= baseY){
 		in_dmg=false;
+		originY = baseY;
 		this->setPosicionInicio();
 	}
 }

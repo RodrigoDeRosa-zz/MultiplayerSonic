@@ -12,7 +12,7 @@ void Pinche::afectarA(Player* jugador){
 
 	jugador->recibirGolpe();
 	jugador->lastimar();
-	
+
 }
 
 out_message_t* Pinche::getOutMessage(){
