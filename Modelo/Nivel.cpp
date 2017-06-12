@@ -193,7 +193,7 @@ void Nivel::colisionarTodos() {
 				(*players)[i]->setCayendo();
 			}	
 		}
-		printf("y:%f\n", (*players)[i]->getY());
+		//printf("y:%f\n", (*players)[i]->getY()); //TODO sacar
 		colisionoPiedra = false;
 	}
 }
