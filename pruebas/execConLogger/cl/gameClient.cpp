@@ -225,9 +225,6 @@ void* viewControl(void* arg){
         Renderer::getInstance().draw();
     }
     while(!self->getJuego() || !self->getJuego()->stageReady()){
-        Renderer::getInstance().clear();
-        self->renderInit();
-        Renderer::getInstance().draw();
         usleep(5000);
     }
     //Pantalla de inicio de juego
