@@ -40,6 +40,9 @@ public:
 	void lastimar();
     bool estaSaltando();
     bool estaRodando();
+	void setBaseY(float newy);
+	void setCayendo();
+	bool estaMirandoADer();
 /*
 	void crouch();
 	void release();

@@ -240,6 +240,10 @@ void Player::caer(int dir){
 	this->sonic->caer(dir);
 }
 
+void Player::setBaseY(float newy){
+	this->sonic->setBaseY(newy);
+}
+
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
 	memset(status, 0, sizeof(out_message_t));
@@ -316,6 +320,13 @@ void Player::cambiarEquipo(Puntaje* newp){
 
 void Player::setEstado(state_type estado){
     this->estado->set(estado);
+}
+
+void Player::setCayendo(){
+    this->sonic->setCayendo();
+}
+bool Player::estaMirandoADer(){
+	return this->sonic->estaMirandoADer();
 }
 
 state_type Player::getEstado(){

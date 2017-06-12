@@ -183,9 +183,9 @@ void Nivel::colisionarTodos() {
 
 			if ((*players)[i]->enRangoX((*entidades)[j])) {
 				if ((*players)[i]->enRangoY((*entidades)[j])) {
-
-					if(((*entidades)[j])->esPiedra()) colisionoPiedra = true;
-
+					if(((*entidades)[j])->esPiedra()){
+						 colisionoPiedra = true;
+					}
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
@@ -193,16 +193,27 @@ void Nivel::colisionarTodos() {
 			if ((*players)[i]->enRangoY((*entidades)[j])) {
 				if ((*players)[i]->enRangoX((*entidades)[j])) {
 
-					if(((*entidades)[j])->esPiedra()) colisionoPiedra = true;
-
+					if(((*entidades)[j])->esPiedra()){
+						colisionoPiedra = true;
+					}
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
 		}
+		/*
         if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() >= 345  && (*players)[i]->getY() < 425 ){
-            (*players)[i]->caer(0);
-        colisionoPiedra = false;
+            //(*players)[i]->caer(0);
+        //colisionoPiedra = false;
         }
+		*/
+		if(!colisionoPiedra){
+			(*players)[i]->setBaseY(425);
+			if ((!(*players)[i]->estaSaltando()) && (*players)[i]->getY() < 425){
+				(*players)[i]->setCayendo();
+			}	
+		}
+		printf("y:%f\n", (*players)[i]->getY());
+		colisionoPiedra = false;
 	}
 }
 

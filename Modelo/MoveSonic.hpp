@@ -55,7 +55,7 @@ class MoveSonic{
 		void caerDerecha();
 		void caerIzquierda();
 		void cortarSalto();
-
+		void setCayendo();
 		void setBaseY(float newy);
 		float getBaseY();
         void update(float, float);
