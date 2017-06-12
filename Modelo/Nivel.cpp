@@ -1,7 +1,7 @@
 #include "Nivel.hpp"
 #include <stdio.h>
 
-Nivel::Nivel(){
+Nivel::Nivel(float end){
 
 	/*Vectores inicializados*/
 	players = new vector<Player*>();
@@ -14,10 +14,19 @@ Nivel::Nivel(){
 
 	termino = false;
 	changeLevelMessageSent = false;
+	this->end = end;
+}
+
+float Nivel::getEnd(){
+	return this->end;
 }
 
 void Nivel::terminar(){
-	this->termino = true;
+	bool jugadores_en_final = true;
+	for(int i = 0; i < players->size(); i++){
+		jugadores_en_final = jugadores_en_final && (*players)[i]->llegoAlFinal();
+	}
+	if(jugadores_en_final) this->termino = true;
 }
 
 void Nivel::addPlayers( vector<Player*>* vec){
@@ -27,6 +36,15 @@ void Nivel::addPlayers( vector<Player*>* vec){
 void Nivel::addPuntajes( vector<Puntaje*>* vec){
 	this->puntajes = vec;
 }
+
+void Nivel::start(){
+	for(int i = 0; i < players->size(); i++){
+		(*players)[i]->setX(100);
+		(*players)[i]->setY(425);
+		(*players)[i]->setAtEnd(false);
+	}
+}
+
 
 void Nivel::addEntidades( vector<Entidad*>* vec){
 	this->entidades = vec;
@@ -53,6 +71,7 @@ void Nivel::setPlayerPosition(string playerName, float x){
 void Nivel::movePlayer(string playerName, float dirX, float dirY){
 	Player* player = this->getPlayer(playerName);
 	player->updateXY(dirX,dirY);
+	if(player->getBordeDer() >= this->end-120) player->setAtEnd(true);
 }
 
 vector<float> Nivel::getPlayerPosition(string playerName){

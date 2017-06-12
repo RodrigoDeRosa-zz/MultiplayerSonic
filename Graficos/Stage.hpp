@@ -69,6 +69,8 @@ class Stage{
         int getWidth();
 		void setDimensions(int w, int h);
 		Stage& getInstance();
+        virtual void setPlayerInfo(int, int, int, int);
+        virtual void setValues();
 
 };
 

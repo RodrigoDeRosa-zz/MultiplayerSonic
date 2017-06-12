@@ -16,6 +16,10 @@ void Camara::setPosicion(float posx, float posy){
 	cam.y = posy;
 }
 
+void Camara::setEnd(float end){
+	ancho_escenario = end;
+}
+
 void Camara::moveCamara(bool direccion){
 	/*Recibe un bool que es true si se mueve para la derecha
 	o false si se mueve para la izquierda*/

@@ -22,6 +22,7 @@ class Player{
     map <move_type, vector<float> > collitionBoxes;
 	Puntaje* puntaje;
 	Estado* estado;
+	bool atEnd;
 	public:
 		Player(string name, Puntaje* p);
 		string getName();
@@ -40,9 +41,11 @@ class Player{
 		int getFrame();
 		int getVidas();
 		int getMonedas();
-
+		bool llegoAlFinal();
 		void setEstado(state_type estado);
 		state_type getEstado();
+
+		void setAtEnd(bool);
 
 		void agregarMonedas(int n);
 		void quitarMonedas();

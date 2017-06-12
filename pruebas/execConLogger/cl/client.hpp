@@ -66,6 +66,7 @@ class Client{
         bool gameIsSet();
         void renderInit();
         key_event initProcessEvent(SDL_Event);
+        void updateTransition();
 };
 
 #endif /*CLIENT_HPP*/

@@ -34,7 +34,7 @@ public:
 	SDL_Rect getCamara();
 	float getX();
 	float getY();
-
+	void setEnd(float);
 	void render();
 
 	//Operaciones apuntado

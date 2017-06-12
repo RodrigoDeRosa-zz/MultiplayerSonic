@@ -29,7 +29,15 @@ Stage::~Stage(){
     }
 }
 
+void Stage::setPlayerInfo(int p, int r, int s, int l){
+    //virtual
+}
+
 void Stage::render(){
+    //virtual
+}
+
+void Stage::setValues(){
     //virtual
 }
 

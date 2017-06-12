@@ -21,6 +21,7 @@ Player::Player(string name, Puntaje* p){
     this->vidas = 3;
 	this->puntaje = p;
     this->estado = new Estado();
+	this->atEnd = false;
 }
 
 string Player::getName(){
@@ -59,6 +60,14 @@ void Player::setY(float y){
     // si el jugador viene saltando hago que se detenga
     if((this->getMovement() == JUMPD) || (this->getMovement() == JUMPI)) this->sonic->cortarSalto();
     this->sonic->setY(y);
+}
+
+bool Player::llegoAlFinal(){
+	return this->atEnd;
+}
+
+void Player::setAtEnd(bool end){
+	this->atEnd = end;
 }
 
 void Player::updateXY(float dirX,float dirY){

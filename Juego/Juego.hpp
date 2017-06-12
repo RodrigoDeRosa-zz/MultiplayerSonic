@@ -51,6 +51,7 @@ class Juego{
     //void updateJugadores(map <string, vector <float> >);
     void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
         int rings, int lives, int points, state_type state, int state_frame);
+    void updateTransition(int, int, int, int);
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);
@@ -89,6 +90,8 @@ class Juego{
     void addBoss(float x, float y, int index);
     /*Agrega la bola del Jefe en las posiciones dadas*/
     void addBossBall(float x, float y, int index);
+
+    bool isLevel();
 
     ~Juego();
 };

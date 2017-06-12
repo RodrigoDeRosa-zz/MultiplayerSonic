@@ -136,7 +136,7 @@ void* keyControl(void* arg){
 
 void* f_view(void* arg){
 	Client* self = (Client*) arg;
-
+    int k = 0;
 	while (self->gameOn()){
 		/*Limpiar pantalla*/
 		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
@@ -145,7 +145,7 @@ void* f_view(void* arg){
 		out_message_t* message = self->getEventReceived();
         if (!message){
         	//renderizar
-        	self->updatePlayers();
+        	if (self->getJuego()->isLevel()) self->updatePlayers();
 			self->getJuego()->render();
         	Renderer::getInstance().draw();
             usleep(2000);
@@ -164,9 +164,14 @@ void* f_view(void* arg){
             self->getJuego()->updatePez(message);
         } else if (message->ping == BONUS_UPDATE){
             self->getJuego()->updateBonus(message);
+        } else if (message->ping == CHANGE_LEVEL){
+            k++;
+            if (k == 1) continue;
+            self->getJuego()->nextStage();
         }
         //renderizar
-		self->updatePlayers();
+        if (self->getJuego()->isLevel()) self->updatePlayers();
+        else self->updateTransition();
 		self->getJuego()->render();
         Renderer::getInstance().draw();
 	}

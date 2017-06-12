@@ -98,6 +98,15 @@ Stage* Juego::createLevel(int n, gameMode mode){
     return level;
 }
 
+bool Juego::isLevel(){
+    return (stageActualIndex%2 != 0);
+}
+
+void Juego::updateTransition(int id, int rings, int lives, int points){
+    stageActual->setPlayerInfo(id, rings, points, lives);
+    stageActual->setValues();
+}
+
 bool Juego::stageReady(){
     return stageActual != NULL;
 }
@@ -197,6 +206,13 @@ void Juego::nextStage(){
         return;
     }
     stageActualIndex++;
+    float end;
+    switch(stageActualIndex){
+        case 1: end = 4000.0; break;
+        case 3: end = 5000.0; break;
+        case 5: end = 6000.0; break;
+    }
+    camara->setEnd(end);
     stageActual = stages[stageActualIndex];
 }
 
