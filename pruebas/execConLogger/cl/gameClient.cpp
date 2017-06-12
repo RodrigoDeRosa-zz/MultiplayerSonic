@@ -138,16 +138,9 @@ void* f_view(void* arg){
 	Client* self = (Client*) arg;
     int k = 0;
 	while (self->gameOn()){
-		/*Limpiar pantalla*/
-		Renderer::getInstance().setDrawColor(255, 255, 255, 1);
-        Renderer::getInstance().clear();
-
 		out_message_t* message = self->getEventReceived();
         if (!message){
         	//renderizar
-        	if (self->getJuego()->isLevel()) self->updatePlayers();
-			self->getJuego()->render();
-        	Renderer::getInstance().draw();
             usleep(2000);
             continue;
         }
@@ -169,13 +162,7 @@ void* f_view(void* arg){
             if (k == 1) continue;
             self->getJuego()->nextStage();
         }
-        //renderizar
-        if (self->getJuego()->isLevel()) self->updatePlayers();
-        else self->updateTransition();
-		self->getJuego()->render();
-        Renderer::getInstance().draw();
 	}
-    SDLHandler::getInstance().close();
     self->cleanPlayers();
 
 	return NULL;
@@ -251,7 +238,21 @@ void* viewControl(void* arg){
         Renderer::getInstance().draw();
     }
     //Juego
+    while(self->gameOn()){
+        /*Limpiar pantalla*/
+        Renderer::getInstance().setDrawColor(255, 255, 255, 1);
+        Renderer::getInstance().clear();
+        /*Actualizar entidades*/
+        if (self->getJuego()->isLevel()) self->updatePlayers();
+        else self->updateTransition();
+        /*Renderizar*/
+        self->getJuego()->render();
+        Renderer::getInstance().draw();
+        usleep(2000);
+    }
+
     pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
+    SDLHandler::getInstance().close();
     self->disconnect(0);
 
     return NULL;

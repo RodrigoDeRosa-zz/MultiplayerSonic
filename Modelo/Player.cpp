@@ -62,6 +62,17 @@ void Player::setY(float y){
     this->sonic->setY(y);
 }
 
+void Player::newLevel(float ancho_escenario){
+	this->setX(100);
+	this->setY(425);
+	this->setAtEnd(false);
+	this->sonic->setAnchoEscenario(ancho_escenario);
+	int multiplicador = 10;
+	if (this->monedas >= 50) multiplicador = 20;
+	this->sumarPuntos(this->monedas*multiplicador);
+	this->monedas = 0;
+}
+
 bool Player::llegoAlFinal(){
 	return this->atEnd;
 }

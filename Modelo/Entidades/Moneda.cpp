@@ -11,7 +11,7 @@ using namespace std;
 Moneda::Moneda(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 
 void Moneda::afectarA(Player* jugador){
-	jugador->agregarMonedas(1);
+	if(!(this->destruida))jugador->agregarMonedas(1);
 	this->destruida = true;
 	//destruir moneda
 }

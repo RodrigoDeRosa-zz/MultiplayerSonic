@@ -48,7 +48,7 @@ void EntityGroup::render(Camara* camara){
     if (!entities.empty()) {
         vector<Entity*> v;
         for (map<int, Entity*>::iterator it = entities.begin(); it != entities.end(); it++){
-            v.push_back(it->second);
+            if (it->second) v.push_back(it->second);
         }
         std::sort(v.begin(), v.end(), order());
         for (int i = 0; i < (int)v.size(); i++) {

@@ -15,6 +15,7 @@ TransitionStageCoop::TransitionStageCoop(int w, int h) : TransitionStage(w, h){
 void TransitionStageCoop::setValues(){
     Texture* texture;
     Sprite* sprite;
+    text.clear();
     TTF_Font* font = TTF_OpenFont("Graficos/fontTrans.ttf", 40); //Se inicializa la fuente
     SDL_Color color = {0xFF, 0xFF, 0xFF};
     for (int i = 0; i < 4; i++){

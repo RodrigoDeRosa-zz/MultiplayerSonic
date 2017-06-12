@@ -1,7 +1,7 @@
 #include "TransitionStage.hpp"
 
 #define LOGO_MAX_FRAME 18
-#define LOGO_FRAME_RATE 40
+#define LOGO_FRAME_RATE 20
 
 TransitionStage::TransitionStage(int w, int h) : Stage(){
     setDimensions(w, h);

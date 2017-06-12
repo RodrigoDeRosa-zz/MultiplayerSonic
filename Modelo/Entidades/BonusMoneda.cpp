@@ -26,7 +26,7 @@ void BonusMoneda::afectarA(Player* jugador){
 		jugador->setX(posicion);
 	}
 	else{
-		jugador->agregarMonedas(10);
+		if(!(this->destruida))jugador->agregarMonedas(10);
 		this->destruida = true;
 	}
 }

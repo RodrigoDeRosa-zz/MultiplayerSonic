@@ -14,6 +14,10 @@ ModelSonic::ModelSonic(){
     direccionY = 0.0;
 }
 
+void ModelSonic::setAnchoEscenario(float ancho){
+    this->bloque_pers->setAnchoEscenario(ancho);
+}
+
 void ModelSonic::cortarSalto() {
     bloque_pers->cortarSalto();
 }

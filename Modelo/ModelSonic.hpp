@@ -36,13 +36,14 @@ public:
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
 	void roll();
-	void caer(int dir);	
+	void caer(int dir);
 	void lastimar();
     bool estaSaltando();
     bool estaRodando();
 	void setBaseY(float newy);
 	void setCayendo();
 	bool estaMirandoADer();
+    void setAnchoEscenario(float);
 /*
 	void crouch();
 	void release();

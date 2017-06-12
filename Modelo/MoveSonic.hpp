@@ -7,6 +7,7 @@ using namespace std;
 
 class MoveSonic{
     private:
+        float ancho_escenario;
         float originX;
         float originY;
         float width;
@@ -39,6 +40,7 @@ class MoveSonic{
         void moveRight(float);
         void jump(float,float);
 		void damage();
+        void setAnchoEscenario(float);
 		void roll();
         void caminarDerecha();
         void caminarIzquierda();

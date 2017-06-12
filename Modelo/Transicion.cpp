@@ -7,7 +7,7 @@
 
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;
-	sleep(2);
+	sleep(10);
 	trancision->setTermino();
 	return NULL;
 }

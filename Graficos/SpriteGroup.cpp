@@ -52,7 +52,7 @@ void SpriteGroup::render(Camara* camara){
     if (!sprites.empty()) {
         vector<Sprite*> s;
         for (map<int, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); it++){
-            s.push_back(it->second);
+            if (it->second) s.push_back(it->second);
         }
         std::sort(s.begin(), s.end(), order());
         for (int i = 0; i < (int)s.size(); i++) {

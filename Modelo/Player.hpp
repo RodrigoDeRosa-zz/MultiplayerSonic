@@ -30,6 +30,7 @@ class Player{
 		float getY();
 		float getDirX();
 		float getDirY();
+		void newLevel(float);
 		vector<float> getDirections();
 		void setX(float x);
 		void setY(float y);

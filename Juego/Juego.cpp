@@ -102,8 +102,10 @@ bool Juego::isLevel(){
     return (stageActualIndex%2 != 0);
 }
 
-void Juego::updateTransition(int id, int rings, int lives, int points){
-    stageActual->setPlayerInfo(id, rings, points, lives);
+void Juego::updateTransition(int id, int rings, int points){
+    int multiplicador = 10;
+    if (rings >= 50) multiplicador = 20;
+    stageActual->setPlayerInfo(id, rings, points, points + rings*multiplicador);
     stageActual->setValues();
 }
 
@@ -288,11 +290,7 @@ void Juego::addPiedra(float x, float y, int type, int index, int level){
     Texture* tex = it->second;
     piedra->setTexture(tex);
     piedra->setIndexZ(99);
-    //Debe recibirse la información sobre a que nivel se le agrega.
-    //ahora se hardcodea lvl1
     stages[level]->addSprite("piedras", piedra, index);
-    //stageActual->addSprite("piedras", piedra, index);
-
 }
 
 /*Agrega pinches en las posiciones dadas*/
@@ -305,7 +303,6 @@ void Juego::addPinche(float x, float y, int index, int level){
     pinche->setTexture(tex);
     pinche->setIndexZ(99);
     stages[level]->addSprite("pinches", pinche, index);
-    //stageActual->addSprite("pinches", pinche, index);
 }
 
 /*Agrega una moneda en las posiciones dadas*/
@@ -318,7 +315,6 @@ void Juego::addMoneda(float x, float y, int index, int level){
     moneda->setTexture(tex);
     moneda->setIndexZ(99);
     stages[level]->addEntity("monedas", moneda, index);
-    //stageActual->addEntity("monedas", moneda, index);
 }
 
 /*Agrega un bonus en las posiciones dadas*/
@@ -331,7 +327,6 @@ void Juego::addBonus(float x, float y, int t, int index, int level){
     bonus->setTexture(tex);
     bonus->setIndexZ(99);
     stages[level]->addEntity("bonus", bonus, index);
-    //stageActual->addEntity("bonus", bonus, index);
 }
 
 /*Agrega un pez en las posiciones dadas*/
@@ -343,7 +338,6 @@ void Juego::addPez(float x, float y, int index, int level){
     pez->setTexture(tex);
     pez->setIndexZ(99);
     stages[level]->addEntity("peces", pez, index);
-    //stageActual->addEntity("peces", pez, index);
 }
 
 /*Agrega un cangrejo en las posiciones dadas*/
@@ -356,7 +350,6 @@ void Juego::addCangrejo(float x, float y, int index, int level){
     cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
     stages[level]->addEntity("cangrejos", cangrejo, index);
-    //stageActual->addEntity("cangrejos", cangrejo, index);
 }
 
 /*Agrega un pajaro en las posiciones dadas*/
@@ -379,7 +372,6 @@ void Juego::addBoss(float x, float y, int index){
     boss->setTexture(tex);
     boss->setIndexZ(99);
     stages[5]->addEntity("boss", boss, index);
-    //stageActual->addEntity("boss", boss, index);
 }
 
 /*Agrega la bola del Jefe en las posiciones dadas*/
@@ -391,7 +383,6 @@ void Juego::addBossBall(float x, float y, int index){
     bossBall->setTexture(tex);
     bossBall->setIndexZ(99);
     stages[5]->addSprite("bossBall", bossBall, index);
-    //stageActual->addSprite("bossBall", bossBall, index);
 }
 
 void Juego::setJugadores(Jugadores* jugs){

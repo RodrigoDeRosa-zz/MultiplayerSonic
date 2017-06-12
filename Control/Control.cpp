@@ -201,10 +201,10 @@ void Control::cambiarEquipo(string playerName, int equipo){
 }
 
 void Control::crearEntidades(){
-	/*Piedra* piedra = new Piedra(0,500, 345);
-	this->niveles[NIVEL1]->addEntidad(piedra);*/
-	/*Pinche* pinche = new Pinche(2, 2000, 495);
-	this->niveles[NIVEL1]->addEntidad(pinche);*/
+	Piedra* piedra = new Piedra(0,500, 345);
+	this->niveles[NIVEL1]->addEntidad(piedra);
+	Pinche* pinche = new Pinche(2, 2000, 495);
+	this->niveles[NIVEL1]->addEntidad(pinche);
 
     /*Piedra* piedra1 = new Piedra(0,500, 345);
     this->niveles[NIVEL2]->addEntidad(piedra1);

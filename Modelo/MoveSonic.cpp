@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 /*DIMENSIONES ESCENARIO*/
-#define ANCHO_ESCENARIO 4000
 #define ALTO_ESCENARIO 720
 /*CONSTANTES*/
 #define CONTROL_MOVIMIENTO 0.001
@@ -17,7 +16,7 @@
 #define MAX_ROLL	150 	//numero a medir para limitar la cantidad de tiempo que rueda
 #define MAX_DMG		150		//idem roll, para daño
 #define THRESHOLD_IDLE	1500
-#define Y_PISO	425		
+#define Y_PISO	425
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
@@ -62,6 +61,11 @@ MoveSonic::MoveSonic(float x, float y){
 	cont_roll=0;
 	oldY=0.0;
 	baseY=Y_PISO;
+    this->ancho_escenario = 4000;
+}
+
+void MoveSonic::setAnchoEscenario(float ancho){
+    this->ancho_escenario = ancho;
 }
 
 void MoveSonic::setPosicionInicio(){
@@ -176,7 +180,7 @@ void MoveSonic::roll(){
 		}
 		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
 
-		if( originX + (width + VELOCIDAD_ROLL)> ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+		if( originX + (width + VELOCIDAD_ROLL)> this->ancho_escenario ){originX = this->ancho_escenario - width;}
 		else {
 			originX += VELOCIDAD_ROLL;
 		}
@@ -205,7 +209,7 @@ void MoveSonic::jumpDerecha(float* velH){
     }
     frameActual = ((frameJumping)/(4*JUMPING_ANIMATION_FRAMES));
     moveActual = JUMPD;
-    if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+    if( originX + width > this->ancho_escenario ){originX = this->ancho_escenario - width;}
 }
 
 void MoveSonic::jumpIzquierda(float* velH){
@@ -251,7 +255,7 @@ void MoveSonic::moveRight(float vel_x){
     //Actualizamos el frame
     frameRight++;
 
-    if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+    if( originX + width > this->ancho_escenario ){originX = this->ancho_escenario - width;}
 }
 
 void MoveSonic::moveLeft(float vel_x){
@@ -266,7 +270,7 @@ void MoveSonic::moveLeft(float vel_x){
 			if (tiempoX < 0) tiempoX=0; 		//por las dudas
 			frenarDerecha();
 			frameRight++;
-    		if( originX + width > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+    		if( originX + width > this->ancho_escenario ){originX = this->ancho_escenario - width;}
 			return;
 
 		}
@@ -336,8 +340,8 @@ void MoveSonic::setCayendo(){
 		cayendo_der=true;
 	}
 	else{
-		cayendo_izq=true;		
-	}		
+		cayendo_izq=true;
+	}
 }
 
 void MoveSonic::caerDerecha(){
@@ -357,9 +361,9 @@ void MoveSonic::caerDerecha(){
 	originY+=VELOCIDAD_CAIDA;
 
 	if(originY >= baseY){//si ya esta a la altura del piso
-		cayendo_der=false;	
+		cayendo_der=false;
 		this->setPosicionInicio();
-		originY = baseY;	//por las dudas		
+		originY = baseY;	//por las dudas
 		return;
 	}
 }
@@ -382,7 +386,7 @@ void MoveSonic::caerIzquierda(){
 	originY+=VELOCIDAD_CAIDA;
 
 	if(originY >= baseY){//si ya esta a la altura del piso
-		cayendo_izq=false;	
+		cayendo_izq=false;
 		this->setPosicionInicio();
 		originY = baseY;	//por las dudas
 		return;
@@ -615,7 +619,7 @@ void MoveSonic::damage(){
 		}
 		frameActual =  frameRight / (4*JUMPING_ANIMATION_FRAMES);
 
-		if( originX + (width + VELOCIDAD_X_DMG) > ANCHO_ESCENARIO ){originX = ANCHO_ESCENARIO - width;}
+		if( originX + (width + VELOCIDAD_X_DMG) > this->ancho_escenario ){originX = this->ancho_escenario - width;}
 		else {
 			originX += VELOCIDAD_X_DMG;
 		}
@@ -643,4 +647,3 @@ void MoveSonic::damage(){
 		this->setPosicionInicio();
 	}
 }
-

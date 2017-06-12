@@ -39,9 +39,7 @@ void Nivel::addPuntajes( vector<Puntaje*>* vec){
 
 void Nivel::start(){
 	for(int i = 0; i < players->size(); i++){
-		(*players)[i]->setX(100);
-		(*players)[i]->setY(425);
-		(*players)[i]->setAtEnd(false);
+		(*players)[i]->newLevel(this->end);
 	}
 }
 
@@ -210,9 +208,8 @@ void Nivel::colisionarTodos() {
 			(*players)[i]->setBaseY(425);
 			if ((!(*players)[i]->estaSaltando()) && (*players)[i]->getY() < 425){
 				(*players)[i]->setCayendo();
-			}	
+			}
 		}
-		printf("y:%f\n", (*players)[i]->getY());
 		colisionoPiedra = false;
 	}
 }
