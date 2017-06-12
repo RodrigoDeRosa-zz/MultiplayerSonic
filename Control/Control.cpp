@@ -17,6 +17,10 @@
 #define LVL2_END 5000
 #define LVL3_END 6000
 
+#define NIVEL1 0
+#define NIVEL2 2
+#define NIVEL3 4
+
 //int to string
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
@@ -53,6 +57,8 @@ void Control::initNiveles(){
 
     Nivel* nivel3 = new Nivel();
     this->niveles.push_back(nivel3);
+
+    this->niveles.push_back(transicion);
 }
 
 void Control::addPlayer(string playerName, int equipo){
@@ -190,55 +196,43 @@ void Control::cambiarEquipo(string playerName, int equipo){
 }
 
 void Control::crearEntidades(){
-
 	Piedra* piedra = new Piedra(0,500, 345);
-	this->niveles[0]->addEntidad(piedra);
-/*
-	Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
-	this->niveles[0]->addEntidad(cangrejo);
-    Pez* pez = new Pez(0, 800, 675);
-	this->niveles[0]->addEntidad(pez);
-    Mosca* mosca = new Mosca(0,300, 225);
-	this->niveles[0]->addEntidad(mosca);
-*/
+	this->niveles[NIVEL1]->addEntidad(piedra);
 	Pinche* pinche = new Pinche(2, 2000, 495);
-	this->niveles[0]->addEntidad(pinche);
-/*
-	Moneda* moneda = new Moneda(3, 550, 305);
-	this->niveles[0]->addEntidad(moneda);
-    Escudo* bonus1 = new Escudo(0, 750, 426);
-    this->niveles[0]->addEntidad(bonus1);
-    BonusMoneda* bonus2 = new BonusMoneda(1, 900, 426);
-    this->niveles[0]->addEntidad(bonus2);
-*/
+	this->niveles[NIVEL1]->addEntidad(pinche);
 
-    Piedra* piedra1 = new Piedra(0,500, 345);
-    this->niveles[1]->addEntidad(piedra1);
+    /*Piedra* piedra1 = new Piedra(0,500, 345);
+    this->niveles[NIVEL2]->addEntidad(piedra1);
     Cangrejo* cangrejo1 = new Cangrejo(0,1000, 475);
-    this->niveles[1]->addEntidad(cangrejo1);
+    this->niveles[NIVEL2]->addEntidad(cangrejo1);
     Pez* pez1 = new Pez(0, 800, 675);
-    this->niveles[1]->addEntidad(pez1);
+    this->niveles[NIVEL2]->addEntidad(pez1);
     Mosca* mosca1 = new Mosca(0,300, 225);
-    this->niveles[1]->addEntidad(mosca1);
+    this->niveles[NIVEL2]->addEntidad(mosca1);
     Pinche* pinche1 = new Pinche(2, 1000, 495);
-    this->niveles[1]->addEntidad(pinche1);
-    Moneda* moneda1 = new Moneda(3, 550, 305);
-    this->niveles[1]->addEntidad(moneda1);
+    this->niveles[NIVEL2]->addEntidad(pinche1);
     Escudo* bonus3 = new Escudo(0, 750, 426);
-    this->niveles[1]->addEntidad(bonus3);
+    this->niveles[NIVEL2]->addEntidad(bonus3);
     BonusMoneda* bonus4 = new BonusMoneda(1, 900, 426);
-    this->niveles[1]->addEntidad(bonus4);
+    this->niveles[NIVEL2]->addEntidad(bonus4);
 
-
-
+    Moneda* moneda1 = new Moneda(3, 550, 305);
+    this->niveles[NIVEL3]->addEntidad(moneda1);*/
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
 	vector<out_message_t*> v;
 	for(int i = 0; i < this->niveles.size(); i++){
-		vector<out_message_t*> entidades_v = this->getNivelActual()->getEntidadesInitStatus();
+		vector<out_message_t*> entidades_v = this->niveles[i]->getEntidadesInitStatus();
 		for(int j = 0; j < entidades_v.size(); j++){
-			entidades_v[j]->camPos = i;
+            switch (i) {
+                case NIVEL1:
+                    entidades_v[j]->state_frame = 1; break;
+                case NIVEL2:
+                    entidades_v[j]->state_frame = 3; break;
+                case NIVEL3:
+                    entidades_v[j]->state_frame = 5; break;
+            }
 		}
 		v.insert(v.end(),entidades_v.begin(),entidades_v.end());
 	}

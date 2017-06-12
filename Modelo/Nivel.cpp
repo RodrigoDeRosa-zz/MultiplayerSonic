@@ -242,7 +242,7 @@ vector<out_message_t*> Nivel::getStatus(float camPos){
 		state->connection = true;
 		state->posX = 0;
 		state->posY = 0;
-		state->camPos = 0; 
+		state->camPos = 0;
 		state->move = MOVE_TOTAL;
 		state->frame = 0;
 		state->rings = 0;

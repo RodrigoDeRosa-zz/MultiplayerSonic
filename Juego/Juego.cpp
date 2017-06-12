@@ -264,7 +264,7 @@ void Juego::addSprite(string groupKey, Sprite* sprite, int index){
     stageActual->addSprite(groupKey, sprite, index);
 }
 
-void Juego::addPiedra(float x, float y, int type, int index){
+void Juego::addPiedra(float x, float y, int type, int index, int level){
     Piedra* piedra = new Piedra(x, y, type);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -274,13 +274,13 @@ void Juego::addPiedra(float x, float y, int type, int index){
     piedra->setIndexZ(99);
     //Debe recibirse la información sobre a que nivel se le agrega.
     //ahora se hardcodea lvl1
-    stages[1]->addSprite("piedras", piedra, index);
+    stages[level]->addSprite("piedras", piedra, index);
     //stageActual->addSprite("piedras", piedra, index);
 
 }
 
 /*Agrega pinches en las posiciones dadas*/
-void Juego::addPinche(float x, float y, int index){
+void Juego::addPinche(float x, float y, int index, int level){
     Pinche* pinche = new Pinche(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -288,12 +288,12 @@ void Juego::addPinche(float x, float y, int index){
     Texture* tex = it->second;
     pinche->setTexture(tex);
     pinche->setIndexZ(99);
-    stages[1]->addSprite("pinches", pinche, index);
+    stages[level]->addSprite("pinches", pinche, index);
     //stageActual->addSprite("pinches", pinche, index);
 }
 
 /*Agrega una moneda en las posiciones dadas*/
-void Juego::addMoneda(float x, float y, int index){
+void Juego::addMoneda(float x, float y, int index, int level){
     Moneda* moneda = new Moneda(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -301,12 +301,12 @@ void Juego::addMoneda(float x, float y, int index){
     Texture* tex = it->second;
     moneda->setTexture(tex);
     moneda->setIndexZ(99);
-    stages[1]->addEntity("monedas", moneda, index);
+    stages[level]->addEntity("monedas", moneda, index);
     //stageActual->addEntity("monedas", moneda, index);
 }
 
 /*Agrega un bonus en las posiciones dadas*/
-void Juego::addBonus(float x, float y, int t, int index){
+void Juego::addBonus(float x, float y, int t, int index, int level){
     Bonus* bonus = new Bonus(x, y, t);
     /*Aca habria que cargarle la textura de pinche*/
     map<string, Texture*>::iterator it;
@@ -314,24 +314,24 @@ void Juego::addBonus(float x, float y, int t, int index){
     Texture* tex = it->second;
     bonus->setTexture(tex);
     bonus->setIndexZ(99);
-    stages[1]->addEntity("bonus", bonus, index);
+    stages[level]->addEntity("bonus", bonus, index);
     //stageActual->addEntity("bonus", bonus, index);
 }
 
 /*Agrega un pez en las posiciones dadas*/
-void Juego::addPez(float x, float y, int index){
+void Juego::addPez(float x, float y, int index, int level){
     Pez* pez = new Pez(x, y);
     map<string, Texture*>::iterator it;
     it = texturas.find("peces");
     Texture* tex = it->second;
     pez->setTexture(tex);
     pez->setIndexZ(99);
-    stages[1]->addEntity("peces", pez, index);
+    stages[level]->addEntity("peces", pez, index);
     //stageActual->addEntity("peces", pez, index);
 }
 
 /*Agrega un cangrejo en las posiciones dadas*/
-void Juego::addCangrejo(float x, float y, int index){
+void Juego::addCangrejo(float x, float y, int index, int level){
     Cangrejo* cangrejo = new Cangrejo(x, y);
     //Carga de textura
     map<string, Texture*>::iterator it;
@@ -339,20 +339,19 @@ void Juego::addCangrejo(float x, float y, int index){
     Texture* tex = it->second;
     cangrejo->setTexture(tex);
     cangrejo->setIndexZ(99);
-    stages[1]->addEntity("cangrejos", cangrejo, index);
+    stages[level]->addEntity("cangrejos", cangrejo, index);
     //stageActual->addEntity("cangrejos", cangrejo, index);
 }
 
 /*Agrega un pajaro en las posiciones dadas*/
-void Juego::addMosca(float x, float y, int index){
+void Juego::addMosca(float x, float y, int index, int level){
     Mosca* mosca = new Mosca(x, y);
     map<string, Texture*>::iterator it;
     it = texturas.find("moscas");
     Texture* tex = it->second;
     mosca->setTexture(tex);
     mosca->setIndexZ(99);
-    stages[1]->addEntity("moscas", mosca, index);
-    //stageActual->addEntity("moscas", mosca, index);
+    stages[level]->addEntity("moscas", mosca, index);
 }
 
 /*Agrega un Jefe en las posiciones dadas*/
@@ -363,7 +362,7 @@ void Juego::addBoss(float x, float y, int index){
     Texture* tex = it->second;
     boss->setTexture(tex);
     boss->setIndexZ(99);
-    stages[1]->addEntity("boss", boss, index);
+    stages[5]->addEntity("boss", boss, index);
     //stageActual->addEntity("boss", boss, index);
 }
 
@@ -375,7 +374,7 @@ void Juego::addBossBall(float x, float y, int index){
     Texture* tex = it->second;
     bossBall->setTexture(tex);
     bossBall->setIndexZ(99);
-    stages[1]->addSprite("bossBall", bossBall, index);
+    stages[5]->addSprite("bossBall", bossBall, index);
     //stageActual->addSprite("bossBall", bossBall, index);
 }
 
