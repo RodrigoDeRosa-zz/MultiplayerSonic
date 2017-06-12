@@ -7,14 +7,21 @@
 
 void* end_transition(void* arg){
 	Transicion* trancision = (Transicion*)arg;
-	sleep(10);
-	trancision->terminar();
+	sleep(2);
+	trancision->setTermino();
 	return NULL;
 }
 
-Transicion::Transicion(): Nivel(){
-	pthread_t timeThreadID;
-	void* timeThread_exit;
+Transicion::Transicion(): Nivel(1200){}
+
+void Transicion::terminar(){
+}
+
+void Transicion::setTermino(){
+	this->termino = true;
+}
+
+void Transicion::start(){
 	pthread_create(&timeThreadID, NULL, end_transition, this);
 }
 
@@ -29,6 +36,24 @@ void Transicion::moverEntidades(){}
 
 vector<out_message_t*> Transicion::getStatus(float camPos){
 	vector<out_message_t*> v;
+	if(!(this->changeLevelMessageSent)){
+		out_message_t* state = new out_message_t;
+		state->ping = CHANGE_LEVEL;
+		state->id = 0;
+		state->connection = true;
+		state->posX = 0;
+		state->posY = 0;
+		state->camPos = 0;
+		state->move = MOVE_TOTAL;
+		state->frame = 0;
+		state->rings = 0;
+		state->lives = 0;
+		state->points = 0;
+		state->state = NORMAL;
+		state->state_frame = 0;
+		this->changeLevelMessageSent = true;
+		v.push_back(state);
+	}
 	//mando 5 veces el mensaje de jugadores por las dudas de que una vez no llegue, despues solo frame updates
 	if(this->update_counter < 5){
 		for(int i=0; i < (this->players)->size(); i++){
@@ -36,26 +61,5 @@ vector<out_message_t*> Transicion::getStatus(float camPos){
 		}
 		this->update_counter++;
 	}
-
-	//mensaje de actualizar frame
-	out_message_t* state = new out_message_t;
-	memset(state, 0, sizeof(out_message_t));
-	state->ping = TRANSITION_UPDATE;
-	state->id = 0;
-	state->connection = true;
-	state->posX = 0;
-	state->posY = 0;
-	state->camPos = 0;
-	state->move = MOVE_TOTAL;
-	state->frame = this->frame;
-	state->rings = 0;
-	state->lives = 0;
-	state->points = 0;
-	state->state = NORMAL;
-	state->state_frame = 0;
-	v.push_back(state);
-	//
-
-	this->frame++;
 	return v;
 }

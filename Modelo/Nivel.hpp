@@ -16,13 +16,15 @@ protected:
 	vector<Puntaje*>* puntajes;
 	bool changeLevelMessageSent;
 	bool termino;
+	float end;
 public:
-		Nivel();
+		Nivel(float end);
 
 		void addPlayers( vector<Player*>* );
 		void addPuntajes( vector<Puntaje*>* );
 		void addEntidades( vector<Entidad*>* );
 
+		float getEnd();
 		void addEntidad(Entidad* entidad);
 		Player* getPlayer(string name);
 		virtual vector<string> getPlayerNames();
@@ -45,7 +47,8 @@ public:
 		vector<out_message_t*> getEntidadesStatus();
 		virtual vector<out_message_t*> getStatus(float camPos);
 		virtual void moverEntidades();
-		void terminar();
+		virtual void terminar();
+		virtual void start();
 		bool yaTermino();
 
 };

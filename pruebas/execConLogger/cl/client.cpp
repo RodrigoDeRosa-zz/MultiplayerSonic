@@ -89,6 +89,13 @@ void Client::updatePlayers(){
 	}
 }
 
+void Client::updateTransition(){
+    for(int i = 0; i < (this->players).size(); i++){
+        out_message_t* player = players[i];
+        this->juego->updateTransition(i, player->rings, player->lives, player->points);
+    }
+}
+
 bool Client::setConnectionInfo(struct addrinfo *srvInfo){
     serverInfo = srvInfo;
     /*Se crea el socket del cliente*/

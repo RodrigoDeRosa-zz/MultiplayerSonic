@@ -44,21 +44,23 @@ void Control::initNiveles(){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/
 
-	Nivel* nivel1 = new Nivel();
+	Nivel* nivel1 = new Nivel(LVL1_END);
 	this->niveles.push_back(nivel1);
 
-	Transicion* transicion = new Transicion();
-	this->niveles.push_back(transicion);
+	Transicion* transicion1 = new Transicion();
+	this->niveles.push_back(transicion1);
 
-    Nivel* nivel2 = new Nivel();
+    Nivel* nivel2 = new Nivel(LVL2_END);
     this->niveles.push_back(nivel2);
 
-    this->niveles.push_back(transicion);
+    Transicion* transicion2 = new Transicion();
+	this->niveles.push_back(transicion2);
 
-    Nivel* nivel3 = new Nivel();
+    Nivel* nivel3 = new Nivel(LVL3_END);
     this->niveles.push_back(nivel3);
 
-    this->niveles.push_back(transicion);
+    Transicion* transicion3 = new Transicion();
+	this->niveles.push_back(transicion3);
 }
 
 void Control::addPlayer(string playerName, int equipo){
@@ -174,9 +176,11 @@ void Control::handleInMessage(in_message_t* ev){
 void Control::update(){
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
-		if(this->nivelActual == this->niveles.size()){}//termino el juego, hacer algo
+		if(this->nivelActual == this->niveles.size()){return;}//termino el juego, hacer algo
+        this->cameraControl->reset(this->getNivelActual()->getEnd());
 		this->getNivelActual()->addPlayers(this->modelo->getPersonajes());
 		this->getNivelActual()->addPuntajes(this->modelo->getPuntajes());
+        this->getNivelActual()->start();
 	}
 	vector<string> players = this->getNivelActual()->getPlayerNames();
     for(int i=0; i < players.size(); i++){
@@ -185,6 +189,7 @@ void Control::update(){
     }
     this->getNivelActual()->moverEntidades();
     this->getNivelActual()->colisionarTodos();
+    this->getNivelActual()->terminar();
 }
 
 vector<out_message_t*> Control::getStatus(){
@@ -196,12 +201,19 @@ void Control::cambiarEquipo(string playerName, int equipo){
 }
 
 void Control::crearEntidades(){
+
 /*
 	Piedra* piedra = new Piedra(0,500, 345);
 	this->niveles[NIVEL1]->addEntidad(piedra);
 */	
 	Pinche* pinche = new Pinche(2, 500, 495);
 	this->niveles[NIVEL1]->addEntidad(pinche);
+
+	/*Piedra* piedra = new Piedra(0,500, 345);
+	this->niveles[NIVEL1]->addEntidad(piedra);*/
+	/*Pinche* pinche = new Pinche(2, 2000, 495);
+	this->niveles[NIVEL1]->addEntidad(pinche);*/
+
 
     /*Piedra* piedra1 = new Piedra(0,500, 345);
     this->niveles[NIVEL2]->addEntidad(piedra1);
@@ -215,11 +227,12 @@ void Control::crearEntidades(){
     this->niveles[NIVEL2]->addEntidad(pinche1);
     Escudo* bonus3 = new Escudo(0, 750, 426);
     this->niveles[NIVEL2]->addEntidad(bonus3);
+    */
     BonusMoneda* bonus4 = new BonusMoneda(1, 900, 426);
     this->niveles[NIVEL2]->addEntidad(bonus4);
 
-    Moneda* moneda1 = new Moneda(3, 550, 305);
-    this->niveles[NIVEL3]->addEntidad(moneda1);*/
+    Moneda* moneda1 = new Moneda(3, 550, 400);
+    this->niveles[NIVEL1]->addEntidad(moneda1);
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

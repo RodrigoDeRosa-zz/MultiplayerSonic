@@ -7,14 +7,17 @@
 using namespace std;
 
 class Transicion: public Nivel{
-	int frame;
 	int update_counter;
+	pthread_t timeThreadID;
 	public:
 		Transicion();
 		vector<string> getPlayerNames();
 		void colisionarTodos();
 		vector<out_message_t*> getStatus(float camPos);
 		void moverEntidades();
+		void setTermino();
+		void terminar();
+		void start();
 };
 
 #endif /*TRANSICION_HPP*/
