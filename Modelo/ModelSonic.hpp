@@ -36,7 +36,7 @@ public:
     // setea direcciones en cero y llama a set posicion inicio
     void stop();
 	void roll();
-	void caer();	
+	void caer(int dir);	
 	void lastimar();
     bool estaSaltando();
     bool estaRodando();

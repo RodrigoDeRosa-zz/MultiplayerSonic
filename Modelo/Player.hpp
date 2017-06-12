@@ -70,7 +70,7 @@ class Player{
 		void cargarMapCollitionBoxes();
 		void roll();
 		void lastimar();
-		void caer();
+		void caer(int dir);
 
 		void sumarPuntos(int puntos);
 		long getPuntos();

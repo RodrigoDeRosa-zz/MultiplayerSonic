@@ -148,8 +148,15 @@ void ModelSonic::stop(){
     this->bloque_pers->setPosicionInicio();
 }
 
-void ModelSonic::caer(){
-	this->bloque_pers->caer();
+void ModelSonic::caer(int dir){
+	switch(dir){
+		case -1:
+			this->bloque_pers->caerIzquierda();break;
+		case 0:
+			this->bloque_pers->caer();break;
+		case 1:
+			this->bloque_pers->caerDerecha();break;
+	}
 }
 
 bool ModelSonic::estaSaltando(){

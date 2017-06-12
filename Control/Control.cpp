@@ -190,9 +190,10 @@ void Control::cambiarEquipo(string playerName, int equipo){
 }
 
 void Control::crearEntidades(){
-/*
+
 	Piedra* piedra = new Piedra(0,500, 345);
 	this->niveles[0]->addEntidad(piedra);
+/*
 	Cangrejo* cangrejo = new Cangrejo(0,1000, 475);
 	this->niveles[0]->addEntidad(cangrejo);
     Pez* pez = new Pez(0, 800, 675);
@@ -200,7 +201,7 @@ void Control::crearEntidades(){
     Mosca* mosca = new Mosca(0,300, 225);
 	this->niveles[0]->addEntidad(mosca);
 */
-	Pinche* pinche = new Pinche(2, 1000, 495);
+	Pinche* pinche = new Pinche(2, 2000, 495);
 	this->niveles[0]->addEntidad(pinche);
 /*
 	Moneda* moneda = new Moneda(3, 550, 305);

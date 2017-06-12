@@ -22,12 +22,14 @@ class MoveSonic{
 		unsigned int cont_roll;
 		unsigned int cont_dmg;
 		float oldY;
+		float baseY;
         //La direccion se setea en true cuando esta para la derecha.
         bool direccion;
         bool jumping;
 		bool rolling;
 		bool in_dmg;
-		bool cayendo;
+		bool cayendo_izq;
+		bool cayendo_der;
         int frameActual;
         move_type moveActual;
     public:
@@ -50,8 +52,12 @@ class MoveSonic{
 		void agacharseIzquierda();
 		void decrementarVelocidad();
 		void caer();
+		void caerDerecha();
+		void caerIzquierda();
 		void cortarSalto();
 
+		void setBaseY(float newy);
+		float getBaseY();
         void update(float, float);
         bool estaSaltando();
 		bool estaRodando();

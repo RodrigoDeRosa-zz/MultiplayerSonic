@@ -227,8 +227,8 @@ void Player::lastimar(){
 	this->sonic->lastimar();
 }
 
-void Player::caer(){
-	this->sonic->caer();
+void Player::caer(int dir){
+	this->sonic->caer(dir);
 }
 
 out_message_t* Player::getStatus(float camPos){

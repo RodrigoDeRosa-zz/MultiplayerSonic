@@ -24,8 +24,8 @@
 #define VELOCIDAD 0.35
 #define RUN 0.7
 #define VELOCIDAD_ROLL	2
-#define VELOCIDAD_X_DMG	0.65
-#define VELOCIDAD_Y_DMG	0.05
+#define VELOCIDAD_X_DMG	0.85
+#define VELOCIDAD_Y_DMG	0.02
 #define VELOCIDAD_CAIDA	1.2
 /*FRAMES*/
 #define WALKING_ANIMATION_FRAMES 14
@@ -35,7 +35,7 @@
 //#define BALL_ANIMATION_FRAMES	6
 //#define CROUCH_ANIMATION_FRAMES 2
 #define BRAKE_ANIMATION_FRAMES	5
-#define DMG_ANIMATION_FRAMES	5		
+#define DMG_ANIMATION_FRAMES	5		//TODO: cambiar a los que van posta
 
 MoveSonic::MoveSonic(float x, float y){
     originX = x;
@@ -56,10 +56,12 @@ MoveSonic::MoveSonic(float x, float y){
     jumping = false;
 	rolling = false;
 	in_dmg = false;
-	cayendo = false;
+	cayendo_der = false;
+	cayendo_izq = false;
 	cont_dmg=0;
 	cont_roll=0;
 	oldY=0.0;
+	baseY=Y_PISO;
 }
 
 void MoveSonic::setPosicionInicio(){
@@ -72,7 +74,8 @@ void MoveSonic::setPosicionInicio(){
     jumping = false;
 	rolling = false;
 	in_dmg = false;
-	cayendo = false;
+	cayendo_izq = false;
+	cayendo_der = false;
 	charges = 0;
     if( frameQuiet / (FACTOR*QUIET_ANIMATION_FRAMES) >= QUIET_ANIMATION_FRAMES){
         frameQuiet=0;
@@ -140,7 +143,7 @@ void MoveSonic::jump(float vel_x,float vel_y){
         jumping = false;
         tiempoY = 0.0;
 		//si termino de caer y sigue flotando que caiga
-		if(originY + 5 < Y_PISO){//5 es un numero supermagico 
+		if(originY < baseY){//5 es un numero supermagico 
 			this->caer();
 		} 
     }
@@ -318,7 +321,57 @@ void MoveSonic::correrIzquierda(){
     originX += vel;
 }
 
+void MoveSonic::caerDerecha(){
+	cayendo_izq = false;
+	if(!cayendo_der){	//la primera vez que se llama solo setea en true y se va
+		cayendo_der=true;
+		return;
+	}
+	if( frameRight / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+       	frameRight=0;
+   	}
+	frameActual = (frameRight/JUMPING_ANIMATION_FRAMES);
+	moveActual = JUMPD;
+	originX += VELOCIDAD;
+	//end:caminarDerecha
+	frameRight++;
+	originY+=VELOCIDAD_CAIDA;
+
+	if(originY >= Y_PISO){//si ya esta a la altura del piso
+		cayendo_der=false;	
+		originY = Y_PISO;	//por las dudas
+		this->setPosicionInicio();
+		return;
+	}
+}
+
+void MoveSonic::caerIzquierda(){
+	cayendo_der = false;
+	if(!cayendo_izq){	//la primera vez que se llama solo setea en true y se va
+		cayendo_izq=true;
+		return;
+	}
+	//caminarIzquierda() pero con JUMPI
+	if( frameLeft / (JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
+       	frameLeft=0;
+   	}
+   	frameActual = (frameLeft/JUMPING_ANIMATION_FRAMES);
+   	moveActual = JUMPI;
+   	originX -= VELOCIDAD;
+	//end:caminarIzquierda
+	frameLeft++;
+	originY+=VELOCIDAD_CAIDA;
+
+	if(originY >= Y_PISO){//si ya esta a la altura del piso
+		cayendo_izq=false;	
+		originY = Y_PISO;	//por las dudas
+		this->setPosicionInicio();
+		return;
+	}
+}
 void MoveSonic::caer(){
+	//IMPL ORIGINAL
+/*
 	if(!cayendo){	//la primera vez que se llama solo setea en true y se va
 		cayendo=true;
 		return;
@@ -355,6 +408,21 @@ void MoveSonic::caer(){
 		this->setPosicionInicio();
 		return;
 	}
+*/
+	//IMPL CON CAERIZQ Y CAERDER
+	if (cayendo_der){
+		this->caerDerecha();
+	}
+	if (cayendo_izq){
+		this->caerIzquierda();
+	}
+	//si no estaba cayendo
+	if (direccion){
+		this->caerDerecha();
+	}
+	else{
+		this->caerIzquierda();
+	}
 }
 
 
@@ -381,7 +449,7 @@ bool MoveSonic::estaDaniado(){
 }
 
 bool MoveSonic::estaCayendo(){
-	return cayendo;
+	return cayendo_izq || cayendo_der;
 }
 
 int MoveSonic::getX(){
@@ -400,6 +468,13 @@ void MoveSonic::setY(float new_y){
     originY = new_y;
 }
 
+void MoveSonic::setBaseY(float newy){
+	baseY=newy;
+}
+
+float MoveSonic::getBaseY(){
+	return baseY;
+}
 
 void MoveSonic::frenarDerecha(){
 	bool cambiarFrameActual = true;
@@ -493,7 +568,8 @@ void MoveSonic::damage(){
 	noActionCounter=0;
 	if (!in_dmg){
 		rolling = false;
-		cayendo = false;
+		cayendo_izq = false;
+		cayendo_der = false;
 		jumping = false;
 		in_dmg=true;
 		cont_dmg=0;

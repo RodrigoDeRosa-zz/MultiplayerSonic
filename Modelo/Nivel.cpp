@@ -180,7 +180,7 @@ void Nivel::colisionarTodos() {
 			}
 		}
         if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() > 425){
-            (*players)[i]->caer();
+            (*players)[i]->caer(0);
         colisionoPiedra = false;
         }
 	}

@@ -46,5 +46,8 @@ out_message_t* Jefe::getInitMessage(){
 	return this->Entidad::getOutMessage(BOSS_SET);
 }
 
-void Jefe::getAnclaje(float* x, float* y){}
+void Jefe::getAnclaje(float* targetX, float* targetY){
+	*targetX = this->x + WIDTH/2.0;
+ 	*targetY = this->y + HEIGHT/4.0*3.0;
+}
 
