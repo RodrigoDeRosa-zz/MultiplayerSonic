@@ -18,6 +18,10 @@ void ModelSonic::cortarSalto() {
     bloque_pers->cortarSalto();
 }
 
+bool ModelSonic::estaMirandoADer(){
+	return bloque_pers->estaMirandoADer();
+}
+
 /*Funciones de movimiento*/
 void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 
@@ -98,6 +102,9 @@ float ModelSonic::getX(){
     return bloque_pers->getX();
 }
 
+void ModelSonic::setCayendo(){
+	bloque_pers->setCayendo();
+}
 float ModelSonic::getY(){
     return bloque_pers->getY();
 }
@@ -157,6 +164,10 @@ void ModelSonic::caer(int dir){
 		case 1:
 			this->bloque_pers->caerDerecha();break;
 	}
+}
+
+void ModelSonic::setBaseY(float newy){
+	this->bloque_pers->setBaseY(newy);
 }
 
 bool ModelSonic::estaSaltando(){

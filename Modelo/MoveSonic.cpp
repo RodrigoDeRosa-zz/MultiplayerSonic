@@ -139,17 +139,23 @@ void MoveSonic::jump(float vel_x,float vel_y){
 
     //Este chequeo se hace para que vuelva a empezar de 0 el salto.
     if(tiempoY >= (SALTO*-1) && jumping){
+		tiempoY = SALTO*-1;
+	}
+	if(originY >= baseY && tiempoY > 0){
         tiempoSalto = 0.0;
         jumping = false;
         tiempoY = 0.0;
+		originY = baseY;
+		this->setPosicionInicio();
 		//si termino de caer y sigue flotando que caiga
-		if(originY > baseY){//5 es un numero supermagico
+/*
+		if(originY > 225 && originY < 425){//5 es un numero supermagico
 			this->caer();
-		} 
+		}
+*/
     }
 
 }
-
 
 void MoveSonic::roll(){
 	if (jumping || false){//si esta saltando (u otros casos limitantes) ignorar
@@ -321,6 +327,19 @@ void MoveSonic::correrIzquierda(){
     originX += vel;
 }
 
+
+void MoveSonic::setCayendo(){
+	if (cayendo_der || cayendo_izq){
+		return;
+	}
+	if(direccion){
+		cayendo_der=true;
+	}
+	else{
+		cayendo_izq=true;		
+	}		
+}
+
 void MoveSonic::caerDerecha(){
 	cayendo_izq = false;
 	if(!cayendo_der){	//la primera vez que se llama solo setea en true y se va
@@ -337,10 +356,10 @@ void MoveSonic::caerDerecha(){
 	frameRight++;
 	originY+=VELOCIDAD_CAIDA;
 
-	if(originY >= Y_PISO){//si ya esta a la altura del piso
+	if(originY >= baseY){//si ya esta a la altura del piso
 		cayendo_der=false;	
-		originY = Y_PISO;	//por las dudas
 		this->setPosicionInicio();
+		originY = baseY;	//por las dudas		
 		return;
 	}
 }
@@ -362,13 +381,14 @@ void MoveSonic::caerIzquierda(){
 	frameLeft++;
 	originY+=VELOCIDAD_CAIDA;
 
-	if(originY >= Y_PISO){//si ya esta a la altura del piso
+	if(originY >= baseY){//si ya esta a la altura del piso
 		cayendo_izq=false;	
-		originY = Y_PISO;	//por las dudas
 		this->setPosicionInicio();
+		originY = baseY;	//por las dudas
 		return;
 	}
 }
+
 void MoveSonic::caer(){
 	//IMPL ORIGINAL
 /*

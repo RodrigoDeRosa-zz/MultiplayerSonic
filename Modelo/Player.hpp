@@ -66,12 +66,13 @@ class Player{
 		float getCentroY();
 
 		out_message_t* getStatus(float camPos);
-
+		void setCayendo();
+		bool estaMirandoADer();
 		void cargarMapCollitionBoxes();
 		void roll();
 		void lastimar();
 		void caer(int dir);
-
+		void setBaseY(float newy);
 		void sumarPuntos(int puntos);
 		long getPuntos();
 

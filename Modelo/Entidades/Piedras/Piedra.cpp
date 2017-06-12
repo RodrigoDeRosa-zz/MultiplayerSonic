@@ -6,7 +6,7 @@
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/
 #define FACTOR_DIFERENCIAL_H 5
-#define THRESHOLD_DIST	10.0
+#define THRESHOLD_DIST	20.0
 
 using namespace std;
 
@@ -39,18 +39,23 @@ void Piedra::afectarA(Player* jugador){
 		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
 	
 		//TODO: agregar un getter de direccion del moveSonic, asi si viene de la izquierda y toca borde izquierdo no colisiona
-		if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_DIST)){
+
+		if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_DIST) && jugador->estaMirandoADer()){
 			jugador->caer(1);
 			jugador->setY(posicion);
 			return;
 		}
-		if (jugador->getX() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST)){
+		if (jugador->getX() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST) && !(jugador->estaMirandoADer())){
 			jugador->caer(-1);
 			jugador->setY(posicion);
 			return;		
 		}
+
 		//esta en el medio
-		jugador->setY(posicion);
+		if (jugador->getY() > posicion){		
+			jugador->setY(posicion);
+		}
+		jugador->setBaseY(posicion);
 	
 		
 		/*
