@@ -114,7 +114,7 @@ EntityGroup* Stage::getEntityGroup(string groupKey){
     it = entityGroups.find(groupKey);
     if (it == entityGroups.end()){
         //Si no existe el grupo, no hace nada
-        printf("EntityGroup %s no existe!\n", groupKey);
+        printf("EntityGroup %s no existe!\n", groupKey.c_str());
         return NULL;
     }
     return it->second; //Se agarra el valor de la clave.
@@ -128,7 +128,7 @@ void Stage::initScore(int mode){
 void Stage::addSprite(string groupKey, Sprite* sprite, int index){
     SpriteGroup* group = getSpriteGroup(groupKey);
     if (!group){
-        printf("Grupo %s no encontrado!\n", groupKey);
+        printf("Grupo %s no encontrado!\n", groupKey.c_str());
         return;
     }
     group->add(sprite, index); //Se añade el sprite

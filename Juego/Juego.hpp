@@ -72,19 +72,19 @@ class Juego{
     void updateBossBall(out_message_t*);
 
     /*Agrega una piedra en las posiciones dadas*/
-    void addPiedra(float x, float y, int t, int index);
+    void addPiedra(float x, float y, int t, int index, int level);
     /*Agrega pinches en las posiciones dadas*/
-    void addPinche(float x, float y, int index);
+    void addPinche(float x, float y, int index, int level);
     /*Agrega una moneda en las posiciones dadas*/
-    void addMoneda(float x, float y, int index);
+    void addMoneda(float x, float y, int index, int level);
     /*Agrega un bonus en las posiciones dadas*/
-    void addBonus(float x, float y, int t, int index);
+    void addBonus(float x, float y, int t, int index, int level);
     /*Agrega un pez en las posiciones dadas*/
-    void addPez(float x, float y, int index);
+    void addPez(float x, float y, int index, int level);
     /*Agrega un cangrejo en las posiciones dadas*/
-    void addCangrejo(float x, float y, int index);
+    void addCangrejo(float x, float y, int index, int level);
     /*Agrega una mosca en las posiciones dadas*/
-    void addMosca(float x, float y, int index);
+    void addMosca(float x, float y, int index, int level);
     /*Agrega un Jefe en las posiciones dadas*/
     void addBoss(float x, float y, int index);
     /*Agrega la bola del Jefe en las posiciones dadas*/
