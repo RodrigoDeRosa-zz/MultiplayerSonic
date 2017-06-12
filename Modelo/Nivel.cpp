@@ -105,11 +105,12 @@ void Nivel::moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,f
 	}
 }
 
-void Nivel::setPlayerConnection(string playerName, bool connection){
-	Player* player = this->getPlayer(playerName);
-	player->setConnected(connection);
+void Nivel::setPlayerConnection(string playerName, bool connection) {
+	Player *player = this->getPlayer(playerName);
+	if (player) {
+		player->setConnected(connection);
+	}
 }
-
 vector<string> Nivel::getDisconnectedPlayers(){
 	vector<string> names;
 	for(int i = 0; i < players->size(); i++){
@@ -179,7 +180,7 @@ void Nivel::colisionarTodos() {
 				}
 			}
 		}
-        if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() > 425){
+        if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() >= 345  && (*players)[i]->getY() < 425 ){
             (*players)[i]->caer(0);
         colisionoPiedra = false;
         }
