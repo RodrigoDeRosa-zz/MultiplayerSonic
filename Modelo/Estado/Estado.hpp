@@ -5,7 +5,7 @@
 
 class Estado{
 	state_type estado;
-	int frame;
+	int frame, frameSum;
 public:
 	Estado();
 	state_type get();

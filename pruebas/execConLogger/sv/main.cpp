@@ -318,7 +318,7 @@ void* outStatesHandle(void* arg){
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
         }
-        usleep(5000);
+        usleep(10000);
     }
 
     return NULL;

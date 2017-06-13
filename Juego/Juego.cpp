@@ -13,6 +13,7 @@
 #include "Entidades/Invencibilidad.hpp"
 #include "Entidades/Boss.hpp"
 #include "Entidades/BossBall.hpp"
+#include "Entidades/BossWaves.hpp"
 #include "PantallaInicio/InitStage.hpp"
 #include "PantallaTransicion/TransitionStageSingle.hpp"
 #include "PantallaTransicion/TransitionStageCoop.hpp"
@@ -74,13 +75,14 @@ Stage* Juego::createLevel(int n, gameMode mode){
     level->addSpriteGroup("piedras");
     level->addSpriteGroup("pinches");
     level->addSpriteGroup("plataformas");
-    level->addSpriteGroup("bossBall");
     level->addEntityGroup("cangrejos");
     level->addEntityGroup("monedas");
     level->addEntityGroup("moscas");
     level->addEntityGroup("peces");
     level->addEntityGroup("bonus");
+    level->addEntityGroup("bossWaves");
     level->addEntityGroup("boss");
+    level->addSpriteGroup("bossBall");
     //Definicion de tipo de puntaje
     level->initScore((int) mode);
     //Fondo del nivel
@@ -165,6 +167,10 @@ void Juego::setTexturas(){
     Texture* bossBall = new Texture();
     bossBall->loadFromFile("Graficos/bola_malo.png");
     texturas.insert(make_pair("bossBall", bossBall));
+    /*Textura de las ondas del jefe*/
+    Texture* bossWaves = new Texture();
+    bossWaves->loadFromFile("Graficos/onda_jefe.png");
+    texturas.insert(make_pair("bossWaves", bossWaves));
     /*Textura de la plataforma aerea*/
     Texture* plataforma = new Texture();
     plataforma->loadFromFile("Graficos/base_aerea.png");
@@ -278,6 +284,10 @@ void Juego::updateBonus(out_message_t* message){
 
 void Juego::updateBoss(out_message_t* message){
     updateStageEntitySense("boss", message);
+}
+
+void Juego::updateBossWaves(out_message_t* message){
+    updateStageEntity("bossWaves", message);
 }
 
 void Juego::updateBossBall(out_message_t* message){
@@ -397,6 +407,17 @@ void Juego::addBoss(float x, float y, int index, int level){
     boss->setTexture(tex);
     boss->setIndexZ(99);
     stages[level]->addEntity("boss", boss, index);
+}
+
+/*Agrega un Jefe en las posiciones dadas*/
+void Juego::addBossWaves(float x, float y, int index, int level){
+    BossWaves* bossWaves = new BossWaves(x, y);
+    map<string, Texture*>::iterator it;
+    it = texturas.find("bossWaves");
+    Texture* tex = it->second;
+    bossWaves->setTexture(tex);
+    bossWaves->setIndexZ(99);
+    stages[level]->addEntity("bossWaves", bossWaves, index);
 }
 
 /*Agrega la bola del Jefe en las posiciones dadas*/

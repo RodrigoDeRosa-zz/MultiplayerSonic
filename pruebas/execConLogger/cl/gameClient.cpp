@@ -77,6 +77,7 @@ void* initGame(void *arg){
         } else if (message->ping == FISH_SET){
             client->getJuego()->addPez(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BOSS_SET){
+            client->getJuego()->addBossWaves(message->posX, message->posY, message->id, message->state_frame);
             client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BALL_SET){
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
@@ -164,13 +165,19 @@ void* f_view(void* arg){
             self->getJuego()->updateBonus(message);
         } else if (message->ping == BOSS_UPDATE){
             self->getJuego()->updateBoss(message);
+            message->posX = message->posX-125;
+            self->getJuego()->updateBossWaves(message);
         } else if (message->ping == BALL_UPDATE){
             self->getJuego()->updateBossBall(message);
         } else if (message->ping == CHANGE_LEVEL){
             k++;
-            if (k == 1) continue;
+            if (k == 1){
+                delete message;
+                continue;
+            }
             self->getJuego()->nextStage();
         }
+        delete message;
 	}
     self->cleanPlayers();
 
@@ -267,13 +274,21 @@ void* viewControl(void* arg){
         }
         self->getJuego()->unclickInit();
         //Juego
+        int k = 0;
         while(self->gameOn()){
             /*Limpiar pantalla*/
             Renderer::getInstance().setDrawColor(255, 255, 255, 1);
             Renderer::getInstance().clear();
             /*Actualizar entidades*/
-            if (self->getJuego()->isLevel()) self->updatePlayers();
-            else self->updateTransition();
+            if (self->getJuego()->isLevel()){
+                self->updatePlayers();
+                if (k!=0) k = 0;
+            } else{
+                if (k == 0){
+                    self->updateTransition();
+                    k = 1;
+                }
+            }
             /*Renderizar*/
             self->getJuego()->render();
             Renderer::getInstance().draw();

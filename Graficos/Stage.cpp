@@ -89,12 +89,14 @@ void Stage::addLayer(Layer* layer){
 void Stage::render(Camara* camara){
     if (background) background->render(camara);
     if (front) front->render(camara);
+    entityGroups.at("bossWaves")->render(camara);
     /*Recorre todos los SpriteGroups y los renderiza*/
+    for (map<string, EntityGroup*>::iterator it = entityGroups.begin(); it != entityGroups.end(); it++){
+        if (!it->first.compare("bossWaves")) continue;
+        it->second->render(camara); //it->second es el valor, es decir, el entityGroup
+    }
     for (map<string, SpriteGroup*>::iterator it = spriteGroups.begin(); it != spriteGroups.end(); it++){
         it->second->render(camara); //it->second es el valor, es decir, el spriteGroup
-    }
-    for (map<string, EntityGroup*>::iterator it = entityGroups.begin(); it != entityGroups.end(); it++){
-        it->second->render(camara); //it->second es el valor, es decir, el entityGroup
     }
     if (score) score->render();
 }
