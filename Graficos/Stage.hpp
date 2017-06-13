@@ -59,6 +59,8 @@ class Stage{
 
         void initScore(int mode);
         void updateScore(int index, int rings, int lives, int points, bool state);
+        void updateTeamScore(int team, int rings, int points);
+        void updateCoopScore(int rings, int points);
 
         void removeSprite(string groupKey, int index);
         void removeEntity(string groupKey, int index);
@@ -70,6 +72,8 @@ class Stage{
 		void setDimensions(int w, int h);
 		Stage& getInstance();
         virtual void setPlayerInfo(int, int, int, int);
+        virtual void setCoopInfo(int, int, int);
+        virtual void setTeamInfo(int, int, int, int);
         virtual void setValues();
         virtual void setClicked();
         virtual void unclick();

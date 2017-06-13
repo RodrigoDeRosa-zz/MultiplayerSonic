@@ -50,6 +50,14 @@ void TransitionStage::setPlayerInfo(int player, int rings, int points, int total
     playerInfo[player][2] = total;
 }
 
+void TransitionStage::setCoopInfo(int rings, int points, int total){
+    //virtual
+}
+
+void TransitionStage::setTeamInfo(int team, int rings, int points, int total){
+    //virtual
+}
+
 void TransitionStage::setValues(){
     //Virtual
 }

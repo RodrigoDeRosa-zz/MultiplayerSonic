@@ -153,7 +153,15 @@ void* f_view(void* arg){
         if(message->ping == PLAYER_UPDATE){
             self->updatePlayer(message);
             self->getJuego()->updateCamara(message->camPos,0);
-        } else if (message->ping == COIN_UPDATE){
+        /*} else if (message->ping == COOP_UPDATE){
+            self->getJuego()->updateCoopScore(message->rings, message->points);
+        } else if (message->ping == TEAM_UPDATE){
+            self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
+        } else if (message->ping == TRANSITION_TEAM){
+            self->getJuego()->updateTeamTransition(message->id, message->rings, message->points);
+        } else if (message->ping == TRANSITION_COOP){
+            self->getJuego()->updateCoopTransition(message->rings, message->points);
+        */} else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);
         } else if (message->ping == CRAB_UPDATE){
             self->getJuego()->updateCangrejo(message);

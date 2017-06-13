@@ -23,6 +23,8 @@ class TransitionStage : public Stage{
         TransitionStage(int w, int h);
         ~TransitionStage();
         void setPlayerInfo(int player, int rings, int points, int total);
+        virtual void setCoopInfo(int rings, int points, int total);
+        virtual void setTeamInfo(int team, int rings, int points, int total);
         virtual void setValues();
         void render();
         void render(Camara*);
