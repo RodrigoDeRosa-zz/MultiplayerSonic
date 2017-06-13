@@ -256,6 +256,7 @@ void Control::crearEntidades(){
 	Ubicador* ubicador = new Ubicador();
 	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
 	for(int i = 0; i < this->niveles.size(); i++){
+		if(i && ((i%2) == 0)) continue;
 		vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
 		for(int j=0; j < ternas->size(); j++){
 			this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[i]));
