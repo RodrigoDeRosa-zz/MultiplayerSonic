@@ -80,6 +80,8 @@ void* initGame(void *arg){
             client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BALL_SET){
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
+        } else if (message->ping == PLATFORM_SET){
+            client->getJuego()->addPlataforma(message->posX, message->posY, message->id, message->state_frame);
         }
         delete message;
     }
@@ -145,8 +147,6 @@ void* f_view(void* arg){
 	while (self->gameOn()){
 		out_message_t* message = self->getEventReceived();
         if (!message){
-        	//renderizar
-            usleep(2000);
             continue;
         }
         if(message->ping == PLAYER_UPDATE){
@@ -266,7 +266,6 @@ void* viewControl(void* arg){
             /*Renderizar*/
             self->getJuego()->render();
             Renderer::getInstance().draw();
-            usleep(2000);
         }
         pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 

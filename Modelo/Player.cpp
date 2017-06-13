@@ -272,7 +272,12 @@ out_message_t* Player::getStatus(float camPos){
 	status->rings = this->getMonedas();
 	status->lives = this->getVidas();
 	status->points = this->getPuntos();
-    status->state = this->getEstado();
+    switch(this->getEstado()){
+        case PRUEBA:
+            status->state = ESCUDO;
+        default:
+            status->state = this->getEstado();
+    }
     status->state_frame = this->estado->getFrame();
     return status;
 }

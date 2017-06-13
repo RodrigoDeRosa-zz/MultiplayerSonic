@@ -47,6 +47,11 @@ void Nivel::start(){
 	}
 }
 
+void Nivel::setPrueba(string playerName){
+	Player* player = this->getPlayer(playerName);
+	if(player->getEstado() == PRUEBA) player->setEstado(NORMAL);
+	else player->setEstado(PRUEBA);
+}
 
 void Nivel::addEntidades( vector<Entidad*>* vec){
 	this->entidades = vec;

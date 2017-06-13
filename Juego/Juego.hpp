@@ -74,6 +74,8 @@ class Juego{
 
     /*Agrega una piedra en las posiciones dadas*/
     void addPiedra(float x, float y, int t, int index, int level);
+    /*Agrega una plataforma aerea en las posiciones dadas*/
+    void addPlataforma(float x, float y, int index, int level);
     /*Agrega pinches en las posiciones dadas*/
     void addPinche(float x, float y, int index, int level);
     /*Agrega una moneda en las posiciones dadas*/

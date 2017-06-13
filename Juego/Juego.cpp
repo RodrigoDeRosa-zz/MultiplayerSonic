@@ -3,6 +3,7 @@
 #include "SegaFactory.hpp"
 #include "Entidades/Piedra.hpp"
 #include "Entidades/Pinche.hpp"
+#include "Entidades/Plataforma.hpp"
 #include "Entidades/Moneda.hpp"
 #include "Entidades/Bonus.hpp"
 #include "Entidades/Cangrejo.hpp"
@@ -72,6 +73,7 @@ Stage* Juego::createLevel(int n, gameMode mode){
     //Inicializacion de spritegroups
     level->addSpriteGroup("piedras");
     level->addSpriteGroup("pinches");
+    level->addSpriteGroup("plataformas");
     level->addSpriteGroup("bossBall");
     level->addEntityGroup("cangrejos");
     level->addEntityGroup("monedas");
@@ -163,6 +165,10 @@ void Juego::setTexturas(){
     Texture* bossBall = new Texture();
     bossBall->loadFromFile("Graficos/bola_malo.png");
     texturas.insert(make_pair("bossBall", bossBall));
+    /*Textura de la plataforma aerea*/
+    Texture* plataforma = new Texture();
+    plataforma->loadFromFile("Graficos/base_aerea.png");
+    texturas.insert(make_pair("plataforma", plataforma));
 }
 /*SERVER*/
 //void Juego::updateJugadores(map <string, vector <float> > jug){
@@ -299,6 +305,17 @@ void Juego::addPiedra(float x, float y, int type, int index, int level){
     piedra->setTexture(tex);
     piedra->setIndexZ(99);
     stages[level]->addSprite("piedras", piedra, index);
+}
+
+void Juego::addPlataforma(float x, float y, int index, int level){
+    Plataforma* plataforma = new Plataforma(x, y);
+    //Carga de textura
+    map<string, Texture*>::iterator it;
+    it = texturas.find("plataforma");
+    Texture* tex = it->second;
+    plataforma->setTexture(tex);
+    plataforma->setIndexZ(99);
+    stages[level]->addSprite("plataformas", plataforma, index);
 }
 
 /*Agrega pinches en las posiciones dadas*/
