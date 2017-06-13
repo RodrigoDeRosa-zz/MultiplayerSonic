@@ -3,7 +3,7 @@
 
 #include "Entidad.hpp"
 
-#define CANT_VIDAS_JEFE 3
+#define CANT_VIDAS_JEFE 1000
 
 
 using namespace std;

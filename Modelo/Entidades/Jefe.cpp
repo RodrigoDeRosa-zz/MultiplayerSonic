@@ -7,8 +7,8 @@
 #define BOSS_MOV_SPAN 1500		//calcular junto con la bola segun la pantalla
 #define BOSS_MOV_SPEED 0.2		//cuanto se mueve por vez
 
-#define BOSS_FRAME_FACTOR 8
-#define BOSS_CANT_FRAMES 24
+#define BOSS_FRAME_FACTOR 30
+#define BOSS_CANT_FRAMES 12
 
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
 //.. el movimiento de la bola!

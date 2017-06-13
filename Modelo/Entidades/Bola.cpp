@@ -20,7 +20,7 @@ static float Xs[]={
 };
 //Por ahora estamos trabajando con len(Xs)=len(Ys)=15
 #define LARGO_X_Y 15
-#define FACTOR_MOVIMIENTO_BOLA 4
+#define FACTOR_MOVIMIENTO_BOLA 30
 //Los extra del principio y final están ahi para que parezca que frena un toque, lo va a hacer..
 //.. como 4 veces porque va y viene
 static float Ys[]={
@@ -36,14 +36,14 @@ void Bola::mover(){
 
 	//muevo la bola segun contador actual
 	this->x = jefeX + Xs[contador_mov/FACTOR_MOVIMIENTO_BOLA] - WIDTH/2;
-	this->y = jefeY + Ys[contador_mov/FACTOR_MOVIMIENTO_BOLA] - HEIGHT/2;
+	this->y = jefeY + Ys[contador_mov/FACTOR_MOVIMIENTO_BOLA] + HEIGHT/2;
 
 	if (direccion){//si esta yendo hacia la derecha
 		//incremento el contador
 		contador_mov++;
-		if (contador_mov >= LARGO_X_Y){
+		if (contador_mov >= LARGO_X_Y*FACTOR_MOVIMIENTO_BOLA){
 			direccion=false;
-			contador_mov = LARGO_X_Y -1;
+			contador_mov = LARGO_X_Y*FACTOR_MOVIMIENTO_BOLA -1;
 		}
 	}
 	else{//si esta yendo hacia la izquierda	
