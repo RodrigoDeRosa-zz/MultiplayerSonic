@@ -20,25 +20,42 @@ void Piedra::afectarA(Player* jugador){
 	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
 
 		float posicion = jugador->getX();
+
+		//MIRANDO SOLO LA DIRECCION
+/*
+		
 		// el jugador venia de la izquierda y se choca con el costado izquierdo de la piedra
 		if(jugador->getDirX() > 0){
-		//TODO: reemplazar por un getter de direccion del moveSonic
 			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - 5;
 		}
 		// el jugador venia de la derecha sin saltar y se choca con el costado derecho de la piedra
 		else if(jugador->getDirX() < 0 ){
-		//TODO: reemplazar por un getter de direccion del moveSonic
 			posicion = this->Entidad::getBordeDer() + 5;
 		}
 		jugador->setX(posicion);
+		
+		//SOLO DIRECCION
+*/
+
+		//MIRANDO SOLO LA POSICION
+
+
+		if(posicion < (this->Entidad::getBordeIzq()+WIDTH/2.0)){//esta en la mitad izquierda de la piedra
+			//if (jugador->estaMirandoADer()){//esta mirando a la derecha
+			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - FACTOR_DIFERENCIAL_H;		
+		}
+		else{//esta en la mitad derecha de la piedra
+			posicion = this->Entidad::getBordeDer() + FACTOR_DIFERENCIAL_H;
+		}
+		jugador->setX(posicion);
+
+		//SOLO POSICION
 	}
 
 	//seteo la y del jugador al borde superior de la piedra(teniendo en cuenta el alto de la imagen)
 	else{
 		float posicion = this->Entidad::getBordeArriba() -  (jugador->getBordeAbajo() - jugador->getBordeArriba()); /*el alto del frame actual*/
 		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
-
-		//TODO: agregar un getter de direccion del moveSonic, asi si viene de la izquierda y toca borde izquierdo no colisiona
 
 		if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_DIST) && jugador->estaMirandoADer()){
 			jugador->caer(1);
