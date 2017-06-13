@@ -194,6 +194,11 @@ void Control::handleInMessage(in_message_t* ev){
 		//return;
 	}
 
+	if(ev->key == UP_DOWN){
+		this->getNivelActual()->setPrueba(playerName);
+		//return;
+	}
+
 	//muevo el jugador y la camara con las direcciones obtenidas
 	this->getNivelActual()->movePlayer(playerName,directions[0], directions[1]);
 }

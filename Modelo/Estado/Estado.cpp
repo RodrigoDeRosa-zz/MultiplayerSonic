@@ -13,8 +13,13 @@ state_type Estado::get(){
 }
 
 void Estado::set(state_type estado){
-	if(estado == INVENCIBLE) this->setInvencible();
-	else this->estado = estado;
+	if(this->estado == PRUEBA){
+		if(estado == NORMAL) this->estado = estado;
+	}
+	else{
+		if(estado == INVENCIBLE) this->setInvencible();
+		else this->estado = estado;
+	}
 }
 
 void* state_change(void* arg){
@@ -27,9 +32,7 @@ void* state_change(void* arg){
 void Estado::setInvencible(){
 	this->estado = INVENCIBLE;
 	pthread_t timeThreadID;
-	void* timeThread_exit;
 	pthread_create(&timeThreadID, NULL, state_change, this);
-	//pthread_join(timeThreadID, &timeThread_exit);
 }
 
 void Estado::updateFrame(){
@@ -51,5 +54,7 @@ bool Estado::recibirGolpe(){
 			return false;
 		case NORMAL:
 			return true;
+		case PRUEBA:
+			return false;
 	}
 }
