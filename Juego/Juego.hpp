@@ -17,6 +17,7 @@
   creados desde afuera (en este caso el jsonLoader)*/
 class Juego{
     Jugadores* jugadores;
+    gameMode modoJuego;
     map<string, Texture*> texturas;
     /*Se setean las texturas de todas las entidades*/
     void setTexturas();

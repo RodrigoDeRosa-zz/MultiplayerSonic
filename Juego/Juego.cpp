@@ -41,6 +41,7 @@ using namespace std;
 /*get sonic privada
  en jugadores que se cree un personaje generico*/
 Juego::Juego(gameMode mode){
+    modoJuego = mode;
     Jugadores* jugs = new Jugadores();
     setJugadores(jugs);
     setFactory();
@@ -114,11 +115,13 @@ void Juego::updateTransition(int id, int rings, int points){
 }
 
 void Juego::updateCoopTransition(int rings, int points){
-    stageActual->setCoopInfo(rings, points, rings + points);
+    if (modoJuego == COOP)
+        stageActual->setCoopInfo(rings, points, rings + points);
 }
 
 void Juego::updateTeamTransition(int team, int rings, int points){
-    stageActual->setTeamInfo(team, rings, points, rings + points);
+    if (modoJuego == EQUIPOS)
+        stageActual->setTeamInfo(team, rings, points, rings + points);
 }
 
 bool Juego::stageReady(){
