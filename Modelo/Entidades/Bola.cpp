@@ -54,7 +54,9 @@ void Bola::mover(){
 	}
 }
 
-Bola::Bola(float x, float y) : Entidad(0,x,y,WIDTH,HEIGHT){}
+Bola::Bola(float x, float y, Jefe* j) : Entidad(0,x,y,WIDTH,HEIGHT){
+	this->jefe = j;
+}
 
 void Bola::destruir(){
 	this->destruida = true;
@@ -63,6 +65,7 @@ void Bola::destruir(){
 void Bola::afectarA(Player* jugador){
 	//no importa si esta atacando esto lo lastima
 	jugador->recibirGolpe();
+	//TODO necesita tambien el lastimar?
 }
 
 out_message_t* Bola::getOutMessage(){

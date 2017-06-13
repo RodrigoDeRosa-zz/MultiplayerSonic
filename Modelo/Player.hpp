@@ -19,6 +19,7 @@ class Player{
 	bool connected;
 	int monedas;
 	int vidas;
+	int scoreIndiv;
     map <move_type, vector<float> > collitionBoxes;
 	Puntaje* puntaje;
 	Estado* estado;
@@ -45,7 +46,10 @@ class Player{
 		bool llegoAlFinal();
 		void setEstado(state_type estado);
 		state_type getEstado();
-
+		
+		void setIndivScore(int newscore);
+		int  getIndivScore();
+		void sumarIndivScore(int sc);
 		void setAtEnd(bool);
 
 		void agregarMonedas(int n);

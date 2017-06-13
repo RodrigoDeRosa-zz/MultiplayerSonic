@@ -22,6 +22,7 @@ Player::Player(string name, Puntaje* p){
 	this->puntaje = p;
     this->estado = new Estado();
 	this->atEnd = false;
+	this->scoreIndiv = 0;
 }
 
 string Player::getName(){
@@ -240,11 +241,13 @@ void Player::afectarseCon(Entidad* entidad){
 }
 
 void Player::roll(){
-	this->sonic->roll();
+	//this->sonic->roll();
+	this->sonic->setRolling(true);
 }
 
 void Player::lastimar(){
-	this->sonic->lastimar();
+	//this->sonic->lastimar();
+	this->sonic->setDamaged(true);
 }
 
 void Player::caer(int dir){
@@ -323,6 +326,17 @@ void Player::sumarPuntos(int puntos){
 
 long Player::getPuntos(){
 	return this->puntaje->getParcial();
+}
+
+void Player::setIndivScore(int newscore){
+	scoreIndiv = newscore;
+}
+
+int  Player::getIndivScore(){
+	return scoreIndiv;
+}
+void Player::sumarIndivScore(int sc){
+	scoreIndiv+=sc;
 }
 
 void Player::cambiarEquipo(Puntaje* newp){

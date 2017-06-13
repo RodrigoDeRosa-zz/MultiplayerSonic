@@ -68,6 +68,8 @@ class MoveSonic{
 		bool estaCayendo();
         int getX();
         int getY();
+		void setDamaged(bool f);
+		void setRolling(bool f);
 
         int getFrame();
         move_type getMovement();
