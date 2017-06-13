@@ -75,14 +75,14 @@ Stage* Juego::createLevel(int n, gameMode mode){
     level->addSpriteGroup("piedras");
     level->addSpriteGroup("pinches");
     level->addSpriteGroup("plataformas");
-    level->addSpriteGroup("bossBall");
     level->addEntityGroup("cangrejos");
     level->addEntityGroup("monedas");
     level->addEntityGroup("moscas");
     level->addEntityGroup("peces");
     level->addEntityGroup("bonus");
-    level->addEntityGroup("boss");
     level->addEntityGroup("bossWaves");
+    level->addEntityGroup("boss");
+    level->addSpriteGroup("bossBall");
     //Definicion de tipo de puntaje
     level->initScore((int) mode);
     //Fondo del nivel
