@@ -75,8 +75,11 @@ void* initGame(void *arg){
             client->getJuego()->addMosca(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == FISH_SET){
             client->getJuego()->addPez(message->posX, message->posY, message->id, message->state_frame);
+        } else if (message->ping == BOSS_SET){
+            client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
+        } else if (message->ping == BALL_SET){
+            client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
         }
-
         delete message;
     }
 
@@ -157,6 +160,10 @@ void* f_view(void* arg){
             self->getJuego()->updatePez(message);
         } else if (message->ping == BONUS_UPDATE){
             self->getJuego()->updateBonus(message);
+        } else if (message->ping == BOSS_UPDATE){
+            self->getJuego()->updateBoss(message);
+        } else if (message->ping == BALL_UPDATE){
+            self->getJuego()->updateBossBall(message);
         } else if (message->ping == CHANGE_LEVEL){
             k++;
             if (k == 1) continue;

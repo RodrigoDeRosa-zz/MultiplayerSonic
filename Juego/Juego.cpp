@@ -364,25 +364,25 @@ void Juego::addMosca(float x, float y, int index, int level){
 }
 
 /*Agrega un Jefe en las posiciones dadas*/
-void Juego::addBoss(float x, float y, int index){
+void Juego::addBoss(float x, float y, int index, int level){
     Boss* boss = new Boss(x, y);
     map<string, Texture*>::iterator it;
     it = texturas.find("boss");
     Texture* tex = it->second;
     boss->setTexture(tex);
     boss->setIndexZ(99);
-    stages[5]->addEntity("boss", boss, index);
+    stages[level]->addEntity("boss", boss, index);
 }
 
 /*Agrega la bola del Jefe en las posiciones dadas*/
-void Juego::addBossBall(float x, float y, int index){
+void Juego::addBossBall(float x, float y, int index, int level){
     BossBall* bossBall = new BossBall(x, y);
     map<string, Texture*>::iterator it;
     it = texturas.find("bossBall");
     Texture* tex = it->second;
     bossBall->setTexture(tex);
     bossBall->setIndexZ(99);
-    stages[5]->addSprite("bossBall", bossBall, index);
+    stages[level]->addSprite("bossBall", bossBall, index);
 }
 
 void Juego::setJugadores(Jugadores* jugs){

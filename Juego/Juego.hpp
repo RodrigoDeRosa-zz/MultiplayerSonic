@@ -87,9 +87,9 @@ class Juego{
     /*Agrega una mosca en las posiciones dadas*/
     void addMosca(float x, float y, int index, int level);
     /*Agrega un Jefe en las posiciones dadas*/
-    void addBoss(float x, float y, int index);
+    void addBoss(float x, float y, int index, int level);
     /*Agrega la bola del Jefe en las posiciones dadas*/
-    void addBossBall(float x, float y, int index);
+    void addBossBall(float x, float y, int index, int level);
 
     bool isLevel();
 
