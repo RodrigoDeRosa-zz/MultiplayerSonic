@@ -8,6 +8,8 @@
 InitStage::InitStage(int w, int h, int type) : Stage(){
     setDimensions(w, h);
 
+    clicked = false;
+
     logoFrame = 0;
 
     logo = new SonicLogo(w/2, -10);
@@ -49,6 +51,20 @@ InitStage::InitStage(int w, int h, int type) : Stage(){
     logo->setTexture(logoTex);
 
     background->loadImage();
+
+    vector<string> filePaths;
+    filePaths.push_back(string("Graficos/esperando_jugadores00.png"));
+    filePaths.push_back(string("Graficos/esperando_jugadores01.png"));
+    filePaths.push_back(string("Graficos/esperando_jugadores02.png"));
+    filePaths.push_back(string("Graficos/esperando_jugadores03.png"));
+    Texture* tex;
+    for (int i = 0; i < 3; i++){
+        tex = new Texture();
+        tex->loadFromFile(filePaths[i]);
+        waitTex.push_back(tex);
+    }
+
+    front = new Layer();
 }
 
 InitStage::~InitStage(){
@@ -76,6 +92,10 @@ key_event InitStage::processEvent(SDL_Event e){
     return KEY_TOTAL;
 }
 
+void InitStage::setClicked(){
+    clicked = true;
+}
+
 void InitStage::render(){
     background->render();
 
@@ -87,6 +107,12 @@ void InitStage::render(){
 
     for (int i = 0; i < buttons.size(); i++){
         buttons.at(i)->render();
+    }
+
+    if (false){
+        frame = frame%4;
+        front->setTexture(waitTex[frame]);
+        front->render();
     }
 }
 

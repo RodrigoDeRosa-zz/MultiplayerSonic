@@ -42,6 +42,10 @@ void Client::renderInit(){
     initialStage->render();
 }
 
+void Client::setInitClicked(){
+    initialStage->setClicked();
+}
+
 key_event Client::initProcessEvent(SDL_Event e){
     return initialStage->processEvent(e);
 }

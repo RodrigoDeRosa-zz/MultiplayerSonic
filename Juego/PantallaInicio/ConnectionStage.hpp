@@ -15,12 +15,14 @@ class ConnectionStage : public Stage{
         map<string, Texture*> textures;
         ConnectButton* button;
         SonicLogo* logo;
+        bool clicked;
         unsigned int logoFrame;
     public:
         ConnectionStage(int w, int h);
         ~ConnectionStage();
         void render();
         key_event processEvent(SDL_Event);
+        void setClicked();
 };
 
 #endif /*CONNECTSTAGE_HPP*/

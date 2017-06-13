@@ -263,11 +263,11 @@ void Juego::updateBonus(out_message_t* message){
 }
 
 void Juego::updateBoss(out_message_t* message){
-    updateStageEntity("boss", message);
+    updateStageEntitySense("boss", message);
 }
 
 void Juego::updateBossBall(out_message_t* message){
-    updateStageEntity("bossBall", message);
+    updateStageSprite("bossBall", message);
 }
 
 void Juego::addSpriteGroup(string groupKey){

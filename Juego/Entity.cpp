@@ -10,9 +10,9 @@ void Entity::setFrame(int frame){
 }
 
 void Entity::setFrame(int frame, move_type sense){
-    if (sense == FLYL) {
+    if (sense == FLYL || sense == BOSSL) {
         rectangle = clipsMovimientos->getRectangulo("left", frame);
-    } else if (sense == FLYD){
+    } else if (sense == FLYD || sense == BOSSR){
         rectangle = clipsMovimientos->getRectangulo("right", frame);
     } else if (sense == FISHU){
         rectangle = clipsMovimientos->getRectangulo("up", frame);

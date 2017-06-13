@@ -14,6 +14,7 @@ void Jefe::mover(){//draft, faltan frames
 	if (contador_mov > BOSS_MOV_SPAN){
 		contador_mov = 0;
 		direccion = (-1)*direccion;
+		moveActual = (moveActual==BOSSR ? BOSSL : BOSSR);
 	}
 	contador_mov++;
 	x+= direccion*BOSS_MOV_SPEED;
@@ -50,4 +51,3 @@ void Jefe::getAnclaje(float* targetX, float* targetY){
 	*targetX = this->x + WIDTH/2.0;
  	*targetY = this->y + HEIGHT/4.0*3.0;
 }
-
