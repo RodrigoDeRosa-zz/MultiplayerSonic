@@ -11,6 +11,7 @@ class Puntaje{
 		pthread_mutex_t puntaje_mux;
 		long contador;
 		long total;
+		int monedas;
 		string nombre;
 	public:
 		Puntaje(string name);
@@ -19,6 +20,8 @@ class Puntaje{
 		long getTotal();
 		void sumarPuntos(int p);
 		void pasarATotal();
+		int getMonedas();
+		void sumarMonedas(int m);
 };
 
 #endif //PUNTAJE_HPP

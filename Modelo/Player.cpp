@@ -282,7 +282,7 @@ out_message_t* Player::getStatus(float camPos){
     status->frame = this->getFrame();
 	status->rings = this->getMonedas();
 	status->lives = this->getVidas();
-	status->points = this->getPuntos();
+	status->points = this->getIndivScore();
     switch(this->getEstado()){
         case PRUEBA:
             status->state = ESCUDO;break;
@@ -292,6 +292,14 @@ out_message_t* Player::getStatus(float camPos){
             status->state = this->getEstado();break;
     }
     status->state_frame = this->estado->getFrame();
+    if(this->puntaje->getNombre() == string("Equipo 2")){
+        status->team = 2;
+    }
+    else{
+        status->team = 1;
+    }
+    status->team_rings = this->puntaje->getMonedas();
+    status->team_points = this->puntaje->getTotal();
     return status;
 }
 
@@ -317,10 +325,12 @@ int Player::getMonedas(){
 }
 
 void Player::agregarMonedas(int n){
+    this->puntaje->sumarMonedas(n);
     this->monedas += n;
 }
 
 void Player::quitarMonedas(){
+    this->puntaje->sumarMonedas(-(this->monedas));
     this->monedas = 0;
 }
 
@@ -344,6 +354,7 @@ bool Player::estaCayendo(){
     return this->sonic->estaCayendo();
 }
 void Player::sumarPuntos(int puntos){
+    this->sumarIndivScore(puntos);
 	this->puntaje->sumarPuntos(puntos);
 }
 
