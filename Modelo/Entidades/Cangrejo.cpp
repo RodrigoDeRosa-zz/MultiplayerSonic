@@ -8,7 +8,7 @@
 #define CRAB_MOV_SPAN 1000		//cuantas veces se mueve para un lado
 #define CRAB_MOV_SPEED 0.2		//cuanto se mueve por vez
 
-#define CRAB_FRAME_FACTOR	6
+#define CRAB_FRAME_FACTOR	40
 #define CRAB_CANT_FRAMES	6
 using namespace std;
 

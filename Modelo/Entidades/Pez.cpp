@@ -5,10 +5,10 @@
 #define HEIGHT 60
 
 
-#define FISH_MOV_SPAN 1500		//cuantas veces se mueve para un lado
-#define FISH_MOV_SPEED 0.3		//cuanto se mueve por vez
+#define FISH_MOV_SPAN 600		//cuantas veces se mueve para un lado
+#define FISH_MOV_SPEED 0.9		//cuanto se mueve por vez
 
-#define FISH_FRAME_FACTOR	8
+#define FISH_FRAME_FACTOR	60
 #define FISH_CANT_FRAMES	4
 
 #define NO_DRAW_Y	2000

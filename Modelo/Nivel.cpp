@@ -244,11 +244,11 @@ vector<out_message_t*> Nivel::getPlayerStatus(float camPos){
 vector<out_message_t*> Nivel::getEntidadesStatus(){
 	vector<out_message_t*> v;
 	for(int i=0; i < (this->entidades)->size(); i++){
-		if (this->entidadesStatusControl < 10){
+		/*if (this->entidadesStatusControl < 10){
             this->entidadesStatusControl++;
             continue;
         }
-        this->entidadesStatusControl = 0;
+        this->entidadesStatusControl = 0;*/
 		v.push_back((*(this->entidades))[i]->getOutMessage());
 		if((*(this->entidades))[i]->estaDestruida()) {
 			// una vez que se mando el mensaje de que esta destruida, se borra la entidad
