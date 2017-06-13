@@ -65,8 +65,10 @@ void Bola::destruir(){
 
 void Bola::afectarA(Player* jugador){
 	//no importa si esta atacando esto lo lastima
+
+	//iguanito que pinche
 	jugador->recibirGolpe();
-	//TODO necesita tambien el lastimar?
+	jugador->lastimar();
 }
 
 out_message_t* Bola::getOutMessage(){

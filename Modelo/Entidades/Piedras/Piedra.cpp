@@ -42,7 +42,6 @@ void Piedra::afectarA(Player* jugador){
 
 
 		if(posicion < (this->Entidad::getBordeIzq()+WIDTH/2.0)){//esta en la mitad izquierda de la piedra
-			//if (jugador->estaMirandoADer()){//esta mirando a la derecha
 			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - FACTOR_DIFERENCIAL_H;		
 		}
 		else{//esta en la mitad derecha de la piedra
