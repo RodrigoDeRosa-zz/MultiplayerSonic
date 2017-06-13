@@ -182,8 +182,7 @@ void* runGame(void* arg){
     Client* self = (Client*) arg;
     /*Conexion del cliente al servidor*/
     if(!initializeConnection(self)){
-        printf("Failed to initialize connection. Disconnecting.\n"); //LOGGEAR
-		LOGGER().log("Failed to initialize connection. Disconnecting.",BAJO);
+        self->setFailedToConnect(true);
         return NULL;
     }
     /*Una vez conectado, empieza a enviar y recibir mensajes en otro thread.*/
@@ -226,6 +225,16 @@ void* viewControl(void* arg){
                     self->setInitClicked();
                 }
             }
+            if (self->failedToConnect()){
+                self->initUnclick();
+                self->showConnectionFailure();
+                self->renderInit();
+                Renderer::getInstance().draw();
+                sleep(1);
+                self->resetInit();
+                self->setFailedToConnect(false);
+                continue;
+            }
             self->renderInit();
             Renderer::getInstance().draw();
         }
@@ -236,6 +245,8 @@ void* viewControl(void* arg){
         //Pantalla de inicio de juego
         key_event key;
         while(!self->gameOn()){
+            //Si el server se cierra durante la pantalla de start
+            if (!self->connected()) break;
             Renderer::getInstance().clear();
             //Ahora es otro el thread que renderiza
             while(SDL_PollEvent(&e)){
@@ -277,6 +288,7 @@ void* viewControl(void* arg){
             lost->render();
             Renderer::getInstance().draw();
             sleep(2);
+            self->deleteJuego();
         }
     }
     SDLHandler::getInstance().close();

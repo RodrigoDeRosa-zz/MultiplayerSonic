@@ -24,6 +24,8 @@ class ConnectionStage : public Stage{
         key_event processEvent(SDL_Event);
         void setClicked();
         void unclick();
+        void showConnectionFailure();
+        void reset();
 };
 
 #endif /*CONNECTSTAGE_HPP*/

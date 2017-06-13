@@ -20,6 +20,7 @@ Client::Client(const char* p, const char* h){
     online = false;
     gameStarted = false;
     gameSet = false;
+    connectFail = false;
     manuallyClosed = false;
     juego = NULL;
     pings = 0;
@@ -48,6 +49,22 @@ void Client::setInitClicked(){
 
 void Client::initUnclick(){
     initialStage->unclick();
+}
+
+void Client::setFailedToConnect(bool value){
+    connectFail = value;
+}
+
+bool Client::failedToConnect(){
+    return connectFail;
+}
+
+void Client::showConnectionFailure(){
+    initialStage->showConnectionFailure();
+}
+
+void Client::resetInit(){
+    initialStage->reset();
 }
 
 key_event Client::initProcessEvent(SDL_Event e){
@@ -183,6 +200,10 @@ Juego* Client::getJuego(){
     return this->juego;
 }
 
+void Client::deleteJuego(){
+    juego = NULL;
+}
+
 void Client::addJuego(Juego* j){
     juego = j;
 }
@@ -197,7 +218,6 @@ bool Client::gameIsSet(){
 
 void Client::disconnect(int how){
     endGame();
-    if (how == 1 && online) printf("Lost connection with server. Disconnecting...\n"); //NO LOGGEAR
     socket->sockShutdown(SHUT_RDWR);
     socket->sockClose();
     online = false;

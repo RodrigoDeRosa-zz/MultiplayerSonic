@@ -17,6 +17,7 @@ class Client{
         struct addrinfo *serverInfo;
         bool online;
         bool gameStarted;
+        bool connectFail;
         bool gameSet;
         deque<out_message_t*> received;
         deque<key_event> toSend;
@@ -53,6 +54,7 @@ class Client{
         /*Se deconecta del servidor. El parametro how vale 1 si es por perdida
         de conexion con el servidor y 0 sino*/
         void disconnect(int how);
+        void deleteJuego();
         bool gameOn();
         void startGame();
         void endGame();
@@ -70,6 +72,10 @@ class Client{
         void updateTransition();
         void setInitClicked();
         void initUnclick();
+        void setFailedToConnect(bool);
+        bool failedToConnect();
+        void showConnectionFailure();
+        void resetInit();
 };
 
 #endif /*CLIENT_HPP*/
