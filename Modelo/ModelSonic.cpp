@@ -57,14 +57,14 @@ void ModelSonic::update(float vel_x, float vel_y, float posX, float posY){
 		//TODO que hacemos con vel_x y vel_y?
 	}
 
-	else if (bloque_pers->estaRodando() || (posX==ROLL_ARG && posY==ROLL_ARG)){
-		bloque_pers->roll();
-		if (!bloque_pers->estaRodando()){//si termino de rodar
-			vel_x = 0.0;
-		}
-	}
     else if(vel_y< 0.0 || bloque_pers->estaSaltando()){
         jump(vel_x,vel_y);
+    }
+    else if (bloque_pers->estaRodando()){
+        bloque_pers->roll();
+        if (!bloque_pers->estaRodando()){//si termino de rodar
+            vel_x = 0.0;
+        }
     }
     else if(vel_x> 0.0){
         moveRight(vel_x);}

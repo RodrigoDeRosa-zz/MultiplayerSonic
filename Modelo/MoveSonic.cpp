@@ -173,6 +173,7 @@ void MoveSonic::roll(){
 	}
 	cont_roll++;
 	if (direccion){//rollDerecha
+
 		moveActual=ROLLD;
 		frameRight++;
 		if (frameRight / (4*JUMPING_ANIMATION_FRAMES) >= JUMPING_ANIMATION_FRAMES){
