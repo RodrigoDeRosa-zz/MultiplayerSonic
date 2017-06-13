@@ -20,7 +20,7 @@
 /*MOVIMIENTOS*/
 #define GRAVEDAD 0.5
 #define SALTO -12.0
-#define VELOCIDAD 0.35
+#define VELOCIDAD 0.6
 #define RUN 0.7
 #define VELOCIDAD_ROLL	2
 #define VELOCIDAD_X_DMG	0.98
