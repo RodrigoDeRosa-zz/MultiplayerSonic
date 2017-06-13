@@ -10,6 +10,8 @@
 #define BOSS_FRAME_FACTOR 20
 #define BOSS_CANT_FRAMES 12
 
+#define THRESHOLD_DESDE_ABAJO 10	//para ver que le pegue desde el costado y no desde abajo
+
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
 //.. el movimiento de la bola!
 void Jefe::mover(){//draft, faltan frames
@@ -26,6 +28,28 @@ void Jefe::mover(){//draft, faltan frames
 void Jefe::afectarA(Player* jugador){
 	//como esto vuela, puedo asumir que si lo toca esta atacando
 	this->recibirDanio();
+
+	//ahora hace tipo piedra para que no lo traspase
+	//SOLO POR POSICION
+	if(jugador->getBordeArriba() < (this->Entidad::getBordeAbajo() - THRESHOLD_DESDE_ABAJO)){
+		//le estaba pegando desde un costado	
+		float posicion;
+		if(jugador->getX() < (this->Entidad::getBordeIzq()+WIDTH/2)){
+			//entro desde la izquierda
+			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - SAFETY_DIST;		
+		}
+		else{
+			//entro desde la derecha
+			posicion = this->Entidad::getBordeDer()+SAFETY_DIST);
+		}
+		jugador->setX(posicion);
+		jugador->setCayendo();//TODO chequear si hace falta
+	}
+	else{
+		//le estaba pegando desde abajo
+		jugador->setCayendo();
+		jugador->setY(this->Entidad::getBordeAbajo()+SAFE_DIST);
+	}
 }
 
 void Jefe::recibirDanio(){
