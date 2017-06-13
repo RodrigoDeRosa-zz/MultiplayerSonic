@@ -46,6 +46,10 @@ void Client::setInitClicked(){
     initialStage->setClicked();
 }
 
+void Client::initUnclick(){
+    initialStage->unclick();
+}
+
 key_event Client::initProcessEvent(SDL_Event e){
     return initialStage->processEvent(e);
 }

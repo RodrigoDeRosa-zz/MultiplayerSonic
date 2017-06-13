@@ -69,6 +69,7 @@ class Client{
         key_event initProcessEvent(SDL_Event);
         void updateTransition();
         void setInitClicked();
+        void initUnclick();
 };
 
 #endif /*CLIENT_HPP*/

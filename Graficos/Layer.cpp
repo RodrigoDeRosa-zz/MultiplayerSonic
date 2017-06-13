@@ -65,7 +65,6 @@ bool Layer::loadImage(){
 }
 
 void Layer::setTexture(Texture* tex){
-    image = new Sprite(0, 0, width, height);
     image->setTexture(tex);
 }
 

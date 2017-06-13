@@ -26,6 +26,7 @@ class InitStage : public Stage{
         void render();
         void render(Camara*);
         void setClicked();
+        void unclick();
         key_event processEvent(SDL_Event);
 };
 

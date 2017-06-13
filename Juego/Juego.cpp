@@ -114,7 +114,11 @@ bool Juego::stageReady(){
 }
 
 void Juego::setInitClicked(){
-    stageActual->setClicked();
+    stages[0]->setClicked();
+}
+
+void Juego::unclickInit(){
+    stages[0]->unclick();
 }
 
 void Juego::setTexturas(){

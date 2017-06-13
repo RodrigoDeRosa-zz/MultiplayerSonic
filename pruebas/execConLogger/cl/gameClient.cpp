@@ -13,6 +13,7 @@
 #include "../../../message.hpp"
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
+#include "../../../Juego/PantallaTransicion/ConnectionLostStage.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
 #include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -76,10 +77,8 @@ void* initGame(void *arg){
         } else if (message->ping == FISH_SET){
             client->getJuego()->addPez(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BOSS_SET){
-            printf("boss set\n");
             client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BALL_SET){
-            printf("ball set\n");
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
         }
         delete message;
@@ -121,6 +120,7 @@ void* keyControl(void* arg){
 					case SDLK_LEFT: key = LEFT_DOWN; break;
 					case SDLK_RIGHT: key = RIGHT_DOWN; break;
 					case SDLK_DOWN: key = DOWN_DOWN; break;
+                    case SDLK_UP: key = UP_DOWN; break;
 				}
 			}
 			else if( e.type == SDL_KEYUP && e.key.repeat == 0){
@@ -214,6 +214,7 @@ void* viewControl(void* arg){
     while (running){
         //Pantalla de conexion
         while(!self->connected()){
+            self->initUnclick();
             Renderer::getInstance().clear();
 
             while(SDL_PollEvent(&e)){
@@ -228,6 +229,7 @@ void* viewControl(void* arg){
             self->renderInit();
             Renderer::getInstance().draw();
         }
+        self->initUnclick();
         while(!self->getJuego() || !self->getJuego()->stageReady()){
             usleep(5000);
         }
@@ -244,12 +246,15 @@ void* viewControl(void* arg){
                 }
                 key = KEY_TOTAL;
                 key = self->getJuego()->processEvent(e);
-                if (key != KEY_TOTAL) self->queueToSend(key);
-                self->getJuego()->setInitClicked();
+                if (key != KEY_TOTAL){
+                    self->queueToSend(key);
+                    self->getJuego()->setInitClicked();
+                }
             }
             self->getJuego()->render();
             Renderer::getInstance().draw();
         }
+        self->getJuego()->unclickInit();
         //Juego
         while(self->gameOn()){
             /*Limpiar pantalla*/
@@ -266,6 +271,14 @@ void* viewControl(void* arg){
         pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 
         if (self->manuallyClosed) running = false;
+        else{
+            Renderer::getInstance().clear();
+            ConnectionLostStage* lost = new ConnectionLostStage(1200, 720);
+            self->getJuego()->render();
+            lost->render();
+            Renderer::getInstance().draw();
+            sleep(2);
+        }
     }
     SDLHandler::getInstance().close();
 

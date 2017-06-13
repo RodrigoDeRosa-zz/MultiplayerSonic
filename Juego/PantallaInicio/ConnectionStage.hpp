@@ -23,6 +23,7 @@ class ConnectionStage : public Stage{
         void render();
         key_event processEvent(SDL_Event);
         void setClicked();
+        void unclick();
 };
 
 #endif /*CONNECTSTAGE_HPP*/
