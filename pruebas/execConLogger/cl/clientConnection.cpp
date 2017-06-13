@@ -46,8 +46,6 @@ addrinfo* resolveServerInfo(Client* client){
 		fprintf(stderr, "Failed to connect! Error: %s\n", gai_strerror(status)); //LOGGEAR
 		LOGGER().log(string("Failed to connect! Error: ")+string(gai_strerror(status)),BAJO);
 	}
-    printHostIP("Hostname resolved to:", serverInfo, true); //LOGGEAR
-
 
     return serverInfo;
 }
@@ -62,6 +60,6 @@ bool initializeConnection(Client* client){
     //Se configura el cliente para conectarse al servidor.
     if (!client->setConnectionInfo(serverInfo)) return false;
     if (!client->connectToServer()) return false;
-    printHostIP("Connected to:", serverInfo, false); //NO LOGGEAR
+    
     return true;
 }

@@ -68,6 +68,14 @@ void ConnectionStage::unclick(){
     clicked = false;
 }
 
+void ConnectionStage::showConnectionFailure(){
+    button->grisearTexture();
+}
+
+void ConnectionStage::reset(){
+    button->desGrisearTexture();
+}
+
 void ConnectionStage::render(){
     background->render();
 
