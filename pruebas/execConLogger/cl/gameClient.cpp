@@ -180,7 +180,7 @@ void* f_view(void* arg){
             self->gameWon(true);
             delete message;
             break;
-        } else if (message->ping == GAME_OVER){
+        } else if (message->ping == PLAYER_DEAD){
             self->gameOver(true);
             delete message;
             break;

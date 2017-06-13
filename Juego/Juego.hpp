@@ -52,6 +52,8 @@ class Juego{
     void updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
         int rings, int lives, int points, state_type state, int state_frame);
     void updateTransition(int, int, int);
+    void updateCoopTransition(int, int);
+    void updateTeamTransition(int, int, int);
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);

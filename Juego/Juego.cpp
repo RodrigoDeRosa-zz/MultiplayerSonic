@@ -113,6 +113,16 @@ void Juego::updateTransition(int id, int rings, int points){
     stageActual->setValues();
 }
 
+void Juego::updateCoopTransition(int rings, int points){
+    /*
+    stageActual->setCoopInfo(rings, points, rings + points);*/
+}
+
+void Juego::updateTeamTransition(int team, int rings, int points){
+    /*
+    stageActual->setCoopInfo(team, rings, points, rings + points);*/
+}
+
 bool Juego::stageReady(){
     return stageActual != NULL;
 }
