@@ -16,13 +16,16 @@ class InitStage : public Stage{
     private:
         map<string, Texture*> textures;
         vector<StartButton*> buttons;
+        vector<Texture*> waitTex;
         SonicLogo* logo;
+        bool clicked;
         unsigned int logoFrame;
     public:
         InitStage(int w, int h, int type);
         ~InitStage();
         void render();
         void render(Camara*);
+        void setClicked();
         key_event processEvent(SDL_Event);
 };
 

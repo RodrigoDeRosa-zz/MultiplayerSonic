@@ -22,6 +22,7 @@ class Layer{
         void setDimensions(int w, int h);
         /*Carga la imagen desde la direccion que se almaceno*/
         bool loadImage();
+        void setTexture(Texture*);
         /*Presenta la imagen en pantalla*/
         void render(Camara*);
         void render();

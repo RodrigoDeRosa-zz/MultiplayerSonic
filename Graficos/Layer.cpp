@@ -64,6 +64,11 @@ bool Layer::loadImage(){
     return true;
 }
 
+void Layer::setTexture(Texture* tex){
+    image = new Sprite(0, 0, width, height);
+    image->setTexture(tex);
+}
+
 /*Presenta la imagen en pantalla*/
 void Layer::render(Camara* camara){
     if(image) image->render(0,0,camara);

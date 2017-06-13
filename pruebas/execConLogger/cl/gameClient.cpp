@@ -220,7 +220,7 @@ void* viewControl(void* arg){
                 }
                 if (self->initProcessEvent(e) != KEY_TOTAL){
                     pthread_create(&game, NULL, runGame, self);
-                    break;
+                    self->setInitClicked();
                 }
             }
             self->renderInit();
