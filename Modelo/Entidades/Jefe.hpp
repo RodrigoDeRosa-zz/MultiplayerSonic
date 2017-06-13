@@ -19,7 +19,7 @@ public:
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();
 	void mover();
-	void getAnclaje(float* x, float* y);//le pasa los valores desde donde calcular el MCU(V?)
+	void getAnclaje(float* targetX, float* targetY);//le pasa los valores desde donde calcular el MCU(V?)
 };
 
 #endif /*JEFE_HPP*/
