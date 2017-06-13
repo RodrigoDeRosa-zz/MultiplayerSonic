@@ -22,6 +22,7 @@ Player::Player(string name, Puntaje* p){
 	this->puntaje = p;
     this->estado = new Estado();
 	this->atEnd = false;
+	this->scoreIndiv = 0;
 }
 
 string Player::getName(){
@@ -323,6 +324,17 @@ void Player::sumarPuntos(int puntos){
 
 long Player::getPuntos(){
 	return this->puntaje->getParcial();
+}
+
+void Player::setIndivScore(int newscore){
+	scoreIndiv = newscore;
+}
+
+int  Player::getIndivScore(){
+	return scoreIndiv;
+}
+void Player::sumarIndivScore(int sc){
+	scoreIndiv+=sc;
 }
 
 void Player::cambiarEquipo(Puntaje* newp){
