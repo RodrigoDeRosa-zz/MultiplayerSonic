@@ -176,7 +176,11 @@ void* f_view(void* arg){
                 continue;
             }
             self->getJuego()->nextStage();
-        }
+        } /* else if (message->ping == GAME_WON){
+            self->gameWon(true);
+            delete message;
+            break;
+        }*/
         delete message;
 	}
     self->cleanPlayers();
@@ -296,13 +300,27 @@ void* viewControl(void* arg){
         pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 
         if (self->manuallyClosed) running = false;
-        else{
+        /*else if (self->gameWon()){
+            GameWonStage* won = new GameWonStage(1200, 720);
+            self->getJuego()->render();
+            won->render();
+            Renderer::getInstance().draw();
+            sleep(2);
+            self->deleteJuego();
+        } else if (self->gameOver()){
+            GameOverStage* over = new GameOverStage(1200, 720);
+            self->getJuego()->render();
+            over->render();
+            Renderer::getInstance().draw();
+            sleep(2);
+            self->deleteJuego();
+        }*/else{
             Renderer::getInstance().clear();
             ConnectionLostStage* lost = new ConnectionLostStage(1200, 720);
             self->getJuego()->render();
             lost->render();
             Renderer::getInstance().draw();
-            sleep(2);
+            sleep(5);
             self->deleteJuego();
         }
     }
