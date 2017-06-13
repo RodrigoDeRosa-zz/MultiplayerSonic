@@ -12,9 +12,15 @@
 
 #define THRESHOLD_DESDE_ABAJO 10	//para ver que le pegue desde el costado y no desde abajo
 #define SAFETY_DIST	5
+#define MAX_CONT_INMUNE	300
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
 //.. el movimiento de la bola!
-void Jefe::mover(){//draft, faltan frames
+void Jefe::mover(){
+	
+	if(cont_inmune < MAX_CONT_INMUNE){//esto es para que si le pegan sea inmune por un rato
+		cont_inmune++;
+	}
+	//mover en si
 	if (contador_mov > BOSS_MOV_SPAN){
 		contador_mov = 0;
 		direccion = (-1)*direccion;
@@ -27,7 +33,9 @@ void Jefe::mover(){//draft, faltan frames
 
 void Jefe::afectarA(Player* jugador){
 	//como esto vuela, puedo asumir que si lo toca esta atacando
-	this->recibirDanio();
+	if(cont_inmune >= MAX_CONT_INMUNE){
+		this->recibirDanio();
+	}
 
 	//ahora hace tipo piedra para que no lo traspase
 	//SOLO POR POSICION
@@ -47,12 +55,13 @@ void Jefe::afectarA(Player* jugador){
 	}
 	else{
 		//le estaba pegando desde abajo
-		jugador->setCayendo();
+		//jugador->setCayendo();
 		jugador->setY(this->Entidad::getBordeAbajo()+SAFETY_DIST);
 	}
 }
 
 void Jefe::recibirDanio(){
+	cont_inmune = 0;
 	this->vidas-=1;
 	if (this->vidas > 0){
 		//efecto de danio?

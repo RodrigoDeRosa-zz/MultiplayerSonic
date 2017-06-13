@@ -258,7 +258,7 @@ Entidad* obtenerEntidad(terna_t* terna){
 }
 
 void Control::crearEntidades(){
-	
+/*	
 	Ubicador* ubicador = new Ubicador();
 	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
 	for(int i = 0; i < this->niveles.size(); i++){
@@ -269,11 +269,11 @@ void Control::crearEntidades(){
 		}
 	}
 
-
+*/
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
-	Jefe* jefe = new Jefe(0,3000,50);
-	Bola* bola = new Bola(0,3000,120,jefe);
+	Jefe* jefe = new Jefe(0,2000,50);
+	Bola* bola = new Bola(0,2000,120,jefe);
 	this->niveles[0]->addEntidad(jefe);
 	this->niveles[0]->addEntidad(bola);
 }

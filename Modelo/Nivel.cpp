@@ -221,6 +221,7 @@ void Nivel::colisionarTodos() {
 			}
 		}
 		colisionoPiedra = false;
+		printf("y=%.2f, C:%d, S:%d,R:%d\n",(*players)[i]->getY(),(*players)[i]->estaCayendo(),(*players)[i]->estaSaltando(),(*players)[i]->estaAtacando());//TODO DEBUG
 	}
 }
 

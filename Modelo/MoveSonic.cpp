@@ -334,6 +334,7 @@ void MoveSonic::correrIzquierda(){
 
 
 void MoveSonic::setCayendo(){
+	jumping = false;	//TODO ok?
 	if (cayendo_der || cayendo_izq){
 		return;
 	}
@@ -466,15 +467,17 @@ void MoveSonic::caer(){
 	if (cayendo_der){
 		this->caerDerecha();
 	}
-	if (cayendo_izq){
+	else if (cayendo_izq){
 		this->caerIzquierda();
 	}
 	//si no estaba cayendo
+	else{
 	if (direccion){
 		this->caerDerecha();
 	}
 	else{
 		this->caerIzquierda();
+	}
 	}
 }
 
