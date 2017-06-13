@@ -21,6 +21,8 @@ Client::Client(const char* p, const char* h){
     gameStarted = false;
     gameSet = false;
     connectFail = false;
+    won = false;
+    over = false;
     manuallyClosed = false;
     juego = NULL;
     pings = 0;
@@ -57,6 +59,22 @@ void Client::setFailedToConnect(bool value){
 
 bool Client::failedToConnect(){
     return connectFail;
+}
+
+void Client::gameWon(bool value){
+    won = value;
+}
+
+void Client::gameOver(bool value){
+    over = value;
+}
+
+bool Client::gameOver(){
+    return over;
+}
+
+bool Client::gameWon(){
+    return won;
 }
 
 void Client::showConnectionFailure(){

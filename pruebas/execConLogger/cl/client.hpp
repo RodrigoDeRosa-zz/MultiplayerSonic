@@ -19,6 +19,8 @@ class Client{
         bool gameStarted;
         bool connectFail;
         bool gameSet;
+        bool won;
+        bool over;
         deque<out_message_t*> received;
         deque<key_event> toSend;
         Juego* juego;
@@ -76,6 +78,10 @@ class Client{
         bool failedToConnect();
         void showConnectionFailure();
         void resetInit();
+        void gameOver(bool);
+        void gameWon(bool);
+        bool gameWon();
+        bool gameOver();
 };
 
 #endif /*CLIENT_HPP*/
