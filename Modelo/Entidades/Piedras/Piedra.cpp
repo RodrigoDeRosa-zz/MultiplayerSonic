@@ -10,6 +10,7 @@ sino una distacia considerable, de modo que se pueda diferenciar una colision de
 
 using namespace std;
 
+
 Piedra::Piedra(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
 	this->setPiedra();
 }
@@ -62,7 +63,7 @@ void Piedra::afectarA(Player* jugador){
 			jugador->setY(posicion);
 			return;
 		}
-		if (jugador->getX() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST) && !(jugador->estaMirandoADer())){
+		if (jugador->getBordeDer() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST) && !(jugador->estaMirandoADer())){
 			jugador->caer(-1);
 			jugador->setY(posicion);
 			return;
