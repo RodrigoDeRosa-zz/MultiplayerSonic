@@ -76,8 +76,10 @@ void* initGame(void *arg){
         } else if (message->ping == FISH_SET){
             client->getJuego()->addPez(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BOSS_SET){
+            printf("boss set\n");
             client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BALL_SET){
+            printf("ball set\n");
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
         }
         delete message;
