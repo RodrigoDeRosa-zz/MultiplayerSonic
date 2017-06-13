@@ -70,6 +70,7 @@ class Juego{
     void updatePez(out_message_t*);
     void updateBonus(out_message_t*);
     void updateBoss(out_message_t*);
+    void updateBossWaves(out_message_t*);
     void updateBossBall(out_message_t*);
 
     /*Agrega una piedra en las posiciones dadas*/
@@ -90,6 +91,8 @@ class Juego{
     void addMosca(float x, float y, int index, int level);
     /*Agrega un Jefe en las posiciones dadas*/
     void addBoss(float x, float y, int index, int level);
+    /*Agrega un las ondas del jefe en las posiciones dadas*/
+    void addBossWaves(float x, float y, int index, int level);
     /*Agrega la bola del Jefe en las posiciones dadas*/
     void addBossBall(float x, float y, int index, int level);
 

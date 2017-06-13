@@ -78,6 +78,7 @@ void* initGame(void *arg){
             client->getJuego()->addPez(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BOSS_SET){
             client->getJuego()->addBoss(message->posX, message->posY, message->id, message->state_frame);
+            client->getJuego()->addBossWaves(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == BALL_SET){
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == PLATFORM_SET){
@@ -164,6 +165,7 @@ void* f_view(void* arg){
             self->getJuego()->updateBonus(message);
         } else if (message->ping == BOSS_UPDATE){
             self->getJuego()->updateBoss(message);
+            self->getJuego()->updateBossWaves(message);
         } else if (message->ping == BALL_UPDATE){
             self->getJuego()->updateBossBall(message);
         } else if (message->ping == CHANGE_LEVEL){
