@@ -35,13 +35,13 @@ Client::Client(const char* p, const char* h){
     for (int i = 0; i < 2; i++){
         vector<int> vec;
         //Puntajes de cada uno
-        for (int i = 0; i < 2){
+        for (int j = 0; j < 2; j++){
             vec.push_back(0);
         }
         teams.push_back(vec);
     }
     //Vector de coop
-    for (int i = 0; i < 2){
+    for (int i = 0; i < 2; i++){
         coop.push_back(0);
     }
 
