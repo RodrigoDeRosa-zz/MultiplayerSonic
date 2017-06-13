@@ -75,5 +75,7 @@ bool Estado::recibirGolpe(){
 			return true;
 		case PRUEBA:
 			return false;
+		case REVIVIENDO:
+			return false;
 	}
 }
