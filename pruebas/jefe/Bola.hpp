@@ -9,9 +9,9 @@ using namespace std;
 class Bola: public Entidad{
 	int contador_mov = 0;
 	bool direccion = true;//va para la derecha
-	Jefe* jefe;	//TODO: acomodar constructor para que reciba esto!
+	Jefe* jefe;
 public:
-	Bola(float x, float y);
+	Bola(float x, float y, Jefe* j);
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();
