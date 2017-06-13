@@ -1,4 +1,5 @@
 #include "Control.hpp"
+#include "Ubicador.hpp"
 #include "../Modelo/Entidades/Piedras/Piedra.hpp"
 #include "../Modelo/Entidades/Pinche.hpp"
 #include "../Modelo/Entidades/Moneda.hpp"
@@ -18,6 +19,28 @@
 #define LVL1_END 4000
 #define LVL2_END 5000
 #define LVL3_END 6000
+
+//defines para asegurar minimos y maximos (puede que este más acotado)
+#define MIN_COINS	50	//por ejemplo esto asegura que nunca se va a generar un nivel en el que haya menos de MIN_COINS monedas, no importa el parametro que se pase
+#define MAX_COINS	100	//y este dice que si le pasas 120 como max_coins igual el maximo es 100
+
+#define MIN_CRABS	0
+#define MAX_CRABS	15
+
+#define MIN_FISHES	0
+#define MAX_FISHES	20
+
+#define MIN_FLIES	0
+#define MAX_FLIES 	10
+
+#define MIN_SPIKES	0
+#define MAX_SPIKES	5
+
+#define MIN_ROCKS	0
+#define MAX_ROCKS	10
+
+#define MIN_BONUSES	0
+#define MAX_BONUSES	6
 
 #define NIVEL1 0
 #define NIVEL2 2
@@ -202,35 +225,42 @@ void Control::cambiarEquipo(string playerName, int equipo){
 	this->modelo->cambiarEquipo(playerName, equipo);
 }
 
+Entidad* obtenerEntidad(terna_t* terna){
+	switch(terna->tipo){
+		case COIN:
+			return new Moneda(terna->id,terna->x,terna->y);
+		case CRAB:
+			return new Cangrejo(terna->id,terna->x,terna->y);
+		case FLY:
+			return new Mosca(terna->id,terna->x,terna->y);
+		case FISH:
+			return new Pez(terna->id,terna->x,terna->y);
+		case SPIKE:
+			return new Pinche(terna->id,terna->x,terna->y);
+		case ROCK:
+			return new Piedra(terna->id,terna->x,terna->y);
+		case BONUS:
+			int type = (terna->id)%3;
+			switch(type){
+				case 0:
+					return new BonusMoneda(terna->id,terna->x,terna->y);
+				case 1:
+					return new Invencibilidad(terna->id,terna->x,terna->y);
+				case 2:
+					return new Escudo(terna->id,terna->x,terna->y);
+			}
+	}
+}
+
 void Control::crearEntidades(){
-	/*Pinche* pinche = new Pinche(2, 500, 498);
-	this->niveles[NIVEL1]->addEntidad(pinche);*/
-
-	Jefe* jefe = new Jefe(0, 500, 50);
-	this->niveles[NIVEL1]->addEntidad(jefe);
-
-	Bola* bola = new Bola(0, 500, 120, jefe);
-	this->niveles[NIVEL1]->addEntidad(bola);
-
-
-    /*Piedra* piedra1 = new Piedra(0,500, 345);
-    this->niveles[NIVEL2]->addEntidad(piedra1);
-    Cangrejo* cangrejo1 = new Cangrejo(0,1000, 475);
-    this->niveles[NIVEL2]->addEntidad(cangrejo1);
-    Pez* pez1 = new Pez(0, 800, 675);
-    this->niveles[NIVEL2]->addEntidad(pez1);
-    Mosca* mosca1 = new Mosca(0,300, 225);
-    this->niveles[NIVEL2]->addEntidad(mosca1);
-    Pinche* pinche1 = new Pinche(2, 1000, 495);
-    this->niveles[NIVEL2]->addEntidad(pinche1);
-    Escudo* bonus3 = new Escudo(0, 750, 426);
-    this->niveles[NIVEL2]->addEntidad(bonus3);
-    */
-    BonusMoneda* bonus4 = new BonusMoneda(1, 900, 426);
-    this->niveles[NIVEL2]->addEntidad(bonus4);
-
-    Moneda* moneda1 = new Moneda(3, 550, 400);
-    this->niveles[NIVEL1]->addEntidad(moneda1);
+	Ubicador* ubicador = new Ubicador();
+	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
+	for(int i = 0; i < this->niveles.size(); i++){
+		vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
+		for(int j=0; j < ternas->size(); j++){
+			this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[i]));
+		}
+	}
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
