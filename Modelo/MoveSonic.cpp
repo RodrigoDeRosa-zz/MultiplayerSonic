@@ -343,6 +343,34 @@ void MoveSonic::setCayendo(){
 		cayendo_izq=true;
 	}
 }
+void MoveSonic::setDamaged(bool f){
+	//para que ande...
+	if (f){
+		if (!in_dmg){
+		rolling = false;
+		cayendo_izq = false;
+		cayendo_der = false;
+		jumping = false;
+		in_dmg=true;
+		cont_dmg=0;
+		oldY = originY;
+		baseY = Y_PISO;
+		}
+	}
+	//generico
+	in_dmg=f;
+}
+void MoveSonic::setRolling(bool f){
+	//para que ande...
+	if(f){	
+		if (!rolling){
+			rolling=true;
+			cont_roll=0;
+		}
+	}
+	//generico
+	rolling=f;
+}
 
 void MoveSonic::caerDerecha(){
 	cayendo_izq = false;

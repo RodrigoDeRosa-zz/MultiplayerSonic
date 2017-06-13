@@ -113,6 +113,14 @@ float ModelSonic::getX(){
 void ModelSonic::setCayendo(){
 	bloque_pers->setCayendo();
 }
+
+void ModelSonic::setDamaged(bool f){
+	bloque_pers->setDamaged(f);
+}
+void ModelSonic::setRolling(bool f){
+	bloque_pers->setRolling(f);
+}
+
 float ModelSonic::getY(){
     return bloque_pers->getY();
 }

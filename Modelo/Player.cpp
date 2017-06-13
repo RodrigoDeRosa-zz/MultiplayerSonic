@@ -241,11 +241,13 @@ void Player::afectarseCon(Entidad* entidad){
 }
 
 void Player::roll(){
-	this->sonic->roll();
+	//this->sonic->roll();
+	this->sonic->setRolling(true);
 }
 
 void Player::lastimar(){
-	this->sonic->lastimar();
+	//this->sonic->lastimar();
+	this->sonic->setDamaged(true);
 }
 
 void Player::caer(int dir){

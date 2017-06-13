@@ -166,7 +166,7 @@ void Control::handleInMessage(in_message_t* ev){
 	//casos especiales, aca entran y debieran setear flag para que luego entren en update
 	if(ev->key == DOWN_DOWN){
 		this->getNivelActual()->playerRoll(playerName);
-		return;
+		//return;
 	}
 
 	//muevo el jugador y la camara con las direcciones obtenidas
