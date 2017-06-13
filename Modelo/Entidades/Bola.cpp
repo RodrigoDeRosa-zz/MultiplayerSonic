@@ -19,7 +19,7 @@ static float Xs[]={//X(t) = 200*cos(90-t)
 
 	200.0
 */
--200.0
+-200.0,
 
 //	-90		-82.5	-75		-67.5	-60		etc	
 	-200.0,	-198.3,	-193.2,	-184.78, -173.2, -158.67, -141.42, -121.75,	-100.0,	-76.54,	-51.76,	-26.1,	0.0,
@@ -31,7 +31,7 @@ static float Xs[]={//X(t) = 200*cos(90-t)
 };
 //Por ahora estamos trabajando con len(Xs)=len(Ys)=15
 #define LARGO_X_Y 27
-#define FACTOR_MOVIMIENTO_BOLA 30
+#define FACTOR_MOVIMIENTO_BOLA 15
 //Los extra del principio y final están ahi para que parezca que frena un toque, lo va a hacer..
 //.. como 4 veces porque va y viene
 static float Ys[]={//Y(t) = 200*sen(90-t)
