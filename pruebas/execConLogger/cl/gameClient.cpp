@@ -180,6 +180,10 @@ void* f_view(void* arg){
             self->gameWon(true);
             delete message;
             break;
+        } else if (message->ping == GAME_OVER){
+            self->gameOver(true);
+            delete message;
+            break;
         }*/
         delete message;
 	}
