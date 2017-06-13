@@ -184,6 +184,7 @@ void Nivel::colisionarTodos() {
 	bool colisionoPiedra = false;
 
 	for (int i = 0; i < (players)->size(); i++) {
+		if((!((*(players))[i]->estaVivo())) || (!((*(players))[i]->isConnected())) ) continue;
 		for (int j = 0; j < (entidades)->size(); j++) {
 
 			if ((*entidades)[j]->estaDestruida()) continue;
@@ -237,6 +238,10 @@ vector<out_message_t*> Nivel::getPlayerStatus(float camPos){
         }
         this->playerStatusControl = 0;*/
 		v.push_back((*(this->players))[i]->getStatus(camPos));
+		if(!((*(this->players))[i]->estaVivo())) {
+			// una vez que se mando el mensaje de que esta destruida, se borra la entidad
+			this->players->erase(this->players->begin() + i);
+		}
 	}
 	return v;
 }

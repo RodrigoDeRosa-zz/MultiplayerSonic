@@ -10,6 +10,7 @@ public:
 	Estado();
 	state_type get();
 	void setInvencible();
+	void setReviviendo();
 	void set(state_type estado);
 	void updateFrame();
 	int getFrame();

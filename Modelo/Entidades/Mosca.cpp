@@ -18,6 +18,7 @@ void Mosca::afectarA(Player* jugador){
 		this->destruida = true;
 		//sumar puntos a jugador
 	}
+	else jugador->lastimar();
 }
 
 out_message_t* Mosca::getOutMessage(){
