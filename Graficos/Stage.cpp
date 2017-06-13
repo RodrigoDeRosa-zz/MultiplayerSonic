@@ -33,6 +33,14 @@ void Stage::setPlayerInfo(int p, int r, int s, int l){
     //virtual
 }
 
+void Stage::setCoopInfo(int r, int s, int l){
+    //virtual
+}
+
+void Stage::setTeamInfo(int t, int r, int s, int l){
+    //virtual
+}
+
 void Stage::render(){
     //virtual
 }
@@ -190,6 +198,14 @@ void Stage::updateEntity(string groupKey, int index, float x, float y, int frame
 
 void Stage::updateScore(int index, int rings, int lives, int points, bool state){
     score->update(index, rings, lives, points, state);
+}
+
+void Stage::updateCoopScore(int rings, int points){
+    score->updateCoop(rings, points);
+}
+
+void Stage::updateTeamScore(int team, int rings, int points){
+    score->updateTeam(team, rings, points);
 }
 
 void Stage::removeSprite(string groupKey, int index){
