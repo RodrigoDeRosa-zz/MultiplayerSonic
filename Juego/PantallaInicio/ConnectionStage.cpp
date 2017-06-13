@@ -64,6 +64,10 @@ void ConnectionStage::setClicked(){
     clicked = true;
 }
 
+void ConnectionStage::unclick(){
+    clicked = false;
+}
+
 void ConnectionStage::render(){
     background->render();
 

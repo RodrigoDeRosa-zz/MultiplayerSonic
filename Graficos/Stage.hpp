@@ -72,6 +72,7 @@ class Stage{
         virtual void setPlayerInfo(int, int, int, int);
         virtual void setValues();
         virtual void setClicked();
+        virtual void unclick();
 
 };
 

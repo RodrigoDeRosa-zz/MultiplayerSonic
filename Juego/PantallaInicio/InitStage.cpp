@@ -52,22 +52,22 @@ InitStage::InitStage(int w, int h, int type) : Stage(){
 
     background->loadImage();
 
-    /*vector<string> filePaths;
+    vector<string> filePaths;
     filePaths.push_back(string("Graficos/esperando_jugadores00.png"));
     filePaths.push_back(string("Graficos/esperando_jugadores01.png"));
     filePaths.push_back(string("Graficos/esperando_jugadores02.png"));
     filePaths.push_back(string("Graficos/esperando_jugadores03.png"));
     Texture* tex;
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 4; i++){
         tex = new Texture();
         tex->loadFromFile(filePaths[i]);
         waitTex.push_back(tex);
-    }*/
+    }
 
     front = new Layer();
-    front->setTexPath("Graficos/esperando_jugadores03.png");
+    front->setDimensions(w, h);
+    front->setTexPath("Graficos/esperando_jugadores00.png");
     front->loadImage();
-    //front->setTexture(waitTex[0]);
 }
 
 InitStage::~InitStage(){
@@ -99,6 +99,10 @@ void InitStage::setClicked(){
     clicked = true;
 }
 
+void InitStage::unclick(){
+    clicked = false;
+}
+
 void InitStage::render(){
     background->render();
 
@@ -113,8 +117,8 @@ void InitStage::render(){
     }
 
     if (clicked){
-        //frame = frame%4;
-        //front->setTexture(waitTex[frame]);
+        frame = (logoFrame/(LOGO_FRAME_RATE*5))%4;
+        front->setTexture(waitTex[frame]);
         front->render();
     }
 }

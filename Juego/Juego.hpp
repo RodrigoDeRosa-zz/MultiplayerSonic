@@ -93,6 +93,7 @@ class Juego{
 
     bool isLevel();
     void setInitClicked();
+    void unclickInit();
 
     ~Juego();
 };
