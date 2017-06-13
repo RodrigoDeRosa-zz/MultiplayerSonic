@@ -36,7 +36,7 @@ void Bola::mover(){
 
 	//muevo la bola segun contador actual
 	this->x = jefeX + Xs[contador_mov/FACTOR_MOVIMIENTO_BOLA] - WIDTH/2;
-	this->y = jefeY + Ys[contador_mov/FACTOR_MOVIMIENTO_BOLA] + HEIGHT/2;
+	this->y = jefeY + Ys[contador_mov/FACTOR_MOVIMIENTO_BOLA] - HEIGHT/2;
 
 	if (direccion){//si esta yendo hacia la derecha
 		//incremento el contador

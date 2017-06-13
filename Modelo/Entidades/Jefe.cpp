@@ -1,13 +1,13 @@
 #include "Jefe.hpp"
 #include "../Player.hpp"
 #include <stdio.h>
-#define WIDTH 70
-#define HEIGHT 50
+#define WIDTH 239
+#define HEIGHT 200
 
-#define BOSS_MOV_SPAN 1500		//calcular junto con la bola segun la pantalla
+#define BOSS_MOV_SPAN 2500		//calcular junto con la bola segun la pantalla
 #define BOSS_MOV_SPEED 0.2		//cuanto se mueve por vez
 
-#define BOSS_FRAME_FACTOR 30
+#define BOSS_FRAME_FACTOR 20
 #define BOSS_CANT_FRAMES 12
 
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
