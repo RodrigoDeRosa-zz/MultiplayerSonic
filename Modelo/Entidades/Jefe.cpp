@@ -2,7 +2,7 @@
 #include "../Player.hpp"
 #include <stdio.h>
 #define WIDTH 239
-#define HEIGHT 200
+#define HEIGHT 170	//TODO era 200 pero creo que anda mejor asi
 
 #define BOSS_MOV_SPAN 2500		//calcular junto con la bola segun la pantalla
 #define BOSS_MOV_SPEED 0.2		//cuanto se mueve por vez
@@ -11,7 +11,7 @@
 #define BOSS_CANT_FRAMES 12
 
 #define THRESHOLD_DESDE_ABAJO 10	//para ver que le pegue desde el costado y no desde abajo
-
+#define SAFETY_DIST	5
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
 //.. el movimiento de la bola!
 void Jefe::mover(){//draft, faltan frames
@@ -40,15 +40,15 @@ void Jefe::afectarA(Player* jugador){
 		}
 		else{
 			//entro desde la derecha
-			posicion = this->Entidad::getBordeDer()+SAFETY_DIST);
+			posicion = this->Entidad::getBordeDer()+SAFETY_DIST;
 		}
 		jugador->setX(posicion);
-		jugador->setCayendo();//TODO chequear si hace falta
+		//jugador->setCayendo();//TODO chequear si hace falta
 	}
 	else{
 		//le estaba pegando desde abajo
 		jugador->setCayendo();
-		jugador->setY(this->Entidad::getBordeAbajo()+SAFE_DIST);
+		jugador->setY(this->Entidad::getBordeAbajo()+SAFETY_DIST);
 	}
 }
 
