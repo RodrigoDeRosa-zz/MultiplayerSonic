@@ -4,6 +4,7 @@ Puntaje::Puntaje(string name){
 	pthread_mutex_init(&puntaje_mux, NULL);
 	contador=0;
 	total=0;
+	monedas=0;
 	nombre = name;
 }
 
@@ -35,6 +36,16 @@ void Puntaje::sumarPuntos(int p){
 	pthread_mutex_lock(&puntaje_mux);
 	contador+=p;
 	pthread_mutex_unlock(&puntaje_mux);
+}
+
+void Puntaje::sumarMonedas(int m){
+	pthread_mutex_lock(&puntaje_mux);
+	monedas+=m;
+	pthread_mutex_unlock(&puntaje_mux);
+}
+
+int Puntaje::getMonedas(){
+	return monedas;
 }
 
 //getter del Nombre para facilitar impresión en pantalla de transición

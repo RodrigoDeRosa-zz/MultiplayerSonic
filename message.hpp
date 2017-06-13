@@ -35,6 +35,9 @@ typedef struct out_message{
 	int points;
 	state_type state;
 	int state_frame;
+	int team;
+	int team_points;
+	int team_rings;
 } out_message_t;
 
 typedef struct in_message{
