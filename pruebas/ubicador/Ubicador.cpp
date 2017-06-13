@@ -1,5 +1,4 @@
 #include "Ubicador.hpp"
-#include <vector>
 
 #define Y_PIEDRA 345
 #define Y_PINCHE 495
@@ -71,6 +70,16 @@ Ubicador::Ubicador(){
 #define MAX_BONUSES	6
 
 //utilidad
+void fixPar(int* mn, int* mx, int absmin, int absmax){
+	*mn = (*mn > absmax ? absmin+1 : *mn);
+	*mx = (*mx < absmin ? absmax-1 : *mx);
+	if (*mn > *mx){
+		int aux = *mn;
+		*mn=*mx;
+		*mx=aux;
+	}
+}
+
 int _min(int a, int b){
 	return (a < b ? a : b);
 }
@@ -99,24 +108,31 @@ void Ubicador::setParams(int coin_min, int coin_max, int crab_min, int crab_max,
 	maxs->clear();
 
 	//coins (0)
+	fixPar(&coin_min,&coin_max,MIN_COINS,MAX_COINS);
 	mins->push_back(_max(coin_min,MIN_COINS));
 	maxs->push_back(_min(coin_max,MAX_COINS));
 	//crabs (1)
+	fixPar(&crab_min,&crab_max,MIN_CRABS,MAX_CRABS);
 	mins->push_back(_max(crab_min,MIN_CRABS));
 	maxs->push_back(_min(crab_max,MAX_CRABS));
 	//flies (2)
+	fixPar(&fly_min,&fly_max,MIN_FLIES,MAX_FLIES);
 	mins->push_back(_max(fly_min,MIN_FLIES));
 	maxs->push_back(_min(fly_max,MAX_FLIES));
 	//fishes (3)
+	fixPar(&fish_min,&fish_max,MIN_FISHES,MAX_FISHES);
 	mins->push_back(_max(fish_min,MIN_FISHES));
 	maxs->push_back(_min(fish_max,MAX_FISHES));
 	//spikes (4)
+	fixPar(&spike_min,&spike_max,MIN_SPIKES,MAX_SPIKES);
 	mins->push_back(_max(spike_min,MIN_SPIKES));
 	maxs->push_back(_min(spike_max,MAX_SPIKES));
 	//rocks (5)
+	fixPar(&rock_min,&rock_max,MIN_ROCKS,MAX_ROCKS);
 	mins->push_back(_max(rock_min,MIN_ROCKS));
 	maxs->push_back(_min(rock_max,MAX_ROCKS));
 	//bonuses (6)
+	fixPar(&bonus_min,&bonus_max,MIN_BONUSES,MAX_BONUSES);
 	mins->push_back(_max(bonus_min,MIN_BONUSES));
 	maxs->push_back(_min(bonus_max,MAX_BONUSES));
 }
@@ -138,8 +154,17 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 	//primero piedras
 	mn = mins->at(5);
 	mx = maxs->at(5);
-	cantidad = rand() % (mx-mn);
-	cantidad+=mn;
+	if (mx==mn){
+		cantidad=mn;
+	}	
+	else if (mx > mn){
+		cantidad = rand() % (mx-mn);
+		cantidad+=mn;
+	}
+	else{
+		cantidad = rand() % (mn-mx);
+		cantidad+=mx;		
+	}
 	if (cantidad > 5 && LvLen < 6000){
 		cantidad /= 2;
 	}
@@ -151,7 +176,7 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(estaLibre(tierraI,tierraD,x_aux-ROCK_SPACE,x_aux+ROCK_WIDTH+ROCK_SPACE)){ 
 				t->x = x_aux;
 				tierraI->push_back(x_aux-ROCK_SPACE);
@@ -177,7 +202,7 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(estaLibre(tierraI,tierraD,x_aux-10,x_aux+SPIKE_WIDTH+SPIKE_SPACE)){ 
 				t->x = x_aux;
 				tierraI->push_back(x_aux-10);
@@ -205,7 +230,7 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(estaLibre(tierraI,tierraD,x_aux-10,x_aux+BONUS_WIDTH+BONUS_SPACE)){ 
 				t->x = x_aux;
 				tierraI->push_back(x_aux-10);
@@ -231,7 +256,7 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(estaLibre(tierraI,tierraD,x_aux-10,x_aux+CRAB_WIDTH+CRAB_SPACE)){ 
 				t->x = x_aux;
 				tierraI->push_back(x_aux-10);
@@ -257,25 +282,27 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(cantidad-i >= 3 && estaLibre(tierraI,tierraD,x_aux-10,x_aux+FISH_WIDTH*3+FISH_SPACE*3)){//si hay para 3 pongo un grupo de 3
 				t->x = x_aux;
 				tierraI->push_back(x_aux-10);
 				tierraD->push_back(x_aux+FISH_WIDTH*3+FISH_SPACE*3);
 				ternas->push_back(t);
 				
+				x_aux += FISH_WIDTH+20;
 				t = new terna_t;
 				t->tipo=FISH;
 				t->id = ++i;
 				t->y = Y_PEZ;
-				t->x = x_aux+FISH_WIDTH+20;
+				t->x = x_aux;
 				ternas->push_back(t);
 
+				x_aux += FISH_WIDTH+20;
 				t = new terna_t;
 				t->tipo=FISH;
 				t->id = ++i;
 				t->y = Y_PEZ;
-				t->x = x_aux+FISH_WIDTH+20;
+				t->x = x_aux;
 				ternas->push_back(t);
 
 				break;
@@ -306,9 +333,9 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		y_aux=475.0; //altura casi al piso de la moneda (485 es en el piso)
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(cantidad-i >= 5){  //si hay para 5 pongo un grupo de 5
-				if(!estaLibre(tierraI,tierraD,x_aux-COIN_SPACE,x_aux+COIN_WIDTH*5+COIN_SPACE*6){
+				if(!estaLibre(tierraI,tierraD,x_aux-COIN_SPACE,x_aux+COIN_WIDTH*5+COIN_SPACE*6)){
 					y_aux= 295.0;
 					aireI->push_back(x_aux-COIN_SPACE);
 					aireD->push_back(x_aux+COIN_WIDTH*5+COIN_SPACE*6);
@@ -318,11 +345,12 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 				ternas->push_back(t);
 
 				for (int mon = 1; mon < 5; mon++){
+					x_aux+= COIN_WIDTH+COIN_SPACE;
 					t = new terna_t;
 					t->tipo=COIN;
 					t->id = ++i;
 					t->y = y_aux;
-					t->x = x_aux+COIN_WIDTH+COIN_SPACE;
+					t->x = x_aux;
 					ternas->push_back(t);
 				}
 				break;
@@ -356,7 +384,7 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		x_aux=0.0;
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
-			x_aux = rand() % (LvLen - 300.0) + 300.0;
+			x_aux = rand() % (LvLen - 300) + 300.0;
 			if(estaLibre(aireI,aireD,x_aux-10,x_aux+FLY_WIDTH+FLY_SPACE)){
 				if(estaLibre(tierraI,tierraD,x_aux-10,x_aux+FLY_WIDTH+FLY_SPACE)){
 					t->y = rand() % 200 + Y_MOSCA; //entre 225 y 425 
