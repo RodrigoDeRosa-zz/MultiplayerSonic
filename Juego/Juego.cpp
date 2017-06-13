@@ -169,7 +169,7 @@ void Juego::setTexturas(){
     texturas.insert(make_pair("bossBall", bossBall));
     /*Textura de las ondas del jefe*/
     Texture* bossWaves = new Texture();
-    bossWaves->loadFromFile("Graficos/bola_malo.png");
+    bossWaves->loadFromFile("Graficos/onda_jefe.png");
     texturas.insert(make_pair("bossWaves", bossWaves));
     /*Textura de la plataforma aerea*/
     Texture* plataforma = new Texture();
@@ -411,7 +411,7 @@ void Juego::addBoss(float x, float y, int index, int level){
 
 /*Agrega un Jefe en las posiciones dadas*/
 void Juego::addBossWaves(float x, float y, int index, int level){
-    BossWaves* boss = new BossWaves(x, y);
+    BossWaves* bossWaves = new BossWaves(x, y);
     map<string, Texture*>::iterator it;
     it = texturas.find("bossWaves");
     Texture* tex = it->second;

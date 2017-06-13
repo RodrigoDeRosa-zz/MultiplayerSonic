@@ -231,11 +231,11 @@ void Nivel::playerRoll(string playerName){
 vector<out_message_t*> Nivel::getPlayerStatus(float camPos){
 	vector<out_message_t*> v;
 	for(int i=0; i < (this->players)->size(); i++){
-		if (this->playerStatusControl < 10){
+		/*if (this->playerStatusControl < 10){
             this->playerStatusControl++;
             continue;
         }
-        this->playerStatusControl = 0;
+        this->playerStatusControl = 0;*/
 		v.push_back((*(this->players))[i]->getStatus(camPos));
 	}
 	return v;

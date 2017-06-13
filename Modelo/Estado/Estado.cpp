@@ -6,6 +6,7 @@
 Estado::Estado(){
 	this->estado = NORMAL;
 	this->frame = 0;
+	this->frameSum = 0;
 }
 
 state_type Estado::get(){
@@ -36,8 +37,12 @@ void Estado::setInvencible(){
 }
 
 void Estado::updateFrame(){
-	this->frame++;
-	if(this->frame >= 9) this->frame = 0;
+	frameSum++;
+	if (frameSum > 100) frameSum = 0;
+	if (frameSum%10 == 0){
+		frame = frameSum / 10;
+	}
+	if(frame >= 9) frame = 0;
 }
 
 int Estado::getFrame(){
