@@ -262,6 +262,10 @@ void Control::crearEntidades(){
 			this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[j]));
 		}
 	}
+	Jefe* jefe = new Jefe(0,3000,50);
+	Bola* bola = new Bola(0,3000,120,jefe);
+	this->niveles[4]->addEntidad(jefe);
+	this->niveles[4]->addEntidad(bola);
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
