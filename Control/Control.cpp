@@ -8,6 +8,8 @@
 #include "../Modelo/Entidades/Invencibilidad.hpp"
 #include "../Modelo/Entidades/BonusMoneda.hpp"
 #include "../Modelo/Entidades/Escudo.hpp"
+#include "../Modelo/Entidades/Jefe.hpp"
+#include "../Modelo/Entidades/Bola.hpp"
 #include <stdio.h>
 #include <sstream>
 
@@ -201,8 +203,14 @@ void Control::cambiarEquipo(string playerName, int equipo){
 }
 
 void Control::crearEntidades(){
-	Pinche* pinche = new Pinche(2, 500, 498);
-	this->niveles[NIVEL1]->addEntidad(pinche);
+	/*Pinche* pinche = new Pinche(2, 500, 498);
+	this->niveles[NIVEL1]->addEntidad(pinche);*/
+
+	Jefe* jefe = new Jefe(0, 500, 50);
+	this->niveles[NIVEL1]->addEntidad(jefe);
+
+	Bola* bola = new Bola(0, 500, 120, jefe);
+	this->niveles[NIVEL1]->addEntidad(bola);
 
 
     /*Piedra* piedra1 = new Piedra(0,500, 345);

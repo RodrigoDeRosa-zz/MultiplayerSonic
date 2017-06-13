@@ -183,7 +183,7 @@ void Nivel::colisionarTodos() {
 
 			if ((*entidades)[j]->estaDestruida()) continue;
 
-			if ((*players)[i]->enRangoX((*entidades)[j])) {
+			else if ((*players)[i]->enRangoX((*entidades)[j])) {
 				if ((*players)[i]->enRangoY((*entidades)[j])) {
 					if(((*entidades)[j])->esPiedra()){
 						 colisionoPiedra = true;
@@ -192,7 +192,7 @@ void Nivel::colisionarTodos() {
 				}
 			}
 
-			if ((*players)[i]->enRangoY((*entidades)[j])) {
+			else if ((*players)[i]->enRangoY((*entidades)[j])) {
 				if ((*players)[i]->enRangoX((*entidades)[j])) {
 
 					if(((*entidades)[j])->esPiedra()){

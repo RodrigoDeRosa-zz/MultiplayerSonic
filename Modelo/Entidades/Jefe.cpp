@@ -36,7 +36,7 @@ void Jefe::recibirDanio(){
 	}
 }
 
-Jefe::Jefe(float x, float y): Entidad(0,x,y,WIDTH,HEIGHT){}
+Jefe::Jefe(int id, float x, float y): Entidad(0,x,y,WIDTH,HEIGHT){}
 
 out_message_t* Jefe::getOutMessage(){
 	return this->Entidad::getOutMessage(BOSS_UPDATE);

@@ -11,7 +11,7 @@ class Bola: public Entidad{
 	bool direccion = true;//va para la derecha
 	Jefe* jefe;
 public:
-	Bola(float x, float y, Jefe* j);
+	Bola(int id, float x, float y, Jefe* j);
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();

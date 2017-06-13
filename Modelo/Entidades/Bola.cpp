@@ -54,7 +54,7 @@ void Bola::mover(){
 	}
 }
 
-Bola::Bola(float x, float y, Jefe* j) : Entidad(0,x,y,WIDTH,HEIGHT){
+Bola::Bola(int id, float x, float y, Jefe* j) : Entidad(0,x,y,WIDTH,HEIGHT){
 	this->jefe = j;
 }
 
