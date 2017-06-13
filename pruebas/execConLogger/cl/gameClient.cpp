@@ -162,7 +162,7 @@ void* f_view(void* arg){
             self->getJuego()->updatePez(message);
         } else if (message->ping == BONUS_UPDATE){
             self->getJuego()->updateBonus(message);
-        } else if (message->ping == BOSS_UPDATE){
+        } else if (message->ping == BOSS_UPDATE_D || message->ping == BOSS_UPDATE_I){
             self->getJuego()->updateBoss(message);
         } else if (message->ping == BALL_UPDATE){
             self->getJuego()->updateBossBall(message);

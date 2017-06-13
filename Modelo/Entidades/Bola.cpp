@@ -2,8 +2,8 @@
 #include "../Player.hpp"
 #include <stdio.h>
 
-#define WIDTH 70				//TODO: cambiar valores
-#define HEIGHT 50
+#define WIDTH 150
+#define HEIGHT 150
 
 //SE CALCULA RESPECTO DEL CENTRO DE LA BOLA, DESPUES AGREGAR PARA QUE SEA EL PUNTO QUE SE QUIERE
 //RECORDAR SE USA r=100, sino calcular de vuelta!
@@ -12,20 +12,21 @@
 //LISTA DE ANGULOS ENTONCES:
 //	-90		-75		-60		-45		-30		-15		0	+15		+30	   +45	    +60		+75		+90	
 static float Xs[]={
-	-100.0,
+	-200.0,
 
-	-100.0,	-96.59,	-86.6,	-70.71,	-50.0,	-25.89,	0.0, -25.89,	50.0, 70.71, 86.6,	96.59,	100.0,
+	-200.0,	-193.18,	-173.2,	-141.42,	-100.0,	-51.78,	0.0, 51.78,	100.0, 141.42, 173.2,	193.18,	200.0,
 
-	100.0
+	200.0
 };
 //Por ahora estamos trabajando con len(Xs)=len(Ys)=15
 #define LARGO_X_Y 15
+#define FACTOR_MOVIMIENTO_BOLA 4
 //Los extra del principio y final están ahi para que parezca que frena un toque, lo va a hacer..
 //.. como 4 veces porque va y viene
 static float Ys[]={
 		0.0,
 	
-	   0.0,	 25.89,	 50.0,	 70.71,	 86.6,	 96.59, 100.0,96.59,	86.6, 70.71, 50.0,	25.89,	0.0,
+	   0.0,	 51.78,	 100.0,	 141.42,	 173.2,	 193.18, 200.0,193.18,	173.2, 141.42, 100.0,	51.78,	0.0,
 
 		0.0
 };
@@ -34,8 +35,8 @@ void Bola::mover(){
 	jefe->getAnclaje(&jefeX,&jefeY);
 
 	//muevo la bola segun contador actual
-	this->x = jefeX + Xs[contador_mov] - WIDTH/2;
-	this->y = jefeY + Ys[contador_mov] + HEIGHT/2;
+	this->x = jefeX + Xs[contador_mov/FACTOR_MOVIMIENTO_BOLA] - WIDTH/2;
+	this->y = jefeY + Ys[contador_mov/FACTOR_MOVIMIENTO_BOLA] - HEIGHT/2;
 
 	if (direccion){//si esta yendo hacia la derecha
 		//incremento el contador

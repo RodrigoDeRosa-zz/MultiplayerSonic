@@ -31,11 +31,11 @@
 
 #define ROCK_WIDTH 103
 #define ROCK_HEIGHT 200
-#define ROCK_SPACE 200
+#define ROCK_SPACE 250
 
 #define SPIKE_WIDTH 200
 #define SPIKE_HEIGHT 40
-#define SPIKE_SPACE 100
+#define SPIKE_SPACE 200
 
 #define BONUS_WIDTH 100
 #define BONUS_SPACE 50
@@ -99,6 +99,7 @@ bool estaLibre(vector<float>* izq, vector<float>* der, float newi, float newd){
 
 
 #define MAX_ITERS 1000
+#define ESPACIO_FINAL 500
 //para cada parametro que se le pasa lo acomoda si esta ido de mambo (min>=0, max<=cierto valor), y lo pushea en el vector de minimos o maximos.
 //Por como esta hecho el enum hay que respetar los órdenes porque mins.at(FISH) va a dar el minimo para fish sin hacer un dicc
 void Ubicador::setParams(int coin_min, int coin_max, int crab_min, int crab_max, int fly_min, int fly_max, int fish_min, int fish_max, int spike_min, int spike_max, int rock_min, int rock_max, int bonus_min, int bonus_max){
@@ -139,6 +140,7 @@ void Ubicador::setParams(int coin_min, int coin_max, int crab_min, int crab_max,
 
 //Resuelve con los parametros dados lo que tiene que hacer		
 vector<terna_t*>* Ubicador::generarTernas(int LvLen){
+	LvLen -= ESPACIO_FINAL;//para que en los ultimos 300 no tenga nada
 	vector<terna_t*>* ternas = new vector<terna_t*>();
 	vector<float>* tierraI = new vector<float>();
 	vector<float>* tierraD = new vector<float>();
