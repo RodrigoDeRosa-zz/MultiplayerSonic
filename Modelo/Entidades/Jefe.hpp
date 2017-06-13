@@ -14,12 +14,12 @@ class Jefe: public Entidad{
 	int vidas = CANT_VIDAS_JEFE;
 	void recibirDanio();
 public:
-	Jefe(int id, float x, float y);//TODO: hace falta el id?
+	Jefe(int id, float x, float y);
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();
 	void mover();
-	void getAnclaje(float* targetX, float* targetY);//le pasa los valores desde donde calcular el MCU(V?)
+	void getAnclaje(float* targetX, float* targetY);
 };
 
 #endif /*JEFE_HPP*/

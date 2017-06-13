@@ -4,9 +4,11 @@
 #define WIDTH 70
 #define HEIGHT 50
 
-#define BOSS_MOV_SPAN 500		//calcular junto con la bola segun la pantalla
+#define BOSS_MOV_SPAN 1500		//calcular junto con la bola segun la pantalla
 #define BOSS_MOV_SPEED 0.2		//cuanto se mueve por vez
 
+#define BOSS_FRAME_FACTOR 8
+#define BOSS_CANT_FRAMES 24
 
 //Si se quiere se le puede agregar que suba y baje un poco, pero va a ser fruta..
 //.. el movimiento de la bola!
@@ -16,6 +18,7 @@ void Jefe::mover(){//draft, faltan frames
 		direccion = (-1)*direccion;
 		moveActual = (moveActual==BOSSR ? BOSSL : BOSSR);
 	}
+	frame = (contador_mov / BOSS_FRAME_FACTOR) % BOSS_CANT_FRAMES;
 	contador_mov++;
 	x+= direccion*BOSS_MOV_SPEED;
 }
