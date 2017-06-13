@@ -157,10 +157,6 @@ void* f_view(void* arg){
             self->getJuego()->updateCoopScore(message->rings, message->points);
         } else if (message->ping == TEAM_UPDATE){
             self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
-        } else if (message->ping == TRANSITION_TEAM){
-            self->getJuego()->updateTeamTransition(message->id, message->rings, message->points);
-        } else if (message->ping == TRANSITION_COOP){
-            self->getJuego()->updateCoopTransition(message->rings, message->points);
         */} else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);
         } else if (message->ping == CRAB_UPDATE){
