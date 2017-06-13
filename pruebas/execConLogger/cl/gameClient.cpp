@@ -245,6 +245,7 @@ void* viewControl(void* arg){
                 key = KEY_TOTAL;
                 key = self->getJuego()->processEvent(e);
                 if (key != KEY_TOTAL) self->queueToSend(key);
+                self->getJuego()->setInitClicked();
             }
             self->getJuego()->render();
             Renderer::getInstance().draw();

@@ -41,6 +41,10 @@ void Stage::setValues(){
     //virtual
 }
 
+void Stage::setClicked(){
+    //virtual
+}
+
 key_event Stage::processEvent(SDL_Event e){
     //Virtual
 }

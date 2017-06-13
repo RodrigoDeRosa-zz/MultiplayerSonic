@@ -113,6 +113,10 @@ bool Juego::stageReady(){
     return stageActual != NULL;
 }
 
+void Juego::setInitClicked(){
+    stageActual->setClicked();
+}
+
 void Juego::setTexturas(){
     //TODO: Llenar el mapa texturas con lo que corresponda:
     /*Textura de piedras*/

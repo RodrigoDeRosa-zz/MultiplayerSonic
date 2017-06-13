@@ -92,6 +92,7 @@ class Juego{
     void addBossBall(float x, float y, int index, int level);
 
     bool isLevel();
+    void setInitClicked();
 
     ~Juego();
 };
