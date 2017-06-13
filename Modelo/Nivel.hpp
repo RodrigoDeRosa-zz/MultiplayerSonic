@@ -40,6 +40,7 @@ public:
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);
 		vector<out_message_t*> getEntidadesInitStatus();
+		void setPrueba(string);
 		void playerRoll(string playerName);
 		virtual void colisionarTodos();
 		bool enRango(Entidad* entidad, Player* player);
