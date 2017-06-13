@@ -35,7 +35,7 @@
 
 #define SPIKE_WIDTH 200
 #define SPIKE_HEIGHT 40
-#define SPIKE_SPACE 200
+#define SPIKE_SPACE 300
 
 #define BONUS_WIDTH 100
 #define BONUS_SPACE 50
@@ -205,10 +205,10 @@ vector<terna_t*>* Ubicador::generarTernas(int LvLen){
 		for (int asd = 0; asd < MAX_ITERS ; asd++){//intenta hasta MAX_ITERS veces acomodarlo, sino no lo pone
 			//la magia			
 			x_aux = rand() % (LvLen - 300) + 300.0;
-			if(estaLibre(tierraI,tierraD,x_aux-10,x_aux+SPIKE_WIDTH+SPIKE_SPACE)){ 
+			if(estaLibre(tierraI,tierraD,x_aux-100,x_aux+SPIKE_WIDTH+SPIKE_SPACE-100)){ 
 				t->x = x_aux;
-				tierraI->push_back(x_aux-10);
-				tierraD->push_back(x_aux+SPIKE_WIDTH+SPIKE_SPACE);
+				tierraI->push_back(x_aux-100);
+				tierraD->push_back(x_aux+SPIKE_WIDTH+SPIKE_SPACE-100);
 				aireI->push_back(x_aux-20);//20 es un numero magico
 				aireD->push_back(x_aux+SPIKE_WIDTH+20);
 				ternas->push_back(t);
