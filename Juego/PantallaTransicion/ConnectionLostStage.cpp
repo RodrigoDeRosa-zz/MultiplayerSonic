@@ -5,7 +5,7 @@ ConnectionLostStage::ConnectionLostStage(int w, int h) : Stage(){
 
     front = new Layer();
     front->setDimensions(w, h);
-    front->setTexPath("Graficos/game_over.png");
+    front->setTexPath("Graficos/conexion_interrumpida.png");
     front->loadImage();
 }
 
