@@ -122,6 +122,7 @@ void* keyControl(void* arg){
 					case SDLK_LEFT: key = LEFT_DOWN; break;
 					case SDLK_RIGHT: key = RIGHT_DOWN; break;
 					case SDLK_DOWN: key = DOWN_DOWN; break;
+                    case SDLK_UP: key = UP_DOWN; break;
 				}
 			}
 			else if( e.type == SDL_KEYUP && e.key.repeat == 0){
@@ -130,6 +131,7 @@ void* keyControl(void* arg){
 					case SDLK_LEFT: key = LEFT_UP; break;
 					case SDLK_RIGHT: key = RIGHT_UP; break;
 					case SDLK_DOWN: key = DOWN_UP; break;
+                    case SDLK_UP: key = UP_UP; break;
 				}
 			}
 		}
