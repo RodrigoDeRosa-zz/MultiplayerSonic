@@ -190,6 +190,10 @@ bool ModelSonic::estaSaltando(){
     return this->bloque_pers->estaSaltando();
 }
 
+bool ModelSonic::estaCayendo(){
+    return this->bloque_pers->estaCayendo();
+}
+
 bool ModelSonic::estaRodando(){
     return this->bloque_pers->estaRodando();
 }

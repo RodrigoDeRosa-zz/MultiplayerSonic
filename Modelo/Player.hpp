@@ -78,6 +78,7 @@ class Player{
 		out_message_t* getStatus(float camPos);
 		void setCayendo();
 		bool estaMirandoADer();
+		bool estaCayendo();
 		void cargarMapCollitionBoxes();
 		void roll();
 		void lastimar();

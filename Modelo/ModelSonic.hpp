@@ -46,6 +46,7 @@ public:
     void setAnchoEscenario(float);
 	void setDamaged(bool f);
 	void setRolling(bool f);
+	bool estaCayendo();
 /*
 	void crouch();
 	void release();

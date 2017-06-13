@@ -31,7 +31,7 @@ static float Xs[]={//X(t) = 200*cos(90-t)
 };
 //Por ahora estamos trabajando con len(Xs)=len(Ys)=15
 #define LARGO_X_Y 27
-#define FACTOR_MOVIMIENTO_BOLA 15
+#define FACTOR_MOVIMIENTO_BOLA 60
 //Los extra del principio y final están ahi para que parezca que frena un toque, lo va a hacer..
 //.. como 4 veces porque va y viene
 static float Ys[]={//Y(t) = 200*sen(90-t)
@@ -52,6 +52,9 @@ static float Ys[]={//Y(t) = 200*sen(90-t)
 0.0
 };
 void Bola::mover(){
+	if(jefe->Entidad::estaDestruida()) {
+		this->destruir();
+	}
 	float jefeX,jefeY;
 	jefe->getAnclaje(&jefeX,&jefeY);
 

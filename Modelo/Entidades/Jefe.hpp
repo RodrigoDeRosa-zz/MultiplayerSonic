@@ -3,13 +3,14 @@
 
 #include "Entidad.hpp"
 
-#define CANT_VIDAS_JEFE 1000
+#define CANT_VIDAS_JEFE 10
 
 
 using namespace std;
 
 class Jefe: public Entidad{
 	unsigned int contador_mov = 0;
+	int cont_inmune = 0;
 	float direccion = 1.0;
 	int vidas = CANT_VIDAS_JEFE;
 	void recibirDanio();
