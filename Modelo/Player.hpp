@@ -24,6 +24,7 @@ class Player{
 	Puntaje* puntaje;
 	Estado* estado;
 	bool atEnd;
+	bool vivo;
 	public:
 		Player(string name, Puntaje* p);
 		string getName();
@@ -46,6 +47,7 @@ class Player{
 		bool llegoAlFinal();
 		void setEstado(state_type estado);
 		state_type getEstado();
+		bool estaVivo();
 		
 		void setIndivScore(int newscore);
 		int  getIndivScore();

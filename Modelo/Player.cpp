@@ -23,6 +23,11 @@ Player::Player(string name, Puntaje* p){
     this->estado = new Estado();
 	this->atEnd = false;
 	this->scoreIndiv = 0;
+    this->vivo = true;
+}
+
+bool Player::estaVivo(){
+    return this->vivo;
 }
 
 string Player::getName(){
@@ -261,7 +266,13 @@ void Player::setBaseY(float newy){
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
 	memset(status, 0, sizeof(out_message_t));
-    status->ping = PLAYER_UPDATE;
+    switch(this->vivo){
+        case true:
+            status->ping = PLAYER_UPDATE;break;
+        case false:
+            status->ping = PLAYER_DEAD;break;
+    }
+    
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();
     status->posX = this->getX();
@@ -274,9 +285,11 @@ out_message_t* Player::getStatus(float camPos){
 	status->points = this->getPuntos();
     switch(this->getEstado()){
         case PRUEBA:
-            status->state = ESCUDO;
+            status->state = ESCUDO;break;
+        case REVIVIENDO:
+            status->state = ESCUDO;break;
         default:
-            status->state = this->getEstado();
+            status->state = this->getEstado();break;
     }
     status->state_frame = this->estado->getFrame();
     return status;
@@ -290,8 +303,6 @@ bool Player::recibirGolpe(){
             else this->quitarVida();
         }
         else this->quitarMonedas();
-        //llamar a movimiento de recibir golpe
-    	//sonic->lastimar();
         return true;
     }
     return false;
@@ -314,7 +325,11 @@ void Player::quitarMonedas(){
 }
 
 void Player::quitarVida(){
-    this->vidas--;
+    if(this->vidas){
+        this->vidas--;
+        this->setEstado(REVIVIENDO);
+    }
+    else this->vivo = false;
 }
 
 bool Player::estaAtacando(){

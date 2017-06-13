@@ -19,21 +19,35 @@ void Estado::set(state_type estado){
 	}
 	else{
 		if(estado == INVENCIBLE) this->setInvencible();
+		else if(estado == REVIVIENDO) this->setReviviendo();
 		else this->estado = estado;
 	}
 }
 
-void* state_change(void* arg){
+void* invencibility(void* arg){
 	Estado* estado = (Estado*)arg;
 	sleep(10);
 	if(estado->get() == INVENCIBLE) estado->set(NORMAL);
 	return NULL;
 }
 
+void* respawn(void* arg){
+	Estado* estado = (Estado*)arg;
+	sleep(2);
+	if(estado->get() == REVIVIENDO) estado->set(NORMAL);
+	return NULL;
+}
+
 void Estado::setInvencible(){
 	this->estado = INVENCIBLE;
 	pthread_t timeThreadID;
-	pthread_create(&timeThreadID, NULL, state_change, this);
+	pthread_create(&timeThreadID, NULL, invencibility, this);
+}
+
+void Estado::setReviviendo(){
+	this->estado = REVIVIENDO;
+	pthread_t timeThreadID;
+	pthread_create(&timeThreadID, NULL, respawn, this);
 }
 
 void Estado::updateFrame(){
