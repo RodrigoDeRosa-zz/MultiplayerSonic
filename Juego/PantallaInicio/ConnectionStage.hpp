@@ -4,7 +4,7 @@
 #include "SonicLogo.hpp"
 #include "../../Graficos/Stage.hpp"
 #include "../../Graficos/Texture.hpp"
-#include "../Buttons/StartButton.hpp"
+#include "../Buttons/ConnectButton.hpp"
 #include <SDL2/SDL.h>
 #include "../../message.hpp"
 #include <string>
@@ -13,7 +13,7 @@ using namespace std;
 class ConnectionStage : public Stage{
     private:
         map<string, Texture*> textures;
-        StartButton* button;
+        ConnectButton* button;
         SonicLogo* logo;
         unsigned int logoFrame;
     public:

@@ -91,7 +91,7 @@ void* initGame(void *arg){
 	pthread_create(&eventThreadID, NULL, keyControl, client);
 
 	/*Se espera que terminen los threads*/
-    pthread_join(viewThreadID, &eventThread_exit);
+    pthread_join(viewThreadID, &viewThread_exit);
 	pthread_join(eventThreadID, &eventThread_exit);
 
     return NULL;
@@ -102,13 +102,13 @@ void* keyControl(void* arg){
 
 	key_event key = KEY_TOTAL;
     SDL_Event e;
-
 	while(self->gameOn()){
 		while(SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT){
 	        	key = QUIT;
                 self->endGame();
-                break;
+                self->manuallyClosed = true;
+                return NULL;
 	        }
 			if( e.type == SDL_KEYDOWN && e.key.repeat == 0){
 				switch( e.key.keysym.sym ){
@@ -188,8 +188,9 @@ void* runGame(void* arg){
     pthread_create(&initThreadID, NULL, initGame, self);
 
     /*Espera la finalizacion del thread de comunicacion*/
+    pthread_join(initThreadID, &initThread_exit);
+    self->disconnect(0);
     pthread_join(comThreadID, &comThread_exit);
-	pthread_join(initThreadID, &initThread_exit);
 
     return NULL;
 }
@@ -200,60 +201,63 @@ void* viewControl(void* arg){
     SDL_Event e;
     pthread_t game;
 	void* exit_status;
-    //Pantalla de conexion
-    while(!self->connected()){
-        Renderer::getInstance().clear();
+    bool running = true;
+    while (running){
+        //Pantalla de conexion
+        while(!self->connected()){
+            Renderer::getInstance().clear();
 
-        while(SDL_PollEvent(&e)){
-            if (e.type == SDL_QUIT){
-                return NULL; //Se termina la ejecucion
+            while(SDL_PollEvent(&e)){
+                if (e.type == SDL_QUIT){
+                    return NULL; //Se termina la ejecucion
+                }
+                if (self->initProcessEvent(e) != KEY_TOTAL){
+                    pthread_create(&game, NULL, runGame, self);
+                    break;
+                }
             }
-            if (self->initProcessEvent(e) != KEY_TOTAL){
-                pthread_create(&game, NULL, runGame, self);
-                break;
-            }
+            self->renderInit();
+            Renderer::getInstance().draw();
         }
-        self->renderInit();
-        Renderer::getInstance().draw();
-    }
-    while(!self->getJuego() || !self->getJuego()->stageReady()){
-        usleep(5000);
-    }
-    //Pantalla de inicio de juego
-    key_event key;
-    while(!self->gameOn()){
-        Renderer::getInstance().clear();
-        //Ahora es otro el thread que renderiza
-        while(SDL_PollEvent(&e)){
-            if (e.type == SDL_QUIT){
-                self->disconnect(0);
-                pthread_join(game, &exit_status);
-                return NULL; //Se termina la ejecucion
-            }
-            key = KEY_TOTAL;
-            key = self->getJuego()->processEvent(e);
-            if (key != KEY_TOTAL) self->queueToSend(key);
+        while(!self->getJuego() || !self->getJuego()->stageReady()){
+            usleep(5000);
         }
-        self->getJuego()->render();
-        Renderer::getInstance().draw();
-    }
-    //Juego
-    while(self->gameOn()){
-        /*Limpiar pantalla*/
-        Renderer::getInstance().setDrawColor(255, 255, 255, 1);
-        Renderer::getInstance().clear();
-        /*Actualizar entidades*/
-        if (self->getJuego()->isLevel()) self->updatePlayers();
-        else self->updateTransition();
-        /*Renderizar*/
-        self->getJuego()->render();
-        Renderer::getInstance().draw();
-        usleep(2000);
-    }
+        //Pantalla de inicio de juego
+        key_event key;
+        while(!self->gameOn()){
+            Renderer::getInstance().clear();
+            //Ahora es otro el thread que renderiza
+            while(SDL_PollEvent(&e)){
+                if (e.type == SDL_QUIT){
+                    self->disconnect(0);
+                    pthread_join(game, &exit_status);
+                    return NULL; //Se termina la ejecucion
+                }
+                key = KEY_TOTAL;
+                key = self->getJuego()->processEvent(e);
+                if (key != KEY_TOTAL) self->queueToSend(key);
+            }
+            self->getJuego()->render();
+            Renderer::getInstance().draw();
+        }
+        //Juego
+        while(self->gameOn()){
+            /*Limpiar pantalla*/
+            Renderer::getInstance().setDrawColor(255, 255, 255, 1);
+            Renderer::getInstance().clear();
+            /*Actualizar entidades*/
+            if (self->getJuego()->isLevel()) self->updatePlayers();
+            else self->updateTransition();
+            /*Renderizar*/
+            self->getJuego()->render();
+            Renderer::getInstance().draw();
+            usleep(2000);
+        }
+        pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 
-    pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
+        if (self->manuallyClosed) running = false;
+    }
     SDLHandler::getInstance().close();
-    self->disconnect(0);
 
     return NULL;
 }

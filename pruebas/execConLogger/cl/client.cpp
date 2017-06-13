@@ -20,6 +20,7 @@ Client::Client(const char* p, const char* h){
     online = false;
     gameStarted = false;
     gameSet = false;
+    manuallyClosed = false;
     juego = NULL;
     pings = 0;
     port = p;

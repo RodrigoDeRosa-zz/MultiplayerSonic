@@ -21,7 +21,7 @@ class Control{
 	/*Niveles*/
 	int nivelActual;
 	vector <Nivel*> niveles;
-	
+
 	/*Camara*/
 	CameraControl* cameraControl;
 	void setCameraPosition(float cameraPosition);
@@ -46,6 +46,7 @@ class Control{
 		void update();
 		void crearEntidades(); //la idea es que esto reciba un .json y devuelva un vector de out_message_t*
 		vector<out_message_t*> getEntidadesInitStatus();
+		int getLevelNum();
 };
 
 #endif /*CONTROL_HPP*/

@@ -39,7 +39,7 @@ void avisarEmpiezaJuego(Control* gameControl){
     delete state;
 }
 
-void enviarInformacionJuego(Control* gameControl){
+void enviarInformacionJuego(Control* gameControl, Connection* connection){
     out_message_t* state = new out_message_t;
 
     char* message = new char[sizeof(out_message_t)];
@@ -47,23 +47,26 @@ void enviarInformacionJuego(Control* gameControl){
     state->ping = GAME_SET;
     state->id = (int) gameControl->getGameMode();
     memcpy(message, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(message);
+    connection->sendMessage(message, sizeof(out_message_t));
+    //SERVER().queueOutEvent(message);
     usleep(1000);
 
     char* playerSetting = new char[sizeof(out_message_t)];
     memset(state, 0, sizeof(out_message_t));
     state->ping = PLAYER_SET;
-    state->id = CXM().actualConnections;
+    state->id = CXM().maxConnections;
     //el resto de los atributos del estado no importan
     memcpy(playerSetting, state, sizeof(out_message_t));
-    SERVER().queueOutEvent(playerSetting);
+    connection->sendMessage(playerSetting, sizeof(out_message_t));
+    //SERVER().queueOutEvent(playerSetting);
     usleep(1000);
 
     vector<out_message_t*> states = gameControl->getEntidadesInitStatus();
     for(int i = 0; i < states.size(); i++){
         char* outState = new char[sizeof(out_message_t)];
         memcpy(outState, states[i], sizeof(out_message_t));
-        SERVER().queueOutEvent(outState);
+        connection->sendMessage(outState, sizeof(out_message_t));
+        //SERVER().queueOutEvent(outState);
     }
     usleep(5000);
 }
@@ -89,12 +92,15 @@ void* accept(void* arg){
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
 
-        if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
+        SERVER().startInitializing();
+        enviarInformacionJuego(control, connection);
+
+        /*if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
             SERVER().startInitializing();
-        }
+        }*/
 
         /*Esto se da cuando se desconecta alguien y otra persona toma su lugar*/
-        if (SERVER().is_running() && has_started){
+        if (SERVER().is_running()){
             out_message_t* state = new out_message_t;
             char* message = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
@@ -107,7 +113,7 @@ void* accept(void* arg){
             char* playerSetting = new char[sizeof(out_message_t)];
             memset(state, 0, sizeof(out_message_t));
         	state->ping = PLAYER_SET;
-        	state->id = CXM().actualConnections;
+        	state->id = CXM().maxConnections;
         	//el resto de los atributos del estado no importan
             memcpy(playerSetting, state, sizeof(out_message_t));
             connection->sendMessage(playerSetting, sizeof(out_message_t));
@@ -117,7 +123,7 @@ void* accept(void* arg){
             for(int i = 0; i < states.size(); i++){
                 char* outState = new char[sizeof(out_message_t)];
                 memcpy(outState, states[i], sizeof(out_message_t));
-                SERVER().queueOutEvent(outState);
+                connection->sendMessage(outState, sizeof(out_message_t));
             }
 
             char* startMessage = new char[sizeof(out_message_t)];
@@ -125,14 +131,21 @@ void* accept(void* arg){
             state->ping = GAME_START;
             memcpy(startMessage, state, sizeof(out_message_t));
             connection->sendMessage(startMessage, sizeof(out_message_t));
+            usleep(1000);
+
+            for (int i = 0; i <= control->getLevelNum(); i++){
+                char* jumpConnection = new char[sizeof(out_message_t)];
+                memset(state, 0, sizeof(out_message_t));
+                state->ping = CHANGE_LEVEL;
+                memcpy(jumpConnection, state, sizeof(out_message_t));
+                connection->sendMessage(jumpConnection, sizeof(out_message_t));
+            }
+
             delete state;
 
             //Ahora se le avisa al servidor que cierto jugador se reconecto
             control->setPlayerConnection(SSTR_(connection->id), true);
         }
-        /*Ahora se setea esto como un flag, porque no quiero que la primera vez que se inicia el
-        juego se envie el mensaje de arriba!!!*/
-        if(SERVER().is_running()){has_started = true;}
     }
 
     return NULL;
@@ -223,8 +236,6 @@ int main(int argc, char** argv){
     while(!SERVER().initializing()){
         usleep(3000);
     }
-    /*Se envia la info para iniciar el juego*/
-    enviarInformacionJuego(gameControl);
 
     /*Se empiezan a recibir mensajes del cliente*/
     pthread_t inEventT;
@@ -288,7 +299,8 @@ void* inEventsHandle(void* arg){
             CXM().playersReady++;
             gameControl->addPlayer(SSTR_(ev->id), 2);
         } else gameControl->handleInMessage(ev);
-        if (CXM().playersReady == CXM().actualConnections && !SERVER().is_running()){
+
+        if (CXM().playersReady == CXM().maxConnections && !SERVER().is_running()){
             SERVER().start_game();
         }
 	}

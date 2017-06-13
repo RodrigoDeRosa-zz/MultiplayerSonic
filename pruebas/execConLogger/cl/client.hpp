@@ -27,6 +27,7 @@ class Client{
         const char* port;
         const char* hostname;
         int pings;
+        bool manuallyClosed;
         Client(const char* p, const char* h);
         ~Client();
         /*Inicializa el socket del cliente y guarda la direccion del servidor al que

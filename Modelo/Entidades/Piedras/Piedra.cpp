@@ -37,7 +37,7 @@ void Piedra::afectarA(Player* jugador){
 	else{
 		float posicion = this->Entidad::getBordeArriba() -  (jugador->getBordeAbajo() - jugador->getBordeArriba()); /*el alto del frame actual*/
 		//float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
-	
+
 		//TODO: agregar un getter de direccion del moveSonic, asi si viene de la izquierda y toca borde izquierdo no colisiona
 
 		if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_DIST) && jugador->estaMirandoADer()){
@@ -48,16 +48,16 @@ void Piedra::afectarA(Player* jugador){
 		if (jugador->getX() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST) && !(jugador->estaMirandoADer())){
 			jugador->caer(-1);
 			jugador->setY(posicion);
-			return;		
+			return;
 		}
 
 		//esta en el medio
-		if (jugador->getY() > posicion){		
+		if (jugador->getY() > posicion){
 			jugador->setY(posicion);
 		}
 		jugador->setBaseY(posicion);
-	
-		
+
+
 		/*
 		jugador->caer(0);
 		jugador->setY(posicion);
@@ -66,7 +66,7 @@ void Piedra::afectarA(Player* jugador){
 }
 
 out_message_t* Piedra::getOutMessage(){
-	return this->Entidad::getOutMessage(ROCK_SET);
+	return this->Entidad::getOutMessage(MESSAGE_TOTAL);
 }
 
 out_message_t* Piedra::getInitMessage(){

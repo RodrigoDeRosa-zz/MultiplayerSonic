@@ -24,6 +24,10 @@ float Nivel::getEnd(){
 void Nivel::terminar(){
 	bool jugadores_en_final = true;
 	for(int i = 0; i < players->size(); i++){
+		if (!(*players)[i]->isConnected()){
+			jugadores_en_final = jugadores_en_final;
+			continue;
+		}
 		jugadores_en_final = jugadores_en_final && (*players)[i]->llegoAlFinal();
 	}
 	if(jugadores_en_final) this->termino = true;

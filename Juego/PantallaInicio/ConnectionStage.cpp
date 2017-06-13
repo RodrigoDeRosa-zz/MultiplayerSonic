@@ -16,7 +16,7 @@ ConnectionStage::ConnectionStage(int w, int h) : Stage(){
     Texture* buttonTex = new Texture();
     buttonTex->loadFromFile("Graficos/boton_conectar.png");
     textures.insert(make_pair("button", buttonTex)); //Se guarda para asegurarse de borrarla desp
-    button = new StartButton(491, 440);
+    button = new ConnectButton(491, 440);
     button->setTexture(buttonTex);
 
     logoFrame = 0;

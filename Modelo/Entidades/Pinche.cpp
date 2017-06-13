@@ -16,7 +16,7 @@ void Pinche::afectarA(Player* jugador){
 }
 
 out_message_t* Pinche::getOutMessage(){
-	return this->Entidad::getOutMessage(SPIKE_SET);
+	return this->Entidad::getOutMessage(MESSAGE_TOTAL);
 }
 
 out_message_t* Pinche::getInitMessage(){

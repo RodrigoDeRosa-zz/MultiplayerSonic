@@ -247,3 +247,7 @@ vector<out_message_t*> Control::getEntidadesInitStatus(){
 Nivel* Control::getNivelActual(){
 	return this->niveles[this->nivelActual];
 }
+
+int Control::getLevelNum(){
+    return nivelActual;
+}
