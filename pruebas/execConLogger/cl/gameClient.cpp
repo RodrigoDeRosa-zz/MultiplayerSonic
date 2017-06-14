@@ -153,11 +153,8 @@ void* f_view(void* arg){
         if(message->ping == PLAYER_UPDATE){
             self->updatePlayer(message);
             //Se actualiza el score de los equipos si es que hay
-            /*if (message->team == 3){
-                self->getJuego()->updateCoopScore(message->team_rings, message->team_points);
-            } else if (message->team != 0){
-                self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
-            }*/
+            self->getJuego()->updateCoopScore(message->team_rings, message->team_points);
+            self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
             self->getJuego()->updateCamara(message->camPos,0);
         } else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);
@@ -186,11 +183,11 @@ void* f_view(void* arg){
             self->gameWon(true);
             delete message;
             break;
-        } else if (message->ping == PLAYER_DEAD){
+        }*/ else if (message->ping == PLAYER_DEAD){
             self->gameOver(true);
             delete message;
             break;
-        }*/
+        }
         delete message;
 	}
     self->cleanPlayers();

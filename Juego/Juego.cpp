@@ -121,7 +121,7 @@ void Juego::updateCoopTransition(int rings, int points){
 
 void Juego::updateTeamTransition(int team, int rings, int points){
     if (modoJuego == EQUIPOS)
-        stageActual->setTeamInfo(team, rings, points, rings + points);
+        stageActual->setTeamInfo(team-1, rings, points, rings + points);
 }
 
 bool Juego::stageReady(){
@@ -207,11 +207,13 @@ void Juego::setStageScore(int mode){
 }
 
 void Juego::updateTeamScore(int team, int rings, int points){
-    stageActual->updateTeamScore(team, rings, points);
+    if (modoJuego == EQUIPOS)
+        stageActual->updateTeamScore(team, rings, points);
 }
 
 void Juego::updateCoopScore(int rings, int points){
-    stageActual->updateCoopScore(rings, points);
+    if (modoJuego == COOP)
+        stageActual->updateCoopScore(rings, points);
 }
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
