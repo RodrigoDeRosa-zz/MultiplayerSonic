@@ -266,13 +266,8 @@ void Player::setBaseY(float newy){
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
 	memset(status, 0, sizeof(out_message_t));
-    switch(this->vivo){
-        case true:
-            status->ping = PLAYER_UPDATE;break;
-        case false:
-            status->ping = PLAYER_DEAD;break;
-    }
-    
+    if(this->estaVivo()) status->ping = PLAYER_UPDATE;
+    else status->ping = PLAYER_DEAD;    
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();
     status->posX = this->getX();
@@ -335,7 +330,7 @@ void Player::quitarMonedas(){
 }
 
 void Player::quitarVida(){
-    if(this->vidas){
+    if(this->vidas > 1){
         this->vidas--;
         this->setEstado(REVIVIENDO);
     }
