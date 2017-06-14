@@ -212,11 +212,11 @@ void Control::handleInMessage(in_message_t* ev){
 }
 
 void Control::update(){
-    //if (this->nivelActual == this->niveles.size()) return;
+    if (this->nivelActual == this->niveles.size()) return;
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
 		if(this->nivelActual == this->niveles.size()){
-            //this->setWon();
+            this->setWon();
             return;
         }//termino el juego, hacer algo
         this->cameraControl->reset(this->getNivelActual()->getEnd());
