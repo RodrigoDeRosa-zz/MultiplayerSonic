@@ -66,6 +66,21 @@ Juego::Juego(gameMode mode){
         addStage(transition);
     }
     camara = new Camara(0, 0, SCROLL, SCREEN_W, SCREEN_H, INIT_W, SCREEN_H);
+
+    //Vector de equipos
+    for (int i = 0; i < 2; i++){
+        vector<int> vec;
+        //Puntajes de cada uno
+        for (int j = 0; j < 2; j++){
+            vec.push_back(0);
+        }
+        teams.push_back(vec);
+    }
+    //Vector de coop
+    for (int i = 0; i < 2; i++){
+        coop.push_back(0);
+    }
+
     setTexturas();
 }
 
@@ -115,14 +130,16 @@ void Juego::updateTransition(int id, int rings, int points){
     stageActual->setValues();
 }
 
-void Juego::updateCoopTransition(int rings, int points){
+void Juego::updateCoopTransition(){
     if (modoJuego == COOP)
-        stageActual->setCoopInfo(rings, points, rings + points);
+        stageActual->setCoopInfo(coop[0], coop[1], coop[0] + coop[1]);
 }
 
-void Juego::updateTeamTransition(int team, int rings, int points){
-    if (modoJuego == EQUIPOS)
-        stageActual->setTeamInfo(team-1, rings, points, rings + points);
+void Juego::updateTeamTransition(){
+    if (modoJuego == EQUIPOS){
+        stageActual->setTeamInfo(0, teams[0][0], teams[0][1], teams[0][0] + teams[0][1]);
+        stageActual->setTeamInfo(1, teams[1][0], teams[1][1], teams[1][0] + teams[1][1]);
+    }
 }
 
 bool Juego::stageReady(){
@@ -208,12 +225,17 @@ void Juego::setStageScore(int mode){
 }
 
 void Juego::updateTeamScore(int team, int rings, int points){
-    if (modoJuego == EQUIPOS)
+    if (modoJuego == EQUIPOS){
+        teams[team-1][0] = rings;
+        teams[team-1][1] = points;
         stageActual->updateTeamScore(team, rings, points);
+    }
 }
 
 void Juego::updateCoopScore(int rings, int points){
     if (modoJuego == COOP){
+        coop[0] = rings;
+        coop[1] = points;
         stageActual->updateCoopScore(rings, points);
     }
 }

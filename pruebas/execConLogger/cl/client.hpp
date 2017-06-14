@@ -25,8 +25,6 @@ class Client{
         deque<key_event> toSend;
         Juego* juego;
         vector<out_message_t*> players; //Guarda la informacion previa de cada uno
-        vector<int> coop;
-        vector<vector<int>> teams;
         ConnectionStage* initialStage;
     public:
         const char* port;

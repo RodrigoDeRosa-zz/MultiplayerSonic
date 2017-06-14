@@ -78,7 +78,7 @@ void Player::newLevel(float ancho_escenario){
 	int multiplicador = 10;
 	if (this->monedas >= 50) multiplicador = 20;
 	this->sumarPuntos(this->monedas*multiplicador);
-	this->monedas = 0;
+	this->quitarMonedas();
 }
 
 bool Player::llegoAlFinal(){

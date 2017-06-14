@@ -31,20 +31,6 @@ Client::Client(const char* p, const char* h){
     received = deque<out_message_t*>();
     toSend = deque<key_event>();
     initialStage = new ConnectionStage(1200, 720);
-    //Vector de equipos
-    for (int i = 0; i < 2; i++){
-        vector<int> vec;
-        //Puntajes de cada uno
-        for (int j = 0; j < 2; j++){
-            vec.push_back(0);
-        }
-        teams.push_back(vec);
-    }
-    //Vector de coop
-    for (int i = 0; i < 2; i++){
-        coop.push_back(0);
-    }
-
 }
 
 Client::~Client(){
@@ -167,10 +153,8 @@ void Client::updateTransition(){
         out_message_t* player = players[i];
         this->juego->updateTransition(i, player->rings, player->points);
     }
-    this->juego->updateCoopTransition(coop[0], coop[1]);
-    for (int i = 0; i < 2; i++){
-        this->juego->updateTeamTransition(i, teams[i][0], teams[i][1]);
-    }
+    this->juego->updateCoopTransition();
+    this->juego->updateTeamTransition();
 }
 
 bool Client::setConnectionInfo(struct addrinfo *srvInfo){

@@ -10,6 +10,7 @@
 #include <string>
 #include <map>
 #include <vector>
+using namespace std;
 
 /*El Juego tiene como atributos al Stage y a los Jugadores y es el responsable de relacionarlos para calcular
   colisiones entre ellos, entre otras cosas.
@@ -23,6 +24,8 @@ class Juego{
     void setTexturas();
     vector <Stage*> stages;
     vector<string> dead;
+    vector<int> coop;
+    vector<vector<int>> teams;
     Stage* stageActual;
     int stageActualIndex; //Se agrega esto para hacer mas rapido el avance de stages
     Camara* camara;
@@ -56,8 +59,8 @@ class Juego{
     void updateTeamScore(int id, int rings, int score);
     void updateCoopScore(int rings, int score);
     void updateTransition(int, int, int);
-    void updateCoopTransition(int, int);
-    void updateTeamTransition(int, int, int);
+    void updateCoopTransition();
+    void updateTeamTransition();
     void updateCamara(int, int);
     /*Actualiza un sprite del spriteGroup indicado en el stage actual*/
     void updateStageSprite(string groupKey, out_message_t*);
