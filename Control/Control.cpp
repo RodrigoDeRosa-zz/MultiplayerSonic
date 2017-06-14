@@ -344,5 +344,5 @@ Nivel* Control::getNivelActual(){
 }
 
 int Control::getLevelNum(){
-    return nivelActual;
+    return this->nivelActual;
 }
