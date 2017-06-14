@@ -203,7 +203,7 @@ void Nivel::colisionarTodos() {
 						 colisionoPiedra = true;
 					}
                     if((((*entidades)[j])->esPlataforma())){
-                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() - 5.0)) {
+                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() + 5.0)) {
                             colisionoPlataforma = true;
                         }
                     }
@@ -218,7 +218,7 @@ void Nivel::colisionarTodos() {
 						colisionoPiedra = true;
 					}
 					if((((*entidades)[j])->esPlataforma())){
-                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() - 5.0)) {
+                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() + 5.0)) {
                             colisionoPlataforma = true;
                         }
 					}

@@ -20,6 +20,7 @@ bool Plataforma::esPlataforma(){
 
 void Plataforma::afectarA(Player* jugador){
 
+
     if((jugador->getBordeAbajo()) < (this->Entidad::getBordeArriba() - FACTOR_DIFERENCIAL_H)){
 
         printf("entro \n");
