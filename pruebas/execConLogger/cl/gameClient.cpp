@@ -261,6 +261,7 @@ void* viewControl(void* arg){
             self->renderInit();
             Renderer::getInstance().draw();
         }
+        printf("Connected\n");
         self->initUnclick();
         while(!self->getJuego() || !self->getJuego()->stageReady()){
             usleep(5000);
@@ -319,6 +320,7 @@ void* viewControl(void* arg){
             Renderer::getInstance().draw();
             sleep(2);
             self->deleteJuego();
+            self->gameWon(false);
         } else if (self->gameOver()){
             GameOverStage* over = new GameOverStage(1200, 720);
             self->getJuego()->render();
@@ -326,6 +328,7 @@ void* viewControl(void* arg){
             Renderer::getInstance().draw();
             sleep(2);
             self->deleteJuego();
+            self->gameOver(false);
         } else{
             Renderer::getInstance().clear();
             ConnectionLostStage* lost = new ConnectionLostStage(1200, 720);
