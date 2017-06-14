@@ -113,10 +113,16 @@ void* write(void* arg){
         pthread_mutex_lock(&connection->sendLock);
         status = connection->sendMessage(message, sizeof(out_message_t));
         pthread_mutex_unlock(&connection->sendLock);
+
         if(!status){
             connection->disconnect(3);
             break;
         }
+        if (state->ping == GAME_OVER){
+            usleep(50000);
+            CXManager::getInstance().disableConnection(connection->id);
+        }
+        delete state;
     }
 
     return NULL;

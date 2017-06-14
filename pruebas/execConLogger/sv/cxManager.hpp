@@ -46,6 +46,8 @@ class CXManager{
         /*Encolan el evento recibido*/
         void queueInEvent(in_message_t* event);
         void queueOutEvent(char* event);
+        /*Resta la cantidad de conexiones posibles*/
+        void disableConnection(int id);
 };
 
 #endif /*CXMANAGER_HPP*/

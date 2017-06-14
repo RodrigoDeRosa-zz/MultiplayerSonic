@@ -3,6 +3,7 @@
 #include "../../../message.hpp"
 #include <map>
 #include <deque>
+#include <algorithm>
 #include <stdio.h>
 using namespace std;
 
@@ -101,4 +102,12 @@ in_message_t* CXManager::getInEvent(){
     inEvents.pop_front();
 	pthread_mutex_unlock(&inEventsMux);
     return event;
+}
+
+void CXManager::disableConnection(int id){
+    Connection* connection = getConnection(id);
+    if (connection){
+        connection->disconnect(0);
+    }
+    ids.erase(remove(ids.begin(), ids.end(), id), ids.end());
 }
