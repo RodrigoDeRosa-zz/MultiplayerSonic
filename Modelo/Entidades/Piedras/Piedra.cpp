@@ -8,6 +8,7 @@ sino una distacia considerable, de modo que se pueda diferenciar una colision de
 #define FACTOR_DIFERENCIAL_H 5
 #define THRESHOLD_DIST	45.0
 #define THRESHOLD_MIN	15.0
+#define THRESHOLD_NO_COL 5.0
 
 using namespace std;
 
@@ -20,6 +21,10 @@ bool Piedra::esPiedra(){
 
 void Piedra::afectarA(Player* jugador){
 
+	if(jugador->getBordeDer() > (this->Entidad::getBordeDer() - THRESHOLD_NO_COL)){
+		jugador->setBaseY(425);
+		return;
+	}
 	// el jugador no choca con el borde de arriba
 	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
 

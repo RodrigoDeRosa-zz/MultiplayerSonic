@@ -124,7 +124,7 @@ bool Nivel::otherPlayerInPosition(string playerName,float position, bool left){
 	return false;
 }
 
-void Nivel::moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,float dirX){
+void Nivel::moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,float dirX,bool estaAtacando){
 	for(int i = 0; i < players->size(); i++){
 		if(!((*players)[i]->isConnected())){
 			vector<float> playerPosition = this->getPlayerPosition((*players)[i]->getName());
@@ -133,6 +133,10 @@ void Nivel::moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,f
 			}
 			else if(dirX < 0){
 				if(playerPosition[0] > cameraRightEdge) (*players)[i]->setX(cameraRightEdge);
+			}
+			else if(estaAtacando){
+				if(playerPosition[0] < cameraLeftEdge) (*players)[i]->setX(cameraLeftEdge);
+				else if(playerPosition[0] > cameraRightEdge) (*players)[i]->setX(cameraRightEdge);
 			}
 		}
 	}
