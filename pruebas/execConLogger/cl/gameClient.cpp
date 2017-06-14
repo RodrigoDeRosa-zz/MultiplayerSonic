@@ -261,7 +261,6 @@ void* viewControl(void* arg){
             self->renderInit();
             Renderer::getInstance().draw();
         }
-        printf("Connected\n");
         self->initUnclick();
         while(!self->getJuego() || !self->getJuego()->stageReady()){
             usleep(5000);
