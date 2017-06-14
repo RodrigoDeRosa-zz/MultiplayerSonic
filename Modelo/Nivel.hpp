@@ -37,7 +37,7 @@ public:
 		move_type getPlayerMovement(string playerName);
 		int getPlayerFrame(string playerName);
 		bool otherPlayerInPosition(string playerName,float position, bool left);
-		void moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,float dirX);
+		void moveDisconnectedPlayers(float cameraLeftEdge,float cameraRightEdge,float dirX,bool estaAtacando);
 		void setPlayerConnection(string playerName, bool connection);
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);

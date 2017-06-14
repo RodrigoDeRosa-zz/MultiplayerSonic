@@ -1,6 +1,7 @@
 #include "CameraControl.hpp"
 #include <stdio.h>
-#define MARGIN_FACTOR 0.12
+#define RIGHT_MARGIN_FACTOR 0.11
+#define LEFT_MARGIN_FACTOR 0.05
 #define CHARACTER_WIDTH 118
 
 CameraControl::CameraControl(float width, float stageEnd){
@@ -10,11 +11,11 @@ CameraControl::CameraControl(float width, float stageEnd){
 }
 
 float CameraControl::getLeftEdge(){
-	return this->position + width*MARGIN_FACTOR;
+	return this->position + width*LEFT_MARGIN_FACTOR;
 }
 
 float CameraControl::getRightEdge(){
-	return this->position + width*(1-MARGIN_FACTOR) - CHARACTER_WIDTH;
+	return this->position + width*(1-RIGHT_MARGIN_FACTOR) - CHARACTER_WIDTH;
 }
 
 float CameraControl::getPosition(){
@@ -25,7 +26,7 @@ bool CameraControl::moveCameraLeft(float newPosition,Nivel* model,string playerN
 	if(model->otherPlayerInPosition(playerName,this->getRightEdge(),false)){
 		return false;
 	}
-	this->position = newPosition-(this->width*MARGIN_FACTOR);
+	this->position = newPosition-(this->width*LEFT_MARGIN_FACTOR);
 	if(this->position < 0) this->position = 0;
 	return true;
 }
@@ -34,7 +35,7 @@ bool CameraControl::moveCameraRight(float newPosition,Nivel* model, string playe
 	if(model->otherPlayerInPosition(playerName,this->getLeftEdge(),true)){
 		return false;
 	}
-	this->position = newPosition-(this->width*(1-MARGIN_FACTOR))+CHARACTER_WIDTH;
+	this->position = newPosition-(this->width*(1-RIGHT_MARGIN_FACTOR))+CHARACTER_WIDTH;
 	if(this->position < 0) this->position = 0;
 	else if((this->position + this->width) >= this->stageEnd) this->position = this->stageEnd - this->width;
 	return true;
@@ -51,10 +52,13 @@ bool CameraControl::moveCamera(float newPosition,Nivel* model, string playerName
 	if(this->playerInCameraRange(newPosition)){
 		return true;
 	}
+	if((this->position >= 4800) && ((dirX < 0) && (newPosition <= this->getLeftEdge()))) return false;
+	if((this->position >= 4800) && (model->getPlayer(playerName)->estaAtacando()) && (newPosition <= this->getLeftEdge())) return false;
 	if((dirX < 0) && (newPosition <= this->getLeftEdge())) return this->moveCameraLeft(newPosition,model,playerName);
 	if((dirX > 0) && (newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
 	if((model->getPlayer(playerName)->estaAtacando()) && (newPosition <= this->getLeftEdge())) return this->moveCameraLeft(newPosition,model,playerName);
 	if((model->getPlayer(playerName)->estaAtacando()) && (newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
+	
 	return true;
 }
 

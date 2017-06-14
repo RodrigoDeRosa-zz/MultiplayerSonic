@@ -71,7 +71,7 @@ void Control::initNiveles(){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/
 
-	Nivel* nivel1 = new Nivel(LVL1_END/*,true*/);
+	Nivel* nivel1 = new Nivel(LVL1_END);
 	this->niveles.push_back(nivel1);
 
 	Transicion* transicion1 = new Transicion();
@@ -160,7 +160,7 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 	 	this->getNivelActual()->setPlayerPosition(playerName,previousPlayerPosition[0]);
 	 	return false;
 	}
-	if(this->getCameraPosition() != previousCameraPosition) this->getNivelActual()->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0]);
+	if(this->getCameraPosition() != previousCameraPosition) this->getNivelActual()->moveDisconnectedPlayers(this->cameraControl->getLeftEdge(),this->cameraControl->getRightEdge(),directions[0],this->getNivelActual()->getPlayer(playerName)->estaAtacando());
 	return true;
 }
 
@@ -293,29 +293,39 @@ void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 	vector<int> parametros = obtenerParametros(json["entidades"][nombreNivel]);
 	ubicador->setParams(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],parametros[5],parametros[6],parametros[7],parametros[8],parametros[9],parametros[10],
 						parametros[11],parametros[12],parametros[13]);
-	vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
+	int end = this->niveles[i]->getEnd();
+	if (i == NIVEL3){
+		end -=1000;
+	}
+	vector<terna_t*>* ternas = ubicador->generarTernas(end);
 	for(int j=0; j < ternas->size(); j++){
 		this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[j]));
 	}
 }
 
 void Control::crearEntidades(Json::Value json){
+
+	//crearEntidades("nivel1",json,0);
+	//crearEntidades("nivel1",json,2);
+	//crearEntidades("nivel1",json,4);
+
 	crearEntidades("nivel1",json,0);
 	crearEntidades("nivel2",json,2);
 	crearEntidades("nivel3",json,4);
+
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
 
     //Pinche* pinche = new Pinche(0, 500, 500);
     //this->niveles[NIVEL1]->addEntidad(pinche);
 
-    Plataforma* platform2 = new Plataforma(0,4700, 345);
+    Plataforma* platform2 = new Plataforma(0,4850, 345);
     this->niveles[NIVEL3]->addEntidad(platform2);
 
-    Plataforma* platform3 = new Plataforma(1, 5200, 345);
+    Plataforma* platform3 = new Plataforma(1, 5600, 345);
     this->niveles[NIVEL3]->addEntidad(platform3);
 
-	Jefe* jefe = new Jefe(0,5000,50);
+	Jefe* jefe = new Jefe(0,5050,50);
 	Bola* bola = new Bola(0,5000,120,jefe);
 	this->niveles[NIVEL3]->addEntidad(jefe);
 	this->niveles[NIVEL3]->addEntidad(bola);

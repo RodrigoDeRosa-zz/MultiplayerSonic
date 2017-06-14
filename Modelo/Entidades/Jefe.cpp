@@ -4,7 +4,7 @@
 #define WIDTH 239
 #define HEIGHT 170	//TODO era 200 pero creo que anda mejor asi
 
-#define BOSS_MOV_SPAN 2500		//calcular junto con la bola segun la pantalla
+#define BOSS_MOV_SPAN 2200		//calcular junto con la bola segun la pantalla
 #define BOSS_MOV_SPEED 0.2		//cuanto se mueve por vez
 
 #define BOSS_FRAME_FACTOR 20
