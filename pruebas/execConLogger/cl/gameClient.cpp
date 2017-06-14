@@ -306,7 +306,6 @@ void* viewControl(void* arg){
                 usleep(1000);
             }
             while (!self->gameOn()){
-                printf("waiting\n");
                 sleep(1);
             }
         }
