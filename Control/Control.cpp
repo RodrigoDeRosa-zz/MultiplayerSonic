@@ -265,26 +265,48 @@ Entidad* obtenerEntidad(terna_t* terna){
 	}
 }
 
-void Control::crearEntidades(){
-/*
+vector<int> obtenerParametros(Json::Value json){
+	vector<int> v;
+	v.push_back(json["monedas"]["min"].asInt());
+	v.push_back(json["monedas"]["max"].asInt());
+	v.push_back(json["cangrejos"]["min"].asInt());
+	v.push_back(json["cangrejos"]["max"].asInt());
+	v.push_back(json["moscas"]["min"].asInt());
+	v.push_back(json["moscas"]["max"].asInt());
+	v.push_back(json["peces"]["min"].asInt());
+	v.push_back(json["peces"]["max"].asInt());
+	v.push_back(json["pinches"]["min"].asInt());
+	v.push_back(json["pinches"]["max"].asInt());
+	v.push_back(json["piedras"]["min"].asInt());
+	v.push_back(json["piedras"]["max"].asInt());
+	v.push_back(json["bonus"]["min"].asInt());
+	v.push_back(json["bonus"]["max"].asInt());
+	return v;
+}
+
+void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 	Ubicador* ubicador = new Ubicador();
-	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
-	for(int i = 0; i < this->niveles.size(); i++){
-		if((i%2) != 0) continue;
-		vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
-		for(int j=0; j < ternas->size(); j++){
-			this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[j]));
-		}
+
+	vector<int> parametros = obtenerParametros(json["entidades"][nombreNivel]);	
+	ubicador->setParams(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],parametros[5],parametros[6],parametros[7],parametros[8],parametros[9],parametros[10],
+						parametros[11],parametros[12],parametros[13]);
+	vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
+	for(int j=0; j < ternas->size(); j++){
+		this->niveles[i]->addEntidad(obtenerEntidad((*ternas)[j]));
 	}
+}
 
-
+void Control::crearEntidades(Json::Value json){
+	crearEntidades("nivel1",json,0);
+	crearEntidades("nivel1",json,2);
+	crearEntidades("nivel1",json,4);
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
 /*
 	Jefe* jefe = new Jefe(0,2000,50);
 	Bola* bola = new Bola(0,2000,120,jefe);
 	this->niveles[0]->addEntidad(jefe);
-	this->niveles[0]->addEntidad(bola);*/
+	this->niveles[0]->addEntidad(bola);*/	
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
