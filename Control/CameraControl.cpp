@@ -1,6 +1,6 @@
 #include "CameraControl.hpp"
 #include <stdio.h>
-#define MARGIN_FACTOR 0.2
+#define MARGIN_FACTOR 0.12
 #define CHARACTER_WIDTH 118
 
 CameraControl::CameraControl(float width, float stageEnd){
@@ -51,8 +51,10 @@ bool CameraControl::moveCamera(float newPosition,Nivel* model, string playerName
 	if(this->playerInCameraRange(newPosition)){
 		return true;
 	}
-	if((newPosition <= this->getLeftEdge())) return this->moveCameraLeft(newPosition,model,playerName);
-	else if((newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
+	if((dirX < 0) && (newPosition <= this->getLeftEdge())) return this->moveCameraLeft(newPosition,model,playerName);
+	if((dirX > 0) && (newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
+	if((model->getPlayer(playerName)->estaAtacando()) && (newPosition <= this->getLeftEdge())) return this->moveCameraLeft(newPosition,model,playerName);
+	if((model->getPlayer(playerName)->estaAtacando()) && (newPosition >= this->getRightEdge())) return this->moveCameraRight(newPosition,model,playerName);
 	return true;
 }
 
