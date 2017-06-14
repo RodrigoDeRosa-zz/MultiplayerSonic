@@ -179,11 +179,11 @@ void* f_view(void* arg){
                 continue;
             }
             self->getJuego()->nextStage();
-        } /* else if (message->ping == GAME_WON){
+        } else if (message->ping == GAME_WON){
             self->gameWon(true);
             delete message;
             break;
-        }*/ else if (message->ping == PLAYER_DEAD){
+        } else if (message->ping == PLAYER_DEAD){
             self->gameOver(true);
             delete message;
             break;

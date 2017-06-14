@@ -14,7 +14,7 @@ using namespace std;
 
 class Control{
 	int k;
-
+	bool gameWon;
 	/*Modelo*/
 	Modelo* modelo;
 
@@ -47,6 +47,8 @@ class Control{
 		void crearEntidades(); //la idea es que esto reciba un .json y devuelva un vector de out_message_t*
 		vector<out_message_t*> getEntidadesInitStatus();
 		int getLevelNum();
+		void setWon();
+		bool isWon();
 };
 
 #endif /*CONTROL_HPP*/

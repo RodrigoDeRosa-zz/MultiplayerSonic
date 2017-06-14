@@ -53,7 +53,7 @@
 using namespace std;
 
 Control::Control(gameMode game_mode){
-
+    gameWon = false;
 	this->modelo = new Modelo(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
@@ -63,6 +63,14 @@ Control::Control(gameMode game_mode){
 
 gameMode Control::getGameMode(){
 	return this->modelo->getGameMode();
+}
+
+void Control::setWon(){
+    gameWon = true;
+}
+
+bool Control::isWon(){
+    return gameWon;
 }
 
 void Control::initNiveles(){
@@ -204,9 +212,13 @@ void Control::handleInMessage(in_message_t* ev){
 }
 
 void Control::update(){
+    if (this->nivelActual > this->niveles.size()) return;
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
-		if(this->nivelActual == this->niveles.size()){return;}//termino el juego, hacer algo
+		if(this->nivelActual == this->niveles.size()){
+            this->setWon();
+            return;
+        }//termino el juego, hacer algo
         this->cameraControl->reset(this->getNivelActual()->getEnd());
 		this->getNivelActual()->addPlayers(this->modelo->getPersonajes());
 		this->getNivelActual()->addPuntajes(this->modelo->getPuntajes());
@@ -258,7 +270,7 @@ Entidad* obtenerEntidad(terna_t* terna){
 }
 
 void Control::crearEntidades(){
-/*	
+/*
 	Ubicador* ubicador = new Ubicador();
 	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
 	for(int i = 0; i < this->niveles.size(); i++){
