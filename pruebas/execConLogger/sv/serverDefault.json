@@ -1,6 +1,6 @@
 {
     "port" : "9034",
-    "max_connections" : 2,
+    "max_connections" : 4,
 	"tipo de juego": 2,
     "entidades" :{
     	"nivel1":{

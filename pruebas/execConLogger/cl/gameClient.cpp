@@ -277,7 +277,7 @@ void* viewControl(void* arg){
         key_event key;
         if (self->getReconnected()){
             while(!self->gameOn()){
-                usleep(50000);
+                usleep(500000);
             }
         } else {
             while(!self->gameOn()){
@@ -307,7 +307,7 @@ void* viewControl(void* arg){
             }
         }
         while (!self->gameOn()){
-            usleep(50000);
+            usleep(500000);
         }
         self->getJuego()->unclickInit();
         //Juego
