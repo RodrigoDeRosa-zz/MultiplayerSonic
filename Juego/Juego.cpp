@@ -146,7 +146,7 @@ void Juego::updateTeamTransition(){
         stageActual->setTeamInfo(0, teams[0][0], teams[0][1], teams[0][0]*multiplicador + teams[0][1]);
         multiplicador = 10;
         if (teams[1][0] >= 50) multiplicador = 20;
-        stageActual->setTeamInfo(1, teams[1][0], teams[1][1], teams[1][0] + teams[1][1]);
+        stageActual->setTeamInfo(1, teams[1][0], teams[1][1], teams[1][0]*multiplicador + teams[1][1]);
         stageActual->setValues();
     }
 }

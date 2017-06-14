@@ -210,11 +210,12 @@ bool Control::terminoElJuego(){
 }
 
 void Control::update(){
-    if (this->nivelActual == this->niveles.size()) return;
+    if (this->nivelActual > this->niveles.size()) return;
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
 		if(this->nivelActual == this->niveles.size()){
 			this->terminado = true;
+            this->nivelActual++;
             return;
 		}
         this->cameraControl->reset(this->getNivelActual()->getEnd());
@@ -300,8 +301,8 @@ void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 
 void Control::crearEntidades(Json::Value json){
 	crearEntidades("nivel1",json,0);
-	//crearEntidades("nivel1",json,2);
-	//crearEntidades("nivel1",json,4);
+	crearEntidades("nivel2",json,2);
+	crearEntidades("nivel3",json,4);
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
 
