@@ -224,7 +224,7 @@ void Nivel::colisionarTodos() {
         }
 		*/
 		if(!colisionoPiedra){
-			(*players)[i]->setBaseY(425);
+			//(*players)[i]->setBaseY(425);
 			if ((!(*players)[i]->estaSaltando()) && (*players)[i]->getY() < 425){
 				(*players)[i]->setCayendo();
 			}
