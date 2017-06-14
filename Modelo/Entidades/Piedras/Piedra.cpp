@@ -20,11 +20,12 @@ bool Piedra::esPiedra(){
 }
 
 void Piedra::afectarA(Player* jugador){
-
+/*
 	if(jugador->getBordeDer() > (this->Entidad::getBordeDer() - THRESHOLD_NO_COL)){
 		jugador->setBaseY(425);
 		return;
 	}
+*/
 	// el jugador no choca con el borde de arriba
 	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
 

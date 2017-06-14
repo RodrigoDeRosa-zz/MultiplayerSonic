@@ -211,7 +211,7 @@ void Juego::setTexturas(){
     texturas.insert(make_pair("bossWaves", bossWaves));
     /*Textura de la plataforma aerea*/
     Texture* plataforma = new Texture();
-    plataforma->loadFromFile("Graficos/base_aerea.png");
+    plataforma->loadFromFile("Graficos/base_aerea1.png");
     texturas.insert(make_pair("plataforma", plataforma));
 }
 /*SERVER*/

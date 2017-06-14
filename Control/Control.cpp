@@ -319,7 +319,7 @@ void Control::crearEntidades(Json::Value json){
     //Pinche* pinche = new Pinche(0, 500, 500);
     //this->niveles[NIVEL1]->addEntidad(pinche);
 
-    Plataforma* platform2 = new Plataforma(0,4850, 345);
+    Plataforma* platform2 = new Plataforma(0,4955, 345);
     this->niveles[NIVEL3]->addEntidad(platform2);
 
     Plataforma* platform3 = new Plataforma(1, 5600, 345);
