@@ -19,7 +19,7 @@ enum move_type{IDLED, IDLEI, JUMPD, JUMPI, RUND, RUNI, WALKD, WALKI, WAITD, WAIT
 //DMG es cuando lo lastiman
 //CROUCH es agachado **NO SE USA**
 //ROLL es cuando rueda
-enum gameMode{INDIVIDUAL,COOP,EQUIPOS};
+enum gameMode{INDIVIDUAL=0,COOP,EQUIPOS};
 
 typedef struct out_message{
 	message_type ping; //En 0 indica que el mensaje es un ping del servidor

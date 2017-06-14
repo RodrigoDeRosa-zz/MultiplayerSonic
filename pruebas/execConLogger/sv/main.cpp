@@ -203,6 +203,7 @@ int main(int argc, char** argv){
     }
     const char* port = json["port"].asString().c_str();
     int maxServerConns = json["max_connections"].asInt();
+	int mode = json["tipo de juego"].asInt();
     /***************************************FIN LECTURA JSON***********************************************************/
 
     if(!SERVER().init(port)){
@@ -216,7 +217,7 @@ int main(int argc, char** argv){
         return 1;
     }
 
-	Control* gameControl = new Control(DEFAULT_GAME_MODE);
+	Control* gameControl = new Control((gameMode)mode);
     gameControl->crearEntidades(json);
 
     CXM().init(maxServerConns);

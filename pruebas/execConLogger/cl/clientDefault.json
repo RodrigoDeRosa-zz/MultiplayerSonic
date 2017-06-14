@@ -1,4 +1,5 @@
 {
     "port" : "9034",
-    "hostname" : "10.42.0.1"
+    "hostname" : "localhost"
+
 }
