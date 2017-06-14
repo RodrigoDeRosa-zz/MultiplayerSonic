@@ -245,7 +245,6 @@ void Juego::updateCoopScore(int rings, int points){
     if (modoJuego == COOP){
         coop[0] = rings;
         coop[1] = points;
-        printf("coop rings: %d | coop points: %d\n", coop[0], coop[1]);
         stageActual->updateCoopScore(rings, points);
     }
 }
