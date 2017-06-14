@@ -313,7 +313,7 @@ void Control::crearEntidades(Json::Value json){
 	this->niveles[NIVEL3]->addEntidad(jefe);
 	this->niveles[NIVEL3]->addEntidad(bola);
 
-    Plataforma* platform1 = new Plataforma(0, 500, 220);
+    Plataforma* platform1 = new Plataforma(0, 500, 345);
     this->niveles[NIVEL1]->addEntidad(platform1);
 }
 
