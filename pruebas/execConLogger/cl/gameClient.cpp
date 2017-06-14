@@ -84,6 +84,7 @@ void* initGame(void *arg){
         } else if (message->ping == BALL_SET){
             client->getJuego()->addBossBall(message->posX, message->posY, message->id, message->state_frame);
         } else if (message->ping == PLATFORM_SET){
+            printf("posX = %p\n", message->posX);
             client->getJuego()->addPlataforma(message->posX, message->posY, message->id, message->state_frame);
         }
         delete message;
