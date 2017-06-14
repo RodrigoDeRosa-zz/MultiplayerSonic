@@ -125,7 +125,10 @@ void* write(void* arg){
         }
         if (state->ping == GAME_OVER){
             sleep(1);
+            pthread_mutex_lock(&connection->sendLock);
             connection->disconnect(3);
+            CXManager::getInstance().maxConnections = CXManager::getInstance().maxConnections-1;
+            pthread_mutex_unlock(&connection->sendLock);
         }
         delete state; //esto ya no se necesita
     }
