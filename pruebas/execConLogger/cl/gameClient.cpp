@@ -159,6 +159,8 @@ void* f_view(void* arg){
             self->getJuego()->updateCoopScore(message->team_rings, message->team_points);
             self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
             self->getJuego()->updateCamara(message->camPos,0);
+        } else if (message->ping == PLAYER_DEAD){
+            self->killPlayer(message);
         } else if (message->ping == COIN_UPDATE){
             self->getJuego()->updateMoneda(message);
         } else if (message->ping == CRAB_UPDATE){
@@ -186,7 +188,7 @@ void* f_view(void* arg){
             self->gameWon(true);
             delete message;
             break;
-        } else if (message->ping == PLAYER_DEAD){
+        } else if (message->ping == GAME_OVER){
             self->gameOver(true);
             delete message;
             break;

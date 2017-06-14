@@ -26,6 +26,7 @@ class Jugador{
     void setPersonaje(Personaje*);
     void setCamara(Camara*);
     void render(Camara*);
+    void borrarPersonaje();
     bool operator==(Jugador& other) const;
     void updatePersonaje(float,float,move_type,int,bool, state_type, int);
     ~Jugador();

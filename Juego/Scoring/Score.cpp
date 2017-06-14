@@ -27,3 +27,7 @@ void Score::toggleOnline(bool){
 void Score::render(){
     //virtual
 }
+
+void Score::kill(){
+    //virtual
+}

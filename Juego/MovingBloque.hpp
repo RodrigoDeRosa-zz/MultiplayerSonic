@@ -28,6 +28,7 @@ public:
   virtual void damageIzquierda(int);
   virtual void esperandoDerecha(int);
   virtual void esperandoIzquierda(int);
+  void morir(int);
 
   MovingBloque(float x, float y, int w, int h);
   void render(Camara* camara);

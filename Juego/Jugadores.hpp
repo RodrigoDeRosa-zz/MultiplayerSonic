@@ -27,6 +27,7 @@ class Jugadores{
     void update();
     void setFactory(SegaFactory*);
     void render(Camara* camara);
+    void borrarJugador(string nombreJugador);
     /*Remueve todos los jugadores*/
     void empty();
     /*Verrifica si el jugador indicado es parte del grupo*/
