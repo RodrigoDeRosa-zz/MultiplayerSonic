@@ -16,7 +16,7 @@ class Sprite{
         SDL_Rect rectangle;
         float originX, originY;
         int width, height, zIndex;
-        Uint8 red, green, blue;
+        Uint8 red, green, blue, alfa;
 
     public:
         Sprite(float x, float y, int w, int h);
@@ -36,6 +36,8 @@ class Sprite{
         bool operator<(Sprite& other) const;
         Texture* getTexture();
         int getZIndex();
+
+        void setAlfaCero();
 
         void setIndexZ(int);
         void setColorMod(Uint8 r, Uint8 g, Uint8 b);

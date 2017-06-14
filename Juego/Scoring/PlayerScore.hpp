@@ -32,6 +32,7 @@ class PlayerScore : public Score{
         void toggleOnline(bool);
         /*Rendering*/
         void render();
+        void kill();
 };
 
 #endif /*PLAYERSCORE_HPP*/

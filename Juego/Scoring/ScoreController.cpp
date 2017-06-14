@@ -61,6 +61,10 @@ ScoreController::~ScoreController(){
 
 void ScoreController::update(int index, int rings, int lives, int score, bool state){
     Score* player = scores.at(index);
+    if (rings == -1 || lives == -1 || score == -1){
+        player->kill();
+        return;
+    }
     player->toggleOnline(state);
     player->setRings(rings);
     player->setLives(lives);

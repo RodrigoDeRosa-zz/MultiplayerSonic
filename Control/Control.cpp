@@ -287,7 +287,7 @@ vector<int> obtenerParametros(Json::Value json){
 void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 	Ubicador* ubicador = new Ubicador();
 
-	vector<int> parametros = obtenerParametros(json["entidades"][nombreNivel]);	
+	vector<int> parametros = obtenerParametros(json["entidades"][nombreNivel]);
 	ubicador->setParams(parametros[0],parametros[1],parametros[2],parametros[3],parametros[4],parametros[5],parametros[6],parametros[7],parametros[8],parametros[9],parametros[10],
 						parametros[11],parametros[12],parametros[13]);
 	vector<terna_t*>* ternas = ubicador->generarTernas(this->niveles[i]->getEnd());
@@ -297,16 +297,19 @@ void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 }
 
 void Control::crearEntidades(Json::Value json){
-	crearEntidades("nivel1",json,0);
-	crearEntidades("nivel1",json,2);
-	crearEntidades("nivel1",json,4);
+	//crearEntidades("nivel1",json,0);
+	//crearEntidades("nivel1",json,2);
+	//crearEntidades("nivel1",json,4);
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
+
+    Pinche* pinche = new Pinche(0, 500, 500);
+    this->niveles[NIVEL1]->addEntidad(pinche);
 /*
 	Jefe* jefe = new Jefe(0,2000,50);
 	Bola* bola = new Bola(0,2000,120,jefe);
 	this->niveles[0]->addEntidad(jefe);
-	this->niveles[0]->addEntidad(bola);*/	
+	this->niveles[0]->addEntidad(bola);*/
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

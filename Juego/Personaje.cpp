@@ -1,4 +1,5 @@
 #include "Personaje.hpp"
+#include "../Graficos/Texture.hpp"
 #include "../message.hpp"
 
 #define WALKING_ANIMATION_FRAMES 6
@@ -6,8 +7,20 @@
 using namespace std;
 
 Personaje::Personaje(string nomJugador){
-nombreJugador = nomJugador;
-bloque_pers = NULL;
+    nombreJugador = nomJugador;
+    bloque_pers = NULL;
+    /*Cuando muere usa este bloque*/
+    desaparecer = new MovingBloque(100, 425, 540, 120);
+    desaparecer->setClip("move");
+    desaparecer->setRectangulo("move", 0, 0, 108, 120);
+    desaparecer->setRectangulo("move", 108, 0, 108, 120);
+    desaparecer->setRectangulo("move", 216, 0, 108, 120);
+    desaparecer->setRectangulo("move", 324, 0, 108, 120);
+    desaparecer->setRectangulo("move", 432, 0, 108, 120);
+    Texture* tex = new Texture();
+    tex->loadFromFile("Graficos/desaparecer.png");
+    desaparecer->setTexture(tex);
+    /********************/
 }
 
 string Personaje::getNombreJugador(){
@@ -19,6 +32,9 @@ void Personaje::setMovingBloque(MovingBloque* new_bloque){
     bloque_pers = new_bloque;
 }
 
+void Personaje::borrar(){
+    bloque_pers->setAlfaCero();
+}
 
 /*Funciones de movimiento*/
 void Personaje::update(float posX, float posY, move_type movimiento, int frame){
@@ -26,6 +42,10 @@ void Personaje::update(float posX, float posY, move_type movimiento, int frame){
     bloque_pers->update(posX, posY);
     if(movimiento == IDLED){
         bloque_pers->quietoDerecha(frame);
+    }
+    else if (movimiento == DIE){
+        setMovingBloque(desaparecer);
+        bloque_pers->morir(frame);
     }
     else if(movimiento == IDLEI){
         bloque_pers->quietoIzquierda(frame);
