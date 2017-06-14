@@ -165,11 +165,6 @@ void* eventDistribution(void* arg){
                 Connection* conn = it->second;
                 conn->queueOutEvent(event);
             }
-            /*for (int i = 0; i < CXM().maxConnections; i++){
-                Connection* connection = CXM().getConnection(i);
-                if (!connection) continue; //Puede haber conexiones no disponibles
-                connection->queueOutEvent(event);
-            }*/
         }
     }
     /*Termina cuando el servidor ya no esta mas online*/

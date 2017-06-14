@@ -139,6 +139,7 @@ void* keyControl(void* arg){
 			}
 		}
         if (key != KEY_TOTAL) self->queueToSend(key);
+        else usleep(1000);
         key = KEY_TOTAL;
 	}
 
@@ -151,6 +152,7 @@ void* f_view(void* arg){
 	while (self->gameOn()){
 		out_message_t* message = self->getEventReceived();
         if (!message){
+            usleep(1000);
             continue;
         }
         if(message->ping == PLAYER_UPDATE){
@@ -261,6 +263,7 @@ void* viewControl(void* arg){
             }
             self->renderInit();
             Renderer::getInstance().draw();
+            usleep(1000);
         }
         self->initUnclick();
         while(!self->getJuego() || !self->getJuego()->stageReady()){
@@ -288,6 +291,7 @@ void* viewControl(void* arg){
             }
             self->getJuego()->render();
             Renderer::getInstance().draw();
+            usleep(1000);
         }
         self->getJuego()->unclickInit();
         //Juego
@@ -309,6 +313,7 @@ void* viewControl(void* arg){
             /*Renderizar*/
             self->getJuego()->render();
             Renderer::getInstance().draw();
+            usleep(1000);
         }
         pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 
