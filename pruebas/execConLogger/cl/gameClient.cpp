@@ -305,9 +305,10 @@ void* viewControl(void* arg){
                 Renderer::getInstance().draw();
                 usleep(1000);
             }
-        }
-        while (!self->gameOn()){
-            usleep(500000);
+            while (!self->gameOn()){
+                printf("waiting\n");
+                sleep(1);
+            }
         }
         self->getJuego()->unclickInit();
         //Juego
