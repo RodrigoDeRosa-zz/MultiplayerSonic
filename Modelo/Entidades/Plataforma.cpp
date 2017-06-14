@@ -1,5 +1,5 @@
-#include "Piedra.hpp"
-#include "../../Player.hpp"
+#include "Plataforma.hpp"
+#include "../Player.hpp"
 #include <stdio.h>
 #define WIDTH 124
 #define HEIGHT 200
@@ -12,39 +12,18 @@ sino una distacia considerable, de modo que se pueda diferenciar una colision de
 using namespace std;
 
 
-Piedra::Piedra(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
+Plataforma::Plataforma(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 
-bool Piedra::esPiedra(){
+bool Plataforma::esPiedra(){
 	return true;
 }
 
-void Piedra::afectarA(Player* jugador){
+void Plataforma::afectarA(Player* jugador){
 
 	// el jugador no choca con el borde de arriba
 	if(jugador->getBordeAbajo() > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
 
 		float posicion = jugador->getX();
-
-		//MIRANDO SOLO LA DIRECCION
-/*
-		
-		// el jugador venia de la izquierda y se choca con el costado izquierdo de la piedra
-		if(jugador->getDirX() > 0){
-			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - 5;
-		}
-		// el jugador venia de la derecha sin saltar y se choca con el costado derecho de la piedra
-		else if(jugador->getDirX() < 0 ){
-			posicion = this->Entidad::getBordeDer() + 5;
-		}
-		jugador->setX(posicion);
-		
-		//SOLO DIRECCION
-*/
-
-		//MIRANDO SOLO LA POSICION
-		
-		//si ademas esta cayendo hacia algun lado, entonces que no toque la X
-
 
 		//caso especial caida
 		if(posicion < (this->Entidad::getBordeIzq()+WIDTH/2.0)){//esta en la mitad izquierda de la piedra
@@ -56,6 +35,10 @@ void Piedra::afectarA(Player* jugador){
 		jugador->setX(posicion);
 
 		//SOLO POSICION
+	}
+
+	if(jugador->getBordeArriba() < (this->Entidad::getBordeAbajo() - FACTOR_DIFERENCIAL_H)){
+		//aca viene la magia
 	}
 
 	//seteo la y del jugador al borde superior de la piedra(teniendo en cuenta el alto de la imagen)
@@ -94,10 +77,10 @@ void Piedra::afectarA(Player* jugador){
 	}
 }
 
-out_message_t* Piedra::getOutMessage(){
+out_message_t* Plataforma::getOutMessage(){
 	return this->Entidad::getOutMessage(MESSAGE_TOTAL);
 }
 
-out_message_t* Piedra::getInitMessage(){
-	return this->Entidad::getOutMessage(ROCK_SET);
+out_message_t* Plataforma::getInitMessage(){
+	return this->Entidad::getOutMessage(PLATFORM_SET);
 }
