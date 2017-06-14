@@ -6,7 +6,8 @@
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/
 #define FACTOR_DIFERENCIAL_H 5
-#define THRESHOLD_DIST	20.0
+#define THRESHOLD_DIST	45.0
+#define THRESHOLD_MIN	15.0
 
 using namespace std;
 
@@ -39,8 +40,11 @@ void Piedra::afectarA(Player* jugador){
 */
 
 		//MIRANDO SOLO LA POSICION
+		
+		//si ademas esta cayendo hacia algun lado, entonces que no toque la X
 
 
+		//caso especial caida
 		if(posicion < (this->Entidad::getBordeIzq()+WIDTH/2.0)){//esta en la mitad izquierda de la piedra
 			posicion = this->Entidad::getBordeIzq() - (jugador->getBordeDer() - jugador->getBordeIzq()) - FACTOR_DIFERENCIAL_H;		
 		}
@@ -59,12 +63,18 @@ void Piedra::afectarA(Player* jugador){
 
 		if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_DIST) && jugador->estaMirandoADer()){
 			jugador->caer(1);
-			jugador->setY(posicion);
+			jugador->setBaseY(425);
+			if (jugador->getX() > (this->Entidad::getBordeDer() - THRESHOLD_MIN)){
+				//jugador->setY(posicion);
+			}
 			return;
 		}
 		if (jugador->getBordeDer() < (this->Entidad::getBordeIzq() + THRESHOLD_DIST) && !(jugador->estaMirandoADer())){
 			jugador->caer(-1);
-			jugador->setY(posicion);
+			jugador->setBaseY(425);
+			if (jugador->getBordeDer() < (this->Entidad::getBordeIzq() + THRESHOLD_MIN)){
+				//jugador->setY(posicion);
+			}
 			return;
 		}
 
