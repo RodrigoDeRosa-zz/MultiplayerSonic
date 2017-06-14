@@ -132,14 +132,20 @@ void Juego::updateTransition(int id, int rings, int points){
 
 void Juego::updateCoopTransition(){
     if (modoJuego == COOP){
-        stageActual->setCoopInfo(coop[0], coop[1], coop[0] + coop[1]);
+        int multiplicador = 10;
+        if (coop[0] >= 50) multiplicador = 20;
+        stageActual->setCoopInfo(coop[0], coop[1], coop[0]*multiplicador + coop[1]);
         stageActual->setValues();
     }
 }
 
 void Juego::updateTeamTransition(){
     if (modoJuego == EQUIPOS){
-        stageActual->setTeamInfo(0, teams[0][0], teams[0][1], teams[0][0] + teams[0][1]);
+        int multiplicador = 10;
+        if (teams[0][0] >= 50) multiplicador = 20;
+        stageActual->setTeamInfo(0, teams[0][0], teams[0][1], teams[0][0]*multiplicador + teams[0][1]);
+        multiplicador = 10;
+        if (teams[1][0] >= 50) multiplicador = 20;
         stageActual->setTeamInfo(1, teams[1][0], teams[1][1], teams[1][0] + teams[1][1]);
         stageActual->setValues();
     }
