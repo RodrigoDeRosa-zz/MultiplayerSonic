@@ -245,6 +245,7 @@ void* viewControl(void* arg){
                 }
                 if (self->initProcessEvent(e) != KEY_TOTAL){
                     pthread_create(&game, NULL, runGame, self);
+                    usleep(2000); //Espera que intente conectarse
                     self->setInitClicked();
                 }
             }

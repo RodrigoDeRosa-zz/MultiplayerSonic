@@ -45,7 +45,6 @@ map<int, Connection*> CXManager::getConnections(){
 void CXManager::removeConnection(int id){
     connections.erase(id);
     ids.push_back(id);
-    if (playersReady == actualConnections) playersReady -= 1;
     actualConnections -= 1;
 }
 
@@ -116,5 +115,4 @@ void CXManager::disableConnection(int id){
     }
     ids.erase(remove(ids.begin(), ids.end(), id), ids.end());
     maxConnections = actualConnections;
-    playersReady = actualConnections;
 }

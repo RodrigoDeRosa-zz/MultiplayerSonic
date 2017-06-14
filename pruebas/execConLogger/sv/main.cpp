@@ -80,7 +80,7 @@ void* accept(void* arg){
         Socket* socket = SERVER().accept();
         if (!socket) continue;
         /*Se verifica que no este completo el servidor*/
-        if (CXM().actualConnections >= CXM().maxConnections){
+        if (CXM().actualConnections == CXM().maxConnections){
             socket->sockClose();
             continue;
         }
