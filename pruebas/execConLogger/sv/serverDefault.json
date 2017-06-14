@@ -1,7 +1,7 @@
 {
     "port" : "9034",
-    "max_connections" : 1,
-	"tipo de juego": 0,
+    "max_connections" : 2,
+	"tipo de juego": 1,
     "entidades" :{
     	"nivel1":{
     		"cangrejos":{"min":5, "max": 10},

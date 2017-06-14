@@ -299,19 +299,19 @@ void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 }
 
 void Control::crearEntidades(Json::Value json){
-	//crearEntidades("nivel1",json,0);
+	crearEntidades("nivel1",json,0);
 	//crearEntidades("nivel1",json,2);
 	//crearEntidades("nivel1",json,4);
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
 
-    Pinche* pinche = new Pinche(0, 500, 500);
-    this->niveles[NIVEL1]->addEntidad(pinche);
+    //Pinche* pinche = new Pinche(0, 500, 500);
+    //this->niveles[NIVEL1]->addEntidad(pinche);
 
     Plataforma* platform2 = new Plataforma(0,4700, 345);
     this->niveles[NIVEL3]->addEntidad(platform2);
 
-    Plataforma* platform3 = new Plataforma(0, 5200, 345);
+    Plataforma* platform3 = new Plataforma(1, 5200, 345);
     this->niveles[NIVEL3]->addEntidad(platform3);
 
 	Jefe* jefe = new Jefe(0,5000,50);

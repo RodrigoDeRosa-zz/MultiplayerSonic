@@ -213,8 +213,10 @@ void Juego::updateTeamScore(int team, int rings, int points){
 }
 
 void Juego::updateCoopScore(int rings, int points){
-    if (modoJuego == COOP)
+    if (modoJuego == COOP){
+        printf("Updating coop\n");
         stageActual->updateCoopScore(rings, points);
+    }
 }
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
