@@ -314,9 +314,9 @@ void* viewControl(void* arg){
                 self->updatePlayers();
                 if (k!=0) k = 0;
             } else{
-                if (k == 0){
+                if (k <= 2){
                     self->updateTransition();
-                    k = 1;
+                    k += 1;
                 }
             }
             /*Renderizar*/

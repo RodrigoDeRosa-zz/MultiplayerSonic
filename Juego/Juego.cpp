@@ -127,18 +127,21 @@ void Juego::updateTransition(int id, int rings, int points){
     int multiplicador = 10;
     if (rings >= 50) multiplicador = 20;
     stageActual->setPlayerInfo(id, rings, points, points + rings*multiplicador);
-    stageActual->setValues();
+    if (modoJuego == INDIVIDUAL) stageActual->setValues();
 }
 
 void Juego::updateCoopTransition(){
-    if (modoJuego == COOP)
+    if (modoJuego == COOP){
         stageActual->setCoopInfo(coop[0], coop[1], coop[0] + coop[1]);
+        stageActual->setValues();
+    }
 }
 
 void Juego::updateTeamTransition(){
     if (modoJuego == EQUIPOS){
         stageActual->setTeamInfo(0, teams[0][0], teams[0][1], teams[0][0] + teams[0][1]);
         stageActual->setTeamInfo(1, teams[1][0], teams[1][1], teams[1][0] + teams[1][1]);
+        stageActual->setValues();
     }
 }
 
@@ -236,6 +239,7 @@ void Juego::updateCoopScore(int rings, int points){
     if (modoJuego == COOP){
         coop[0] = rings;
         coop[1] = points;
+        printf("coop rings: %d | coop points: %d\n", coop[0], coop[1]);
         stageActual->updateCoopScore(rings, points);
     }
 }
