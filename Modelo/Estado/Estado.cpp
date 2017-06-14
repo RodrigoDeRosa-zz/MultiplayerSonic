@@ -52,9 +52,9 @@ void Estado::setReviviendo(){
 
 void Estado::updateFrame(){
 	frameSum++;
-	if (frameSum > 100) frameSum = 0;
-	if (frameSum%10 == 0){
-		frame = frameSum / 10;
+	if (frameSum > 20) frameSum = 0;
+	if (frameSum%2 == 0){
+		frame = frameSum / 2;
 	}
 	if(frame >= 9) frame = 0;
 }

@@ -21,6 +21,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
 #define SSTR( x ) static_cast< ostringstream & >( \
@@ -218,7 +219,9 @@ void Juego::updateCoopScore(int rings, int points){
 
 void Juego::updateJugador(string id, float posx, float posy, move_type movimiento, int frame, bool conectado,
     int rings, int lives, int points, state_type state, int state_frame){
-    if (movimiento == DIE && frame == 5){
+    if (movimiento == DIE && frame == 4){
+        if (find(dead.begin(), dead.end(), id) != dead.end()) return;
+        else (dead.push_back(id));
         jugadores->borrarJugador(id);
         stageActual->updateScore(atoi(id.c_str()), -1, -1, -1, false);
     } else {

@@ -1,6 +1,6 @@
 {
     "port" : "9034",
-    "max_connections" : 1,
+    "max_connections" : 2,
     "entidades" :{
     	"nivel1":{
     		"cangrejos":{"min":5, "max": 10},

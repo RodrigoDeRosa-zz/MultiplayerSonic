@@ -305,16 +305,16 @@ void Control::crearEntidades(Json::Value json){
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
 
-    //Pinche* pinche = new Pinche(0, 500, 500);
-    //this->niveles[NIVEL1]->addEntidad(pinche);
+    Pinche* pinche = new Pinche(0, 500, 500);
+    this->niveles[NIVEL1]->addEntidad(pinche);
 
 	Jefe* jefe = new Jefe(0,5500,50);
 	Bola* bola = new Bola(0,5500,120,jefe);
 	this->niveles[NIVEL3]->addEntidad(jefe);
 	this->niveles[NIVEL3]->addEntidad(bola);
 
-    Plataforma* platform1 = new Plataforma(0, 500, 345);
-    this->niveles[NIVEL1]->addEntidad(platform1);
+    //Plataforma* platform1 = new Plataforma(0, 500, 345);
+    //this->niveles[NIVEL1]->addEntidad(platform1);
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

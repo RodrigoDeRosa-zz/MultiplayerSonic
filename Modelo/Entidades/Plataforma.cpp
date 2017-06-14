@@ -23,8 +23,6 @@ void Plataforma::afectarA(Player* jugador){
 
     if((jugador->getBordeAbajo()) < (this->Entidad::getBordeArriba() - FACTOR_DIFERENCIAL_H)){
 
-        printf("entro \n");
-
         float posicion = this->Entidad::getBordeArriba() -  (jugador->getBordeAbajo() - jugador->getBordeArriba()); /*el alto del frame actual*/
         //float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());
 

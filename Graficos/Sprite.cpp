@@ -35,7 +35,8 @@ Sprite::~Sprite(){
 }
 
 void Sprite::setAlfaCero(){
-    alfa = 0;
+    texture->setColorMod(0x00, 0x00, 0x00);
+    texture->setAlfa(0x00);
 }
 
 void Sprite::update(float new_x, float new_y){

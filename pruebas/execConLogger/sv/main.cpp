@@ -265,7 +265,6 @@ void* updateControl(void* arg){
     Control* gameControl = (Control*) arg;
 
     while (SERVER().is_running()){
-        if (gameControl->terminoElJuego()) break;
         gameControl->update();
         usleep(2500);
     }
@@ -277,7 +276,6 @@ void* inEventsHandle(void* arg){
     Control* gameControl = (Control*) arg;
 
     while(SERVER().is_running() || SERVER().initializing()){
-        if (gameControl->terminoElJuego()) break;
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
@@ -319,9 +317,6 @@ void* outStatesHandle(void* arg){
             memcpy(message, state, sizeof(out_message_t));
             SERVER().queueOutEvent(message);
             usleep(1000);
-            SERVER().end_game();
-            usleep(1000);
-            SERVER().disconnect();
             break;
         }
         /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/
@@ -331,7 +326,7 @@ void* outStatesHandle(void* arg){
             memcpy(outState, states[i], sizeof(out_message_t));
             SERVER().queueOutEvent(outState);
         }
-        usleep(10000);
+        usleep(40000);
     }
 
     return NULL;

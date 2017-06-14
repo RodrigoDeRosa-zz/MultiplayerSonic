@@ -276,9 +276,10 @@ out_message_t* Player::getStatus(float camPos){
         status->ping = PLAYER_DEAD;
         status->frame = frameMuerto;
 		frameSum++;
-		if (frameSum%10 == 0){
-			frameMuerto = frameSum / 10;
+		if (frameSum%2 == 0){
+			frameMuerto += 1;
 		}
+		//printf("frameMuerto: %d\n", frameMuerto);
     }
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();

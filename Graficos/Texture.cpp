@@ -43,6 +43,11 @@ void Texture::setBackgroundColor(Uint8 r, Uint8 g, Uint8 b){
     SDL_SetTextureColorMod(texture, r, g, b);
 }
 
+/*Setea el valor de alfa*/
+void Texture::setAlfa(Uint8 alfa){
+    SDL_SetTextureAlphaMod(texture, alfa);
+}
+
 
 bool Texture::loadFromFile(string path){
     //Se libera la textura preexistente si es que existia

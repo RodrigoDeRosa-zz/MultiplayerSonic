@@ -22,6 +22,7 @@ class Juego{
     /*Se setean las texturas de todas las entidades*/
     void setTexturas();
     vector <Stage*> stages;
+    vector<string> dead;
     Stage* stageActual;
     int stageActualIndex; //Se agrega esto para hacer mas rapido el avance de stages
     Camara* camara;

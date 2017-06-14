@@ -99,30 +99,35 @@ void* write(void* arg){
         /*Toma el mensaje de la cola de eventos salientes*/
         message = connection->getOutEvent();
         if (!message) continue; //Si esta vacia la cola, sigue
-        /*Se verifica si el jugador muerto es el propio*/
-        out_message_t* state = new out_message_t;
-        memcpy(state, message, sizeof(out_message_t));
         /*Si el personaje murio, ya pasaron todos los frames de desaparecer, y es el id propio
           se setea el game over*/
-        if (state->ping == PLAYER_DEAD && state->id == connection->id && state->frame == 5){
-            state->ping = GAME_OVER;
+        out_message_t* state = new out_message_t;
+        memcpy(state, message, sizeof(out_message_t)); //Se copia el mensaje original
+        if (state->id == connection->id && state->ping == PLAYER_DEAD && state->frame == 4){
+            state->ping = GAME_OVER; //se modifica
+            ////////
+            char* newMessage = new char[sizeof(out_message_t)]; //se crea el nuevo mensaje
+            memcpy(newMessage, state, sizeof(out_message_t)); //Se copia al nuevo mensaje
+            /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
+            pthread_mutex_lock(&connection->sendLock);
+            status = connection->sendMessage(newMessage, sizeof(out_message_t));
+            pthread_mutex_unlock(&connection->sendLock);
+        } else {
+            /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
+            pthread_mutex_lock(&connection->sendLock);
+            status = connection->sendMessage(message, sizeof(out_message_t));
+            pthread_mutex_unlock(&connection->sendLock);
         }
-        memcpy(message, state, sizeof(out_message_t));
-        /*Fin verificacion*/
-        /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
-        pthread_mutex_lock(&connection->sendLock);
-        status = connection->sendMessage(message, sizeof(out_message_t));
-        pthread_mutex_unlock(&connection->sendLock);
 
         if(!status){
             connection->disconnect(3);
             break;
         }
         if (state->ping == GAME_OVER){
-            usleep(50000);
-            CXManager::getInstance().disableConnection(connection->id);
+            sleep(1);
+            connection->disconnect(3);
         }
-        delete state;
+        delete state; //esto ya no se necesita
     }
 
     return NULL;

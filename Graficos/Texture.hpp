@@ -33,6 +33,7 @@ class Texture{
         void setDimensions(int w, int h);
         bool operator==(Texture& other) const;
         void setColorMod();
+        void setAlfa(Uint8);
         void setColorMod(Uint8 r, Uint8 g, Uint8 b);
 };
 

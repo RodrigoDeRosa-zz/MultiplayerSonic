@@ -239,16 +239,19 @@ void* viewControl(void* arg){
         //Pantalla de conexion
         while(!self->connected()){
             self->initUnclick();
+            if (self->gameWon() || self->gameOver()) self->showConnectionFailure();
             Renderer::getInstance().clear();
 
             while(SDL_PollEvent(&e)){
                 if (e.type == SDL_QUIT){
                     return NULL; //Se termina la ejecucion
                 }
-                if (self->initProcessEvent(e) != KEY_TOTAL){
-                    pthread_create(&game, NULL, runGame, self);
-                    usleep(2000); //Espera que intente conectarse
-                    self->setInitClicked();
+                if (!self->gameWon() && !self->gameOver()){
+                    if (self->initProcessEvent(e) != KEY_TOTAL){
+                        pthread_create(&game, NULL, runGame, self);
+                        usleep(2000); //Espera que intente conectarse
+                        self->setInitClicked();
+                    }
                 }
             }
             if (self->failedToConnect()){
@@ -267,7 +270,7 @@ void* viewControl(void* arg){
         }
         self->initUnclick();
         while(!self->getJuego() || !self->getJuego()->stageReady()){
-            usleep(5000);
+            usleep(50000);
         }
         //Pantalla de inicio de juego
         key_event key;
@@ -284,14 +287,20 @@ void* viewControl(void* arg){
                 }
                 key = KEY_TOTAL;
                 key = self->getJuego()->processEvent(e);
-                if (key != KEY_TOTAL){
-                    self->queueToSend(key);
-                    self->getJuego()->setInitClicked();
-                }
+            }
+            if (key != KEY_TOTAL){
+                self->queueToSend(key);
+                self->getJuego()->setInitClicked();
+                self->getJuego()->render();
+                Renderer::getInstance().draw();
+                break;
             }
             self->getJuego()->render();
             Renderer::getInstance().draw();
             usleep(1000);
+        }
+        while (!self->gameOn()){
+            usleep(50000);
         }
         self->getJuego()->unclickInit();
         //Juego
@@ -325,7 +334,6 @@ void* viewControl(void* arg){
             Renderer::getInstance().draw();
             sleep(2);
             self->deleteJuego();
-            self->gameWon(false);
         } else if (self->gameOver()){
             GameOverStage* over = new GameOverStage(1200, 720);
             self->getJuego()->render();
@@ -333,7 +341,6 @@ void* viewControl(void* arg){
             Renderer::getInstance().draw();
             sleep(2);
             self->deleteJuego();
-            self->gameOver(false);
         } else{
             Renderer::getInstance().clear();
             ConnectionLostStage* lost = new ConnectionLostStage(1200, 720);

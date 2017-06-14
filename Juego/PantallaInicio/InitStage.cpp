@@ -52,21 +52,9 @@ InitStage::InitStage(int w, int h, int type) : Stage(){
 
     background->loadImage();
 
-    vector<string> filePaths;
-    filePaths.push_back(string("Graficos/esperando_jugadores00.png"));
-    filePaths.push_back(string("Graficos/esperando_jugadores01.png"));
-    filePaths.push_back(string("Graficos/esperando_jugadores02.png"));
-    filePaths.push_back(string("Graficos/esperando_jugadores03.png"));
-    Texture* tex;
-    for (int i = 0; i < 4; i++){
-        tex = new Texture();
-        tex->loadFromFile(filePaths[i]);
-        waitTex.push_back(tex);
-    }
-
     front = new Layer();
     front->setDimensions(w, h);
-    front->setTexPath("Graficos/esperando_jugadores00.png");
+    front->setTexPath("Graficos/esperando_jugadores03.png");
     front->loadImage();
 }
 
@@ -116,11 +104,7 @@ void InitStage::render(){
         buttons.at(i)->render();
     }
 
-    if (clicked){
-        frame = (logoFrame/(LOGO_FRAME_RATE*5))%4;
-        front->setTexture(waitTex[frame]);
-        front->render();
-    }
+    if (clicked) front->render();
 }
 
 void InitStage::render(Camara* cam){
