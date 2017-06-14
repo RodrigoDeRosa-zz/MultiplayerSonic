@@ -4,6 +4,7 @@ GameOverStage::GameOverStage(int w, int h) : Stage(){
     setDimensions(w, h);
 
     front = new Layer();
+    front->setDimensions(w, h);
     front->setTexPath("Graficos/game_over.png");
     front->loadImage();
 }

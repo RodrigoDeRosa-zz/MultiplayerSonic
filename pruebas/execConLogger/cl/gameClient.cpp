@@ -14,6 +14,8 @@
 #include "../../../json/JsonLoader.hpp"
 #include "../../../Juego/Juego.hpp"
 #include "../../../Juego/PantallaTransicion/ConnectionLostStage.hpp"
+#include "../../../Juego/PantallaTransicion/GameOverStage.hpp"
+#include "../../../Juego/PantallaTransicion/GameWonStage.hpp"
 #include "../../../Graficos/SDLHandler.hpp"
 #include "../../../logger/current/Logger2.hpp"
 #include <SDL2/SDL.h>
@@ -110,6 +112,7 @@ void* keyControl(void* arg){
 	key_event key = KEY_TOTAL;
     SDL_Event e;
 	while(self->gameOn()){
+        if (self->gameOver() || self->gameWon()) break;
 		while(SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT){
 	        	key = QUIT;
@@ -307,7 +310,7 @@ void* viewControl(void* arg){
         pthread_join(game, &exit_status); //Ahora el control de eventos se hace en otro thread
 
         if (self->manuallyClosed) running = false;
-        /*else if (self->gameWon()){
+        else if (self->gameWon()){
             GameWonStage* won = new GameWonStage(1200, 720);
             self->getJuego()->render();
             won->render();
@@ -321,7 +324,7 @@ void* viewControl(void* arg){
             Renderer::getInstance().draw();
             sleep(2);
             self->deleteJuego();
-        }*/else{
+        } else{
             Renderer::getInstance().clear();
             ConnectionLostStage* lost = new ConnectionLostStage(1200, 720);
             self->getJuego()->render();

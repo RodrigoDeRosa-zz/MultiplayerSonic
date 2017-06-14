@@ -1,6 +1,6 @@
 #include "CameraControl.hpp"
 #include <stdio.h>
-#define MARGIN_FACTOR 0.01
+#define MARGIN_FACTOR 0.2
 #define CHARACTER_WIDTH 118
 
 CameraControl::CameraControl(float width, float stageEnd){
