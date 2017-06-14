@@ -237,11 +237,11 @@ vector<out_message_t*> Nivel::getPlayerStatus(float camPos){
             continue;
         }
         this->playerStatusControl = 0;*/
-		v.push_back((*(this->players))[i]->getStatus(camPos));
-		if(!((*(this->players))[i]->estaVivo())) {
-			// una vez que se mando el mensaje de que esta destruida, se borra la entidad
+		
+		if(!((*(this->players))[i]->estaVivo()) && ((*(this->players))[i]->mensajeDeMuertoEnviado())) {
 			this->players->erase(this->players->begin() + i);
 		}
+		v.push_back((*(this->players))[i]->getStatus(camPos));
 	}
 	return v;
 }
