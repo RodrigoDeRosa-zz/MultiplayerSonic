@@ -74,6 +74,10 @@ bool Entidad::esPiedra(){
 	return false;
 }
 
+bool Entidad::esPlataforma(){
+	return false;
+}
+
 out_message_t* Entidad::getOutMessage(message_type type){
 	out_message_t* state = new out_message_t;
 	memset(state, 0, sizeof(out_message_t));

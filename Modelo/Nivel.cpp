@@ -189,6 +189,7 @@ bool Nivel::enRango(Entidad* entidad, Player* player){
 void Nivel::colisionarTodos() {
 
 	bool colisionoPiedra = false;
+	bool colisionoPlataforma = false;
 
 	for (int i = 0; i < (players)->size(); i++) {
 		if((!((*(players))[i]->estaVivo())) || (!((*(players))[i]->isConnected())) ) continue;
@@ -201,6 +202,11 @@ void Nivel::colisionarTodos() {
 					if(((*entidades)[j])->esPiedra()){
 						 colisionoPiedra = true;
 					}
+                    if((((*entidades)[j])->esPlataforma())){
+                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() - 5.0)) {
+                            colisionoPlataforma = true;
+                        }
+                    }
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
@@ -210,6 +216,11 @@ void Nivel::colisionarTodos() {
 
 					if(((*entidades)[j])->esPiedra()){
 						colisionoPiedra = true;
+					}
+					if((((*entidades)[j])->esPlataforma())){
+                        if((((*players)[i])->getBordeAbajo()) < (((*entidades)[j])->getBordeArriba() - 5.0)) {
+                            colisionoPlataforma = true;
+                        }
 					}
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
@@ -223,13 +234,14 @@ void Nivel::colisionarTodos() {
         //colisionoPiedra = false;
         }
 		*/
-		if(!colisionoPiedra){
-			//(*players)[i]->setBaseY(425);
+		if(!colisionoPiedra && !colisionoPlataforma){
+			(*players)[i]->setBaseY(425);
 			if ((!(*players)[i]->estaSaltando()) && (*players)[i]->getY() < 425){
 				(*players)[i]->setCayendo();
 			}
 		}
 		colisionoPiedra = false;
+		colisionoPlataforma = false;
 	}
 }
 

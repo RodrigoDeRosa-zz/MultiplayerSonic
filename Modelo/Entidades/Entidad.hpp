@@ -37,6 +37,7 @@ public:
 	float getBordeAbajo();
 	bool estaDestruida();
 	virtual bool esPiedra();
+	virtual bool esPlataforma();
 	virtual bool esJefe();
 
 	/*Setters*/

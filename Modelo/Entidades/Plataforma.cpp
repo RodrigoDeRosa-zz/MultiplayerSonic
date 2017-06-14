@@ -14,16 +14,15 @@ using namespace std;
 
 Plataforma::Plataforma(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){}
 
-bool Plataforma::esPiedra(){
-	return true;
+bool Plataforma::esPlataforma(){
+    return true;
 }
 
 void Plataforma::afectarA(Player* jugador){
 
-    if((jugador->getBordeAbajo()) - 150 > (this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H)){
+    if((jugador->getBordeAbajo()) < (this->Entidad::getBordeArriba() - FACTOR_DIFERENCIAL_H)){
 
-        printf("jugador borde abajo: %f \n", jugador->getBordeAbajo() - 190);
-        //printf("entidad borde arriba: %f \n", this->Entidad::getBordeArriba() + FACTOR_DIFERENCIAL_H);
+        printf("entro \n");
 
         float posicion = this->Entidad::getBordeArriba() -  (jugador->getBordeAbajo() - jugador->getBordeArriba()); /*el alto del frame actual*/
         //float posicion = jugador-> getBordeArriba() - ( this->Entidad::getBordeAbajo() - this->Entidad::getBordeArriba());

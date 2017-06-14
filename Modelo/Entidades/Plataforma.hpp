@@ -11,7 +11,7 @@ public:
 	void afectarA(Player* jugador);
 	out_message_t* getOutMessage();
 	out_message_t* getInitMessage();
-	bool esPiedra();
+	bool esPlataforma();
 };
 
 #endif /*PLATAFORMA_HPP*/
