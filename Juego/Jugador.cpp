@@ -16,6 +16,10 @@ Jugador::Jugador(string nomJugador, string nomPersonaje, Texture* bolas){
     invencibilidad->setIndexZ(100);
 }
 
+void Jugador::borrarPersonaje(){
+    personaje->borrar();
+}
+
 void Jugador::updatePersonaje(float posx, float posy, move_type movimiento, int frame, bool conectado,
     state_type state, int state_frame){
     if(personaje == NULL){

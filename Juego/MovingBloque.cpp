@@ -33,6 +33,10 @@ void MovingBloque::damageIzquierda(int){};
 void MovingBloque::esperandoDerecha(int){};
 void MovingBloque::esperandoIzquierda(int){};
 
+void MovingBloque::morir(int frame){
+    rectangle = clipsMovimientos->getRectangulo("move", frame);
+}
+
 /*Setters*/
 
 void MovingBloque::setClip(string nombre){

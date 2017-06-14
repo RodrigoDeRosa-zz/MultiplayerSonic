@@ -36,6 +36,11 @@ bool Jugadores::addJugador(string nombreJugador, string nombrePersonaje, Texture
     return exito;
 }
 
+void Jugadores::borrarJugador(string nombreJugador){
+    Jugador* actual = jugadores[nombreJugador];
+    actual->borrarPersonaje();
+}
+
 void Jugadores::updateJugador(string id, float posx, float posy, move_type movimiento, int frame,
     bool conectado, state_type state, int state_frame){
 

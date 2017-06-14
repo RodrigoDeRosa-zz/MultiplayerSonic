@@ -99,6 +99,17 @@ void* write(void* arg){
         /*Toma el mensaje de la cola de eventos salientes*/
         message = connection->getOutEvent();
         if (!message) continue; //Si esta vacia la cola, sigue
+        /*Se verifica si el jugador muerto es el propio*/
+        out_message_t* state = new out_message_t;
+        memcpy(state, message, sizeof(out_message_t));
+        /*Si el personaje murio, ya pasaron todos los frames de desaparecer, y es el id propio
+          se setea el game over*/
+        if (state->ping == PLAYER_DEAD && state->id == connection->id && state->frame == 5){
+            state->ping == GAME_OVER;
+        }
+        memcpy(message, state, sizeof(out_message_t));
+        delete state;
+        /*Fin verificacion*/
         /*Si no se puede enviar el mensaje se considera que la conexion esta caida*/
         pthread_mutex_lock(&connection->sendLock);
         status = connection->sendMessage(message, sizeof(out_message_t));

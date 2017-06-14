@@ -139,6 +139,21 @@ void Client::updatePlayer(out_message_t* message){
     players[message->id] = player;
 }
 
+void Client::killPlayer(out_message_t* message){
+    out_message_t* player = players[message->id];
+    player->posX = message->posX;
+    player->posY = message->posY;
+    player->move = DIE;
+    player->frame = message->frame;
+    player->connection = message->connection;
+    player->rings = message->rings;
+    player->lives = message->lives;
+    player->points = message->points;
+    player->state = message->state;
+    player->state_frame = message->state_frame;
+    players[message->id] = player;
+}
+
 void Client::updatePlayers(){
 	for(int i = 0; i < (this->players).size(); i++){
 		out_message_t* player = players[i];

@@ -280,6 +280,9 @@ void Control::crearEntidades(){
 
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
+    */
+    Pinche* pinche = new Pinche(0, 500, 500);
+    this->niveles[NIVEL1]->addEntidad(pinche);
 /*
 	Jefe* jefe = new Jefe(0,2000,50);
 	Bola* bola = new Bola(0,2000,120,jefe);

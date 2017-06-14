@@ -17,6 +17,7 @@ Sprite::Sprite(float x, float y, int w, int h){
     green = 0;
     blue = 0;
     zIndex = 0;
+    alfa = 1;
 }
 
 Sprite::~Sprite(){
@@ -28,8 +29,13 @@ Sprite::~Sprite(){
     green = 0;
     blue = 0;
     zIndex = 0;
+    alfa = 0;
 
     if (texture) texture = NULL; //La textura no se borra porque puede usarse para otra cosa.
+}
+
+void Sprite::setAlfaCero(){
+    alfa = 0;
 }
 
 void Sprite::update(float new_x, float new_y){
@@ -45,7 +51,7 @@ void Sprite::render(){
     //Si no tiene textura cargada, pinta con el color de fondo.
     float auxX = originX;
     float auxY = originY;
-    Renderer::getInstance().setDrawColor(red, green, blue, 1.0);
+    Renderer::getInstance().setDrawColor(red, green, blue, alfa);
 
     texture->renderNoFill(auxX, auxY, &rectangle);
 }
@@ -58,7 +64,7 @@ void Sprite::render(Camara* cam){
     //Si no tiene textura cargada, pinta con el color de fondo.
     float auxX = originX - cam->getX();
     float auxY = originY - cam->getY();
-    Renderer::getInstance().setDrawColor(red, green, blue, 1);
+    Renderer::getInstance().setDrawColor(red, green, blue, alfa);
 
     if(texture) texture->render(auxX, auxY, &rectangle);
         else{
@@ -82,7 +88,7 @@ void Sprite::render(int x, int y, Camara* cam){
     int Y = originX - cam->getY();
     if(texture) texture->render(X, Y, &rectangle);
     else{
-        Renderer::getInstance().setDrawColor(red, green, blue, 1);
+        Renderer::getInstance().setDrawColor(red, green, blue, alfa);
         Renderer::getInstance().fillRect(&rectangle);
     }
 }

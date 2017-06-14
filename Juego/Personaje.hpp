@@ -13,6 +13,7 @@ class Personaje{
   protected:
     MovingBloque* bloque_pers;
     string nombreJugador;
+    MovingBloque* desaparecer;
 
   public:
     //recibe un string de nombre de jugador que no puede estar repetido
@@ -22,6 +23,7 @@ class Personaje{
     string getNombreJugador();
     void grisearBolque();
     void desGrisearBolque();
+    void borrar();
     /*setters*/
     void setMovingBloque(MovingBloque*);
     //Renderiza el bloque interno, devuelve false si falla

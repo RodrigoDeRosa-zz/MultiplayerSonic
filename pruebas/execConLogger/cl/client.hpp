@@ -68,6 +68,7 @@ class Client{
         void cleanPlayers();
         out_message_t* getPlayer(int id);
         void updatePlayer(out_message_t*);
+        void killPlayer(out_message_t*);
         void updatePlayers();
         void toggleGameSet();
         bool gameIsSet();
