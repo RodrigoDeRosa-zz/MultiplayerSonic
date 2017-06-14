@@ -246,7 +246,7 @@ vector<out_message_t*> Nivel::getPlayerStatus(float camPos){
             continue;
         }
         this->playerStatusControl = 0;*/
-		
+
 		if(!((*(this->players))[i]->estaVivo()) && ((*(this->players))[i]->mensajeDeMuertoEnviado())) {
 			this->players->erase(this->players->begin() + i);
 		}
