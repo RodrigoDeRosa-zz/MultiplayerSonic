@@ -257,7 +257,6 @@ int main(int argc, char** argv){
     pthread_join(inEventT, &exit_status);
     pthread_join(outStateT, &exit_status);
     pthread_join(updateT, &exit_status);
-    SERVER().disconnect();
     pthread_join(acceptT, &exit_status);
     pthread_join(eventDistrT, &exit_status);
 
@@ -268,7 +267,7 @@ void* updateControl(void* arg){
     Control* gameControl = (Control*) arg;
 
     while (SERVER().is_running()){
-        if (gameControl->isWon()) break;
+        if (gameControl->terminoElJuego()) break;
         gameControl->update();
         usleep(2500);
     }
@@ -280,7 +279,7 @@ void* inEventsHandle(void* arg){
     Control* gameControl = (Control*) arg;
 
     while(SERVER().is_running() || SERVER().initializing()){
-        if (gameControl->isWon()) break;
+        if (gameControl->terminoElJuego()) break;
         in_message_t* ev;
 
 		ev = SERVER().getInEvent();
@@ -314,7 +313,7 @@ void* inEventsHandle(void* arg){
 void* outStatesHandle(void* arg){
     Control* gameControl = (Control*) arg;
     while(SERVER().is_running()){
-        if (gameControl->isWon()){
+        if (gameControl->terminoElJuego()){
             out_message_t* state = new out_message_t;
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_WON;
@@ -322,6 +321,9 @@ void* outStatesHandle(void* arg){
             memcpy(message, state, sizeof(out_message_t));
             SERVER().queueOutEvent(message);
             usleep(1000);
+            SERVER().end_game();
+            usleep(1000);
+            SERVER().disconnect();
             break;
         }
         /*Cada 10msec se envia la informacion del estado de todos los personajes a todos*/

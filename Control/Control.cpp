@@ -53,24 +53,16 @@
 using namespace std;
 
 Control::Control(gameMode game_mode){
-    gameWon = false;
 	this->modelo = new Modelo(game_mode);
 	this->cameraControl = new CameraControl(1200, LVL1_END); //el ancho de la camara tambien tiene que venir por parametro
     k = 0;
 	this->initNiveles();
 	this-> nivelActual = 0;
+	this->terminado = false;
 }
 
 gameMode Control::getGameMode(){
 	return this->modelo->getGameMode();
-}
-
-void Control::setWon(){
-    gameWon = true;
-}
-
-bool Control::isWon(){
-    return gameWon;
 }
 
 void Control::initNiveles(){
@@ -211,14 +203,18 @@ void Control::handleInMessage(in_message_t* ev){
 	this->getNivelActual()->movePlayer(playerName,directions[0], directions[1]);
 }
 
+bool Control::terminoElJuego(){
+	return this->terminado;
+}
+
 void Control::update(){
     if (this->nivelActual == this->niveles.size()) return;
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
 		if(this->nivelActual == this->niveles.size()){
-            this->setWon();
+			this->terminado = true;
             return;
-        }//termino el juego, hacer algo
+		}
         this->cameraControl->reset(this->getNivelActual()->getEnd());
 		this->getNivelActual()->addPlayers(this->modelo->getPersonajes());
 		this->getNivelActual()->addPuntajes(this->modelo->getPuntajes());
@@ -281,13 +277,14 @@ void Control::crearEntidades(){
 		}
 	}
 
-*/
+
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
+/*
 	Jefe* jefe = new Jefe(0,2000,50);
 	Bola* bola = new Bola(0,2000,120,jefe);
 	this->niveles[0]->addEntidad(jefe);
-	this->niveles[0]->addEntidad(bola);
+	this->niveles[0]->addEntidad(bola);*/
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
