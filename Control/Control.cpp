@@ -165,6 +165,7 @@ bool Control::moveCameraAndPlayer(string playerName, vector<float> directions){
 }
 
 void Control::setPlayerConnection(string playerName, bool connection){
+    if (!this->getNivelActual()) return;
 	this->getNivelActual()->setPlayerConnection(playerName,connection);
 }
 
@@ -325,8 +326,8 @@ void Control::crearEntidades(Json::Value json){
     Plataforma* platform3 = new Plataforma(1, 5600, 345);
     this->niveles[NIVEL3]->addEntidad(platform3);
 
-	Jefe* jefe = new Jefe(0,5050,50);
-	Bola* bola = new Bola(0,5000,120,jefe);
+	Jefe* jefe = new Jefe(0,5150,50);
+	Bola* bola = new Bola(0,5100,120,jefe);
 	this->niveles[NIVEL3]->addEntidad(jefe);
 	this->niveles[NIVEL3]->addEntidad(bola);
 }
