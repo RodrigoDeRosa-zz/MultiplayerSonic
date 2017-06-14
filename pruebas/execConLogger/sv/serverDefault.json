@@ -1,4 +1,33 @@
 {
     "port" : "9034",
-    "max_connections" : 2
+    "max_connections" : 2,
+    "entidades" :{
+    	"nivel1":{
+    		"cangrejos":{"min":5, "max": 10},
+    		"peces":{"min":7, "max":15},
+    		"moscas":{"min":4, "max":8},
+    		"pinches":{"min":3, "max":8},
+    		"piedras":{"min":5, "max":8},
+    		"bonus":{"min":3, "max":5},
+    		"monedas":{"min":80, "max":120}
+    	},
+    	"nivel2":{
+    		"cangrejos":{"min":5, "max": 10},
+    		"peces":{"min":7, "max":15},
+    		"moscas":{"min":4, "max":8},
+    		"pinches":{"min":3, "max":8},
+    		"piedras":{"min":5, "max":8},
+    		"bonus":{"min":3, "max":5},
+    		"monedas":{"min":80, "max":120}
+    	},
+    	"nivel3":{
+    		"cangrejos":{"min":5, "max": 10},
+    		"peces":{"min":7, "max":15},
+    		"moscas":{"min":4, "max":8},
+    		"pinches":{"min":3, "max":8},
+    		"piedras":{"min":5, "max":8},
+    		"bonus":{"min":3, "max":5},
+    		"monedas":{"min":80, "max":120}
+    	}
+    }
 }

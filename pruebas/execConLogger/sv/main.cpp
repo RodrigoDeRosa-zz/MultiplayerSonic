@@ -3,8 +3,6 @@
 #include "socket.hpp"
 #include "cxManager.hpp"
 #include "connection.hpp"
-#include "../../../json/json/json.h"
-#include "../../../json/json/json-forwards.h"
 #include <fstream>
 #include <pthread.h>
 #include <stdio.h>
@@ -219,7 +217,7 @@ int main(int argc, char** argv){
     }
 
 	Control* gameControl = new Control(DEFAULT_GAME_MODE);
-    gameControl->crearEntidades();
+    gameControl->crearEntidades(json);
 
     CXM().init(maxServerConns);
 

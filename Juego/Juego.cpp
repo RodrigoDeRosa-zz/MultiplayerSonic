@@ -221,9 +221,10 @@ void Juego::updateJugador(string id, float posx, float posy, move_type movimient
     if (movimiento == DIE && frame == 5){
         jugadores->borrarJugador(id);
         stageActual->updateScore(atoi(id.c_str()), -1, -1, -1, false);
+    } else {
+        stageActual->updateScore(atoi(id.c_str()), rings, lives, points, conectado);
+        jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado, state, state_frame);
     }
-    stageActual->updateScore(atoi(id.c_str()), rings, lives, points, conectado);
-    jugadores->updateJugador(id, posx,posy, movimiento, frame, conectado, state, state_frame);
 }
 
 void Juego::updateCamara(int posx, int posy){

@@ -9,6 +9,8 @@
 #include "../Modelo/Modelo.hpp"
 #include "../Modelo/Transicion.hpp"
 #include "../Modelo/Entidades/Entidad.hpp"
+#include "../json/json/json.h"
+#include "../json/json/json-forwards.h"
 
 using namespace std;
 
@@ -28,6 +30,7 @@ class Control{
 	void setCameraPosition(float cameraPosition);
 	bool moveCamera(float newPlayerX, string playerName, float dirX);
 	Nivel* getNivelActual();
+	void crearEntidades(string,Json::Value,int);
 
 	void setDisconnectedPlayersPosition(float dirX);
 	public:
@@ -45,7 +48,7 @@ class Control{
 		void handleInMessage(in_message_t* ev);
 		vector<out_message_t*> getStatus();
 		void update();
-		void crearEntidades(); //la idea es que esto reciba un .json y devuelva un vector de out_message_t*
+		void crearEntidades(Json::Value);
 		vector<out_message_t*> getEntidadesInitStatus();
 		int getLevelNum();
 

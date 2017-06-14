@@ -23,6 +23,8 @@ class Score{
         virtual void toggleOnline(bool);
         /*Rendering*/
         virtual void render();
+        /*Cuando un personaje muere*/
+        virtual void kill();
 };
 
 #endif /*SCORE_HPP*/

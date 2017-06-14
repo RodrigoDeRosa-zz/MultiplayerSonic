@@ -80,6 +80,16 @@ void PlayerScore::setRings(int rings){
     updateText(string("coins"));
 }
 
+void PlayerScore::kill(){
+    sprites.at("main")->setColorMod(0x00, 0x00, 0x00);
+    points = 0;
+    hearts = 0;
+    coins = 0;
+    updateText(string("points"));
+    updateText(string("coins"));
+    updateText(string("hearts"));
+}
+
 void PlayerScore::toggleOnline(bool state){
     if ( (state && online) || (!state && !online)) return;
     if (state) connect();

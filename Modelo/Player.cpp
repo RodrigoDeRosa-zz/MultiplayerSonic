@@ -24,6 +24,7 @@ Player::Player(string name, Puntaje* p){
 	this->atEnd = false;
 	this->scoreIndiv = 0;
     this->vivo = true;
+    this->frameMuerto = 0;
 }
 
 bool Player::estaVivo(){
@@ -266,15 +267,22 @@ void Player::setBaseY(float newy){
 out_message_t* Player::getStatus(float camPos){
     out_message_t* status = new out_message_t;
 	memset(status, 0, sizeof(out_message_t));
-    if(this->estaVivo()) status->ping = PLAYER_UPDATE;
-    else status->ping = PLAYER_DEAD;    
+    if(this->estaVivo()){
+        status->ping = PLAYER_UPDATE;
+        status->frame = this->getFrame();
+    }
+    else {
+        status->ping = PLAYER_DEAD;
+        status->frame = this->frameMuerto;
+        this->frameMuerto++; 
+    }   
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();
     status->posX = this->getX();
     status->posY = this->getY();
     status->camPos = camPos;
     status->move = this->getMovement();
-    status->frame = this->getFrame();
+    
 	status->rings = this->getMonedas();
 	status->lives = this->getVidas();
 	status->points = this->getIndivScore();
@@ -296,6 +304,10 @@ out_message_t* Player::getStatus(float camPos){
     status->team_rings = this->puntaje->getMonedas();
     status->team_points = this->puntaje->getTotal();
     return status;
+}
+
+bool Player::mensajeDeMuertoEnviado(){
+    return this->frameMuerto == 5;
 }
 
 bool Player::recibirGolpe(){
