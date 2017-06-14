@@ -83,7 +83,7 @@ void Control::initNiveles(){
     Transicion* transicion2 = new Transicion();
 	this->niveles.push_back(transicion2);
 
-    Nivel* nivel3 = new Nivel(LVL3_END);
+    Nivel* nivel3 = new Nivel(LVL3_END, true);
     this->niveles.push_back(nivel3);
 
     Transicion* transicion3 = new Transicion();
