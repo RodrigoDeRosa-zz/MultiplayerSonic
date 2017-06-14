@@ -284,6 +284,7 @@ void* viewControl(void* arg){
                 //Si el server se cierra durante la pantalla de start
                 if (!self->connected()) break;
                 Renderer::getInstance().clear();
+				self->getJuego()->unclickInit();
                 //Ahora es otro el thread que renderiza
                 while(SDL_PollEvent(&e)){
                     if (e.type == SDL_QUIT){
