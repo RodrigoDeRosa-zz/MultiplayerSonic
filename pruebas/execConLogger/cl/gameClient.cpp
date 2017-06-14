@@ -306,7 +306,7 @@ void* viewControl(void* arg){
                 usleep(1000);
             }
             while (!self->gameOn()){
-                sleep(1);
+                usleep(500000);
             }
         }
         self->getJuego()->unclickInit();
