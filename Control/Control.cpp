@@ -59,6 +59,7 @@ Control::Control(gameMode game_mode){
     k = 0;
 	this->initNiveles();
 	this-> nivelActual = 0;
+	this->terminado = false;
 }
 
 gameMode Control::getGameMode(){
@@ -203,10 +204,16 @@ void Control::handleInMessage(in_message_t* ev){
 	this->getNivelActual()->movePlayer(playerName,directions[0], directions[1]);
 }
 
+bool Control::terminoElJuego(){
+	return this->terminado;
+}
+
 void Control::update(){
 	if(this->getNivelActual()->yaTermino()){
 		this->nivelActual++;
-		if(this->nivelActual == this->niveles.size()){return;}//termino el juego, hacer algo
+		if(this->nivelActual == this->niveles.size()){
+			this->terminado = true;
+		}
         this->cameraControl->reset(this->getNivelActual()->getEnd());
 		this->getNivelActual()->addPlayers(this->modelo->getPersonajes());
 		this->getNivelActual()->addPuntajes(this->modelo->getPuntajes());
@@ -258,7 +265,7 @@ Entidad* obtenerEntidad(terna_t* terna){
 }
 
 void Control::crearEntidades(){
-/*	
+	
 	Ubicador* ubicador = new Ubicador();
 	ubicador->setParams(MIN_COINS,MAX_COINS,MIN_CRABS,MAX_CRABS,MIN_FLIES,MAX_FLIES,MIN_FISHES,MAX_FISHES,MIN_SPIKES,MAX_SPIKES,MIN_ROCKS,MAX_ROCKS,MIN_BONUSES,MAX_BONUSES);
 	for(int i = 0; i < this->niveles.size(); i++){
@@ -269,13 +276,14 @@ void Control::crearEntidades(){
 		}
 	}
 
-*/
+
 // NIVEL_JEFE_ORIG es 4
 // NIVEL_JEFE_TEST es 0
+/*
 	Jefe* jefe = new Jefe(0,2000,50);
 	Bola* bola = new Bola(0,2000,120,jefe);
 	this->niveles[0]->addEntidad(jefe);
-	this->niveles[0]->addEntidad(bola);
+	this->niveles[0]->addEntidad(bola);*/
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){

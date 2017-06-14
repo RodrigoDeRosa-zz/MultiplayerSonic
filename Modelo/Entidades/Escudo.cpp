@@ -26,7 +26,7 @@ void Escudo::afectarA(Player* jugador){
 		jugador->setX(posicion);
 	}
 	else{
-		jugador->setEstado(INVENCIBLE);
+		jugador->setEstado(ESCUDO);
 		this->destruida = true;
 	}
 }

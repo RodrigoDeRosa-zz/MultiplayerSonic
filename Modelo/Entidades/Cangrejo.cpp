@@ -19,7 +19,7 @@ Cangrejo::Cangrejo(int id, float x, float y) : Entidad(id,x,y,WIDTH,HEIGHT){
 void Cangrejo::afectarA(Player* jugador){
 	if(jugador->estaAtacando() || !(jugador->recibirGolpe())){
 		this->destruida = true;
-		//sumar puntos a jugador
+		jugador->sumarPuntos(100);
 	}
 	else jugador->lastimar();
 }
