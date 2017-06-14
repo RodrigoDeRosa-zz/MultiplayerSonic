@@ -159,7 +159,7 @@ void* f_view(void* arg){
             self->updatePlayer(message);
             //Se actualiza el score de los equipos si es que hay
             self->getJuego()->updateCoopScore(message->team_rings, message->team_points);
-            self->getJuego()->updateTeamScore(message->id, message->rings, message->points);
+            self->getJuego()->updateTeamScore(message->team, message->rings, message->points);
             self->getJuego()->updateCamara(message->camPos,0);
         } else if (message->ping == PLAYER_DEAD){
             self->killPlayer(message);
