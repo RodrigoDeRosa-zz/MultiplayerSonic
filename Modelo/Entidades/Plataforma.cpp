@@ -5,8 +5,8 @@
 #define HEIGHT 100
 /*este factor es para chequear que el borde de abajo del jugador no sea una poco mas bajo que el borde de arriba de la piedra,
 sino una distacia considerable, de modo que se pueda diferenciar una colision desde arriba de las de costado*/
-#define FACTOR_DIFERENCIAL_H 5
-#define THRESHOLD_DIST	45.0
+#define FACTOR_DIFERENCIAL_H -5
+#define THRESHOLD_DIST	25.0
 #define THRESHOLD_MIN	15.0
 
 using namespace std;

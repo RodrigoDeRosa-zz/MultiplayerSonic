@@ -71,7 +71,7 @@ void Control::initNiveles(){
 	/*Aca se deberian terminar de inicializa los niveles,
 	 * y si es necesario las pantallas de transicion.*/
 
-	Nivel* nivel1 = new Nivel(LVL1_END,true);
+	Nivel* nivel1 = new Nivel(LVL1_END/*,true*/);
 	this->niveles.push_back(nivel1);
 
 	Transicion* transicion1 = new Transicion();
@@ -299,7 +299,7 @@ void Control::crearEntidades(string nombreNivel ,Json::Value json, int i){
 }
 
 void Control::crearEntidades(Json::Value json){
-	crearEntidades("nivel1",json,0);
+	//crearEntidades("nivel1",json,0);
 	//crearEntidades("nivel1",json,2);
 	//crearEntidades("nivel1",json,4);
 // NIVEL_JEFE_ORIG es 4
