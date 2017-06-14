@@ -307,7 +307,7 @@ out_message_t* Player::getStatus(float camPos){
         status->team = 1;
     }
     status->team_rings = this->puntaje->getMonedas();
-    status->team_points = this->puntaje->getTotal();
+    status->team_points = this->puntaje->getParcial();
     return status;
 }
 
