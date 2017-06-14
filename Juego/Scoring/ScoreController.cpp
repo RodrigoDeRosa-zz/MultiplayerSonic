@@ -27,9 +27,9 @@ ScoreController::ScoreController(int mode){
         player = new PlayerScore(tex, font, offset*i);
         scores.push_back(player);
     }
-    CoopScore* coop;
+    /*CoopScore* coop;
     TeamScore* team;
-    /*Agrega los puntajes de coop o teams segun corresponda*/
+    /Agrega los puntajes de coop o teams segun corresponda/
     switch (mode) {
         case 0: break;
         case 1: //Coop
@@ -50,7 +50,7 @@ ScoreController::ScoreController(int mode){
             team = new TeamScore(tex, font, 2);
             scores.push_back(team);
             break;
-    }
+    }*/
 }
 ScoreController::~ScoreController(){
     for (int i = 0; i < scores.size(); i++){
@@ -72,15 +72,15 @@ void ScoreController::update(int index, int rings, int lives, int score, bool st
 }
 
 void ScoreController::updateCoop(int rings, int score){
-    Score* coop = scores.at(4);
-    coop->setRings(rings);
-    coop->setScore(score);
+    //Score* coop = scores.at(4);
+    //coop->setRings(rings);
+    //coop->setScore(score);
 }
 
 void ScoreController::updateTeam(int team, int rings, int score){
-    Score* teamS = scores.at((size_t)team+4);
-    teamS->setRings(rings);
-    teamS->setScore(score);
+    //Score* teamS = scores.at((size_t)team+4);
+    //teamS->setRings(rings);
+    //teamS->setScore(score);
 }
 
 void ScoreController::render(){
