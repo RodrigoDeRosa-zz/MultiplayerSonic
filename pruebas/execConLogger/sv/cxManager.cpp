@@ -38,6 +38,10 @@ void CXManager::addConnection(Connection* connection){
     actualConnections++;
 }
 
+map<int, Connection*> CXManager::getConnections(){
+    return connections;
+}
+
 void CXManager::removeConnection(int id){
     connections.erase(id);
     ids.push_back(id);
@@ -110,4 +114,5 @@ void CXManager::disableConnection(int id){
         connection->disconnect(0);
     }
     ids.erase(remove(ids.begin(), ids.end(), id), ids.end());
+    maxConnections = actualConnections;
 }

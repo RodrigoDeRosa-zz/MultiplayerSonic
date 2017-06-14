@@ -35,6 +35,8 @@ class CXManager{
         void addConnection(Connection*);
         /*Borra la conexion con dado id*/
         void removeConnection(int id);
+        /*Devuelve el mapa de conexiones actual*/
+        map<int, Connection*> getConnections();
         /*Devuelven la conexion con el id pedido*/
         Connection* getConnection(int id);
         /*Devuelve si las colas tienen o no elementos*/
