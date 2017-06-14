@@ -25,7 +25,7 @@ class Player{
 	Estado* estado;
 	bool atEnd;
 	bool vivo;
-	int frameMuerto;
+	int frameMuerto, frameSum;
 	public:
 		Player(string name, Puntaje* p);
 		string getName();
@@ -50,7 +50,7 @@ class Player{
 		state_type getEstado();
 		bool estaVivo();
 		bool mensajeDeMuertoEnviado();
-		
+
 		void setIndivScore(int newscore);
 		int  getIndivScore();
 		void sumarIndivScore(int sc);

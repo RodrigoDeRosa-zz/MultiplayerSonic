@@ -25,6 +25,7 @@ Player::Player(string name, Puntaje* p){
 	this->scoreIndiv = 0;
     this->vivo = true;
     this->frameMuerto = 0;
+	this->frameSum = 0;
 }
 
 bool Player::estaVivo(){
@@ -273,16 +274,19 @@ out_message_t* Player::getStatus(float camPos){
     }
     else {
         status->ping = PLAYER_DEAD;
-        status->frame = this->frameMuerto;
-        this->frameMuerto++; 
-    }   
+        status->frame = frameMuerto;
+		frameSum++;
+		if (frameSum%10 == 0){
+			frameMuerto = frameSum / 10;
+		}
+    }
     status->id = atoi(this->getName().c_str());
     status->connection = this->isConnected();
     status->posX = this->getX();
     status->posY = this->getY();
     status->camPos = camPos;
     status->move = this->getMovement();
-    
+
 	status->rings = this->getMonedas();
 	status->lives = this->getVidas();
 	status->points = this->getIndivScore();
