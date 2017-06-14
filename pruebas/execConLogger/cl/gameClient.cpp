@@ -53,6 +53,7 @@ void* initGame(void *arg){
         }
         if (message->ping == GAME_SET) {
             Juego* juego = new Juego( (gameMode)message->id );
+            if (message->frame == 1){ client->setReconnected();}
             client->addJuego(juego);
         } else if (message->ping == GAME_START){
             client->getJuego()->nextStage(); //estaba en pantalla de inicio
@@ -159,7 +160,7 @@ void* f_view(void* arg){
             self->updatePlayer(message);
             //Se actualiza el score de los equipos si es que hay
             self->getJuego()->updateCoopScore(message->team_rings, message->team_points);
-            self->getJuego()->updateTeamScore(message->team, message->rings, message->points);
+            self->getJuego()->updateTeamScore(message->team, message->team_rings, message->team_points);
             self->getJuego()->updateCamara(message->camPos,0);
         } else if (message->ping == PLAYER_DEAD){
             self->killPlayer(message);
@@ -274,33 +275,39 @@ void* viewControl(void* arg){
         }
         //Pantalla de inicio de juego
         key_event key;
-        while(!self->gameOn()){
-            //Si el server se cierra durante la pantalla de start
-            if (!self->connected()) break;
-            Renderer::getInstance().clear();
-            //Ahora es otro el thread que renderiza
-            while(SDL_PollEvent(&e)){
-                if (e.type == SDL_QUIT){
-                    self->disconnect(0);
-                    pthread_join(game, &exit_status);
-                    return NULL; //Se termina la ejecucion
-                }
-                key = KEY_TOTAL;
-                key = self->getJuego()->processEvent(e);
+        if (self->getReconnected()){
+            while(!self->gameOn()){
+                usleep(500000);
             }
-            if (key != KEY_TOTAL){
-                self->queueToSend(key);
-                self->getJuego()->setInitClicked();
+        } else {
+            while(!self->gameOn()){
+                //Si el server se cierra durante la pantalla de start
+                if (!self->connected()) break;
+                Renderer::getInstance().clear();
+                //Ahora es otro el thread que renderiza
+                while(SDL_PollEvent(&e)){
+                    if (e.type == SDL_QUIT){
+                        self->disconnect(0);
+                        pthread_join(game, &exit_status);
+                        return NULL; //Se termina la ejecucion
+                    }
+                    key = KEY_TOTAL;
+                    key = self->getJuego()->processEvent(e);
+                }
+                if (key != KEY_TOTAL){
+                    self->queueToSend(key);
+                    self->getJuego()->setInitClicked();
+                    self->getJuego()->render();
+                    Renderer::getInstance().draw();
+                    break;
+                }
                 self->getJuego()->render();
                 Renderer::getInstance().draw();
-                break;
+                usleep(1000);
             }
-            self->getJuego()->render();
-            Renderer::getInstance().draw();
-            usleep(1000);
-        }
-        while (!self->gameOn()){
-            usleep(50000);
+            while (!self->gameOn()){
+                sleep(1);
+            }
         }
         self->getJuego()->unclickInit();
         //Juego

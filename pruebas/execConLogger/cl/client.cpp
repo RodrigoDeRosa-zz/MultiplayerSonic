@@ -21,6 +21,7 @@ Client::Client(const char* p, const char* h){
     gameStarted = false;
     gameSet = false;
     connectFail = false;
+    reconnected = false;
     won = false;
     over = false;
     manuallyClosed = false;
@@ -39,6 +40,14 @@ Client::~Client(){
     pings = 0;
     online = false;
     gameStarted = false;
+}
+
+void Client::setReconnected(){
+    reconnected = true;
+}
+
+bool Client::getReconnected(){
+    return reconnected;
 }
 
 void Client::renderInit(){

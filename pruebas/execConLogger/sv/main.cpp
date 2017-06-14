@@ -90,8 +90,10 @@ void* accept(void* arg){
         Connection* connection = new Connection(socket);
         CXManager::getInstance().addConnection(connection);
 
-        SERVER().startInitializing();
-        enviarInformacionJuego(control, connection);
+        if(!SERVER().is_running()){
+            SERVER().startInitializing();
+            enviarInformacionJuego(control, connection);
+        }
 
         /*if (!SERVER().is_running() && (CXM().actualConnections == CXM().maxConnections)){
             SERVER().startInitializing();
@@ -104,6 +106,7 @@ void* accept(void* arg){
             memset(state, 0, sizeof(out_message_t));
             state->ping = GAME_SET;
             state->id = (int) control->getGameMode();
+            state->frame = 1;
             memcpy(message, state, sizeof(out_message_t));
             connection->sendMessage(message, sizeof(out_message_t));
             usleep(1000);
@@ -160,10 +163,11 @@ void* eventDistribution(void* arg){
         if (CXM().hasOutEvents()){
             char* event = CXM().getOutEvent(); //TODO: Hay que definir el tipo de los eventos
             /*Se le pasa a todas las conexiones para que sean enviados a los clientes*/
-            map<int, Connection*> connections = CXM().getConnections();
-            for (map<int, Connection*>::iterator it = connections.begin(); it != connections.end(); it++){
-                Connection* conn = it->second;
-                conn->queueOutEvent(event);
+            Connection* connection;
+            for (int i = 0; i < CXM().maxConnections; i++){
+                connection = CXM().getConnection(i);
+                if (!connection) continue;
+                connection->queueOutEvent(event);
             }
         }
     }

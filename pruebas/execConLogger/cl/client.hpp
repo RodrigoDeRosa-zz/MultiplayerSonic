@@ -16,6 +16,7 @@ class Client{
         Socket* socket;
         struct addrinfo *serverInfo;
         bool online;
+        bool reconnected;
         bool gameStarted;
         bool connectFail;
         bool gameSet;
@@ -83,6 +84,8 @@ class Client{
         void gameWon(bool);
         bool gameWon();
         bool gameOver();
+        void setReconnected();
+        bool getReconnected();
 };
 
 #endif /*CLIENT_HPP*/
