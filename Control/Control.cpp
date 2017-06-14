@@ -8,6 +8,7 @@
 #include "../Modelo/Entidades/Pez.hpp"
 #include "../Modelo/Entidades/Mosca.hpp"
 #include "../Modelo/Entidades/Invencibilidad.hpp"
+#include "../Modelo/Entidades/Plataforma.hpp"
 #include "../Modelo/Entidades/BonusMoneda.hpp"
 #include "../Modelo/Entidades/Escudo.hpp"
 #include "../Modelo/Entidades/Jefe.hpp"
@@ -308,9 +309,12 @@ void Control::crearEntidades(Json::Value json){
     //this->niveles[NIVEL1]->addEntidad(pinche);
 
 	Jefe* jefe = new Jefe(0,5500,50);
-	Bola* bola = new Bola(0,55000,120,jefe);
+	Bola* bola = new Bola(0,5500,120,jefe);
 	this->niveles[NIVEL3]->addEntidad(jefe);
 	this->niveles[NIVEL3]->addEntidad(bola);
+
+    Plataforma* platform1 = new Plataforma(0, 500, 220);
+    this->niveles[NIVEL1]->addEntidad(platform1);
 }
 
 vector<out_message_t*> Control::getEntidadesInitStatus(){
