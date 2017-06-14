@@ -21,6 +21,7 @@ public:
 	out_message_t* getInitMessage();
 	void mover();
 	void getAnclaje(float* targetX, float* targetY);
+	bool esJefe();
 };
 
 #endif /*JEFE_HPP*/

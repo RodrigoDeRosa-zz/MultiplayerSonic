@@ -17,8 +17,10 @@ protected:
 	bool changeLevelMessageSent;
 	bool termino;
 	float end;
+	bool tieneJefe;
+	bool jefeMuerto;
 public:
-		Nivel(float end);
+		Nivel(float end, bool tieneJefe = false);
 
 		void addPlayers( vector<Player*>* );
 		void addPuntajes( vector<Puntaje*>* );
@@ -39,7 +41,7 @@ public:
 		void setPlayerConnection(string playerName, bool connection);
 		vector<string> getDisconnectedPlayers();
 		bool playerIsConnected(string playerName);
-		vector<out_message_t*> getEntidadesInitStatus();
+		virtual vector<out_message_t*> getEntidadesInitStatus();
 		void setPrueba(string);
 		void playerRoll(string playerName);
 		virtual void colisionarTodos();

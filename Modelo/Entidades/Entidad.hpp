@@ -38,6 +38,7 @@ public:
 	float getBordeAbajo();
 	bool estaDestruida();
 	bool esPiedra();
+	virtual bool esJefe();
 
 	/*Setters*/
 	void setW(float);

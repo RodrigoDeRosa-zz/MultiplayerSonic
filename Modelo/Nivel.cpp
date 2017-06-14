@@ -1,7 +1,7 @@
 #include "Nivel.hpp"
 #include <stdio.h>
 
-Nivel::Nivel(float end){
+Nivel::Nivel(float end, bool tieneJefe){
 
 	/*Vectores inicializados*/
 	players = new vector<Player*>();
@@ -15,6 +15,8 @@ Nivel::Nivel(float end){
 	termino = false;
 	changeLevelMessageSent = false;
 	this->end = end;
+	this->tieneJefe = tieneJefe;
+	this->jefeMuerto = false;
 }
 
 float Nivel::getEnd(){
@@ -30,7 +32,12 @@ void Nivel::terminar(){
 		}
 		jugadores_en_final = jugadores_en_final && (*players)[i]->llegoAlFinal();
 	}
-	if(jugadores_en_final) this->termino = true;
+	if(jugadores_en_final){
+		if(tieneJefe){
+			if(jefeMuerto) this->termino = true;
+		}
+		else this->termino = true;
+	}
 }
 
 void Nivel::addPlayers( vector<Player*>* vec){
@@ -207,6 +214,8 @@ void Nivel::colisionarTodos() {
 					(*players)[i]->afectarseCon((*entidades)[j]);
 				}
 			}
+
+			if (this->tieneJefe && (*entidades)[j]->esJefe() && (*entidades)[j]->estaDestruida()) this->jefeMuerto = true;
 		}
 		/*
         if (!colisionoPiedra && !(*players)[i]->estaSaltando() && (*players)[i]->getY() >= 345  && (*players)[i]->getY() < 425 ){

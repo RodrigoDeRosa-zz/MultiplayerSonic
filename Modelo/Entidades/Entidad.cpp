@@ -17,6 +17,9 @@ int Entidad::getId(){
 	return this->id;
 }
 
+bool Entidad::esJefe(){
+	return false;
+}
 
 float Entidad::getX(){
 	return this->x;

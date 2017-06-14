@@ -31,6 +31,10 @@ void Jefe::mover(){
 	x+= direccion*BOSS_MOV_SPEED;
 }
 
+bool Jefe::esJefe(){
+	return true;
+}
+
 void Jefe::afectarA(Player* jugador){
 	//como esto vuela, puedo asumir que si lo toca esta atacando
 	if(cont_inmune >= MAX_CONT_INMUNE){
